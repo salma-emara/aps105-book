@@ -2,26 +2,230 @@
 <html lang="en">
 
 <head>
-    <title>
-        Salma Emara &middot; University of Toronto
-    </title>
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" media="screen and (max-width: 1200px)" href="css/mobile.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
-    <h1>My Books</h1>
-    <p>HTML book created by me.</p>
-    <div data-pym-src="https://www.jdoodle.com/embed/v0/5aOs?stdin=0&arg=0"></div>
+    <!-- Navbar Section -->
+    <nav class="navbar">
 
+        <div class="navbar__container">
+            <a href="/" id="navbar__logo"></a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="/" class="navbar__links">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="/chap.html" class="navbar__links">Chapters</a>
+                </li>
+                <!-- <li class="navbar__item">
+                    <a href="/" class="navbar__links">Products</a>
+                </li> -->
+                <!-- <li class="navbar__btn">
+                    <a href="#" class="button">Sign Up</a>
+                </li> -->
+            </ul>
+    </nav>
+    <!--Hero Section-->
+    <div class="main-section">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>APS105</h1>
+                <h2>Computer Fundamentals</h2>
+                <p>Winter 2023</p>
+                <!-- <button class="main__btn"><a href="/">Get Started</a></button> -->
+            </div>
+            <div class="main__img--container">
+                <img src="images/undraw_programming.svg" alt="pic" id="main__img">
+            </div>
+        </div>
+
+    </div>
+    <!--Services Section-->
+    <div class="services">
+        <h1>Let's get started!</h1>
+        <div class="services__container">
+            <div class="services__card">
+                <h2>1. What are computers?</h2>
+                <p>CPU, Memory, I/O</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>2. Numbers and operations</h2>
+                <p>Data representation and operations</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>3. Decisions</h2>
+                <p>If conditions</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>4. Loops</h2>
+                <p>For, while, do-while loops</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>5. Functions</h2>
+                <p>For, while, do-while loops</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>6. Pointers</h2>
+                <p>Pass by pointer and memory leaks</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>7. Arrays</h2>
+                <p>1D, 2D arrays and pass to functions</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>8. Dynamic Allocation</h2>
+                <p>Malloc and free memory</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>9. Strings</h2>
+                <p>Array of characters</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>10. Recursion</h2>
+                <p>Function calls itself?!</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>11. Data structure</h2>
+                <p>Typedef and struct</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>12. Linked List</h2>
+                <p> Shrinking and expanding a linked list</p>
+                <button>Get Started</button>
+            </div>
+
+
+            <div class="services__card">
+                <h2>13. Searching</h2>
+                <p>Look for data</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>14. Sorting</h2>
+                <p>Insertion, bubble, selection and quick sort</p>
+                <button>Get Started</button>
+            </div>
+
+            <div class="services__card">
+                <h2>15. Binary tree</h2>
+                <p>Binary search tree </p>
+                <button>Get Started</button>
+            </div>
+
+
+        </div>
+    </div>
+    <!--Footer Section-->
+    <footer>
+        <div class="footer__container">
+            <div class="footer__links">
+                <div class="footer__link--wrapper">
+                    <div class="footer__link--items">
+                        <h2>About Us</h2>
+                        <a href="/">How it works</a>
+                        <a href="/">Testimonials</a>
+                        <a href="/">Careers</a>
+                        <a href="/">Investors</a>
+                        <a href="/">Terms of Service</a>
+                    </div>
+
+                    <div class="footer__link--items">
+                        <h2>About Us</h2>
+                        <a href="/">How it works</a>
+                        <a href="/">Testimonials</a>
+                        <a href="/">Careers</a>
+                        <a href="/">Investors</a>
+                        <a href="/">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="footer__link--wrapper">
+                    <div class="footer__link--items">
+                        <h2>About Us</h2>
+                        <a href="/">How it works</a>
+                        <a href="/">Testimonials</a>
+                        <a href="/">Careers</a>
+                        <a href="/">Investors</a>
+                        <a href="/">Terms of Service</a>
+                    </div>
+
+                    <div class="footer__link--items">
+                        <h2>About Us</h2>
+                        <a href="/">How it works</a>
+                        <a href="/">Testimonials</a>
+                        <a href="/">Careers</a>
+                        <a href="/">Investors</a>
+                        <a href="/">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="social__media">
+                <div class="social__media--wrap">
+                    <div class="footer__logo">
+                        <a href="/" id="footer__logo">NEXT</a>
+                    </div>
+                    <p class="website__rights">NEXT © 2022</p>
+                    <div class="social__icons">
+                        <a href="/" class="social__icon--link" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="/" class="social__icon--link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="/" class="social__icon--link" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="/" class="social__icon--link" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="/" class="social__icon--link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
 </body>
-
-
-<script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript">
-</script>
 
 </html>

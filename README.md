@@ -15,3 +15,7 @@ It is enough to embed an online compiler I believe as a first step. Maybe later 
 ### For images
 
 [Prexels](https://www.pexels.com/search/nucleus%20cell/)
+
+### Interactive book used in 2017 
+
+[Zybook](https://learn.zybooks.com/zybook/UTORONTOAPS105RoseSpring2017)

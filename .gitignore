@@ -1,1 +1,10 @@
 .DS_Store
+
+# Distribution / packaging
+build/
+eggs/
+.eggs/
+lib/
+
+# Sphinx documentation
+docs/_build/

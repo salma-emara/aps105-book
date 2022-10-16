@@ -6,10 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'APS 105: Computer Fundamentals Online Book'
+project = 'Snefru' 
 copyright = '2022, Salma Emara'
 author = 'Salma Emara'
-release = '0.1'
+#release = '0.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -21,6 +21,7 @@ extensions = [
     "jupyter_sphinx",
     "sphinx_thebe",
     "nbsphinx",
+    "sphinxemoji.sphinxemoji"
     ]
 
 

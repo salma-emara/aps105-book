@@ -21,7 +21,6 @@ extensions = [
     "jupyter_sphinx",
     "sphinx_thebe",
     "nbsphinx",
-    "sphinxemoji.sphinxemoji"
     ]
 
 

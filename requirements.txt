@@ -1,8 +1,8 @@
-alabaster==0.7.12
-anyio==3.6.1
-appnope==0.1.3
-argon2-cffi==21.3.0
-argon2-cffi-bindings==21.2.0
+alabaster
+anyio
+appnope
+argon2-cffi
+argon2-cffi-bindings
 asttokens==2.0.8
 attrs==21.4.0
 Babel==2.10.3
@@ -10,7 +10,7 @@ backcall==0.2.0
 beautifulsoup4==4.11.1
 bleach==5.0.1
 brotlipy==0.7.0
-certifi @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_0ek9yztvu3/croot/certifi_1665076692562/work/certifi
+certifi
 cffi==1.15.1
 charset-normalizer==2.1.1
 click==7.1.2

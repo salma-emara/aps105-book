@@ -10,6 +10,7 @@ You need to install jupyter-c-kernel: https://github.com/XaverKlemenschits/jupyt
 git clone https://github.com/XaverKlemenschits/jupyter-c-kernel.git
 cd jupyter-c-kernel
 pip install -e .  # for system install: sudo install .
+pip install jupyter
 cd jupyter_c_kernel && install_c_kernel --user # for sys install: sudo install_c_kernel
 # now you can start the notebook
 jupyter notebook

@@ -1,3 +1,0 @@
-# Data types
-
-dwerc

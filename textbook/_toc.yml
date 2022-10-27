@@ -1,0 +1,21 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: cover.md
+parts:
+  - caption: Preface
+    chapters:
+      - file: chapters/preface/intro.md
+      - file: chapters/preface/principles.md
+
+  - caption:
+    numbered: True
+    chapters:
+      - file: chapters/chapter01-computers/basic-structure.md
+        sections:
+          - file: chapters/chapter01-computers/what.md
+
+      - file: chapters/chapter02-variables/storing-data.md
+        sections:
+          - file: chapters/chapter02-variables/data-types.md

@@ -31,9 +31,7 @@ sudo install_c_kernel --user # this will ask you for a password
 jupyter notebook
 ```
 
-```
-
-4- Then, you can build the book with:
+4- To build the book locally, run the following command:
 
 ```
 # To build everything

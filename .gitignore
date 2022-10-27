@@ -1,7 +1,7 @@
 .DS_Store
 
 # Distribution / packaging
-build/
+_build/
 eggs/
 .eggs/
 lib/

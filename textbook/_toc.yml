@@ -9,12 +9,13 @@ parts:
       - file: chapters/preface/intro.md
       - file: chapters/preface/principles.md
 
-  - caption:
+  - caption: Book Chapters
     numbered: True
     chapters:
       - file: chapters/chapter01-computers/basic-structure.md
         sections:
-          - file: chapters/chapter01-computers/what.md
+          - file: chapters/chapter01-computers/main-memory.md
+          - file: chapters/chapter01-computers/simple-C-code.md
 
       - file: chapters/chapter02-variables/storing-data.md
         sections:

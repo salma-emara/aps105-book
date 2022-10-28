@@ -4,11 +4,13 @@ A program is a sequence of instructions to be executed or performed by a compute
 
 A computer system has software and hardware. The software consists of the applications running on your computer, such as your browser, computer games, Microsoft Office, and your C program which you will develop in this course. Another very important piece of software is the operating system, which provides an interface between the hardware and the applications running on your computer. The hardware consists of the physical components of your computer, such as the central processing unit (CPU), (main) memory, the hard drive, and the input and output devices. The two most important pieces of hardware that we will access using C is the keyboard (input device) and the monitor (output device). 
 
-```{image} ./images/basic-computer-structure.png
+```{figure} ./images/basic-computer-structure.png
 :alt: The basic structure of a computer 
-:class: bg-primary mb-1
+:class: with-shadow
 :width: 400px
 :align: center
+
+The basic structure of a computer
 ```
 
 **The main memory** stores data and the program we want to execute. The data and instructions are all stored in binary representation.

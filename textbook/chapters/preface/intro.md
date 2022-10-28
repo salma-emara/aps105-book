@@ -39,17 +39,26 @@ There are many reasons to learn programming. Here are a few:
 
 ## Why learn C?
 
-C is a general-purpose programming language that is used to write programs for a wide variety of applications. For example, the operating system on your computer, such as Windows, Linux, Mac OS X is mostly written in C. The programs that you use to browse the web and play games are also written in C. Even the compilers such as MINGW and Clang C, which are programs that translate your C code into machine code, are written in C! 
+**Applicability:** C is a general-purpose programming language that is used to write programs for a wide variety of applications. For example, the operating system on your computer, such as Windows, Linux, Mac OS X is mostly written in C. The programs that you use to browse the web and play games are also written in C. Even the compilers such as MINGW and Clang C, which are programs that translate your C code into machine code, are written in C! 
 
 Programs running on embedded systems, such as the microcontrollers in your smart phone, your smart watch, and your smart fridge are written in C. 
 
-Living in a world run by programs, energy efficiency and speed are important. C is known to be the best energy efficient programming language. Since C is a compiled language, it runs faster than interpreted languages such as Python.
+**Speed and Energy efficiency:** Living in a world run by programs, energy efficiency and speed are important. C is known to be the best energy efficient programming language. Since C is a compiled language, it runs faster than interpreted languages such as Python. 
+<!---
+cite the work that says so
+--> 
+
+**Flexibility:** C is a low-level programming language. This means that it gives you more control over the computer. You can directly access the memory of the computer, and you can directly control the hardware of the computer -- as we will see in this course. This allows you to write programs that are more efficient and faster.
+
+**Transferable knowledge:** C has a syntax that is very similar or close to many other programming languages. This will make it easy later on to learn other programming languages.
 
 ## How to program?
 
-This is what we answer throughout this book. Let's get started 💪.
+This is what we answer throughout this book. 
 
-## Who is this online book for?
+Let's get started 💪.
+
+## Who is this book for?
 
 It is intended to be a resource for students in the first year of the University of Toronto's APS105: Computer Fundamentals course. It is also intended to be a resource for students who are self-learning C.
 

@@ -2,8 +2,6 @@
 
 Welcome to the first edition of *Snefru: Learning Programming with C*!  
 
-To answer wh
-
 ## What is programming?
 
 Programming is a skill that allows you to tell a computer what to do. Programming involves writing a program. This program *communicates* a set of instructions that the computer can understand. The computer then *executes* these instructions to accomplish the task you want to do.
@@ -44,13 +42,17 @@ There are many reasons to learn programming. Here are a few:
 Programs running on embedded systems, such as the microcontrollers in your smart phone, your smart watch, and your smart fridge are written in C. 
 
 **Speed and Energy efficiency:** Living in a world run by programs, energy efficiency and speed are important. C is known to be the best energy efficient programming language. Since C is a compiled language, it runs faster than interpreted languages such as Python. 
-<!---
+<!--- TODO:
 cite the work that says so
 --> 
 
 **Flexibility:** C is a low-level programming language. This means that it gives you more control over the computer. You can directly access the memory of the computer, and you can directly control the hardware of the computer -- as we will see in this course. This allows you to write programs that are more efficient and faster.
 
 **Transferable knowledge:** C has a syntax that is very similar or close to many other programming languages. This will make it easy later on to learn other programming languages.
+
+<!--- TODO:
+May add some drawbacks of C, such as low-level complexities and complexities that make it difficult for new programmers to learn.
+--> 
 
 ## How to program?
 

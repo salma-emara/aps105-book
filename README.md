@@ -44,7 +44,7 @@ jupyter-book build textbook
 
 ```open textbook/_build/html/index.html```
 
-
+If you are using VS Code, install MyST-Markdown extension to allow syntax highlighting for .md files.
 
 
 

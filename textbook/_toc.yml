@@ -15,6 +15,7 @@ parts:
       - file: chapters/chapter01-computers/basic-structure.md
         sections:
           - file: chapters/chapter01-computers/main-memory.md
+          - file: chapters/chapter01-computers/dev-cycle.md
           - file: chapters/chapter01-computers/simple-C-code.md
 
       - file: chapters/chapter02-variables/storing-data.md

@@ -12,12 +12,26 @@ parts:
   - caption: Book Chapters
     numbered: True
     chapters:
-      - file: chapters/chapter01-computers/basic-structure.md
+      - file: chapters/chapter01-computers/intro.md
         sections:
+          - file: chapters/chapter01-computers/basic-structure.md
           - file: chapters/chapter01-computers/main-memory.md
           - file: chapters/chapter01-computers/dev-cycle.md
           - file: chapters/chapter01-computers/simple-C-code.md
 
-      - file: chapters/chapter02-variables/storing-data.md
+      - file: chapters/chapter02-variables/intro.md
         sections:
           - file: chapters/chapter02-variables/data-types.md
+          - file: chapters/chapter02-variables/storing-data.md
+      - file: chapters/chapter05-functions/functions.md
+        sections:
+          - file: chapters/chapter05-functions/problem-solving.md
+
+  - caption: "Appendix: Additional information"
+    chapters:
+      - file: chapters/appendix/appendix.md
+      - file: chapters/appendix/linux-basics.md
+      - file: chapters/appendix/setup-vscode.md
+      - file: chapters/appendix/compile-run.md
+      - file: chapters/appendix/coding-style.md
+      - file: chapters/appendix/debugging.md

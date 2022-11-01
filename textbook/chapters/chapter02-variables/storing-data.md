@@ -1,3 +1,3 @@
-# Store data in the
+# Data representation
 
 decxwerc

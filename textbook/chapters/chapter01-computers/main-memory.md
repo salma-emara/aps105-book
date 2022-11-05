@@ -30,6 +30,7 @@ For numbers greater than 3, again we need a 1 in another higher significant digi
 | 6       | 110    |
 | 7       | 111    |
 
+(bits-represent)=
 ## How many bits do we need to represent $x$ numbers? 
 
 So far we used
@@ -51,7 +52,7 @@ A megabyte (MB) is 1024 kilobytes.
 A gigabyte (GB) is 1024 megabytes.
 A terabyte (TB) is 1024 gigabytes.
 ```
-
+(memory-organization)=
 ## How is the 0s and 1s of data memory organized?
 
 The memory is organized in **cells**. Each cell stores a byte. Each cell has an address. This makes the memory **byte-addressable**. This means at each address only one byte is stored. 

@@ -88,7 +88,7 @@ Let's examine each line:
 
 `printf("How many pizzas do you have?\n");` prints the string "How many pizzas do you have?" to the screen. The `\n` indicates a new line.
 
-`scanf("%d", &numPizzas);` will wait for the user to input an integer number. `scanf` is a function that scans the keeyboard for user input. `%d` means that whatever the user input will be formatted to an integer. `&` is the address operator. It is used to get the address of a variable. `&numPizzas` is the address of the variable `numPizzas`. `scanf` will store the user input in the address of the variable `numPizzas`. `scanf` requires the address of the variable, and in the pointers chapter we will discuss why.
+`scanf("%d", &numPizzas);` will take the user input and assign it to `numPizzas` variable. `scanf` is a function that scans the keyboard for user input. `%d` is a format specifier that indicates that user input will be an integer. `&` is the address-of operator. It is used to get the address of a variable. `&numPizzas` is the address of the variable `numPizzas`. `scanf` will store the user input in the address of the variable `numPizzas`. `scanf` requires the address of the variable (not just the variable). In the chapter of pointers, we will discuss why `scanf` requires the address of `numPizzas`.
 
 `numSlices = numPizzas * 8;` will multiply the value in `numPizzas` (which was entered by the user in `scanf`) by 8 and store the result value in `numSlices`.
 

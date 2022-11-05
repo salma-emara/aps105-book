@@ -76,6 +76,8 @@ Boolean `bool` data type is used to represent a logical value, i.e. either `true
 
 **Example**
 
+Write a C code that prints a `bool` variable. Code in {download}`isRaining.c <../../code/chapter2/boolVariable/isRaining.c>`.
+
 ```c {.line-numbers}
 #include <stdbool.h>
 #include <stdio.h>

@@ -6,6 +6,7 @@ eggs/
 .eggs/
 lib/
 .vscode/
+build/
 
 # Sphinx documentation
 docs/_build/

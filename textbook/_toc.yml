@@ -23,6 +23,8 @@ parts:
         sections:
           - file: chapters/chapter02-variables/data-types.md
           - file: chapters/chapter02-variables/storing-data.md
+          - file: chapters/chapter02-variables/operations.md
+          - file: chapters/chapter02-variables/math-library.md
       - file: chapters/chapter05-functions/functions.md
         sections:
           - file: chapters/chapter05-functions/problem-solving.md

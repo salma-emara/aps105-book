@@ -30,6 +30,40 @@ For numbers greater than 3, again we need a 1 in another higher significant digi
 | 6       | 110    |
 | 7       | 111    |
 
+## How to know the decimal number from a binary number?
+
+To convert a binary number to a decimal number, we need to know the value of each bit. In the previous section, we discussed the logic behind representing decimal numbers in binary. We can use the same logic to convert a binary number to a decimal number.
+
+In decimal numbers, we have the one's digit, ten's digit, hundred's digit and so on. The value of each digit is the power of $10$. One's digit is $10^0$, ten's digit is $10^1$, hundred's digit is $10^2$ and so on. Similarly, in binary numbers, we have the one's bit, two's bit, four's bit and so on. The value of each bit is the power of $2$. The value of the one's bit is $2^0$, the value of the two's bit is $2^1$, the value of the four's bit is $2^2$ and so on.
+
+To be able to get the decimal equivalent of a binary representation, we need to multiply each bit with its value. For example, the binary number `101` is equivalent to $1 \times 2^0 + 0 \times 2^1 + 1 \times 2^2 = 5$. Another example is shown in the following figure.
+
+```{figure} ./images/binary-decimal.png
+:alt: Binary to decimal conversion example
+:class: with-shadow
+:width: 400px
+:align: center
+
+Binary to decimal conversion example
+```
+
+## How to know the binary representation of a decimal number?
+
+While we discussed earlier the logic of developing the binary representation from decimal numbers, we need to find a way to convert *individual* decimals to their binary representation. 
+
+The main idea is the following: In the binary to decimal conversion, we had to multiply each bit with its value. To reverse this, in the decimal to binary conversion, we need to divide the decimal number by two repeatedly to know the value we need to put in each bit.
+
+**The method.** For example, we have 138 to convert to binary. We divide 138 by 2 and get a quotient of 69 and a remainder of 0. We continue dividing the quotient by 2, and keep track of remainders. This stops when the quotient reaches 0. The last remainder is the highest significant bit, and the first is the lowest significant bit. The following figure shows the steps of the conversion through an example.
+
+```{figure} ./images/decimal-binary.png
+:alt: Decimal to binary conversion example
+:class: with-shadow
+:width: 400px
+:align: center
+
+Decimal to binary conversion example
+```
+
 (bits-represent)=
 ## How many bits do we need to represent $x$ numbers? 
 

@@ -2,6 +2,7 @@
 
 In the previous chapter, we developed a program to calculate the number of slices in a number of pizzas. The number of slices and pizzas were considered integers, i.e. whole numbers with no fractions. However, some operations may need fractional numbers/real numbers. For example, if we want to convert temperatures from Celsius to Fahrenheit, or centimeters to inches, we need to use fractional numbers - with decimal component. In this section, we will see how to represent numbers using fractional in our programs.
 
+(inch-cm)=
 ## Example: Convert Inches to Centimeters
 
 > Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is $2.54$ centimeters per inch. Download {download}`inches-to-centimeters.c <../../code/chapter2/inches2cm/inches-to-cm.c>` to get the following source code.
@@ -32,6 +33,7 @@ Let's understand what each line is doing.
 `const double InchesToCm = 2.54;`. 
 
 * `const` is a keyword that indicates that the variable `InchesToCm` is a constant. The variable `InchesToCm` cannot be changed throughout the code. This will cause an error during compilation. 
+  
   ````{admonition} Exercise: Change a constant variable
   :class: tip
   When I added in line 8 `InchesToCm = 2.53;`, which changes a `const` variable, the compiler gave me the following error. This is helpful because the `const` keyword guards against *mistakenly* changing a variable. 
@@ -47,10 +49,11 @@ Let's understand what each line is doing.
     ````
 
 * `double` is a data type that indicates that the variable `InchesToCm` is a fractional number.   
-  ```{admonition} Think: 
+  ```{admonition} Think! 
+  :name: float-in-int
   What would happen if a number with decimal is stored in an `int`?
 
-   If a number with decimal is stored in an `int`, the decimal part will be truncated. For example, if we store `2.54` in an `int`, the value will be `2`. 
+   If a number with decimal is stored in an `int`, the decimal part will be truncated. For example, if we store `2.54` in an `int`, the value actually stored will be `2`. 
   ```
 
 Think about what would happen if a double number is stored in an `int` 🤔. 

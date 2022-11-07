@@ -1,4 +1,4 @@
-# Data representation
+# Data types and representation
 
 Different data types are stored differently in the memory, i.e. different variable types use different amounts of memory.
 
@@ -56,18 +56,18 @@ This code snippet would print `S` on the screen. The format specifier for `char`
 |     A     |          65          |      01000001       |
 |     B     |          66          |      01000010       |
 |     C     |          67          |      01000011       |
-......
-| Z | 90 | 01011010 |
-| a | 97 | 01100001 |
-| b | 98 | 01100010 |
-| c | 99 | 01100011 |
-......
-| z | 122 | 01111010 |
-| 0 | 48 | 00110000 |
-| 1 | 49 | 00110001 |
-| 2 | 50 | 00110010 |
-......
-| 9 | 57 | 00111001 |
+|     ⋮     |          ⋮           |          ⋮          |
+|     Z     |          90          |      01011010       |
+|     a     |          97          |      01100001       |
+|     b     |          98          |      01100010       |
+|     c     |          99          |      01100011       |
+|     ⋮     |          ⋮           |          ⋮          |
+|     z     |         122          |      01111010       |
+|     0     |          48          |      00110000       |
+|     1     |          49          |      00110001       |
+|     2     |          50          |      00110010       |
+|     ⋮     |          ⋮           |          ⋮          |
+|     9     |          57          |      00111001       |
 
 
 ## Boolean 

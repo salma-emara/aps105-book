@@ -25,9 +25,30 @@ parts:
           - file: chapters/chapter02-variables/storing-data.md
           - file: chapters/chapter02-variables/operations.md
           - file: chapters/chapter02-variables/math-library.md
-      - file: chapters/chapter05-functions/functions.md
+          - file: chapters/chapter02-variables/random-number.md
+          - file: chapters/chapter02-variables/exercises.md
+      - file: chapters/chapter03-decision-making/intro.md
+        sections:
+          - file: chapters/chapter03-decision-making/if-statement.md
+          - file: chapters/chapter03-decision-making/exercises.md
+      - file: chapters/chapter04-loops/intro.md
+        sections:
+          - file: chapters/chapter04-loops/for-loop.md
+          - file: chapters/chapter04-loops/exercises.md
+      - file: chapters/chapter05-functions/intro.md
         sections:
           - file: chapters/chapter05-functions/problem-solving.md
+          - file: chapters/chapter05-functions/functions.md
+      - file: chapters/chapter06-pointers/intro.md
+      - file: chapters/chapter07-arrays/intro.md
+      - file: chapters/chapter08-dynamic-memory-allocation/intro.md
+      - file: chapters/chapter09-strings/intro.md
+      - file: chapters/chapter10-recursion/intro.md
+      - file: chapters/chapter11-data-structures/intro.md
+      - file: chapters/chapter12-linked-lists/intro.md
+      - file: chapters/chapter13-searching/intro.md
+      - file: chapters/chapter14-sorting/intro.md
+      - file: chapters/chapter15-binary-search-trees/intro.md
 
   - caption: "Appendix: Additional information"
     chapters:

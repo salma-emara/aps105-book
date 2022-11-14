@@ -94,6 +94,49 @@ int main(void){
 Is it raining? 1
 ```
 
-There is no format specifier for bool specifically. We use `%d` to print the value (either 0 or 1) of a bool variable. Hence, the above code prints `Is it raining? 1` NOT `Is it raining? true`.
+There is no format specifier for `bool` specifically. We use `%d` to print the value (either 0 or 1) of a boolean variable. Hence, the above code prints `Is it raining? 1` NOT `Is it raining? true`.
 
 If you noticed, apart from `#include <stdio.h>` which gives us access to `printf` and `scanf` functions, we included another library for `bool` variables in `#include <stdbool.h>`. Without this library, the complier won't identify the `bool` variable type.
+
+## Declaring Vs. Initializing Variables
+
+In your code, if you need to declare a variable, you do it as follows
+```
+int sumOf;
+```
+
+The compiler will understand that you *declared* a variable with `int` type and identifier `var`. When running your code, the computer will reserve a space for it in the memory. The question is, what is the value of this declared variable? The answer is not `0`.
+
+The variable is **uninitialized**. It is not holding any value. It is just a variable that is declared, but not initialized. To be more specific, if you try printing the value of the declared but uninitialized variable, you print the value that is there in the memory location of the variable. Probably this value was there before the program started running. It is a random value. Some people call it "garbage" value.
+
+For example, when I ran the code below on my computer, the value in `var` variable was `174739296`, because I never initialized `var`. However, when you run the code, you may get a different value. The value will be different for each run too. You can download from {download}`declare-vs-initialize.c <../../code/chapter2/declare-vs-initialize/declare-vs-initialize.c>` to play with the code.
+
+**Code**
+```c {.line-numbers}
+#include <stdio.h>
+
+int main() {
+  int var;
+  printf("Value of uninitialized variable \"var\": %d\n", var);
+  int var2 = 0;
+  printf("Value of initialized variable \"var\": %d\n", var2);
+  return 0;
+}
+```
+
+**Potential output**
+```
+Value of uninitialized variable "var": 174739296
+Value of initialized variable "var": 0
+```
+
+```{note}
+If you compile the code above, you will get a warning stating: `variable ‘var’ is uninitialized when used here [-Wuninitialized]`. The compiler will also ask you to initialize the var to silence the warning. 
+```
+
+
+This becomes a problem, if you are unaware of it. If you use an uninitialized variable later, your program's behavior will definitely be undefined. Therefore, it is best practice to declare a variable **AND** initialize it, e.g. `int var = 0;`. `int var` declares the `var` variable and `= 0;` initializes the `var` variable to `0`.
+
+
+
+

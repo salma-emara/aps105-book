@@ -2,6 +2,7 @@
 
 Given that we have four main data types -- `int`, `double`, `char`, `bool`, we will discuss what can we do with the variables of these data types. 
 
+(operations)=
 ## Basic arithmetic operations
 
 We can perform arithmetic operations on variables. These operations include addition `+`, subtraction `-`, multiplication `*`, division `/`, and modulus `%`.
@@ -37,6 +38,7 @@ int x = 10 / 5 * 2;
 
 The evaluation order is from left to right, since `/` and `*` ave the same precedence. The value stored in `x` is `4` because `10 / 5` is evaluated first, followed by `2 * 2`.
 
+(contagious)=
 ## The more accurate data type is contagious
 
 **Example IV**
@@ -79,16 +81,175 @@ We learned before in {ref}`Think! <float-in-int>`, if a floating point number is
 
 ## What happens when we divide by 0?
 
-`3/0`
+In math, the result of dividing a number by 0 is undefined. What would undefined mean if a program divides a number by 0? If we were to divide an **int 3 by int 0**, e.g. `3/0`, the compiler will successfully compile your code. However, it will produce a "warning message". This warning message would state `warning: division by zero is undefined.` If that `0` was stored in a variable, the compiler will **not** produce a warning message. 
 
+The trickiest part is that if you run the program, the result of the division is undefined. Some computers may yield a *weird* number resulting from this *illegal* division. 
 
-`3.0/0`
-This result is inf, which is infinity.
+When 0 is stored in a variable, it is difficult to know if the undefined behavior in your code is because of division by 0. Hence, it is important to check if the denominator is 0 before you divide.
+
+On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, this will yield `inf`. Download 
+{download}`inches-to-centimeters.c <../../code/chapter2/divideByzero/zeroDivision.c>` zeroDivision.c to try the following code. 
+
+**Code**
+```c {.line-numbers}
+#include <stdio.h>
+
+int main(void) {
+  printf("Integer 0 division %d\n", 3 / 0);
+  printf("Floating point zero division %lf\n", 3.0 / 0);
+  return 0;
+}
+```
+**Output**
+```
+Integer 0 division -1180252136
+Floating point zero division inf
+```
 
 ## Modulo operator
 
-## Assignment operator
+Remember whenever we divide two numbers, we have a quotient and a remainder. For example, $10/3$ has a quotient of $3$ with a remainder $1$. Hence, $\frac{10}{3}$ can be written as a mixed fraction: $3 \frac{1}{3}$. 
+
+The modulo operator `%` gives us the remainder of a division between two integers. 
+
+**Examples**
+
+1. `10 % 3` $\rightarrow$ `1`
+2. `10 % 4` $\rightarrow$ `2`
+3. `50 % 10` $\rightarrow$ `0`
+4. `55 % 10` $\rightarrow$ `5`
+
+Some people find it mentally challenging to find the `%` quickly. For example, in `10 % 3`, find the largest number divisible by `3` that is less than `10`. In this case, it is `9`. Hence, `10 - 9 = 1`. `1` is the answer.
+
+
+
+````{admonition} Remember!
+:class: tip
+The remainder can only be between `0` and `denominator - 1`.
+
+**Try it!**
+
+0 % 4 = ?
+
+1 % 4 = ?
+
+2 % 4 = ?
+
+3 % 4 = ?
+
+4 % 4 = ?
+
+5 % 4 = ?
+
+6 % 4 = ?
+
+⋮
+```{admonition} Answer
+:class: dropdown
+
+0 % 4 = 0
+
+1 % 4 = 1
+
+2 % 4 = 2
+
+3 % 4 = 3
+
+4 % 4 = 0
+
+5 % 4 = 1
+
+6 % 4 = 2
+
+⋮
+```
+````
+
+````{admonition} Important
+:class: important
+What would `3 % 0` be? 
+
+It would have a similar behavior to `3 / 0`. There will be a compile-time warning, and a run-time undefined behavior.
+````
+
+## Assignment operators
+
+The assignment operator (`=`, `+=`, `-=`, `*=`, `/=`, `%=`) assigns an evaluation/value to a variable. For example, in `int x = 7 + 3;` the `=` assigns the value of `7 + 3` to `x`. **The precedence of assignment operators is after the other BEDMAS operators.**
+
+Other assignment operators such as `+=`, `-=`, `*=`, `/=`, `%=` mean that the variable is assigned to the variable plus/minus/multiplied/divided/modulo the value on the right. For example, `x += 3` is equivalent to `x = x + 3` and `x %= 10` is equivalent to `x = x % 10`. 
+
+**Tricky!** If we have `x *= 3 + 2`, it is equivalent to `x = x * 5`. This implies that the BEDMAS operators are evaluated before the assignment operators.
+
+As discussed earlier in {ref}`operations`, BEDMAS operators if they have the same precedence, they are evaluated from left to right. Assignment operators are the **opposite**, from right to left. This means that `x = y = z` is equivalent to `x = (y = z)`.
+
+**Code**
+```c {.line-numbers}
+#include <stdio.h>
+
+int main() {
+  int i = 1, j = 3, k = 10;
+  i = j = k;  // first the value of k is assigned to j, 
+              // then the value of j is assigned to i
+  printf("i = %d, j = %d, k = %d\n", i, j, k);
+  return 0;
+}
+```
+
+**Output**
+```
+i = 10, j = 10, k = 10
+```
 
 ## Increment and decrement operators
 
+If we have `i = i + 1;`, this can be written as `i += 1;` and `i++;`. Similarly, `i -= 1;` and `i--;` are equivalent to `i = i - 1;`. `++` and `--` are increment and decrement operators. They increment/decrement the value of the variable by 1.
+
+***AVOID USING `++` AND `--` IN A COMPLEX EXPRESSION!***
+
+`++` AND `--` can be before or after the variable. For example, `++i` and `i++` are post-increment and pre-increment respectively. `++i` and `i++` are equivalent to `i = i + 1;` if they are the only operators in the same statement. However, if there are other operators in the same statement, they are not equivalent. 
+
+For example, in the following example `++i` is pre-fix, i.e. incrementing happens in the statement. Hence, `j = ++i;` is equivalent to `j = i = i + 1;`. Evaluation is from right to left because of the assignment operator. While, `i++` is post-fix, i.e. incrementing to `i` happens after the statement. This means that `j = i++;` is equivalent to `j = i; i = i + 1;`. You can download the code {download}`prefix-postfix.c <../../code/chapter2/prefix-postfix/prefix-postfix.c>` to try the following code.
+
+
+**Code**
+```c {.line-numbers}
+#include <stdio.h>
+int main() {
+  int i = 1, j = 31;
+  j = ++i;  // Equivalent to j = i = i + 1
+  printf("With prefix: i = %d, j = %d\n", i, j);
+
+  i = 1, j = 31;
+  j = i++; //Equivalent to j = i; i = i + 1;
+  printf("With postfix: i = %d, j = %d\n", i, j);
+  return 0;
+}
+```
+
+**Output**
+```
+With prefix: i = 2, j = 2
+With postfix: i = 2, j = 1
+```
+
+It is confusing when the increment/decrement operator is used with other operators. Consequently, it is best to avoid using `++` and `--` in a complex expression -- with other operators.
+
 ## Type casting
+
+We mentioned earlier, the most accurate data type is contagious. In some cases, you may want to force a data type on an operand. For example, in `double x = 3/ 2;`, to have `x` store `1.5`, you can change 3 to double by changing it to 3.0 as in `double x = 3.0/ 2;`. The other way is to type cast 3 like `double x = (double) 3 / 2;`. This is called type casting. This changes the data type of 3 to double.
+
+Another example, in `double x = 3/ 2.9;`, you may want to force `2.9` to be `int`. You can do this by `double x = 3/ (int) 2.9;`. This will store `1.0` in `x`.
+
+The type casting operator is `(` and `)`. The data type is placed in between the brackets. For example, `(int) 3.9` will evaluate as `3`. `(double) 3` will evaluate as `3.0`.
+
+## Summary of Precedence
+
+1. `()`
+2. `(<type>)` `++` or `--` (but we will avoid using `++` or `--` with other operators)
+3. `*` `/` `%`
+4. `+` `-`
+   
+   (2--4) if two operands with same precedence occur, they are evaluated from left to right.
+5. `=` `+=` `-=` `*=` `/=` `%=`
+   
+   (5) if two operands with same precedence occur, they are evaluated from right to left.

@@ -111,17 +111,23 @@ int main(void){
 
 Some of the relevant math library functions are listed below.
 
-| Mathematical notation | Function Prototype | Example |
-| :-------: | :------------------: | :-----------------: |
-|$\sqrt{x}$| `double sqrt(double x);`|`sqrt(4)` returns `2.0`|
-|$x^y$     | `double pow(double x, double y);`|`pow(2, 3)` returns `8.0`|
-|$e^x$     |`double exp(double x);`|`exp(1)` returns `2.718281828459045`|
-|$\log_{10}x$| `double log10(double x);`|`log10(100)` returns `2.0`|
-|$\ln(x)$  | `double log(double x);`|`log(M_E)`[^2] returns `1`|
-|$\mid x \mid$|`double fabs(double x);`|`fabs(-2)` returns `2`|
-|$\sin(x)$|`double sin(double x);`|`sin(M_PI * 2)`[^3] returns `0`|
-|$\cos(x)$|`double cos(double x);`|`cos(M_PI * 2)`[^3] returns `-1`|
-|$\tan(x)$|`double tan(double x);`|`tan(M_PI)`[^3] returns `0`|
+| Mathematical notation | Function Prototype | What does it do? | Example |
+| :-------: | :------------------: | :-----------------: | :-----------------: |
+|$\sqrt{x}$| `double sqrt(double x);`||`sqrt(4)` returns `2.0`|
+|$x^y$     | `double pow(double x, double y);`||`pow(2, 3)` returns `8.0`|
+|$e^x$     |`double exp(double x);`||`exp(1)` returns `2.718281828459045`|
+|$\log_{10}x$| `double log10(double x);`||`log10(100)` returns `2.0`|
+|$\ln(x)$  | `double log(double x);`||`log(M_E)`[^2] returns `1`|
+|$\mid x \mid$|`double fabs(double x);`||`fabs(-2)` returns `2`|
+|$\sin(x)$|`double sin(double x);`||`sin(M_PI * 2)`[^3] returns `0`|
+|$\cos(x)$|`double cos(double x);`||`cos(M_PI * 2)`[^3] returns `-1`|
+|$\tan(x)$|`double tan(double x);`||`tan(M_PI)`[^3] returns `0`|
+|$\max(x)$|`double fmax(double x, double y);`||`fmax(3.2, -7.9)` returns `3.2`|
+|$\min(x)$|`double fmin(double x, double y);`||`fmin(3)`|
+|$\floor(x)$|`double floor(double x);`||`floor(3)`|
+|$\ceil(x)$|`double ceil(double x);`||`ceil(3)`|
+|$\fmod(x)$|`double fmod(double x, double y);`||`fmod(3)`|
+|$\rint(x)$|`double rint(double x);`||`rint(-2.1)`|
 
 ```{admonition} Important!
 In `sin(x)`, `cos(x)`, `tan(x)` and other math library functions that take angle as input, it assumes the angle `x` is in radians not degree.  

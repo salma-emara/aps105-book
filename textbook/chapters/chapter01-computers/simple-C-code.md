@@ -122,12 +122,18 @@ If you still did not get this question, how do we print `%` itself? `%` is an es
 
 **Code**
 ```
-int grade = 91;
-printf("Grade: %d%%\n", grade);
+#include <stdio.h>
+
+int main(void){
+    int grade = 91;
+    printf("Grade: %d%%\n", grade);
+    return 0;
+}
 ```
+
 **Output**
 <pre>
 Grade: 91%
 </pre>
 
-[^1]: Inputs to code are in **bold**
+[^1]: Inputs to programs are in **bold**. 

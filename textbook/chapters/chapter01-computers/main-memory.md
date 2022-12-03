@@ -77,7 +77,7 @@ So far we used
 
 We can see a pattern here. We need $n$ bits to represent $2^n$ numbers. A byte is a group of 8 bits. Hence, a byte can store $2^8 = 256$ different numbers. 
 
-To represent $x$ numbers, we need $log_2(x)$ bits. For example, to represent 256 numbers, we need 8 bits. To represent 512 numbers, we need 9 bits. To represent 1024 numbers, we need 10 bits.
+To represent $x$ numbers, we need $\log_2(x)$ bits. For example, to represent 256 numbers, we need 8 bits. To represent 512 numbers, we need 9 bits. To represent 1024 numbers, we need 10 bits.
 
 ```{note}
 A byte is a group of 8 bits. 

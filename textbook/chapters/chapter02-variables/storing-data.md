@@ -43,13 +43,23 @@ To represent a single letter, symbol or digit, we can use the char data type. Ex
 **Example**
 
 ```c {.line-numbers}
-char firstInitial = 'S';
-printf("My first initial is %c\n", firstInitial);
+#include <stdio.h>
+
+int main(void){
+    char firstInitial = 'S';
+    printf("My first initial is %c.\n", firstInitial);
+    return 0;
+}
 ```
 
 This code snippet would print `S` on the screen. The format specifier for `char` is `%c`.
 
-`char` is stored using 8 bits, i.e. 1 byte of memory. Each character is encoded into a unique number, and the number is stored in one cell of the memory. How does this unique number look like? The number is called American Standard Code for Information Interchange (ASCII) code. ASCII code is a standard encoding scheme for characters. It uses only 7-bits and the 8th bit is set to 0. Since we are using 7 bits, then the ASCII code table has numbers between 0 and 2^7 -1, which is 128 numbers. Part of the ASCII code table is shown below, but you are NOT required to memorize it.
+**Output**
+<pre>
+My first initial is S
+</pre>
+
+`char` is stored using 8 bits, i.e. 1 byte of memory. Each character is encoded into a unique number, and the number is stored in one cell of the memory. How does this unique number look like? The number is called American Standard Code for Information Interchange (ASCII) code. ASCII code is a standard encoding scheme for characters. It uses only 7-bits and the 8th bit is set to $0$. Since we are using 7 bits, then the ASCII code table has numbers between $0$ and $2^7 -1$, which is 128 numbers. Part of the ASCII code table is shown below, but you are **NOT** expected to memorize it.
 
 | Character | ASCII code (Decimal) | ASCII code (Binary) |
 | :-------: | :------------------: | :-----------------: |
@@ -90,9 +100,9 @@ int main(void){
 ```
 
 **Output**
-```
+<pre>
 Is it raining? 1
-```
+</pre>
 
 There is no format specifier for `bool` specifically. We use `%d` to print the value (either 0 or 1) of a boolean variable. Hence, the above code prints `Is it raining? 1` NOT `Is it raining? true`.
 
@@ -102,7 +112,7 @@ If you noticed, apart from `#include <stdio.h>` which gives us access to `printf
 
 In your code, if you need to declare a variable, you do it as follows
 ```
-int sumOf;
+int var;
 ```
 
 The compiler will understand that you *declared* a variable with `int` type and identifier `var`. When running your code, the computer will reserve a space for it in the memory. The question is, what is the value of this declared variable? The answer is not `0`.

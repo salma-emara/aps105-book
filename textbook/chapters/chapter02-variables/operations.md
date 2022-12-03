@@ -12,7 +12,7 @@ We can perform arithmetic operations on variables. These operations include addi
 1. `()`
 2. `*` `/` `%`
 3. `+` `-` 
-4. left to right if operators have same precedence
+4. left to right if operators have same precedence, referred to as *left-associative*
 
 **Example I**
 
@@ -36,7 +36,7 @@ The value stored in `x` is `50` because `(2 + 3)` is evaluated first, followed b
 int x = 10 / 5 * 2;
 ```
 
-The evaluation order is from left to right, since `/` and `*` ave the same precedence. The value stored in `x` is `4` because `10 / 5` is evaluated first, followed by `2 * 2`.
+The evaluation order is from left to right (left-associative), since `/` and `*` have the same precedence. The value stored in `x` is `4` because `10 / 5` is evaluated first, followed by `2 * 2`.
 
 (contagious)=
 ## The more accurate data type is contagious
@@ -88,7 +88,7 @@ The trickiest part is that if you run the program, the result of the division is
 When 0 is stored in a variable, it is difficult to know if the undefined behavior in your code is because of division by 0. Hence, it is important to check if the denominator is 0 before you divide.
 
 On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, this will yield `inf`. Download 
-{download}`inches-to-centimeters.c <../../code/chapter2/divideByzero/zeroDivision.c>` zeroDivision.c to try the following code. 
+{download}`zeroDivision.c <../../code/chapter2/divideByzero/zeroDivision.c>` to try the following code. 
 
 **Code**
 ```c {.line-numbers}
@@ -101,10 +101,10 @@ int main(void) {
 }
 ```
 **Output**
-```
+<pre>
 Integer 0 division -1180252136
 Floating point zero division inf
-```
+</pre>
 
 ## Modulo operator
 
@@ -180,7 +180,7 @@ Other assignment operators such as `+=`, `-=`, `*=`, `/=`, `%=` mean that the va
 
 **Tricky!** If we have `x *= 3 + 2`, it is equivalent to `x = x * 5`. This implies that the BEDMAS operators are evaluated before the assignment operators.
 
-As discussed earlier in {ref}`operations`, BEDMAS operators if they have the same precedence, they are evaluated from left to right. Assignment operators are the **opposite**, from right to left. This means that `x = y = z` is equivalent to `x = (y = z)`.
+As discussed earlier in {ref}`operations`, BEDMAS operators if they have the same precedence, they are evaluated from left to right (left-associative). Assignment operators are the **opposite**, from right to left (right-associative). This means that `x = y = z` is equivalent to `x = (y = z)`. An example code is shown below. 
 
 **Code**
 ```c {.line-numbers}
@@ -196,9 +196,11 @@ int main() {
 ```
 
 **Output**
-```
+<pre>
 i = 10, j = 10, k = 10
-```
+</pre>
+
+However, for readability and to be able to easily spot bugs, we suggest having fewer operations in one line.
 
 ## Increment and decrement operators
 
@@ -227,10 +229,10 @@ int main() {
 ```
 
 **Output**
-```
+<pre>
 With prefix: i = 2, j = 2
 With postfix: i = 2, j = 1
-```
+</pre>
 
 It is confusing when the increment/decrement operator is used with other operators. Consequently, it is best to avoid using `++` and `--` in a complex expression -- with other operators.
 
@@ -249,7 +251,7 @@ The type casting operator is `(` and `)`. The data type is placed in between the
 3. `*` `/` `%`
 4. `+` `-`
    
-   (2--4) if two operands with same precedence occur, they are evaluated from left to right.
+   (2--4) if two operands with same precedence occur, they are evaluated from left to right (left-associative).
 5. `=` `+=` `-=` `*=` `/=` `%=`
    
-   (5) if two operands with same precedence occur, they are evaluated from right to left.
+   (5) if two operands with same precedence occur, they are evaluated from right to left (right-associative).

@@ -1,32 +1,31 @@
 # Double data type for real numbers
 
-In the previous chapter, we developed a program to calculate the number of slices in a number of pizzas. The number of slices and pizzas were considered integers, i.e. whole numbers with no fractions. However, some operations may need fractional numbers/real numbers. For example, if we want to convert temperatures from Celsius to Fahrenheit, or centimeters to inches, we need to use fractional numbers - with decimal component. In this section, we will see how to represent numbers using fractional in our programs.
+In the previous chapter, we developed a program to calculate the number of slices in a number of pizzas. The number of slices and pizzas were considered integers, i.e. whole numbers with no fractions. However, if a kid decided to take a bite and run 🏃‍♀️, we will be left with a fraction of a slice. At this point, we need fractional numbers/real numbers. Another example, if we want to convert temperatures from Celsius to Fahrenheit, or centimeters to inches, we need to use fractional numbers - with decimal component. In this section, we will see how to represent numbers using fractional in our programs.
 
 (inch-cm)=
 ## Example: Convert Inches to Centimeters
 
-> Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is $2.54$ centimeters per inch. Download {download}`inches-to-centimeters.c <../../code/chapter2/inches2cm/inches-to-cm.c>` to get the following source code.
-> ```c {.line-numbers}
-> // Description: This program convert inches to centimeters
-> #include <stdio.h>
->
-> int main(void){
->   // Declare variables
->   const double InchesToCm = 2.54;
->   double inputInches, outputCm;
-> 
->   // Prompt user for input
->   printf("Enter the number of inches to convert to cm: ");
->   scanf("%lf", &inputInches);
-> 
->   // Convert inches to centimeters
->   outputCm = inputInches * InchesToCm;
-> 
->   // Display output in 2 decimal places
->   printf("The number of centimeters is %.2lf\n", outputCm);
->   return 0;
->}
->```
+Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is $2.54$ centimeters per inch. Download {download}`inches-to-centimeters.c <../../code/chapter2/inches2cm/inches-to-cm.c>` to get the following source code.
+```c {.line-numbers}
+// Description: This program convert inches to centimeters
+#include <stdio.h>
+
+int main(void){
+   // Declare variables
+   const double InchesToCm = 2.54;
+   double inputInches, outputCm;
+
+   // Prompt user for input
+   printf("Enter the number of inches to convert to cm: ");
+   scanf("%lf", &inputInches);
+    // Convert inches to centimeters
+   outputCm = inputInches * InchesToCm;
+ 
+   // Display output in 2 decimal places
+   printf("The number of centimeters is %.2lf\n", outputCm);
+   return 0;
+}
+```
 
 Let's understand what each line is doing.
 
@@ -51,12 +50,10 @@ Let's understand what each line is doing.
 * `double` is a data type that indicates that the variable `InchesToCm` is a fractional number.   
   ```{admonition} Think! 
   :name: float-in-int
-  What would happen if a number with decimal is stored in an `int`?
+  What would happen if a number with decimal is stored in an `int` 🤔?
 
    If a number with decimal is stored in an `int`, the decimal part will be truncated. For example, if we store `2.54` in an `int`, the value actually stored will be `2`. 
   ```
-
-Think about what would happen if a double number is stored in an `int` 🤔. 
 
 * `2.54` is the value assigned to the variable `InchesToCm`.
 
@@ -69,6 +66,12 @@ Think about what would happen if a double number is stored in an `int` 🤔.
 `outputCm = inputInches * InchesToCm;` will multiply the value in `inputInches` and `InchesToCm` and store the result in `outputCm`. The `*` is the multiplication operator.
 
 `printf("The number of centimeters is %.2lf\n", outputCm);` prints on the monitor the value of `outputCm` with 2 decimal places. The `%lf` is a format specifier that indicates that the value is a fractional number. The `.2` indicates that the value should be printed with 2 decimal places.
+
+**Output[^1]**
+<pre>
+Enter the number of inches to convert to cm: <b>3.7</b>
+The number of centimeters is 9.40
+</pre>
 
 ## Summary
 
@@ -85,3 +88,5 @@ When you are planning your program, you must think of the variables you need and
 * value of $\pi$: `const double`
 
 In the next section, we will see are these data types stored in the memory. 
+
+[^1]: Inputs to programs are in **bold**.

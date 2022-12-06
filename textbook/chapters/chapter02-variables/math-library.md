@@ -113,27 +113,92 @@ Some of the relevant math library functions are listed below.
 
 | Mathematical notation | Function Prototype | What does it do? | Example |
 | :-------: | :------------------: | :-----------------: | :-----------------: |
-|$\sqrt{x}$| `double sqrt(double x);`||`sqrt(4)` returns `2.0`|
-|$x^y$     | `double pow(double x, double y);`||`pow(2, 3)` returns `8.0`|
-|$e^x$     |`double exp(double x);`||`exp(1)` returns `2.718281828459045`|
-|$\log_{10}x$| `double log10(double x);`||`log10(100)` returns `2.0`|
-|$\ln(x)$  | `double log(double x);`||`log(M_E)`[^2] returns `1`|
-|$\mid x \mid$|`double fabs(double x);`||`fabs(-2)` returns `2`|
-|$\sin(x)$|`double sin(double x);`||`sin(M_PI * 2)`[^3] returns `0`|
-|$\cos(x)$|`double cos(double x);`||`cos(M_PI * 2)`[^3] returns `-1`|
-|$\tan(x)$|`double tan(double x);`||`tan(M_PI)`[^3] returns `0`|
-|$\max(x)$|`double fmax(double x, double y);`||`fmax(3.2, -7.9)` returns `3.2`|
-|$\min(x)$|`double fmin(double x, double y);`||`fmin(3)`|
-|$\floor(x)$|`double floor(double x);`||`floor(3)`|
-|$\ceil(x)$|`double ceil(double x);`||`ceil(3)`|
-|$\fmod(x)$|`double fmod(double x, double y);`||`fmod(3)`|
-|$\rint(x)$|`double rint(double x);`||`rint(-2.1)`|
+|$\sqrt{x}$| `double sqrt(double x);`|returns the square root of `x`|`sqrt(4)` returns `2.0`|
+|$x^y$     | `double pow(double x, double y);`|returns `x` to the power of `y`|`pow(2, 3)` returns `8.0`|
+|$e^x$     |`double exp(double x);`|returns `e` -- Euler's number -- to the power of `x`|`exp(1)` returns `2.718281828459045`|
+|$\log_{10}x$| `double log10(double x);`|returns the logarithm to the base 10 of `x`|`log10(100)` returns `2.0`|
+|$\ln(x)$  | `double log(double x);`|returns the natural logarithm of `x`|`log(M_E)`[^2] returns `1.0`|
+|$\mid x \mid$|`double fabs(double x);`|returns the absolute value of `x`|`fabs(-2)` returns `2.0`|
+|$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^3] returns `0.0`|
+|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^3] returns `-1.0`|
+|$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^3] returns `0.0`|
+|$\max(x)$|`double fmax(double x, double y);`|returns the maximum of `x` and `y`|`fmax(3.2, -7.9)` returns `3.2`|
+|$\min(x)$|`double fmin(double x, double y);`|returns the minimum of `x` and `y`|`fmin(-6.1, -7.3)` returns `-7.3`|
+|$\lfloor x \rfloor$|`double floor(double x);`|returns the greatest integer that is less than or equal to `x`, i.e., rounds down `x`|`floor(9.6)` returns `9.0`|
+|$\lceil x \rceil$|`double ceil(double x);`|returns the smallest integer that is greater than or equal to `x`, i.e., rounds up `x`|`ceil(3.09)` returns `4.0`|
+|$\mod(x)$|`double fmod(double x, double y);`|returns the remainder[^4] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` if for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
+|$\lfloor x \rceil$|`double rint(double x);`|returns the nearest integer to x, i.e., rounds `x`|`rint(-2.1)` returns `-2.0`|
 
-```{admonition} Important!
-In `sin(x)`, `cos(x)`, `tan(x)` and other math library functions that take angle as input, it assumes the angle `x` is in radians not degree.  
+## Example use cases for math library functions
+
+
+````{admonition} Exercise 1
+:class: tip
+Write a program that takes in from a user a floating point number and rounds it to the nearest 10th, *i.e.*, first decimal place. 
+
+**Step 1: Toy example.** To understand the problem, we need to start by thinking of a *toy example*. For example, $2.18$ rounded to the first decimal place is $2.2$. 
+
+**Step 2: Think of a solution.** However, `rint` function only rounds to the nearest integer, not to the nearest decimal places. So, we need to think of a solution that will round to the nearest decimal places.
+
+**Step 3: Decompose solution into steps.** The **trick** is to get the decimal place into the integer part. For example, we can move the first decimal to the integer part from $2.18$ to $21.8$. Now, we can use `rint` to round to the nearest integer, which makes $22.0$. Moving the decimal back gets us $2.2$, which is what we want.
+
+**Step 4 (optional, but very helpful): Draw your solution.** 
+
+```{figure} ./images/rint-example-1.png
+:alt: sqrt function
+:class: with-shadow
+:width: 250px
+:align: center
+
+Trials into developing a solution for rounding to the nearest 10th.
 ```
+
+**Step 5: Make sure your steps works on other toy examples.** For example, try a negative number, first decimal place is above $5$, whatever you think might break your code. E.g. $-1.87 \times 10 = -18.7$, `rint(-18.7)` returns `-19.0`, then finally $-19.0 / 10 = -1.9$, which is what we want.
+
+**Step 6: Write the code.**
+
+Download {download}`nearest10.c <../../code/chapter2/nearest10/nearest10.c>` to get the following code.
+
+**Code**
+```{code-block} c
+#include <math.h>
+#include <stdio.h>
+
+int main(void) {
+  double n = 0;
+  printf("Enter the number you want to round to the nearest 10th: ");
+  scanf("%lf", &n);
+
+  n = rint(n * 10) / 10;
+  printf("The number rounded to the nearest 10th is %.1lf\n", n);
+  return 0;
+}
+```
+
+**Output[^1]**
+
+<pre>
+Enter the number you want to round to the nearest 10th: <b>2.18</b>
+The number rounded to the nearest 10th is 2.2
+</pre> 
+
+````
+
+````{admonition} Exercise 2
+:class: tip
+Canada does not have pennies. The tiniest coin is a nickel, which is worth 5 cents. Write a program that takes in from a user a floating point number and rounds it to the nearest nickel.
+
+**Step 1: Toy example.** $2.94$ when rounded to the nearest nickle is $2.95$. $2.92$ when rounded to the nearest nickle is $2.90$. $1.93$ is $1.95$. $7.85$ is $7.85$.
+
+**Step 2: Think of a solution.** We can use a similar trick as in Exercise 1. However, if we do the same as in Exercise 1, we will round to the nearest dime, which is 10 cents. Example, $2.94 \times 10$ $\rightarrow$ $29.4$. 29.4 is the number of 10 cents in $2.95\$$ $\rightarrow$ `rint(29.4)` $\rightarrow$ $29.0$ $\rightarrow$ $29.0 / 10$ $\rightarrow$ $2.9$. That is not what we want!
+
+We need to round to the nearest nickel, which is 5 cents. So, we need to get the number of nickles, and round that to the nearest nickle. For example, $2.95 \times 100 / 5$
+
+````
+
 
 
 [^1]: Inputs to programs are in **bold**.
 [^2]: `M_E` is a constant defined in math library, denoting the value of $\exp$. It is approximately equal to 2.718281828... 
 [^3]: `M_PI` is a constant defined in math library, denoting the value of $\pi$. It is approximately equal to 3.14159...
+[^4]: How do we get remainders for floating point numbers? For example, $\frac{5.3}{2.1}$ yields $2.523...$. To get the remainder of this division, we remove the whole number $2$ from $2.523...$, and we are left with $0.523...$. The remainder would be $0.523... \times 2.1$. Hence, `fmod(5.3, 2.1)` is $1.1$.

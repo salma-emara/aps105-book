@@ -186,16 +186,52 @@ The number rounded to the nearest 10th is 2.2
 
 ````{admonition} Exercise 2
 :class: tip
-Canada does not have pennies. The tiniest coin is a nickel, which is worth 5 cents. Write a program that takes in from a user a floating point number and rounds it to the nearest nickel.
+Canada does not have pennies. The lowest value coin is a nickel, which is worth 5 cents. Write a program that takes in from a user a floating point number price and rounds it to the nearest nickel.
 
-**Step 1: Toy example.** $2.94$ when rounded to the nearest nickle is $2.95$. $2.92$ when rounded to the nearest nickle is $2.90$. $1.93$ is $1.95$. $7.85$ is $7.85$.
+**Step 1: Toy example.** $2.94$ when rounded to the nearest nickle is $2.95$. $2.92$ when rounded to the nearest nickle is $2.90$. $1.98$ is $2.00$. $7.83$ is $7.85$.
 
-**Step 2: Think of a solution.** We can use a similar trick as in Exercise 1. However, if we do the same as in Exercise 1, we will round to the nearest dime, which is 10 cents. Example, $2.94 \times 10$ $\rightarrow$ $29.4$. 29.4 is the number of 10 cents in $2.95\$$ $\rightarrow$ `rint(29.4)` $\rightarrow$ $29.0$ $\rightarrow$ $29.0 / 10$ $\rightarrow$ $2.9$. That is not what we want!
+**Step 2: Think of a solution.** We can use a similar trick as in Exercise 1. However, if we do the same as in Exercise 1, we will round to the nearest dime, which is 10 cents. Example, $2.94 \times 10$ $\rightarrow$ $29.4$. 29.4 is the number of 10 cents in $\$2.95$. `rint(29.4)` $\rightarrow$ $29.0$ $\rightarrow$ $29.0 / 10$ $\rightarrow$ $2.9$. That is not what we want! We want to $2.95$. 
 
-We need to round to the nearest nickel, which is 5 cents. So, we need to get the number of nickles, and round that to the nearest nickle. For example, $2.95 \times 100 / 5$
+**Step 3: Decompose solution into steps.** We need to round to the nearest nickel, which is 5 cents. So, we need to get the number of nickles in $2.94$, and round that decimal number to the nearest *whole* nickle. For example, $2.94 \times 100 / 5$ $\rightarrow$ $58.8$. 58.8 is the number of nickles in $\$2.94$. `rint(58.8)` returns $59.0$ nickles, which make $59.0 \times 5 / 100$ $\rightarrow$ $\$2.95$. This is what we want! 
 
+**Step 4 (optional, but very helpful): Draw your solution.** 
+
+```{figure} ./images/rint-example-2.png
+:alt: sqrt function
+:class: with-shadow
+:width: 250px
+:align: center
+
+Trials into developing a solution for rounding to the nearest nickle.
+```
+
+**Step 5: Make sure your steps works on other toy examples.** For example, where the nearest nickle changes the entire number as $1.98$. $1.98 \times 100 / 5 = 39.6$, `rint(39.6)` returns `40.0`, which makes $40.0 / 100 \times 5 = 2.0$, which is $1.98$ rounded to the nearest nickle.
+
+**Step 6: Write the code.**
+
+Download {download}`nearest-nickle.c <../../code/chapter2/nearest-nickle/nearest-nickle.c>` to get the following code.
+
+**Code**
+```{code-block} c
+#include <math.h>
+#include <stdio.h>
+
+int main(void) {
+  double price = 0;
+  printf("Enter the amount to round to the nearest nickle: ");
+  scanf("%lf", &price);
+  printf("$%.2lf rounded to the nearest nickle is $%.2lf\n", price,
+         rint(price * 100 / 5) / 100 * 5);
+  return 0;
+}
+```
+
+**Output[^1]**
+<pre>
+Enter the amount to round to the nearest nickle: <b>2.94</b>
+$2.94 rounded to the nearest nickle is $2.95
+</pre>
 ````
-
 
 
 [^1]: Inputs to programs are in **bold**.

@@ -2,7 +2,7 @@
 
 This is a repository for developing the first online textbook of its kind for APS105. The Book's name is Snefru: Learning Programming with C. It is developed using [Jupyter Book](https://jupyterbook.org/en/stable/intro.html). 
 
-**In progress.** You will find the book at [learningc.org](learningc.org).
+**In progress.** You will find the book at [learningc.org](learningc.org), or [learningc.netlify.app](https://learningc.netlify.app/)
 
 ## Getting Started
 

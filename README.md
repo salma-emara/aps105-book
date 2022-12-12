@@ -8,21 +8,29 @@ You can find the book at [learningc.org](learningc.org).
 
 If you are trying to build the book locally, you can follow the instructions below.
 
-Steps 1 -- 3 are optional!
+Steps 2 -- 4 are optional!
 
-1 (optional)- Need to install [Miniconda3](https://docs.conda.io/en/latest/miniconda.html) for Python3.9
+1- Clone this GitHub repo. In your terminal, type the following command:
 
-2 (optional)- Once Miniconda is installed or if you already have it, you can update conda, create a virtual env, and install dependencies by running the following commands:
+```
+git clone https://github.com/salmashukry/aps105-book/
+cd aps105-book
+```
+
+2 (optional)- Need to install [Miniconda3](https://docs.conda.io/en/latest/miniconda.html) for Python3.9
+
+3 (optional)- Once Miniconda is installed or if you already have it, you can update conda, create a virtual env, and install dependencies by running the following commands:
 
 ```
 conda update conda
 conda create -n aps105-book python=3.9
 conda activate aps105-book
+cd aps105-book
 pip install -r requirements.txt --upgrade
 pip install jupyter 
 ```
 
-3 (optional)- Install jupyter-c-kernel is critical to be able to execute C code throughout the book. You can install it by running the following commands:
+4 (optional)- Installing jupyter-c-kernel is critical to be able to execute C code throughout the book. Currently, there is no C code to execute, so this process is unnecessary. You can install jupyter-c-kernel by running the following commands if you want:
 
 ```
 git clone https://github.com/XaverKlemenschits/jupyter-c-kernel.git

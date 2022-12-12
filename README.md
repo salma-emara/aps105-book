@@ -46,3 +46,7 @@ When you add a new .md file, remember to include it in `textbook/_toc.yml`.
 
 Since this book is still under development, it will have mistakes. If you found a typographical, grammatical or any mistake, I would highly appreciate if you open an issue pointing out the mistake is in which file. You may also correct it and create a pull request! Thank you in advance.
 
+## Automatic Deployment
+
+For anyone with a write request to main branch, with every push Netflify will automatically deploy it to [learningc.org](learningc.org). This is done folowing instructions on [Netlify for Jupyter-Book](https://jupyterbook.org/en/stable/publish/netlify.html).
+

@@ -153,7 +153,7 @@ Write a program that takes in from a user a floating point number and rounds it 
 Trials into developing a solution for rounding to the nearest 10th.
 ```
 
-**Step 5: Make sure your steps works on other toy examples.** For example, try a negative number, first decimal place is above $5$, whatever you think might break your code. E.g. $-1.87 \times 10 = -18.7$, `rint(-18.7)` returns `-19.0`, then finally $-19.0 / 10 = -1.9$, which is what we want.
+**Step 5: Make sure your steps works on other toy examples.** For example, try testing your code with a negative number or a umber where the first decimal place is above $5$. Try whatever you think might break your code. E.g. $-1.87 \times 10 = -18.7$, `rint(-18.7)` returns `-19.0`, then finally $-19.0 / 10 = -1.9$, which is what we want.
 
 **Step 6: Write the code.**
 

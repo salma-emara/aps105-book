@@ -5,7 +5,7 @@
 In this section, we will write our first C program. We will write a program that prints the message "Hello World!" on the screen. This is a tradition in programming. The program is very simple, but it will give you a taste of what programming is like.
 
 **Code**
-```
+```{code-block} c
 // This program prints the message "Hello World!" on the screen.
 #include <stdio.h>
 
@@ -39,7 +39,7 @@ Let's examine each line:
 If we remove spaces, indentation and formatting of the above program, it will look like this:
 
 **Code**
-```
+```{code-block} c
 #include <stdio.h>
 // This program prints the message "Hello World!" on the screen.
 int main (void){printf("Hello World!\n");return 0;}
@@ -59,7 +59,7 @@ Write a C code that prompts the user to enter the number of pizzas they have. Th
 <!-- [pizza.c](../../code/chapter1/pizza/pizza.c) -->
 
 **Code**
-```
+```{code-block} c
 #include <stdio.h>
 
 int main(void){
@@ -121,7 +121,7 @@ The following table lists how to print some of the escape sequences that are com
 If you still did not get this question, how do we print `%` itself? `%` is an escape character too used specify the format of the variable to be printed. To print `%`, we require another `%`. Hence, `printf("%%")` prints `%`.
 
 **Code**
-```
+```{code-block} c
 #include <stdio.h>
 
 int main(void){

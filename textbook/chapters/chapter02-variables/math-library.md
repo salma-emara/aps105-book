@@ -2,7 +2,7 @@
 
 In the previous section, we study simple arithmetic operations. Operations can in real life will indeed require more complicated operations, such as finding the  logarithm of a number. In this section, we will learn about a math library that provides us access to complicated operations, such as $\log$, $\tan$, $\sin$, $\cos$ and many more.
 
-# Complicated math operations
+## Complicated math operations
 
 For example, we want to get the hypotenuse of a right-angled triangle with sides $a$ and $b$. The hypotenuse is the longest side of the right-angled triangle. The hypotenuse is given by the formula: $c = \sqrt{a^2 + b^2}$. Since, a square root is a complicated operation, we use the math library to get the square root of a number. 
 
@@ -17,12 +17,12 @@ We use `sqrt` function to get the square root of a number. A function has inputs
 `sqrt` function in math library with prototype `double sqrt(double x)`
 ```
 
-Line 1 includes the math library, without which we can not use math library functions. Line 10 in the following code uses `sqrt` function to get the square root of $a^2 + b^2$. Download {download}`hypotenuse.c <../../code/chapter2/hypotenuse/hypotenuse.c>` to get the following code.
+Line 1 includes the math library, without which we can not use math library functions. Line 11 in the following code uses `sqrt` function to get the square root of $a^2 + b^2$. Download {download}`hypotenuse.c <../../code/chapter2/hypotenuse/hypotenuse.c>` to get the following code.
 
 **Code**
 ```{code-block} c
 :caption: Getting the hypotenuse of a right-angled triangle
-:emphasize-lines: 1, 10
+:emphasize-lines: 1, 11
 :linenos:
 #include <math.h>
 #include <stdio.h>
@@ -80,32 +80,34 @@ Line 7 shows us how can `scanf` allow entry of more than one variable at a time.
 You can use `sqrt` in the following use cases:
 
 1. It can accept an `int` too. In line 4 in the following code, implicit type conversion from `int` `2` to `double` `2.0` will occur. The output will be `Square root of 2 is 1.41`.
+    
+    **Code** 
+    ```{code-block} c
+    :linenos:
+    :emphasize-lines: 4
+    #include <math.h>
+    #include <stdio.h>
+    int main(void){
+    printf("Square root of 2 is %.2lf\n", sqrt(2));
+    return 0;
+    }
+    ```
 
-**Code** 
-```{code-block} c
-:linenos:
-:emphasize-lines: 4
-#include <math.h>
-#include <stdio.h>
-int main(void){
-  printf("Square root of 2 is %.2lf\n", sqrt(2));
-  return 0;
-}
-```
 
-1. The output can be stored in an `int` too. In line 4 in the following example, the value returned from `sqrt(3.0)` -- 1.73205... -- will be truncated and stored in `val` as `1`.
 
-**Code** 
-```{code-block} c
-:linenos:
-:emphasize-lines: 4
-#include <math.h>
-#include <stdio.h>
-int main(void){
-  int val = sqrt(3.0);
-  return 0;
-}
-```
+2. The output can be stored in an `int` too. In line 4 in the following example, the value returned from `sqrt(3.0)` -- 1.73205... -- will be truncated and stored in `val` as `1`.
+
+    **Code** 
+    ```{code-block} c
+    :linenos:
+    :emphasize-lines: 4
+    #include <math.h>
+    #include <stdio.h>
+    int main(void){
+      int val = sqrt(3.0);
+      return 0;
+    }
+    ```
 
 ## Other math library functions
 

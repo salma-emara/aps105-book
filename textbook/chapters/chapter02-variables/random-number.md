@@ -1,6 +1,6 @@
 # Random numbers
 
-Throughout this chapter, we discussed different operations. Simple operations include `+`, `-`, `/`, `*`, `%`, `=`, `+=`, `-=`, `*=`, `/=`, `%=`, and complicated operations from the math library like `rint`, `fmax`, `fmin`, `ceil`, `floor`. Tese operations were on different data types like `int` and `double`. In some cases, we need to generate a random number, e.g. if we were to develop a head or tail game, we would need to generate two random numbers, maybe $0$ representing a head and $1$ representing a tail. In this section, we will discuss how to generate a random number in C.
+Throughout this chapter, we discussed different operations. Simple operations include `+`, `-`, `/`, `*`, `%`, `=`, `+=`, `-=`, `*=`, `/=`, `%=`, and complicated operations from the math library like `rint`, `fmax`, `fmin`, `ceil`, `floor`. These operations were on different data types like `int` and `double`. In some cases, we need to generate a random number, e.g. if we were to develop a head or tail game, we would need to generate two random numbers, maybe $0$ representing a head and $1$ representing a tail. In this section, we will discuss how to generate a random number in C.
 
 ## Generating a random number
 
@@ -113,7 +113,7 @@ time_t time(time_t *tloc);
 When the `time` is called like this `time(NULL)`, it returns the Unix time, which is the current time in terms of the number of seconds since January 1, 1970.
 
 ```{admonition} Fun fact 😎
-The data type `time_t` is a signed 32-bit `int` type representing the number of seconds since January 1, 1970. Hence, the maximum number of seconds that can be represented is $2^{31} -1 = 2147483647$. This will be 03:14:07 UTC January 19, 2038. After that, the Unix time will overflow and be a negative number representing 20:45:52 on Friday, 13 December 1901 🤯😵‍💫. This is called the **Unix time overflow** or Year 20238 problem. No one knows what will happen after that. Vulnerable systems include some databases, which includes bank accounts. You may have guessed the solution. Solution is as simple as switching to a 64-bit `time_t` data type.
+The data type `time_t` is a signed 32-bit `int` type representing the number of seconds since January 1, 1970. Hence, the maximum number of seconds that can be represented is $2^{31} -1 = 2147483647$. This will be 03:14:07 UTC January 19, 2038. After that, the Unix time will overflow and be a negative number representing 20:45:52 on Friday, 13 December 1901 🤯😵‍💫. This is called the **Unix time overflow** or Year 2038 problem. No one knows what will happen after that. Vulnerable systems include some databases, which includes bank accounts. You may have guessed the solution. Solution is as simple as switching to a 64-bit `time_t` data type.
 ```
 
 The following code will now generate different random numbers every time you run it. Download {download}`time-seed.c <../../code/chapter2/time-seed/time-seed.c>` to get the following code.

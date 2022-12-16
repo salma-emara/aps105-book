@@ -19,7 +19,7 @@ There are many reasons to learn programming. Here are a few:
     Programming can help you automate several day-to-day tasks, avoiding the need to do boring tasks that kill your creativity. Automating a task can arguably save you a lot of time. You will indeed initially spend more time to automate the task, but once automated, you will save a lot of time in the long run. 
 
 
-    > A few years ago, one project went viral on GitHub. It has scripts written by an employee to automate jobs that took him more than 90 second to do from fixing common problems caused by clients to texting his wife a "late at work" message reason from a list of many reasons. My favorite script connects with the office coffee machine, and sends an order to the machine to start brew coffee before he gets to the machine from his desk.  
+    > A few years ago, one project went viral on GitHub. It has scripts written by an employee to automate jobs that took him more than 90 seconds. Tasks include fixing common problems caused by clients and texting his wife a "late at work" message randomly selected from a list of many reasons. My favorite script connects with the office coffee machine, and sends an order to the machine to start brew coffee before he gets to the machine from his desk.  
     ```{warning}
     **Disclaimer:** The authors are *NOT* responsible for any damage caused to your relationship or coffee machine if you use the [referred](https://github.com/NARKOZ/hacker-scripts) code 😄
     ```

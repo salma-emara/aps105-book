@@ -56,13 +56,13 @@ The length of the hypotenuse is 4.80
 #include <stdio.h>
 
 int main(void) {
-    double a = 0, b = 0, c = 0;
-    printf("Enter the lengths of the sides: ");
-    scanf("%lf %lf", &a, &b);
+  double a = 0, b = 0, c = 0;
+  printf("Enter the lengths of the sides: ");
+  scanf("%lf %lf", &a, &b);
 
-    c = sqrt(a * a + b * b);
-    printf("The length of the hypotenuse is %.2lf\n", c);
-    return 0;
+  c = sqrt(a * a + b * b);
+  printf("The length of the hypotenuse is %.2lf\n", c);
+  return 0;
 }
 ```
 
@@ -88,8 +88,8 @@ You can use `sqrt` in the following use cases:
 #include <math.h>
 #include <stdio.h>
 int main(void){
-    printf("Square root of 2 is %.2lf\n", sqrt(2));
-    return 0;
+  printf("Square root of 2 is %.2lf\n", sqrt(2));
+  return 0;
 }
 ```
 
@@ -102,8 +102,8 @@ int main(void){
 #include <math.h>
 #include <stdio.h>
 int main(void){
-    int val = sqrt(3.0);
-    return 0;
+  int val = sqrt(3.0);
+  return 0;
 }
 ```
 

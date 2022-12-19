@@ -46,10 +46,7 @@ Truth table for the logical operators are shown below.
 |`true`|`false`|`false`|`true`|
 |`true`|`true`|`true`|`true`|
 
-## Lazy Evaluation
 
-In progress ...
-%Elegant programming is not just about writing less code, but also writing code that is easy to read and understand. In the previous example, we can see that the condition is not very readable. We can use the lazy evaluation to make the condition more readable.
 
 **Exercise: OR operator**
 
@@ -132,6 +129,11 @@ You didn't enter an alphabet.</pre>
 
 While `!=` compares two values and returns `true` if they are not equal. For example, `(x != 5)` is valid. 
 ```
+
+## Lazy Evaluation
+
+In progress ...
+%Elegant programming is not just about writing less code, but also writing code that is easy to read and understand. In the previous example, we can see that the condition is not very readable. We can use the lazy evaluation to make the condition more readable.
 
 ## De Morgan's Law
 

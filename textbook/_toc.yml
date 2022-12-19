@@ -30,6 +30,7 @@ parts:
       - file: chapters/chapter03-decision-making/intro.md
         sections:
           - file: chapters/chapter03-decision-making/if-statement.md
+          - file: chapters/chapter03-decision-making/multiple-conditions.md
           - file: chapters/chapter03-decision-making/exercises.md
       - file: chapters/chapter04-loops/intro.md
         sections:

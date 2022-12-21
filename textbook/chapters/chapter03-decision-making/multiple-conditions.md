@@ -6,7 +6,7 @@ You may guess that we can write the condition as `(14 <= age <= 16)`. However, i
 
 **How do we check for these multiple conditions?** We can use logical/boolean operators to combine multiple conditions. For example, "and" can be written as `&&`. Hence, `(14 <= age <= 16)` can be correctly written as `(age >= 14 && age <= 16)`. 
 
-One way to extend our program is extending the block executed if the age is 14 or higher. There, we can check if the age is between 14 and 16. If it is, we need to print an extra warning message stating that it is only permissible to work outside of school hours. To extend our program, we write the highlighted code segment.
+One way to extend our program is extending the block executed if the age is 14 or higher. There, we can check if the age is between 14 and 16. If it is, we need to print an extra warning message stating that it is only permissible to work outside of school hours. To extend our program, we write the highlighted code segment. We will improve it in the next section in {ref}`nested-if`.
 
 **Code**
 ```{code-block} c
@@ -22,6 +22,8 @@ One way to extend our program is extending the block executed if the age is 14 o
       printf("You are not yet eligible to work in Ontario.");
     }else{
       // Obviously, this code segment would be only executed if age >= 14
+      //TODO: if(age >= 14 && age <= 16) print only during school
+      //else{printf("You are eligible to work in Ontario without conditions.");}
       printf("You are eligible to work in Ontario.");
       if (age >= 14 && age <= 16){ // age >= 14 is redundant. We can omit it.
         printf(" However, you are not allowed to work during school hours.");
@@ -140,7 +142,7 @@ You didn't enter an alphabet.</pre>
 While `!=` compares two values and returns `true` if they are not equal. For example, `(x != 5)` is valid and it is `true` is `x` is not equal to `5`. 
 ```
 
-## Lazy Evaluation
+### Lazy Evaluation
 
 For example, you may have a condition that checks if `x % y < 10`. As you know from {ref}`zero-division` and {ref}`modulo-operator`, if `y` is `0`, the program's behavior is undefined. Hence, your program needs to check if `y` is `0` before checking `x % y < 10`.
 
@@ -169,7 +171,7 @@ Lazy evaluation is useful when you have multiple conditions that are related to 
 1. **\<LHS\>** `||` **\<RHS\>**: the *\<LHS\>* will be evluated first, if `true`, the whole condition is `true` and the program will not evaluate the *\<RHS\>*. If *\<LHS\>* is `false`, the program will evaluate the *\<RHS\>*.
 2. **\<LHS\>** `&&` **\<RHS\>**: the *\<LHS\>* will be evaluated first, if `false`, the whole condition is `false` and the program will not evaluate the *\<RHS\>*. If *\<LHS\>* is `true`, the program will evaluate the *\<RHS\>*.
 
-## De Morgan's Law
+### De Morgan's Law
 
 De Morgan's Law is a rule that can be used to simplify a condition with logical operators. It is named after Augustus De Morgan, a British mathematician. 
 
@@ -186,7 +188,7 @@ De-Morgan's Law can be used to simplify the condition. If `A` and `B` are condit
 1. `!(A && B)` is equivalent to `!A || !B`
 2. `!(A || B)` is equivalent to `!A && !B`
 
-That is if there is a NOT operator outside, you can negate the two conditions inside and combine them with the logical operator that is AND, if it were an OR originally, and vice versa.
+That is if there is a NOT operator outside, you can negate the two conditions inside and combine them with the logical operator that is AND, if it were an OR originally, or OR, if it were an AND originally.
 
 In this case, the condition `!((x > 10) && (y < 5))` can be simplified by removing the `!` outside the brackets, having `x > 10` negated and `y < 5` negated, and combining the two negated conditions with `||` instead of `&&`. That is,
 
@@ -194,26 +196,56 @@ In this case, the condition `!((x > 10) && (y < 5))` can be simplified by removi
 
 Then, we can get rid of the `!` outside the brackets by getting the opposite of the condition of the two expressions inside the parentheses. The opposite of the relational expressions are shown in the table below.
 
-|Relational operator|Opposite|
+|Relational operator|Negation|
 |:---:|:---:|
 |`>`|`<=`|
 |`>=`|`<`|
 |`==`|`!=`|
 
-This makes `!(x > 10)` $\rightarrow$ `(x <= 10)` and `!(y < 5)` $\rightarrow$ `(y >= 5)`. The final expression then would be `(x <= 10 || (y >= 5))`.
+This makes `!(x > 10)` $\rightarrow$ `(x <= 10)` and `!(y < 5)` $\rightarrow$ `(y >= 5)`. The final expression then would be `(x <= 10 || (y >= 5))`. Steps to simplify the condition are shown in the following diagram.
 
- (Draw diagram showing steps here)
+```{figure} ./images/de-morgans-law-example.png
+:alt: De Morgan's Law example
+:class: with-shadow
+:width: 800px
+:align: center
 
-%## Nested-if statements
+Steps to simplify a condition using De Morgan's Law.
+```
 
-%Nested-if statements are if statements that are placed inside another if statement. For example, the following code snippet shows a nested-if statement.
-%if netested with else only or if there were several if's inside?
-%```
-%if(x > 10){
-%    if(y < 5){
-%        // do something
-%    }
-%}
-%```
+## Summary of Precedence with relational and logical operators
+
+1. `()`
+2. `!` `(<type>)` `sizeof()` `++` or `--` (but we will avoid using `++` or `--` with other operators)
+3. `*` `/` `%`
+4. `+` `-`
+5. `<` `<=` `>` `>=`
+6. `==` `!=`
+7. `&&`
+8. `||`
+   
+   (2--8) if two operands with same precedence occur, they are evaluated from left to right (left-associative).
+9. `=` `+=` `-=` `*=` `/=` `%=`
+   
+   (9) if two operands with same precedence occur, they are evaluated from right to left (right-associative).
+
+````{admonition} Common mistake in precedence!
+:class: important
+Since `!` has higher precedence than relational operators, `!(x > 10)` is not equivalent to `!x > 10`. In `!x > 10`, `!x` is to be evaluated first, then `(!x) > 10`. If `x` was 5, `!x` would be `false` as 5 is a non-zero number which is `true` as a condition. `!x` would be `false`, which is equivalent to 0. `0 > 10` would evaluate to `false` as well. Hence, the condition `!x > 10` is always `false` if `x` has non-zero number. The logic is illustrated in the following figure.
+
+```{figure} ./images/not-precedence-example.png
+:alt: Not precedence example
+:class: with-shadow
+:width: 800px
+:align: center
+
+NOT `!` precedence example.
+```
+
+While in `!(x > 10)`, if `x` is 5, `!(x > 10)` would be `!(false)` which is `true`. 
+
+Clearly, `!(x > 10)` is not equivalent to `!x > 10`. A programmer needs to make sure enough parentheses are used to avoid such mistakes.
+
+````
 
 [^1]: Inputs to programs are in **bold**.

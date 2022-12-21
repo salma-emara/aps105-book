@@ -1,6 +1,6 @@
 # If-statements
 
-Let's develop a decision-making program! We want to develop a program that prompts the user to enter their age. If it was below the legal age to work in Ontario, Canada, we want to print "You are not yet eligible to work in Ontario.", else it prints "You are eligible to work in Ontario."
+Let's develop a decision-making program! We want to develop a program that prompts the user to enter their age. If it was below the legal age to work in Ontario, Canada, the program prints "You are not yet eligible to work in Ontario.", else it prints "You are eligible to work in Ontario."
 
 In C, we use the `if` statement to make decisions. The `if` statement is a conditional statement that executes a block of code if a condition is `true`. The syntax of the `if` statement is as follows:
 
@@ -10,7 +10,7 @@ if (condition) {
 }
 ```
 
-We want to execute another block of code if the condition is `false`. We can have an else to the if-statement. The syntax of the `if-else` statement is as follows:
+If we want to execute **another** block of code if the condition is `false`. We can have an `else` to the `if`-statement. The syntax of the `if-else` statement is as follows:
 
 ```{code-block} c
 if (condition) {
@@ -22,11 +22,11 @@ if (condition) {
 
 ## What can this `condition` be?
 
-1. The `condition` can be a `bool` variable. Recall `bool` variable takes either a `true` or `false` value. 
+1. The `condition` can be a `bool` variable. Recall `bool` variable takes either a `true` or `false` value. **Note:** if the `bool` variable is `false`, the `true` block of code will never be executed. If the `bool` variable is `true`, the `false` block of code will never be executed.
     
     **Code**
     ```{code-block} c
-    #include <bool.h>
+    #include <stdbool.h>
     #include <stdio.h>
     
     int main(void){
@@ -44,7 +44,7 @@ if (condition) {
     <pre>
     The flag is true.</pre>
     
-2. The `condition` can be a numerical value. Recall that `true` is stored as `1` and `false` is stored as `0`. To be more accurate, C is only strict in the representing `false` as 0. While `true` can be any non-zero number. In other words, any *non-zero* value in the condition makes the condition `true`. While a *zero* value in the condition makes the condition `false`.
+2. The `condition` can be a numerical value. Recall that `true` is stored as `1`, and `false` is stored as `0` as we discussed in {ref}`bool-variable` section. To be more accurate, C is only strict in the representing `false` as 0. While `true` can be any non-zero number. *In other words, any *non-zero* value in the condition makes the condition `true`. While a *zero* value in the condition makes the condition `false`.*
 
     **Code**
     ```{code-block} c
@@ -85,7 +85,7 @@ if (condition) {
       printf("Enter your age: ");
       scanf("%d", &age);
 
-      if (age < 14){
+      if (age < 14){ // Condition checking if age is less than 14
         printf("You are not yet eligible to work in Ontario.");
       }else{
         printf("You are eligible to work in Ontario.");
@@ -107,7 +107,7 @@ if (condition) {
     :emphasize-lines: 7
     #include <stdio.h>
     int main(void){
-      int height, width = 0;
+      int height = 0, width = 0;
       printf("Please enter the height and width of your shape: ");
       scanf("%d %d", &height, &width);
       
@@ -123,6 +123,16 @@ if (condition) {
     <pre>
     Please enter the height and width of your shape: <b>5 5</b>
     The shape is a square.</pre>
+
+    ````{admonition} Equal to $==$ Vs. Assignment $=$
+    One of the most common mistakes is that people confuse the relational operator `==` with the assignment operator `=`. The **relational operator** `==` compares the right hand side with the left hand side and returns `true` if they are equal and `false` otherwise. The **assignment operator** `=` assigns the value on the right hand side to the variable on the left hand side.
+
+    
+    *What would happen if you got confused and wrote `if (x = 5)` instead of `if(x == 5)`, for example?*
+
+    In `if (x = 5)`, `5` is assigned to `x`, which returns `5` (recall {ref}`assignment-operator`). The condition here will always be `true`, since the numerical value in place of the condition is `5`. This is not your intention indeed. Your intention is to check if `x` is equal to `5`. To do this, you should write `if (x == 5)`. 
+    
+    ````
 
 
 ## What can we do with relational operators?

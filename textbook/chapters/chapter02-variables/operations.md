@@ -79,6 +79,7 @@ We learned before in {ref}`Think! <float-in-int>`, if a floating point number is
 6. `double x = 9 + 6.3;`
    * `9 + 6.3` $\rightarrow$ `15.3`. `x` stores `15.30000`.
 
+(zero-division)=
 ## What happens when we divide by 0?
 
 In math, the result of dividing a number by 0 is undefined. What would undefined mean if a program divides a number by 0? If we were to divide an **int 3 by int 0**, e.g. `3/0`, the compiler will successfully compile your code. However, it will produce a "warning message". This warning message would state `warning: division by zero is undefined.` If that `0` was stored in a variable, the compiler will **not** produce a warning message. 
@@ -106,6 +107,7 @@ Integer 0 division -1180252136
 Floating point zero division inf
 </pre>
 
+(modulo-operator)=
 ## Modulo operator
 
 Remember whenever we divide two numbers, we have a quotient and a remainder. For example, $10/3$ has a quotient of $3$ with a remainder $1$. Hence, $\frac{10}{3}$ can be written as a mixed fraction: $3 \frac{1}{3}$. 
@@ -172,15 +174,16 @@ What would `3 % 0` be?
 It would have a similar behavior to `3 / 0`. There will be a compile-time warning, and a run-time undefined behavior.
 ````
 
+(assignment-operator)=
 ## Assignment operators
 
-The assignment operator (`=`, `+=`, `-=`, `*=`, `/=`, `%=`) assigns an evaluation/value to a variable. For example, in `int x = 7 + 3;` the `=` assigns the value of `7 + 3` to `x`. **The precedence of assignment operators is after the other BEDMAS operators.**
+The assignment operator (`=`, `+=`, `-=`, `*=`, `/=`, `%=`) assigns an evaluation/value to a variable. For example, in `int x = 7 + 3;` the `=` assigns the value of `7 + 3` to `x`. **The precedence of assignment operators is *after* the other BEDMAS operators.**
 
 Other assignment operators such as `+=`, `-=`, `*=`, `/=`, `%=` mean that the variable is assigned to the variable plus/minus/multiplied/divided/modulo the value on the right. For example, `x += 3` is equivalent to `x = x + 3` and `x %= 10` is equivalent to `x = x % 10`. 
 
 **Tricky!** If we have `x *= 3 + 2`, it is equivalent to `x = x * 5`. This implies that the BEDMAS operators are evaluated before the assignment operators.
 
-As discussed earlier in {ref}`operations`, BEDMAS operators if they have the same precedence, they are evaluated from left to right (left-associative). Assignment operators are the **opposite**, from right to left (right-associative). This means that `x = y = z` is equivalent to `x = (y = z)`. An example code is shown below. 
+As discussed earlier in {ref}`operations`, BEDMAS operators if they have the same precedence, they are evaluated from left to right (left-associative). Assignment operators are the **opposite**, from right to left (right-associative). This means that `x = y = z` is equivalent to `x = (y = z)`. Here, `y = z` is evaluated first, it returns the value of `y`, then the value of `y` is assigned to `x`. An example code is shown below. 
 
 **Code**
 ```c {.line-numbers}
@@ -218,7 +221,7 @@ For example, in the following example `++i` is pre-fix, i.e. incrementing happen
 #include <stdio.h>
 int main() {
   int i = 1, j = 31;
-  j = ++i;  // Equivalent to j = i = i + 1
+  j = ++i;  // Equivalent to j = i = i + 1;
   printf("With prefix: i = %d, j = %d\n", i, j);
 
   i = 1, j = 31;

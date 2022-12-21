@@ -79,7 +79,7 @@ My first initial is S
 |     ⋮     |          ⋮           |          ⋮          |
 |     9     |          57          |      00111001       |
 
-
+(bool-variable)=
 ## Boolean 
 
 Boolean `bool` data type is used to represent a logical value, i.e. either `true` or `false`. In C, `true` is represented by `1` and `false` is represented by `0`. Sounds like we only need one bit for that nice data type in the memory, right? As much as `bool` requires only one bit, but we cannot organize the memory as we like. The memory is organized into cells, and each cell stores a byte. The smallest possible memory space we can use is a cell in the memory. So `bool` data type uses 1 byte of memory.

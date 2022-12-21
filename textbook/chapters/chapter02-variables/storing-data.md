@@ -144,7 +144,6 @@ Value of initialized variable "var": 0
 If you compile the code above, you will get a warning stating: `variable ‘var’ is uninitialized when used here [-Wuninitialized]`. The compiler will also ask you to initialize `var` to silence the warning. 
 ```
 
-
 This becomes a problem, if you are unaware of it. If you use an uninitialized variable later, your program's behavior will be undefined. Therefore, it is best practice to declare a variable **AND** initialize it, e.g. `int var = 0;`. `int var` declares the `var` variable and `= 0;` initializes the `var` variable to `0`.
 
 

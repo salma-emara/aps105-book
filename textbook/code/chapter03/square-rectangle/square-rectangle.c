@@ -1,6 +1,6 @@
 #include <stdio.h>
 int main(void) {
-  int height, width = 0;
+  int height = 0, width = 0;
   printf("Please enter the height and width of your shape: ");
   scanf("%d %d", &height, &width);
 

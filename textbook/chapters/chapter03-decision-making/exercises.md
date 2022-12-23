@@ -1,17 +1,3 @@
----
-substitutions:
-    key1: |
-        ```{admonition} Answer
-        :class: dropdown
-        `true`
-        ```
-    key2: |
-        ```{admonition} Answer
-        :class: dropdown
-        `false`
-        ```
----
-
 # Exercises
 
 Many of these exercises are taken from past exams of APS105 Computer Fundamentals courses at University of Toronto. The solutions are provided in the answer boxes.
@@ -85,6 +71,7 @@ bool var = !(x <= y && y <= z);
 ```
     
 ````{admonition} Answer
+:class: dropdown
 ```{code-block} c
 bool var = (x > y || y > z);
 ```

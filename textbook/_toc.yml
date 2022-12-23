@@ -35,6 +35,7 @@ parts:
           - file: chapters/chapter03-decision-making/exercises.md
       - file: chapters/chapter04-loops/intro.md
         sections:
+          - file: chapters/chapter04-loops/while.md
           - file: chapters/chapter04-loops/for-loop.md
           - file: chapters/chapter04-loops/exercises.md
       - file: chapters/chapter05-functions/intro.md

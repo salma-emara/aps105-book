@@ -70,7 +70,7 @@ The value in Canadian dollars is 74.670000.
 
 ````{admonition} Answer
 :class: dropdown
-Download {download}`exercise-usd-to-cad.c <../../code/chapter03/exercise-usd-to-cad/exercise-usd-to-cad.c>` to get the following code.
+Download {download}`exercise-usd-to-cad.c <../../code/chapter2/exercise-usd-to-cad/exercise-usd-to-cad.c>` to get the following code.
 ```{code-block} c
 // Sometimes in exams you won't be required 
 // to add the #include statements

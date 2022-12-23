@@ -35,6 +35,63 @@ r = (pow(x, n) + 6 * pow(x, 4.0)) / (sin(y) + cos(z));
 ```
 ````
 
+### Practice 3
+
+**Question 5 in Winter 2018 Midterm Exam**
+
+The variable `numApples` is an `int` type variable representing the number of apples in a barrel. The
+owner of the apples is deciding whether to sell them in packages of $3$ or $5$ apples. Write a single
+C statement that declares and initializes an `int` type variable called `leftover`. `leftover` should be
+initialized to the minimum of two quantities: 1) the number of apples left over when the barrel of
+apples is packaged into groups of $3$; 2) the number of apples left over when the barrel of apples is
+packaged into groups of $5$.
+
+**Hint:** Use a function in the `math` library
+
+````{admonition} Answer
+:class: dropdown
+```{code-block} c
+int leftover = fmin(numApples % 3, numApples % 5);
+```
+````
+
+### Practice 4
+
+**Question 8 in Winter 2019 Midterm Exam**
+
+If you have a certain number of US dollars and wish to convert them to Canadian dollars, you could use the Canadian dollar to US dollar exchange rate (for example: 1 Canadian dollar = $0.75$ US dollar). Write a complete C program that prompts its user for the current Canadian dollar to US dollar exchange rate (e.g. $0.75$) and a value in US dollars, and then prints the value in Canadian dollars, rounding to the nearest hundredth. Your program will print the value with $6$ digits after the decimal point. Assume the user provides a valid exchange rate and US dollar amount.
+
+Here is an example run of your program:
+<pre>
+Enter the exchange rate (1 CAD = ? USD): <b>0.75</b>
+Enter the value in US dollars: <b>56</b>
+The value in Canadian dollars is 74.670000.
+</pre>
+
+````{admonition} Answer
+:class: dropdown
+Download {download}`exercise-usd-to-cad.c <../../code/chapter03/exercise-usd-to-cad/exercise-usd-to-cad.c>` to get the following code.
+```{code-block} c
+// Sometimes in exams you won't be required 
+// to add the #include statements
+#include <stdio.h>
+#include <math.h>
+int main (void) {
+    double exchangeRate = 0, cad = 0, usd = 0;
+    printf("Enter the exchange rate (1 CAD = ? USD): ");
+    scanf("%lf", &exchangeRate);
+    printf("Enter the value in US dollars: ");
+    scanf("%lf", &usd);
+    cad = usd / exchangeRate;
+    
+    // rounding to the nearest hundredth
+    double roundedCad = rint(cad * 100) / 100.0;
+    printf("The value in Canadian dollars is %.6lf.\n", roundedCad); 
+    //%.6lf and %.lf prints 6 digits after the decimal point
+    return 0;
+}
+```
+````
 
 ## Random Number Generation
 

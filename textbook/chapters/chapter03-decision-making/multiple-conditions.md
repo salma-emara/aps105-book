@@ -6,12 +6,12 @@ You may guess that we can write the condition as `(14 <= age <= 16)`. However, i
 
 **How do we check for these multiple conditions?** We can use logical/boolean operators to combine multiple conditions. For example, "and" can be written as `&&`. Hence, `(14 <= age <= 16)` can be correctly written as `(age >= 14 && age <= 16)`. 
 
-One way to extend our program is extending the block executed if the age is 14 or higher. There, we can check if the age is between 14 and 16. If it is, we need to print an extra warning message stating that it is only permissible to work outside of school hours. To extend our program, we write the highlighted code segment. We will improve it in the next section in {ref}`nested-if`.
+Back to extending our program! We can extend the block executed if the age is 14 or higher, which is the `else` block. There, we can check if the age is between 14 and 16. If it is, we need to print an extra warning message stating that it is only permissible to work outside of school hours. To extend our program, we write the highlighted code segment. 
 
 **Code**
 ```{code-block} c
 :linenos:
-:emphasize-lines: 10, 12-13
+:emphasize-lines: 10 - 14
 #include <stdio.h>
   int main(void){
     int age = 0;
@@ -19,14 +19,15 @@ One way to extend our program is extending the block executed if the age is 14 o
     scanf("%d", &age);
 
     if (age < 14){
-      printf("You are not yet eligible to work in Ontario.");
+      printf("You are not yet eligible to work.");
     }else{
-      // Obviously, this code segment would be only executed if age >= 14
-      //TODO: if(age >= 14 && age <= 16) print only during school
-      //else{printf("You are eligible to work in Ontario without conditions.");}
-      printf("You are eligible to work in Ontario.");
-      if (age >= 14 && age <= 16){ // age >= 14 is redundant. We can omit it.
-        printf(" However, you are not allowed to work during school hours.");
+      // Note! age >= 14 is redundant, in the following condition
+      // since the else block will be executed only if age >= 14
+      if (age >= 14 && age <= 16){ 
+        printf("You are eligible to work only outside school hours.");
+      }
+      else{
+        printf("You are eligible to work.");
       }
     }
     return 0;
@@ -35,7 +36,11 @@ One way to extend our program is extending the block executed if the age is 14 o
 **Output[^1]**
 <pre>
 Enter your age: <b>15</b>
-You are eligible to work in Ontario. However, you are not allowed to work during school hours.</pre>
+You are eligible to work only outside school hours.</pre>
+
+```{warning}
+The above code is still under development. In the {ref}`nested-if` section, it will look better.
+```
 
 ## Logical/Boolean Operators
 There are three logical operators: and $\rightarrow$ `&&`, or $\rightarrow$ `||`, and not $\rightarrow$ `!`. 

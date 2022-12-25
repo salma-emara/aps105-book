@@ -28,12 +28,12 @@ if (condition) {
     ```{code-block} c
     #include <stdbool.h>
     #include <stdio.h>
-    
-    int main(void){
+
+    int main(void) {
       bool flag = true;
-      if(flag){
+      if (flag) {
         printf("The flag is true.");
-      }else{
+      } else {
         printf("The flag is false.");
       }
       return 0;
@@ -49,11 +49,11 @@ if (condition) {
     **Code**
     ```{code-block} c
     #include <stdio.h>
-    
-    int main(void){
-      if (3){
+
+    int main(void) {
+      if (3) {
         printf("The condition is true.");
-      }else{
+      } else {
         printf("The condition is false.");
       }
       return 0;
@@ -80,14 +80,14 @@ if (condition) {
     :linenos:
     :emphasize-lines: 7
     #include <stdio.h>
-    int main(void){
+    int main(void) {
       int age = 0;
       printf("Enter your age: ");
       scanf("%d", &age);
 
-      if (age < 14){ // Condition checking if age is less than 14
+      if (age < 14) {  // Condition checking if age is less than 14
         printf("You are not yet eligible to work in Ontario.");
-      }else{
+      } else {
         printf("You are eligible to work in Ontario.");
       }
       return 0;
@@ -106,14 +106,14 @@ if (condition) {
     :linenos:
     :emphasize-lines: 7
     #include <stdio.h>
-    int main(void){
+    int main(void) {
       int height = 0, width = 0;
       printf("Please enter the height and width of your shape: ");
       scanf("%d %d", &height, &width);
-      
-      if (height == width){
+
+      if (height == width) {
         printf("The shape is a square.");
-      }else{
+      } else {
         printf("The shape is a rectangle.");
       }
       return 0;

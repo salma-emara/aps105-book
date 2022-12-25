@@ -92,18 +92,18 @@ Download {download}`median.c <../../code/chapter03/exercise-median/median.c>` to
 
 ```{code-block} c
 #include <stdio.h>
-int main(void){
-    int p = 0, q = 0, r = 0;
-    printf("Enter three integers: ");
-    scanf("%d %d %d", &p, &q, &r);
+int main(void) {
+  int p = 0, q = 0, r = 0;
+  printf("Enter three integers: ");
+  scanf("%d %d %d", &p, &q, &r);
 
-    if((p >= q && p <= r) || (p >= r && p <= q)){
-        printf("%d", p);
-    }else if ((q >= p && q <= r) || (q >= r && q <= p)){
-        printf("%d", q);
-    }else{
-        printf("%d", r);
-    }
+  if ((p >= q && p <= r) || (p >= r && p <= q)) {
+    printf("%d", p);
+  } else if ((q >= p && q <= r) || (q >= r && q <= p)) {
+    printf("%d", q);
+  } else {
+    printf("%d", r);
+  }
 }
 ```
 ````
@@ -115,47 +115,47 @@ int main(void){
 The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one `if` statement.
 
 ```{code-block} c
-int main(void){
-    char a = '\0', b = '\0', c = '\0';
-    printf("Enter three characters: ");
-    scanf("%c %c %c", &a, &b, &c);
-    if (a < b) {
-        if (b < c) {
-            printf("%c", b);
-        } else if (a < c) {
-            printf("%c", c);
-        } else {
-            printf("%c", a);
-        }
+int main(void) {
+  char a = '\0', b = '\0', c = '\0';
+  printf("Enter three characters: ");
+  scanf("%c %c %c", &a, &b, &c);
+  if (a < b) {
+    if (b < c) {
+      printf("%c", b);
+    } else if (a < c) {
+      printf("%c", c);
+    } else {
+      printf("%c", a);
     }
-    
-    if (c < b) {
-        printf("%c", b);
-    }
-    if (a < c) {
-        printf("%c", a);
-    }
-    printf("%c", c);
+  }
+
+  if (c < b) {
+    printf("%c", b);
+  }
+  if (a < c) {
+    printf("%c", a);
+  }
+  printf("%c", c);
 }
 ```
 
 ````{admonition} Answer
 :class: dropdown
 ```{code-block} c
-int main(void){
-    char a = '\0', b = '\0', c = '\0', result = '\0';
-    printf("Enter three characters: ");
-    scanf("%c %c %c", &a, &b, &c);
-    
-    char result = a;
-    
-    if ((a < b && b < c) || (c < b && b < a)) {
-      result = b;
-    } else if ((a < c && c < b) || (b < c && c < a)){
-      result = c;
-    }
-    
-    printf("%c", result);
+int main(void) {
+  char a = '\0', b = '\0', c = '\0', result = '\0';
+  printf("Enter three characters: ");
+  scanf("%c %c %c", &a, &b, &c);
+
+  char result = a;
+
+  if ((a < b && b < c) || (c < b && b < a)) {
+    result = b;
+  } else if ((a < c && c < b) || (b < c && c < a)) {
+    result = c;
+  }
+
+  printf("%c", result);
 }
 ```
 ````

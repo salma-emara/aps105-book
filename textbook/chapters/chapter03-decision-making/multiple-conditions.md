@@ -13,25 +13,24 @@ Back to extending our program! We can extend the block executed if the age is 14
 :linenos:
 :emphasize-lines: 10 - 14
 #include <stdio.h>
-  int main(void){
-    int age = 0;
-    printf("Enter your age: ");
-    scanf("%d", &age);
+int main(void) {
+  int age = 0;
+  printf("Enter your age: ");
+  scanf("%d", &age);
 
-    if (age < 14){
-      printf("You are not yet eligible to work.");
-    }else{
-      // Note! age >= 14 is redundant, in the following condition
-      // since the else block will be executed only if age >= 14
-      if (age >= 14 && age <= 16){ 
-        printf("You are eligible to work only outside school hours.");
-      }
-      else{
-        printf("You are eligible to work.");
-      }
+  if (age < 14) {
+    printf("You are not yet eligible to work.");
+  } else {
+    // Note! age >= 14 is redundant, in the following condition
+    // since the else block will be executed only if age >= 14
+    if (age >= 14 && age <= 16) {
+      printf("You are eligible to work only outside school hours.");
+    } else {
+      printf("You are eligible to work.");
     }
-    return 0;
   }
+  return 0;
+}
 ```
 **Output[^1]**
 <pre>
@@ -71,14 +70,14 @@ For example, let's write a C code that checks if a character entered by the user
 ```{code-block} c
 :emphasize-lines: 7
 #include <stdio.h>
-int main(void){
+int main(void) {
   char letter = ' ';
   printf("Enter a letter: ");
   scanf("%c", &letter);
 
-  if (letter == 'A' || letter == 'a'){
+  if (letter == 'A' || letter == 'a') {
     printf("You entered an upper case or lower case A.");
-  }else{
+  } else {
     printf("You did not enter an upper case or lower case A.");
   }
   return 0;
@@ -121,13 +120,13 @@ Using the diagram above, you can also develop the condition as `(letter < 'A') |
 ```{code-block} c
 :emphasize-lines: 7
 #include <stdio.h>
-int main(void){
+int main(void) {
   char letter = ' ';
   printf("Enter an alphabet letter: ");
   scanf("%c", &letter);
 
-  if (!(((letter >= 'A') && (letter <= 'Z')) || 
-        ((letter >= 'a') && (letter <= 'z')))){
+  if (!(((letter >= 'A') && (letter <= 'Z')) ||
+        ((letter >= 'a') && (letter <= 'z')))) {
     printf("You didn't enter an alphabet.");
   }
   return 0;
@@ -154,18 +153,18 @@ For example, you may have a condition that checks if `x % y < 10`. As you know f
 *One way to do this* is to check if `y` is `0` first, and then check `x % y < 10` if `y` is not `0`. This is called **nested-if**. The code snippet below shows how to do this.
 
 ```
-if(y != 0){
-    if(x % y < 10){
-        // do something
-    }
+if (y != 0) {
+  if (x % y < 10) {
+    // do something
+  }
 }
 ```
 
 Another way is to make use of **lazy evaluation**. For example, the following code snippet is equivalent to the previous nested-if above.
 
 ```
-if(y != 0 && x % y < 10){
-    // do something
+if (y != 0 && x % y < 10) {
+  // do something
 }
 ```
 
@@ -183,8 +182,8 @@ De Morgan's Law is a rule that can be used to simplify a condition with logical 
 For example, we have a C program with two variables `x` and `y`. Both `x` and `y` are used in a condition that is very difficult to read and understand in the following code snippet.
 
 ```
-if(!((x > 10) && (y < 5))){
-    // do something
+if (!((x > 10) && (y < 5))) {
+  // do something
 }
 ```
 

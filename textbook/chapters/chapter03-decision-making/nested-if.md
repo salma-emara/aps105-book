@@ -6,25 +6,24 @@ In the previous section, we developed the following program that printed to the 
 **Not elegant code**
 ```{code-block} c
 #include <stdio.h>
-  int main(void){
-    int age = 0;
-    printf("Enter your age: ");
-    scanf("%d", &age);
+int main(void) {
+  int age = 0;
+  printf("Enter your age: ");
+  scanf("%d", &age);
 
-    if (age < 14){
-      printf("You are not yet eligible to work.");
-    }else{
-      // Note! age >= 14 is redundant, in the following condition
-      // since the else block will be executed only if age >= 14
-      if (age >= 14 && age <= 16){ 
-        printf("You are eligible to work only outside school hours.");
-      }
-      else{
-        printf("You are eligible to work.");
-      }
+  if (age < 14) {
+    printf("You are not yet eligible to work.");
+  } else {
+    // Note! age >= 14 is redundant, in the following condition
+    // since the else block will be executed only if age >= 14
+    if (age >= 14 && age <= 16) {
+      printf("You are eligible to work only outside school hours.");
+    } else {
+      printf("You are eligible to work.");
     }
-    return 0;
   }
+  return 0;
+}
 ```
 
 In the following code, we wrote a more elegant code. In line 9, we can see `else if (<condition>)`, which is evaluated only if the condition in the preceding `if` statement is `false`. This is also called a **nested-if statement**, but it is more readable and elegant. 
@@ -34,20 +33,21 @@ In the following code, we wrote a more elegant code. In line 9, we can see `else
 :emphasize-lines: 9
 :linenos:
 #include <stdio.h>
-  int main(void){
-    int age = 0;
-    printf("Enter your age: ");
-    scanf("%d", &age);
+int main(void) {
+  int age = 0;
+  printf("Enter your age: ");
+  scanf("%d", &age);
 
-    if (age < 14){
-      printf("You are not yet eligible to work in Ontario.");
-    }else if(age >= 14 && age <= 16){ //Can omit age >=14, since it is redundant
-      printf("You are eligible to work only outside school hours.");
-    }else{
-        printf("You are eligible to work in Ontario.");
-      }
-    return 0;
+  if (age < 14) {
+    printf("You are not yet eligible to work in Ontario.");
+  } else if (age >= 14 &&
+             age <= 16) {  // Can omit age >=14, since it is redundant
+    printf("You are eligible to work only outside school hours.");
+  } else {
+    printf("You are eligible to work in Ontario.");
   }
+  return 0;
+}
 ```
 
 ## Longer nested-if statements
@@ -87,22 +87,22 @@ Flow chart of the steps of comparing three numbers to find the maximum.
 **Code**
 ```{code-block} c
 #include <stdio.h>
-int main(void){
+int main(void) {
   int x = 0, y = 0, z = 0;
   printf("Enter three integers: ");
   scanf("%d %d %d", &x, &y, &z);
 
   // Maximum of x and y
-  if(x > y){
-    if(x > z){
+  if (x > y) {
+    if (x > z) {
       printf("The maximum is the first number entered: %d", x);
-    }else{
+    } else {
       printf("The maximum is the third number entered: %d", z);
     }
-  }else{ 
-    if(y > z){
+  } else {
+    if (y > z) {
       printf("The maximum is the second number entered: %d", y);
-    }else{
+    } else {
       printf("The maximum is the third number entered: %d", z);
     }
   }
@@ -121,17 +121,17 @@ More elegant code can be written if we thought backwards. We can think of the co
 **Code**
 ```{code-block} c
 #include <stdio.h>
-int main(void){
+int main(void) {
   int x = 0, y = 0, z = 0;
   printf("Enter three integers: ");
   scanf("%d %d %d", &x, &y, &z);
 
-  if(x > y && x > z){
+  if (x > y && x > z) {
     printf("The maximum is the first number entered: %d", x);
-  }else if(y > x && y > z){
-      printf("The maximum is the second number entered: %d", y);
-  }else{
-      printf("The maximum is the third number entered: %d", z);
+  } else if (y > x && y > z) {
+    printf("The maximum is the second number entered: %d", y);
+  } else {
+    printf("The maximum is the third number entered: %d", z);
   }
   return 0;
 }
@@ -151,7 +151,7 @@ The brackets `{}` in the if-statements are not necessary when the code block is 
 
 **Code without brackets {}**
 ```{code-block} c
-if(<condition>)
+if (<condition>)
   <statement>;
 else
   <statement>;
@@ -161,9 +161,9 @@ However, it is a good practice to use brackets `{}` to avoid an issue referred t
 
 **Code with dangling else problem**
 ```{code-block} c
-if(<condition>)
-  if(<condition>)
+if (<condition>)
+  if (<condition>)
     <statement>;
-  else //this else belongs to the if statement above
+  else  // this else belongs to the if statement above
     <statement>;
 ```

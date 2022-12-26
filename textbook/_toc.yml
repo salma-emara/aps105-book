@@ -38,6 +38,7 @@ parts:
           - file: chapters/chapter04-loops/while.md
           - file: chapters/chapter04-loops/do-while.md
           - file: chapters/chapter04-loops/for-loop.md
+          - file: chapters/chapter04-loops/debugging-loops.md
           - file: chapters/chapter04-loops/exercises.md
       - file: chapters/chapter05-functions/intro.md
         sections:

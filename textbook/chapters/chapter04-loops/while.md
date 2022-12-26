@@ -5,8 +5,8 @@ The while loop is a control flow statement that allows instructions/statements/c
 The syntax of the while loop is as follows:
 
 ```{code-block} c
-while(<condition>){
-    <statements>;
+while (<condition>) {
+  <statements>;
 }
 <other statements>;
 ```
@@ -20,41 +20,73 @@ while(<condition>){
 The flow chart of a while loop.
 ```
 
-As the flow chart shows, the while loop will execute the statements inside the curly braces as long as the condition is true. Once the condition becomes false, the while loop will exit and the program will continue executing the statements after the while loop.
+As the flow chart shows, the execution of the while loop starts by:
 
-For example, the following program will print out the numbers $1$ through $10$:
+1. Checking the condition of the loop. 
+2. If the condition is `true`, the statements inside the curly braces will be executed. 
+3. Repeat 1 and 2 until the condition becomes `false`.
+4. Once the condition becomes `false`, the while loop will exit and nothing inside the curly braces will be executed anymore. The program will continue executing the statements after the while loop.
+
+For example, the following program will print out the numbers $1$ through $3$.
+
+```{figure} ./images/while-order-of-execution.png
+:alt: The execution of a program with a while loop.
+:class: with-shadow
+:width: 600px
+:align: center
+
+The execution of a program with a while loop.
+```
+
+**Output**
+<pre>
+1 2 3 
+</pre>
+
+To print numbers $1$ to $10$, we can change the condition to `i <= 10`. The following program will print out the numbers $1$ through $10$. Download {download}`while-print-nums.c <../../code/chapter04/while-print-nums/while-print-nums.c>` if you want to run the program yourself.
 
 **Code**
 ```{code-block} c
 #include <stdio.h>
 
-int main(void){
-    int i = 1;
-    while(i <= 10){
-        printf("%d ", i);
-        i++;
-    }
-    return 0;
+int main(void) {
+  int i = 1;
+  while (i <= 10) {
+    printf("%d ", i);
+    i++;
+  }
+  return 0;
 }
 ```
 
 **Output**
-```{code-block} console
+<pre>
 1 2 3 4 5 6 7 8 9 10
-```
+</pre>
 
 ````{admonition} Exercise
 :class: note
 
 Write a C program that takes in from the user numbers and calculates the sum of the numbers. The program should stop when the user enters a negative number.
 
-**Step 1: Toy example** For example, if the user enters 18, 5, 3, 2, 1, -1, the program should print out the sum of the numbers $18 + 5 + 2 + 1$, which is 29.
+**Step 1: Toy example.** For example, if the user enters 18, 5, 3, 2, 1, -1, the program should print out the sum of the numbers $18 + 5 + 2 + 1$, which is 29.
 
-**Step 2: Think of a solution!** The program should repeatedly take in numbers from the user and add them to the sum. The program should stop when the user enters a negative number.
+**Step 2: Think of a solution!** The program should **repeatedly** take in numbers from the user. Repetition needs a loop. Repetition is for:
+1. repeatedly entering numbers from the user
+2. repeatedly adding the entered number to the sum. 
+3. This is on one condition, if **the numbers were positive**. The program should stop when the user enters a **negative number**.
 
-**Step 4: Decompose into steps** First, the program should take in a number from the user. Then, the program should check if the number is negative. Then, the program should add the number to the sum if it was positive. Otherwise, the program should print the sum calculated so far. It is wise to initialize the sum variable with zero, in case the user enters a negative number in the beginning. 
+**Step 4: Decompose into steps.**  Writing the steps down requires us to write a **pseudocode**. Pseudocode is an informal way of writing code that helps programmers develop code without worrying about syntax or details. Pseudocode is a good way to think about the steps that the program should take.
 
-This process should repeat. If the number is negative, the program should stop and print sum. If the number is not negative, the program should continue taking numbers and calculating the sum.
+A potential pseudocode for this program is as follows:
+
+1. Initialize the sum to zero.
+2. Take in a number from the user.
+3. Check if the number is negative. If the number is negative, exit the while loop.
+4. If the number is not negative, add the number to the sum.
+5. Repeat steps 2-4 until the user enters a negative number.
+
+
 
 **Step 5: Draw your solution** The following flow chart shows the steps that the program should take.
 
@@ -97,12 +129,18 @@ Enter another number: <b>-1</b>
 The sum is 26
 </pre>
 
+```{admonition} Common Confusions!
+:class: tip
+**Should we take the number from the user *inside* or *outside* the while loop?** Outside the while loop. This is because we need to check if the number is negative before we add it to the sum. If we decide to take in the first number from the user inside the while loop, we would have already passed the condition of the while loop.
+
+**Should we initialize the `sum` to zero?** Yes, we should initialize the `sum` to zero. This is because the `sum` should be zero if the user enters a negative number in the beginning. If we do not initialize the `sum` to zero, the `sum` will be undefined. 
+```
 **Step 7: Test your code** Test your code with other numbers. For example, try entering a negative number first. What happens? The sum should be 0. Try entering a zero number. What happens? The while loop should not stop and you should be still able to enter numbers. 
 ````
 
 ## Infinite Loops
 
-What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop:
+What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i >0` is always `true`:
 
 **Code**
 ```{code-block} c

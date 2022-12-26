@@ -20,7 +20,7 @@ while (<condition>) {
 The flow chart of a while loop.
 ```
 
-As the flow chart shows, the execution of the while loop starts by:
+As the above flow chart shows, the execution of the while loop starts by:
 
 1. Checking the condition of the loop. 
 2. If the condition is `true`, the statements inside the curly braces will be executed. 
@@ -34,6 +34,7 @@ For example, the following program will print out the numbers $1$ through $3$.
 :class: with-shadow
 :width: 600px
 :align: center
+:name: while-order-of-execution
 
 The execution of a program with a while loop.
 ```
@@ -76,7 +77,7 @@ Write a C program that takes in from the user numbers and calculates the sum of 
 2. repeatedly adding the entered number to the sum. 
 3. This is on one condition, if **the numbers were positive**. The program should stop when the user enters a **negative number**.
 
-**Step 4: Decompose into steps.**  Writing the steps down requires us to write a **pseudocode**. Pseudocode is an informal way of writing code that helps programmers develop code without worrying about syntax or details. Pseudocode is a good way to think about the steps that the program should take.
+**Step 3: Decompose into steps.**  Writing the steps down requires us to write a **pseudocode**. Pseudocode is an informal way of writing code that helps programmers develop code without worrying about syntax or details. Pseudocode is a good way to think about the steps that the program should take.
 
 A potential pseudocode for this program is as follows:
 
@@ -86,9 +87,7 @@ A potential pseudocode for this program is as follows:
 4. If the number is not negative, add the number to the sum.
 5. Repeat steps 2-4 until the user enters a negative number.
 
-
-
-**Step 5: Draw your solution** The following flow chart shows the steps that the program should take.
+**Step 4: Draw your solution.** The following flow chart shows the steps that the program should take.
 
 ```{figure} ./images/while-loop-exercise.png
 :alt: The flow chart of the while loop exercise
@@ -96,10 +95,10 @@ A potential pseudocode for this program is as follows:
 :width: 200px
 :align: center  
 
-The flow chart of the while loop exercise      
+The flow chart of the while loop exercise that finds the sum of numbers entered by the user until the user enters a negative number.     
 ```
 
-**Step 6: Write the code.** Download {download}`sum-numbers-while.c <../../code/chapter04/sum-numbers-while/sum-numbers-while.c>` to get the following code.
+**Step 5: Write the code.** Download {download}`sum-numbers-while.c <../../code/chapter04/sum-numbers-while/sum-numbers-while.c>` to get the following code.
 
 ```{code-block} c
 #include <stdio.h>
@@ -119,7 +118,7 @@ int main(void){
 }
 ```
 
-**Output**
+**Output[^1]**
 <pre>
 Enter a number: <b>18</b>
 Enter another number: <b>5</b>
@@ -135,7 +134,7 @@ The sum is 26
 
 **Should we initialize the `sum` to zero?** Yes, we should initialize the `sum` to zero. This is because the `sum` should be zero if the user enters a negative number in the beginning. If we do not initialize the `sum` to zero, the `sum` will be undefined. 
 ```
-**Step 7: Test your code** Test your code with other numbers. For example, try entering a negative number first. What happens? The sum should be 0. Try entering a zero number. What happens? The while loop should not stop and you should be still able to enter numbers. 
+**Step 6: Test your code.** Test your code with other numbers. For example, try entering a negative number first. What happens? The sum should be 0. Try entering a zero number. What happens? The while loop should not stop and you should be still able to enter numbers. 
 ````
 
 ## Infinite Loops
@@ -160,3 +159,5 @@ int main(void){
 <pre>
 1 2 3 4 5 6 7 8 9 10 11 12 13 ... <(continues until the program crashes)>
 </pre>
+
+[^1]: Inputs to programs are in **bold**.

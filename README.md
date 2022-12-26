@@ -11,7 +11,7 @@ If you are trying to build the book locally, you can follow the instructions bel
 1- Clone this GitHub repo. In your terminal, type the following command:
 
 ```
-git clone https://github.com/salmashukry/aps105-book/
+git clone https://github.com/salma-emara/aps105-book/
 cd aps105-book
 ```
 

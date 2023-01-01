@@ -20,7 +20,9 @@ The first step in debugging is to identify the common mistakes. Here are some co
 
 ## Debugging a program with a loop
 
-The following is a code to print a pattern of stars. The code is shown below. Download {download}`triangle-with-bugs.c <../../code/chapter04/triangle-with-bugs/triangle-with-bugs.c>` to debug the program yourself.
+{{ video_embed | replace("%%VID%%", "eviO1AYRgoU")}}
+
+The following is a code to print a pattern of stars. The code is shown below. Download {download}`triangle-with-bugs.c <../../code/chapter04/triangle-with-bugs/triangle-with-bugs.c>` to debug the program yourself. 
 
 ```{code-block} c
 #include <stdio.h>
@@ -55,6 +57,22 @@ Enter the number of rows: <b>5</b>
 *********
 </pre>
 
+<pre>
+Enter the number of rows: <b>4</b>
+   *
+  ***
+ *****
+*******
+</pre>
+
+<pre>
+Enter the number of rows: <b>3</b>
+  *
+ ***
+*****
+</pre>
+<!-- Need to check for when n = 0 or 1-->
+
 **Actual Output**
 <pre>
 Enter the number of rows: <b>5</b>
@@ -65,8 +83,27 @@ Enter the number of rows: <b>5</b>
 ****
 </pre>
 
+You can find the corrected code below. Download {download}`triangle-fixed.c <../../code/chapter04/triangle-fixed/triangle-fixed.c>` to see the corrected code.
 
 **Corrected Code**
 ```{code-block} c
+#include <stdio.h>
 
+int main(void) {
+  int n = 0;
+  printf("Enter the number of rows: ");
+  scanf("%d", &n);
+
+  for (int row = 1; row <= n; row += 1) {
+    for (int col = 1; col < 2 * n; col += 1) {
+      if (col <= n - row) {
+        printf(" ");
+      } else if (col > n - row && col <= n - 1 + row) {
+        printf("*");
+      }
+    }
+    printf("\n");
+  }
+  return 0;
+}
 ```

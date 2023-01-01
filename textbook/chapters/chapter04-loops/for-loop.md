@@ -2,6 +2,8 @@
 
 In the previous sections, we discussed how to repeat instructions using while and do-while loops. In this section, we will discuss the for loop.
 
+## Forming the structure of a for loop from a while loop
+
 Recall the example, where we used while and do-while loops to print numbers between $1$ and $3$. In the following code, we highlight the specific structure of the while loop that allows us to go through fixed number of iterations. The structure highlights three features: initialization, condition, and increment.
 
 ```{figure} ./images/structure-while.png
@@ -61,8 +63,7 @@ int main(void) {
 1 2 3 4 5 6 7 8 9 10
 </pre>
 
-````{admonition} Scope of loop variable
-:class: important
+## Scope of the loop variable
 
 In the `for` loop, the initialization and declaration of the loop variable are done in the same statement, *e.g.*, `int i = 1`. This makes the `i` variable only visible inside the for loop. After the for loop, the loop variable is no longer visible.
 
@@ -121,7 +122,6 @@ int main(void) {
 1 2 3 4 5 6 7 8 9 10 
 The value of i when we existed the loop: 11
 </pre>
-````
 
 
 ## Variations in for loop

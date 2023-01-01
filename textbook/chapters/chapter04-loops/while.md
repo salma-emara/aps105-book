@@ -2,6 +2,8 @@
 
 The while loop is a control flow statement that allows instructions/statements/code to be executed repeatedly based on a given condition.
 
+## What is a while loop?
+
 The syntax of the while loop is as follows:
 
 ```{code-block} c

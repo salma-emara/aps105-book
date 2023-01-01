@@ -2,6 +2,8 @@
 
 In the previous section, we discussed how to repeat a set of instructions in programming using a while loop. In this section, we will discuss the do-while loop. The do-while loop is similar to the while loop. The only difference is that the do-while loop will always execute **at least once**, even if the condition is `false`. This is because the condition is checked at the end of the loop. 
 
+## What is the do-while loop?
+
 The syntax of the do-while is as follows:
 
 ```{code-block} c

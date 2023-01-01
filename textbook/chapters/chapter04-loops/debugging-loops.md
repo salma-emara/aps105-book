@@ -5,7 +5,8 @@ In this section, we debug an example program that uses a nested loop to print a 
 ## Goal of this exercise
 
 * Practice reviewing other people's code
-* Fixing mistakes in other people's code (debugging) -- trains you to see/avoid mistakes in your own code
+* Fix mistakes in other people's code (debugging)
+* See/avoid mistakes in your own code
 
 ## Common mistakes
 
@@ -53,13 +54,12 @@ Enter the number of rows: <b>5</b>
 
 **Expected output**
 <pre>
-Enter the number of rows: <b>6</b>
-     *
-    ***
-   *****
-  *******
- *********
-***********
+Enter the number of rows: <b>5</b>
+    *
+   ***
+  *****
+ *******
+*********
 </pre>
 
 

@@ -2,9 +2,9 @@
 
 In this section, we debug an example program that uses a nested loop to print a pattern. The program is shown below. We go through common mistakes and types of errors that you might encounter when writing a code with a loop.
 
-## Goal of this exercise
+## Goal of debugging exercises
 
-* Practice reviewing other people's code
+* Practice reviewing/reading other people's code
 * Fix mistakes in other people's code (debugging)
 * See/avoid mistakes in your own code
 
@@ -45,16 +45,6 @@ int main(void) {
 
 ```
 
-**Output**
-<pre>
-Enter the number of rows: <b>5</b>
-    
-   *
-  **
- ***
-****
-</pre>
-
 **Expected output**
 <pre>
 Enter the number of rows: <b>5</b>
@@ -63,6 +53,16 @@ Enter the number of rows: <b>5</b>
   *****
  *******
 *********
+</pre>
+
+**Actual Output**
+<pre>
+Enter the number of rows: <b>5</b>
+    
+   *
+  **
+ ***
+****
 </pre>
 
 

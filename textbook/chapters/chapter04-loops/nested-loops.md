@@ -4,6 +4,8 @@ Just like how if-statements can be nested, loops can be nested too. Nested loops
 
 For example, in this next exercise, we print multiple lines where each line has different repetition pattern. 
 
+## Print a 2 dimensional pattern
+
 **Exercise**
 
 Write a C program that prints the following pattern:
@@ -28,7 +30,7 @@ Write a C program that prints the following pattern:
 
 We can use a loop to repeat the action of printing lines. For each line, we can use another loop to repeat the action of printing stars. In every line, we can print out the number of stars that is equal to the line number.
 
-**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of stars that is equal to the line number. The second part is to print out the number of lines.
+**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of stars that is equal to the line number. The second part is to print out the number of lines. The first part can be decomposed into the following steps:
 
 1. Initialize a variable `line` to $1$.
 2. Print out the number of stars that is equal to the line number.
@@ -123,11 +125,11 @@ int main(void) {
     <pre>*<br>**<br>***</pre>
 
 
-## Let's tweak the pattern a little more!
+## Let's tweak the pattern a little!
 
 **Exercise**
 
-Write a C program that prints the following pattern with $n = 5$ rows. $n$ would be taken as input from the user. 
+Write a C program that prints the following pattern with $n$ rows. $n$ would be taken as input from the user. In the following pattern, $n$ is set to $5$. 
 
 <pre>
     *
@@ -137,19 +139,71 @@ Write a C program that prints the following pattern with $n = 5$ rows. $n$ would
 *****
 </pre>
 
-**Step 1: Toy example.** The expected output is shown above. We can use it as a toy example. 
+**Step 1: Toy example.** The expected output is shown above. We can use it as a toy example to develop our solution.
 
-**Step 2: Think of a solution!** Again, here we need an outer loop for the number of lines to print, and an inner loop for the number of spaces and number of stars to print in each line.
+**Step 2: Think of a solution!** Again, here we need an outer loop for the number of rows to print, and an inner loop for the number of spaces and number of stars to print in each row. 
+
+In the following figure, we can see a pattern in the number of spaces and number of stars in each line. The number of spaces is equal to $n$ - row number and the number of stars is equal to row number.
+
+We will use a loop to print out each row. For each row, we will use another loop to print out the number of spaces and number of stars. In every row, we can print out the number of spaces that is equal to $n$ - row number. Then, we can print the number of stars that is equal to row number.
 
 ```{figure} ./images/stars-pattern.png
-:alt: Pattern of stars or asterisks
+:alt: Pattern of stars/asterisks
 :width: 400px
 :align: center
 
-Pattern of stars or asterisks
+Pattern of stars/asterisks
 ```
 
-**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of lines. The second part is to print out the number of spaces and number of stars in each line.
+**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of rows. The second part is to print out the number of spaces and number of stars in each line. The first part can be decomposed into the following steps:
 
 1. Initialize a variable `row` to $1$.
-    
+2. Print out the number of spaces that is equal to $n$ - row number and stars that is equal to row number.
+3. Increment the variable `row` by $1$.
+4. Repeat 2 and 3 until the variable `row` is greater than $n$ for the toy example.
+
+The second step **"2. Print out the number of spaces that is equal to $n$ - row number and stars that is equal to row number"** can be decomposed into the following steps:
+
+1. Initialize a variable `column` to $1$.
+2. Print our a space if the variable `column` is less than or equal to $n$ - row number.
+3. Otherwise, print out a `*`.
+4. Increment the variable `column` by $1$.
+5. Repeat 2 to 4 until the variable `column` is greater than $n$.
+
+**Step 4: Write the code.** The code is shown below. Download {download}`reverse-stars-pattern.c <../../code/chapter04/reverse-stars-pattern/reverse-stars-pattern.c>` if you want to run the program yourself.
+
+```{code-block} c
+#include <stdio.h>
+
+int main(void) {
+  int n = 0;
+  printf("Enter the number of rows: ");
+  scanf("%d", &n);
+  for (int row = 1; row <= n; row += 1) {
+    for (int col = 1; col <= n; col += 1) {
+      if (col <= n - row) {
+        printf(" ");
+      } else {
+        printf("*");
+      }
+    }
+    printf("\n");
+  }
+  return 0;
+}
+```
+**Output[^1]**
+<pre>
+Enter the number of rows: <b>5</b>
+    *
+   **
+  ***
+ ****
+*****
+</pre>
+
+**Step 5: Test the code.** Test the code with corner numbers that may break your code. For example, try changing $5$ to $1$ and see what happens. It should print only one `*`. Try changing $5$ to $0$ and see what happens. It should print nothing.
+
+**Step 6: Debug the code.** It is possible that you do not get the expected output. Some common mistakes in printing patterns were discussed in the previous exercise. 
+
+[^1]: Inputs to programs are in **bold**.

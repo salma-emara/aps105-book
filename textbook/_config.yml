@@ -41,3 +41,11 @@ html:
 parse:
   myst_enable_extensions:
     - dollarmath
+    - substitution
+  myst_url_schemes: [mailto, http, https]
+  myst_substitutions:
+    # The video_embed substitution below is essentially a macro to avoid
+    # repeating all of the YouTube embed code for each video in the book.
+    # The %%VID%% part of the src attribute is replaced by the YouTube video
+    # id at each place where a video is linked in the textbook source.
+    video_embed: '<div class="container16x9"><iframe src="https://www.youtube.com/embed/%%VID%%" class="responsive-iframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'

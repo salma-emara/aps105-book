@@ -23,16 +23,18 @@ The first step in debugging is to identify the common mistakes. Here are some co
 The following is a code to print a pattern of stars. The code is shown below. Download {download}`triangle-with-bugs.c <../../code/chapter04/triangle-with-bugs/triangle-with-bugs.c>` to debug the program yourself.
 
 ```{code-block} c
+#include <stdio.h>
+
 int main(void) {
   int n = 0;
   printf("Enter the number of rows: ");
   scanf("%d", &n);
 
   for (int row = 1; row <= n; row += 1) {
-    for (int col = 1; col < 2 * n; col += 1) {
-      if (col <= n - 1 - row) {
+    for (int col = 1; col < n; col += 1) {
+      if (col <= n - row) {
         printf(" ");
-      } else if (col >= n - row && col <= n - 1 + row) {
+      } else if (col >= n - row || col <= n - 1 + row) {
         printf("*");
       }
     }
@@ -40,6 +42,7 @@ int main(void) {
   }
   return 0;
 }
+
 ```
 
 **Output**

@@ -4,6 +4,7 @@ Just like how if-statements can be nested, loops can be nested too. Nested loops
 
 For example, in this next exercise, we print multiple lines where each line has different repetition pattern. 
 
+(2D-pattern)=
 ## Print a 2 dimensional pattern
 
 **Exercise**

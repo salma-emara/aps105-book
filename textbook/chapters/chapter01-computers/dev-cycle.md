@@ -7,10 +7,10 @@ There is a development cycle that we follow when we write a program. The cycle i
 1. Write the program in an Integrated Development Environment (IDE), e.g. Visual Studio Code. Check the [Setup Visual Studio Code](../appendix/setup-vscode.md) page for instructions on how to set up Visual Studio Code.
 2. Compile the program using a compiler like GCC. This converts the program from a human-readable format to a machine-readable format. Not surprisingly, the compiler is a program also written in a programming language (usually C). This can be invoked from the command line or from the IDE. 
 3. Run the program. This executes the sequence of instructions in the program. This can be invoked from the command line or from the IDE. 
-   * Check the [Compile and Run](../appendix/compile-run.md) page for instructions on how to compile and run a program.
+   * Check the [Setup Visual Studio Code](../appendix/setup-vscode.md) page for instructions on how to compile and run a program.
 4. Debug the program. This is the process of finding and fixing errors in the program. Some programs help in debugging, e.g. GDB. These allow programmers to view the execution state of their program step-by-step. This aids in finding errors. 
 
-It is vital to prepare the young generation of programmers for debugging. Most of your time (some people say 80% -- 90%) will be spent on debugging. It is important to mentally prepare yourself that your code will fail in your first trials. Debugging gets easier with experience. Check [Debugging](../appendix/debugging.md) for detailed tips on finding and fixing errors.
+It is vital to prepare the young generation of programmers for debugging. Most of your time (some people say 80% -- 90%) will be spent on debugging. It is important to mentally prepare yourself that your code will fail in your first trials. Debugging gets easier with experience. Check [../appendix/setup-vscode.md](../appendix/setup-vscode.md) and last section of each chapter starting Chapter 5 for detailed tips on finding and fixing errors.
 
 The following figure summarizes the development cycle.
 

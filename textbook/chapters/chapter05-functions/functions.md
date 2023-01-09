@@ -1,6 +1,6 @@
 # Functions
 
-Functions are called subroutines, modules or procedures in other programming languages. They are a sequence of instructions that can be called by name. Functions are useful for decomposing a problem into smaller sub-problems. This is referred to as **modular programming**. The modularity concept is the extent to which a program can be divided into smaller pieces.
+Functions are called subroutines, modules or procedures in other programming languages. They are a sequence of instructions that can be called by name in a code -- we will see how shortly. Functions are useful for decomposing a problem into smaller sub-problems. This is referred to as **modular programming**. The modularity concept is the extent to which a program can be divided into smaller pieces.
 
 ## Why functions?
 
@@ -12,7 +12,7 @@ Decomposing a solution into functions is helpful because:
 
 3. **Less code means less bugs.** Since you are reusing code and writing fewer lines of code, you are less likely to make mistakes.
 
-4. **Easier testing.** Since sub-problems will be isolated into different functions. We can test each function individually. This makes it easier to debug the code.
+4. **Easier testing.** Since sub-problems will be isolated into different functions. We can test each function individually. This makes debugging easier.
 
 ## Example where modular programming is useful
 
@@ -25,7 +25,6 @@ Recall the example {ref}`2D-pattern`, where we had to print the following patter
 ****
 </pre>
 
-In-progress!
-<!-- We decomposed the solution into steps:
+We decomposed the solution into steps:
 
-1. -->
+1. 

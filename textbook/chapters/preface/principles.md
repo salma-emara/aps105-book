@@ -1,6 +1,6 @@
 # Principles of using this textbook
 
-## Embedded Code
+## Embedded Code 💻 
 
 ```{code-block} c
 Code will appear in boxes like these. 
@@ -17,7 +17,7 @@ Output will appear in boxes like these. These cannot be copied.
 Inputs to code will appear in <b>bold</b>.
 </pre>
 
-## Exercises 
+## Exercises 🏋
 
 Every chapter will have an exercises section. This section will include past exams questions related to the concepts discussed in the chapter (or previous chapters). Some may be marked as **[Easy]**, **[Intermediate]** or **[Challenging]**. The difficulty level is subjective and may vary from person to person. I expect you to solve these exercises after we cover the chapter in the lectures.
 
@@ -41,8 +41,8 @@ You can download a copy of each section by clicking on the top right most icon w
 
 You have a search box in the middle left of the page. You can search for a keyword or a phrase. It will search through the entire textbook.
 
-## Suggestions and Feedback
+## Suggestions and Feedback 📝 
 
 ```{warning}
-This website/online e-book is still under development. If you have any suggestions or feedback, please email me at salma<i>@</i>ece<i>.</i>utoronto<i>.</i>ca. You can also hover over the cat icon in the top right of this page, and click on open issue. This will take you to GitHub where you can easily describe what's the issue. This requires that you sign-up for a GitHub account.
+This website/online e-book is still under development. If you have any suggestions or feedback, please email me at <span style="color:blue"><u>salma<i>@</i>ece<i>.</i>utoronto<i>.</i>ca</u></span> . You can also hover over the cat icon in the top right of this page, and click on open issue. This will take you to GitHub where you can easily describe what's the issue. This requires that you sign-up for a GitHub account.
 ```

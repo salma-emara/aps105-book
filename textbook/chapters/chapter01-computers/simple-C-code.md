@@ -2,7 +2,7 @@
 
 ## Hello, world!
 
-In this section, we will write our first C program. We will write a program that prints the message "Hello World!" on the screen. This is a tradition in programming. The program is very simple, but it will give you a taste of what programming is like.
+In this section, we will write our first C program. We will write a program that prints the message "Hello World!" on the screen. This is a tradition in programming. The program is very simple, but it will give you a taste of what programming is like. Download {download}`hello-world.c <../../code/chapter1/hello-world/hello-world.c>` if you want to play with the code. 
 
 **Code**
 ```{code-block} c
@@ -54,7 +54,7 @@ However, it does not look easy to read and understand. For tips on better coding
 
 ## Prompt user for input 
 
-Write a C code that prompts the user to enter the number of pizzas they have. The program outputs the total number of slices they have. We are assuming each pizza has 8 slices. Code in {download}`pizza.c <../../code/chapter1/pizza/pizza.c>`.
+Write a C code that prompts the user to enter the number of pizzas they have. The program outputs the total number of slices they have. We are assuming each pizza has 8 slices. Download code in {download}`pizza.c <../../code/chapter1/pizza/pizza.c>` if you want to play with the code further.
 
 <!-- [pizza.c](../../code/chapter1/pizza/pizza.c) -->
 

@@ -28,7 +28,7 @@ double multiplyTwo(int var, bool flag) {
 
 ## Error Gutters
 
-Installing [Error Gutters](https://marketplace.visualstudio.com/items?itemName=IgorSbitnev.error-gutters) helps in identifying errors in your code. It will show a red cross on the left side of the line where the error is. You can hover over the red line to see the error message.
+Installing [Error Gutters](https://marketplace.visualstudio.com/items?itemName=IgorSbitnev.error-gutters) helps in bringing your attention to errors/warnings in your code. It will show a red cross on the left side of the lines where the error is and a yellow caution symbol next to lines that cause a warning.
 
 ```{figure} ./images/error-gutters.png
 :alt: Error Gutters
@@ -44,4 +44,4 @@ Error Gutters in action
 
 ## Tabnine Autocomplete AI
 
-https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode
+[Tabnine Autocomplete AI](https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode) is an extension that will help you auto-complete some lines of your code. This will help you be more productive, but you need to make sure the recommended code is what you want.

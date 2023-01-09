@@ -1,5 +1,8 @@
 # Appendix: Additional Resources
 
+This chapter is mainly an appendix of additional resources that may make your life easier while you learn programming. 
+
+<!-- 
 linux basics (how to compile manually using gcc incase VSCode is not working)
 
 coding style
@@ -31,3 +34,4 @@ code scalability
 extensibility
 
 Extensions in VSCode that will help you have a better coding style
+-->

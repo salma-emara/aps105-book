@@ -1,5 +1,6 @@
 # Coding style 
 
+In-progress! 
 
 ## Indentation and white spaces
 

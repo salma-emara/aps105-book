@@ -25,6 +25,7 @@ Recall the example {ref}`2D-pattern`, where we had to print the following patter
 ****
 </pre>
 
-We decomposed the solution into steps:
+In-progress!
+<!-- We decomposed the solution into steps:
 
-1. 
+1. -->

@@ -4,10 +4,5 @@ In previous chapters, in every worked exercise, we discussed how to solve a prob
 
 Think of assembling an Ikea table. It is difficult to think of building the Ikea table from scratch. Ikea broke the table into smaller pieces and gave us instructions on how to assemble it. We can think of each step as a function. We can use the functions to solve problems in programming.
 
-for (int i = 0; i < 10; i++) {
-
-    printf("*");
-}
-
 
 

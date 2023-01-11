@@ -31,19 +31,19 @@ Write a C program that prints the following pattern:
 
 We can use a loop to repeat the action of printing lines. For each line, we can use another loop to repeat the action of printing stars. In every line, we can print out the number of stars that is equal to the line number.
 
-**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of stars that is equal to the line number. The second part is to print out the number of lines. The first part can be decomposed into the following steps:
+**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is in each line, we print out the number of stars that is equal to the line number. The second part is to print out all the number of lines. In other words, we need a loop that repeats printing stars, and another loop that repeats printing lines. Printing lines can be decomposed into the following steps:
 
 1. Initialize a variable `line` to $1$.
-2. Print out the number of stars that is equal to the line number.
+2. Print out stars equal to the line number.
 3. Increment the variable `line` by $1$.
-4. Repeat 2 and 3 until the variable `line` is greater than $3$ for the toy example.
+4. Repeat 2 and 3 until the variable `line` is greater than number of lines to be printed, e.g. $3$.
 
-The second step **"2. Print out the number of stars that is equal to the line number"** can be decomposed into the following steps:
+The second step **"2. Print out stars equal to the line number."** can be decomposed into the following steps:
 
 1. Initialize a variable `star` to $1$.
 2. Print out a `*`.
-3. Increment the variable `star` by $1$.
-4. Repeat 2 and 3 until the variable `star` is greater than the variable `line`.
+3. Increment the value of `star` by $1$.
+4. Repeat 2 and 3 until the value of `star` is greater than the value `line`.
 
 **Step 4: Write the code.** The code is shown below. Download {download}`print-stars-pattern.c <../../code/chapter04/print-stars-pattern/print-stars-pattern.c>` if you want to run the program yourself.
 
@@ -75,7 +75,7 @@ int main(void) {
 *****
 </pre>
 
-**Step 6: Debug the code.** It is possible that you do not get the expected output. Some of the common mistakes are:
+**Step 6: Debug the code.** It is possible that you do not get the expected output. Some common mistakes are:
 
 1. Misplacing the `printf("\n")` statement to be in the inner loop. This will print a new line for every `*`. If you did so, the output will look like this:
   
@@ -156,7 +156,7 @@ We will use a loop to print out each row. For each row, we will use another loop
 Pattern of stars/asterisks
 ```
 
-**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of rows. The second part is to print out the number of spaces and number of stars in each line. The first part can be decomposed into the following steps:
+**Step 3: Decompose into steps.** We can decompose the problem into two parts. The first part is to print out the number of rows. The second part is to print out the number of spaces and number of stars in each line. The second part can be decomposed into the following steps:
 
 1. Initialize a variable `row` to $1$.
 2. Print out the number of spaces that is equal to $n$ - row number and stars that is equal to row number.
@@ -166,7 +166,7 @@ Pattern of stars/asterisks
 The second step **"2. Print out the number of spaces that is equal to $n$ - row number and stars that is equal to row number"** can be decomposed into the following steps:
 
 1. Initialize a variable `column` to $1$.
-2. Print our a space if the variable `column` is less than or equal to $n$ - row number.
+2. Print a space if the value of `column` is less than or equal to $n$ - row number.
 3. Otherwise, print out a `*`.
 4. Increment the variable `column` by $1$.
 5. Repeat 2 to 4 until the variable `column` is greater than $n$.

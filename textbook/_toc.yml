@@ -44,7 +44,7 @@ parts:
       - file: chapters/chapter05-functions/intro.md
         sections:
           - file: chapters/chapter05-functions/functions.md
-          - file: chapters/chapter05-functions/problem-solving.md
+          - file: chapters/chapter05-functions/communicate-from-function.md
       - file: chapters/chapter06-pointers/intro.md
       - file: chapters/chapter07-arrays/intro.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md

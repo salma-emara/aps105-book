@@ -207,7 +207,7 @@ However, for readability and to be able to easily spot bugs, we suggest having f
 
 ## Increment and decrement operators
 
-If we have `i = i + 1;`, this can be written as `i += 1;` and `i++;`. Similarly, `i -= 1;` and `i--;` are equivalent to `i = i - 1;`. `++` and `--` are increment and decrement operators. They increment/decrement the value of the variable by 1.
+If we have `i = i + 1;`, this can be written as `i += 1;`, `i++;` and `++i;`. Similarly, `i -= 1;`, `i--;` and `--i;` are equivalent to `i = i - 1;`. `++` and `--` are increment and decrement operators. They increment/decrement the value of the variable by 1.
 
 ***AVOID USING `++` AND `--` IN A COMPLEX EXPRESSION!***
 

@@ -1,6 +1,6 @@
 # Math library
 
-In the previous section, we study simple arithmetic operations. Operations can in real life will indeed require more complicated operations, such as finding the  logarithm of a number. In this section, we will learn about a math library that provides us access to complicated operations, such as $\log$, $\tan$, $\sin$, $\cos$ and many more.
+In the previous section, we study simple arithmetic operations. Operations in real life will be more complicated operations, such as finding the logarithm of a number. In this section, we will learn about a math library that provides us access to complicated operations, such as $\log$, $\tan$, $\sin$, $\cos$ and many more.
 
 ## Complicated math operations
 

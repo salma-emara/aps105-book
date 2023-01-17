@@ -30,7 +30,7 @@ We decomposed the solution into two sub-problems:
 1. Printing the lines
 2. Printing the stars in each line
 
-Printing the lines is a bigger problem that involves printing the stars in each line. Creating a function for each problem makes it easier to think clearly about the solution. For example, to print a particular number of stars, we can use the following function:
+Printing the lines is a bigger problem that involves printing the stars in each line. Creating a function for each problem makes it easier to think clearly about the solution. For example, to print a particular number of stars, we can use the following function `printStars`:
 
 ```{figure} ./images/function-implementation.png
 :alt: Function implementation that prints a number of stars
@@ -40,15 +40,25 @@ Printing the lines is a bigger problem that involves printing the stars in each 
 Function implementation that prints a number of stars.
 ```
 
-And to print the lines, we can make use of `printStars` function as follows:
+1. The return type of our function is `void`. In this function, we do not return any values to the caller function. We will see how to return a value in the next section.
+2. The function name is `printStars`. This name will be used to call the function to execute its instructions. 
+3. The type of the input parameter is `int`.
+4. The variable name of the input parameter is `numOfStars`. This is the same variable name used within the function.
+5. The body of the function has instructions to print one line of `numOfStars` stars. 
+
+And to print the lines, we can make use of `printStars` function in another `printPattern` function as follows:
 
 ```{figure} ./images/call-function.png
 :alt: Function implementation that prints a pattern. It calls `printStars`.
 :width: 800px
 :align: center
 
-Function implementation that prints a pattern. It calls `printStars`.
+Function implementation of `printPattern` that prints a pattern by calling `printStars`.
 ```
+
+1. In `printPattern` function, we have a loop that increments the `row` number from $1$ to `numOfRows`. For each row, it calls `printStars` that prints a number of stars equal to `row`. 
+
+2. To call `printStars` that does not return a value, it is enough to write its name and the name of the variable to send its value, as `printStars(row);`. The value of `row` will be copied to `numOfStars` in `printStars` function.
 
 The entire code in use will be as follows. Download {download}`print-pattern-functions.c <../../code/chapter05/print-pattern-functions/print-pattern-functions.c>` if you want to run the program yourself.
 
@@ -86,11 +96,21 @@ void printPattern(int numOfRows) {
 }
 ```
 
+**Output[^1]**
+<pre>
+Enter the number of lines in the pattern: <b>5</b>
+*
+**
+***
+****
+*****
+</pre>
+
 In lines $4$ -- $6$, we wrote down the **function prototypes** of `printStars` and `printPattern`. A function prototype tells the compiler three main features of a function:
 
-1. The type and number of input parameters
-2. The function name
-3. The return type of the function
+1. The type and the number of input parameters, e.g. in `void printStars(int numOfStars);`, we know `int` is the type of the only input parameter
+2. The function name, e.g. `printStars`
+3. The return type of the function, e.g. `void` since both of other functions do not return anything
 
 You may or may not include the variable names as shown in the following figure.
 
@@ -102,7 +122,7 @@ You may or may not include the variable names as shown in the following figure.
 Two ways to write a function prototype.
 ```
 
-In line $12$, calls `printPattern` function passing the **value** of `line` variable. `printPattern` ultimately calls `printStars` which prints the appropriate number of stars for each line. 
+In line $12$, we call `printPattern` function passing the **value** of `line` variable to the variable `numOfRows`. `printPattern` ultimately calls `printStars` which prints the appropriate number of stars for each line. 
 
 ## Order of execution with functions
 
@@ -128,13 +148,13 @@ Steps taken to execute a program with functions.
 
 **Step 6**: `printStars` function body will print a line of stars equal to `numOfStars`.
 
-**Step 7**: Once `printStars` prints a line of stars, it returns to exactly where it was initially called, `printPattern`. `printPattern` will continue executing its loop, and call `printStars` again if. Steps $4$ to $7$ will continue until the loop in `printPattern` exits. 
+**Step 7**: Once `printStars` prints a line of stars, it returns to exactly where it was initially called, `printPattern`. `printPattern` will continue executing its loop, and call `printStars` again if `row` in `printPattern` remains less than or equal `numOfRows`. Steps $4$ to $7$ will continue until the loop in `printPattern` exits.
 
 **Step 8**: When `printPattern` finishes printing the pattern, it returns to where it was initially called in the `main` function. The next step in `main` is `return 0;` where the program exits.
 
 ## Another way to write code with functions (but not favorable)
 
-There is another way to write your program when it has functions, that does not involve writing the function prototypes. It requires that you implement all the functions before you use them in the `main` function. The following code re-writes the code above, but by replacing function prototypes with the function implementations at the end of the program. You should not have function implementations at the end of the program in this case. 
+There is another way to write your program when it has functions, that does not involve writing the function prototypes. It requires that you implement all the functions before the `main` function, instead of including the function prototypes. The following code shows the code above in this new way. Function prototypes are replaced with the function implementations, that were at the end of the program. You should not have function implementations at the end of the program in this case.
 
 **Code**
 ```{code-block} c
@@ -165,7 +185,7 @@ int main(void) {
 
 **Why is this method not favorable?**
 
-The compiler compiles your code one line at a time from top to bottom. This requires function implementations to be before they are **called** in any functions, other than the `main` function. For example, in the previous code, if we switched the order of the function implementations of `printStars` and `printPattern`, it will cause an error at line $6$ in the following code.
+The compiler compiles your code one line at a time from top to bottom. The compiler should have observed the function prototype or function implementation before they are **called** in any functions, including the the `main` function. For example, in the previous code, if we switched the order of the function implementations of `printStars` and `printPattern`, it will cause an error at line $6$ in the following code, because this is the first time `printStars` is observed by the compiler. The compiler did not see before line $6$ any prototype or implementation of `printStars`, which is why it flags an error. This causes a **compile-time** error. 
 
 ```{figure} ./images/function-implementation-order.png
 :alt: Function implementation order can cause an issue if no caution is taken.
@@ -175,14 +195,16 @@ The compiler compiles your code one line at a time from top to bottom. This requ
 The order of function implementation can cause an issue if no caution is taken!
 ```
 
-This is because the compiler does not know what is `printStars` at line 6 yet, is it a function prototype, implementation, or a function from a library? This caused a compile-time error.
+However, if you were to write the function prototypes before the main, then the order of the function implementations after the main function does not matter. There is no caution that is required.
 
-However, if you were to write the function prototypes before the main, then the function implementations after the main function, the order of function prototypes at the top or the implementations does not matter. There is no caution that is required.
 
+<!--
 ```{admonition} Important!
-When you call a function, you pass a variable not type.
+When you call a function, you pass the value of the variable, not type not variable itself. %Needs a figure and explanation! **Exercise**
 
-When you pass a parameter to a function, the name used inside the function should be the same as the name in the header of the function implementation. For example, in `printPattern` function, we passed the value of `lines` in main, but we used `numOfRows` in `printPattern`. This is because `numOfRows` is the name of the variable in the function header of `printPattern`.
+When you pass a parameter to a function, the name used inside the function should be the same as the name in the header of the function implementation. For example, in `printPattern` function, we passed the value of `lines` in `main`, but we used `numOfRows` in `printPattern`. This is because `numOfRows` is the name of the variable in the function header of `printPattern`.
 
-The order of the parameters passed to a function MUST be the same as the order of the parameters in the header of the function. We will see examples of this in the next section.
 ```
+-->
+
+[^1]: Inputs to programs are in **bold**.

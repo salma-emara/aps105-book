@@ -45,7 +45,12 @@ parts:
         sections:
           - file: chapters/chapter05-functions/functions.md
           - file: chapters/chapter05-functions/communicate-from-function.md
+          - file: chapters/chapter05-functions/variable-scope.md
+          - file: chapters/chapter05-functions/pass-more-values.md
+          - file: chapters/chapter05-functions/exercises.md
       - file: chapters/chapter06-pointers/intro.md
+        sections:
+          - file: chapters/chapter06-pointers/communicate-with-pointers.md
       - file: chapters/chapter07-arrays/intro.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md
       - file: chapters/chapter09-strings/intro.md

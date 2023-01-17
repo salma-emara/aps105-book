@@ -3,11 +3,10 @@
 int factorial(int n);
 
 int main(void) {
-  int n;
-  printf("Enter a positive integer: ");
-  scanf("%d", &n);
-  int result = factorial(n);
-  printf("%d! = %d \n", n, result);
+  int number = 4;
+
+  int result = factorial(number);
+  printf("Factorial of %d: %d.\n", number, result);
   return 0;
 }
 

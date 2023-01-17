@@ -15,33 +15,21 @@ Order of execution in a code that gets the factorial.
 ```
 
 1. As always, the execution starts from the `main` function. 
-2. `factorial` function takes in 4 as an input
+2. `factorial` function takes in 4 as an input.
 3. The variable `n` in `factorial` function is assigned the value of 4.
 4. The function `factorial` returns the value of 24 to the caller function, which is the `main` function.
 5. `factorial(number)` now is evaluated as 24.
 6. The value of `result` is set to the evaluated value of `factorial(number)`, which is 24.
-   
+
 **Output**
 <pre>
 Factorial of 4: 24.
 </pre>
 
-## Variable scope
-
-In the previous example, we found that we created a new variable `n` in `factorial` to take in the value of `number` from the `main` function. This is because we cannot access `number` inside `factorial` function. Likewise, `n` cannot be access in the `main` function. We say the scope of `number` is within the main function, and the scope of `n` is `factorial` function.
-
-All variables created within the `{` `}` can only be accessed within `{` `}`.
-
-Recall, when we discussed for loops, we said that the following would cause a compile-time error.
-
-```{code-block} c
-for (int count = 1; count <= n; count++) {
-  printf("*");
-}
-count = 10;
-```
 
 ## Summary of syntax of a program with functions
+
+To summarize the syntax of a C program that has functions, in the following figure you will find the skeleton of a C program that has a non-void and void return function.
 
 ```{figure} ./images/syntax-summary.png
 :alt: Basic skeleton of a program that uses functions.
@@ -51,8 +39,6 @@ count = 10;
 Basic skeleton of a program that uses functions.
 ```
 
-In-progress!!
-
-The order of the parameters passed to a function MUST be the same as the order of the parameters in the header of the function. We will see examples of this in the next section.
+The order of the parameters passed to a function MUST be the same as the order of the parameters in the header of the function.
 
 [^1]: Inputs to programs are in **bold**.

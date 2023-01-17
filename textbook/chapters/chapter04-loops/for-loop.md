@@ -63,6 +63,7 @@ int main(void) {
 1 2 3 4 5 6 7 8 9 10
 </pre>
 
+(scope-for-loop)=
 ## Scope of the loop variable
 
 In the `for` loop, the initialization and declaration of the loop variable are done in the same statement, *e.g.*, `int i = 1`. This makes the `i` variable only visible inside the for loop. After the for loop, the loop variable is no longer visible.

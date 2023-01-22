@@ -118,12 +118,12 @@ Some of the relevant math library functions are listed below.
 |$\sqrt{x}$| `double sqrt(double x);`|returns the square root of `x`|`sqrt(4)` returns `2.0`|
 |$x^y$     | `double pow(double x, double y);`|returns `x` to the power of `y`|`pow(2, 3)` returns `8.0`|
 |$e^x$     |`double exp(double x);`|returns `e` -- Euler's number -- to the power of `x`|`exp(1)` returns `2.718281828459045`|
-|$\log_{10}x$| `double log10(double x);`|returns the logarithm to the base 10 of `x`|`log10(100)` returns `2.0`|
-|$\ln(x)$  | `double log(double x);`|returns the natural logarithm of `x`|`log(M_E)`[^2] returns `1.0`|
+|$\log_{10}x$[^2]| `double log10(double x);`|returns the logarithm to the base 10 of `x`|`log10(100)` returns `2.0`|
+|$\ln(x)$ | `double log(double x);`|returns the natural logarithm of `x`|`log(M_E)`[^3] returns `1.0`|
 |$\mid x \mid$|`double fabs(double x);`|returns the absolute value of `x`|`fabs(-2)` returns `2.0`|
-|$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^3] returns `0.0`|
-|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^3] returns `-1.0`|
-|$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^3] returns `0.0`|
+|$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^4] returns `0.0`|
+|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^4] returns `-1.0`|
+|$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^4] returns `0.0`|
 |$\sin^{-1}(x)$ or $\arcsin(x)$|`double asin(double x);`|returns the arc sine of `x` in radians (not degrees)|`asin(0.5)` returns `0.523599`|
 |$\cos^{-1}(x)$ or $\arccos(x)$|`double acos(double x);`|returns the arc cosine of `x` in radians (not degrees)|`acos(0.5)` returns `1.047198`|
 |$\tan^{-1}(x)$ or $\arctan(x)$|`double atan(double x);`|returns the arc tangent of `x` in radians (not degrees)|`atan(2)` returns `1.107149`|
@@ -131,7 +131,7 @@ Some of the relevant math library functions are listed below.
 |$\min(x)$|`double fmin(double x, double y);`|returns the minimum of `x` and `y`|`fmin(-6.1, -7.3)` returns `-7.3`|
 |$\lfloor x \rfloor$|`double floor(double x);`|returns the greatest integer that is less than or equal to `x`, i.e., rounds down `x`|`floor(9.6)` returns `9.0`|
 |$\lceil x \rceil$|`double ceil(double x);`|returns the smallest integer that is greater than or equal to `x`, i.e., rounds up `x`|`ceil(3.09)` returns `4.0`|
-|$\mod(x)$|`double fmod(double x, double y);`|returns the remainder[^4] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` if for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
+|$x \mod y$|`double fmod(double x, double y);`|returns the remainder[^5] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` if for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
 |$\lfloor x \rceil$|`double rint(double x);`|returns the nearest integer to x, i.e., rounds `x`|`rint(-2.1)` returns `-2.0`|
 
 ## Example use cases for math library functions
@@ -240,6 +240,7 @@ $2.94 rounded to the nearest nickle is $2.95
 
 
 [^1]: Inputs to programs are in **bold**.
-[^2]: `M_E` is a constant defined in math library, denoting the value of $\exp$. It is approximately equal to 2.718281828... 
-[^3]: `M_PI` is a constant defined in math library, denoting the value of $\pi$. It is approximately equal to 3.14159...
-[^4]: How do we get remainders for floating point numbers? For example, $\frac{5.3}{2.1}$ yields $2.523...$. To get the remainder of this division, we remove the whole number $2$ from $2.523...$, and we are left with $0.523...$. The remainder would be $0.523... \times 2.1$. Hence, `fmod(5.3, 2.1)` is $1.1$.
+[^2]: To get the $\log_{n}(x)$, $\log$ base $n$ of $x$, where $n$ is any number, recall you can always use the following $\log_{n}(x) = \frac{\log_{10} (x)}{\log_{10} (n)}$. In C, `log10(x)/log10(n)` to calculate $\log_{n}(x)$.
+[^3]: `M_E` is a constant defined in math library, denoting the value of $\exp$. It is approximately equal to 2.718281828... 
+[^4]: `M_PI` is a constant defined in math library, denoting the value of $\pi$. It is approximately equal to 3.14159...
+[^5]: How do we get remainders for floating point numbers? For example, $\frac{5.3}{2.1}$ yields $2.523...$. To get the remainder of this division, we remove the whole number $2$ from $2.523...$, and we are left with $0.523...$. The remainder would be $0.523... \times 2.1$. Hence, `fmod(5.3, 2.1)` is $1.1$.

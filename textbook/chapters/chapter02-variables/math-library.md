@@ -124,6 +124,9 @@ Some of the relevant math library functions are listed below.
 |$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^3] returns `0.0`|
 |$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^3] returns `-1.0`|
 |$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^3] returns `0.0`|
+|$\sin^{-1}(x)$ or $\arcsin(x)$|`double asin(double x);`|returns the arc sine of `x` in radians (not degrees)|`asin(0.5)` returns `0.523599`|
+|$\cos^{-1}(x)$ or $\arccos(x)$|`double acos(double x);`|returns the arc cosine of `x` in radians (not degrees)|`acos(0.5)` returns `1.047198`|
+|$\tan^{-1}(x)$ or $\arctan(x)$|`double atan(double x);`|returns the arc tangent of `x` in radians (not degrees)|`atan(2)` returns `1.107149`|
 |$\max(x)$|`double fmax(double x, double y);`|returns the maximum of `x` and `y`|`fmax(3.2, -7.9)` returns `3.2`|
 |$\min(x)$|`double fmin(double x, double y);`|returns the minimum of `x` and `y`|`fmin(-6.1, -7.3)` returns `-7.3`|
 |$\lfloor x \rfloor$|`double floor(double x);`|returns the greatest integer that is less than or equal to `x`, i.e., rounds down `x`|`floor(9.6)` returns `9.0`|

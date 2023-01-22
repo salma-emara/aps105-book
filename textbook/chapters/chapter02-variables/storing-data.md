@@ -79,6 +79,8 @@ My first initial is S
 |     ⋮     |          ⋮           |          ⋮          |
 |     9     |          57          |      00111001       |
 
+
+
 (bool-variable)=
 ## Boolean 
 
@@ -146,6 +148,163 @@ If you compile the code above, you will get a warning stating: `variable ‘var�
 
 This becomes a problem, if you are unaware of it. If you use an uninitialized variable later, your program's behavior will be undefined. Therefore, it is best practice to declare a variable **AND** initialize it, e.g. `int var = 0;`. `int var` declares the `var` variable and `= 0;` initializes the `var` variable to `0`.
 
+
+## Taking in input from the user using `scanf`
+
+Given that we now know the format specifiers of `int`, `double`, `char` and `bool` data types, there are a few tricks you need to know as you use these to take input from the user using `scanf`.
+
+1. **Take multiple numbers in multiple variables.** 
+
+    You can take multiple numbers from the user in one single `scanf`. The `scanf` should separate the format specifiers by a space. The user should separate the numbers by **delimiters**. Delimiters can be a space, return or tab and are used to separate two different inputs. An example code that takes multiple numbers as input from user is shown below.
+
+    **Code**
+    ```{code-block} c
+    #include <stdio.h>
+
+    int main(void) {
+      int num1 = 0, num2 = 0;
+      double dnum1 = 0, dnum2 = 0;
+      printf("Enter a number: ");
+      scanf("%d %lf %d %lf", &num1, &dnum1, &num2, &dnum2);
+
+      printf("Numbers entered: %d %lf %d %lf\n", num1, dnum1, num2, dnum2);
+
+      return 0;
+    }
+    ```
+
+    **Output[^1]**
+    <pre>
+    Enter a number: <b>1 1.2 3 3.4</b>
+    Numbers entered: 1 1.200000 3 3.400000
+    </pre>
+
+2. **Take numbers and characters.**
+
+    You can take numbers and characters in the same `scanf` line. The example code shown below takes in an ID from the user that begins with a character and is followed by a number. It does not require a delimiter between the character entered and the numbers. This is because the `%c` format specifier will take one character, and stop taking more input. The rest will be taken by `%d`. If the user enters a space between the character and the numbers it will be ignored.
+    
+    **Code**
+    ```{code-block} c
+    #include <stdio.h>
+
+    int main(void) {
+      char idChar;
+      int idNum;
+      printf("Enter your ID: ");
+      scanf("%c %d", &idChar, &idNum);
+
+      printf("ID entered: %c%d\n", idChar, idNum);
+
+      return 0;
+    }
+    ```
+
+    **Output[^1]**
+    <pre>
+    Enter your ID: <b>S1321234</b>
+    ID entered: S1321234
+    </pre>
+
+    You can also write the code above with no spaces between `%c` and `%d` in `scanf` as follows.
+
+    **Code**
+    ```{code-block} c
+    #include <stdio.h>
+
+    int main(void) {
+      char idChar;
+      int idNum;
+      printf("Enter your ID: ");
+      scanf("%c%d", &idChar, &idNum);
+
+      printf("ID entered: %c%d\n", idChar, idNum);
+
+      return 0;
+    }
+    ```
+
+    **Output[^1]**
+    <pre>
+    Enter your ID: <b>S1321234</b>
+    ID entered: S1321234
+    </pre>
+    
+    **Question:** Does the order of character or number matter? If you take the number before the character that is fine too as shown in the following code.
+
+    **Code**
+    ```{code-block} c
+    #include <stdio.h>
+
+    int main(void) {
+      char idChar;
+      int idNum;
+      printf("Enter your ID: ");
+      scanf("%d%c", &idNum, &idChar);
+
+      printf("ID entered: %c%d\n", idChar, idNum);
+
+      return 0;
+    }
+    ```
+    **Output[^1]**
+    <pre>
+    Enter your ID: <b>324245S</b>
+    ID entered: S324245
+    </pre>
+
+3. **Take in characters and ignoring leading spaces.**
+   
+    If you want to take in character by character, but you are entering spaces or returns between them, what should you do? To ignore spaces between characters entered, you need to add a space between the format specifier `%c`. For example, the following code takes in the 4 letters and three numbers of a license plate in Ontario. If you do not add a space between the `%c`, any delimiter entered will be considered a character, and taken into the character variable. 
+
+    **Code**
+    ```{code-block} c
+    #include <stdio.h>
+
+    int main(void) {
+      char c1, c2, c3, c4, c5, c6, c7;
+
+      printf("Enter license plate letters and numbers: ");
+      scanf("%c %c %c %c %c %c %c", &c1, &c2, &c3, &c4, &c5, &c6, &c7);
+
+      printf("Licence plate entered: %c%c%c%c-%c%c%c\n", c1, c2, c3, c4, c5, c6,
+            c7);
+
+      return 0;
+    }
+    ```
+
+    **Output[^1]**
+    <pre>
+    Enter license plate letters and numbers: <b>L MN Y 897</b>
+    Licence plate entered: LMNY-897
+    </pre>
+
+4. **Common mistake: Spaces after format specifiers**
+
+    Do not include a space after a format specifier, if there is no format specifier after it in `scanf`, like `scanf("%d ", &num);`. This is because `scanf` will wait for a delimiter after you enter your number and another input too. Although it won't put that second input into another variable. For example, the following code will not proceed with executing other statements unless you enter another input after your number. 
+
+    **Code**
+    ```{code-block} c
+    #include <stdio.h>
+
+    int main(void) {
+      double dnum1 = 0;
+      printf("Enter a number: ");
+      scanf(" %lf ", &dnum1);
+
+      printf("Number entered: %.2lf\n", dnum1);
+      return 0;
+    }
+    ```
+    **Output**
+    <pre>
+    Enter a number: <b>7.89012</b>
+          <b>2432</b>
+    Number entered: 7.89
+    </pre>
+
+
+[^1]: Inputs to programs are in **bold**.
 
 
 

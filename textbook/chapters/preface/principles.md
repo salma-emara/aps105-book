@@ -10,7 +10,7 @@ You can copy code by hovering on this box and pressing on the button at the top 
 
 You can also download the `.c` file of the program by clicking on file name in text. For example, download {download}`hello-world.c <../../code/chapter1/hello-world/hello-world.c>` if you want to edit the code yourself. If it opens a new window with contents of the file, right-click on the page and select Save As. You can choose where you want to save the file. Please make sure it is saved as `.c` file not `.txt` file.
 
-Example/Potential output to the code will be shown as in the following example.
+Example or potential output to the code will be shown as in the following example.
 
 <pre>
 Output will appear in boxes like these. These cannot be copied.

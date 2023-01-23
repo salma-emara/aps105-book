@@ -3,10 +3,12 @@
 int median(int, int, int);
 
 int main(void) {
-  int a, b, c;
-  printf("Please enter three integers to find the median: ");
-  scanf("%d %d %d", &a, &b, &c);
-  printf("The median is %d\n", median(a, b, c));
+  printf("The median of (%d, %d, %d) is %d\n", -105, -28, -73,
+         median(-105, -28, -73));
+  printf("The median of (%d, %d, %d) is %d\n", 0, -101, 98,
+         median(0, -101, 98));
+  printf("The median of (%d, %d, %d) is %d\n", -101, -67, 0,
+         median(-101, -67, 0));
   return 0;
 }
 

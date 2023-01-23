@@ -115,6 +115,47 @@ int reverseDigits(int value) {
 ```
 ````
 
+**Question 12 in Fall 2015 Midterm Exam [Challenging]**
+
+In 1706, John Machin, then a professor in London UK, devised a formula for calculating $\pi$:
+
+$\frac{\pi}{4} = 4 \cdot \arctan(\frac{1}{5}) − \arctan(\frac{1}{239})$
+
+where the `arctan` values can be calculated using the following formula:
+
+$\arctan(x) = x − \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \frac{x^9}{9} \dots - 
+\frac{x^{299}}{299} + \frac{x^{301}}{301}$
+
+Write a C program that calculates and prints $\pi$ using this method, printing $10$ digits after the decimal point. You must define your own function called `arctan` to compute the `arctan` values, and you are not allowed to use the `atan` function from the `math` library. When your program is run, its output should be (up to 10 decimal places):
+
+<pre>
+Pi = 3.1415926536
+</pre>
+
+````{admonition} Answer
+:class: dropdown
+```{code-block} c
+double arctan(double x) {
+  int sign = 1;
+  double sum = 0;
+  for (int i = 1; i <= 301; i += 2) {
+    sum += sign * pow(x, i) / i;
+    if (sign == 1)
+      sign = -1;
+    else
+      sign = 1;
+    // or sign = -sign;
+  }
+  return sum;
+}
+int main(void) {
+  printf("Pi = %.10lf\n", (4 * arctan(1 / 5.0) - arctan(1 / 239.0)) * 4);
+  return 0;
+}
+```
+````
+
+
 **Question 9 in Winter 2020 Midterm Exam [Challenging]**
 
 A pythagorean triple is a triple of integers $(x, y, z)$ such that $x^2 + y^2 = z^2$. 

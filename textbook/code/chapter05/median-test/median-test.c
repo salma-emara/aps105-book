@@ -22,3 +22,4 @@ int median(int x, int y, int z) {
     result = z;
   return result;
 }
+

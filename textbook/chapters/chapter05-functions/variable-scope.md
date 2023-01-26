@@ -1,3 +1,4 @@
+(variable-scope)=
 # Variable scope
 
 In the previous section, we found that we created a new variable `n` in `factorial` function to take in the value of `number` from the `main` function. This is because we cannot access `number` inside `factorial` function. Likewise, `n` cannot be accessed in the `main` function. We say the scope of `number` is within the main function, and the scope of `n` is `factorial` function.

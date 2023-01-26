@@ -32,7 +32,26 @@ int main(int argc, char **argv) {
 }
 ```
 
-<!-- 
+
 ```{thebe-button}
-```  -->
+```  
+
+## If sphinx-thebe is to work someday
+
+---
+thebe-kernel: c
+---
+
+```{code-block} c
+:class: thebe
+#include <stdio.h>
+int main(){
+    printf("Hi\n");
+    return 0;
+}
+```
+
+```{thebe-button} 
+```
+
 

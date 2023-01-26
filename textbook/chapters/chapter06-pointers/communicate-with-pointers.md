@@ -117,4 +117,4 @@ We can also get the value of the variable that p has its address
 assign contents pointed by `p` to `y`.
 ```
 
-In-progress!
+## Tracing exercise

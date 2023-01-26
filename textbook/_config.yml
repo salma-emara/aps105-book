@@ -34,10 +34,8 @@ repository:
   branch: master # Which branch of the repository should be used when creating links (optional)
 
 launch_buttons:
-  thebe: false
-  binderhub_url: "https://mybinder.org"
-  notebook_interface: "classic" #"jupyterlab"  # or "classic"
-
+  thebe: true
+  
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:

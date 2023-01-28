@@ -139,6 +139,12 @@ The sum is 26
 **Step 6: Test your code.** Test your code with other numbers. For example, try entering a negative number first. What happens? The sum should be 0. Try entering a zero number. What happens? The while loop should not stop and you should be still able to enter numbers. 
 ````
 
+Kindly, refer to the following video if you want to trace the code above.
+
+{{ video_embed | replace("%%VID%%", "VKUARRHmb_U")}}
+
+
+
 ## Infinite Loops
 
 What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i >0` is always `true`:

@@ -112,7 +112,6 @@ int main(void){
     scanf("%d", &num);
     while(num >= 0){
         sum += num;
-        printf("Enter another number: ");
         scanf("%d", &num);
     }
     printf("The sum is %d\n", sum);
@@ -123,10 +122,10 @@ int main(void){
 **Output[^1]**
 <pre>
 Enter a number: <b>18</b>
-Enter another number: <b>5</b>
-Enter another number: <b>2</b>
-Enter another number: <b>1</b>
-Enter another number: <b>-1</b>
+<b>5</b>
+<b>2</b>
+<b>1</b>
+<b>-1</b>
 The sum is 26
 </pre>
 

@@ -7,7 +7,6 @@ int main(void) {
   scanf("%d", &num);
   while (num >= 0) {
     sum += num;
-    printf("Enter another number: ");
     scanf("%d", &num);
   }
   printf("The sum is %d\n", sum);

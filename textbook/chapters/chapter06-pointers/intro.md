@@ -1,17 +1,3 @@
----
-thebe-kernel: c
----
 # Pointers
 
-In the previous chapter, we discussed functions, and how can we pass to a function one or more **values**. We mentioned that variables within each function can only be accessed within a function. In this chapter, we discuss how can we access variables in other functions, and enhance the communication between functions more. 
-
-**The part after this line is under testing, please ignore if you read this for education!**
-
-````{container} thebe
-```{code-block} r
-library(ggplot2)
-```
-````
-
-```{thebe-button} 
-```
+In the previous chapter, we discussed functions, and how can we pass to a function one or more **values** and only return one **value**. We mentioned that variables within each function can only be accessed within a function, and only values were passed to and from functions. In this chapter, we discuss how can we access variables in other functions, and enhance the communication between functions more. 

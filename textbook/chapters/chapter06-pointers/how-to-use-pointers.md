@@ -176,6 +176,33 @@ Address of y: 0x304757168 having value 7.3.
 Address of larger variable: 0x304757168.
 </pre>
 
-## Practice Problem solved Fall 2018 Midterm Exam Q7
+## Practice Problem solved Winter 2018 Midterm Exam Q7
 
-In-progress!
+{{ video_embed | replace("%%VID%%", "HcZ5TUSpj8E")}}
+
+What is the output of the following program? The solution is discussed in the video above.
+
+**Code**
+```{code-block} c
+#include <stdio.h>
+int *confuse(int *x, int *y) {
+  (*y)++;
+  y = x;
+  *y = 10;
+  return (y);
+}
+
+int main(void) {
+  int a = 6, b = 7;
+  int *f = &b;
+  f = confuse(&a, &b);
+  (*f)++;
+  printf("a = %d and b = %d\n", a, b);
+  return 0;
+}
+```
+
+**Output**
+<pre>
+a = 11 and b = 8
+</pre>

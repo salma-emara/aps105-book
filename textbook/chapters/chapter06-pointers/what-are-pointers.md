@@ -29,7 +29,7 @@ assign `p` the address of `x`.
 :width: 800px
 :align: center
 
-assign contents pointed by `p` to `y`.
+Assign contents pointed by `p` to `y`.
 ```
 
 **Deep-dive** Let's look a little closer on the addresses and values stored in some addresses. In the following code, we print addresses and values stored in `int`s `x` and `y`, and in `int*` `p`. A format specifier for a pointer is `%p`. Download {download}`reference-deference.c <../../code/chapter06/reference-deference/reference-deference.c>` if you want to play with the code yourself.

@@ -113,9 +113,9 @@ What (ppi is pointing to) = pi is pointing to: 10
 
 In the main memory, the values of `i`, `pi` and `ppi` are shown in the following figure. Please note that addresses are arbitrary addresses.
 
-```{figure} ./images/pointer to pointer.png
+```{figure} ./images/pointertopointer.png
 :alt: how does a pointer to a pointer look like in the memory.
-:width: 800px
+:width: 400px
 :align: center
 
 How does a pointer to a pointer look like in the memory? It just holds another address.
@@ -174,6 +174,71 @@ int main(void) {
 Address of x: 0x304757170 having value 2.6.
 Address of y: 0x304757168 having value 7.3.
 Address of larger variable: 0x304757168.
+</pre>
+
+
+## Initialization Vs. Declaration of a pointer variable
+
+As we discussed earlier in {ref}`declare-vs-initialization`, if you declare a variable without initializing it as in `int var;`, it is unknown what is the value of `var`. `var` holds a "garbage" value. Similarly, with pointers, if you declare a pointer without initializing it, it holds a "garbage" address. 
+
+For example, in the following program, we try using an uninitialized pointer. The warning message printed is "warning: variable 'p' is uninitialized when used here" as shown in the figure. 
+
+**Code**
+```{code-block} c
+:linenos:
+:emphasize-lines: 5
+#include <stdio.h>
+
+int main() {
+  int* p;
+  *p = 5;
+
+  return 0;
+}
+```
+
+```{figure} ./images/uninitialized-pointer.png
+:alt: Warning message when using an uninitialized pointer variable.
+:width: 800px
+:align: center
+
+Warning message when using an uninitialized pointer variable.
+```
+
+**Why is this an issue?** The problem is if you ignore this error, and try to dereference p as in line 5 `*p = 5;`, you will be dereferencing a garbage address that may (or may not) exist. The behavior of your program is undefined. 
+
+1. If the address exists, but your program can not access or does not have permission to access, the operating system will raise an error named "Segmentation Fault" error. 
+2. If the address exists, and your program can access it (rarely happens), it may change a value of another variable in your program.
+3. If the address does not exist, your program may fail silently. This means it may not print statements in a `printf`, or it may not take input from the user in a `scanf`.
+
+In short, do not use an uninitialized pointer. This is why the compiler recommends you set the address of the pointer to `NULL` when you declare it. 
+
+**What is `NULL`?** NULL is defined pointer constant, which corresponds to $0$. In other words, NULL pointer is not pointing to any valid address.
+
+**What happens if you dereference a `NULL` pointer?** The behavior of your program is undefined. 
+
+**Then what is the benefit of initializing my pointer to NULL?** The benefit of initializing a pointer to `NULL` is that before you dereference it, you can check if it is NULL or not. If it is NULL, then it does not have a valid address, and you shouldn't dereference it. Otherwise, you can dereference it. For example, the following program checks if a pointer is NULL or not before dereferencing it. This good practice of checking if a pointer is NULL or not will be handy when we discuss "Linked Lists".
+
+**Code**
+```{code-block} c
+#include <stdio.h>
+
+int main() {
+  int* p = NULL;
+
+  if (p == NULL) {
+    printf("Cannot dereference it!\n");
+  } else {
+    printf("The value at address p is %d.\n", *p);
+  }
+
+  return 0;
+}
+```
+
+**Output**
+<pre>
+Cannot dereference it!
 </pre>
 
 ## Practice Problem solved Winter 2018 Midterm Exam Q7

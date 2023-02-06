@@ -110,6 +110,7 @@ There is no format specifier for `bool` specifically. We use `%d` to print the v
 
 If you noticed, apart from `#include <stdio.h>` which gives us access to `printf` and `scanf` functions, we included another library for `bool` variables in `#include <stdbool.h>`. Without this library, the complier won't identify the `bool` variable type.
 
+(declare-vs-initialization)=
 ## Declaring Vs. Initializing Variables
 
 In your code, if you need to declare a variable, you do it as follows

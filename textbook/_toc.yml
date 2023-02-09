@@ -54,7 +54,10 @@ parts:
           - file: chapters/chapter06-pointers/what-are-pointers.md
           - file: chapters/chapter06-pointers/how-to-use-pointers.md
           - file: chapters/chapter06-pointers/scope.md
+          - file: chapters/chapter06-pointers/goldbach-conjecture-example.md
       - file: chapters/chapter07-arrays/intro.md
+        sections:
+          - file: chapters/chapter07-arrays/why-arrays.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md
       - file: chapters/chapter09-strings/intro.md
       - file: chapters/chapter10-recursion/intro.md

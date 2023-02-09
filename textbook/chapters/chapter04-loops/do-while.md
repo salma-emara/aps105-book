@@ -60,6 +60,7 @@ int main(void) {
 1 2 3 4 5 6 7 8 9 10
 </pre>
 
+(do-while-validate)=
 ## Do-while loop vs. while loop
 
 The main difference between the do-while and the while loop is that the do-while loop will always execute the statements between `{}` at least once, even if the condition is `false`. While the while loop will not execute the statements between `{}` if the condition is `false`.

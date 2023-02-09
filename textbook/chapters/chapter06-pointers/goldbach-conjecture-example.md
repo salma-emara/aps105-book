@@ -8,7 +8,7 @@ A conjecture is a proposition/opinion/observation that is not proven yet. For ex
 
 > Every **even integer greater than $2$** can be written as the sum of two prime numbers.
 
-A **prime number** is a number divisible only by two *distinct* numbers: 1 and itself. For example, $2$, $3$, $5$, $7$, $11$, $13$, $17$. $1$ is not a prime number because it is divisible by $1$ only, not two *distinct* numbers.
+A **prime number** is a number divisible only by two *distinct* numbers: 1 and itself. For example, $2$, $3$, $5$, $7$, $11$, $13$, $17$. Keep in mind that $1$ is not a prime number because it is divisible by $1$ only, not two *distinct* numbers.
 
 Let's write a program that asks for the user to input a number that is *even* and *greater than $2$*, and then checks if this number verifies or rejects the Goldbach conjecture.
 
@@ -19,7 +19,7 @@ Let's list the tasks to be done by this program:
 1. Take input number from the user
 2. Verify if the number is even and greater than $2$
 3. Test the Goldbach conjecture
-4. Print if the number is verifies or rejects the conjecture
+4. Print if the number verifies or rejects the conjecture
 
 Next, we tackle each task and decide if we can put it in a separate function or if it requires multiple functions. This helps us in easily managing a larger piece of software.
 
@@ -241,24 +241,45 @@ In line $8$, we are not returning any values because `nextPrimeNumber` does not 
 
 **Step 4: Test your code in isolation.** You should be testing your code when called only by the `main` function to see if it works. 
 
-### Find if a number Is Prime or Not
+### Find If a Number Is Prime or Not
 
 To implement `bool isPrime(int);`, we need to first think of how to know if a number is prime. 
 
 **Step 1: Toy example.** For example, $12$ is not a prime number.  
 
-**Step 2: Think of a solution and decompose into steps.** We know that a prime number `num` is divisible only by 1 and `num`. This means that between $2$ and the `num - 1` there is no divisibles of `num`. We can do the following steps to see if `num` is prime:
+**Step 2: Think of a solution and decompose into steps.** We know that a prime number `num` is divisible only by $1$ and `num`. This means that between $2$ and the `num - 1` there is no divisibles of `num`. We can do the following steps to see if `num` is prime:
 
-1. Denominator `denom` is set to 2
-2. Find if `num` / 2 gives no **remainder**, *i.e.* `num % denom == 0`
+1. Denominator `denom` is set to $2$
+2. Find if `num` / $2$ gives no **remainder**, *i.e.* `num % denom == 0`
 3. If `num % denom == 0`, then `num` is not prime, because it is divisible by `denom`.
-4. Otherwise, add one to `denom` 
+4. Otherwise, add $1$ to `denom` 
 5. Repeat $2$ -- $4$, until either you found out `num` is not prime, or when `num % denom == 0` has been checked on all `denom` values from $2$ to `num - 1` and was never `true`. This is when `num` is `true`.
 
-**Step 3: Write the code.** To implement the `bool isPrime(int);`, we will convert the steps into code.
+**Step 4: Write pseudo-code.** 
+
+***Pseudo-code***
+<pre>
+// We can start with good intentions that a number is prime
+
+if (number is less than 2){
+    number is not prime
+}else{
+    denom = 2
+    while(denom < num -1 and number is still prime)
+        if (num % denom == 0){
+            number is not prime
+        }else{
+            denom = denom + 1
+        }
+    }
+}
+</pre>
+
+**Step 3: Write the code.** To implement the `bool isPrime(int);`, we will convert the pseudo-code into code.
 
 **Code**
 ```{code-block} c
+:linenos:
 bool isPrime(int num) {
   // check if num is prime, by checking the remainder of num / all numbers from
   // 2 to num - 1
@@ -276,8 +297,55 @@ bool isPrime(int num) {
 }
 ```
 
-**Step 4: Test your code in isolation.** Think of other numbers
+**Step 4: Test your function in isolation.** Think of numbers to test your function. Numbers less than, greater than or equal to 2.
 
-In-progress!
+1. Does the function work with numbers *less than 2*? Yes. Line $6$ will set `prime` to `false`. 
+2. Does the function work with *2*? In line $8$, `denom` starts from $2$, and then `denom` is checked with `num - 1`. The condition `denom <= num - 1` is false if `num` is set to $2$. Hence, the function will return the preset value of `prime`, which is `true`.
+3. Does the function work with numbers *above 2*? In lines $8$ -- 10, the function will set `prime` to `false` if `num` is divisible by another number between $2$ and `num - 1`. It will exist the loop because this condition `denom <= num - 1 && prime` becomes `false`. The function will not change `prime` value if the loop tries over all `denom` values from $2$ to `num - 1` and does not find `num` to be divisible. Hence, `prime` will **continue** to be `true`.
+
+### Print If the Conjecture Is Verified
+
+We need a function that prints if the Goldbach conjecture is verified or rejected! This function can simply call `testGoldbach`. If `testGoldbach` returns `true`, the function prints the number verifies the conjecture, and prints the number rejects the conjecture otherwise.
+
+These simple steps can be written as follows:
+
+**Code**
+```{code-block} c
+void printConjResult(int number){
+    //Call a function to verify the conjecture and prints the result
+    bool verified = testGoldbach(number);
+    if(verified){
+        printf("Goldbach conjecture is verified.\n");
+    }
+    else{
+        printf("Goldbach conjecture not verified.\n");
+    }
+}
+```
+
+## Integrate all pieces/functions
+
+In the previous sections, we have divided the steps into two **main** ones: getting input through `getUserInput` and printing if the conjecture is verified through `printConjResult`.
+
+This eases the task of writing the `main` function. The `main` function should only call `getUserInput` and `printConjResult`. This is shown in the following code.
+
+**Code**
+```{code-block} c
+int main(void){
+    int number;
+    getUserInput(&number);
+    printConjResult(number);
+    return 0;
+}
+```
+
+**Output[^1]**
+<pre>
+Enter a number to test the Goldbach conjecture: <b>9</b>
+Your input was invalid, please enter another number > 2: <b>8</b>
+Goldbach conjecture is verified.
+</pre>
+
+Please refer to {download}`goldbach-conjecture.c <../../code/chapter06/gold-conjecture/gold-conjecture.c>` if you want to view the entire program and test it yourself.
 
 [^1]: Inputs to programs are in **bold**.

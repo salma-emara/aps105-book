@@ -27,7 +27,7 @@ Next, we tackle each task and decide if we can put it in a separate function or 
 
 As we take input from the user, we need to validate that it is even and greater than $2$ before proceeding with testing the Goldbach conjecture.
 
-**Loop type.** As we discussed in ref`{do-while-validate}`, taking input from the user and validating it requires repetition until a valid input is made. Doing so requires that we first take the input from the user then validating it. This is what a do-while loop is best fit for. This is because a do-while loop will run its statements before checking the condition. Similarly, we want to take input from the user before checking it is even and greater than $2$.
+**Loop type.** As we discussed in {ref}`do-while-validate`, taking input from the user and validating it requires repetition until a valid input is made. Doing so requires that we first take the input from the user then validating it. This is what a do-while loop is best fit for. This is because a do-while loop will run its statements before checking the condition. Similarly, we want to take input from the user before checking it is even and greater than $2$.
 
 **Function prototype.** The following code is a function that takes the address of an `int` variable, *i.e.* `int*`, then the value at that address is changed to the input of the user. This is why we received a pointer `int*` to the function and return `void`.
 

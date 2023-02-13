@@ -4,6 +4,50 @@ Many of these exercises are taken from past exams of APS105 Computer Fundamental
 
 Headings in this page classify the exercises into different categories: **[Easy]**, **[Intermediate]**, and **[Challenging]**. I suggest you start by easy exercises and work your way up to the challenging ones.
 
+**Question 9 Fall 2013 Midterm Exam [Easy]**
+
+Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:
+
+```{code-block} c
+#include <stdio.h>
+void SumEm(int *A, int B, int C, int *D) {
+  if (B > C) {
+    *A = B + *D;
+    *D = C;
+  } else {
+    *A = C + *D;
+    *D = B;
+  }
+  return;
+}
+int main(void) {
+  int W, X, Y, Z;
+  W = 0;
+  X = 5;
+  Y = 8;
+  Z = 10;
+  SumEm(&W, X, Y, &Z);
+  return 0;
+}
+```
+
+<pre>
+W =
+X =
+Y =
+Z =
+</pre>
+
+```{admonition} Answer
+:class: dropdown
+
+<pre>
+W = 18
+X = 5
+Y = 8
+Z = 5
+</pre>
+```
 
 **Question 1 Winter 2017 Final Exam [Easy]**
 
@@ -29,7 +73,7 @@ Corrected condition and increment fields:
 `*i < 10, *i = *i + 1` to `*i < 10; *i = *i + 1`
 
 ```{code-block} c
-:emphaszie-lines: 5
+:emphasize-lines: 5
 #include <stdio.h>
 int main(void) {
   int j, k;
@@ -41,6 +85,30 @@ int main(void) {
 }
 ```
 ````
+
+**Question 1 in Fall 2014 Midterm Exam[Easy]**
+
+What will be printed when the following C program is executed?
+
+```{code-block} c
+int main(void) {
+  int first = 1, second = 10;
+  int *pointerToFirst, *pointerToSecond;
+
+  pointerToFirst = &first;
+  pointerToSecond = &second;
+  *pointerToFirst = *pointerToSecond - *pointerToFirst;
+  *pointerToSecond = *pointerToSecond - *pointerToFirst;
+  *pointerToFirst = *pointerToSecond + *pointerToFirst;
+  printf("%d, %d\n", first, second);
+}
+```
+
+```{admonition} Answer
+:class: dropdown
+<pre>
+10, 1</pre>
+```
 
 **Question 6 Winter 2017 Midterm Exam [Easy]**
 
@@ -196,6 +264,65 @@ int main(void) {
 
 ````
 
+**Question 13 in Winter 2014 Midterm Exam[Challenging]**
+
+In this question, you are to complete the code for a function and its calling in a main program. The function is called `sumAndProductOfMultiples`. It takes integers `multiple1` and `multiple2`, and a maximum bound `max` as input, and computes both the sum and the product of all the positive integers less than `max` that are multiples of either `multiple1` or `multiple2`.
+
+For example, if `multiple1 = 3`, `multiple2 = 5`, and `max = 10`, the positive integers less than $10$ that are multiples of either $3$ or $5$ are $3$, $5$, $6$, $9$. Their sum is $23$, and their product is $810$. The function must return the `sum` and `product` values via pointer parameters `sumPtr` and `productPtr`, as implied in the skeleton code below.
+
+In the code skeleton below, you are given most of the `main` function, but you must give the call to the `sumAndProductOfMultiples` function. After that you are given just the declaration line of the function, and you must write the remainder of the function.
+
+```{code-block} c
+#include <stdio.h>
+void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
+                              int* sumPtr, int* productPtr);
+
+int main(void) {
+  int multi1 = 3, multi2 = 5, max = 10;
+  int sum, product;
+  // add your call to sumAndProductOfMultiples here:
+  
+  printf("m1 = %d, m2 = %d, max = %d, sum = %d, product = %d\n", multi1, multi2,
+         max, sum, product);
+  return 0;
+}
+void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
+                              int* sumPtr, int* productPtr) {
+                
+                              }
+```
+
+
+````{admonition} Answer
+:class: dropdown
+```{code-block} c
+:emphasize-lines: 9, 16 - 23
+#include <stdio.h>
+void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
+                              int* sumPtr, int* productPtr);
+
+int main(void) {
+  int multi1 = 3, multi2 = 5, max = 10;
+  int sum, product;
+  // add your call to sumAndProductOfMultiples here:
+  sumAndProductOfMultiples(multi1, multi2, max, &sum, &product);
+  printf("m1 = %d, m2 = %d, max = %d, sum = %d, product = %d\n", multi1, multi2,
+         max, sum, product);
+  return 0;
+}
+void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
+                              int* sumPtr, int* productPtr) {
+  *sumPtr = 0, *productPtr = 1;
+  int i;
+  for (i = 1; i < max; i++) {
+    if (i % multiple1 == 0 || i % multiple2 == 0) {
+      *sumPtr += i;
+      *productPtr *= i;
+    }
+  }
+}
+```
+````
 
 **Question 5 in Winter 2022 Midterm Exam[Challenging]**
 

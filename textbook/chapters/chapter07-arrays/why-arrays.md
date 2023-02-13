@@ -152,7 +152,7 @@ Average is 104.86.
 
 **Step 6: Test your code.** Try out different values in the array, and different array sizes to ensure the code works for different cases. 
 
-## Exercise: Reverses The Elements in an Array
+## Exercise: Reverse The Elements in an Array
 
 In this subsection, say we have a few elements in an array that are sorted in ascending order, and we want to reverse these elements as shown in the following figure.
 

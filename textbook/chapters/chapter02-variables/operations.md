@@ -239,6 +239,7 @@ With postfix: i = 2, j = 1
 
 It is confusing when the increment/decrement operator is used with other operators. Consequently, it is best to avoid using `++` and `--` in a complex expression -- with other operators.
 
+(type-cast)=
 ## Type casting
 
 We mentioned earlier, the most accurate data type is contagious. In some cases, you may want to force a data type on an operand. For example, in `double x = 3/ 2;`, to have `x` store `1.5`, you can change 3 to double by changing it to 3.0 as in `double x = 3.0/ 2;`. The other way is to type cast 3 like `double x = (double) 3 / 2;`. This is called type casting. This changes the data type of 3 to double.

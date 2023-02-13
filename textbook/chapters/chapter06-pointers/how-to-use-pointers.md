@@ -1,3 +1,4 @@
+(swap-function)=
 # How to use pointers to communicate more with functions?
 
 Now that we know what are pointers and how to use them, we will use pointers to solve the issue with swapping two variables in a function. In the following figure, we highlight the additions we made to the source code where we called `swap` function by value (not by pointers). Source code can be downloaded from here: {download}`swapping.c <../../code/chapter06/swapping/swapping.c>`, and can be copied from below.

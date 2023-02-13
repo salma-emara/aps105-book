@@ -124,7 +124,7 @@ int main(void) {
 The value of i when we existed the loop: 11
 </pre>
 
-
+(variations-for-loop)=
 ## Variations in for loop
 
 You can use the for loop in different ways, including omitting some statements.

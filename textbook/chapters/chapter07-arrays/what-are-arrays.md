@@ -232,6 +232,7 @@ After swapping: 7 5 8 1 3
 
 As observed, since we are passing to `swap` the pointer to the first element in the array, any change to the array in the function is also reflected in the caller function.
 
+<!--
 ```{code-block} c
 :linenos:
 :emphasize-lines: 13
@@ -255,3 +256,5 @@ int sumData(int list[], const int size) {
   return sum;
 }
 ```
+
+-->

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int sumData(int[], int);
+int sumData(int[], const int);
 // OR int sumData(int*, int);
 
 int main(void) {
@@ -11,7 +11,7 @@ int main(void) {
   return 0;
 }
 
-int sumData(int list[], int size) {
+int sumData(int list[], const int size) {
   // OR int sumData(int *list, int size) {
   int sum = 0;
   for (int index = 0; index < size; index++) {

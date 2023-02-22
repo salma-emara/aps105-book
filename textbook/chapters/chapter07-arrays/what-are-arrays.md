@@ -30,206 +30,65 @@ The following figure summarizes how can `x` be used as a pointer to different el
 
 Given that `x` is a pointer to the first element in the array, we can pass this pointer to a function, and be able to access elements in the array!
 
-## How do we pass an array to a function?
+## Pointer Arithmetic
 
-To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function. 
+Given that we now understand that an array identifier is also a pointer to the first element in an array. Within the context of arrays, pointer arithmetic plays an important role in understanding how elements in an array are contiguously stored in the main memory.
 
-**Code Skeleton**
-```{code-block} c
-:linenos:
-:emphasize-lines: 2, 6, 9
-#include <stdio.h>
-double f(int []);
+For example, if I have an array of $3$ elements, `int x[] = {1, 7, 3};`, the addresses in the main memory will look something like in the following figure.
 
-int main(void){
-    int x[3] = {1, 7, 3};
-    double result = f(x);
-    return 0;
-}
-double f(int list[]){
-    //statements;
-}
+```{figure} ./images/pointer-arithmetic.png
+:alt: Pointer arithmetic
+:width: 700px
+:align: center
+
+If we get the difference between two addresses of two elements, the result is the difference between the addresses divided by `sizeof(<data type>)` stored in the address. For example, `dist = (80 - 72) / sizeof(int)` $\rightarrow$ `dist = 8 / 4 = 2`.
 ```
 
-In line $2$, the input data type is `int []`. This means that when the function is called, the input will be a pointer to the first element in the array, which is also the array identifier.
+In the above figure, we have in line 6 `int *q = &x[2];`. So `q` is holding the address of `x[2]`, which is $80$. 
 
-In line $6$, we pass to the function `f` a pointer to the first element of the array, which is also the array identifier: `f(x)`.
+In line 7, `int dist = q - x;`, where `x` is also the address of `x[0]`. Hence, `dist = &x[2] - &x[0]`. However, we don't just get the difference between the two addresses. Instead, we divide the result by `sizeof(int)`, which is the size of the data stored at these two addresses. Given that, `dist = (80 - 72) / sizeof(int)` $\rightarrow$ `dist = 2`.
 
-In line $9$, the function header will receive the pointer of the first element in the array in `list`. Since `x` in the `main` function is the pointer to the first element in the array and is the array identifier, `list` is also pointing to the first element in the array and is the array identifier in function `f`.
+## Practice Problem 
 
-## Size of array in a function is unknown!
-
-Within the function, we can access elements as we see appropriate. However, the only problem is that within the function `f`, the size of the array `list` is unknown! If we need to loop over all the elements in the array to calculate the sum of the elements, for example, we will not know when to stop incrementing the index. Hence, **we need to pass the size of the array along with the pointer to the first element in the array.** 
-
-**Exercise.** Let's write a program that finds the sum of the elements in an array. The program should call a function to calculate the sum of the elements in an array.
-
-This is similar to finding the average of the elements in an array. 
+The following question was question 5 in Winter 2022 midterm exam for APS 105 in the University of Toronto. The question requires that you print the output of the following program. 
 
 **Code**
 ```{code-block} c
 :linenos:
-:emphasize-lines: 3, 13, 16
 #include <stdio.h>
-
-int sumData(int[], const int);
-
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
-  printf("Sum of elements in the array: %d.\n", result);
-  return 0;
-}
-
-int sumData(int list[], const int size) {
-  int sum = 0;
-  for (int index = 0; index < size; index++) {
-    sum = sum + list[index];
-  }
-  return sum;
-}
-```
-
-**Output**
-<pre>
-Sum of elements in the array: 11.
-</pre>
-
-In line $3$, we define the inputs to the function as `int[]`, which is the type of the pointer to the first element in an array and `int`, which is the type of the size of the array.
-
-In line $13$, we receive `x` in `list`, and `size` in `main` as `size` in `sumData`.
-
-In line $16$, we access the elements of `list` array as we would do with arrays normally. **Important:** `list` is pointing towards what `x` is pointing to. Both are pointing to the first element in the array.
-
-## Can I use the pointer syntax too?
-
-Since **array identifiers** are also **pointers**, is it possible to index elements in the array using pointers instead of `[]`? Yes, it is possible, and we show below how.
-
-**Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 13, 16
-#include <stdio.h>
-
-int sumData(int*, int);
-
-int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
-  printf("Sum of elements in the array: %d.\n", result);
-  return 0;
-}
-
-int sumData(int* list, int size) {
-  int sum = 0;
-  for (int index = 0; index < size; index++) {
-    sum = sum + *(list + index);
-  }
-  return sum;
-}
-```
-
-**Output**
-<pre>
-Sum of elements in the array: 11.
-</pre>
-
-In line $3$, we accept `int*` instead of `int[]`, because they are equivalent.
-
-In line $13$, we accept `x` into `int* list`, because they are equivalent. `x` is a pointer and `list` is also a pointer.
-
-In line $16$, we can access elements in the array by adding `i` to the pointer `list` and dereferencing: `*(list + i)`. This is because `*(list + i)` is equivalent to `list[i]`.
-
-````{admonition} Important!
-:class: important
-The syntax of pointers -- `*` and `&` -- and syntax of arrays -- `[]` are interchangeable. This means that we can use any syntax at any time in our program as long as the statements are correct! For example,
-
-**Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 4, 14, 15, 18, 19
-#include <stdio.h>
-
-// Input is int*
-int sumData(int*, int); 
-
-int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
-  printf("Sum of elements in the array: %d.\n", result);
-  return 0;
-}
-
-// Input is int[]
-int sumData(int list[], const int size) {
-  int sum = 0;
-  for (int index = 0; index < size; index++) {
-    // Index list using pointers
-    sum = sum + *(list + index);
-  }
-  return sum;
-}
-
-```
-**Output**
-<pre>
-Sum of elements in the array: 11.
-</pre>
-````
-
-In line $4$, we define the input as a pointer: `int*`. However, we set the input in the header of the function as `int[]` in line $15$, since `int*` and `int[]` are equivalent. Similarly, in line $19$, we index in the array list as `*(list + index)`, since it is equivalent to `list[i]`.
-
-## Are we passing the array by value or by pointers?
-
-When we pass arrays to functions, we are technically passing a pointer to the first element in the array. To better visualize passing an array to a function, watch the following video.
-
-{{ video_embed | replace("%%VID%%", "Luv5BpoVHiE")}}
-
-This means that any changes in the array in the function will be reflected in the `main` or caller function. For example, let's write a function that swaps the elements at `i` and index `j` in an array. We will write a function named `swap` that takes in the array as `int list[]`, and the two indices of the elements we want to swap: `int i` and `int j`.
-
-We also implement a function that prints the elements of the array. It takes in the array as `int list[]` and the size of the array as `const int size`.
-
-In the following code, we print the array `x` before and after calling the function `swap` to swap the element at index `i = 0` with element at index `j = 4`. 
-
-**Code**
-```{code-block} c
-#include <stdio.h>
-
-void swap(int[], int, int);
-void printArray(int[], const int);
-
-int main(void) {
-  const int size = 5;
-  int x[size] = {3, 5, 8, 1, 7};
-  printf("Before swapping: ");
-  printArray(x, size);
-  swap(x, 0, 4);
-  printf("After swapping: ");
-  printArray(x, size);
-  return 0;
-}
-
-void swap(int list[], int i, int j) {
-  int temp = list[i];
-  list[i] = list[j];
-  list[j] = temp;
-}
-
-void printArray(int list[], const int size) {
-  for (int index = 0; index < size; index++) {
-    printf("%d ", list[index]);
+  int first = 1, second = 2, data[4] = {10, 20, 30, 40};
+  int *third = &second, *fourth = &first, *fifth = data + first + 1;
+  (*third)++;
+  (*fourth)++;
+  data[second] = *fifth + first + *third + *fourth;
+  printf("first = %d, second = %d, third = %d, fourth = %d, fifth = %d\n",
+         first, second, *third, *fourth, *fifth);
+  for (int i = 0; i < 4; i++) {
+    printf("%d, ", data[i]);
   }
   printf("\n");
+  return 0;
 }
-
 ```
 
-**Output**
-<pre>
-Before swapping: 3 5 8 1 7 
-After swapping: 7 5 8 1 3
-</pre>
+In line 3, `first = 1`, `second = 2`, `data[0] = 10`, `data[1] = 20`, `data[2] = 30`, `data[3] = 40`.
 
-As observed, since we are passing to `swap` the pointer to the first element in the array, any change to the array in the function is also reflected in the caller function.
+In line 4, `third = &second`, `fourth = &first`, `fifth = data + first + 1 = &data[0] + first + 1 = &data[0] + 2 = &data[2]`. Here, `&data[0] + 2 = &data[2]` because adding $2$ to the address of `data[0]` adds $2 \times$ `sizeof(int)`, which is the address of `data[2]`.
+
+In line 5, `(*third)++` $\rightarrow$ `second++`, so `second = 3`.
+
+In line 6, `(*fourth)++` $\rightarrow$ `first++`, so `first = 2`.
+
+In line 7, `data[second] = *fifth + first + *third + *fourth = data[2] + 2 + 3 + 2 = 37`. Hence, `data[3] = 37`.
+
+In line 8, we print `first = 2, second = 3, third = 3, fourth = 2, fifth = 30`.
+
+In line 11, we print `10, 20, 30, 37,`.
+
+The output is 
+
+<pre>
+first = 2, second = 3, third = 3, fourth = 2, fifth = 30
+10, 20, 30, 37,
+</pre>

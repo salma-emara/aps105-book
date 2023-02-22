@@ -4,7 +4,7 @@ Many of these exercises are taken from past exams of APS105 Computer Fundamental
 
 Headings in this page classify the exercises into different categories: **[Easy]**, **[Intermediate]**, and **[Challenging]**. I suggest you start by easy exercises and work your way up to the challenging ones.
 
-**Question 9 Fall 2013 Midterm Exam [Easy]**
+**Question 9 in Fall 2013 Midterm Exam [Easy]**
 
 Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:
 
@@ -49,7 +49,7 @@ Z = 5
 </pre>
 ```
 
-**Question 1 Winter 2017 Final Exam [Easy]**
+**Question 1 in Winter 2017 Final Exam [Easy]**
 
 Find and correct all compile-time errors (mistakes that would cause compilation or that would cause the ‘build’ to fail) in the following C program. Your answer should both identify what the error is, and what the correction should be. Marks will be deducted if you identify correct items as compile-time errors. 
 
@@ -86,7 +86,7 @@ int main(void) {
 ```
 ````
 
-**Question 1 in Fall 2014 Midterm Exam[Easy]**
+**Question 1 in Fall 2014 Midterm Exam [Easy]**
 
 What will be printed when the following C program is executed?
 
@@ -110,7 +110,7 @@ int main(void) {
 10, 1</pre>
 ```
 
-**Question 6 Winter 2017 Midterm Exam [Easy]**
+**Question 6 in Winter 2017 Midterm Exam [Easy]**
 
 Consider the following code, which uses pointers:
 
@@ -136,7 +136,7 @@ What are the values of the variables `a` and `b` after this code is executed?
 `a` is 28 and `b` is 34.
 ```
 
-**Question 5 in Winter 2018 Midterm Exam[Intermediate]**
+**Question 5 in Winter 2018 Midterm Exam [Intermediate]**
 
 Write the output of the following program.
 
@@ -166,7 +166,7 @@ B: 7 7 1
 </pre>
 ```
 
-**Modified version of Question 6 in Winter 2018 Midterm Exam[Intermediate]**
+**Modified version of Question 6 in Winter 2018 Midterm Exam [Intermediate]**
 
 Identify the potential runtime error in the following code and briefly explain how you would fix it.
 
@@ -264,7 +264,7 @@ int main(void) {
 
 ````
 
-**Question 13 in Winter 2014 Midterm Exam[Challenging]**
+**Question 13 in Winter 2014 Midterm Exam [Challenging]**
 
 In this question, you are to complete the code for a function and its calling in a main program. The function is called `sumAndProductOfMultiples`. It takes integers `multiple1` and `multiple2`, and a maximum bound `max` as input, and computes both the sum and the product of all the positive integers less than `max` that are multiples of either `multiple1` or `multiple2`.
 
@@ -324,7 +324,7 @@ void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
 ```
 ````
 
-**Question 5 in Winter 2022 Midterm Exam[Challenging]**
+**Question 5 in Winter 2022 Midterm Exam [Challenging]**
 
 In the box provided below, write the output generated after the following program is completely executed.
 

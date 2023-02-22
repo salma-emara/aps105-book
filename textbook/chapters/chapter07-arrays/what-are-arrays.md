@@ -1,4 +1,4 @@
-# What are arrays, and how are the stored?
+# What are arrays, and how are they stored?
 
 When you declare an array using the C programming language, all the elements in the array are stored contiguously in the main memory.
 
@@ -183,9 +183,11 @@ In line $4$, we define the input as a pointer: `int*`. However, we set the input
 
 ## Are we passing the array by value or by pointers?
 
-When we pass arrays to functions, we are technically passing a pointer to the first element in the array. This means that any changes in the array in the function will be reflected in the `main` or caller function.
+When we pass arrays to functions, we are technically passing a pointer to the first element in the array. To better visualize passing an array to a function, watch the following video.
 
-For example, let's write a function that swaps the elements at `i` and index `j` in an array. We will write a function named `swap` that takes in the array as `int list[]`, and the two indices of the elements we want to swap: `int i` and `int j`.
+{{ video_embed | replace("%%VID%%", "Luv5BpoVHiE")}}
+
+This means that any changes in the array in the function will be reflected in the `main` or caller function. For example, let's write a function that swaps the elements at `i` and index `j` in an array. We will write a function named `swap` that takes in the array as `int list[]`, and the two indices of the elements we want to swap: `int i` and `int j`.
 
 We also implement a function that prints the elements of the array. It takes in the array as `int list[]` and the size of the array as `const int size`.
 
@@ -231,30 +233,3 @@ After swapping: 7 5 8 1 3
 </pre>
 
 As observed, since we are passing to `swap` the pointer to the first element in the array, any change to the array in the function is also reflected in the caller function.
-
-<!--
-```{code-block} c
-:linenos:
-:emphasize-lines: 13
-#include <stdio.h>
-
-int sumData(int[], const int);
-
-int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
-  printf("Sum of elements in the array: %d.\n", result);
-  return 0;
-}
-
-int sumData(int list[], const int size) {
-  int sum = 0;
-  for (int index = 0; index < size; index++) {
-    sum = sum + list[index];
-  }
-  return sum;
-}
-```
-
--->

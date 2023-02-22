@@ -1,4 +1,4 @@
-# Why and How to Use Arrays?
+# Why and how to use arrays?
 
 Let's say we have a table containing the grades of all students taking APS 105: Computer Fundamentals course.
 

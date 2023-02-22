@@ -72,19 +72,19 @@ int main(void) {
 }
 ```
 
-In line 3, `first = 1`, `second = 2`, `data[0] = 10`, `data[1] = 20`, `data[2] = 30`, `data[3] = 40`.
+In line $3$, `first = 1`, `second = 2`, `data[0] = 10`, `data[1] = 20`, `data[2] = 30`, `data[3] = 40`.
 
-In line 4, `third = &second`, `fourth = &first`, `fifth = data + first + 1 = &data[0] + first + 1 = &data[0] + 2 = &data[2]`. Here, `&data[0] + 2 = &data[2]` because adding $2$ to the address of `data[0]` adds $2 \times$ `sizeof(int)`, which is the address of `data[2]`.
+In line $4$, `third = &second`, `fourth = &first`, `fifth = data + first + 1 = &data[0] + first + 1 = &data[0] + 2 = &data[2]`. Here, `&data[0] + 2 = &data[2]` because adding $2$ to the address of `data[0]` adds $2 \times$ `sizeof(int)`, which is the address of `data[2]`.
 
-In line 5, `(*third)++` $\rightarrow$ `second++`, so `second = 3`.
+In line $5$, `(*third)++` $\rightarrow$ `second++`, so `second = 3`.
 
-In line 6, `(*fourth)++` $\rightarrow$ `first++`, so `first = 2`.
+In line $6$, `(*fourth)++` $\rightarrow$ `first++`, so `first = 2`.
 
-In line 7, `data[second] = *fifth + first + *third + *fourth = data[2] + 2 + 3 + 2 = 37`. Hence, `data[3] = 37`.
+In line $7$, `data[second] = *fifth + first + *third + *fourth = data[2] + 2 + 3 + 2 = 37`. Hence, `data[3] = 37`.
 
-In line 8, we print `first = 2, second = 3, third = 3, fourth = 2, fifth = 30`.
+In line $8$, we print `first = 2, second = 3, third = 3, fourth = 2, fifth = 30`.
 
-In line 11, we print `10, 20, 30, 37,`.
+In line $11$, we print `10, 20, 30, 37,`.
 
 The output is 
 

@@ -63,13 +63,14 @@ parts:
           - file: chapters/chapter07-arrays/arrays-functions.md
           - file: chapters/chapter07-arrays/exercises.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md
-      - file: chapters/chapter09-strings/intro.md
-      - file: chapters/chapter10-recursion/intro.md
-      - file: chapters/chapter11-data-structures/intro.md
-      - file: chapters/chapter12-linked-lists/intro.md
-      - file: chapters/chapter13-searching/intro.md
-      - file: chapters/chapter14-sorting/intro.md
-      - file: chapters/chapter15-binary-search-trees/intro.md
+      - file: chapters/chapter09-multidim-arrays/intro.md
+      - file: chapters/chapter10-strings/intro.md
+      - file: chapters/chapter11-recursion/intro.md
+      - file: chapters/chapter12-data-structures/intro.md
+      - file: chapters/chapter13-linked-lists/intro.md
+      - file: chapters/chapter14-searching/intro.md
+      - file: chapters/chapter15-sorting/intro.md
+      - file: chapters/chapter16-binary-search-trees/intro.md
 
   - caption: "Appendix: Additional information"
     chapters:

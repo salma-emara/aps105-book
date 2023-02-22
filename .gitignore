@@ -9,6 +9,7 @@ lib/
 build/
 *.mp4
 *.key
+*.mov
 *.m4v
 
 # Sphinx documentation

@@ -60,6 +60,7 @@ parts:
         sections:
           - file: chapters/chapter07-arrays/why-arrays.md
           - file: chapters/chapter07-arrays/what-are-arrays.md
+          - file: chapters/chapter07-arrays/exercises.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md
       - file: chapters/chapter09-strings/intro.md
       - file: chapters/chapter10-recursion/intro.md

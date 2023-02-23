@@ -4,6 +4,8 @@ Dynamic memory allocation is the allocation of memory space "on the fly" during 
 
 For example, as you write a program to get the average grades of a number of students taking a course, you decide to allocate a large-sized array, say `int arr[10000];`. You thought to yourself, "the number of students will not be more than $10,000$." Later, your program was used for APS 105, where we have 441 students, then only the first 441 elements of the $10,000$ element array will be used. In this case, you allocated memory space that was wasted. The real-problem occurs if your program was used for a very large online class with $50,000$ students. Your array will not be able to hold the grades of more than $10,000$.
 
+## Different options when array size is unknown at compile-time 
+
 If you do not know the size of the array when you write a program, you have the following options:
 
 1. **Fixed size array.** Allocate a fixed *very large-sized array*, for example, `int array[10000000]`.

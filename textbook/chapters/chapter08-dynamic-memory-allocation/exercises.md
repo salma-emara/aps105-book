@@ -18,7 +18,7 @@ int *intPtrArray = (int *)malloc(10 * sizeof(int));
 
 Write one or more C statements that use `malloc` to dynamically allocate an array of $1000$ elements of type `double`. The allocated array should be called `list`.
 
-```{admonition} Answer
+````{admonition} Answer
 :class: dropdown
 ```{code-block} c
 double *list = (double *)malloc(1000 * sizeof(double));

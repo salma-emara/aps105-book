@@ -121,7 +121,7 @@ If you do not know the size of the array when you write a program, you have the 
         }
         ``` 
 
-        **Output**
+        **Output[^1]**
         <pre>
         Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
@@ -186,7 +186,7 @@ If you do not know the size of the array when you write a program, you have the 
         }
         ```
 
-        **Output**
+        **Output[^1]**
         <pre>
         Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
@@ -239,12 +239,12 @@ int *merge(int *size) {
 ```
 
 
-**Expected Output**
+**Expected Output[^1]**
 <pre>
 Please enter the size of array number 1: <b>3</b>
-Please enter the array number 1: 1 4 7
-Please enter the size of array number 2: 4
-Please enter the array number 2: 2 3 5 10
+Please enter the array number 1: <b>1 4 7</b>
+Please enter the size of array number 2: <b>4</b>
+Please enter the array number 2: <b>2 3 5 10</b>
 Result: 1 2 3 4 5 7 10 
 </pre>
 
@@ -368,3 +368,5 @@ int *merge(int *size) {
 **Note:** In lines $73$ -- $76$, we free any memory space that we will not have access to in the main function. We do not free `merge` array, because we are returning a pointer to the first element of `merge`. Hence, it is not a memory leak since we will still have access to it in the `main` function.
 
 **Step 5: Test your code.** Test this code with one sized arrays, zero sized arrays, positive and negative integers in the array to make sure it works.
+
+[^1]: Inputs to programs are in **bold**.

@@ -5,7 +5,7 @@ Many of these exercises are taken from past exams of APS105 Computer Fundamental
 Headings in this page classify the exercises into different categories: **[Easy]**, **[Intermediate]**, and **[Challenging]**. I suggest you start by easy exercises and work your way up to the challenging ones.
 
 **Question 4 in Winter 2018 Final Exam [Easy]**
-Write a single C statement that declares a variable called `intPtrArray`, initialized to point to an array of 10 integer pointers that is dynamically allocated.
+Write a single C statement that declares a variable called `intPtrArray`, initialized to point to an array of 10 integers that is dynamically allocated.
 
 ````{admonition} Answer
 :class: dropdown

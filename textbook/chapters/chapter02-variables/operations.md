@@ -211,7 +211,7 @@ If we have `i = i + 1;`, this can be written as `i += 1;`, `i++;` and `++i;`. Si
 
 ***AVOID USING `++` AND `--` IN A COMPLEX EXPRESSION!***
 
-`++` AND `--` can be before or after the variable. For example, `++i` and `i++` are post-increment and pre-increment respectively. `++i` and `i++` are equivalent to `i = i + 1;` if they are the only operators in the same statement. However, if there are other operators in the same statement, they are not equivalent. 
+`++` AND `--` can be before or after the variable. For example, `++i` and `i++` are pre-increment and post-increment respectively. `++i` and `i++` are equivalent to `i = i + 1;` if they are the only operators in the same statement. However, if there are other operators in the same statement, they are not equivalent. 
 
 For example, in the following example `++i` is pre-fix, i.e. incrementing happens in the statement. Hence, `j = ++i;` is equivalent to `j = i = i + 1;`. Evaluation is from right to left because of the assignment operator. While, `i++` is post-fix, i.e. incrementing to `i` happens after the statement. This means that `j = i++;` is equivalent to `j = i; i = i + 1;`. You can download the code {download}`prefix-postfix.c <../../code/chapter2/prefix-postfix/prefix-postfix.c>` to try the following code.
 

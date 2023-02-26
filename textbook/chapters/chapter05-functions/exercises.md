@@ -173,6 +173,23 @@ void pythagoreanTriples (int x) {
 
 ````{admonition} Answer
 :class: dropdown
+
+**An easier solution**
+```{code-block} c
+void pythagoreanTriples(int x) {
+  for (int y = 1; y < 100; y++) {
+    int z = sqrt(x * x + y * y); 
+    if (z > y){
+      printf("x = %d, y = %d, z = %d\n", x, y, z);
+      return;
+    }     
+  }
+  printf("no solution exists.\n");
+}
+```
+
+
+**Solution given in marking scheme**
 ```{code-block} c
 void pythagoreanTriples(int x) {
   for (int y = 1; y < 100; y++) {

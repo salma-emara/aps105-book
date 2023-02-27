@@ -118,7 +118,7 @@ The following table lists how to print some of the escape sequences that are com
 | `\'`            | `'`    |
 | `\"`            | `"`    |
 
-If you still did not get this question, how do we print `%` itself? `%` is an escape character too used specify the format of the variable to be printed. To print `%`, we require another `%`. Hence, `printf("%%")` prints `%`.
+If you still did not get this question, how do we print `%` itself? `%` is an escape character too used to specify the format of the variable to be printed. To print `%`, we require another `%`. Hence, `printf("%%")` prints `%`.
 
 **Code**
 ```{code-block} c

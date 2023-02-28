@@ -252,7 +252,7 @@ Result: 1 2 3 4 5 7 10
 
 **Step 2: Think of a solution!** We will dynamically allocate memory for both arrays, and fill them using a loop. Then we will allocate a new empty array for the merged elements that has a size equal to the sum of the sizes of the two arrays.
 
-The main challenge is to merge the arrays. The following figure details the steps you may think of to merge two arrays. We have two `int` variables storing the indices of elements to be merged next: `indexA` for array `a` and `indexB` for array `b`. We compare element at `indexA` in `a` with the element at `indexB` at `b`: `a[index] < b[indexB]`. We copy `a[indexA]` to the merged array if `a[index]` is less than `b[indexB]`, else we copy `b[indexB]`. 
+The main challenge is to merge the arrays. The following figure details the steps you may think of to merge two arrays. We have two `int` variables storing the indices of elements to be merged next: `indexA` for array `a` and `indexB` for array `b`. We compare element at `indexA` in `a` with the element at `indexB` at `b`: `a[indexA] < b[indexB]`. We copy `a[indexA]` to the merged array if `a[indexA]` is less than `b[indexB]`, else we copy `b[indexB]`. 
 
 ```{figure} ./images/steps-merge.png
 :alt: steps to merge an array.
@@ -272,7 +272,7 @@ Please note that towards the end, when array `a` was all copied to the merged ar
 4. Repeat $1$ -- $3$ for the second array `b`
 5. Dynamically allocate an array of size equal to the sum of the sizes of the two arrays to be merged
 6. Set `indexA`, `indexB`, `index` to $0$
-7. Copy `a[indexA]` to `merge[index]`, if `a[index] < b[indexB]`, else copy `b[indexB]`
+7. Copy `a[indexA]` to `merge[index]`, if `a[indexA] < b[indexB]`, else copy `b[indexB]`
 8. If `indexA` >= size of array a, copy `b[indexB]`
 9. If `indexB` >= size of array b, copy `a[indexA]`
 10. Increment `indexA` if `a[indexA]` was copied, or `indexB` if `b[indexB]` was copied

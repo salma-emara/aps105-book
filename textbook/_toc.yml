@@ -66,7 +66,10 @@ parts:
         sections:
           - file: chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc.md
           - file: chapters/chapter08-dynamic-memory-allocation/exercises.md
-      - file: chapters/chapter09-multidim-arrays/intro.md
+      - file: chapters/chapter09-multi-dimensional-arrays/intro.md
+        sections:
+         - file: chapters/chapter09-multi-dimensional-arrays/why-2d.md
+         - file: chapters/chapter09-multi-dimensional-arrays/pass-2d-functions.md
       - file: chapters/chapter10-strings/intro.md
       - file: chapters/chapter11-recursion/intro.md
       - file: chapters/chapter12-data-structures/intro.md

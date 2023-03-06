@@ -10,10 +10,6 @@ To review dynamic memory allocation for 1D array, please see [Chapter 8.1](dynam
 
 The question that we tackle in this section is how can we dynamically allocate a 2D array. There are three ways to do so. We will discuss one method in detail, and the other two are quite intuitive.
 
-## Method 1: Dynamic Allocation of an array of pointers
-
-The first method to dynamically allocate a 2D array is to allocate an array of pointers, and then have each of these pointers point to a dynamically allocated 1D array corresponding to a row in the 2D array.
-
 For example, let's dynamically allocate a 2D array of integers with 3 rows and 4 columns that looks like {numref}`2d-dyn-mem-alloc-example`.
 
 ```{figure} ./images/2d-dyn-mem-alloc-example.png
@@ -24,6 +20,10 @@ For example, let's dynamically allocate a 2D array of integers with 3 rows and 4
 
 2D array example we want to allocate dynamically.
 ```
+
+## Method 1: Dynamic Allocation of an array of pointers
+
+The first method to dynamically allocate a 2D array is to allocate an array of pointers, and then have each of these pointers point to a dynamically allocated 1D array corresponding to a row in the 2D array.
 
 **Step 1: Dynamically Allocate an Array of Rows Pointers.** First, we dynamically allocate an array of pointers, where each of these pointers will later point to a row in the 2D array. Hence, the number of pointers we need is equal to the number of rows, which is $3$ in this example. {numref}`array-of-pointers` shows what we need to allocate and the pointer to the first element in the array will be `arr`.
 
@@ -164,6 +164,71 @@ int main(void) {
 }
 ```
 
-## Static Allocation of an array of pointers
+## Method 2: Static Allocation of an array of pointers
 
-## Dynamic Allocation of a 1D array
+First, statically allocate an array of pointers `int* arr[3];`. **The problem is** this array will be on the stack, hence number of rows has to be known at compile-time. While in method 1, all the elements were on the heap except for `arr` pointer. 
+
+Second, make each of these pointers in the array point to dynamically allocated 1D array corresponding to the row.
+
+Third, we can access the elements as any 2D array.
+
+Forth, we free only the dynamically allocated **three** 1D arrays.
+
+```{code-block} c
+#include <stdlib.h>
+
+int main(void) {
+  // on Stack, statically have allocate 3 pointers,
+  // each will point to a 1D array corresponding to a row
+  int* arr[3];
+
+  // Access each pointer and make it point
+  // to a newly dynamically allocated array
+  for (int row = 0; row < 3; row++) {
+    arr[row] = (int*)malloc(4 * sizeof(int));
+  }
+  // Access elements as usual
+  for (int row = 0; row < 3; row++) {
+    for (int col = 0; col < 4; col++) {
+      arr[row][col] = row * 4 + col + 1;
+    }
+  }
+  // Free only dynamically allocated space
+  for (int row = 0; row < 3; row++) {
+    free(arr[row]);
+  }
+
+  return 0;
+}
+
+```
+
+
+## Method 3: Dynamic Allocation of a 1D array
+
+The last method is easy if you understand from [Chapter 9: Section 9.1.2](2d-in-memory-section) how does a static 2D array looks like in the memory.
+
+We can dynamically allocate 1D array having rows $\times$ columns integer elements = $12$. 
+
+To access elements, you cannot use `arr[row][col]`, because the number of the columns is unknown. Instead, you need to do `*(arr + row * cols + col)` to access the element at index `row` and column index `col` when the number of columns is `cols`.
+
+Finally, to free the dynamically allocated space, you only need to `free(arr);` which is a 1D array of `int`.
+
+```{code-block} c
+#include <stdlib.h>
+
+int main(void) {
+  int rows = 3, cols = 4;
+  int* arr = (int*)malloc(rows * cols * sizeof(int));
+
+  for (int row = 0; row < rows; row++) {
+    for (int col = 0; col < cols; col++) {
+      *(arr + row * cols + col) = row * cols + col + 1;
+    }
+  }
+
+  free(arr);
+
+  return 0;
+}
+```

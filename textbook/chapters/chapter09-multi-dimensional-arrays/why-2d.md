@@ -112,6 +112,7 @@ or without defining the number of rows.
 
 The number of rows is not required as the compiler will fill the array **row by row**, *i.e.* in "row major" order. For example, if the number of rows is unknown, the number of columns is $3$, and the array is initialized with $9$ elements, the first row will have 3 elements, the second row will have 3 elements and so on. Hence, the number of rows can be easily deduced if the number of columns and the elements are defined. To better understand "row major" order, let's dive deeper into how a 2D array is stored in the main memory.
 
+(2d-in-memory-section)=
 ## What does a 2D array look like in memory?
 
 The main memory is divided into cells. Each cell has an address, and it can store a byte. How is a 2D array stored in the 1D memory? Arrays are stored in "row major" order in the main memory. This means that the elements are stored row by row. For example, for 

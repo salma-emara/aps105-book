@@ -71,6 +71,7 @@ parts:
          - file: chapters/chapter09-multi-dimensional-arrays/why-2d.md
          - file: chapters/chapter09-multi-dimensional-arrays/pass-2d-functions.md
          - file: chapters/chapter09-multi-dimensional-arrays/2d-dynamic-memory-alloc.md
+         - file: chapters/chapter09-multi-dimensional-arrays/exercises.md
       - file: chapters/chapter10-strings/intro.md
       - file: chapters/chapter11-recursion/intro.md
       - file: chapters/chapter12-data-structures/intro.md

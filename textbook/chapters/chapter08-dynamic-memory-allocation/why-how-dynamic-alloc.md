@@ -1,3 +1,4 @@
+(dynamic-memory-alloc)=
 # What is dynamic memory allocation?
 
 Dynamic memory allocation is the allocation of memory space "on the fly" during runtime. The amount of memory to be allocated does not need to be known at compile-time.
@@ -88,7 +89,7 @@ If you do not know the size of the array when you write a program, you have the 
 
         For example, let's write a program that takes in the size of the array from the user. In a function named `getAverage`, the program dynamically allocates the array, takes in input numbers from the user, put these numbers in the array. Finally, the function will find the average of the numbers and returns this average to the `main` function.
 
-        **Code**
+        **Code with Memory Leaks**
         ```{code-block} c
         :linenos:
         :emphasize-lines: 2, 16, 20, 24, 26
@@ -136,7 +137,7 @@ If you do not know the size of the array when you write a program, you have the 
 
         In line $26$, we finally return the average to the `main`. When we return to the `main`, all local variables including `myArray` will disappear from the stack. **However, the dynamically allocated memory will still exist in the heap.** We cannot access this array anymore because we lost the variable holding the address of the first element. There is truly no way we can reach this dynamically allocated space. This phenomena is referred to as **memory leak**, where we lost access to a memory space that was reserved for a variable/array. 
 
-        **Solution:** You need to free/deallocate the memory space before returning from the function, even if it were the `main` function. Otehrwise, you will be using up the heap, and eventually exhausting it, and there will be no space left in the heap. 
+        **Solution:** You need to free/deallocate the memory space before returning from the function, even if it were the `main` function. Otherwise, you will be using up the heap, and eventually exhausting it, and there will be no space left in the heap. 
         ````
 
     * `free`: To free dynamically allocated memory, you need to use `free` function from `stdlib.h`. The prototype of free is:
@@ -150,8 +151,7 @@ If you do not know the size of the array when you write a program, you have the 
 
         Let's re-write the code above with the `free`. Download {download}`dynamic-alloc-free.c <../../code/chapter08/dynamic-alloc-free/dynamic-alloc-free.c>` if you want to run the program yourself.
         
-        dynamic-alloc-free
-
+        **Code with No Memory Leaks**
         ```{code-block} c
         :linenos:
         :emphasize-lines: 26, 27

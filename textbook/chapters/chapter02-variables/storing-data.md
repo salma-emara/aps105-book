@@ -36,6 +36,7 @@ For the purpose of this course, we will be using `double` data type only.
 
 Format specifier for `float` is `%f` and for `double` is `%lf`.
 
+(characters-ascii)=
 ## Characters
 
 To represent a single letter, symbol or digit, we can use the char data type. Example characters include `A`, `B`, ... `Z`, `a`, `b`, ... `z`, `0`, `1`, ... `9`, `@`, `#`, `$` and other symbols.

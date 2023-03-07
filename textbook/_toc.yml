@@ -73,6 +73,11 @@ parts:
          - file: chapters/chapter09-multi-dimensional-arrays/2d-dynamic-memory-alloc.md
          - file: chapters/chapter09-multi-dimensional-arrays/exercises.md
       - file: chapters/chapter10-strings/intro.md
+        sections:
+        - file: chapters/chapter10-strings/what-are-strings.md
+        - file: chapters/chapter10-strings/input-output-strings.md
+        - file: chapters/chapter10-strings/string-functions.md
+        - file: chapters/chapter10-strings/exercises.md
       - file: chapters/chapter11-recursion/intro.md
       - file: chapters/chapter12-data-structures/intro.md
       - file: chapters/chapter13-linked-lists/intro.md

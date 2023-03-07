@@ -13,6 +13,23 @@ To store, a **string** in a variable, we use an array of characters that is *"nu
 
 There are three ways we can set up a string in a null-terminated array of characters.
 
-## Declare and Initialize
+## Method 1: Declare and Initialize
+
+To declare a 1D array of characters, and initialize its elements to `'H'`, `'e'`, `'l'`, `'l'`, `'e'` and finally a `'\0'`, we can do the following.
+
+```{code-block} c
+char myString[] = "Hello";
+```
+
+The statement will make `myString` array have $6$ elements, where $5$ elements store the characters in `"Hello"`, and the last element store `'\0'` as shown in the figure.
+
+```{figure} ./images/hello-null.png
+:alt: Declare and initialize an array
+:width: 400px
+:align: center
+:name: hello-null
+
+Declare and initialize an array of characters with a string.
+```
 
 In-progress!

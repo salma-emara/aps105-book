@@ -119,6 +119,113 @@ int borderSum(int mat[][26], int n) {
 ```
 ````
 
+**Question 4 in Winter 2020 Final Exam [Intermediate]**
+
+For artificial intelligence (AI) that uses recently developed “neural network” techniques, layers of “neurons” pass their values, weighted by multipliers, into the next layers. Finding those weights is, of course, the more difficult and computationally intensive part, but once you have them, the use is relatively simple array multiplication.
+
+Here we will work with two layers to do the last stages and to compute values for the output. For example, the output could be the likelihood that the inputs are from the picture of one of four animals: dog, cat, pig, beaver. This net will “recognize” which of these it is by choosing the output of highest value. Here is a diagram that represents what we are doing:
+
+```{figure} ./images/winter20-q4-image.png
+:alt: Winter 2020 Question 5 Image
+:width: 600px
+:align: center
+:name: winter20-q4-image
+```
+
+You will generate the function to perform the operation shown starting with the code below that includes the `w1` and `w2` weight arrays and that takes an input array. The input is one-dimensional, size 6. `w1` and `w2` are two-dimensional: `w1` is $6$ by $7$. `w2` is $7$ by $4$. The output is
+one-dimensional and of size $4$.
+
+**Note:** To multiply a `N`$\times$`1` array `A`, by an `M`$\times$`N` array `B`, to get an `M`$\times$`1` array `C`:
+
+<pre>
+C[0] = A[0] * B[0,0] + A[1] * B[0,1] + A[2] * B[0,2] + ... + A[N-1] * B[0,N-1]
+C[1] = A[0] * B[1,0] + A[1] * B[1,1] + A[2] * B[1,2] + ... + A[N-1] * B[1,N-1]
+...
+C[M-1] = A[0] * B[M-1, 0] + A[1] * B[M-1, 1] + A[2] * B[M-1, 2]+ ... + A[N-1] * B[M-1, N-1]
+</pre>
+
+Here is the function to finish:
+
+```{code-block} c
+#include <stdio.h>
+// this function uses a one-dimensional input array of size 6, and
+// puts values into the one-dimensional output array of size 4
+void performAI(double *inArray, double *outArray) {
+  // these are the weighting arrays as in the diagram
+  double w1[6][7] = {{0.795279571, 0.565454091, 0.569392801, 0.649519912,
+                      0.311228459, 0.869033219, 0.963890145},
+                     {0.261182548, 0.967901447, 0.015463096, 0.101966965,
+                      0.454071297, 0.396147575, 0.853833996},
+                     {0.976180547, 0.762522649, 0.223067359, 0.120228416,
+                      0.710471648, 0.220771538, 0.052876278},
+                     {0.173285965, 0.795507616, 0.258332188, 0.813302777,
+                      0.528470338, 0.885245811, 0.190564347},
+                     {0.14018923, 0.324797853, 0.012649753, 0.928397252,
+                      0.048519668, 0.321836138, 0.360198988},
+                     {0.063248883, 0.72395506, 0.606492812, 0.435057638,
+                      0.462896967, 0.12061378, 0.28806367}};
+  double w2[7][4] = {{0.036340161, 0.702081192, 0.406643568, 0.383400727},
+                     {0.786459022, 0.627286192, 0.190417846, 0.259622675},
+                     {0.996272492, 0.115783107, 0.922042574, 0.805576672},
+                     {0.254649714, 0.818737484, 0.23760355, 0.884876231},
+                     {0.587934606, 0.566762923, 0.254228386, 0.735145224},
+                     {0.709219708, 0.815306359, 0.395073347, 0.191438772},
+                     {0.743663242, 0.969784133, 0.055612809, 0.992284824}};
+  // TODO: your code here
+};
+```
+
+Here is an example use of the function. 
+
+```{code-block} c
+double inData[] = {10, 11, 14, 51, 22, 24};
+double outData[4];
+performAI(inData, outData);
+```
+
+````{admonition} Answer
+:class: dropdown
+```{code-block} c
+void performAI(double *inArray, double *outArray) {
+  // these are the weighting arrays as in the diagram
+  double w1[6][7] = {{0.795279571, 0.565454091, 0.569392801, 0.649519912,
+                      0.311228459, 0.869033219, 0.963890145},
+                     {0.261182548, 0.967901447, 0.015463096, 0.101966965,
+                      0.454071297, 0.396147575, 0.853833996},
+                     {0.976180547, 0.762522649, 0.223067359, 0.120228416,
+                      0.710471648, 0.220771538, 0.052876278},
+                     {0.173285965, 0.795507616, 0.258332188, 0.813302777,
+                      0.528470338, 0.885245811, 0.190564347},
+                     {0.14018923, 0.324797853, 0.012649753, 0.928397252,
+                      0.048519668, 0.321836138, 0.360198988},
+                     {0.063248883, 0.72395506, 0.606492812, 0.435057638,
+                      0.462896967, 0.12061378, 0.28806367}};
+  double w2[7][4] = {{0.036340161, 0.702081192, 0.406643568, 0.383400727},
+                     {0.786459022, 0.627286192, 0.190417846, 0.259622675},
+                     {0.996272492, 0.115783107, 0.922042574, 0.805576672},
+                     {0.254649714, 0.818737484, 0.23760355, 0.884876231},
+                     {0.587934606, 0.566762923, 0.254228386, 0.735145224},
+                     {0.709219708, 0.815306359, 0.395073347, 0.191438772},
+                     {0.743663242, 0.969784133, 0.055612809, 0.992284824}};
+  double midarray[7];
+  int i, j;
+
+  for (i = 0; i < 7; i++) {
+    midarray[i] = 0.0;
+    for (j = 0; j < 6; j++) {
+      midarray[i] += inArray[j] * w1[j][i];
+    }
+  }
+  for (i = 0; i < 4; i++) {
+    outArray[i] = 0.0;
+    for (j = 0; j < 7; j++) {
+      outArray[i] += midarray[j] * w2[j][i];
+    }
+  }
+}
+```
+````
+
 **Question 11 in Fall 2015 Final Exam [Challenging]**
 
 Pictures that come from a smartphone camera can be represented as a two-dimensional array of numbers, where each number corresponds to the colour of each pixel in the picture. These cameras suffer from various effects that cause errors in the colour they measure (this variation is often called ‘noise’) which makes the picture have poor quality. One way to reduce that noise is to average each pixel with the eight pixels that surround it.
@@ -166,4 +273,95 @@ void averageImage(double A[100][100], double B[98][98]) {
 ```
 ````
 
-In-progress!
+**Question 15 in Fall 2014 Final Exam [Challenging]**
+
+Consider the C program given, in part, below. It declares an integer array of dimensions `SIZE` $\times$ `SIZE`, where `SIZE` is a defined constant as shown. The first part of the main program calls the `fillArray` function which sets each element of the array to the value $0$, $1$, or $2$. The program then asks the user to provide a value, $n$, which must be an odd integer. (You can assume that the user does enter an odd number, and that `n >= 1` and `n <= SIZE`.) The goal of the program is to find all patterns of crosses of size `n` in the array of all `1` or `2`. For example, in the array shown below the code, there is a cross of size `n = 3` of `1` centered at indices `row = 2`, `column = 4`, a cross of size `n = 3` of `2` centered at indices `row = 5`, `column = 8`, and another one centered at indices `row = 6`, `column = 2`.
+
+```{code-block} c
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 10
+
+int main(void) {
+  int array[SIZE][SIZE];
+  int n;
+  fillArray(array);
+  printf("Enter Cross Size to search (must be odd): ");
+  scanf("%d", &n);
+  // Your main program code would go here
+  return 0;
+}
+```
+
+Example array:
+```{figure} ./images/cross-pattern.png
+:alt: Cross pattern
+:width: 400px
+:align: center
+:name: cross-pattern
+```
+
+The output of program is as follows, if the array above was the input, and `n = 3`:
+<pre>
+Found Cross of Size 3 of 1 at (2,4)
+Found Cross of Size 3 of 2 at (5,8)
+Found Cross of Size 3 of 2 at (6,2)
+</pre>
+
+Your answer should consist of the code that goes inside the main program above, and additional functions. Your answer must make use of at least one function. You do not need to rewrite the C code provided to you in the space below.
+
+
+
+````{admonition} Answer
+:class: dropdown
+```{code-block} c
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 10
+
+int main(void) {
+  int array[SIZE][SIZE];
+  int n;
+  fillArray(array);
+  printf("Enter Cross Size to search (must be odd): ");
+  scanf("%d", &n);
+  for (int row = 0; row < SIZE; row++)
+    for (int col = 0; col < SIZE; col++) {
+      if (findCross(array, n, 1, row, col))
+        printf("Found Cross of Size %d of %d at (%d,%d)\n", n, 1, row, col);
+      if (findCross(array, n, 2, row, col))
+        printf("Found Cross of Size %d of %d at (%d,%d)\n", n, 2, row, col);
+    }
+  return 0;
+}
+bool findCross(int array[SIZE][SIZE], int n, int searchNum, int row, int col) {
+  /* look across one column */
+  bool found = true;
+  int start, end;
+  start = row - n / 2;
+  end = row + n / 2;
+  // first check if size precludes the result
+  if (start >= 0 && end < SIZE) {
+    // now look and see if the right number in a row
+    for (int k = start; k <= end && found; k++)
+      if (array[k][col] != searchNum) found = false;
+  } else
+    found = false;
+  // look across row
+  start = col - n / 2;
+  end = col + n / 2;
+  // first check if size precludes the result
+  if (start >= 0 && end < SIZE) {
+    // now look and see if the right number in a column
+    for (int k = start; k <= end && found; k++)
+      if (array[row][k] != searchNum) found = false;
+  } else
+    found = false;
+  return found;
+}
+```
+````

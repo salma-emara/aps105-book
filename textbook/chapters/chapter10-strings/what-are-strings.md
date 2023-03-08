@@ -99,9 +99,7 @@ We can declare a pointer of type `(char*)` and initialize it to point to the fir
 char* pStr = "Wow";
 ```
 
-This would create a variable named `pStr` that can hold an address to a character. This same statement creates an array of characters having "Wow" terminated by null in the **constants and global variables** memory segment. We are also setting the address stored in `pStr` to be the address of the first character of the string "Wow".
-
-You can change the address stored in `pStr` to the address of another constant string "Cat" as shown in the following figure.
+This would create a variable named `pStr` that can hold an address to a character. This same statement creates an array of characters having "Wow" terminated by null in the **constants and global variables** memory segment. We are also setting the address stored in `pStr` to be the address of the first character of the string "Wow" as shown in the figure below.
 
 ```{figure} ./images/pointer-to-const-string.png
 :alt: Change upper case `'H'` to lower case `'h'`
@@ -109,12 +107,74 @@ You can change the address stored in `pStr` to the address of another constant s
 :align: center
 :name: pointer-to-const-string
 
-Change upper case `'H'` to lower case `'h'`.
+Pointer having the address of the first character in a constant string.
 ```
 
-```{admonition} Cannot Change Individual Elements
-You cannot change individual elements in a `const` string.
+````{admonition} Cannot Change Individual Elements
+:class: warning
 
+You cannot change individual elements in a `const` string. For example, you cannot do the following:
+
+```{code-block} c
+pStr[0] = 'R';
+```
+This is because `"Wow"` string is stored as a constant, and you cannot change a constant. If you try doing it, your program may fail silently, which means the statement will fail and other statements in your program may not behave as expected, or give a "segmentation fault" error message, which means you are accessing or changing a memory space you are not permitted to access or change.
+
+````
+
+````{admonition} Can change the value of the pointer
+:class: important
+However, `pStr` is not a constant, and hence you can always change what `pStr` points to and make it point to another string, like `pStr = "Cat";`.
+
+```{figure} ./images/change-pointer-to-string.png
+:alt: Change pointer to string
+:width: 600px
+:align: center
+:name: change-pointer-to-string
+
+Change the value of `pStr` pointer to have the address of the first character of another constant string.
+```
+````
+
+Since `pStr` is not a constant, it can point to the first character in an array of null-terminated characters, *i.e.* string, on the stack. Recall that the stack is a segment of the memory used to store local variables, which are not constants. For example, the following figure shows how the three statements are executed in the memory.
+
+```{figure} ./images/change-pointer-to-stack-str.png
+:alt: Change pointer to string on stack
+:width: 600px
+:align: center
+:name: change-pointer-to-stack-str
+
+Change the value of `pStr` pointer to have the address of the first character of another string that is on the **stack**.
 ```
 
-In-progress!
+````{admonition} Can access/change characters on the stack
+:class: important
+If `pStr` is now pointing to an array on the stack, the elements of the array can be changed like any other array. For example,
+
+```{figure} ./images/change-char-on-stack.png
+:alt: Change characters on stack
+:width: 600px
+:align: center
+:name: change-char-on-stack
+
+You can change the characters on stack pointed to by `pStr`.
+```
+
+````
+
+````{admonition} Cannot change the array identifier
+:class: warning
+
+Although you can change what a pointer points to, *e.g.* by assigning `pStr` an address of different characters in previous examples, you cannot change an array identifier.
+
+For example, `str` in `char str[] = "Hello";` is an array identifier and a pointer to the first character in the `"Hello"` string, but `str` itself is not assignable. For example, if you try compiling the following code, you would get a compile-time error: `"array type 'char[6]' is not assignable"`.
+
+```{code-block} c
+int main(void) {
+  char str[] = "Hello";
+  str = "APS105";
+  return 0;
+}
+```
+
+````

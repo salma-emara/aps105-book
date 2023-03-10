@@ -178,3 +178,55 @@ int main(void) {
 ```
 
 ````
+
+
+## What is the usage of the `'\0'` in a string?
+
+The null character `\0` can be used to know the end of a string, if the size is unknown. It is very handy, whenever we pass strings to functions. For example, let's write a function to count the number of spaces `' '` in a string.
+
+To pass a string to a function, we use the same syntax as 1D arrays. A string or 1D array can be received as either as `char*` or `char[]`, for example,
+
+```{code-block} c
+int spacesCount(char str[]);
+```
+
+or
+
+```{code-block} c
+int spacesCount(char* str);
+```
+
+Inside the function, we should check the elements at each index: from `0` to the index that has the last element. The last element here is the element having `'\0'`. If an element is a space, we increment a counter than counts the number of spaces. We can write the code as follows, or you can download {download}`spacesCount.c <../../code/chapter10/spacesCount/spacesCount.c>` if you want to run the program yourself.
+
+**Code**
+```{code-block} c
+#include <stdio.h>
+#include <string.h>
+
+int spacesCount(char str[]);
+
+int main(void) {
+  char str[] = "Welcome to Chapter 10 in Snefru";
+  printf("The number of spaces is %d.\n", spacesCount(str));
+
+  return 0;
+}
+
+int spacesCount(char str[]) {
+  int count = 0;
+  for (int ind = 0; str[ind] != '\0'; ind++) {
+    if (str[ind] == ' ') {
+      count++;
+    }
+  }
+  return count;
+}
+```
+
+**Outout**
+<pre>
+The number of spaces is 5.
+</pre>
+
+
+

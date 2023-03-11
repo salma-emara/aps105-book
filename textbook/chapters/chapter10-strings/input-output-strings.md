@@ -94,6 +94,8 @@ Hello
 
 ## Input strings
 
+### Using `scanf`
+
 To take a string as input from the user using `scanf`, we also use `%s` format specifier, and pass the pointer pointing towards the beginning of the string. In the following figure, we show an example of taking a string as input from the user.
 
 ```{figure} ./images/scanf-why-st.png
@@ -133,6 +135,7 @@ s is saved as: ABCD
 
 For example, in the following code, white spaces before `ABCD` are ignored, and `scanf` reads the string `ABCD` and terminates it with a null character `'\0'`. The remaining `ff` characters will be read by the next `scanf` call.
 
+**Code**
 ```{code-block} c
 #include <stdio.h>
 
@@ -166,6 +169,325 @@ To illustrate what happens to the array `st` with every `scanf`, we draw the con
 
 **Big Problem: What if the input string is longer than the array?** 
 
-In-progress!
+For example, if the user input was `ABCDEFGHIJ` to the following program, what would happen?
 
+**Code**
+```{code-block} c
+:linenos: 
+:emphasize-lines: 6
+#include <stdio.h>
+
+int main(void) {
+  char st[7 + 1];
+  printf("Enter a string: \n");
+  scanf("%s", st);
+  printf("s is saved as: %s\n", st);
+  return 0;
+}
+```
+
+**<span style="color:red">Undefined Behaviour Output[^1]</span>**
+<pre>
+Enter a string: 
+<b>ABCDEFJI</b>
+s is saved as: ABCDEFJI
+</pre>
+
+At line $6$, the behavior of the program is undefined. The reason is that the input string is longer than the array. The input string is `ABCDEFGHIJ`, and the array is `st[7 + 1]`. The array can only hold 7 characters and a null character, but the input string is 10 characters long. This means that the last two characters of the input string will be written to the memory locations after the array. This may result in an undefined behaviour. The program may crash, print some random characters after `ABCDEFGHIJ` or behave normally if the computer allows writing `IJ` and a null character in elements beyond the size of the array. This phenomenon is called **buffer overflow**, where we mistakenly write to memory locations beyond the size of the array.
+
+### Using `fgets` to avoid buffer overflow in `scanf` 
+
+**How to fix the buffer overflow problem?** There is a safer function for taking strings from the user, it is called `fgets`. You can now specify the maximum number of characters to be read from the user. For example, the following code takes a string of 2 characters as input from the user and prints it back to the user.
+
+**Code**
+```{figure} ./images/fgets-3.png
+:alt: Scanning a string
+:width: 600px
+:align: center
+:name: fgets-3
+```
+
+**Output[^1]**
+<pre>
+Enter a string: 
+<b>ABCDEFGHI</b>
+st is saved as: AB
+</pre>
+
+`fgets` takes in three input parameters. In the above example, we have used the following values for the parameters.
+
+1. `st`: The pointer to the first element of the array of characters. 
+2. `3`: The maximum number of characters to be read + 1. The additional character is for storing a null character after the characters read from the user.
+3. `stdin`: The input stream. In this case, we are taking input from the user, which is stored in `stdin` --- a file defined in `stdio.h` library. 
+
+```{admonition} If user enters fewer characters than the maximum number of characters to be read, what happens?
+If user enters fewer characters than the maximum number of characters to be read, for example, in the above example, if the user only enters 1 character and pressed <enter>, what happens?
+
+In the above example, `fgets` will read the characters till either the number of characters read is 2 or till the user enters a new line character. In the above example, if the user enters `A` and presses <enter>, `fgets` will read the character `A` and a new line character. The first element of the array `st` will be `A`. The second element of the array `st` will be a null character `'\0'`. The remaining elements of the array `st` will be garbage values. The following is the output if the user enters `A` and presses <enter>.
+
+**Output[^1]**
+<pre>
+Enter a string: 
+<b>A</b>
+st is saved as: A
+</pre>
+
+```
+
+### Implement a `getStringSafely` function
+
+We want to write a function that takes a string as input from the user and stores it in an array. The function should take in the array as a parameter, the number of characters to read from the user + 1, and return a pointer to the first element in the array of characters. Like `fgets`, if the user enters fewer characters than the maximum number of characters to be read, the function should terminate the string with a null character. If the user enters more characters than the maximum number of characters to be read, the function should read the first `n - 1` characters and terminate the string with a null character.
+
+**Step 1: Toy example.** A toy example is shown in the figure below. The user input is `ABCD`, the maximum number of characters to read + 1 is `3`. The function should read `'A'` and `'B'` into the string `st` then put `'\0'` after `'A'` and `'B'`. 
+
+```{figure} ./images/toy-example-getStrSafe.png
+:alt: Scanning a string
+:width: 600px
+:align: center
+:name: toy-example-getStrSafe
+```
+
+**Step 2: Think of a solution!** We need to read the string character by character and store it in the array. We need to stop reading the string when we have read `n - 1` characters. We need to terminate the string with a null character. If the character entered is a new line character, we need to terminate the string with a null character.
+
+````{admonition} getchar() function
+
+`getchar()` function is a very handy function that reads a character from the user and returns it. It is defined in `stdio.h` library. It takes in no input parameters and returns the read character. 
+
+For example, in the following code, we take a string from the user one character at a time and print each character on a new line till the user enters a new line character.
+
+```{code-block} c
+#include <stdio.h>
+
+int main(void) {
+  printf("Enter characters: \n");
+  char c = getchar();
+  while (c != '\n') {
+    printf("%c\n", c);
+    c = getchar();
+  }
+  return 0;
+}
+```
+
+**Output[^1]**
+<pre>
+Enter characters: 
+<b>APS105</b>
+A
+P
+S
+1
+0
+5
+</pre>
+````
+
+**Step 3: Decompose into steps.** The function receives string `s` and maximum number of characters to read + 1 `n`. 
+
+1. Set a `charCount` to `0`.
+2. Read a character from the user.
+3. If `charCount < n - 1` and the character is not a new line character, store the character in the array `s` and increment `charCount`.
+4. Else, terminate the string with a null character and return the pointer to the first element in the array `s`.
+5. Repeat steps 2 to 4 till the user enters a new line character or `charCount` is greater than or equal to `n - 1`.
+
+**Step 4: Write a draft code.** The following is a **draft** of the code for the function `getStringSafely`.
+
+```{code-block} c
+:linenos:
+:emphasize-lines: 10
+char* getStringSafely(char* s, int n) {
+  int charCount = 0;
+  char c = getchar();
+
+  while (charCount < n - 1 && c != '\n') {
+    s[charCount] = c;
+    charCount++;
+    c = getchar();
+  }
+  s[n] = '\0';
+  return s;
+}
+```
+
+**Step 5: Test and debug your code.** Let's test the function with the following main function.
+
+**Test with few characters.** The following is the output if the user enters `AB` and presses <enter>.
+
+**Partially Correct Code**
+```{code-block} c
+:linenos:
+:emphasize-lines: 21
+#include <stdio.h>
+
+char* getStringSafely(char* s, int n);
+
+int main(void) {
+  char st[10];
+  printf("Enter string: \n");
+  printf("User entered: %s\n", getStringSafely(st, 7));
+  return 0;
+}
+
+char* getStringSafely(char* s, int n) {
+  int charCount = 0;
+  char c = getchar();
+
+  while (charCount < n - 1 && c != '\n') {
+    s[charCount] = c;
+    charCount++;
+    c = getchar();
+  }
+  s[n] = '\0';
+  return s;
+}
+
+```
+
+**Output[^1]**
+<pre>
+Enter string: 
+<b>AB</b>
+User entered: AB��
+</pre>
+
+There were garbage values in the array `st`. This is because we probably had our null character in the wrong place. In line $21$, we set the last element in the array `s` to a null character, while we only entered 2 characters. Hence, our null character should be after the two characters.
+
+Instead of `s[n] = '\0';`, it is correct to have `s[charCount] = '\0';` in line $21$. This is because `charCount` is the number of characters we have read from the user.
+
+**Test with many characters.** In lines $9$ and $10$ of the following code, we try to see what is left in the input buffer after we read the string from the user.
+
+**Partially Correct Code**
+```{code-block} c
+:linenos:
+:emphasize-lines: 9, 10, 21
+#include <stdio.h>
+
+char* getStringSafely(char* s, int n);
+
+int main(void) {
+  char st[10];
+  printf("Enter string: \n");
+  printf("User entered: %s\n", getStringSafely(st, 7));
+  scanf("%s", st);
+  printf("This is what's left: %s\n", st);
+  return 0;
+}
+
+char* getStringSafely(char* s, int n) {
+  int charCount = 0;
+  char c = getchar();
+
+  while (charCount < n - 1 && c != '\n') {
+    s[charCount] = c;
+    charCount++;
+    c = getchar();
+  }
+  s[charCount] = '\0';
+  return s;
+}
+```
+
+**Output[^1]**
+<pre>
+Enter string: 
+<b>Helloworld!</b>
+User entered: Hellow
+This is what's left: rld!
+</pre>
+
+In the above output, we observe `'o'` character is not printed in what's left in the input buffer. There is probably a place in our function where we read the `'o'` and later find that we have already read `6` characters.
+
+In `getStringSafely` function, in line $21$, we read the `'o'`, regardless if our character count was `n - 1` or not. We need to read the character only if `charCount < n - 1`. 
+
+In the following code, we fixe the code in line $21$.
+
+**Correct Code**
+```{code-block} c
+:linenos:
+:emphasize-lines: 21
+#include <stdio.h>
+
+char* getStringSafely(char* s, int n);
+
+int main(void) {
+  char st[10];
+  printf("Enter string: \n");
+  printf("User entered: %s\n", getStringSafely(st, 7));
+  scanf("%s", st);
+  printf("This is what's left: %s\n", st);
+  return 0;
+}
+
+char* getStringSafely(char* s, int n) {
+  int charCount = 0;
+  char c = getchar();
+
+  while (charCount < n - 1 && c != '\n') {
+    s[charCount] = c;
+    charCount++;
+    if (charCount < n - 1) c = getchar();
+  }
+  s[charCount] = '\0';
+  return s;
+}
+
+```
+
+**Output[^1]**
+<pre>
+Enter string: 
+<b>Helloworld!</b>
+User entered: Hellow
+This is what's left: orld!
+</pre>
+
+**Step 6: Improve style.** The following is the final code for the function `getStringSafely`.
+
+We can improve the style of the code by reducing repetition of `charCount < n - 1)` condition, and `getchar()` function call. Since all what we need is to check if the character count is less than `n - 1`, and only then read the next character, we can make use of lazy evaluation in the condition of the while loop. Basically, if we have `(<LHS> && <RHS>)`, if `LHS` is `false`, there is no need to evaluate the `RHS`. You may refer to the [Chapter 3: Section 3.2.1.1. Lazy Evaluation](lazy-evaluation) section for more details. 
+
+You may download {download}`getStringSafely.c <../../code/chapter10/getStringSafely/getStringSafely.c>` the following code and try to run it to see the output. 
+
+**Code**
+```{code-block} c
+:linenos:
+:emphasize-lines: 18
+#include <stdio.h>
+
+char* getStringSafely(char* s, int n);
+
+int main(void) {
+  char st[10];
+  printf("Enter string: \n");
+  printf("User entered: %s\n", getStringSafely(st, 7));
+  scanf("%s", st);
+  printf("This is what's left: %s\n", st);
+  return 0;
+}
+
+char* getStringSafely(char* s, int n) {
+  int charCount = 0;
+  char c;
+
+  while ((charCount < n - 1) && ((c = getchar()) != '\n')) {
+    s[charCount] = c;
+    charCount++;
+  }
+  s[charCount] = '\0';
+  return s;
+}
+```
+
+In line $18$, if `(charCount < n - 1)` was `false` we will never evaluate the right hand size condition after `&&`, because the entire condition will be `false`. However, if `(charCount < n - 1)` was `true`, the right hand side condition should be evaluated. 
+
+In the right hand side condition, `((c = getchar()) != '\n')`, we get the character in `c = getchar()`. Recall that in C, assignment operator `=` returns the value assigned to the variable. Hence, `c = getchar()` is evaluated to the character read from the user. We then check if the character is not a new line character. If it is not a new line character, we execute the while loop body. If it is a new line character, we exit the while loop.
+
+We now do not need the `getchar` outside of the while loop at line $16$ previously, and we can remove the `if` statement and the `getchar` call previously in line $21$.
+
+**Output[^1]**
+<pre>
+Enter string: 
+<b>Helloworld!</b>
+User entered: Hellow
+This is what's left: orld!
+</pre>
 [^1]: Inputs to programs are in **bold**.

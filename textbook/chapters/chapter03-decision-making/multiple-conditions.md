@@ -146,6 +146,7 @@ You didn't enter an alphabet.</pre>
 While `!=` compares two values and returns `true` if they are not equal. For example, `(x != 5)` is valid and it is `true` is `x` is not equal to `5`. 
 ```
 
+(lazy-evaluation)=
 ### Lazy Evaluation
 
 For example, you may have a condition that checks if `x % y < 10`. As you know from {ref}`zero-division` and {ref}`modulo-operator`, if `y` is `0`, the program's behavior is undefined. Hence, your program needs to check if `y` is `0` before checking `x % y < 10`.

@@ -77,6 +77,7 @@ parts:
         - file: chapters/chapter10-strings/what-are-strings.md
         - file: chapters/chapter10-strings/input-output-strings.md
         - file: chapters/chapter10-strings/string-functions.md
+        - file: chapters/chapter10-strings/array-of-strings.md
         - file: chapters/chapter10-strings/exercises.md
       - file: chapters/chapter11-recursion/intro.md
       - file: chapters/chapter12-data-structures/intro.md

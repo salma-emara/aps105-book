@@ -490,4 +490,5 @@ Enter string:
 User entered: Hellow
 This is what's left: orld!
 </pre>
+
 [^1]: Inputs to programs are in **bold**.

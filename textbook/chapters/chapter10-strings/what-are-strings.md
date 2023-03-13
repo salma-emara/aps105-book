@@ -223,7 +223,7 @@ int spacesCount(char str[]) {
 }
 ```
 
-**Outout**
+**Output**
 <pre>
 The number of spaces is 5.
 </pre>

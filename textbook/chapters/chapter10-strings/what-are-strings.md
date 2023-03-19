@@ -91,6 +91,7 @@ myString[2] = 'e';
 myString[3] = '\0';
 ```
 
+(summary-can-cannot)=
 ### Method 3: Declare a Pointer Pointing to a Const String
 
 We can declare a pointer of type `(char*)` and initialize it to point to the first character of a **"constant string"** as in the following statement.

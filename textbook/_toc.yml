@@ -80,6 +80,11 @@ parts:
         - file: chapters/chapter10-strings/array-of-strings.md
         - file: chapters/chapter10-strings/exercises.md
       - file: chapters/chapter11-recursion/intro.md
+        sections: 
+        - file: chapters/chapter11-recursion/recursion-math.md
+        - file: chapters/chapter11-recursion/recursion-in-patterns.md
+        - file: chapters/chapter11-recursion/recursion-in-arrays.md
+        - file: chapters/chapter11-recursion/exercises.md
       - file: chapters/chapter12-data-structures/intro.md
       - file: chapters/chapter13-linked-lists/intro.md
       - file: chapters/chapter14-searching/intro.md

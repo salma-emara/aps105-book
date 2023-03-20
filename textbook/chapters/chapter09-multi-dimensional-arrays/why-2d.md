@@ -121,7 +121,7 @@ The main memory is divided into cells. Each cell has an address, and it can stor
 int myArray[][3] = {1, 2, 3, 4, 5, 6};
 ```
 
-the elements in the memory are stored as shown in {numref}`2d-in-memory`, where all elements in the first row appears first, then all elements in the next row and son on.
+the elements in the memory are stored as shown in {numref}`2d-in-memory`, where all elements in the first row appears first, then all elements in the next row and so on.
 
 ```{figure} ./images/2d-in-memory.png
 :alt: Row major order in memory
@@ -132,7 +132,7 @@ the elements in the memory are stored as shown in {numref}`2d-in-memory`, where 
 Elements of a 2D array are stored in the memory sequentially row by row. This way of representing the elements of a multi-dimensional array is called **row major order**.
 ```
 
-Like 1D arrays, the identifier of the array is also a pointer to the first element of the array. This means that `myArray` is `&myArray[0][0]`, and `myArray + 1` is `&myArray[0][1]`. The address for `myArray[1][2]` requires that we add to `myArray` $1 \times 3$ to get to the **second** row, and add $2$ to get to the **third** column in the **second** row. **Generally, `&myArray[i][j]` is also `myArray + i * number of columns + j`**. The remaining addresses of the remaining elements are shown in {numref}`address-element-2d`.
+`&myArray[0][0]` is the address of the first element of the array. The address of `myArray[1][2]` requires that we add to `&myArray[0][0]` $((1 \times 3) + 2) \times$ `sizeof(int)`, where $(1 \times 3)$ is to get to the **second** row, adding $2$ is to get to the **third** column in the **second** row, and `sizeof(int)` is to multiply each step by the size of each `int` element. **Generally, `&myArray[i][j]` is also `&myArray[0][0] + (i * number of columns + j) * sizeof(int)`**. The remaining addresses of the remaining elements are shown in {numref}`address-element-2d`.
 
 ```{figure} ./images/address-element-2d.png
 :alt: Declare and initialize a 2D array
@@ -142,6 +142,59 @@ Like 1D arrays, the identifier of the array is also a pointer to the first eleme
 
 Addresses of the elements in a 2D array.
 ```
+
+````{admonition} Array identifier in 2D array
+:class: warning
+
+The array identifier of a 2D array is an alias for the address of the first element in the array, which is `myArray[0][0]`, like 1D arrays. We also discuss this in the next section, when we pass a 2D array to a function.
+
+Different from 1D arrays, the array identifier is **also** a pointer to the first row of the array. This can be confusing when you dereference a pointer to a 2D array (or array identifier), since it gives you a pointer to the first element of the first row of the array. For example, `myArray` holds the same value as `*myArray`, which is the address of `myArray[0][0]`, i.e. `myArray` $\Longleftrightarrow$ `*myArray` $\Longleftrightarrow$ `&myArray[0][0]`.
+
+If you would add 1 to the 2D array identifier, this gives a pointer to the first element of the second row, for example, `*(myArray + 1)` is same as `myArray[row]`.
+
+Then, to get to a particular column, you need to add the index of the column. For example, `*(*(myArray + 1) + 2)` is same as `myArray[1][2]`. The following figure illustrates how can you use the array identifier to access elements.
+
+```{figure} ./images/array-identifier.png
+:alt: 2D array identifier
+:width: 600px
+:align: center
+:name: 2D array identifier
+```
+
+**Code**
+```{code-block} c
+#include <stdio.h>
+
+int main(void) {
+  int myArray[2][3];
+
+  for (int row = 0; row < 2; row++) {
+    for (int col = 0; col < 3; col++) {
+      myArray[row][col] = row * 3 + col + 1;
+    }
+  }
+
+  for (int row = 0; row < 2; row++) {
+    for (int col = 0; col < 3; col++) {
+      printf("%4d", *(*(myArray + row) + col));
+      // or printf("%4d", myArray[row][col]);
+    }
+    printf("\n");
+  }
+
+  return 0;
+}
+```
+
+**Output**
+<pre>
+  1   2   3
+  4   5   6
+</pre>
+
+````
+
+
 
 ## Exercise
 

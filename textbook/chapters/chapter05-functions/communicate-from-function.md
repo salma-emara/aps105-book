@@ -2,6 +2,7 @@
 
 In the previous section, we discussed an example where functions helped in dividing our problem into sub-problems. Functions make it easy to think of problems. The functions we discussed in the previous section did not return any information back to the **caller** function. In this section, we discuss problems that require returning a value to the **caller** function.
 
+(non-void-factorial)=
 ## Return a non-void variable type
 
 For example, we want to write a function that calculates the factorial of a number. The function is to take an input parameter $n$, calculate the value of $n \times (n -1) \times (n-2) .... 3 \times 2 \times 1$, and returns it to the calling function. The following figure shows the code along with the order of execution. Download {download}`factorial.c <../../code/chapter05/factorial/factorial.c>` if you want to run the program yourself.

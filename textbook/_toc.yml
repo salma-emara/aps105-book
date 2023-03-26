@@ -86,6 +86,10 @@ parts:
         - file: chapters/chapter11-recursion/recursion-in-arrays.md
         - file: chapters/chapter11-recursion/exercises.md
       - file: chapters/chapter12-data-structures/intro.md
+        sections:
+        - file: chapters/chapter12-data-structures/what-data-structure.md
+        - file: chapters/chapter12-data-structures/pointers-to-data-structure.md
+        - file: chapters/chapter12-data-structures/exercises.md
       - file: chapters/chapter13-linked-lists/intro.md
       - file: chapters/chapter14-searching/intro.md
       - file: chapters/chapter15-sorting/intro.md

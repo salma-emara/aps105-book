@@ -1,3 +1,3 @@
 # Linked Lists
 
-In-progress!
+In this chapter, we discuss an alternative to arrays. Arrays are not flexible when we need to add elements that requires a larger size than we already have, delete elements, or insert elements in the middle of the array. Linked lists are a data structure that can be used to solve these problems, and we discuss in this chapter how can we do so. We also discuss how to implement a linked list in C, and how to use it to solve problems.

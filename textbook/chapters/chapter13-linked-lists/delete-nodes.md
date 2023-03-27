@@ -1,0 +1,1 @@
+# Delete nodes in a linked list

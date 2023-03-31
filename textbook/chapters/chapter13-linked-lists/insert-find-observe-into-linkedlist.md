@@ -461,7 +461,7 @@ Before checking if the second node has a value greater than the value we want to
 When the value of the new node is less than the value of the first node in the linked list, we need to insert the new node at front.
 ```
 
-We can do this by checking if `current->data > value` before checking `current->next->data`. If `true`, we call `insertAtFront` function. The following code shows how we can handle the case when the value of the new node is less than the value of the first node in the linked list.
+We can do this by checking if `current->data > value` before checking `current->next->data`. If `true`, we call `insertAtFront` function. The following code shows how we can handle the case when the value of the new node is less than the value of the first node in the linked list. Download the following code {download}`insertIntoOrderedList.c <../../code/chapter13/insertIntoOrderedList/insertIntoOrderedList.c>` if you want to play with it. 
 
 **Code**
 ```{code-block} c 
@@ -502,6 +502,7 @@ bool insertIntoOrderedList(LinkedList *orderedList, int value) {
   return true;
 }
 ```
+
 
 ## Exercise: find a node in the linked list
 

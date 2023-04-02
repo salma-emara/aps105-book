@@ -18,8 +18,8 @@ void printList(LinkedList *list);
 int main(void) {
   LinkedList list;
   list.head = createNode(1);
-  (list.head)->next = createNode(2);
-  insertAtFront(&list, 0);
+  (list.head)->next = createNode(4);
+  insertAtFront(&list, 3);
   printList(&list);
   return 0;
 }

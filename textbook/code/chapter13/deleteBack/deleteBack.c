@@ -14,6 +14,9 @@ typedef struct list {
 Node *createNode(int value);
 bool insertAtBack(LinkedList *list, int value);
 void printList(LinkedList *list);
+void deleteBack(LinkedList *list);
+
+void deleteFront(LinkedList *list);
 
 int main(void) {
   LinkedList list;
@@ -21,7 +24,51 @@ int main(void) {
   (list.head)->next = createNode(2);
   insertAtBack(&list, 3);
   printList(&list);
+  deleteBack(&list);
+  printf("\nAfter deleting at end: ");
+  printList(&list);
   return 0;
+}
+
+void deleteBack(LinkedList *list) {
+  if (list->head == NULL) {
+    // The list is empty, there is nothing to delete.
+    return;
+  }
+
+  if (list->head->next == NULL) {
+    // There is only one node in this list.
+    deleteFront(list);
+
+    return;
+  }
+
+  Node *current = list->head;
+
+  // Traverse the list until we reach the second last element.
+  // Thanks to the previous if-statement, we know that list->head->next is
+  // non-NULL.
+  while (current->next->next != NULL) {
+    current = current->next;
+  }
+
+  // current now points to the second last element of the list.
+  free(current->next);   // Delete the last element of the list.
+  current->next = NULL;  // The second last element is now the last element.
+}
+
+void deleteFront(LinkedList *list) {
+  if (list->head == NULL) {
+    // The list is empty, there is nothing to delete.
+    return;
+  }
+
+  // Save the location of the node after head. Could be NULL, that's okay
+  Node *newHead = list->head->next;
+  // Free up the memory used by the current head.
+  free(list->head);
+  // Update the current head to the saved location.
+  list->head = newHead;
 }
 
 void printList(LinkedList *list) {

@@ -15,6 +15,7 @@ Node *createNode(int value);
 bool insertAtFront(LinkedList *list, int value);
 void printList(LinkedList *list);
 bool insertIntoOrderedList(LinkedList *orderedList, int value);
+Node *findFirstNode(LinkedList *list, int value);
 
 int main(void) {
   LinkedList list;
@@ -22,7 +23,28 @@ int main(void) {
   (list.head)->next = createNode(4);
   insertIntoOrderedList(&list, 3);
   printList(&list);
+    if(findFirstNode(&list, 3)!=NULL){
+        printf("\nFound node with data: %d!\n", findFirstNode(&list, 3)->data);
+    }
   return 0;
+}
+
+Node *findFirstNode(LinkedList *list, int value) {
+  Node *current = list->head;
+
+  while (current != NULL) {
+    if (current->data == value) {
+      // Found the node.
+      return current;
+    }
+
+    // Did not find the node.
+    // Move to the next element in the list.
+    current = current->next;
+  }
+
+  // Did not find the node in the entire list.
+  return NULL;
 }
 
 void printList(LinkedList *list) {
@@ -90,3 +112,4 @@ bool insertIntoOrderedList(LinkedList *orderedList, int value) {
 
   return true;
 }
+

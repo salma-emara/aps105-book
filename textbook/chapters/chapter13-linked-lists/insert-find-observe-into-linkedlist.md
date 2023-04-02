@@ -278,7 +278,7 @@ If we want to insert a node at the end of the linked list, we have to traverse t
 :align: center
 ```
 
-To implement the function that inserts a node at the end of the linked list, we can take `LinkedList *list` and `int value` as input, and return `bool`, while is `true` if the node with `data` equal `value` was inserted successfully, and `false` otherwise. In the function, we will traverse the linked list with a `Node*` pointer named `current` and stop when `current->next` is equal to `NULL`. This is when `current` reached the end of the list. Then, we can insert the new node at the next of `current`. The following figure shows how we can implement the function that inserts a node at the end of the linked list.
+To implement the function that inserts a node with `data = value` at the end of the linked list, we can take `LinkedList *list` and `int value` as input, and return `bool`, which is `true` if the node was inserted successfully, and `false` otherwise. In the function, we will traverse the linked list with a `Node*` pointer named `current` and stop when `current->next` is equal to `NULL`. This is when `current` reached the end of the list. Then, we can insert the new node at the next of `current`. The following figure shows how we can implement the function that inserts a node at the end of the linked list.
 
 **Missing a case: Code snippet**
 ```{figure} ./images/insertAtBack-func-1.png
@@ -320,11 +320,11 @@ In line $8$ to $12$, we handle the case if the list was empty. If the list was e
 
 ## Insert a node into an ordered linked list
 
-To implement the function that inserts a node into an ordered linked list, we can take `LinkedList *list` and `int value` as input, and return `bool`, while is `true` if the node with `data` equal `value` was inserted successfully, and `false` otherwise. 
+To implement the function that inserts a node with `data = value` into an ordered linked list, we can take `LinkedList *list` and `int value` as input, and return `bool`, which is `true` if the node with `data` equal `value` was inserted successfully, and `false` otherwise. 
 
-If we want to insert a node into an ordered linked list, we have to traverse the linked list till we find the node that has a value greater than the value of the new node. Then, we can insert the new node before that node. 
+We are given a list sorted in ascending order according to the value of `data`. If we want to insert a node into an ordered linked list, we have to traverse the linked list till we find the node that has `data` greater than the `data` of the new node. Then, we can insert the new node before that node. 
 
-In the function, we will traverse the linked list with a `Node*` pointer named `current`. We should stop at the node before inserting the new node. This is when `current->next->data` is greater than `value`. Then, we can insert the new node between `current` and `current->next`. We cannot stop `current` at the node with `data` > `value`, because we will lose access to the previous node after which we should insert our node. The following figure shows how we can traverse the linked list with the pointer `current` to stop at the node after which our new node will be inserted.
+In the function, we will traverse the linked list with a `Node*` pointer named `current`. We should stop at the node **before** inserting the new node. This is when `current->next->data` is greater than `value`. Then, we can insert the new node between `current` and `current->next`. We cannot stop `current` at the node with `data` > `value`, because we will lose access to the previous node after which we should insert our node. The following figure shows how we can traverse the linked list with the pointer `current` to stop at the node after which our new node will be inserted.
 
 ```{figure} ./images/insertIntoOrdered-current-location.png
 :alt: insertIntoOrderedList
@@ -334,7 +334,7 @@ In the function, we will traverse the linked list with a `Node*` pointer named `
 When traversing the linked list, we need to stop just before where we want to insert our node. The following figure shows where should we stop, when we insert a node between two nodes.
 ```
 
-When `current` is pointing to the node after which we will insert the node, we can now (i) link the next of new node to the next of `current`: `newNode->next = current -> next`, and (ii) link the next of current to the newNode: `current->next = newNode;`. Obviously, we need to first link the next of new node to the next of `current`, because we do not want to lose access to the node after current.
+When `current` is pointing to the node after which we will insert the **new** node, we can now (i) link the next of new node to the next of `current`: `newNode->next = current -> next`, and (ii) link the next of current to the newNode: `current->next = newNode;`. Obviously, we need to first link the next of new node to the next of `current`, because we do not want to lose access to the node after current.
 
 ```{figure} ./images/insertIntoOrderedList.png
 :alt: insertIntoOrderedList
@@ -397,7 +397,7 @@ bool insertIntoOrderedList(LinkedList *orderedList, int value) {
 ```
 
 
-**Special case 2: The value of the new node is greater than the value of the last node in the linked list.** We can handle this case by checking if `current->next` is `NULL`. If `current->next` is `NULL`, we just make `current->next` point to the new node. We need to create the node first and point to it by `newNode`, then make `current->next = newNode`. We return `true` is the node is successfully created, `false` otherwise. The following figure shows what we can do to insert the node at the tail of the linked list, when the value of the new node is greater than the value of the last node.
+**Special case 2: The value of the new node is greater than the value of the last node in the linked list.** This will make the present implementation in lines $9$ to $12$ loop till `current` points to the last node in the linked list. After that if we check the condition of the loop `current->next->data`, we get a segmentation fault since `current->next` is `NULL`. We can handle this case by checking if `current->next` is `NULL` before checking `current->next->data`. If `current->next` is `NULL`, we just make `current->next` point to the `newNode`: `current->next = newNode`. This is after creating the node first and point to it by `newNode`. We return `true` if the node is successfully created, `false` otherwise. The following figure shows what we can do to insert the node at the tail of the linked list, when the value of the new node is greater than the value of the last node.
 
 ```{figure} ./images/insertIntoOrder-last.png
 :alt: insertIntoOrderedList
@@ -443,15 +443,17 @@ bool insertIntoOrderedList(LinkedList *orderedList, int value) {
 }
 ```
 
-In line $8$, we check if `current->next != NULL` first, then only if `true`, `current->next->data < value` will be evaluated. Remember this is because in lazy evaluation if the first condition in an `&&` is `false`, the second condition will not be evaluated. This is because the whole expression will be `false` anyway. Hence, if `current->next == NULL`, we will exit the loop. 
+In line $8$, we check if `current->next != NULL` first, then only if `true`, `current->next->data < value` will be evaluated. Remember this is because in lazy evaluation if the first condition in an `&&` is `false`, the second condition will not be evaluated. This is because the whole expression will be `false` anyway. Hence, if `current->next == NULL`, we will exit the loop without checking `current->next->data < value`. 
 
-Before line $24$, `newNode->next` is set to `NULL`, and `current->next` will be `NULL` if we exited the while loop because `current->next == NULL`. Hence, in line $24$, when we do `newNode->next = current->next;` we are not doing harm, because `newNode->next` is already `NULL`. This line is mainly essential when we insert a node between two nodes, not when we insert at the tail of the linked list.
+Before line $24$, `newNode->next` is set to `NULL`, and `current->next` will be `NULL` if we exited the while loop because `current->next == NULL`. Hence, in line $24$, when we do `newNode->next = current->next;` we are not doing anything, since `newNode->next` is already `NULL`. This line is mainly essential when we insert a node between two nodes, not when we insert at the tail of the linked list.
 
 In line $25$, we set `current->next = newNode;` to link the last node in the linked list to the new node.
 
-**Special case 3: The value of the new node is less than the value of the first node in the linked list.** `current->next` can be `NULL` if we have only one node in the list. If the new node is to be inserted at the end of the list, then our previous special case covers that. However, if our new node is to be inserted before the first node, because `value` is smaller than the value of the first node, then our code does not cover that. Even if `current->next` is not `NULL`, our current code does not cover that insertion. 
+`current->next` can be `NULL` also if we have **only one** node in the list. If the `data` of the new node is larger than the data of the *only* node, we should insert the new node at the tail of the linked list. Our current implementation makes this happen. However, if the `data` of the new node is smaller than the data of the *only* node, we should insert the new node at the front of the linked list. Our current implementation does not handle this case. We will handle this case in special case 3.
 
-Before checking if the second node has a value greater than the value we want to insert using `current->next->data`, we need to check the first node value. If the value of the first node was larger than the value we want to insert, then we need to insert the new node at front. The following figure shows what we need to do to handle this case. 
+**Special case 3: The value of the new node is less than the value of the first node in the linked list.** If our new node is to be inserted before the first node, because `value` is smaller than the `data` of the first node, our code does not cover that. 
+
+Before checking if the second node has a value greater than the value we want to insert using `current->next->data`, we need to check the first node `data`. If the value of the first node was larger than the value we want to insert, then we need to insert the new node at front. The following figure shows what we need to do to handle this case. 
 
 ```{figure} ./images/insertIntoOrder-front.png
 :alt: insertIntoOrderedList-front
@@ -461,7 +463,7 @@ Before checking if the second node has a value greater than the value we want to
 When the value of the new node is less than the value of the first node in the linked list, we need to insert the new node at front.
 ```
 
-We can do this by checking if `current->data > value` before checking `current->next->data`. If `true`, we call `insertAtFront` function. The following code shows how we can handle the case when the value of the new node is less than the value of the first node in the linked list. Download the following code {download}`insertIntoOrderedList.c <../../code/chapter13/insertIntoOrderedList/insertIntoOrderedList.c>` if you want to play with it. 
+We can do this by checking if `current->data > value` before checking `current->next->data`. If `true`, we call `insertAtFront` function. The following code shows how we can handle the case when the value of the new node is less than the value of the first node in the linked list. Download the following code {download}`insertIntoOrderedList.c <../../code/chapter13/insertIntoOrderedList/insertIntoOrderedList.c>` if you want to play with the code. 
 
 **Code**
 ```{code-block} c 
@@ -504,8 +506,14 @@ bool insertIntoOrderedList(LinkedList *orderedList, int value) {
 ```
 
 
-## Exercise: find a node in the linked list
+## Exercise: Find a node in the linked list
 
-Let's practice finding a node with a particular value into an ordered linked list.
+Let's practice finding a node with a particular value into an ordered linked list. We need to implement a function that takes the value of the node we want to find, and returns a pointer to the node with that value. If the node is not found, we return `NULL`. We also need to pass a pointer to `LinkedList` as a parameter that has a pointer to the head of the linked list. 
 
-In-progress!
+The following figure shows the function we need to implement to find a node with a particular value in the linked list. Download {download}`findFirstNode.c <../../code/chapter13/findFirstNode/findFirstNode.c>` if you want to play with the code. 
+
+```{figure} ./images/findFirstNode-code.png
+:alt: findFirstNode
+:width: 600px
+:align: center
+```

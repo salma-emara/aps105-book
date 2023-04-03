@@ -15,7 +15,6 @@ Node *createNode(int value);
 bool insertAtBack(LinkedList *list, int value);
 void printList(LinkedList *list);
 void deleteBack(LinkedList *list);
-
 void deleteFront(LinkedList *list);
 
 int main(void) {
@@ -116,3 +115,4 @@ bool insertAtBack(LinkedList *list, int value) {
   current->next = temp;  // Add a new node to the end.
   return true;
 }
+

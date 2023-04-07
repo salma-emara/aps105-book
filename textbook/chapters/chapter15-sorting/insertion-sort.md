@@ -80,11 +80,13 @@ We write pseudocode for insertion sort as follows:
 6. In the next iteration, set `top` to `top + 1`, set `item` to `A[top]`, and `ind` to `top`.
 7. Repeat 3-6 until `top` is equal to `listLength`.
 
+## Implementation
 
 The following code snippet shows the insertion sort function.
 
 **Code**
 ```{code-block} c
+
 void printArray(int list[], int listLength) {
   for (int i = 0; i < listLength; i++) {
     printf("%d ", list[i]);
@@ -129,6 +131,4 @@ After iteration 3: 2 5 6 9 1 7
 After iteration 4: 1 2 5 6 9 7 
 After iteration 5: 1 2 5 6 7 9 
 1 2 5 6 7 9 
-</pre
-
-In-progress!
+</pre>

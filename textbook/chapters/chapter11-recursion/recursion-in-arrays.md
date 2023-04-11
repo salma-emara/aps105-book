@@ -11,6 +11,7 @@ A string is an array of characters. To think of a string recursively, think of a
 
 The recursive call would be the same function called on the smaller problem/string, and the base case is when you have the smallest possible string, which is a string of length 1, or when you observe the `'\0'` at the end of the string.  
 
+(isPalindrome-Recursively)=
 ## Exercise: Is a String a Palindrome? 
 
 Let's write a recursive function to determine if a string is a palindrome, which is a string that reads the same forwards as backwards. For example, `"radar"` is a palindrome, but `"hello"` is not since `"hello"` is not the same as `"olleh"`. 

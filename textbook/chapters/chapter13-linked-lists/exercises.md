@@ -16,7 +16,7 @@ typedef struct node {
 Node *search(Node *head, int key) {
   Node *current = head;
   // insert your code in the line below between the parentheses
-  while (                         ) {
+  while (                                          ) {
     current = current->link;
   }
 
@@ -67,7 +67,7 @@ Node *predecessor(Node *head, Node *searchNode) {
   current = head;
   if (head == searchNode) return NULL;
   // COMPLETE THE NEXT LINE:
-  while () {
+  while (                                          ) {
     if (current->link == searchNode) return current;
     // WRITE CODE HERE:
   }

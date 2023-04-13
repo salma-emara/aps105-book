@@ -33,6 +33,16 @@ Hence, the binary tree in {numref}`binary-tree` can be represented as follows:
 :align: center
 ```
 
+Just like linked lists, where we had a `head` pointer pointing towards the first node in the linked list, we must have a `root` pointer that always points at the top of the binary tree. `LinkedList` data structure held the value of the `head` pointer in linked lists. Similarly, we will use a `BSTree` data structure to hold the value of the `root` pointer in binary trees, as shown below:
+
+```{code-block} c 
+typedef struct bstree {
+    Node *root;
+} BSTree;
+```
+
+## What is a binary search tree?
+
 What is special about the above binary tree? It is ordered in such a way that the left child of every node is always smaller than the node, and the right child of a node is always larger than the node. This is the same property that for subtrees too. All nodes in a left subtree are smaller than the parent node, and all nodes in a right subtree are larger than the parent node. This is called a **binary search tree**.
 
 ## Why do we need a binary search tree?

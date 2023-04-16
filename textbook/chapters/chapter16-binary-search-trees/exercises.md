@@ -37,6 +37,55 @@ How many different ways can the elements `{3, 4, 5, 6, 7}` be inserted into a bi
 5, 7, 6, 3, 4
 ````
 
+**Question 10 in Winter 2018 Final Exam[Easy]**
+
+Identify and correct all errors you find in the C program below. Each line may or may not contain errors, and there may be more than one error per line.
+
+```{code-block} c
+:linenos:
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct node {
+  int data;
+  struct node *left, right;
+} Node;
+Node *insert(Node *root, int item) {
+  if (root == NULL) {
+  }
+  return newNode(item);
+}
+if (item <= (*root).data) insert(root->left, item) return root;
+int main(void) {
+  int list[] = {15, 3, 2};
+  Node *root = NULL;
+  for (int i = 0; i < 13; i++) {
+  }
+  return 0;
+}
+```
+
+| Line   |    Description of error   | Correction   |
+| -------------- | ----------- | ----------- |
+|    |          |          |
+|    |          |          |
+|    |          |          |
+|    |          |          |
+|    |          |          |
+|    |          |          |
+|    |          |          |
+
+````{admonition} Answer
+:class: dropdown
+
+| Line   |    Description of error   | Correction   |
+| -------------- | ----------- | ----------- |
+|  5  | missing * before right | Add * before right |
+|  9  | newNode() not defined  | Define the newNode() function |
+|  12 |   missing ;       |    Add ;      |
+````
+
+
+
 **Question 10 in Winter 2019 Final Exam[Challenging]**
 
 Consider the binary search tree below:

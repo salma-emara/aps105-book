@@ -254,15 +254,31 @@ bool checkPlagiarism(char *code1, char *code2) {
     }
     if (*code1 != *code2) {
       return false;
-    } else {
+    } else if (*code1 != '\0' &&
+               *code2 != '\0') {  // we don't want to add if any is '\0'
       code1++;
       code2++;
     }
   }
-  if (*code1 != *code2) {
-    return false;
-  }else {
+  // exit when *code1 is '\0' and/or *code2 is '\0'
+  if (*code1 == *code2) {  // if both are '\0'
     return true;
+  } else {  // both are not '\0', make sure rest of what is not '\0' is spaces
+            // or endlines
+    char *checker;
+    if (*code1 != '\0') {
+      checker = code1;
+    } else {
+      checker = code2;
+    }
+    while (*checker != '\0' && (*checker == ' ' || *checker == '\n')) {
+      checker++;
+    }
+    if (*checker == '\0') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 ```

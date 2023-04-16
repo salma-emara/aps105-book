@@ -259,7 +259,11 @@ bool checkPlagiarism(char *code1, char *code2) {
       code2++;
     }
   }
-  return true;
+  if (*code1 != *code2) {
+    return false;
+  }else {
+    return true;
+  }
 }
 ```
 ````

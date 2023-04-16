@@ -122,7 +122,7 @@ The following figure shows the order of function calls when `printHelper` functi
 
 ## Search for a node with a given value
 
-### Iteratively
+
 
 Searching for a node in a binary search tree is easier
 than printing nodes, because printing nodes requires us to traverse the entire tree, while searching for a node requires us to traverse only a part of the tree as we will show now.
@@ -145,9 +145,11 @@ However, if we were looking for `9` in the tree, we have to go to the right of `
 
 In summary, we can start from the root, and compare the value of the root with the value we are looking for. If the value of the root is smaller than the value we are looking for, we can search for the value in the right subtree. If the value of the root is larger than the value we are looking for, we can search for the value in the left subtree. If the value of the root is equal to the value we are looking for, we have found the node we are looking for. If we reach a `NULL` node, we can conclude that the value we are looking for is not found.
 
-Since we are only traversing one branch of the tree, we only need to keep track of one node at a time. Therefore, we can use a non-recursive function to search for a node with a given value. 
+### Iteratively
 
-We can use the following function `search` to search for a node with a given value.
+Since we are only traversing one branch of the tree, we only need to keep track of one node at a time. Therefore, we can use a non-recursive function to search for a node with a given value.
+
+We can use the following function `search` to search for a node with a given value. The following function receives a pointer `tree` to the binary search tree data structure, and a value `value` to search for. The function returns a pointer to the node with the given value, or `NULL` if the value is not found.
 
 **Code**
 ```{code-block} c
@@ -172,11 +174,13 @@ Node *search(BSTree *tree, int value) {
 }
 ```
 
-Line $4$ is the condition for the loop to keep iterating. As long as we have not reached a `NULL` node, and the value of the current node is not equal to the value we are looking for, we keep iterating. Otherwise, we exit the loop. When we exit the loop, either `current` is pointing to the node we are looking for, or `current` is `NULL` if the value is not found.
+Line $4$ is the condition for the loop to keep iterating. Of course, we need to keep traversing a branch of the tree if we have not found the value yet, hence we should keep iterating as long as `current->data` is not `value`. However, it will cause a segmentation fault if we try to access `current->data` when `current` is `NULL`. Therefore, we also need to check that `current` is not `NULL`. Checking for `current != NULL` should be before checking for `current->data != value`, because if `current` is `NULL`, we cannot access `current->data`. Hence, the condition for the loop to keep iterating is `current != NULL && current->data != value`. Recall that lazy evaluation is used in C, hence the second condition will not be evaluated if the first condition is `false`. 
+
+When we exit the loop, either `current` is pointing to the node we are looking for, or `current` is `NULL` if the value is not found. Hence, we can return `current` as the result of the function.
 
 ### Recursively
 
-We can also write a recursive function to search for a node with a given value. The following function `searchRecursiveHelper` is a helper function that receives a pointer `n` to the current node, and a value `value` to search for. The function returns a pointer to the node that was found, or `NULL` if the node was not found.
+We can also write a recursive function to search for a node with a given value. The following function `searchRecursiveHelper` is a helper function that receives a pointer `n` to the current node, and a `value` to search for. The function returns a pointer to the node that was found, or `NULL` if the node was not found.
 
 **Code**
 ```{code-block} c
@@ -206,7 +210,9 @@ Node *searchRecursiveHelper(Node *n, int value) {
 }
 ```
 
-Lines $15$ - $21$ look into the `data` of node `n` and decide which subtree to explore. If `value < n->data` is `true`, we explore the left subtree. Otherwise, we explore the right subtree.
+Lines $15$ - $21$ look into the `data` of node `n` and decide which subtree to explore. If `value < n->data` is `true`, we explore the left subtree and call `searchRecursiveHelper(n->left, value)`. Otherwise, we explore the right subtree and call `searchRecursiveHelper(n->right, value)`.
+
+The recursive calls continue until we reach a `NULL` node, or we find the node we are looking for. These are our terminating conditions or base cases.
 
 Lines $2$ - $5$ and $7$ - $10$ are the base cases. If `n` is `NULL`, we have reached a `NULL` node, and we can conclude that the value we are looking for is not found. If the value of `n` is equal to the value we are looking for, we have found the node we are looking for. In both cases, we return `n`.
 
@@ -222,4 +228,171 @@ Node *searchRecursive(BSTree *tree, int value) {
 
 ## Inserting a node with a given value
 
-In-progress!
+Inserting a node with a given value is a similar to searching for a node with a given value. For example, given the following binary search tree, we want to insert a node with value `9`. 
+
+1. We have to start from the root, and compare the value of the root, which is `8` and `9`. 
+2. Since `9` is larger than `8`, we can insert the node in the right subtree. 
+3. Looking at the right node of `8`, we see that its value is `11`, which is larger than `9`. Hence, we can insert the node in the left subtree of `11`. 
+4. Looking at the left node of `11`, we see that it is `10`, hence we can insert the node in the left subtree of `10`.
+5. Looking at the left node of `10`, we see that it is `NULL`, hence we can insert the node in the left subtree of `NULL`.
+
+```{figure} ./images/insert-9.png
+:alt: insert-9
+:width: 600px
+:align: center
+```
+
+We can only insert a node at an empty place in the tree. Therefore, we need to traverse the tree until we reach a `NULL` node. It can be a leaf node or a node 
+with only one child.
+
+
+### Iteratively
+
+We can use the following function `insert` to insert a node with a given value. The following function receives a pointer `tree` to the binary search tree data structure, and a value `value` to insert. The function returns a `bool` value, which is `true` if the node that was inserted, or `false` if the node was not inserted.
+
+Similar to the `search` function, we can have a `current` pointer that points to the current node. We can stop traversing the node when `current` is `NULL`, which is where the node should be inserted. However, we need a pointer to the parent node to point its `right` or `left` to the new node inserted. This is why we additionally need a `parent` pointer that points to the parent of the `current` node.
+
+We start at the root node, and traverse the tree using `current` and `parent` until `current` reaches a `NULL` node. At each iteration, we update the `current` and `parent` pointers. `current` moves to the left or right subtree depending on the value of `value`. `parent` is always the parent of `current`.
+
+When we exit the loop, `current` is `NULL`, and `parent` is the parent of the node we want to insert. We can insert the node in the left or right subtree of `parent` depending on the value of `value`.
+
+**Draft Code**
+```{code-block} c
+bool insert(BSTree *tree, int value) {
+  // The tree is not empty.
+  Node *current = tree->root;  // The current subtree.
+  Node *parent = NULL;         // the root node has no parent.
+
+  while (current != NULL) {
+    parent = current;
+
+    if (value <= current->data) {
+      // The new node should go to the left of the current subtree.
+      current = current->left;
+    } else {
+      // The new node should go to the right of the current subtree.
+      current = current->right;
+    }
+  }
+
+  // At this point, current is NULL.
+  // But also, we know that we need to insert to the right/left of parent.
+
+  if (value < parent->data) {
+    // The new node should go to the left of the parent.
+    parent->left = createNode(value);
+
+    return parent->left != NULL;
+  } else {
+    // The new node should go to the right of the parent.
+    parent->right = createNode(value);
+
+    return parent->right != NULL;
+  }
+}
+```
+
+The special case of this function is if the tree is empty. In this case, we can simply create a new node and assign it to the root of the tree. We tackle this case in the following function `insert` from lines $1$ - $5$.
+
+**Code**
+```{code-block} c
+:linenos:
+:emphasize-lines: 2 - 6
+bool insert(BSTree *tree, int value) {
+  if (tree->root == NULL) {
+    // The tree is empty, add its first node.
+    tree->root = createNode(value);
+    return tree->root != NULL;
+  }
+
+  // The tree is not empty.
+  Node *current = tree->root;  // The current subtree.
+  Node *parent = NULL;         // the root node has no parent.
+
+  while (current != NULL) {
+    parent = current;
+
+    if (value <= current->data) {
+      // The new node should go to the left of the current subtree.
+      current = current->left;
+    } else {
+      // The new node should go to the right of the current subtree.
+      current = current->right;
+    }
+  }
+
+  // At this point, current is NULL.
+  // But also, we know that we need to insert to the right/left of parent.
+
+  if (value <= parent->data) {
+    // The new node should go to the left of the parent.
+    parent->left = createNode(value);
+
+    return parent->left != NULL;
+  } else {
+    // The new node should go to the right of the parent.
+    parent->right = createNode(value);
+
+    return parent->right != NULL;
+  }
+}
+```
+
+```{admonition} Note
+:class: note
+We are making an assumption that before calling `insert`, we have checked that the value we are inserting is not already in the tree. If the value is already in the tree, we should not insert it again.
+```
+
+### Recursively
+
+We can also implement the `insert` function recursively. The following function `insertRecursiveHelper` receives a pointer `n` to the current node, and a value `value` to insert. The function returns a pointer to the root node.
+
+We can use the same logic as the iterative function. We start at the root node, and recursively traverse the right or left subtree depending on the value of the node `n` and `value` we want to insert until we reach a `NULL` node. Our recursive call updates the `n` pointer: `n` moves to the left or right child depending on the value of `value`.
+
+At some point in time, we find `n` is `NULL`. This is when we exit the recursion and create the node. We return the pointer to the node that we created. This pointer is then assigned to the `left` or `right` pointer of the parent node.
+
+The following code implements the insert function recursively. To help understand the function, we trace the execution of the function for the following tree in {numref}`insert-recursive-trace`.
+
+**Code**
+```{code-block} c
+Node *insertRecursiveHelper(Node *n, int value) {
+  if (n == NULL) {
+    // We have reached an empty spot in the tree, create the node.
+    return createNode(value);  // Base case.
+  }
+
+  if (value < n->data) {
+    // The new node should go to the left of the current subtree.
+    n->left = insertRecursiveHelper(n->left, value);  // Recursive call.
+  } else {
+    // The new node should go to the right of the parent.
+    n->right = insertRecursiveHelper(n->right, value);  // Recursive call.
+  }
+
+  return n;
+}
+```
+
+```{figure} ./images/insert-recursive-trace.png
+:alt: insert-recursive-trace
+:width: 1000px
+:align: center
+:name: insert-recursive-trace
+
+Trace of the execution of the `insertRecursiveHelper` function.
+```
+
+The following `insertRecursive` function is a wrapper function that calls `insertRecursiveHelper` and updates the `tree->root` of the tree if `insertRecursiveHelper` returns a pointer to the a new root. There is a new root when the `root` of the tree was pointing to `NULL`, and the new node is inserted at the `root`. The function returns `true` if the node was inserted successfully, and `false` otherwise.
+
+**Code**
+```{code-block} c
+bool insertRecursive(BSTree *tree, int value) {
+  // Start at the root and recursively traverse the tree.
+  Node *inserted = insertRecursiveHelper(tree->root, value);
+
+  // The root of the tree may have been updated.
+  tree->root = inserted;
+
+  return inserted != NULL;
+}
+```

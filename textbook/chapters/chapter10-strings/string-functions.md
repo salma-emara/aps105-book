@@ -470,13 +470,13 @@ Enter two strings separated by new line or white space: <b>dog dig</b>
 
 ### strncmp
 
-The function `strncmp` compares the first `n` characters of two strings. The function prototype is as follows:
+The function `strncmp` compares at most the first `n` characters of two strings. The function prototype is as follows:
 
 ```{code-block} c
 int strncmp(const char *s1, const char *s2, size_t n);
 ```
 
-The function compares the first `n` characters of the two strings `s1` and `s2`, looking at their lexicographic order, which is the order of their appearance in the dictionary. Similar to `strcmp`, the function returns an integer that is less than zero, equal to zero, or greater than zero if `s1` is found before, identical to, or after `s2` in the dictionary, respectively. 
+The function compares at most the first `n` characters of the two strings `s1` and `s2`, looking at their lexicographic order, which is the order of their appearance in the dictionary. The comparison stops when characters are not matching or when a null character `\0` is encountered or after comparing `n` characters. Similar to `strcmp`, the function returns an integer that is less than zero, equal to zero, or greater than zero if `s1` is found before, identical to, or after `s2` in the dictionary, respectively. 
 
 The following program demonstrates the use of `strncmp`:
 

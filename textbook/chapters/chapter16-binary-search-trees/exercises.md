@@ -29,11 +29,17 @@ How many different ways can the elements `{3, 4, 5, 6, 7}` be inserted into a bi
 ````{admonition} Answer
 :class: dropdown
 6 ways:
+
 5, 3, 4, 7, 6
+
 5, 3, 7, 4, 6
+
 5, 3, 7, 6, 6
+
 5, 7, 3, 4, 6
+
 5, 7, 3, 6, 4
+
 5, 7, 6, 3, 4
 ````
 

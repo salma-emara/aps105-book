@@ -266,7 +266,7 @@ bool insert(BSTree *tree, int value) {
   while (current != NULL) {
     parent = current;
 
-    if (value <= current->data) {
+    if (value < current->data) {
       // The new node should go to the left of the current subtree.
       current = current->left;
     } else {
@@ -312,7 +312,7 @@ bool insert(BSTree *tree, int value) {
   while (current != NULL) {
     parent = current;
 
-    if (value <= current->data) {
+    if (value < current->data) {
       // The new node should go to the left of the current subtree.
       current = current->left;
     } else {
@@ -324,7 +324,7 @@ bool insert(BSTree *tree, int value) {
   // At this point, current is NULL.
   // But also, we know that we need to insert to the right/left of parent.
 
-  if (value <= parent->data) {
+  if (value < parent->data) {
     // The new node should go to the left of the parent.
     parent->left = createNode(value);
 

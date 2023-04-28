@@ -10,7 +10,7 @@ There are problems that have a solution defined recursively. For example, the Eu
 Hence, the algorithm is as follows:
 
 1. If `a > b`, then the greatest common divisor (GCD) of `a` and `b` is the GCD of `a - b` and `a`.
-2. If `a` and `b` are equal, then the greatest common divisor of `a` and `b` is `a`.
+2. If `a` and `b` are equal, then the greatest common divisor of `a` and `b` is `a` (or `b`).
 
 Mathematically, the Euclidean algorithm is defined as follows:
 

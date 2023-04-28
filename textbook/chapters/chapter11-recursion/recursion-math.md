@@ -5,11 +5,11 @@ Recursion is a method of solving a problem that requires first solving smaller i
 
 ## Euclidean Algorithm for Fining Greatest Common Divisor
 
-There are problems that have a solution defined recursively. For example, the Euclidean algorithm for finding the greatest common divisor (GCD) of two numbers is defined recursively. The Euclidean algorithm is a method for finding the greatest common divisor of two numbers. The algorithm is based on the following observation: if `a` and `b` are two positive integers, then the greatest common divisor of `a` and `b` is the same as the greatest common divisor of `b` and `b - a`. 
+There are problems that have a solution defined recursively. For example, the Euclidean algorithm for finding the greatest common divisor (GCD) of two numbers is defined recursively. The Euclidean algorithm is a method for finding the greatest common divisor of two numbers. The algorithm is based on the following observation: if `a` and `b` are two positive integers, then the greatest common divisor of `a` and `b` is the same as the greatest common divisor of `a` and `a - b`, if `a > b`. 
 
 Hence, the algorithm is as follows:
 
-1. If `a > b`, then the greatest common divisor (GCD) of `a` and `b` is the GCD of `b - a` and `a`.
+1. If `a > b`, then the greatest common divisor (GCD) of `a` and `b` is the GCD of `a - b` and `a`.
 2. If `a` and `b` are equal, then the greatest common divisor of `a` and `b` is `a`.
 
 Mathematically, the Euclidean algorithm is defined as follows:

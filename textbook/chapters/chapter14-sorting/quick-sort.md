@@ -135,7 +135,7 @@ The second function is the quicksort function, which takes in the sub-array, wit
 
 ## Implementation
 
-The following code snippet shows the implementation of partition and quicksort sort functions. Download {download}`quicksort.c <../../code/chapter15/quicksort/quicksort.c>` if you want to play with the code.
+The following code snippet shows the implementation of partition and quicksort sort functions. Download {download}`quicksort.c <../../code/chapter14/quicksort/quicksort.c>` if you want to play with the code.
 
 **Code**
 ```{code-block} c

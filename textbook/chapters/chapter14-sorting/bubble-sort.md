@@ -46,7 +46,7 @@ We write pseudocode for bubble sort as follows:
 
 ## Implementation
 
-We implement bubbble sort as follows. In lines $1$ to $5$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`bubble-sort.c <../../code/chapter15/bubble-sort/bubble-sort.c>` if you want to play with the code.
+We implement bubbble sort as follows. In lines $1$ to $5$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`bubble-sort.c <../../code/chapter14/bubble-sort/bubble-sort.c>` if you want to play with the code.
 
 **Code**
 ```{code-block} c

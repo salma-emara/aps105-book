@@ -12,14 +12,6 @@ sphinx:
     # Specifying the language can improve accessibility in screen readers
     # and translators
     language: en
-    recommonmark_config:
-      # Enable raw HTML in Markdown
-      enable_auto_doc_ref: False
-      enable_auto_toc_tree: False
-      enable_math: False
-      enable_inline_math: False
-      url_resolver: None
-
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -64,10 +56,15 @@ parse:
     video_embed: '<div class="container16x9"><iframe src="https://www.youtube.com/embed/%%VID%%" class="responsive-iframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
     # The quiz_embed substitution below is essentially a macro to avoid 
     # repeating the quiz embed
-    quiz_embed: '<form id="quiz"> 
-    <input type="radio" id="choice1" name="quiz" value="%%CHOICE1%%"> <label for="choice1">1</label><br>
-    <input type="radio" id="choice2" name="quiz" value="%%CHOICE2%%">
-    <label for="choice2">2</label><br>
-    <input type="radio" id="choice3" name="quiz" value="%%CHOICE3%%">
-    <label for="choice3">3</label><br>
-    <input type="submit" value="Submit"></form> <script src="../../_static/app.js"></script>'
+    quiz_embed:
+      #<script src = "../../../../../node_modules/toml/lib/parser.js"></script>
+      <script src="https://unpkg.com/toml@3.3.0/dist/toml.min.js"></script>
+
+      <script src = "../../_static/toml_parser.js"></script>
+      <form id = "quizForm">
+        <h2 id = "question"></h2>
+        <div id = "choices"></div>
+        <script> parse_and_generate_form("%%FILENAME%%") </script>
+        <button type = "submit" onclick = "handle_submission()">Submit</button>
+        <p id = "message"> </p>
+      </form>

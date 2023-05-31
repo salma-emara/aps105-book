@@ -57,7 +57,7 @@ parse:
     # The quiz_embed substitution below is essentially a macro to avoid 
     # repeating the quiz embed
     quiz_embed:
-      #<script src = "../../../../../node_modules/toml/lib/parser.js"></script>
+      <script src = "../../../../../node_modules/toml/lib/parser.js"></script>
       <script src="https://unpkg.com/toml@3.3.0/dist/toml.min.js"></script>
 
       <script src = "../../_static/toml_parser.js"></script>

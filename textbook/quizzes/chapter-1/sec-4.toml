@@ -76,7 +76,8 @@ distractors = [
 
 explainations = [
 """
-There are 3 errors. Error 1: Missing ampersand before num in scanf:
+There are 3 errors. 
+Error 1: Missing ampersand before num in scanf:
 The scanf function requires the address of the variable where the input should be stored. However, in this code, the ampersand (`&`) is missing before num in the scanf statement. To fix this error, you should use `scanf("%d", &num);`.
 
 Error 2: Redundant ampersand before num in the second printf:
@@ -86,7 +87,8 @@ Error 3: Missing semicolon at the end of the line:
 At the end of the `return 0` line, there is a missing semicolon (`;`). In C, a semicolon is used to terminate a statement. To fix this error, you should add a semicolon at the end of the line, like this: `return 0;`.
 """,
 """
-There are 3 errors. Error 1: Missing ampersand before num in scanf:
+There are 3 errors. 
+Error 1: Missing ampersand before num in scanf:
 The scanf function requires the address of the variable where the input should be stored. However, in this code, the ampersand (`&`) is missing before num in the scanf statement. To fix this error, you should use `scanf("%d", &num);`.
 
 Error 2: Redundant ampersand before num in the second printf:
@@ -96,7 +98,8 @@ Error 3: Missing semicolon at the end of the line:
 At the end of the `return 0` line, there is a missing semicolon (`;`). In C, a semicolon is used to terminate a statement. To fix this error, you should add a semicolon at the end of the line, like this: `return 0;`.
 """,
 """
-There are 3 errors. Error 1: Missing ampersand before num in scanf:
+There are 3 errors. 
+Error 1: Missing ampersand before num in scanf:
 The scanf function requires the address of the variable where the input should be stored. However, in this code, the ampersand (`&`) is missing before num in the scanf statement. To fix this error, you should use `scanf("%d", &num);`.
 
 Error 2: Redundant ampersand before num in the second printf:
@@ -106,7 +109,8 @@ Error 3: Missing semicolon at the end of the line:
 At the end of the `return 0` line, there is a missing semicolon (`;`). In C, a semicolon is used to terminate a statement. To fix this error, you should add a semicolon at the end of the line, like this: `return 0;`.
 """,
 """
-There are 3 errors. Error 1: Missing ampersand before num in scanf:
+There are 3 errors. 
+Error 1: Missing ampersand before num in scanf:
 The scanf function requires the address of the variable where the input should be stored. However, in this code, the ampersand (`&`) is missing before num in the scanf statement. To fix this error, you should use `scanf("%d", &num);`.
 
 Error 2: Redundant ampersand before num in the second printf:
@@ -152,7 +156,7 @@ printf("%d%d\\tab\\%d%d\n", num);
 
 explainations = [
     "A) is correct. For \'%\' to be printed, you need to use \'%%\'; for \'\\' to be printed you need to use \'\\\\\'. There are two decimal numbers to be printed, so you need to use two \'%d\'s and follow the format specifier with the two variables separately, even though they are the same.",
-    "B) is wrong. It should use \'%%\' to print \'%\'. Here the first two \'%d\'s will be replaced by the two numbers, and the last two \'%d\'s will be replaced by garbage values.",
-    "C) is wrong. It should use two \'%d\'s to print the two numbers. The last \'%d\' will be replaced by a garbage value.",
-    "D) is wrong. It should use \'%%\' to print \'%\'. Here the first \'%d\' will be replaced by the number, and the rest will be replaced by garbage values."
+    "B) is incorrect. It should use \'%%\' to print \'%\'. Here the first two \'%d\'s will be replaced by the two numbers, and the last two \'%d\'s will be replaced by garbage values.",
+    "C) is incorrect. It should use two \'%d\'s to print the two numbers. The last \'%d\' will be replaced by a garbage value.",
+    "D) is incorrect. It should use \'%%\' to print \'%\'. Here the first \'%d\' will be replaced by the number, and the rest will be replaced by garbage values."
 ]

@@ -12,7 +12,7 @@ define(['toml'], function () {
         fetch(filePath)
             .then(response => response.text())
             .then(fileContent => {
-                parsedObject = toml.parse(fileContent);
+                const parsedObject = toml.parse(fileContent);
 
 
                 // Access the data from the parsed object

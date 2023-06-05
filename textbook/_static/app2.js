@@ -1,4 +1,4 @@
-
+require(['config'] , function() {
 define(['toml'], function (toml) {
     //const fs = require('fs');
 
@@ -80,4 +80,5 @@ define(['toml'], function (toml) {
             }
             );
     }
+});
 });

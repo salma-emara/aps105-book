@@ -21,7 +21,6 @@ define(['toml'], function (toml) {
                 // Access the data from the parsed object
                 const question = parsedObject.question;
                 const choices = parsedObject.choices;
-                const answer = parsedObject.answer;
                 const hint = parsedObject.hint;
 
 
@@ -58,7 +57,8 @@ define(['toml'], function (toml) {
                 //console.log(fileContent);
 
 
-                function hande_submission() {
+                function handle_submission() {
+                    const answer = parsedObject.answer;
                     const selectedChoice = document.querySelector("input[name='choice']:checked");
 
 

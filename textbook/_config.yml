@@ -76,6 +76,6 @@ parse:
           <h2 id = "question"></h2>
           <div id = "choices"></div>
           <script> parse_and_generate_form("%%FILENAME%%") </script>
-          <button type = "submit" onclick = "handle_submission();">Submit</button>
+          <button type = "button" onclick = "handle_submission();">Submit</button>
           <p id = "message"> </p>
         </form>

@@ -1,4 +1,4 @@
-[question-0]
+[[questions]]
 
 prompt = "Which of below is/are reasonable? (Type candidates: `int`, `double`, `const int`, `const double`)"
 
@@ -14,7 +14,7 @@ explainations = [
 ]
 
 
-[question-1]
+[[questions]]
 
 prompt = """
 Jade is writing a program to convert a temperature in Celsius to Fahrenheit (If input 26.7, it should output 80.06). She has written the following code. How many the errors in the code?
@@ -34,7 +34,7 @@ int main(void) {
     fahrenheit = (celsius * 9 / 5) + 32;
 
     // Display output
-    printf("The temperature in Fahrenheit is: %.2lf\n", fahrenheit);
+    printf("The temperature in Fahrenheit is: %.2lf\\n", fahrenheit);
 
     return 0;
 }

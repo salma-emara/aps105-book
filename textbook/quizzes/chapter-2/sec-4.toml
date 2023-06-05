@@ -1,4 +1,4 @@
-[question-0]
+[[questions]]
 
 prompt = "What does the math library in C can do?"
 
@@ -18,7 +18,7 @@ explainations = [
     "D is correct. `fabs()` is a function in the math library that returns the absolute value of a number."
 ]
 
-[question-1]
+[[questions]]
 
 prompt = "Jade wants to design a program to automatically calculate how many coins at least she needs to pay for a certain amount of money. The coins can be used include nickel (5 cents), dime (10 cents), quarter (25 cents), loonie (1 dollar). Which of the following code snippets in the math library can help her? (Assume the variable `amount` is of double type, and its unit is dollar.)"
 

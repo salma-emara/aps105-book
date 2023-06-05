@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "toml": "^3.0.0"
+    "@iarna/toml": "^2.2.5",
+    "toml": "^3.0.0",
+    "toml-js": "^0.0.8"
   }
 }

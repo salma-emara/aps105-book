@@ -5,7 +5,7 @@ let parsedObject;
 
 function parse_and_generate_form(fileName) {
     // Read the TOML file
-    const filePath = "https://raw.githubusercontent.com/salma-emara/aps105-book/quizzes/quiz/quiz1.toml";
+    const filePath = "https://raw.githubusercontent.com/salma-emara/aps105-book/quizzes/quiz/" + fileName + ".toml";
     //const tomlString = fs.readFileSync(filePath, 'utf8');
 
     fetch(filePath)
@@ -19,7 +19,7 @@ function parse_and_generate_form(fileName) {
         });
 
     // Parse the TOML string
-    //const parsedObject = toml.parse(tomlString);
+    //const parsedObject = toml.parse(tomlSting);
 
     // Access the data from the parsed object
     const question = parsedObject.question;
@@ -70,3 +70,4 @@ function hande_submission() {
         document.getElementById("message").innerHTML = "please make a selection";
     }
 }
+

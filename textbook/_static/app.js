@@ -1,27 +1,27 @@
+function startQuiz() {
+    var fullscreenForm = document.getElementById("fullscreen-form");
+    fullscreenForm.classList.add("active");
+}
 
 
-//const toml = require('toml');
-//const fs = require('fs');
+
+function closeFullscreenForm() {
+    var fullscreenForm = document.getElementById("fullscreen-form");
+    fullscreenForm.classList.remove("active");
+    fullscreenForm.classList.add("mini");
+
+    var closeButton = document.getElementById("close-button");
+    closeButton.classList.add("hidden");
+
+    var startButton = document.getElementById("start-button");
+    startButton.classList.add("hidden");
+}
 
 
 
 function parse_and_generate_form(fileName) {
-    // Read the TOML file
-    //const filePath = "https://raw.githubusercontent.com/salma-emara/aps105-book/quizzes/quiz/" + fileName + ".toml";
-    //const tomlString = fs.readFileSync(filePath, 'utf8');
-
-
-    //fetch(filePath)
-    //.then(response => response.text())
-    //.then(fileContent => {
-    //  const parsedObject = toml.parse(fileContent);
-
-
-    // Access the data from the parsed object
     const question = parsedObject.question;
     const choices = parsedObject.choices;
-
-
 
     //generate the quiz form in HTML
     const form = document.getElementById("quizForm");
@@ -32,9 +32,7 @@ function parse_and_generate_form(fileName) {
     // Create a radio button choices
     for (let i = 0; i < choices.length; i++) {
 
-
         const choice = choices[i];
-
 
         //create radio buttons
         const radioButton = document.createElement("input");
@@ -42,11 +40,9 @@ function parse_and_generate_form(fileName) {
         radioButton.name = "choice";
         radioButton.value = choice;
 
-
         //add labels
         const label = document.createElement("label");
         label.textContent = choice;
-
 
         //append the buttons to Choices element
         choicesElement.appendChild(radioButton);
@@ -54,7 +50,6 @@ function parse_and_generate_form(fileName) {
         choicesElement.appendChild(document.createElement("br"));
     }
 }
-//console.log(fileContent);
 
 
 function handle_submission() {
@@ -75,9 +70,3 @@ function handle_submission() {
         document.getElementById("message").innerHTML = "please make a selection";
     }
 }
-
-       // .catch (error => {
- //   console.error('Error:', error);
-//}
-  //      );
-//}

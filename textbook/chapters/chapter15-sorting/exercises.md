@@ -229,38 +229,5 @@ void bubbleSortLinkedList(LinkedList *list) {
 ````
 
 
-python
-from ipywidgets import widgets
-from IPython.display import display, Markdown
-
-question = widgets.HTML(
-   value="<b>What is the first alphabet?</b>"
-)
-
-option_a = "A"
-option_b = "B"
-option_c = "C"
-
-options = [option_a, option_b, option_c]
-
-option_buttons = widgets.RadioButtons(
-   options=options,
-   description="Options:",
-   value=None
-)
-
-submit_button = widgets.Button(description="Submit")
-
-display(question, option_buttons, submit_button)
-
-def check_answer(button):
-    if option_buttons.value == "A":
-        display(Markdown("✅ Correct!"))
-    else:
-        display(Markdown("❌ Incorrect."))
-
-submit_button.on_click(check_answer)
-
-
 
 

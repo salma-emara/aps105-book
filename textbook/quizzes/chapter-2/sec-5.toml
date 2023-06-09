@@ -5,31 +5,31 @@ prompt = "Which of the following can get different numbers every time run it?"
 answer = [2]
 
 distractors = [
-"""
+'''
 int a = rand();
 int b = rand();
 int c = rand();
-""",
-"""
+''',
+'''
 srand(1);
 int a = rand();
 int b = rand();
 int c = rand();
-""",
-"""
+''',
+'''
 srand(time(NULL));
 int a = rand();
 int b = rand();
 int c = rand();
-""",
-"""
+''',
+'''
 srand(rand());
 int a = rand();
 srand(rand());
 int b = rand();
 srand(rand());
 int c = rand();
-"""
+'''
 ]
 
 explainations = [
@@ -46,34 +46,34 @@ prompt = "Which of the following can generate a random number (precision up to t
 answer = [1, 3]
 
 distractors = [
-"""
+'''
 ```
 srand(time(NULL));
 int a = rand() % 100 + 1;
 double result = a / 100.0 + 1.0;
 ```
-""",
-"""
+''',
+'''
 ```
 srand(time(NULL));
 int a = rand() % 100;
 double result = a / 100.0 + 1.0;
 ```
-""",
-"""
+''',
+'''
 ```
 srand(time(NULL));
 int a = rand() % 100;
 double result = 2 - a / 100.0;
 ```
-""",
-"""
+''',
+'''
 ```
 srand(time(NULL));
 int a = (rand() % 100) * 2;
 double result = (a / 100.0 + 2.0) / 2;
 ```
-"""
+'''
 ]
 
 explainations = [

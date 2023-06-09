@@ -5,22 +5,22 @@ prompt = "Which of the following code print(s) `3.33`?"
 answer = [0, 1, 2]
 
 distractors = [
-"""
+'''
 double m = 10 / (double) 3;
 printf("%.2f", m);
-""",
-"""
+''',
+'''
 double m = (5.0 + 5.0) / 3;
 printf("%.2f", m);
-""",
-"""
+''',
+'''
 double m = (5.0 + 5) / 3;
 printf("%.2f", m);
-""",
-"""
+''',
+'''
 double m = 10 / 3 + 0.0;
 printf("%.2f", m);
-"""
+'''
 ]
 
 explainations = [
@@ -32,7 +32,7 @@ explainations = [
 
 [[questions]]
 
-prompt = """
+prompt = '''
 What is the output of the following code?
 ```
 int i = 100;
@@ -40,23 +40,23 @@ int j = i++ + --i + ++i;
 j += j - j;
 printf("%d %d", j, i);
 ```
-"""
+'''
 
 answer = [2]
 
 distractors = [
-"""
+'''
 300 101
-""",
-"""
+''',
+'''
 301 100
-""",
-"""
+''',
+'''
 301 101
-""",
-"""
+''',
+'''
 300 99
-"""
+'''
 ]
 
 explainations = [
@@ -68,7 +68,7 @@ explainations = [
 
 [[questions]]
 
-prompt = """
+prompt = '''
 What is the output of the following code?
 ```
 int i = 100, j = 100;
@@ -76,23 +76,23 @@ i += ++i * 2;
 j += 2 * j++;
 printf("%d %d", i, j);
 ```
-"""
+'''
 
 answer = [0]
 
 distractors = [
-"""
+'''
 303 301
-""",
-"""
+''',
+'''
 302 301
-""",
-"""
+''',
+'''
 301 301
-""",
-"""
+''',
+'''
 303 302
-"""
+'''
 ]
 
 explainations = [

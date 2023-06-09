@@ -7,18 +7,18 @@ answer = [1]
 distractors = ["`int` is 2 bytes, `short` is 4 bytes, `long` is 8 bytes, `long long` is 16 bytes, `float` is 4 bytes, `double` is 8 bytes", "`int` is 4 bytes, `short` is 2 bytes, `long` is 8 bytes, `long long` is 8 bytes, `float` is 4 bytes, `double` is 8 bytes", "`int` is 4 bytes, `short` is 2 bytes, `long` is 8 bytes, `long long` is 16 bytes, `float` is 8 bytes, `double` is 16 bytes", "`int` is 4 bytes, `short` is 2 bytes, `long` is 8 bytes, `long long` is 8 bytes, `float` is 2 bytes, `double` is 4 bytes"]
 
 explainations = [
-"""
+'''
 A  is incorrect. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).
-""",
-"""
+''',
+'''
 B is correct. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).
-""",
-"""
+''',
+'''
 C is incorrect. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).
-""",
-"""
+''',
+'''
 D is incorrect. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).
-"""
+'''
 ]
 
 
@@ -49,18 +49,18 @@ prompt = "Which of the following can print `The course number is APS105.`?"
 answer = [0, 2, 3]
 
 distractors = [
-"""
-printf("The course number is %c%c%c%c%c%c.\\n", 'A', 'P', 'S', '1', '0', '5');
-""",
-"""
-printf("The course number is %c%c%c%d%d%d.\\n", 'A', 'P', 'S', '1', '0', '5');
-""",
-"""
-printf("The course number is %c%c%c%c%c%c.\\n", 'A', 'P', 'S', 49, 48, 53);
-""",
-"""
-printf("The course number is %c%c%c%c%c%c.\\n", 'A', 'P', 'S', '0' + 1, '0' + 0, '0' + 5);
-"""
+'''
+printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', '1', '0', '5');
+''',
+'''
+printf("The course number is %c%c%c%d%d%d.", 'A', 'P', 'S', '1', '0', '5');
+''',
+'''
+printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', 49, 48, 53);
+''',
+'''
+printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', '0' + 1, '0' + 0, '0' + 5);
+'''
 ]
 
 explainations = [
@@ -77,18 +77,18 @@ prompt = "In which of the following the variable `isPositive` is correctly assig
 answer = [0, 2, 3]
 
 distractors = [
-"""
+'''
 bool isPositive = n > 0;
-""",
-"""
+''',
+'''
 bool isPositive = n;
-""",
-"""
+''',
+'''
 bool isPositive = n > 0 != 0;
-""",
-"""
+''',
+'''
 bool isPositive = n <= 0 != 1;
-"""
+'''
 ]
 
 explainations = [

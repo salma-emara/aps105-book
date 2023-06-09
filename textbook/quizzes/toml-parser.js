@@ -24,21 +24,22 @@ folders.forEach((folder) => {
                 if (typeof question.prompt !== 'string') {
                     throw new Error('Prompt must be a string');
                 }
-                if (!question.answer.every((element) => typeof element === 'number')) {
-                    throw new Error('Answer must be an array of numbers');
+                if (!question.answer.every((element) => typeof element === 'number') || question.answer.length > 4) {
+                    throw new Error('Answer must be an array of numbers with a length of 1-4');
                 }
-                if (!question.distractors.every((element) => typeof element === 'string')) {
-                    throw new Error('Distractors must be an array of strings');
+                if (!question.distractors.every((element) => typeof element === 'string' || question.distractors.length !== 4)) {
+                    throw new Error('Distractors must be an array of strings with a length of 4');
                 }
-                if (!question.explainations.every((element) => typeof element === 'string')) {
-                    throw new Error('Explainations must be an array of strings');
+                if (!question.explainations.every((element) => typeof element === 'string' || question.explainations.length !== 4)) {
+                    throw new Error('Explainations must be an array of strings with a length of 4');
                 }
 
                 questions.push(question); 
             }
             console.log("Done: " + filePath);
+            console.log(questions)
         }
     });
 });
- 
-console.log("All done.")
+
+console.log("All done.");

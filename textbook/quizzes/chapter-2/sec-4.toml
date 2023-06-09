@@ -25,34 +25,34 @@ prompt = "Jade wants to design a program to automatically calculate how many coi
 answer = [2]
 
 distractors = [
-"""
+'''
 int payed_with_loonie = floor(amount);
 double payed_with_quarter = floor((amount) * 100 / 25) / 100 * 25;
 double payed_with_dime = floor((amount) * 100 / 10) / 100 * 10;
 double payed_with_nickel = ceil((amount) * 100 / 5) / 100 * 5;
 int minimum_total_coins = payed_with_loonie + payed_with_quarter / 0.25 + payed_with_dime / 0.1 + payed_with_nickel / 0.05;
-""",
-"""
+''',
+'''
 int payed_with_loonie = floor(amount);
 double payed_with_quarter = floor((amount - payed_with_loonie) * 100 / 25);
 double payed_with_dime = floor((amount - payed_with_loonie - payed_with_quarter) * 100 / 10);
 double payed_with_nickel = ceil((amount - payed_with_loonie - payed_with_quarter - payed_with_dime) * 100 / 5);
 int minimum_total_coins = payed_with_loonie + payed_with_quarter / 0.25 + payed_with_dime / 0.1 + payed_with_nickel / 0.05;
-""",
-"""
+''',
+'''
 int payed_with_loonie = floor(amount);
 double payed_with_quarter = floor((amount - payed_with_loonie) * 100 / 25) / 100 * 25;
 double payed_with_dime = floor((amount - payed_with_loonie - payed_with_quarter) * 100 / 10) / 100 * 10;
 double payed_with_nickel = ceil((amount - payed_with_loonie - payed_with_quarter - payed_with_dime) * 100 / 5) / 100 * 5;
 int minimum_total_coins = payed_with_loonie + payed_with_quarter / 0.25 + payed_with_dime / 0.1 + payed_with_nickel / 0.05;
-""",
-"""
+''',
+'''
 int payed_with_loonie = floor(amount);
 double payed_with_dime = floor((amount - payed_with_loonie) * 100 / 10) / 100 * 10;
 double payed_with_quarter = floor((amount - payed_with_loonie - payed_with_dime) * 100 / 25) / 100 * 25;
 double payed_with_nickel = ceil((amount - payed_with_loonie - payed_with_quarter - payed_with_dime) * 100 / 5) / 100 * 5;
 int minimum_total_coins = payed_with_loonie + payed_with_quarter / 0.25 + payed_with_dime / 0.1 + payed_with_nickel / 0.05;
-"""
+'''
 ]
 
 explainations = [

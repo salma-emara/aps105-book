@@ -16,7 +16,7 @@ explainations = [
 
 [[questions]]
 
-prompt = """
+prompt = '''
 Jade is writing a program to convert a temperature in Celsius to Fahrenheit (If input 26.7, it should output 80.06). She has written the following code. How many the errors in the code?
 ```
 #include <stdio.h>
@@ -34,40 +34,40 @@ int main(void) {
     fahrenheit = (celsius * 9 / 5) + 32;
 
     // Display output
-    printf("The temperature in Fahrenheit is: %.2lf\\n", fahrenheit);
+    printf("The temperature in Fahrenheit is: %.2lf", fahrenheit);
 
     return 0;
 }
 ```
-"""
+'''
 
 answer = [2]
 
 distractors = ["0", "1", "2", "3"]
 
 explainations = [
-"""
+'''
 There are 2 errors.
 Error 1: The variable `celsius` is declared as a `double` but the `scanf` function is using `%f` to read the input. The `%f` is used to read a `float` value. To read a `double` value, we should use `%lf`.
 
 Error 2: The variable `fahrenheit` is declared as an `int` but the according to the sample input and output, it should be a `double`.
-""",
-"""
+''',
+'''
 There are 2 errors.
 Error 1: The variable `celsius` is declared as a `double` but the `scanf` function is using `%f` to read the input. The `%f` is used to read a `float` value. To read a `double` value, we should use `%lf`.
 
 Error 2: The variable `fahrenheit` is declared as an `int` but the according to the sample input and output, it should be a `double`.
-""",
-"""
+''',
+'''
 There are 2 errors.
 Error 1: The variable `celsius` is declared as a `double` but the `scanf` function is using `%f` to read the input. The `%f` is used to read a `float` value. To read a `double` value, we should use `%lf`.
 
 Error 2: The variable `fahrenheit` is declared as an `int` but the according to the sample input and output, it should be a `double`.
-""",
-"""
+''',
+'''
 There are 2 errors.
 Error 1: The variable `celsius` is declared as a `double` but the `scanf` function is using `%f` to read the input. The `%f` is used to read a `float` value. To read a `double` value, we should use `%lf`.
 
 Error 2: The variable `fahrenheit` is declared as an `int` but the according to the sample input and output, it should be a `double`.
-"""
+'''
 ]

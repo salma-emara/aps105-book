@@ -5,26 +5,26 @@ prompt = "A rectangle can be represented by the coordinations of the top-right c
 answer = [0]
 
 distractors = [
-"""
+'''
 ```
 (top_right_x1 > bottom_left_x2 && bottom_left_x1 < top_right_x2 && top_right_y1 > bottom_left_y2 && bottom_left_y1 < top_right_y2)
 ```
-""",
-"""
+''',
+'''
 ```
 ((top_right_x1 > bottom_left_x2 && bottom_left_x1 < top_right_x2) || (top_right_y1 > bottom_left_y2 && bottom_left_y1 < top_right_y2))
 ```
-""",
-"""
+''',
+'''
 ```
 ((top_right_x1 > bottom_left_x2 || bottom_left_x1 < top_right_x2) && (top_right_y1 > bottom_left_y2 || bottom_left_y1 < top_right_y2))
 ```
-""",
-"""
+''',
+'''
 ```
 ((top_right_x1 > bottom_left_x2 || top_right_y1 > bottom_left_y2) && (bottom_left_x1 < top_right_x2 || bottom_left_y1 < top_right_y2))
 ```
-"""
+'''
 ]
 
 explainations = [
@@ -35,7 +35,7 @@ explainations = [
 ]
 
 [[questions]]
-prompt = """
+prompt = '''
 What is the value of `x` after the following code is executed?
 ```
 int x = 104;
@@ -43,7 +43,7 @@ if ((!x > 105) || (x = 105)) {
     x++;
 }
 ```
-"""
+'''
 
 answer = [1]
 
@@ -63,36 +63,36 @@ explainations = [
 
 [[questions]]
 
-prompt = """
+prompt = '''
 Which of the following is the same as the following condition? (Assume `x` is an integer)
 ```
 !((x % 2 == 0) || (x % 3 == 0))
 ```
-"""
+'''
 
 answer = [2, 3]
 
 distractors = [
-"""
+'''
 ```
 (x % 2 == 0) && (x % 3 == 0)
 ```
-""",
-"""
+''',
+'''
 ```
 !(x % 2 == 0) || !(x % 3 == 0)
 ```
-""",
-"""
+''',
+'''
 ```
 !(x % 2 == 0) && !(x % 3 == 0)
 ```
-""",
-"""
+''',
+'''
 ```
 (x % 2 != 0) && (x % 3 != 0)
 ```
-"""
+'''
 ]
 
 explainations = [

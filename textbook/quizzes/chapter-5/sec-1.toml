@@ -1,0 +1,118 @@
+[[questions]]
+
+prompt = "Which of the following can show the advantage of using functions?"
+
+answer = [0, 1, 2, 3]
+
+distractors = [
+"An identical piece of code scattered throughout a large-scale program can be changed or fixed in one place.",
+"Two engineers want to implment different modules of a program at the same time.",
+"The code is more readable and concise.",
+"Able to conduct testing more easily."
+]
+
+explainations = [
+    "A is correct. Functions can improve reusability and maintainability of code.",
+    "B is correct. Functions can improve the collaboration.",
+    "C is correct. Functions can make the code more readable and concise.",
+    "D is correct. Since sub-problems will be isolated into different functions. We can test each function individually. This makes debugging easier."
+]
+
+[[questions]]
+
+prompt = "Which of the following's order of execution is `main()` -> `A()` -> `P()` -> `S()`?"
+
+answer = [0, 1, 2]
+
+distractors = [
+'''
+```
+void A() {
+}
+
+void P() {
+
+}
+
+void S() {
+
+}
+
+int main() {
+    A();
+    P();
+    S();
+
+    return 0;
+}
+```
+''',
+'''
+```
+void A();
+void P();
+void S();
+
+void A() {
+
+}
+
+void S() {
+
+}
+
+void P() {
+    S();
+}
+
+int main() {
+    A();
+    P();
+
+    return 0;
+}
+```
+''',
+'''
+void S() {
+
+}
+
+void P() {
+    S();
+}
+
+void A() {
+    P();
+}
+
+int main() {
+    A();
+
+    return 0;
+}
+''',
+'''
+void A();
+void P();
+void S();
+
+void A() {
+    P();
+    S();
+}
+
+int main() {
+    A();
+
+    return 0;
+}
+'''
+]
+
+explainations = [
+    "A is correct. It calls `A()`, `P()`, and `S()` in order in `main()`.",
+    "B is correct. It calls `A()` and `P()` in order in `main()`. Since `P()` calls `S()`, the order of execution is `main()` -> `A()` -> `P()` -> `S()`.",
+    "C is correct. It calls `A()` in `main()`. Since `A()` calls `P()`, and `P()` calls `S()`, the order of execution is `main()` -> `A()` -> `P()` -> `S()`.",
+    "D is incorrect. There is a compilation error since `P()` and `S()` are only declared but not defined."
+]

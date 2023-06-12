@@ -1,0 +1,83 @@
+[[questions]]
+
+prompt = '''
+Jade has written the following program to calculate how much to pay for notebooks. For example, if you input `1 2.00 0.95`, it is supposed to get `1.90`. How many errors are there in the code?
+```
+#include <stdio.h>
+
+double howMuchToPay(int, int, double);
+
+int main(void) {
+    int number;
+    double unitPrice, discount;
+    printf("Please enter the number of notebooks you want to buy, the price per notbook and the student discount: ");
+    scanf("%d %lf %lf", &number, &unitPrice, &discount);
+    printf("The total price is %d\n", howMuchToPay(number, unitPrice));
+    return 0;
+}
+
+double howMuchToPay(int number, double unitPrice, double discount) {
+    if (discount <= 0) {
+        discount = 1.0;  // when discount is 0 or negative, it is set to 1.0 (no discount)
+    }
+    double price = number * unitPrice * discount;
+    return price;
+}
+```
+'''
+
+answer = [2]
+
+distractors = [
+    "1",
+    "2",
+    "3",
+    "4"
+]
+
+explainations = [
+'''
+A is incorrect. There are 3 errors in the code.
+Error 1:
+The 3rd line, in the declaration of the function `howMuchToPay`, the second parameter should be `double` instead of `int` according to the sample input. It needs to match the type of the 2nd argument in the implementation of the function.
+
+Error 2:
+The 10th line, the return type of the function `howMuchToPay` is `double`, but the printf statement in the main function is using `%d` to print the return value of the function. It should be `%.2lf` instead.
+
+Error 3:
+The 10th line, the function `howMuchToPay` is called with 2 arguments, but the function declaration and implementation both require 3 arguments. The 3rd argument is missing. Even though the 3rd argument could be 0, it is still required.
+''',
+'''
+B is incorrect. There are 3 errors in the code.
+Error 1:
+The 3rd line, in the declaration of the function `howMuchToPay`, the second parameter should be `double` instead of `int` according to the sample input. It needs to match the type of the 2nd argument in the implementation of the function.
+
+Error 2:
+The 10th line, the return type of the function `howMuchToPay` is `double`, but the printf statement in the main function is using `%d` to print the return value of the function. It should be `%.2lf` instead.
+
+Error 3:
+The 10th line, the function `howMuchToPay` is called with 2 arguments, but the function declaration and implementation both require 3 arguments. The 3rd argument is missing. Even though the 3rd argument could be 0, it is still required.
+''',
+'''
+C is correct. There are 3 errors in the code.
+Error 1:
+The 3rd line, in the declaration of the function `howMuchToPay`, the second parameter should be `double` instead of `int` according to the sample input. It needs to match the type of the 2nd argument in the implementation of the function.
+
+Error 2:
+The 10th line, the return type of the function `howMuchToPay` is `double`, but the printf statement in the main function is using `%d` to print the return value of the function. It should be `%.2lf` instead.
+
+Error 3:
+The 10th line, the function `howMuchToPay` is called with 2 arguments, but the function declaration and implementation both require 3 arguments. The 3rd argument is missing. Even though the 3rd argument could be 0, it is still required.
+''',
+'''
+D is incorrect. There are 3 errors in the code.
+Error 1:
+The 3rd line, in the declaration of the function `howMuchToPay`, the second parameter should be `double` instead of `int` according to the sample input. It needs to match the type of the 2nd argument in the implementation of the function.
+
+Error 2:
+The 10th line, the return type of the function `howMuchToPay` is `double`, but the printf statement in the main function is using `%d` to print the return value of the function. It should be `%.2lf` instead.
+
+Error 3:
+The 10th line, the function `howMuchToPay` is called with 2 arguments, but the function declaration and implementation both require 3 arguments. The 3rd argument is missing. Even though the 3rd argument could be 0, it is still required.
+'''
+]

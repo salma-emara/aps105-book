@@ -1,0 +1,37 @@
+[[questions]]
+
+prompt = '''
+What is the output of the following code?
+```
+#include <stdio.h>
+
+int adddOne(int);
+
+int main(void) {
+  int n = 1;
+  printf("%d %d", n, adddOne(n));
+  return 0;
+}
+
+int adddOne(int n) {
+  n += 1;
+  return n;
+}
+```
+'''
+
+answer = [1]
+
+distractors = [
+    "2 2",
+    "1 2",
+    "2 1",
+    "1 1"
+]
+
+explainations = [
+    "A is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed.",
+    "B is correct. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed.",
+    "C is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed.",
+    "D is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed."
+]

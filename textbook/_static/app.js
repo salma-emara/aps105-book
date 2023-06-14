@@ -39,13 +39,18 @@ function parse_and_generate_form(fileName) {
         radioButton.type = "radio";
         radioButton.name = "choice";
         radioButton.value = choice;
+        radioButton.id = "choice" + (i + 1);
 
         //add labels
         const label = document.createElement("label");
         label.textContent = choice;
+        label.setAttribute("for", "choice" + (i + 1));
+        const space = document.createElement("span");
+        space.innerHTML = "&nbsp;";
 
         //append the buttons to Choices element
         choicesElement.appendChild(radioButton);
+        choicesElement.appendChild(space);
         choicesElement.appendChild(label);
         choicesElement.appendChild(document.createElement("br"));
     }
@@ -59,7 +64,7 @@ function handle_submission() {
 
 
     if (selectedChoice) {
-        if (answer === selectedChoice.value) {
+        if (answer.trim() === selectedChoice.value) {
             document.getElementById("message").innerHTML = "correct answer!";
         }
         else {
@@ -70,3 +75,6 @@ function handle_submission() {
         document.getElementById("message").innerHTML = "please make a selection";
     }
 }
+
+
+//for (let i = 0; i < parsedObject.questions.length; i++)

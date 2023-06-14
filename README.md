@@ -54,3 +54,11 @@ Thank you in advance!
 
 For anyone with a write request to main branch, with every push Netlify will automatically deploy it to [learningc.org](learningc.org). This is done folowing instructions on [Netlify for Jupyter-Book](https://jupyterbook.org/en/stable/publish/netlify.html).
 
+## Convert TOML to JS files
+
+The given JavaScript code for quizzes reads a .js file. To convert your .toml files conaining the quizzes to .js files,
+
+1- Open textbook/_static/toml_to_js_convertor.js
+2- Replace  folderPath with the path of the folder contaiing TOML files.
+```const folderPath = "quiz"; // Path to the folder containing TOML files```
+3- Run the code. A .js file will be created in the same folder for each separate .toml file.

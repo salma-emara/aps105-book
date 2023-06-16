@@ -1,0 +1,176 @@
+[[questions]]
+
+prompt = '''
+Jade is writing a program that calculated the discount on a price. For example, if user inputs `10 0.9`, it expects to output `9.00`. How many errors are there in the code below?
+```
+#include <stdio.h>
+
+void calDiscount(double*, double);
+
+int main() {
+    double price;
+    double discount;
+    scanf("%lf %lf", price, &discount);
+    calDiscount(&price, discount);
+    printf("%.2lf", &price);
+}
+
+void calDiscount(double *price, double discount) {
+    price *= discount;
+}
+```
+'''
+
+answer = [2]
+
+distractors = [
+    "1",
+    "2",
+    "3",
+    "4"
+]
+
+explainations = [
+'''
+A is incorrect. There are 3 errors in the code.
+Error 1:
+At 8th line, the `scanf` function should be `scanf("%lf %lf", &price, &discount);` instead of `scanf("%lf %lf", price, &discount);`. The `scanf` function requires the address of the variable to store the input value, so the `&` operator is needed.
+
+Error 2:
+At 10th line, the `printf` function should be `printf("%.2lf", price);` instead of `printf("%.2lf", &price);`. The `printf` function requires the value of the variable to print, so the `&` operator is not needed.
+
+Error 3:
+At 14th line, `price *= discount;` should be `*price *= discount;`. The `price` is a pointer variable, so the `*` operator is needed to access the value of the variable. It is not recommended to use the same name for a pointer variable and a normal variable.
+''',
+'''
+B is incorrect. There are 3 errors in the code.
+Error 1:
+At 8th line, the `scanf` function should be `scanf("%lf %lf", &price, &discount);` instead of `scanf("%lf %lf", price, &discount);`. The `scanf` function requires the address of the variable to store the input value, so the `&` operator is needed.
+
+Error 2:
+At 10th line, the `printf` function should be `printf("%.2lf", price);` instead of `printf("%.2lf", &price);`. The `printf` function requires the value of the variable to print, so the `&` operator is not needed.
+
+Error 3:
+At 14th line, `price *= discount;` should be `*price *= discount;`. The `price` is a pointer variable, so the `*` operator is needed to access the value of the variable. It is not recommended to use the same name for a pointer variable and a normal variable.
+''',
+'''
+C is correct. There are 3 errors in the code.
+Error 1:
+At 8th line, the `scanf` function should be `scanf("%lf %lf", &price, &discount);` instead of `scanf("%lf %lf", price, &discount);`. The `scanf` function requires the address of the variable to store the input value, so the `&` operator is needed.
+
+Error 2:
+At 10th line, the `printf` function should be `printf("%.2lf", price);` instead of `printf("%.2lf", &price);`. The `printf` function requires the value of the variable to print, so the `&` operator is not needed.
+
+Error 3:
+At 14th line, `price *= discount;` should be `*price *= discount;`. The `price` is a pointer variable, so the `*` operator is needed to access the value of the variable. It is not recommended to use the same name for a pointer variable and a normal variable.
+''',
+'''
+D is incorrect. There are 3 errors in the code.
+Error 1:
+At 8th line, the `scanf` function should be `scanf("%lf %lf", &price, &discount);` instead of `scanf("%lf %lf", price, &discount);`. The `scanf` function requires the address of the variable to store the input value, so the `&` operator is needed.
+
+Error 2:
+At 10th line, the `printf` function should be `printf("%.2lf", price);` instead of `printf("%.2lf", &price);`. The `printf` function requires the value of the variable to print, so the `&` operator is not needed.
+
+Error 3:
+At 14th line, `price *= discount;` should be `*price *= discount;`. The `price` is a pointer variable, so the `*` operator is needed to access the value of the variable. It is not recommended to use the same name for a pointer variable and a normal variable.
+'''
+]
+
+[[questions]]
+
+prompt = "What is the size of the pointer variable on an old machine (32 bits)?"
+
+answer = [0]
+
+distractors = [
+    "4 bytes",
+    "8 bytes",
+    "16 bytes",
+    "It varies depending on the data type"
+]
+
+explainations = [
+    "A is correct. A pointer is a memory address, and on a 32-bit machine, a memory address is 32 bits, or 4 bytes.",
+    "B is incorrect. A pointer is a memory address, and on a 32-bit machine, a memory address is 32 bits, or 4 bytes.",
+    "C is incorrect. A pointer is a memory address, and on a 32-bit machine, a memory address is 32 bits, or 4 bytes.",
+    "D is incorrect. A pointer is a memory address, and on a 32-bit machine, a memory address is 32 bits, or 4 bytes."
+]
+
+[[questions]]
+
+prompt = '''
+When inputting `10 5' and `5 10` to the following program, what is the output?
+```
+#include <stdio.h>
+
+int* innerFunc(int**, int**);
+int outerFunc(int*, int*, int*);
+
+int main() {
+    int val1, val2;
+    scanf("%d %d", &val1, &val2);
+    int *pval1 = &val1;
+    int *pval2 = &val2;
+    printf("%d", outerFunc(innerFunc(&pval1, &pval2), pval1, pval2));
+    
+    return 0;
+}
+
+int* innerFunc(int **ppval1, int **ppval2) {
+    int* temp;
+    if (**ppval1 > **ppval2) {
+        temp = *ppval1;
+    } else {
+        temp = *ppval2; 
+    }
+    return temp;
+}
+
+int outerFunc(int *largest, int *pval1, int *pval2) {
+    int *temp;
+    if (largest == pval1) {
+        temp = *largest - *pval2;
+    } else {
+        temp = *largest - *pval1;
+    }
+    return temp;
+}
+```
+'''
+
+answer = [3]
+
+distractors = [
+    "Garbage address value.",
+    "Garbage value.",
+    "5 -5",
+    "5 5"
+]
+
+explainations = [
+    "A is incorrect. The `innerFunc` function returns the address of the larger value between `val1` and `val2`. The `outerFunc` function returns the difference between the largest value and the other value. In both inputs, the largest value is `10`, and the other value is `5`, so the output is always `5`.",
+    "B is incorrect. The `innerFunc` function returns the address of the larger value between `val1` and `val2`. The `outerFunc` function returns the difference between the largest value and the other value. In both inputs, the largest value is `10`, and the other value is `5`, so the output is always `5`.",
+    "C is incorrect. The `innerFunc` function returns the address of the larger value between `val1` and `val2`. The `outerFunc` function returns the difference between the largest value and the other value. In both inputs, the largest value is `10`, and the other value is `5`, so the output is always `5`.",
+    "D is correct. The `innerFunc` function returns the address of the larger value between `val1` and `val2`. The `outerFunc` function returns the difference between the largest value and the other value. In both inputs, the largest value is `10`, and the other value is `5`, so the output is always `5`."
+]
+
+[[questions]]
+
+prompt = "What can happen if dereferencing a pointer variable that is not initialized?"
+
+answer = [0, 1, 2, 3]
+
+distractors = [
+    "The compiler will give an warning.",
+    "The program crashes with a segmentation fault.",
+    "Another variable is overwritten.",
+    "The program can not read from user input."
+]
+
+explainations = [
+    "A is correct. The compiler will give an warning and recommends you set the address of the pointer to NULL when you declare it.",
+    "B is correct. If the address exists, but your program can not access or does not have permission to access, the operating system will raise an error named Segmentation Fault error.",
+    "C is correct. If the address exists, and your program can access it (rarely happens), it may change a value of another variable in your program.",
+    "D is correct. If the address does not exist, your program may fail silently. This means it may not print statements in a `printf`, or it may not take input from the user in a `scanf`."
+]

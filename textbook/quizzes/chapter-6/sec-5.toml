@@ -1,0 +1,19 @@
+[[questions]]
+
+prompt = "How the pointers are used in the Goldbach conjecture test code in the material?"
+
+answer = [0, 3]
+
+distractors = [
+    "The pointers are used to validate user input.",
+    "The pointers are used to print out the result.",
+    "The pointers are used to share the `number` variable between `getUserInput` and `printConjResult` functions.",
+    "The pointers are used to iterate the prime numbers."
+]
+
+explainations = [
+    "A is correct. The `getUserInput` function takes a pointer as an argument and stores the user input in the memory location pointed to by the pointer, then validates the input.",
+    "B is incorrect. The result is printed according to the return value of `testGoldbach` function, which is a boolean value.",
+    "C is incorrect. After the user input is validated, the `number` variable is passed by value to the `printConjResult` function.",
+    "D is correct. The `nextPrimeNumber` function takes a pointer as an argument and iterates the prime numbers."
+]

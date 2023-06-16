@@ -1,0 +1,165 @@
+[[questions]]
+
+prompt = "Which of the following code can output `True` when `n` is multiple of 6?"
+
+answer = [1, 3]
+
+distractors = [
+'''
+```
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isMultipleOf6(int);
+void divideBy2(int);
+void divideBy3(int);
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    if (isMultipleOf6(n)) {
+        printf("True");
+    } else {
+        printf("False");
+    }
+
+    return 0;
+}
+
+bool isMultipleOf6(int n) {
+    int originN = n;
+    divideBy2(n);
+    divideBy3(n);;
+    return n == originN;
+}
+
+void divideBy2(int n) {
+    n = n / 2;
+}
+
+void divideBy3(int n) {
+    n = n / 3;
+}
+```
+''',
+'''
+```
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isMultipleOf6(int);
+int divideBy2(int);
+int divideBy3(int);
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    if (isMultipleOf6(n)) {
+        printf("True");
+    } else {
+        printf("False");
+    }
+
+    return 0;
+}
+
+bool isMultipleOf6(int n) {
+    int div2 = divideBy2(n);
+    int div3 = divideBy3(div2);
+    return div3 * 6 == n;
+}
+
+int divideBy2(int n) {
+    n = n / 2;
+    return n;
+}
+
+int divideBy3(int n) {
+    n = n / 3;
+    return n;
+}
+```
+''',
+'''
+```
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isMultipleOf6(int);
+int divideBy2(int);
+int divideBy3(int);
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    if (isMultipleOf6(n)) {
+        printf("True");
+    } else {
+        printf("False");
+    }
+
+    return 0;
+}
+
+bool isMultipleOf6(int n) {
+    int div2 = divideBy2(n);
+    int div3 = divideBy3(n);
+    return div3 * 6 == n;
+}
+
+int divideBy2(int n) {
+    return n / 2;
+}
+
+int divideBy3(int n) {
+    return n / 3;
+}
+```
+''',
+'''
+```
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isMultipleOf6(int);
+int divideBy2(int);
+int divideBy3(int);
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    if (isMultipleOf6(n)) {
+        printf("True");
+    } else {
+        printf("False");
+    }
+
+    return 0;
+}
+
+bool isMultipleOf6(int n) {
+    int originN = n;
+    n = divideBy2(n);
+    n = divideBy3(n);
+    return n * 6 == originN;
+}
+
+int divideBy2(int n) {
+    n = n / 2;
+    return n;
+}
+
+int divideBy3(int n) {
+    n = n / 3;
+    return n;
+}
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The function `divideBy2` and `divideBy3` do not change the value of `n` as Call by value.",
+    "B is correct. The function `divideBy2` and `divideBy3` communicate by return value.",
+    "C is incorrect. The function `divideBy2` and `divideBy3` do not change the value of `n` as Call by value. Thus the `div3` is not the result of `n / 6`, but `n / 3`.",
+    "D is correct. It is the same as B."
+]

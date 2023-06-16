@@ -1,0 +1,96 @@
+[[questions]]
+
+prompt = '''
+What is the output of the following code?
+```
+int num = 808530224;  // hint: convert to binary or hex to separate it by bytes
+    char *chArr = &num;
+    for (int i = 0; i < 4; i++) {
+        printf("%c", *(chArr + i));
+    }
+```
+'''
+
+answer = [3]
+
+distractors = [
+    "Garbage values.",
+    "8085",
+    "Segmentation fault.",
+    "0110"
+]
+
+explainations = [
+    "A is incorrect. The hex value of 808530224 is 0x30313130. Since the size of an `int` is 4 bytes and `char` is 1 byte, the `chArr` is essentially an array of 4 `char`s. Note that the array can read `char` from `int` either from left to right or right to left, but this will not affect the answer of this question (as it is a palindrome). Assume it is reading from left to right, the first `char` is 0x30, which is the ASCII value of 0. The second `char` is 0x31, which is the ASCII value of 1. The third `char` is 0x31, which is the ASCII value of 1. The fourth `char` is 0x30, which is the ASCII value of 0. Therefore, the output is 0110.",
+    "B is incorrect. The hex value of 808530224 is 0x30313130. Since the size of an `int` is 4 bytes and `char` is 1 byte, the `chArr` is essentially an array of 4 `char`s. Note that the array can read `char` from `int` either from left to right or right to left, but this will not affect the answer of this question (as it is a palindrome). Assume it is reading from left to right, the first `char` is 0x30, which is the ASCII value of 0. The second `char` is 0x31, which is the ASCII value of 1. The third `char` is 0x31, which is the ASCII value of 1. The fourth `char` is 0x30, which is the ASCII value of 0. Therefore, the output is 0110.",
+    "C is incorrect. The hex value of 808530224 is 0x30313130. Since the size of an `int` is 4 bytes and `char` is 1 byte, the `chArr` is essentially an array of 4 `char`s. Note that the array can read `char` from `int` either from left to right or right to left, but this will not affect the answer of this question (as it is a palindrome). Assume it is reading from left to right, the first `char` is 0x30, which is the ASCII value of 0. The second `char` is 0x31, which is the ASCII value of 1. The third `char` is 0x31, which is the ASCII value of 1. The fourth `char` is 0x30, which is the ASCII value of 0. Therefore, the output is 0110.",
+    "D is correct. The hex value of 808530224 is 0x30313130. Since the size of an `int` is 4 bytes and `char` is 1 byte, the `chArr` is essentially an array of 4 `char`s. Note that the array can read `char` from `int` either from left to right or right to left, but this will not affect the answer of this question (as it is a palindrome). Assume it is reading from left to right, the first `char` is 0x30, which is the ASCII value of 0. The second `char` is 0x31, which is the ASCII value of 1. The third `char` is 0x31, which is the ASCII value of 1. The fourth `char` is 0x30, which is the ASCII value of 0. Therefore, the output is 0110."
+]
+
+[[questions]]
+
+prompt = "Jade is trying different ways to calculate first 10 numbers of a sequence (1, 2, 4, 8, 16, ...). Which of the following is/are correct?"
+
+answer = [2]
+
+distractors = [
+'''
+```
+int seq[10];
+seq[0] = 1;
+for (int i = 0; i < 10; i++) {
+    seq[i] = *(&seq[i] - 1) * 2;
+}
+
+for (int i = 0; i < 10; i++) {
+    printf("%d ", seq[i]);
+}
+```
+''',
+'''
+```
+int seq[10];
+seq[0] = 1;
+for (int i = 1; i < 10; i++) {
+    *(seq + i) = *(&(seq[i] - 1)) * 2;
+}
+
+for (int i = 0; i < 10; i++) {
+    printf("%d ", seq[i]);
+}
+```
+''',
+'''
+```
+int seq[10];
+*seq = 1;
+for (int i = 1; i < 10; i++) {
+    *(seq + i) = *(seq + i - 1) * 2;
+}
+
+for (int i = 0; i < 10; i++) {
+    printf("%d ", seq[i]);
+}
+```
+''',
+'''
+```
+int seq[10];
+seq[0] = 1;
+for (int i = 1; i < 10; i++) {
+    (*seq + i) = (*seq + i - 1) * 2;
+}
+
+for (int i = 0; i < 10; i++) {
+    printf("%d ", seq[i]);
+}
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The for loop should start from 1, not 0. Otherwise, the index of the array in the first iteration will be -1, which is out of bound.",
+    "B is incorrect. The address of previous element should be `&seq[i] - 1`, not `&(seq[i] - 1)`.",
+    "C is correct. In each iteration, the value of the current element is the value of the previous element times 2.",
+    "D is incorrect. The access of previous element should be `*(seq + i - 1)`, not `(*seq + i - 1)`."
+]

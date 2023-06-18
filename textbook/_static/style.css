@@ -13,16 +13,19 @@
     z-index: 9999;
 }
 
-#quizForm {
-    max-width: 90%;
-    max-height: 90%;
-    padding: 20px;
-    background: white;
+.quiz-form {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+    border-radius: 5px;
+    display: inline-block;
 }
+
 
 #fullscreen-form.mini {
     position: static;
-    width: auto;
+    width: 80%;
     height: auto;
     padding: 0;
     display: block;
@@ -38,7 +41,7 @@
 
 
 #fullscreen-form.active {
-    display: block;
+    display: flex;
 }
 
 #close-button {
@@ -55,4 +58,24 @@
 
 .hidden {
     display: none;
+}
+
+#submit-button {
+    margin-right: 10px;
+}
+
+.next-button {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+button {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+.parent-container {
+    position: relative;
+    display: inline-block;
 }

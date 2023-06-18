@@ -62,12 +62,12 @@ parse:
         <script src = "../../_static/app.js"></script>
         
         <button id = "start-button" onclick = "startQuiz()"> Start Quiz </button>
-        <div id = "fullscreen-form">
+        <div id = "fullscreen-form" class="parent-container">
           <div id = "close-button" onclick = "closeFullscreenForm()"> X </div>
           <div id="quiz-container">
             <div id="question-container"></div>
                 <script> parse_and_generate_form("%%FILENAME%%") </script>
-                <button id="next-button" onclick="showNextQuestion()">Next</button>
+                
           </div>
         </div>
 

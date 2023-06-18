@@ -18,9 +18,6 @@ function startQuiz() {
     }
 }
 
-
-
-
 function closeFullscreenForm() {
     var fullscreenForm = document.getElementById("fullscreen-form");
     fullscreenForm.classList.remove("active");
@@ -46,6 +43,7 @@ function closeFullscreenForm() {
 function parse_and_generate_form(fileName) {
 
     const questions = parsedObject.questions;
+    const quizContainer = document.getElementById("quiz-container");
 
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i].question;
@@ -56,9 +54,10 @@ function parse_and_generate_form(fileName) {
         //generate the quiz form in HTML
         const form = document.createElement("form");
         form.id = "quizForm" + (i + 1);
+        form.classList.add("quiz-form");
 
         //add question text
-        const questionElement = document.createElement("h3");
+        const questionElement = document.createElement("p");
         questionElement.id = "question" + (i + 1);
         questionElement.innerHTML = question;
         form.appendChild(questionElement);
@@ -73,10 +72,19 @@ function parse_and_generate_form(fileName) {
         const submitButton = document.createElement("button");
         submitButton.type = "button";
         submitButton.innerHTML = "Submit";
+        submitButton.classList.add("submit-button");
         submitButton.addEventListener("click", function () {
             handle_submission(form.id, answer, hint);
         });
         form.appendChild(submitButton);
+
+        // Add next button
+        const nextButton = document.createElement("button");
+        nextButton.type = "button";
+        nextButton.innerHTML = "Next";
+        nextButton.classList.add("next-button");
+        nextButton.addEventListener("click", showNextQuestion);
+        form.appendChild(nextButton);
 
         //add text for after submission
         const messageElement = document.createElement("p");
@@ -148,8 +156,10 @@ function showNextQuestion() {
 
     currentQuestionIndex++;
 
-    const nextForm = quizForms[currentQuestionIndex];
-    nextForm.style.display = "block";
+    if (currentQuestionIndex < quizForms.length) {
+        const nextForm = quizForms[currentQuestionIndex];
+        nextForm.style.display = "block";
+    }
 
     const nextButton = document.getElementById("next-button");
 
@@ -159,4 +169,5 @@ function showNextQuestion() {
         nextButton.classList.remove("hidden");
     }
 }
+
 

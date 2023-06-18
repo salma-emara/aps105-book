@@ -9,3 +9,9 @@ question = "sample question new"
 choices = ["A1", "B1", "C1"]
 answer = "C1"
 hint = "some explanation for answer"
+
+[[questions]]
+question = "sample question 3"
+choices = ["A1", "B1", "three"]
+answer = "three"
+hint = "some explanation for answer"

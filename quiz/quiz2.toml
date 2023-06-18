@@ -1,4 +1,8 @@
-question = "sample question 2"
+question = """sample question 2 
+    ```
+    printf(1+2)
+    ```
+    """
 choices = ["Op1", "Op2", "Op3"]
 answer = "Op2"
 hint = "some more explanation"

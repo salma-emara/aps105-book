@@ -93,31 +93,63 @@ function parse_and_generate_form(fileName) {
 
         document.getElementById("fullscreen-form").appendChild(form);
 
-        // Create a radio button choices
-        for (let j = 0; j < choices.length; j++) {
+        console.log(answer.length);
+        if (answer.length === 1) {
+            // Create a radio button choices
+            for (let j = 0; j < choices.length; j++) {
 
-            const choice = choices[j];
+                const choice = choices[j];
 
-            //create radio buttons
-            const radioButton = document.createElement("input");
-            radioButton.type = "radio";
-            radioButton.name = "choice" + (i + 1);
-            radioButton.value = choice;
-            radioButton.id = "choice" + (i + 1) + "-" + (j + 1);
+                //create radio buttons
+                const radioButton = document.createElement("input");
+                radioButton.type = "radio";
+                radioButton.name = "choice" + (i + 1);
+                radioButton.value = choice;
+                radioButton.id = "choice" + (i + 1) + "-" + (j + 1);
 
-            //add labels
-            const label = document.createElement("label");
-            label.textContent = choice;
-            label.setAttribute("for", "choice" + (i + 1) + "-" + (j + 1));
-            const space = document.createElement("span");
-            space.innerHTML = "&nbsp;";
+                //add labels
+                const label = document.createElement("label");
+                label.textContent = choice;
+                label.setAttribute("for", "choice" + (i + 1) + "-" + (j + 1));
+                const space = document.createElement("span");
+                space.innerHTML = "&nbsp;";
 
-            //append the buttons to Choices element
-            choicesElement.appendChild(radioButton);
-            choicesElement.appendChild(space);
-            choicesElement.appendChild(label);
-            choicesElement.appendChild(document.createElement("br"));
+                //append the buttons to Choices element
+                choicesElement.appendChild(radioButton);
+                choicesElement.appendChild(space);
+                choicesElement.appendChild(label);
+                choicesElement.appendChild(document.createElement("br"));
+            }
         }
+
+        else {
+            // Create checkbox choices
+            for (let j = 0; j < choices.length; j++) {
+                const choice = choices[j];
+
+                // Create checkboxes
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.name = "choice" + (i + 1);
+                checkbox.value = choice;
+                checkbox.id = "choice" + (i + 1) + "-" + (j + 1);
+
+                // Add labels
+                const label = document.createElement("label");
+                label.textContent = choice;
+                label.setAttribute("for", "choice" + (i + 1) + "-" + (j + 1));
+                const space = document.createElement("span");
+                space.innerHTML = "&nbsp;";
+
+                // Append the checkboxes to the choices element
+                choicesElement.appendChild(checkbox);
+                choicesElement.appendChild(space);
+                choicesElement.appendChild(label);
+                choicesElement.appendChild(document.createElement("br"));
+            }
+
+        }
+
 
         if (i > 0) {
             form.style.display = "none";
@@ -129,24 +161,41 @@ function parse_and_generate_form(fileName) {
 
 function handle_submission(formId, answer, hint) {
     const form = document.getElementById(formId);
-    const selectedChoice = form.querySelector("input[name='choice" + formId.slice(8) + "']:checked");
-
+    const selectedChoices = form.querySelectorAll("input[name='choice" + formId.slice(8) + "']:checked");
 
     const messageElement = form.querySelector("#message" + formId.slice(8));
 
-    if (selectedChoice) {
-        if (answer.trim() === selectedChoice.value) {
-            messageElement.innerHTML = "Correct answer!";
-            messageElement.style.color = "green";
+    if (selectedChoices.length > 0) {
+        // Convert selected choices to an array of their values
+        const selectedValues = Array.from(selectedChoices).map(choice => choice.value);
+
+        if (Array.isArray(answer)) {
+            // Check if all selected values are present in the answer array
+            const isCorrect = selectedValues.every(value => answer.includes(value));
+
+            if (isCorrect) {
+                messageElement.innerHTML = "Correct answer!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.innerHTML = "Wrong answer" + hint;
+                messageElement.style.color = "red";
+            }
         } else {
-            messageElement.innerHTML = "Wrong answer" + hint;
-            messageElement.style.color = "red";
+            // Handle case when answer is a single value
+            if (selectedValues.includes(answer)) {
+                messageElement.innerHTML = "Correct answer!";
+                messageElement.style.color = "green";
+            } else {
+                messageElement.innerHTML = "Wrong answer" + hint;
+                messageElement.style.color = "red";
+            }
         }
     } else {
         messageElement.innerHTML = "Please select";
         messageElement.style.color = "red";
     }
 }
+
 
 function showNextQuestion() {
     const quizForms = document.querySelectorAll("[id^='quizForm']");

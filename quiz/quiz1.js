@@ -1,5 +1,5 @@
-let parsedObject; 
-  parsedObject = {
+let parsedObject;
+parsedObject = {
   "questions": [
     {
       "question": "sample question 1",
@@ -8,7 +8,9 @@ let parsedObject;
         "B",
         "C"
       ],
-      "answer": "C",
+      "answer": [
+        "C"
+      ],
       "hint": "some explanation"
     },
     {
@@ -18,7 +20,10 @@ let parsedObject;
         "B1",
         "C1"
       ],
-      "answer": "C1",
+      "answer": [
+        "C1",
+        "A1"
+      ],
       "hint": "some explanation for answer"
     },
     {
@@ -28,7 +33,9 @@ let parsedObject;
         "B1",
         "three"
       ],
-      "answer": "three",
+      "answer": [
+        "three"
+      ],
       "hint": "some explanation for answer"
     }
   ]

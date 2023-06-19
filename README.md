@@ -65,7 +65,7 @@ To convert your .toml files conaining the quizzes to .js files:
 2- Open textbook/_static/toml_to_js_convertor.js file on your device and replace "pathName" with the path of the folder contaiing TOML files.
 
 ```
-const folderPath = "pathName"; // Path to the folder containing TOML files
+const folderPath = "pathName"; 
 ```
 
 3- In your terminal, execute the following command.

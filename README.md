@@ -62,13 +62,19 @@ To convert your .toml files conaining the quizzes to .js files:
 
 1- Ensure yo have Node.js installed on your system. You can download it from their official website (https://nodejs.org), and follow the installation instructions there.
 
-2- Open textbook/_static/toml_to_js_convertor.js file on your device and replace "pathName" with the path of the folder contaiing TOML files.
+2- Download the required package by executing the following command:
+
+```
+npm install @iarna/toml
+```
+
+3- Open textbook/_static/toml_to_js_convertor.js file on your device and replace "pathName" with the path of the folder contaiing TOML files.
 
 ```
 const folderPath = "pathName"; 
 ```
 
-3- In your terminal, execute the following command.
+4- In your terminal, execute the following command.
 
 ```
 node toml_to_js_convertor.js

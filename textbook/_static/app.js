@@ -48,6 +48,7 @@ function parse_and_generate_form(fileName) {
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i].question;
         const choices = questions[i].choices;
+        const codeSnippet = questions[i].codeSnippet;
         const answer = questions[i].answer;
         const hint = questions[i].hint;
 
@@ -60,8 +61,38 @@ function parse_and_generate_form(fileName) {
         const questionElement = document.createElement("p");
         questionElement.id = "question" + (i + 1);
         questionElement.innerHTML = question;
+        questionElement.classList.add("question-box");
         form.appendChild(questionElement);
 
+        // Add code snippet if available
+        if (codeSnippet) {
+            const codeSnippetContainer = document.createElement("pre");
+            codeSnippetContainer.classList.add("code-snippet");
+
+            const codeSnippetLinesContainer = document.createElement("div");
+            codeSnippetLinesContainer.classList.add("code-lines");
+
+            const codeSnippetLines = codeSnippet.trim().split("\n");
+            for (let j = 0; j < codeSnippetLines.length; j++) {
+                const codeLineContainer = document.createElement("div");
+                codeLineContainer.classList.add("code-line-container");
+
+                const lineNumberElement = document.createElement("span");
+                lineNumberElement.classList.add("line-number");
+                lineNumberElement.textContent = j + 1;
+                codeLineContainer.appendChild(lineNumberElement);
+
+                const codeLineElement = document.createElement("span");
+                codeLineElement.classList.add("code-line");
+                codeLineElement.textContent = codeSnippetLines[j];
+                codeLineContainer.appendChild(codeLineElement);
+
+                codeSnippetLinesContainer.appendChild(codeLineContainer);
+            }
+
+            codeSnippetContainer.appendChild(codeSnippetLinesContainer);
+            questionElement.appendChild(codeSnippetContainer);
+        }
 
         //add choices
         const choicesElement = document.createElement("div");

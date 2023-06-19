@@ -1,8 +1,9 @@
-let parsedObject;
-parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "question": "sample question 1",
+      "codeSnippet": "printf(1+2);\n    printf(\"Hello World!\");",
       "choices": [
         "A",
         "B",

@@ -27,6 +27,7 @@ function closeFullscreenForm() {
     const quizForms = document.querySelectorAll("[id^='quizForm']");
     for (let i = 0; i < quizForms.length; i++) {
         quizForms[i].style.display = "block";
+        quizForms[i].style.border = "none";
     }
 
     var closeButton = document.getElementById("close-button");
@@ -43,7 +44,7 @@ function closeFullscreenForm() {
 function parse_and_generate_form(fileName) {
 
     const questions = parsedObject.questions;
-    const quizContainer = document.getElementById("quiz-container");
+    //const quizContainer = document.getElementById("quiz-container");
 
     for (let i = 0; i < questions.length; i++) {
         const question = questions[i].question;

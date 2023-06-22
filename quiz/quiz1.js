@@ -3,7 +3,7 @@ let parsedObject;
   "questions": [
     {
       "question": "sample question 1",
-      "codeSnippet": "printf(1+2);\n    printf(\"Hello World!\");",
+      "codeSnippet": "printf(1+2);\nprintf(\"Hello World!\");",
       "choices": [
         "A",
         "B",

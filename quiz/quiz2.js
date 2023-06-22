@@ -1,5 +1,5 @@
-let parsedObject;
-parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "question": "sample question 2 \n    ```\n    printf(1+2)\n    ```\n    ",

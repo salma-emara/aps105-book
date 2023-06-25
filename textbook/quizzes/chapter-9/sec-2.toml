@@ -1,0 +1,63 @@
+[[questions]]
+
+prompt = "When passing a 2D array to a function in C/C++, why is it necessary to specify the number of columns in the function parameter list?"
+
+answer = [3]
+
+distractions = [
+    "To ensure proper memory allocation and correct indexing within the function.",
+    "To enable the function to iterate over the correct number of rows and columns.",
+    "To prevent memory leaks and ensure efficient memory management.",
+    "To allow the function to access individual elements of the 2D array correctly."
+]
+
+explainations = [
+    "A is incorrect. Although it may be related to programming concepts, they do not directly address the need for specifying the number of columns when passing a 2D array to a function. The function need to know the column size of the 2D array in order to calculate and dereference the correct memory address of each element in the array.",
+    "B is incorrect. Although it may be related to programming concepts, they do not directly address the need for specifying the number of columns when passing a 2D array to a function. The function need to know the column size of the 2D array in order to calculate and dereference the correct memory address of each element in the array.",
+    "C is incorrect. Although it may be related to programming concepts, they do not directly address the need for specifying the number of columns when passing a 2D array to a function. The function need to know the column size of the 2D array in order to calculate and dereference the correct memory address of each element in the array.",
+    "D is correct. The function need to know the column size of the 2D array in order to calculate and dereference the correct memory address of each element in the array."
+]
+
+[[questions]]
+
+prompt = "Which of the following functions with 2D array parameter have correct declaration?"
+
+answer = [3]
+
+distractions = [
+'''
+```
+void func(int arr[][], int rows, int cols) {
+    // function body
+}
+```
+''',
+'''
+```
+void func(int arr[rows][], int rows, int cols) {
+    // function body
+}
+```
+''',
+'''
+```
+void func(int rows, int cols, int arr[rows][]) {
+    // function body
+}
+```
+''',
+'''
+```
+void func(int rows, int cols, int arr[][cols]) {
+    // function body
+}
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The function declaration is incorrect. The size of the column of the 2D array must be specified.",
+    "B is incorrect. The function declaration is incorrect. The size of the column of the 2D array must be specified. Moreover, the `rows` parameter is not declared before it is used.",
+    "C is incorrect. The function declaration is incorrect. The size of the column of the 2D array must be specified.",
+    "D is correct. The function declaration is correct. The size of the column of the 2D array is specified."
+]

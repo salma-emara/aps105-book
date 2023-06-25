@@ -1,0 +1,68 @@
+[[questions]]
+
+prompt = "Which of the following statements accurately describes the advantages of using a 2D array compared to a 1D array in programming?"
+
+answer= [0]
+
+distractions = [
+    "A 2D array allows for easier representation of tabular data or matrices.",
+    "A 2D array provides more efficient memory utilization compared to a 1D array.",
+    "A 2D array allows for direct access to individual elements without the need for nested loops.",
+    "A 2D array simplifies the process of sorting and searching for specific values."
+]
+
+explainations = [
+    "A is correct. A 2D array is specifically designed to represent tabular data or matrices in programming. It provides a convenient structure for organizing data in rows and columns, similar to a grid or table. This makes it easier to visualize and manipulate the data, as each element in the 2D array corresponds to a specific cell in the tabular structure.",
+    "B is incorrect. Because there is no inherent advantage of a 2D array in terms of memory utilization compared to a 1D array. Both arrays occupy memory based on the number of elements they hold.",
+    "C is incorrect. Because accessing individual elements in a 2D array still requires specifying the row and column indices, which may require nested loops or direct indexing.",
+    "D is incorrect. Because a 2D array does not simplify the process of sorting and searching for specific values. The algorithms for sorting and searching remain the same regardless of whether the data is stored in a 1D or 2D array."
+]
+
+[[questions]]
+
+prompt = "Which of the following correctly declares a 2D array (3 rows and 2 columns) in C++?"
+
+answer= [0, 3]
+
+distractions = [
+    "int arr[][2] = {1, 2, 3, 4, 5, 6};",
+    "int arr[3][] = {1, 2, 3, 4, 5, 6};",
+    "int arr[3][2] = {{1, 2, 3}, {4, 5, 6};",
+    "int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};"
+]
+
+explainations = [
+    "A is correct. The number of rows is not required as the compiler will fill the array row by row.",
+    "B is incorrect. The number of columns is required as the compiler needs to know how many elements to put in each row.",
+    "C is incorrect. The nested braces are the rows, not the columns.",
+    "D is correct. This is a basic way for declaring a 2D array with 3 rows and 2 columns."
+]
+
+[[questions]]
+
+prompt = '''
+Which of the following correctly access the second element in the third row of the following array?
+```
+int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};
+```
+'''
+
+answer = [0, 1, 2]
+
+distractions = [
+    "arr[2][1]",
+    "*(*(arr + 2) + 1)",
+    "*(arr[2] + 1)",
+    "*(arr + 2)[1]"
+]
+
+explainations = [
+    "A is correct. This is the basic way to access the second element in the third row of the array.",
+    "B is correct. This is the pointer way to access the second element in the third row of the array. The nested braces calculate the address of the third row, and the second element at that row is accessed by adding 1 to the address.",
+    "C is correct. `*(arr + 2)` is the same as `arr[2]`, which is the third row of the array. The second element at that row is accessed by adding 1 to the address.",
+    "D is incorrect. `[]` has higher precedence than `*`, so `*(arr + 2)[1]` parses as `*((arr + 2)[1])`, which is actually the same as `*(*(arr + 3))`. Thus, it accesses the first element at the forth row of the array."
+]
+
+
+
+

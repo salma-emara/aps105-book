@@ -4,7 +4,7 @@ prompt = "When passing a 2D array to a function in C/C++, why is it necessary to
 
 answer = [3]
 
-distractions = [
+distractors = [
     "To ensure proper memory allocation and correct indexing within the function.",
     "To enable the function to iterate over the correct number of rows and columns.",
     "To prevent memory leaks and ensure efficient memory management.",
@@ -24,7 +24,7 @@ prompt = "Which of the following functions with 2D array parameter have correct 
 
 answer = [3]
 
-distractions = [
+distractors = [
 '''
 ```
 void func(int arr[][], int rows, int cols) {

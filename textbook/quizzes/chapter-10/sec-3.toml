@@ -1,0 +1,127 @@
+[[questions]]
+
+prompt = "Which of the following print(s) `3`?"
+
+answer = [0, 1, 2]
+
+distractors = [
+'''
+```
+char s[] = "Hello";
+int size = strlen(s + 2);
+printf("%d", size);
+```
+''',
+'''
+```
+char s[] = "Hel\0lo";
+int size = strlen(s);
+printf("%d", size);
+```
+''',
+'''
+```
+char s[] = "Hel\0";
+int size = strlen(s);
+printf("%d", size);
+```
+''',
+"None of the above."
+]
+
+explainations = [
+    "A is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before `\0`.",
+    "B is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before `\0`.",
+    "C is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before `\0`.",
+    "D is incorrect as A, B and C are correct."
+]
+
+[[questions]]
+
+prompt = "Which of the following print(s) `APS105`?"
+
+answer = [2]
+
+distractors = [
+'''
+```
+char s[] = "I love APS105!";
+char d[6 + 1];
+strcpy(d, s + 7);
+printf("%s", d);
+```
+''',
+'''
+```
+char s[] = "I love APS105!";
+char d[6 + 1];
+strncpy(d, s + 7, 6);
+printf("%s", d);
+```
+''',
+'''
+```
+char s[] = "I love APS105!";
+char d[6 + 1] = "";
+strncpy(d, s + 7, 6);
+printf("%s", d);
+```
+''',
+"None of the above."
+]
+
+explainations = [
+    "A is incorrect. The function copies the string starting at the 7th character to the destination string. It will print `APS105!`.",
+    "B is incorrect. Although `strncpy` copies exactly 6 characters, it does not add a null character at the end of the destination string. There may be garbage characters after `APS105` until the null character is found.",
+    "C is correct. `d` is initialized and it is filled with null characters. `strncpy` copies exactly 6 characters to `d` from the first to the 6th entry of `d`, the last entry is still a null character. It will print `APS105`.",
+    "D is incorrect as C is correct."
+]
+
+[[questions]]
+
+prompt = "Which of the following print(s) `APS105`?"
+
+answer = [0, 3]
+
+distractors = [
+'''
+```
+char d1[] = "APS";
+char d2[] = "105";
+strcat(d1, d2);
+printf("%s", d1);
+```
+''',
+'''
+```
+char d1[] = "APS";
+char d2[] = "105";
+strcat(d1, d2);
+printf("%s", d2);
+```
+''',
+'''
+```
+char d1[6 + 1] = "APS";
+d1[5] = '5';
+char d2[] = "10";
+strcat(d1, d2);
+printf("%s", d1);
+```
+''',
+'''
+```
+char d1[6 + 1] = "APS";
+char d2[] = "105 + 1 = 106";
+strncat(d1, d2, 3);
+printf("%s", d1);
+```
+'''
+]
+
+explainations = [
+    "A is correct. The first argument is the destination string and the second argument is the source string. The function appends the source string to the destination string. It will print `APS105`.",
+    "B is incorrect. It prints the source string.",
+    "C is incorrect. Although the 6th character of `d1` is set to `5`, `d2` is concatenated to `d1` from the 4th character, and the null character of `d2` will overwrite the `5` in `d1`. It will print `APS10`.",
+    "D is correct. The function appends the first 3 characters of the source string to the destination string then adds a null character to the end of the destination string if it was not terminated by null. It will print `APS105`."
+]

@@ -4,7 +4,7 @@ prompt = "Which of the following correctly dynamically allocates a 2D array with
 
 answer = [0, 2]
 
-distractions = [
+distractors = [
 '''
 ```
 int* arr[3];
@@ -54,7 +54,7 @@ prompt = "Assuming `arr` is a 2D array with 3 rows and 2 columns and has been dy
 
 answer = [3]
 
-distractions = [
+distractors = [
     "`free(arr)` frees the entire array allocated by `arr`.",
     "`free(arr)` frees the memory of `arr[0][0]`.",
     "`free(arr[0])` frees the first column of the array allocated by `arr`.",

@@ -30,9 +30,9 @@ printf("%d", size);
 ]
 
 explainations = [
-    "A is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before `\0`.",
-    "B is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before `\0`.",
-    "C is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before `\0`.",
+    "A is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before null character.",
+    "B is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before null character.",
+    "C is correct. The function returns the length of the string counting number of characters starting at initial address to the last character before null character.",
     "D is incorrect as A, B and C are correct."
 ]
 

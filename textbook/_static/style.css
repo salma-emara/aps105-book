@@ -20,10 +20,11 @@
     border: 1px solid black;
     padding: 10px;
     margin-bottom: 10px;
-    width: fit-content;
+    width: 90vh;
     border-radius: 5px;
     display: inline-block;
     height: fit-content;
+    overflow-y: auto;
 }
 
 
@@ -40,6 +41,7 @@
 
 #fullscreen-form.active {
     display: flex;
+    overflow-y: auto;
 }
 
 #close-button {
@@ -59,7 +61,7 @@
 
 #submit-button {
     margin-right: 10px;
-    background-color: lightgray;
+    background-color: white;
 }
 
 .next-button {
@@ -124,7 +126,7 @@ button {
 
 #start-button {
     width: fit-content;
-    background-color: lightgray;
+    background-color: white;
 }
 
 .label {
@@ -139,4 +141,6 @@ button {
 
 .code-snippet {
     overflow-x: auto;
+    width: fit-content;
+    margin-left: 10px;
 }

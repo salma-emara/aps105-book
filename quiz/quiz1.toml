@@ -115,3 +115,13 @@ Output Devices -- Hands, Legs: Output devices in a computer system refer to devi
 Operating System -- Circulatory System: The operating system manages and controls the computer's resources, whereas the circulatory system in the human body is responsible for circulating blood and delivering nutrients and oxygen to various parts of the body.
 '''
 ]
+
+[[questions]]
+
+prompt = "Jade is learning C programming and wants to create a program that calculates the area of a rectangle. She opens her code editor and starts writing a C program to perform the calculation. Jade inputs the length and width of the rectangle, and the program calculates and displays the area on the screen. Which component(s) of the computer system is/are responsible for executing the C program and display the result on the screen?"
+
+answer = [0, 1, 2, 3]
+
+distractors = ["CPU", "Main memory", "Input/Ouput device", "Operaing system"]
+
+explainations = ["CPU is responsible for executing the C program written by Jade. It performs the calculations required to determine the area of the rectangle based on the provided length and width. The CPU consists of components such as the arithmetic logic unit (ALU) and the control unit, which work together to execute the program's instructions and perform the necessary calculations.", "It stores the C program code, as well as the data input (length and width of the rectangle) that Jade provides.", "The input device (such as a keyboard) is used by Jade to enter the length and width of the rectangle, which are inputs to the program. The output device (such as the screen) displays the calculated area as the result of the program.", "Although not directly mentioned in the scenario, the operating system plays a role in managing the execution of the program and coordinating the interaction between the CPU, main memory, and input/output devices."]

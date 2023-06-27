@@ -39,6 +39,27 @@ parsedObject = {
         "CPU -- Stomach: This option incorrectly associates the CPU with the stomach. The stomach's primary function is to aid in digestion and break down food, which does not align with the role of the CPU in a computer system.\n\nALU -- Digestive Enzymes: This option incorrectly associates the ALU with digestive enzymes. Digestive enzymes are substances that aid in the breakdown of food molecules and do not perform arithmetic or logical operations like the ALU.\n\nControl Unit -- Skeletal System: This option incorrectly associates the control unit with the skeletal system. The skeletal system provides support and protection for the body but does not fulfill the role of controlling the execution of instructions like the control unit.\n\nMain Memory -- Long-term Memory: This option incorrectly associates main memory with long-term memory. Main memory in a computer system refers to the storage that holds data and instructions temporarily during program execution.\n\nInput Devices -- Lungs, Nose: This option incorrectly associates input devices with the lungs and nose. While the lungs and nose are involved in the respiratory system and play a role in inputting oxygen and detecting smells, they are not the primary input devices for a computer system.\n\nOutput Devices -- Stomach, Intestines: This option incorrectly associates output devices with the stomach and intestines. The stomach and intestines are involved in the digestive system and do not align with the role of output devices in a computer system.\n\nOperating System -- Immune System: This option incorrectly associates the operating system with the immune system. The immune system is responsible for defending the body against pathogens and maintaining overall health, which is not directly related to the functions of an operating system.\n",
         "CPU -- Eyes: The CPU is the central processing unit of a computer, responsible for executing instructions and performing calculations. The eyes, on the other hand, are sensory organs that capture visual information.\n\nALU -- Optic Nerve: The ALU (Arithmetic Logic Unit) performs arithmetic and logical operations within the CPU. The optic nerve, however, is responsible for transmitting visual information from the eyes to the brain.\n\nControl Unit -- Brain: The control unit manages and coordinates the execution of instructions within the CPU, similar to how the brain controls and coordinates various functions in the body.\n\nMain Memory -- Short-term Memory: Main memory in a computer system refers to the temporary storage used for holding data and instructions during program execution, akin to short-term memory in the human brain that holds information temporarily for immediate use.\n\nInput Devices -- Ears, Nose: While the ears and nose are indeed input sensory organs capturing auditory and olfactory information, other input devices such as keyboards and mice are commonly used in computer systems.\n\nOutput Devices -- Hands, Legs: Output devices in a computer system refer to devices that display or produce information for the user, such as monitors or printers. Hands and legs are part of the body's motor functions and are not directly related to outputting information from a computer system.\n\nOperating System -- Circulatory System: The operating system manages and controls the computer's resources, whereas the circulatory system in the human body is responsible for circulating blood and delivering nutrients and oxygen to various parts of the body.\n"
       ]
+    },
+    {
+      "prompt": "Jade is learning C programming and wants to create a program that calculates the area of a rectangle. She opens her code editor and starts writing a C program to perform the calculation. Jade inputs the length and width of the rectangle, and the program calculates and displays the area on the screen. Which component(s) of the computer system is/are responsible for executing the C program and display the result on the screen?",
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "distractors": [
+        "CPU",
+        "Main memory",
+        "Input/Ouput device",
+        "Operaing system"
+      ],
+      "explainations": [
+        "CPU is responsible for executing the C program written by Jade. It performs the calculations required to determine the area of the rectangle based on the provided length and width. The CPU consists of components such as the arithmetic logic unit (ALU) and the control unit, which work together to execute the program's instructions and perform the necessary calculations.",
+        "It stores the C program code, as well as the data input (length and width of the rectangle) that Jade provides.",
+        "The input device (such as a keyboard) is used by Jade to enter the length and width of the rectangle, which are inputs to the program. The output device (such as the screen) displays the calculated area as the result of the program.",
+        "Although not directly mentioned in the scenario, the operating system plays a role in managing the execution of the program and coordinating the interaction between the CPU, main memory, and input/output devices."
+      ]
     }
   ]
 };

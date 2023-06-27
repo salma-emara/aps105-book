@@ -1,0 +1,181 @@
+[[questions]]
+
+prompt = '''Jade is writing a program to generate sequences of a give string. The interval between two adjacent characters in the sequence can be 1 or 2 in original string, but must include the first and the last characters. Her code is as follows:
+```
+#include <stdio.h>
+#include <string.h>
+
+void jump(char*, int, int);
+
+char result[10] = "";
+
+int main(void) {
+    char *s = "APS105";
+    jump(s, 0, 0);
+    return 0;
+}
+
+void jump(char *s, int cur, int round) {
+    if (cur >= strlen(s)) {
+        return ;
+    } else if (cur == strlen(s) - 1) {
+        result[round] = s[cur];
+        result[round + 1] = '\0';
+        printf("%s\n", result);
+        return ;
+    }
+    result[round] = s[cur];
+    jump(s, cur + 2, round + 1);
+    jump(s, cur + 1, round + 1);
+}
+```
+What is the output of the program?
+'''
+
+answer = [2]
+
+distractors = [
+'''
+```
+APS105
+AS105
+AP105
+APS05
+APS15
+AS05
+AS15
+AP15
+```
+''',
+'''
+```
+AS05
+AS15
+AP15
+AS105
+AP105
+APS05
+APS15
+APS105
+```
+''',
+'''
+```
+AS05
+AS15
+AS105
+AP15
+AP105
+APS05
+APS15
+APS105
+```
+''',
+'''
+```
+APS105
+APS05
+AP15
+APS15
+AS05
+AS15
+AS105
+AP105
+```
+'''
+]
+
+explainations = [
+'''
+A is incorrect. 
+
+From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
+2->2->1  // if the last jump is 2 then it will not be able to reach the last character
+2->1->2
+2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
+1->2->2
+1->2->1->1
+1->1->2->1
+1->1->1->2
+1->1->1->1->1
+
+So the output will be:
+AS05
+AS15
+AS105
+AP15
+AP105
+APS05
+APS15
+APS105
+''',
+'''
+B is incorrect. 
+
+From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
+2->2->1  // if the last jump is 2 then it will not be able to reach the last character
+2->1->2
+2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
+1->2->2
+1->2->1->1
+1->1->2->1
+1->1->1->2
+1->1->1->1->1
+
+So the output will be:
+AS05
+AS15
+AS105
+AP15
+AP105
+APS05
+APS15
+APS105
+''',
+'''
+C is correct. 
+
+From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
+2->2->1  // if the last jump is 2 then it will not be able to reach the last character
+2->1->2
+2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
+1->2->2
+1->2->1->1
+1->1->2->1
+1->1->1->2
+1->1->1->1->1
+
+So the output will be:
+AS05
+AS15
+AS105
+AP15
+AP105
+APS05
+APS15
+APS105
+''',
+'''
+D is incorrect. 
+
+From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
+2->2->1  // if the last jump is 2 then it will not be able to reach the last character
+2->1->2
+2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
+1->2->2
+1->2->1->1
+1->1->2->1
+1->1->1->2
+1->1->1->1->1
+
+So the output will be:
+AS05
+AS15
+AS105
+AP15
+AP105
+APS05
+APS15
+APS105
+'''
+]

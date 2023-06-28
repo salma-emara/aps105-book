@@ -1,0 +1,98 @@
+[[questions]]
+
+prompt = "Which of the following declare(s) the `struct` correctly?"
+
+answer = [0, 1]
+
+distractors = [
+'''
+```
+typedef struct APS105 {
+    int studentNumber;
+    char instructor[20];
+    double averageGrade;
+} APS105;
+APS105 course;
+```
+''',
+'''
+```
+struct APS105 {
+    int studentNumber;
+    char instructor[20];
+    double averageGrade;
+} course;
+```
+''',
+'''
+```
+struct APS105 {
+    int studentNumber;
+    char instructor[20];
+    double averageGrade;
+};
+APS105 course;
+```
+''',
+'''
+```
+struct Employee {
+    char name[20];
+    int age;
+    double salary;
+    struct Employee subordinate[20];
+} boss;
+```
+'''
+]
+
+explainations = [
+    "A is correct. It declares a `struct` named `APS105` and an alias of the same name. Then the variable `course` is declared as a variable of type `APS105`.",
+    "B is correct. This is the basic way to declare a `struct`.",
+    "C is incorrect. The `stuct` keyword is missing when declaring the variable `course`.",
+    "D is incorrect. The compiler will not know what `Employee` is when it is used in the declaration of `boss`. It can not decide the memory size of `boss` (but we can use pointers to `struct` to solve this problem in the next chapter, as pointers have a fixed size)."
+]
+
+[[questions]]
+
+prompt = "Assume that the `APS105` `struct` has been declared correctly with the following members: `int studentNumber`, `char *instructor`, `double averageGrade` (they are defined in the same order in the `struct` definition). Which of the following statements is/are correct?"
+
+answer = [1]
+
+distractors = [
+'''
+```
+struct APS105 course;
+APS105.instructor = "Dennis Ritchie";
+APS105.studentNumber = 60;
+APS105.averageGrade = 85.0;
+```
+''',
+'''
+```
+struct APS105 course;
+course.instructor = "Dennis Ritchie";
+course.studentNumber = 60;
+course.averageGrade = 85.0;
+```
+''',
+'''
+```
+struct APS105 course = {60, 85.0, "Dennis Ritchie"};
+printf("%s\n", course.instructor);
+```
+''',
+'''
+```
+struct APS105 course = {60, "Dennis Ritchie", 85.0};
+printf("%d\n", course.averageGrade);
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The `APS105` is the name of the `struct`, not the name of the variable.",
+    "B is correct. The members of a `struct` can be accessed using the dot operator.",
+    "C is incorrect. The members of a `struct` can be initialized in the order they are defined in the `struct` definition. The `instructor` member is at the second position, so the second value in the initializer list should be a string.",
+    "D is incorrect. The `averageGrade` member is a `double`, not an `int`."
+]

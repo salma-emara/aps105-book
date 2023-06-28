@@ -103,20 +103,11 @@ function parse_and_generate_form(fileName) {
 
     for (let i = 0; i < questions.length; i++) {
         let question = questions[i].prompt;
+        console.log(questions[i].prompt);
         const choices = questions[i].distractors;
         const codeSnippet = questions[i].codeSnippet;
         const answer = questions[i].answer;
         const hint = questions[i].explainations;
-
-        //extract question code snippet if available
-        const regex = /(```|`)([\s\S]*?)\1/;
-        const match = question.match(regex);
-        let questionCodeSnippet = '';
-
-        if (match) {
-            questionCodeSnippet = match[2].trim();
-            question = question.replace(match[0], '');
-        }
 
         //generate the quiz form in HTML
         const form = document.createElement("form");
@@ -147,26 +138,50 @@ function parse_and_generate_form(fileName) {
         form.appendChild(container);
 
         //add question text
-        const questionElement = document.createElement("div");
+        let questionElement = document.createElement("div");
         questionElement.id = "question" + (i + 1);
         questionElement.classList.add("question-box");
 
         const questionTitle = document.createElement("h4");
         questionTitle.innerHTML = "Question " + (i + 1);
 
-        const questionText = document.createElement("p");
+        let questionText = document.createElement("p");
         questionText.innerHTML = question;
 
+        //extract question code snippet if available
+        const regexTripleBackticks = /```([\s\S]*?)```/;
+        const regexSingleBacktick = /`([\s\S]*?)`/;
+
+        let match = question.match(regexTripleBackticks);
+        let questionCodeSnippet = '';
+
         questionElement.appendChild(questionTitle);
-        questionElement.appendChild(questionText);
+
+        if (match) {
+            questionCodeSnippet = match[1].trim();
+            question = question.replace(match[1], '');
+            questionElement.appendChild(questionText);
+            QcodeSnippetFormatting(questionCodeSnippet, questionElement, true);
+        } else {
+            match = question.match(regexSingleBacktick);
+            if (match) {
+                question = questions.prompt[i].replace(/\\/g, '\\\\');
+                console.log(question);
+                questionText.innerHTML = question;
+                questionCodeSnippet = match[1].trim();
+                question = question.replace(match[0], '');
+
+                // Create a new <code> element
+                const codeSnippetElement = document.createElement("code");
+                codeSnippetElement.classList.add("code-snippet-single");
+                codeSnippetElement.textContent = questionCodeSnippet;
+
+                questionText.innerHTML = questionText.innerHTML.replace(/`([\s\S]*?)`/, codeSnippetElement.outerHTML);
+            }
+            questionElement.appendChild(questionText);
+        }
 
         form.appendChild(questionElement);
-
-
-        // Add code snippet if available
-        if (questionCodeSnippet) {
-            QcodeSnippetFormatting(questionCodeSnippet, questionElement);
-        }
 
         //add choices
         const choicesElement = document.createElement("div");
@@ -208,11 +223,11 @@ function parse_and_generate_form(fileName) {
                 let choice = choices[j];
 
                 //extract code snippet if available
-                const match_answer = choice.match(regex);
+                const match_answer = choice.match(regexTripleBackticks);
                 let answerCodeSnippet = '';
 
                 if (match_answer) {
-                    answerCodeSnippet = match_answer[2].trim();
+                    answerCodeSnippet = match_answer[1].trim();
                     choice = choice.replace(match_answer[0], '');
                 }
 
@@ -236,7 +251,6 @@ function parse_and_generate_form(fileName) {
                 choiceContainer.appendChild(radioButton);
                 if (answerCodeSnippet) {
                     AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, radioButton);
-                    //radioButton.value = choice + answerCodeSnippet;
                     label.innerHTML = '';
                 }
                 choiceContainer.appendChild(label);
@@ -254,11 +268,11 @@ function parse_and_generate_form(fileName) {
                 let choice = choices[j];
 
                 //extract code snippet if available
-                const match_answer = choice.match(regex);
+                const match_answer = choice.match(regexTripleBackticks);
                 let answerCodeSnippet = '';
 
                 if (match_answer) {
-                    answerCodeSnippet = match_answer[2].trim();
+                    answerCodeSnippet = match_answer[1].trim();
                     choice = choice.replace(match_answer[0], '');
                 }
 
@@ -357,7 +371,7 @@ function showNextQuestion() {
 }
 
 
-function QcodeSnippetFormatting(codeSnippet, questionElement) {
+function QcodeSnippetFormatting(codeSnippet, questionElement, useLineNumbers) {
     const codeSnippetContainer = document.createElement("pre");
     codeSnippetContainer.classList.add("code-snippet");
 
@@ -367,10 +381,12 @@ function QcodeSnippetFormatting(codeSnippet, questionElement) {
     for (let j = 0; j < codeSnippetLines.length; j++) {
         const codeLineContainer = document.createElement("div");
 
-        const lineNumberElement = document.createElement("span");
-        lineNumberElement.classList.add("line-number");
-        lineNumberElement.textContent = j + 1;
-        codeLineContainer.appendChild(lineNumberElement);
+        if (useLineNumbers) {
+            const lineNumberElement = document.createElement("span");
+            lineNumberElement.classList.add("line-number");
+            lineNumberElement.textContent = j + 1;
+            codeLineContainer.appendChild(lineNumberElement);
+        }
 
         const codeLineElement = document.createElement("span");
         codeLineElement.textContent = codeSnippetLines[j];

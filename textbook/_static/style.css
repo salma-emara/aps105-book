@@ -144,3 +144,16 @@ button {
     width: fit-content;
     margin-left: 10px;
 }
+
+.code-snippet-single {
+    display: inline-block;
+    padding: 8px;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}

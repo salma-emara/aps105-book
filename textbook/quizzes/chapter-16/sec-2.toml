@@ -1,0 +1,39 @@
+[[questions]]
+
+prompt = "Why can a binary search tree use recursion to print its elements in order?"
+
+answer = [2]
+
+distractors = [
+    "The binary search tree at most has two children per node.",
+    "The binary search tree provides built-in recursive functions specifically designed for printing elements in order.",
+    "All nodes in left subtree are less than to the root node, and all nodes in the right subtree are greater than the root node.",
+    "None of the above."
+]
+
+explainations = [
+    "A is incorrect. The binary search tree at most has two children per node, but this does not explain why it can use recursion to print its elements in order.",
+    "B is incorrect. The binary search tree is only a data structure, and it does not provide any built-in recursive functions specifically designed for printing elements in order.",
+    "C is correct. The binary search tree is a data structure that has the property that all nodes in left subtree are less than to the root node, and all nodes in the right subtree are greater than the root node. This property allows us to use recursion to print its elements in order.",
+    "D is incorrect. C is correct."
+]
+
+[[questions]]
+
+prompt = "What is the difference between searching for a node and inserting a node in a binary search tree?"
+
+answer = [3]
+
+distractors = [
+    "Searching need to find the node with the same value, while inserting can just insert the node at the end of the tree.",
+    "Inserting will change the structure of the tree before inserting, while searching will not.",
+    "Searching involves comparing the node's value with the target value, while inserting does not involve any comparison.",
+    "None of above."
+]
+
+explainations = [
+    "A is incorrect. Inserting a node in a binary search tree requires finding the correct position to insert the node, which is the same as searching for a node.",
+    "B is incorrect. Inserting a node in a binary search tree does not change the structure of the tree before inserting. It only inserts the node at a NULL position.",
+    "C is incorrect. Both searching and inserting involve comparing the node's value with the target value.",
+    "D is correct. Searching and inserting essentially have the same process, which is to compare the node's value with the target value. The searching is the first step of inserting."
+]

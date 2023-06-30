@@ -1,0 +1,162 @@
+[[questions]]
+
+prompt = '''
+What is the correct order of steps to delete a node from a linked list?
+
+1. Free the dynamically allocated memory for the node we want to delete.
+2. Fix the links before and after the node we want to delete.
+3. Update the head of the list if necessary.
+4. Find the node we want to delete.
+'''
+
+answer = [2]
+
+distractors = [
+    "4, 2, 3, 1",
+    "2, 3, 1, 4",
+    "4, 2, 1, 3",
+    "2, 4, 3, 1",
+]
+
+explainations = [
+    "A is incorrect. The correct order is 4, 2, 1, 3.",
+    "B is incorrect. The correct order is 4, 2, 1, 3.",
+    "C is correct. The correct order is 4, 2, 1, 3.",
+    "D is incorrect. The correct order is 4, 2, 1, 3."
+]
+
+[[questions]]
+
+prompt = '''
+Which of the following correctly delete(s) the second and the second last node of a linked list? (Assume that the list has at least two nodes.)
+
+Also assume the following struct has been defined:
+```
+typedef struct node {
+    int data;
+    struct node *next;
+} Node;
+
+typedef struct list {
+  Node* head;
+} LinkedList;
+```
+'''
+
+answer = [3]
+
+distractors = [
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+    Node *first = list->head;
+    Node *second = list->head->next;
+    Node *secondLast = list->head;
+    Node *thirdLast = list->head;
+    while (secondLast->next->next != NULL) {
+        secondLast = secondLast->next;
+    }
+    while (thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+    first->next = second->next;
+    thirdLast->next = secondLast->next;
+    free(second);
+    free(secondLast);
+}
+```
+''',
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+    if (list->head->next->next == NULL) {
+        list->head = NULL;
+        return;
+    }
+    Node *first = list->head;
+    Node *second = list->head->next;
+    Node *secondLast = list->head;
+    Node *thirdLast = list->head;
+    while (secondLast->next->next != NULL) {
+        secondLast = secondLast->next;
+    }
+    while (thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+    first->next = second->next;
+    thirdLast->next = secondLast->next;
+    free(second);
+    free(secondLast);
+}
+```
+''',
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+    if (list->head->next->next == NULL) {
+        list->head = NULL;
+        return;
+    }
+    Node *first = list->head;
+    Node *thirdLast = list->head;
+    while (thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+    Node *second = first->next;
+    Node *secondLast = thirdLast->next;
+    first->next = first->next->next;
+    thirdLast->next = thirdLast->next->next;
+    if (second == secondLast) {
+        free(second);
+    } else {
+        free(second);
+        free(secondLast); 
+    }
+}
+```
+''',
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+    if (list->head->next->next == NULL) {
+        list->head = NULL;
+        return;
+    }
+    Node *first = list->head;
+    Node *thirdLast = list->head;
+    while (thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+    Node *second = first->next;
+    Node *secondLast = thirdLast->next;
+    first->next = second->next;
+    thirdLast->next = secondLast->next;
+    if (second == secondLast) {
+        free(second);
+    } else {
+        free(second);
+        free(secondLast); 
+    }
+}
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. If there are only two nodes in the list, it will run into segmentation fault when finding the third last node.",
+    "B is incorrect. If there are only three nodes in the list, the second and the second last node are the same, it will free the same node twice.",
+    "C is incorrect. If there are only three nodes in the list, the second and the second last node are the same. When updating the third last node's next pointer, since the `thirdLast->next` has been updated by `first->next->next`, so it will be `NULL'. The final result is that there is only first node left in the list.",
+    "D is correct. It will delete the second and the second last node correctly."
+]

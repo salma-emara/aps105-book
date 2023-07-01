@@ -99,11 +99,8 @@ function parse_and_generate_form(fileName) {
     const questionNumberElement = document.getElementById("question-number");
     questionNumberElement.innerHTML = questions.length + " Questions";
 
-
-
     for (let i = 0; i < questions.length; i++) {
         let question = questions[i].prompt;
-        console.log(questions[i].prompt);
         const choices = questions[i].distractors;
         const codeSnippet = questions[i].codeSnippet;
         const answer = questions[i].answer;
@@ -150,7 +147,7 @@ function parse_and_generate_form(fileName) {
 
         //extract question code snippet if available
         const regexTripleBackticks = /```([\s\S]*?)```/;
-        const regexSingleBacktick = /`([\s\S]*?)`/;
+        const regexSingleBacktick = /`([\s\S]*?)`/g;
 
         let match = question.match(regexTripleBackticks);
         let questionCodeSnippet = '';
@@ -163,21 +160,25 @@ function parse_and_generate_form(fileName) {
             questionElement.appendChild(questionText);
             QcodeSnippetFormatting(questionCodeSnippet, questionElement, true);
         } else {
-            match = question.match(regexSingleBacktick);
-            if (match) {
-                question = questions.prompt[i].replace(/\\/g, '\\\\');
-                console.log(question);
+            codeSnippetMatches = question.match(regexSingleBacktick);
+
+            if (codeSnippetMatches) {
+                for (let j = 0; j < codeSnippetMatches.length; j++) {
+                    const match = codeSnippetMatches[j];
+                    questionText.innerHTML = question;
+                    const questionCodeSnippet = match.slice(1, -1).trim();
+
+                    // Create a new <code> element
+                    const codeSnippetElement = document.createElement("code");
+                    codeSnippetElement.classList.add("code-snippet-single");
+                    codeSnippetElement.textContent = questionCodeSnippet;
+
+                    question = question.replace(match, codeSnippetElement.outerHTML);
+                }
+
                 questionText.innerHTML = question;
-                questionCodeSnippet = match[1].trim();
-                question = question.replace(match[0], '');
-
-                // Create a new <code> element
-                const codeSnippetElement = document.createElement("code");
-                codeSnippetElement.classList.add("code-snippet-single");
-                codeSnippetElement.textContent = questionCodeSnippet;
-
-                questionText.innerHTML = questionText.innerHTML.replace(/`([\s\S]*?)`/, codeSnippetElement.outerHTML);
             }
+
             questionElement.appendChild(questionText);
         }
 
@@ -202,6 +203,25 @@ function parse_and_generate_form(fileName) {
         const messageElement = document.createElement("p");
         messageElement.id = "message" + (i + 1);
         form.appendChild(messageElement);
+
+        //format code snippet in explainations
+        for (let i = 0; i < hint.length; i++) {
+            const currentHint = hint[i];
+            const codeSnippetMatches = currentHint.match(regexSingleBacktick);
+            if (codeSnippetMatches) {
+                for (let j = 0; j < codeSnippetMatches.length; j++) {
+                    const match = codeSnippetMatches[j];
+                    const hintCodeSnippet = match.slice(1, -1).trim();
+
+                    // Create a new <code> element
+                    const codeSnippetElement = document.createElement("code");
+                    codeSnippetElement.classList.add("code-snippet-single");
+                    codeSnippetElement.textContent = hintCodeSnippet;
+
+                    hint[i] = hint[i].replace(match, codeSnippetElement.outerHTML);
+                }
+            }
+        }
 
         // Add next button
         if ((i + 1) !== questions.length) {
@@ -313,7 +333,6 @@ function parse_and_generate_form(fileName) {
         }
     }
 }
-
 
 function handle_submission(formId, answer, hint) {
     const formNumber = formId.replace("quizForm", "");

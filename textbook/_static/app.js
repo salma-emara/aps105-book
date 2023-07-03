@@ -157,11 +157,11 @@ function parse_and_generate_form(fileName) {
         if (match) {
             questionCodeSnippet = match[1].trim();
             question = question.replace(match[1], '');
+            questionText.innerHTML = question;
             questionElement.appendChild(questionText);
             QcodeSnippetFormatting(questionCodeSnippet, questionElement, true);
         } else {
             codeSnippetMatches = question.match(regexSingleBacktick);
-
             if (codeSnippetMatches) {
                 for (let j = 0; j < codeSnippetMatches.length; j++) {
                     const match = codeSnippetMatches[j];
@@ -195,7 +195,7 @@ function parse_and_generate_form(fileName) {
         submitButton.innerHTML = "Submit";
         submitButton.classList.add("submit-button");
         submitButton.addEventListener("click", function () {
-            handle_submission(form.id, answer, hint);
+            handle_submission(form.id, answer, hint, fileName);
         });
         form.appendChild(submitButton);
 
@@ -314,7 +314,6 @@ function parse_and_generate_form(fileName) {
 
                 if (answerCodeSnippet) {
                     AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, checkbox);
-                    //radioButton.value = choice + answerCodeSnippet;
                     label.innerHTML = '';
                 }
 
@@ -331,30 +330,38 @@ function parse_and_generate_form(fileName) {
         if (i > 0) {
             form.style.display = "none";
         }
+
+        // Check if there is a stored value for the current form
+        const explainIndex = localStorage.getItem(fileName + "quizForm" + (i + 1));
+        if (explainIndex) {
+            const choiceInput = document.getElementById("choice" + (i + 1) + "-" + (parseInt(explainIndex) + 1));
+            choiceInput.checked = true;
+
+            const selectedIndices = [parseInt(explainIndex)];
+            const isCorrect = answer.some(correctIndex => selectedIndices.includes(correctIndex));
+
+            updateMessageElement(messageElement, isCorrect, hint, explainIndex);
+        }
     }
+
+    closeFullscreenForm();
 }
 
-function handle_submission(formId, answer, hint) {
+function handle_submission(formId, answer, hint, filename) {
     const formNumber = formId.replace("quizForm", "");
     const form = document.getElementById(formId);
     const selectedChoices = form.querySelectorAll("input[name='choice" + formId.slice(8) + "']:checked");
 
     const messageElement = form.querySelector("#message" + formId.slice(8));
 
+    let explainIndex = -1;
+
     if (selectedChoices.length > 0) {
         const selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
         const isCorrect = answer.some(correctIndex => selectedIndices.includes(correctIndex));
-        const explainIndex = selectedIndices[0];
+        explainIndex = selectedIndices[0];
 
-        if (isCorrect) {
-            messageElement.innerHTML = "Correct! <span class='hint-text'>" + hint[explainIndex].replace(/\n/g, "<br>"); + "</span>";
-            messageElement.style.color = "green";
-            messageElement.style.fontWeight = "bold";
-        } else {
-            messageElement.innerHTML = "Inorrect! <span class='hint-text'>" + hint[explainIndex].replace(/\n/g, "<br>"); + "</span>";
-            messageElement.style.color = "red";
-            messageElement.style.fontWeight = "bold";
-        }
+        updateMessageElement(messageElement, isCorrect, hint, explainIndex);
     } else {
         messageElement.innerHTML = "Please make a selection.";
         messageElement.style.color = "red";
@@ -363,8 +370,14 @@ function handle_submission(formId, answer, hint) {
 
     if (messageElement.textContent !== "Please make a selection.") {
         const nextButton = document.getElementById("next-button" + formNumber);
-        nextButton.classList.remove("hidden");
+        if (nextButton) {
+            nextButton.classList.remove("hidden");
+        }
     }
+
+    // Store the user's answer in local storage
+    const key = filename + formId
+    localStorage.setItem(key, explainIndex);
 }
 
 
@@ -447,4 +460,17 @@ function AcodeSnippetFormatting(codeSnippet, choiceContainer, button) {
     codeSnippetContainer.addEventListener("click", function () {
         button.checked = true;
     });
+}
+
+
+function updateMessageElement(messageElement, isCorrect, hint, explainIndex) {
+    if (isCorrect) {
+        messageElement.innerHTML = "Correct! <span class='hint-text'>" + hint[explainIndex].replace(/\n/g, "<br>") + "</span>";
+        messageElement.style.color = "green";
+        messageElement.style.fontWeight = "bold";
+    } else {
+        messageElement.innerHTML = "Incorrect! <span class='hint-text'>" + hint[explainIndex].replace(/\n/g, "<br>") + "</span>";
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+    }
 }

@@ -17,7 +17,7 @@ function startQuiz() {
     fullscreenForm.classList.add("active");
 
     const containerheader = document.getElementById("container-header");
-    containerheader.classList.add("hidden");
+    containerheader.classList.add("hidden-imp");
 
     if (quizForms.length === 1) {
         nextButton.classList.add("hidden");
@@ -37,7 +37,7 @@ function closeFullscreenForm() {
         fullscreenForm.classList.add("mini");
 
         const containerheader = document.getElementById("container-header");
-        containerheader.classList.add("hidden");
+        containerheader.classList.add("hidden-imp");
 
         // Show all questions
         const quizForms = document.querySelectorAll("[id^='quizForm']");
@@ -52,8 +52,12 @@ function closeFullscreenForm() {
             }
         }
 
+        //hide buttons
         var startButton = document.getElementById("start-button");
         startButton.classList.add("hidden");
+
+        var finishButton = document.getElementById("finish-button");
+        finishButton.classList.add("hidden");
 
         var closeButton = document.getElementById("close-button");
         closeButton.classList.add("hidden");
@@ -65,6 +69,7 @@ function closeFullscreenForm() {
             submitButton.classList.add("hidden");
         }
 
+        //hide title
         var quizTitles = document.getElementsByClassName("quiz-title");
 
         for (var i = 0; i < quizTitles.length; i++) {
@@ -72,12 +77,32 @@ function closeFullscreenForm() {
             quizTitle.classList.add("hidden");
         }
 
+        //hide the next buttons
         var nextButtons = document.getElementsByClassName("next-button");
 
         for (var i = 0; i < nextButtons.length; i++) {
             var nextButton = nextButtons[i];
             nextButton.classList.add("hidden");
         }
+
+        // Get the radio buttons and checkboxes
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        // Disable the radio buttons
+        radioButtons.forEach((radioButton) => {
+            radioButton.disabled = true;
+        });
+
+        // Disable the checkboxes
+        checkboxes.forEach((checkbox) => {
+            checkbox.disabled = true;
+        });
+
+        //reset button
+        const resetButton = document.getElementById("reset-button");
+        resetButton.classList.remove("hidden");
+
     }
     else {
         var fullscreenForms = document.getElementById("fullscreen-form");
@@ -86,7 +111,7 @@ function closeFullscreenForm() {
         fullscreenForms.classList.remove("mini");
         fullscreenForms.classList.add("hidden");
         const containerheader = document.getElementById("container-header");
-        containerheader.classList.remove("hidden");
+        containerheader.classList.remove("hidden-imp");
     }
 }
 
@@ -155,8 +180,8 @@ function parse_and_generate_form(fileName) {
         questionElement.appendChild(questionTitle);
 
         if (match) {
-            questionCodeSnippet = match[1].trim();
-            question = question.replace(match[1], '');
+            questionCodeSnippet = match[0].trim();
+            question = question.replace(match[0], '');
             questionText.innerHTML = question;
             questionElement.appendChild(questionText);
             QcodeSnippetFormatting(questionCodeSnippet, questionElement, true);
@@ -234,6 +259,26 @@ function parse_and_generate_form(fileName) {
             nextButton.addEventListener("click", showNextQuestion);
             form.appendChild(nextButton);
         }
+        else {
+            //create finish button
+            const finishButton = document.createElement('button');
+            finishButton.type = "button";
+            finishButton.id = "finish-button";
+            finishButton.innerHTML = "Finish";
+            finishButton.addEventListener("click", closeFullscreenForm);
+            form.appendChild(finishButton);
+            finishButton.classList.add("hidden");
+        }
+
+        //add reset quiz option
+        const resetButton = document.createElement('buttton');
+        resetButton.type = "button";
+        resetButton.id = "reset-button";
+        resetButton.innerHTML = "Reset Quiz";
+        resetButton.classList.add("reset-button");
+        resetButton.classList.add("hidden");
+        //resetButton.addEventListener("click", resetQuiz(fileName));
+        form.appendChild(resetButton);
 
         document.getElementById("fullscreen-form").appendChild(form);
 
@@ -331,14 +376,17 @@ function parse_and_generate_form(fileName) {
             form.style.display = "none";
         }
 
-        // Check if there is a stored value for the current form
-        const explainIndex = localStorage.getItem(fileName + "quizForm" + (i + 1));
-        if (explainIndex) {
-            const choiceInput = document.getElementById("choice" + (i + 1) + "-" + (parseInt(explainIndex) + 1));
-            choiceInput.checked = true;
+        // Check if there are stored values for the current form
+        const selectedIndices = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1)));
+        if (selectedIndices && selectedIndices.length !== 0) {
+            console.log(selectedIndices);
+            const choiceInputs = selectedIndices.map(index => document.getElementById("choice" + (i + 1) + "-" + (index + 1)));
+            choiceInputs.forEach(choiceInput => {
+                choiceInput.checked = true;
+            });
 
-            const selectedIndices = [parseInt(explainIndex)];
-            const isCorrect = answer.some(correctIndex => selectedIndices.includes(correctIndex));
+            const explainIndex = selectedIndices[0]; // Get the first selected index
+            const isCorrect = answer.every(correctIndex => selectedIndices.includes(correctIndex));
 
             updateMessageElement(messageElement, isCorrect, hint, explainIndex);
         }
@@ -354,11 +402,11 @@ function handle_submission(formId, answer, hint, filename) {
 
     const messageElement = form.querySelector("#message" + formId.slice(8));
 
-    let explainIndex = -1;
+    let selectedIndices = [];
 
     if (selectedChoices.length > 0) {
-        const selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
-        const isCorrect = answer.some(correctIndex => selectedIndices.includes(correctIndex));
+        selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
+        const isCorrect = answer.every(correctIndex => selectedIndices.includes(correctIndex));
         explainIndex = selectedIndices[0];
 
         updateMessageElement(messageElement, isCorrect, hint, explainIndex);
@@ -370,14 +418,18 @@ function handle_submission(formId, answer, hint, filename) {
 
     if (messageElement.textContent !== "Please make a selection.") {
         const nextButton = document.getElementById("next-button" + formNumber);
+        const finishButton = document.getElementById("finish-button");
         if (nextButton) {
             nextButton.classList.remove("hidden");
+        }
+        else if (finishButton) {
+            finishButton.classList.remove("hidden");
         }
     }
 
     // Store the user's answer in local storage
-    const key = filename + formId
-    localStorage.setItem(key, explainIndex);
+    const key = filename + formId;
+    localStorage.setItem(key, JSON.stringify(selectedIndices));
 }
 
 
@@ -473,4 +525,27 @@ function updateMessageElement(messageElement, isCorrect, hint, explainIndex) {
         messageElement.style.color = "red";
         messageElement.style.fontWeight = "bold";
     }
+}
+
+function resetQuiz(fileName) {
+    const header = document.getElementById("container-header");
+    header.classList.remove("hidden-imp");
+
+    //clear local storage answers
+    const prefix = fileName;
+
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+
+        if (key && key.startsWith(prefix)) {
+            localStorage.removeItem(key);
+        }
+    }
+
+    const quizForms = document.querySelectorAll("[id^='quizForm']");
+
+    for (let i = 1; i < quizForms.length; i++) {
+        quizForms[i].style.display = "none";
+    }
+
 }

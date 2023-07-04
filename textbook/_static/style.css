@@ -55,9 +55,14 @@
 }
 
 
-.hidden {
+.hidden-imp {
     display: none !important;
 }
+
+.hidden {
+    display: none;
+}
+
 
 #submit-button {
     margin-right: 10px;

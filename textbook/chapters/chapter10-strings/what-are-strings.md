@@ -92,7 +92,7 @@ myString[3] = '\0';
 ```
 
 (summary-can-cannot)=
-### Method 3: Declare a Pointer Pointing to a Const String
+### Method 3: Declare a Pointer Pointing to a Constant String
 
 We can declare a pointer of type `(char*)` and initialize it to point to the first character of a **"constant string"** as in the following statement.
 
@@ -106,7 +106,7 @@ This would create a variable named `pStr` that can hold an address to a characte
 :alt: Change upper case `'H'` to lower case `'h'`
 :width: 600px
 :align: center
-:name: pointer-to-const-string
+:name: pointer-to-constant-string
 
 Pointer having the address of the first character in a constant string.
 ```
@@ -143,7 +143,7 @@ Since `pStr` is not a constant, it can point to the first character in an array 
 :alt: Change pointer to string on stack
 :width: 600px
 :align: center
-:name: change-pointer-to-stack-str
+:name: change-pointer-to-stack-string
 
 Change the value of `pStr` pointer to have the address of the first character of another string that is on the **stack**.
 ```

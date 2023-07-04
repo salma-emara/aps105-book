@@ -29,7 +29,7 @@ void printRow(int n);
 :alt: Print a row of stars
 :width: 400px
 :align: center
-:name: printRow
+:name: print row
 
 Print a row of stars recursively.
 ```
@@ -72,7 +72,7 @@ Line $15$ will be executed only once in the base case, when `n == 1`.
 
 Lines $17$ to $18$ will be executed several times as they are part of the recursive call till `n == 1`.
 
-**What happens when `printRow(4)` is called?** Let's trace `printRow(4)`. In {numref}`printRow-execution`, we show the order of execution.
+**What happens when `printRow(4)` is called?** Let's trace `printRow(4)`. In {numref}`print-row-execution`, we show the order of execution.
 
 - `printRow(4)` is called in `main`. 
 - `n == 4` is not equal to `1`, so line $12$ is executed.
@@ -89,7 +89,7 @@ Lines $17$ to $18$ will be executed several times as they are part of the recurs
 :alt: Print a row of stars
 :width: 700px
 :align: center
-:name: printRow-execution
+:name: print-row-execution
 
 The order of execution of `printRow(4)`.
 ```
@@ -130,13 +130,13 @@ Enter number of stars: <b>4</b>
 ***
 </pre>
 
-In {numref}`printRow-execution-switch`, we show the order of execution when the order of `printf("*")` and `printRow(n - 1)` is switched. In this case, the recursive call `printRow(n - 1)` is executed for all n first, then the `printf("*")` statements will be executed. This will make the first executed `printf` statement to be the one in the base case, and the last print statement to be the one in the recursive call with largest `n`.
+In {numref}`print-row-execution-switch`, we show the order of execution when the order of `printf("*")` and `printRow(n - 1)` is switched. In this case, the recursive call `printRow(n - 1)` is executed for all n first, then the `printf("*")` statements will be executed. This will make the first executed `printf` statement to be the one in the base case, and the last print statement to be the one in the recursive call with largest `n`.
 
 ```{figure} ./images/printRow-execution-switch.png
 :alt: Print a row of stars
 :width: 700px
 :align: center
-:name: printRow-execution-switch
+:name: print-row-execution-switch
 
 The order of execution of `printRow(4)` when the order of `printf("*")` and `printRow(n - 1)` is switched.
 ```
@@ -166,7 +166,7 @@ void printTriangle(int n);
 :alt: Print a triangle of stars recursively
 :width: 800px
 :align: center
-:name: printTriangle-recursively
+:name: print-triangle-recursively
 
 Thinking recursively to print a triangle of stars.
 ```
@@ -236,12 +236,12 @@ Enter number of rows: <b>5</b>
 The following figure shows the order of execution of `printTriangle(4)`.
 
 ```{figure} ./images/trace-printTriangle4.png
-:alt: Tracing printTriangle function with n = 4
+:alt: Tracing print triangle function with n = 4
 :width: 700px
 :align: center
-:name: trace-printTriangle4
+:name: trace print triangle 4
 
-Tracing printTriangle function with n = 4: `printTriangle(4)`.
+Tracing print triangle function with n = 4: `printTriangle(4)`.
 ```
 
 ## Print an inverted triangle of stars
@@ -256,13 +256,13 @@ What should we do differently to implement a recursive function that prints the 
 *****
 </pre>
 
-The following figure illustrates the recursive thought process. We understand from the following figure that we should first print a smaller sized triangle, then print a row of `n` stars. This is reversed order of steps compared to {numref}`printTriangle-recursively`, where we first printed a row of stars then a triangle of smaller size.
+The following figure illustrates the recursive thought process. We understand from the following figure that we should first print a smaller sized triangle, then print a row of `n` stars. This is reversed order of steps compared to {numref}`print-triangle-recursively`, where we first printed a row of stars then a triangle of smaller size.
 
 ```{figure} ./images/printInvertedTriangle-recursively.png
 :alt: Print an inverted triangle of stars recursively
 :width: 800px
 :align: center
-:name: printInvertedTriangle-recursively
+:name: print inverted triangle recursively
 
 Thinking recursively to print an inverted triangle of stars.
 ```
@@ -306,12 +306,12 @@ void printRow(int n) {
 In the above code, notice that we switched the order of `printRow(n)` call and `printInvertedTriangle(n - 1);` call. This is because we want to print a smaller triangle first, then a row of stars. The following figure shows the order of execution of `printInvertedTriangle(4)`. Remember that `printInvertedTriangle(0)` will not execute anything, since `n` is `0`. Also, recall that calls to `printRow` function will recursively call `printRow` until `n == 1`, then print `*` and return as we discussed in {numref}`printRow-recursively`.
 
 ```{figure} ./images/trace-printInvertedTriangle4.png
-:alt: Tracing printInvertedTriangle function with n = 4
+:alt: Tracing print inverted triangle function with n = 4
 :width: 700px
 :align: center
-:name: trace-printInvertedTriangle4
+:name: trace-print inverted triangle 4
 
-Tracing printInvertedTriangle function with n = 4: `printInvertedTriangle(4)`.
+Tracing `printInvertedTriangle` function with `n = 4`: `printInvertedTriangle(4)`.
 ```
 
 ## Print a pattern recursively
@@ -342,7 +342,7 @@ void printPattern(int n);
 :alt: Print a pattern of stars recursively
 :width: 800px
 :align: center
-:name: printPattern-recursively
+:name: print-pattern-recursively
 
 Thinking recursively to print a pattern of stars.
 ```
@@ -384,17 +384,17 @@ void printRow(int n) {
 }
 ```
 
-Notice that lines $16$ -- $18$ is the same order of statements illustrated in {numref}`printPattern-recursively`.
+Notice that lines $16$ -- $18$ is the same order of statements illustrated in {numref}`print-pattern-recursively`.
 
 The following figure shows the order of execution of `printPattern(4)`. Remember that `printPattern(0)` will not execute anything, since `n` is `0`. Also, recall that calls to `printRow` function will recursively call `printRow` until `n == 1`, then print `*` and return as we discussed in {numref}`printRow-recursively`.
 
 ```{figure} ./images/trace-printPattern4.png
-:alt: Tracing printPattern function with n = 4
+:alt: Tracing `printPattern` function with n = 4
 :width: 700px
 :align: center
-:name: trace-printPattern4
+:name: trace-print-Pattern4
 
-Tracing printPattern function with n = 4: `printPattern(4)`.
+Tracing `printPattern` function with n = 4: `printPattern(4)`.
 ```
 
 [^1]: Inputs to programs are in **bold**.

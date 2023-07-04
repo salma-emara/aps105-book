@@ -26,7 +26,7 @@ int main(void) {
 }
 ```
 
-**Ouput**
+**Output**
 <pre>
 llo
 </pre>
@@ -44,7 +44,7 @@ int main(void) {
 }
 ```
 
-**Ouput**
+**Output**
 <pre>
 He
 </pre>
@@ -204,7 +204,7 @@ At line $6$, the behavior of the program is undefined. The reason is that the in
 :alt: Scanning a string
 :width: 600px
 :align: center
-:name: fgets-3
+:name: f gets 3
 ```
 
 **Output[^1]**
@@ -399,7 +399,7 @@ In the above output, we observe `'o'` character is not printed in what's left in
 
 In `getStringSafely` function, in line $21$, we read the `'o'`, regardless if our character count was `n - 1` or not. We need to read the character only if `charCount < n - 1`. 
 
-In the following code, we fixe the code in line $21$.
+In the following code, we fixed the code in line $21$.
 
 **Correct Code**
 ```{code-block} c

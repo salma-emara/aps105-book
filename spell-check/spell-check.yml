@@ -1,0 +1,46 @@
+matrix:
+- name: markdown
+  aspell:
+    lang: en
+  dictionary:
+    wordlists:
+    - ./dictionary.txt
+  pipeline:
+  - pyspelling.filters.url:
+  - pyspelling.filters.html:
+      comments: false
+      ignores:
+      - code
+      - pre
+  - pyspelling.filters.context:
+      context_visible_first: true
+      escapes: \\[\\`~]
+      delimiters:
+      - open: '(?s)```{code-block} c'
+        close: '```'
+      # Ignore multiline content between fences (fences can have 3 or more back ticks)
+      # ```
+      # content
+      # ```
+      - open: '(?s)^(?P<open> *`{3,})$'
+        close: '^(?P=open)$'
+      # Ignore text between inline back ticks
+      - open: '(?P<open>`+)'
+        close: '(?P=open)'
+      # Ignore Unix-style paths
+      - open: '(?P<open>/[\w\-\_\.]+)+'
+        close: '\b'
+      - open: ':width:'
+        close: '$'
+      - open: ':class:'
+        close: '$'  
+      - open: ':linenos:'
+        close: '$'
+      - open: '{{'
+        close: '}}'
+      - open: '(?P<open>\\$)'
+        close: '(?P=open)'
+  sources:
+  - '../*.md'
+  - '../textbook/chapters/**/*.md'
+  default_encoding: utf-8

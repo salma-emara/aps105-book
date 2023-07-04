@@ -10,13 +10,13 @@ To review dynamic memory allocation for 1D array, please see [Chapter 8.1](dynam
 
 The question that we tackle in this section is how can we dynamically allocate a 2D array. There are three ways to do so. We will discuss one method in detail, and the other two are quite intuitive.
 
-For example, let's dynamically allocate a 2D array of integers with 3 rows and 4 columns that looks like {numref}`2d-dyn-mem-alloc-example`.
+For example, let's dynamically allocate a 2D array of integers with 3 rows and 4 columns that looks like {numref}`2d-dynamic-memory-allocation-example`.
 
 ```{figure} ./images/2d-dyn-mem-alloc-example.png
 :alt: 2D array example
 :width: 400px
 :align: center
-:name: 2d-dyn-mem-alloc-example
+:name: 2d-dynamic-memory-allocation-example
 
 2D array example we want to allocate dynamically.
 ```
@@ -47,13 +47,13 @@ To do what {numref}`array-of-pointers` requires, we need the following statement
 The statement to dynamically allocate a 1D array of pointers pointed to by `arr`.
 ```
 
-**Step 2: Dynamically Allocate Each Row.** Second, we dynamically allocate 1D arrays each corresponding to a row. We need to have each element in {numref}`array-of-pointers` to point to each row as shown in {numref}`2d-alloc-rows-figure`.
+**Step 2: Dynamically Allocate Each Row.** Second, we dynamically allocate 1D arrays each corresponding to a row. We need to have each element in {numref}`array-of-pointers` to point to each row as shown in {numref}`2d-allocation-rows-figure`.
 
 ```{figure} ./images/2d-alloc-rows-figure.png
 :alt: Int pointer pointing to rows
 :width: 600px
 :align: center
-:name: 2d-alloc-rows-figure
+:name: 2d-allocation-rows-figure
 
 Each `int*` in the array should point to a 1D array having elements of a row.
 ```
@@ -78,18 +78,18 @@ For each row, dynamically allocate 1D array having number of columns elements.
 :alt: Access each element in 2D array
 :width: 600px
 :align: center
-:name: access-2d-dyn-alloc
+:name: access-2d-dynamic-allocation
 
 To access the element at row index $0$ and column index $1$, you can either access it using `*(*(arr + 0) + 1)` or `arr[0][1]`.
 ```
 
-We can access each element in a nested for loop as shown in {numref}`access-2d-dyn-alloc-statement`.
+We can access each element in a nested for loop as shown in {numref}`access-2d-dynamic-allocation-statement`.
 
 ```{figure} ./images/access-2d-dyn-alloc-statement.png
 :alt: Access each element in 2D array
 :width: 600px
 :align: center
-:name: access-2d-dyn-alloc-statement
+:name: access-2d-dynamic-allocation-statement
 
 To access each element in the 2D array, you can either access it using `*(*(arr + row) + col)` or `arr[row][col]`.
 ```

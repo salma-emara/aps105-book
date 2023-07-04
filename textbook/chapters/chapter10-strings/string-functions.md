@@ -32,7 +32,7 @@ int main(void) {
 String length is 5.
 </pre>
 
-### Implementation of strlen
+### Implementation of `strlen`
 
 Let's implement `strlen`. We will name it `stringLength`. This function should have a loop that loops over all the contents of the string. If the element is not `'\0'`, we should increment a counter. Then we should return the counter indicating the number of non-null characters. The following shows a program that implements and uses `stringLength` function.
 
@@ -95,7 +95,7 @@ int stringLength(const char* s) {
 
 ## Copy a string into another string
 
-### strcpy
+### `strcpy`
 
 The function `strcpy` copies the contents of one string into another string. The function prototype is as follows:
 
@@ -127,7 +127,7 @@ d after copying has "Hello".
 
 ````{admonition} Why do we need strcpy?
 
-Why do we need strcpy, when we can assign a string to another string? The following program demonstrates the problem with assigning a string to another string.
+Why do we need `strcpy`, when we can assign a string to another string? The following program demonstrates the problem with assigning a string to another string.
 
 **Code with Compile-time Error**
 ```{code-block} c
@@ -145,7 +145,7 @@ Note that the program above will not compile. The reason is that `d` is an array
 <!-- TODO: do it with pointers-->
 ````
 
-#### Implementation of strcpy
+#### Implementation of `strcpy`
 
 Let's implement `strcpy`. We will name it `stringCopy`. This function should have a loop that loops over all the contents of the source string. We should copy the all the elements to the destination string including the `'\0'` at the end of the source string. Then, we should return the address of the destination string. To guard against any changes to the source string, we will use the `const` qualifier. The following is the implementation of `strcpy`, and you can download it here: {download}`stringCopy.c <../../code/chapter10/stringCopy/stringCopy.c>`.
 
@@ -213,7 +213,7 @@ char* stringCopy(char* pdest, const char* psrc) {
 To help with visualization, we will use the following diagram to show the values of `pdest`, `pdestCopy` and `psrc` after a few iterations of the while loop in `stringCopy`.
 
 ```{figure} ./images/strcpy-pointers.png
-:alt: Showing the values of pdestCopy and psrc after a few iterations of the while loop in `stringCopy`.
+:alt: Showing the values of `pdestCopy` and `psrc` after a few iterations of the while loop in `stringCopy`.
 :width: 400px
 :align: center
 :name: strcpy-pointers
@@ -234,7 +234,7 @@ The while loop will exit when the element at `psrc` is the end of the source str
 In line $14$, we copied the address of `pdest` to `pdestCopy`. This is because we want to return the address of the destination string. We cannot return the address of `pdestCopy` because it will point to the last element in the destination string after the while loop exits. We want to return the address of the first element in the destination string stored in `pdest`.
 
 
-### strncpy
+### `strncpy`
 
 `strcpy` copies the entire source string into the destination string. This can cause problems if the destination string is not large enough to hold the source string. The function `strncpy` copies the first `n` characters of the source string into the destination string, or until it observes a `'\0'` character in the source string. The function prototype is as follows:
 
@@ -270,7 +270,7 @@ In the above code, the function `strncpy` copies 6 characters into `d`, which is
 :alt: Copy 6 characters including the null character.
 :width: 500px
 :align: center
-:name: strncpy-6-characters
+:name: special string copy 6 characters
 
 Copy 6 characters including the null character.
 ```
@@ -331,7 +331,7 @@ Copy 7 characters with extra padding of `\0`.
 
 ## Concatenating Strings
 
-### strcat
+### `strcat`
 
 The function `strcat` concatenates the source string to the end of the destination string. The function prototype is as follows:
 
@@ -349,7 +349,7 @@ The following program demonstrates the use of `strcat`:
 :alt: Concatenates the source string to the end of the destination string.
 :width: 1000px
 :align: center
-:name: strcat-demo
+:name: string concatenate demo
 
 Concatenates the source string to the end of the destination string.
 ```
@@ -359,7 +359,7 @@ Concatenates the source string to the end of the destination string.
 Concatenated string: Helloworld!
 </pre>
 
-### strncat
+### `strncat`
 
 The problem with `strcat` is that it concatenates the entire source string to the end of the destination string. This can cause problems if the destination string is not large enough to hold the concatenated string. For example, in the following figure, we concatenate an array with 3 elements `"No"` to an array with 2 elements starting from the null-character. The function `strcat` will concatenate the `'N'` and `'o'`, but there is no space for the `'\0`', which will cause a buffer overflow.
 
@@ -367,7 +367,7 @@ The problem with `strcat` is that it concatenates the entire source string to th
 :alt: Concatenates the source string to the end of the destination string, while the destination string does not have enough space.
 :width: 600px
 :align: center
-:name: strcat-issue
+:name: string concatenate issue
 
 ***Error!*** Concatenates the source string to the end of the destination string, while the destination string does not have enough space
 ```
@@ -411,7 +411,7 @@ If `n` is larger than the size of `src`, and `dest` has enough space, the functi
 
 ## Comparing Strings
 
-### strcmp
+### `strcmp`
 
 The function `strcmp` compares two strings. The function prototype is as follows:
 
@@ -468,7 +468,7 @@ Enter two strings separated by new line or white space: <b>dog dig</b>
 "dog" is after "dig" in dictionary!
 </pre>
 
-### strncmp
+### `strncmp`
 
 The function `strncmp` compares at most the first `n` characters of two strings. The function prototype is as follows:
 
@@ -513,7 +513,7 @@ The first 5 character in "grandma" is identical to "grandpa"!
 
 ## Looking for something in a string
 
-### strchr
+### `strchr`
 
 The function `strchr` searches for a character in a string. The function prototype is as follows:
 
@@ -544,7 +544,7 @@ int main(void) {
 The first m is found at index 6 in "Programming"
 </pre>
 
-### strstr
+### `strstr`
 
 The function `strstr` searches for a substring in a string. The function prototype is as follows:
 

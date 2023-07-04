@@ -86,7 +86,7 @@ int main(void) {
 | Line   |    Description of error   | Correction   |
 | -------------- | ----------- | ----------- |
 |  5  | missing * before right | Add * before right |
-|  9  | newNode() not defined  | Define the newNode() function |
+|  9  | `newNode()` not defined  | Define the `newNode()` function |
 |  12 |   missing ;       |    Add ;      |
 ````
 

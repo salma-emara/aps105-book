@@ -120,7 +120,7 @@ void getUserInput(int *number) {
 
 **Output**
 <pre>
-Enter a number to test the Goldback conjecture: <b>-1</b>  
+Enter a number to test the Goldbach conjecture: <b>-1</b>  
 Your input was invalid, please enter another even number > 2: <b>3</b>
 Your input was invalid, please enter another even number > 2: <b>4</b>
 </pre>
@@ -247,7 +247,7 @@ To implement `bool isPrime(int);`, we need to first think of how to know if a nu
 
 **Step 1: Toy example.** For example, $12$ is not a prime number.  
 
-**Step 2: Think of a solution and decompose into steps.** We know that a prime number `num` is divisible only by $1$ and `num`. This means that between $2$ and the `num - 1` there is no divisibles of `num`. We can do the following steps to see if `num` is prime:
+**Step 2: Think of a solution and decompose into steps.** We know that a prime number `num` is divisible only by $1$ and `num`. This means that between $2$ and the `num - 1` there are no divisibles of `num`. We can do the following steps to see if `num` is prime:
 
 1. Denominator `denom` is set to $2$
 2. Find if `num` / $2$ gives no **remainder**, *i.e.* `num % denom == 0`

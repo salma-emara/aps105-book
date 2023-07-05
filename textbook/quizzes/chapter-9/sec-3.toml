@@ -50,7 +50,7 @@ explainations = [
 
 [[questions]]
 
-prompt = """
+prompt = '''
 Assuming `arr` is a 2D array with 3 rows and 2 columns and has been dynamically allocated as follows, which of the following is/are correct?
 
 ```
@@ -61,7 +61,7 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 
-"""
+'''
 
 answer = [3]
 

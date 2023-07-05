@@ -27,21 +27,21 @@ answer= [0, 3]
 distractors = [
     "int arr[][2] = {1, 2, 3, 4, 5, 6};",
     "int arr[3][] = {1, 2, 3, 4, 5, 6};",
-    "int arr[3][2] = {{1, 2, 3}, {4, 5, 6};",
+    "int arr[3][2] = {{1, 2, 3}, {4, 5, 6}};",
     "int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};"
 ]
 
 explainations = [
-    "A is correct. The number of rows is not required as the compiler will fill the array row by row.",
-    "B is incorrect. The number of columns is required as the compiler needs to know how many elements to put in each row.",
-    "C is incorrect. The nested braces are the rows, not the columns.",
+    "A is correct. The compiler will fill the array row by row, filling 2 columns in each row. This will result in a 3 row and 2 column 2D array.",
+    "B is incorrect. Since the array is filled row by row, the number of columns is required to know how many elements to put in each row.",
+    "C is incorrect. The nested (inside) braces are for defining each row, not column.",
     "D is correct. This is a basic way for declaring a 2D array with 3 rows and 2 columns."
 ]
 
 [[questions]]
 
 prompt = '''
-Which of the following correctly access the second element in the third row of the following array?
+Which of the following correctly accesses the second element in the third row of the following array?
 ```
 int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};
 ```
@@ -53,14 +53,14 @@ distractors = [
     "arr[2][1]",
     "*(*(arr + 2) + 1)",
     "*(arr[2] + 1)",
-    "*(arr + 2)[1]"
+    "*(arr + 2) + 1"
 ]
 
 explainations = [
     "A is correct. This is the basic way to access the second element in the third row of the array.",
-    "B is correct. This is the pointer way to access the second element in the third row of the array. The nested braces calculate the address of the third row, and the second element at that row is accessed by adding 1 to the address.",
-    "C is correct. `*(arr + 2)` is the same as `arr[2]`, which is the third row of the array. The second element at that row is accessed by adding 1 to the address.",
-    "D is incorrect. `[]` has higher precedence than `*`, so `*(arr + 2)[1]` parses as `*((arr + 2)[1])`, which is actually the same as `*(*(arr + 3))`. Thus, it accesses the first element at the forth row of the array."
+    "B is correct. Using pointer arithmetic to access the second element in the third row of the array, the nested braces `*(arr + 2)` gets the address of the first element in the third row, and the second element at that row is accessed by adding 1 to the address `*(arr + 2) + 1` and dereferencing it `*(*(arr + 2) + 1)`.",
+    "C is correct. `*(arr + 2)` is the same as `arr[2]`, which is the address of the first element in the third row of the array. The second element at that row is accessed by adding 1 to the address and dereferencing it.",
+    "D is incorrect. `*(arr + 2)` is the same as arr[2], which stores the address of the first element in the third row. Adding 1 to it gets the address of the second element in the third row."
 ]
 
 

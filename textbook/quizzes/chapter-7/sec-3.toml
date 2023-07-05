@@ -123,5 +123,5 @@ explainations = [
     "A is correct. It is a basic way to pass the array to the function.",
     "B is correct. It uses `int*` instead of `int[]`, because they are equivalent.",
     "C is correct. It uses pointer arithmetic to access the array elements.",
-    "D is incorrect. It only passes the value of the first element of the array. Although it tries to use pointer arithmetic, it does not work because the `&list` is not the address of the first element of the array."
+    "D is incorrect. It only passes the value of the first element of the array. Although it tries to use pointer arithmetic, it does not work because the `&list` is not the address of the first element of the array. `list` has a copy of the value in `x[0].`"
 ]

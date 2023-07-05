@@ -1,6 +1,6 @@
 [[questions]]
 
-prompt = "What is the purpose of using an array to store grades in the scenario mentioned at the beginning of the material?"
+prompt = "What is the purpose of using an array to store grades in the example mentioned at the beginning of the section?"
 
 answer = [3]
 
@@ -67,10 +67,10 @@ int arr[] = {1, 2, 3, 4, 5};
 ]
 
 explainations = [
-    "A is correct. This is equivalent to `int arr[5] = {1, 2, 0, 0, 0};`, which means that the remaining elements in the array will be set to 0 when initializing fewer elements than the size of the array.",
+    "A is correct. This is equivalent to `int arr[5] = {1, 2, 3, 0, 0};`, which means that the remaining elements in the array will be set to 0 when initializing fewer elements than the size of the array.",
     "B is correct. In C programming language, to initialize an array, we can use curly brackets to enclose the values.",
-    "C is incorrect. The for loop will cause an error when `i == 5` because the index of an array starts from 0.",
-    "D is correct. The compiler will deduce the size of the array from the number of element you are initializing between curly brackets."
+    "C is incorrect. The for loop will cause an error when `i == 5` because `arr[5]` is outside the bounds of the array. Remember the index of an array starts from 0.",
+    "D is correct. The compiler will deduce the size of the array from the number of elements you are initializing between curly brackets."
 ]
 
 [[questions]]
@@ -111,33 +111,33 @@ explainations = [
 '''
 A is incorrect. There are 2 errors in the code.
 Error 1:
-At 5th line, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
+In line 5, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
 
 Error 2:
-At 6th line, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
+In line 6, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
 ''',
 '''
 B is correct. There are 2 errors in the code.
 Error 1:
-At 5th line, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
+In line 5, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
 
 Error 2:
-At 6th line, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
+In line 6, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
 ''',
 '''
 C is incorrect. There are 2 errors in the code.
 Error 1:
-At 5th line, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
+In line 5, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
 
 Error 2:
-At 6th line, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
+In line 6, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
 ''',
 '''
 D is incorrect. There are 2 errors in the code.
 Error 1:
-At 5th line, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
+In line 5, the initialization of the array is incorrect. The correct way to initialize an array is to use curly brackets to enclose the values.
 
 Error 2:
-At 6th line, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
+In line 6, the initialization of the variable `high` is incorrect. The correct way to initialize the variable is to use `SIZE / 2` instead of `SIZE / 2 + 1`.
 '''
 ]

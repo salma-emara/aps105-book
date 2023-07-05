@@ -50,7 +50,18 @@ explainations = [
 
 [[questions]]
 
-prompt = "Assuming `arr` is a 2D array with 3 rows and 2 columns and has been dynamically allocated memory (completely dynamical), which of the following is/are correct?"
+prompt = """
+Assuming `arr` is a 2D array with 3 rows and 2 columns and has been dynamically allocated as follows, which of the following is/are correct?
+
+```
+int** arr = (int**)malloc(3 * sizeof(int*));
+
+for (int i = 0; i < 3; i++) {
+    *(arr + i) = (int*)malloc(2 * sizeof(int));
+}
+```
+
+"""
 
 answer = [3]
 

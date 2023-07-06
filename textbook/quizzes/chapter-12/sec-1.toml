@@ -47,15 +47,15 @@ struct Employee {
 ]
 
 explainations = [
-    "A is correct. It declares a `struct` named `APS105` and an alias of the same name. Then the variable `course` is declared as a variable of type `APS105`.",
-    "B is correct. This is the basic way to declare a `struct`.",
+    "A is correct. It declares a `struct` named `APS105` and an alias of `struct APS105` called `APS105` at the same name. Then the variable `course` is declared as a variable of type `APS105`.",
+    "B is correct. This defines `struct APS105` and declares `course` in the same line.",
     "C is incorrect. The `stuct` keyword is missing when declaring the variable `course`.",
-    "D is incorrect. The compiler will not know what `Employee` is when it is used in the declaration of `boss`. It can not decide the memory size of `boss` (but we can use pointers to `struct` to solve this problem in the next chapter, as pointers have a fixed size)."
+    "D is incorrect. The compiler will not know what `Employee` is when it is used in the declaration of `boss`. It can not decide the memory size of `boss`."
 ]
 
 [[questions]]
 
-prompt = "Assume that the `APS105` `struct` has been declared correctly with the following members: `int studentNumber`, `char *instructor`, `double averageGrade` (they are defined in the same order in the `struct` definition). Which of the following statements is/are correct?"
+prompt = "Assume that the `struct APS105` has been declared correctly with the following members: `int studentNumber`, `char *instructor`, `double averageGrade` (in this same order). Which of the following statements is/are correct?"
 
 answer = [1]
 

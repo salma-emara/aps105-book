@@ -153,6 +153,14 @@ function closeFullscreenForm() {
         fullscreenForms.classList.add("hidden");
         const containerheader = document.getElementById("container-header");
         containerheader.classList.remove("hidden-imp");
+
+        //hide the next buttons
+        var nextButtons = document.getElementsByClassName("next-button");
+
+        for (var i = 0; i < nextButtons.length; i++) {
+            var nextButton = nextButtons[i];
+            nextButton.classList.add("hidden");
+        }
     }
 }
 

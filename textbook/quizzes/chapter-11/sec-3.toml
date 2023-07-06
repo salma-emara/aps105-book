@@ -1,181 +1,66 @@
 [[questions]]
 
-prompt = '''Jade is writing a program to generate sequences of a give string. The interval between two adjacent characters in the sequence can be 1 or 2 in original string, but must include the first and the last characters. Her code is as follows:
+prompt = '''The following code tries to count the number of vowels in a string. 
 ```
 #include <stdio.h>
 #include <string.h>
 
-void jump(char*, int, int);
-
-char result[10] = "";
+int countVowels(char *);
 
 int main(void) {
-    char *s = "APS105";
-    jump(s, 0, 0);
-    return 0;
+  printf("Number of vowels: %d", countVowels("Hello world!"));
+  return 0;
 }
 
-void jump(char *s, int cur, int round) {
-    if (cur >= strlen(s)) {
-        return ;
-    } else if (cur == strlen(s) - 1) {
-        result[round] = s[cur];
-        result[round + 1] = '\0';
-        printf("%s\n", result);
-        return ;
-    }
-    result[round] = s[cur];
-    jump(s, cur + 2, round + 1);
-    jump(s, cur + 1, round + 1);
+int countVowels(char *s) {
+  if (*s == '\0') {
+    return 0;
+  } else if (*s == 'a' || *s == 'e' || *s == 'i' || *s == 'o' || *s == 'u') {
+    return -----------;
+  } else {
+    return -----------;
+  }
 }
 ```
-What is the output of the program?
+How would you complete line 15 and 17?
 '''
 
 answer = [2]
 
 distractors = [
 '''
-```
-APS105
-AS105
-AP105
-APS05
-APS15
-AS05
-AS15
-AP15
-```
+Line 15, `countVowels(s)`;
+Line 17, `countVowels(s)`;
 ''',
 '''
-```
-AS05
-AS15
-AP15
-AS105
-AP105
-APS05
-APS15
-APS105
-```
+Line 15, `countVowels(s + 1)`;
+Line 17, `countVowels(s + 1)`;
 ''',
 '''
-```
-AS05
-AS15
-AS105
-AP15
-AP105
-APS05
-APS15
-APS105
-```
+Line 15, `1 + countVowels(s + 1)`;
+Line 17, `countVowels(s + 1)`;
 ''',
 '''
-```
-APS105
-APS05
-AP15
-APS15
-AS05
-AS15
-AS105
-AP105
-```
+Line 15, `countVowels(s + 1)`;
+Line 17, `countVowels(s)`;
 '''
 ]
 
 explainations = [
 '''
 A is incorrect. 
-
-From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
-2->2->1  // if the last jump is 2 then it will not be able to reach the last character
-2->1->2
-2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
-1->2->2
-1->2->1->1
-1->1->2->1
-1->1->1->2
-1->1->1->1->1
-
-So the output will be:
-AS05
-AS15
-AS105
-AP15
-AP105
-APS05
-APS15
-APS105
+As the next time, we call the function, we look at the string `s`, not a smaller version of it.
 ''',
 '''
 B is incorrect. 
-
-From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
-2->2->1  // if the last jump is 2 then it will not be able to reach the last character
-2->1->2
-2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
-1->2->2
-1->2->1->1
-1->1->2->1
-1->1->1->2
-1->1->1->1->1
-
-So the output will be:
-AS05
-AS15
-AS105
-AP15
-AP105
-APS05
-APS15
-APS105
+Calling `countVowels` on `s + 1` does reduce the size of the problem, however, if we encounter a vowel at `s[0]`, we need to add 1 to the return value.
 ''',
 '''
 C is correct. 
-
-From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
-2->2->1  // if the last jump is 2 then it will not be able to reach the last character
-2->1->2
-2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
-1->2->2
-1->2->1->1
-1->1->2->1
-1->1->1->2
-1->1->1->1->1
-
-So the output will be:
-AS05
-AS15
-AS105
-AP15
-AP105
-APS05
-APS15
-APS105
+We add one to the return value when a vowel is observed, and add nothing other wise.
 ''',
 '''
 D is incorrect. 
-
-From the code, the `jump` function will jump as fast as possible. Thus the trace of jump distance will be as follows in order:
-2->2->1  // if the last jump is 2 then it will not be able to reach the last character
-2->1->2
-2->1->1->1  // it will keep jump to the last character or exceed the last character, so it will jump four times
-1->2->2
-1->2->1->1
-1->1->2->1
-1->1->1->2
-1->1->1->1->1
-
-So the output will be:
-AS05
-AS15
-AS105
-AP15
-AP105
-APS05
-APS15
-APS105
+We need to call `countVowels` on a smaller string by advancing the pointer `s` by one place. 
 '''
 ]

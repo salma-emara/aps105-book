@@ -162,3 +162,8 @@ button {
     border-radius: 4px;
     white-space: pre-wrap;
 }
+
+.reset-button {
+    margin-top: 10px;
+    margin-left: 15px;
+}

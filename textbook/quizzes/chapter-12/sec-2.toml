@@ -44,95 +44,77 @@ pCourse->averageGrade = 85.0;
 ]
 
 explainations = [
-    "A is incorrect. The `.` operator has higher precedence than the `*` operator. For example, `*pCourse.instructor` is equivalent to `*(pCourse.instructor)`, which is incorrect because `pCourse` is a pointer, not a `struct`.",
-    "B is correct. This is the basic way to access a member of a `struct` through a pointer.",
-    "C is incorrect. The `->` operator has higher precedence than the `*` operator. For example, `*pCourse->instructor` is equivalent to `*(pCourse->instructor)` which is actually a `char` value, not a `char *` value.",
+    "A is incorrect. The `.` operator has higher precedence than the `*` operator. For example, `*pCourse.instructor` is equivalent to `*(pCourse.instructor)`, which is incorrect because `pCourse` is a pointer.",
+    "B is correct. Dereferencing the pointer to get to the data structure happens through `(*pCource)` then accessing elements happens through the `.` operator.",
+    "C is incorrect. The `->` operator has higher precedence than `*`. `->` would access elements of a struct through a pointer, which `pCourse->instructor` does. Dereferencing the return value with `*` is a mistake.",
     "D is correct. This is another way to access a member of a `struct` through a pointer."
 ]
 
 [[questions]]
 
-prompt = "Which of the following is/are correct to dynamically allocate memory for a `struct`?"
+prompt = "Which of the following is/are correct ways to dynamically allocate memory for a `struct`?"
 
-answer = [3]
+answer = [0, 3]
 
 distractors = [
 '''
 ```
-#include <stdio.h>
-
 struct Employee {
     char *name;
     int age;
     double salary;
-    struct Employee subordinate;
 } *pBoss;
 
 int main() {
-    pBoss = (struct Employee *)malloc(sizeof(struct Employee));
-    &pBoss->subordinate = (struct Employee *)malloc(sizeof(struct Employee));
+    pBoss = (struct Employee *) malloc(sizeof(struct Employee));
     pBoss->name = "Boss";
-    pBoss->subordinate.name = "Subordinate";
     return 0;
 }
 ```
 ''',
 '''
 ```
-#include <stdio.h>
-
 struct Employee {
     char *name;
     int age;
     double salary;
-    struct Employee *subordinate;
 } *pBoss;
 
 int main() {
-    pBoss = (struct Employee *)malloc(sizeof(struct Employee));
-    *pBoss->subordinate = (struct Employee *)malloc(sizeof(struct Employee));
+    pBoss = (Employee *)malloc(sizeof(Employee *));
     pBoss->name = "Boss";
-    pBoss->subordinate.name = "Subordinate";
     return 0;
 }
 ```
 ''',
 '''
 ```
-#include <stdio.h>
-
 struct Employee {
     char *name;
     int age;
     double salary;
-    struct Employee *subordinate;
 } *pBoss;
 
 int main() {
     pBoss = (Employee *)malloc(sizeof(Employee));
-    pBoss->subordinate = (Employee *)malloc(sizeof(Employee));
     pBoss->name = "Boss";
-    pBoss->subordinate->name = "Subordinate";
     return 0;
 }
 ```
 ''',
 '''
 ```
-#include <stdio.h>
-
 struct Employee {
     char *name;
     int age;
     double salary;
-    struct Employee *subordinate;
 } *pBoss;
 
+typedef struct Employee Employee;
+
 int main() {
-    pBoss = (struct Employee *)malloc(sizeof(struct Employee));
-    pBoss->subordinate = (struct Employee *)malloc(sizeof(struct Employee));
+    pBoss = (Employee *)malloc(sizeof(Employee));
     pBoss->name = "Boss";
-    pBoss->subordinate->name = "Subordinate";
     return 0;
 }
 ```
@@ -140,8 +122,8 @@ int main() {
 ]
 
 explainations = [
-    "A is incorrect. The nested `struct` declaration is incorrect. The compiler cannot determine the size of the `struct`.",
-    "B is incorrect. The `->` operator has higher precedence than the `*` operator. For example, `*pBoss->subordinate` is equivalent to `*(pBoss->subordinate)` which is actually a `struct Employee` value, not a `struct Employee *` value. Thus, it cannot be assigned to another `struct Employee *` value.",
-    "C is incorrect. The `Employee` type is not defined. It should be `struct Employee`.",
-    "D is correct. This is the basic way to dynamically allocate memory for a `struct`."
+    "A is correct. The name of the data structure is `struct Employee`.",
+    "B is incorrect. The `Employee` type is not defined. It should be `struct Employee`. Also, the size of the memory to be allocated is the size of `struct Employee` not the size of its pointer.",
+    "C is incorrect. The `Employee` type is not defined. It should be `struct Employee`",
+    "D is correct. We can use `Employee` as we created an alias for it."
 ]

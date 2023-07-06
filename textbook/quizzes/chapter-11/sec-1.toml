@@ -1,102 +1,19 @@
 [[questions]]
 
-prompt = "Which of the following is/are suitable for recursive algorithms?"
+prompt = "Which of the following statements is correct about recursive functions?"
 
-answer = [1, 3]
+answer = [2, 3]
 
 distractors = [
-    "Calculating the average grade of a class.",
-    "Solving a maze by exploring possible paths.",
-    "Checking if a number is prime.",
-    "Finding the largest number in a sorted list by binary search."
+    "We may or may not need a base case in a recursive function.",
+    "A recursive function calls itself only once.",
+    "The recursive call needs to be on a smaller problem of the original one.",
+    "The terminating condition helps stop the function from calling itself again."
 ]
 
 explainations = [
-    "A is incorrect. This is a simple calculation that can be done iteratively. We don't need to pay the cost of recursion.",
-    "B is correct. This is a good example of a problem that can be solved recursively. We can explore each possible path until we find the exit.",
-    "C is incorrect. This is also a iterative problem.",
-    "D is correct. Binary search is a good example of a problem that can be solved recursively. We can split the list in half and recursively search the left or right half."
-]
-
-[[questions]]
-
-prompt = '''
-Jade is trying to write a binary search function which returns the index of the target value in the array (or -1 if it is not found). She has written the following code:
-```
-int arr[] = {2, 4, 7, 10, 15, 18, 21, 25};
-
-int binarySearch(int left, int right, int target) {
-    if (left >= right) {
-        return -1; 
-    }    
-    int mid = (left + right) / 2;
-    
-    if (arr[mid] == target) {
-        return mid;
-    }
-    
-    if (arr[mid] > target) {
-        return binarySearch(left, mid - 1, target);
-    }
-    
-    return binarySearch(mid + 1, right, target);
-}
-```
-When call `binarySearch(0, 7, 15)`, what will the final return value be?
-'''
-
-answer = [3]
-
-distractors = [
-    "3",
-    "4",
-    "5",
-    "-1"
-]
-
-explainations = [
-'''
-A is incorrect.
-
-The first call: `left = 0`, `right = 7`, `mid = 3`, `arr[mid] = 10`, `arr[mid] < target`, so we call `binarySearch(4, 7, 15)`.
-
-The second call: `left = 4`, `right = 7`, `mid = 5`, `arr[mid] = 18`, `arr[mid] > target`, so we call `binarySearch(4, 4, 15)`.
-
-The third call: `left == right`, so we return -1.
-
-To make this function work as expected, we need to change the first line to `if (left > right)`.
-''',
-'''
-B is incorrect.
-
-The first call: `left = 0`, `right = 7`, `mid = 3`, `arr[mid] = 10`, `arr[mid] < target`, so we call `binarySearch(4, 7, 15)`.
-
-The second call: `left = 4`, `right = 7`, `mid = 5`, `arr[mid] = 18`, `arr[mid] > target`, so we call `binarySearch(4, 4, 15)`.
-
-The third call: `left == right`, so we return -1.
-
-To make this function work as expected, we need to change the first line to `if (left > right)`.
-''',
-'''
-C is incorrect.
-
-The first call: `left = 0`, `right = 7`, `mid = 3`, `arr[mid] = 10`, `arr[mid] < target`, so we call `binarySearch(4, 7, 15)`.
-
-The second call: `left = 4`, `right = 7`, `mid = 5`, `arr[mid] = 18`, `arr[mid] > target`, so we call `binarySearch(4, 4, 15)`.
-
-The third call: `left == right`, so we return -1.
-
-To make this function work as expected, we need to change the first line to `if (left > right)`.
-''',
-'''
-D is correct.
-
-The first call: `left = 0`, `right = 7`, `mid = 3`, `arr[mid] = 10`, `arr[mid] < target`, so we call `binarySearch(4, 7, 15)`.
-
-The second call: `left = 4`, `right = 7`, `mid = 5`, `arr[mid] = 18`, `arr[mid] > target`, so we call `binarySearch(4, 4, 15)`.
-
-The third call: `left == right`, so we return -1.
-
-To make this function work as expected, we need to change the first line to `if (left > right)`.
-'''
+    "A is incorrect. Every recursive function should have a base case to stop calling itself indefinitely.",
+    "B is incorrect. Recursive functions can call themselves any number of times depending on the input.",
+    "C is correct. The recursive call should be on a smaller problem to help get closer to the terminating condition.",
+    "D is correct. When the terminating condition is met, we stop calling the function again."
 ]

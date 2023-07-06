@@ -227,7 +227,3 @@ void bubbleSortLinkedList(LinkedList *list) {
 }
 ```
 ````
-
-
-
-

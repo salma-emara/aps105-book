@@ -1,21 +1,21 @@
 [[questions]]
 
-prompt = "What is a node in a linked list based on the material?"
+prompt = "What is a node in a linked list?"
 
 answer = [2]
 
 distractors = [
-    "A node is a data structure that holds two different type members: value and index.",
-    "A node is a data structure that holds two different type members: value and link to the head or last node.",
-    "A node is a data structure that holds two different type members: value and link to the next node.",
-    "A node is a data structure that holds two different type members: value and link to a random node."
+    "A node is a data structure that holds at least two different type members: value and index.",
+    "A node is a data structure that holds at least two different type members: value and link to the head or last node.",
+    "A node is a data structure that holds at least two different type members: value and link to the next node.",
+    "A node is a data structure that holds at least two different type members: value and link to a random node."
 ]
 
 explainations = [
     "A is incorrect. Nodes in a linked list do not typically hold an index value. However, they do need a pointer to the next node.",
-    "B is incorrect. The link should point to the next node, which enable it can be iterated through.",
+    "B is incorrect. The link should point to the next node to be able to traverse all nodes in the list.",
     "C is correct. This is the basic definition of a node in a linked list.",
-    "D is incorrect. The random node cannot ensure the linked list can be iterated through."
+    "D is incorrect. The random node cannot ensure the linked list can be fully traversed."
 ]
 
 [[questions]]
@@ -28,7 +28,7 @@ typedef struct node {
   struct node *next;
 } Node;
 ```
-Which of the following correctly create(s) `node1` and `node2` and link(s) them together (`node2` after `node1`)?
+Which of the following correctly create(s) `node1` and `node2` and link(s) `node2` after `node1`?
 '''
 
 answer = [1]
@@ -46,7 +46,7 @@ node2.next = NULL;
 
 node1.next = node2;
 
-printf("%d %d", node1.data, node1.next->data);
+printf("%d %d", node1.data, (node1.next)->data);
 ```
 ''',
 '''
@@ -61,7 +61,7 @@ node2.next = NULL;
 
 node1.next = &node2;
 
-printf("%d %d", node1.data, node1.next->data);
+printf("%d %d", node1.data, (node1.next)->data);
 ```
 ''',
 '''
@@ -100,7 +100,7 @@ explainations = [
     "A is incorrect. The `node1.next` is a pointer, so it should be assigned with the address of `node2`, which needs `&`.",
     "B is correct. This is the basic way to create and link two nodes together.",
     "C is incorrect. The `node1` is not a pointer, so it cannot use `->` to access its members.",
-    "D is incorrect. The `node1` and `node2` have not been allocated memory, so they cannot be accessed. This will run into segmentation fault."
+    "D is incorrect. The `node1` and `node2` are not pointing to `Node` data structures in the memory, so accessing what they point to is a memory error."
 ]
 
 [[questions]]
@@ -187,6 +187,6 @@ free(node1);
 explainations = [
     "A is incorrect. The `node1` and `node2` are supposed to be pointers, so they should be declared as `Node *`.",
     "B is correct. This is the basic way to dynamically create and link two nodes together. Since `node1` and `node2` store the address separately, the order of `free` does not matter.",
-    "C is incorrect. The order of `free` is incorrect. The `node1` should be freed after `node1->next`.",
+    "C is incorrect. The order of `free` is incorrect. If we free `node1`, it is a memory error to access `node1->next` and free it. `node1` should be freed after `node1->next`.",
     "D is correct. The `node1` is freed after `node1->next`."
 ]

@@ -1,21 +1,21 @@
 [[questions]]
 
-prompt = "Why can a binary search tree use recursion to print its elements in order?"
+prompt = "Why can a binary search tree use recursion to print its elements?"
 
-answer = [2]
+answer = [1]
 
 distractors = [
     "The binary search tree at most has two children per node.",
-    "The binary search tree provides built-in recursive functions specifically designed for printing elements in order.",
+    "The binary search tree structure is recursive in nature, where each node has at most two children which are binary search trees themselves.",
     "All nodes in left subtree are less than to the root node, and all nodes in the right subtree are greater than the root node.",
     "None of the above."
 ]
 
 explainations = [
     "A is incorrect. The binary search tree at most has two children per node, but this does not explain why it can use recursion to print its elements in order.",
-    "B is incorrect. The binary search tree is only a data structure, and it does not provide any built-in recursive functions specifically designed for printing elements in order.",
-    "C is correct. The binary search tree is a data structure that has the property that all nodes in left subtree are less than to the root node, and all nodes in the right subtree are greater than the root node. This property allows us to use recursion to print its elements in order.",
-    "D is incorrect. C is correct."
+    "B is correct. A binary search tree can be broken into smaller binary search subtrees easily.",
+    "C is incorrect. This does not explain why recursion can be used to print elements of the binary search tree.",
+    "D is incorrect. B is correct."
 ]
 
 [[questions]]

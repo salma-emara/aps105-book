@@ -28,7 +28,7 @@ explainations = [
 [[questions]]
 
 prompt = '''
-Which of the following correctly delete(s) the second and the second last node of a linked list? (Assume that the list has at least two nodes.)
+Which of the following correctly delete(s) the second last node of a linked list? 
 
 Also assume the following struct has been defined:
 ```
@@ -49,11 +49,6 @@ distractors = [
 '''
 ```
 void deleteNodes(LinkedList *list) {
-    if (list->head == NULL || list->head->next == NULL) {
-        return;
-    }
-    Node *first = list->head;
-    Node *second = list->head->next;
     Node *secondLast = list->head;
     Node *thirdLast = list->head;
     while (secondLast->next->next != NULL) {
@@ -62,9 +57,8 @@ void deleteNodes(LinkedList *list) {
     while (thirdLast->next->next->next != NULL) {
         thirdLast = thirdLast->next;
     }
-    first->next = second->next;
+
     thirdLast->next = secondLast->next;
-    free(second);
     free(secondLast);
 }
 ```
@@ -75,12 +69,7 @@ void deleteNodes(LinkedList *list) {
     if (list->head == NULL || list->head->next == NULL) {
         return;
     }
-    if (list->head->next->next == NULL) {
-        list->head = NULL;
-        return;
-    }
-    Node *first = list->head;
-    Node *second = list->head->next;
+
     Node *secondLast = list->head;
     Node *thirdLast = list->head;
     while (secondLast->next->next != NULL) {
@@ -89,9 +78,8 @@ void deleteNodes(LinkedList *list) {
     while (thirdLast->next->next->next != NULL) {
         thirdLast = thirdLast->next;
     }
-    first->next = second->next;
+    
     thirdLast->next = secondLast->next;
-    free(second);
     free(secondLast);
 }
 ```
@@ -102,25 +90,18 @@ void deleteNodes(LinkedList *list) {
     if (list->head == NULL || list->head->next == NULL) {
         return;
     }
-    if (list->head->next->next == NULL) {
-        list->head = NULL;
-        return;
-    }
-    Node *first = list->head;
+
+    Node *secondLast = list->head;
     Node *thirdLast = list->head;
-    while (thirdLast->next->next->next != NULL) {
+    while (secondLast->next->next != NULL) {
+        secondLast = secondLast->next;
+    }
+    while (secondLast != list->head && thirdLast->next->next->next != NULL) {
         thirdLast = thirdLast->next;
     }
-    Node *second = first->next;
-    Node *secondLast = thirdLast->next;
-    first->next = first->next->next;
-    thirdLast->next = thirdLast->next->next;
-    if (second == secondLast) {
-        free(second);
-    } else {
-        free(second);
-        free(secondLast); 
-    }
+    
+    thirdLast->next = secondLast->next;
+    free(secondLast);
 }
 ```
 ''',
@@ -130,33 +111,28 @@ void deleteNodes(LinkedList *list) {
     if (list->head == NULL || list->head->next == NULL) {
         return;
     }
-    if (list->head->next->next == NULL) {
-        list->head = NULL;
-        return;
+    
+    Node *secondLast = list->head;
+    Node *thirdLast = NULL;
+
+    while (secondLast->next->next != NULL) {
+        thirdLast = secondLast;
+        secondLast = secondLast->next;
     }
-    Node *first = list->head;
-    Node *thirdLast = list->head;
-    while (thirdLast->next->next->next != NULL) {
-        thirdLast = thirdLast->next;
+
+    if (thirdLast != NULL) {
+        thirdLast->next = secondLast->next;
     }
-    Node *second = first->next;
-    Node *secondLast = thirdLast->next;
-    first->next = second->next;
-    thirdLast->next = secondLast->next;
-    if (second == secondLast) {
-        free(second);
-    } else {
-        free(second);
-        free(secondLast); 
-    }
+
+    free(secondLast);
 }
 ```
 '''
 ]
 
 explainations = [
-    "A is incorrect. If there are only two nodes in the list, it will run into segmentation fault when finding the third last node.",
-    "B is incorrect. If there are only three nodes in the list, the second and the second last node are the same, it will free the same node twice.",
-    "C is incorrect. If there are only three nodes in the list, the second and the second last node are the same. When updating the third last node's next pointer, since the `thirdLast->next` has been updated by `first->next->next`, so it will be `NULL'. The final result is that there is only first node left in the list.",
-    "D is correct. It will delete the second and the second last node correctly."
+    "A is incorrect. If the list is empty or there is only one node, it will run into a memory error when trying to access `secondLast->next->next`.",
+    "B is incorrect. If there are only two nodes in the list, it will run into a memory error when trying to access `thirdLast->next->next->next`.",
+    "C is correct. It will delete the second last node correctly.",
+    "D is correct. It will delete the second last node correctly."
 ]

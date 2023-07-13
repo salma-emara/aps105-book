@@ -1,14 +1,14 @@
 [[questions]]
 
-prompt = "Which of the following code can output `True` when `n` is multiple of 6?"
+prompt = "Which of the following code can output `True` when `n` is a multiple of 6?"
 
 answer = [1, 3]
 
 distractors = [
 '''
 ```
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 bool isMultipleOf6(int);
 void divideBy2(int);
@@ -29,7 +29,7 @@ int main() {
 bool isMultipleOf6(int n) {
     int originN = n;
     divideBy2(n);
-    divideBy3(n);;
+    divideBy3(n);
     return n == originN;
 }
 
@@ -44,8 +44,8 @@ void divideBy3(int n) {
 ''',
 '''
 ```
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 bool isMultipleOf6(int);
 int divideBy2(int);
@@ -82,8 +82,8 @@ int divideBy3(int n) {
 ''',
 '''
 ```
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 bool isMultipleOf6(int);
 int divideBy2(int);
@@ -118,8 +118,8 @@ int divideBy3(int n) {
 ''',
 '''
 ```
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 bool isMultipleOf6(int);
 int divideBy2(int);
@@ -158,8 +158,8 @@ int divideBy3(int n) {
 ]
 
 explainations = [
-    "A is incorrect. The function `divideBy2` and `divideBy3` do not change the value of `n` as Call by value.",
-    "B is correct. The function `divideBy2` and `divideBy3` communicate by return value.",
-    "C is incorrect. The function `divideBy2` and `divideBy3` do not change the value of `n` as Call by value. Thus the `div3` is not the result of `n / 6`, but `n / 3`.",
+    "A is incorrect. The function `divideBy2` and `divideBy3` do not change the value of `n` as the functions are called by value.",
+    "B is correct. The function `divideBy2` and `divideBy3` return the divided value to `isMultipleOf6`.",
+    "C is incorrect. The function `divideBy3` is not passed `div3`. Thus the `div3` does not store `n / 6`, but only `n / 3`.",
     "D is correct. It is the same as B."
 ]

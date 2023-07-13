@@ -1,0 +1,192 @@
+[[questions]]
+
+prompt = "What is a node in a linked list?"
+
+answer = [2]
+
+distractors = [
+    "A node is a data structure that holds at least two different type members: value and index.",
+    "A node is a data structure that holds at least two different type members: value and link to the head or last node.",
+    "A node is a data structure that holds at least two different type members: value and link to the next node.",
+    "A node is a data structure that holds at least two different type members: value and link to a random node."
+]
+
+explainations = [
+    "A is incorrect. Nodes in a linked list do not typically hold an index value. However, they do need a pointer to the next node.",
+    "B is incorrect. The link should point to the next node to be able to traverse all nodes in the list.",
+    "C is correct. This is the basic definition of a node in a linked list.",
+    "D is incorrect. The random node cannot ensure the linked list can be fully traversed."
+]
+
+[[questions]]
+
+prompt = '''
+Assume we have the following node definition:
+```
+typedef struct node {
+  int data;
+  struct node *next;
+} Node;
+```
+Which of the following correctly create(s) `node1` and `node2` and link(s) `node2` after `node1`?
+'''
+
+answer = [1]
+
+distractors = [
+'''
+```
+Node node1;
+node1.data = 0;
+node1.next = NULL;
+
+Node node2;
+node2.data = 1;
+node2.next = NULL;
+
+node1.next = node2;
+
+printf("%d %d", node1.data, (node1.next)->data);
+```
+''',
+'''
+```
+Node node1;
+node1.data = 0;
+node1.next = NULL;
+
+Node node2;
+node2.data = 1;
+node2.next = NULL;
+
+node1.next = &node2;
+
+printf("%d %d", node1.data, (node1.next)->data);
+```
+''',
+'''
+```
+Node node1;
+node1.data = 0;
+node1.next = NULL;
+
+Node node2;
+node2.data = 1;
+node2.next = NULL;
+
+node1.next = node2;
+
+printf("%d %d", node1.data, node1->next->data);
+```
+''',
+'''
+```
+Node *node1;
+node1->data = 0;
+node1->next = NULL;
+
+Node *node2;
+node2->data = 1;
+node2->next = NULL;
+
+node1->next = node2;
+
+printf("%d %d", node1->data, node1->next->data);
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The `node1.next` is a pointer, so it should be assigned with the address of `node2`, which needs `&`.",
+    "B is correct. This is the basic way to create and link two nodes together.",
+    "C is incorrect. The `node1` is not a pointer, so it cannot use `->` to access its members.",
+    "D is incorrect. The `node1` and `node2` are not pointing to `Node` data structures in the memory, so accessing what they point to is a memory error."
+]
+
+[[questions]]
+
+prompt = "Assume we have the same node definition as the previous question. Which of the following correctly dynamically create(s) `node1` and `node2` and free the allocated memory?"
+
+answer = [1, 3]
+
+distractors = [
+'''
+```
+Node node1 = (Node *)malloc(sizeof(Node));
+node1.data = 0;
+node1.next = NULL;
+
+Node node2 = (Node *)malloc(sizeof(Node));
+node2.data = 1;
+node2.next = NULL;
+
+node1.next = &node2;
+
+printf("%d %d", node1.data, node1.next->data);
+
+free(node1.next);
+free(node1);
+```
+''',
+'''
+```
+Node *node1 = (Node *)malloc(sizeof(Node));
+node1->data = 0;
+node1->next = NULL;
+
+Node *node2 = (Node *)malloc(sizeof(Node));
+node2->data = 1;
+node2->next = NULL;
+
+node1->next = node2;
+
+printf("%d %d", node1->data, node1->next->data);
+
+free(node1);
+free(node2);
+```
+''',
+'''
+```
+Node *node1 = (Node *)malloc(sizeof(Node));
+node1->data = 0;
+node1->next = NULL;
+
+Node *node2 = (Node *)malloc(sizeof(Node));
+node2->data = 1;
+node2->next = NULL;
+
+node1->next = node2;
+
+printf("%d %d", node1->data, node1->next->data);
+
+free(node1);
+free(node1->next);
+```
+''',
+'''
+```
+Node *node1 = (Node *)malloc(sizeof(Node));
+node1->data = 0;
+node1->next = NULL;
+
+Node *node2 = (Node *)malloc(sizeof(Node));
+node2->data = 1;
+node2->next = NULL;
+
+node1->next = node2;
+
+printf("%d %d", node1->data, node1->next->data);
+
+free(node1->next);
+free(node1);
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The `node1` and `node2` are supposed to be pointers, so they should be declared as `Node *`.",
+    "B is correct. This is the basic way to dynamically create and link two nodes together. Since `node1` and `node2` store the address separately, the order of `free` does not matter.",
+    "C is incorrect. The order of `free` is incorrect. If we free `node1`, it is a memory error to access `node1->next` and free it. `node1` should be freed after `node1->next`.",
+    "D is correct. The `node1` is freed after `node1->next`."
+]

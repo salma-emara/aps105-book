@@ -20,7 +20,7 @@ explainations = [
 
 [[questions]]
 
-prompt = "In which of the following, the content of the character array `myString` stores or the pointer `pStr` points to will be `hello` after the execution?"
+prompt = "In which of the following, the content of the character array `myString` stores `"hello"` or the pointer `pStr` points to is `"hello"` after the execution?"
 
 answer = [0, 3]
 
@@ -55,8 +55,8 @@ pStr[0] = 'h';
 explainations = [
     "A is correct. Because the string is stored in a character array, which is mutable.",
     "B is incorrect. Because the array identifier is a constant pointer to the first element of the array. It cannot be assigned to another value.",
-    "C is incorrect. Although the pointer is mutable, the string it points to is constant. This will cause a segmentation fault.",
-    "D is correct. Because the string is stored in a character array, which is mutable. The pointer is then initialized to point to the character array, so every operation on the pointer will affect the character array."
+    "C is incorrect. Although the pointer is mutable, the string it points to is constant and cannot be changed.",
+    "D is correct. The string is stored in a character array, which is mutable. The pointer is then initialized to point to the character array, so every operation on the pointer will affect the character array."
 ]
 
 [[questions]]

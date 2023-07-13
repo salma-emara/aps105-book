@@ -1,7 +1,7 @@
 [[questions]]
 
 prompt = '''
-Jade is writing a program that calculated the discount on a price. For example, if user inputs `10 0.9`, it expects to output `9.00`. How many errors are there in the code below?
+Jade is writing a program that calculated the discount on a price. For example, if user inputs `10 0.1`, it expects to output `9.00`. How many errors are there in the code below without changing the type of `price` and `discount`?
 ```
 #include <stdio.h>
 
@@ -16,7 +16,7 @@ int main() {
 }
 
 void calDiscount(double *price, double discount) {
-    price *= discount;
+    price *= (1 - discount);
 }
 ```
 '''
@@ -100,7 +100,7 @@ explainations = [
 [[questions]]
 
 prompt = '''
-When inputting `10 5' and `5 10` to the following program, what is the output?
+When inputting `10 5` and `5 10` to the following program, what is the output?
 ```
 #include <stdio.h>
 
@@ -159,18 +159,18 @@ explainations = [
 
 prompt = "What can happen if dereferencing a pointer variable that is not initialized?"
 
-answer = [0, 1, 2, 3]
+answer = [3]
 
 distractors = [
     "The compiler will give an warning.",
     "The program crashes with a segmentation fault.",
     "Another variable is overwritten.",
-    "The program can not read from user input."
+    "Any of the above. The program will have an undefined behavior."
 ]
 
 explainations = [
-    "A is correct. The compiler will give an warning and recommends you set the address of the pointer to NULL when you declare it.",
-    "B is correct. If the address exists, but your program can not access or does not have permission to access, the operating system will raise an error named Segmentation Fault error.",
-    "C is correct. If the address exists, and your program can access it (rarely happens), it may change a value of another variable in your program.",
-    "D is correct. If the address does not exist, your program may fail silently. This means it may not print statements in a `printf`, or it may not take input from the user in a `scanf`."
+    "A is incorrect. The compiler may give an warning and recommend you set the address of the pointer to NULL when you declare it.",
+    "B is incorrect. If the garbage address in the pointer exists, but your program can not access or does not have permission to access, the operating system will raise an error named Segmentation Fault error.",
+    "C is incorrect. If the address exists, and your program can access it (rarely happens), it may change a value of another variable in your program.",
+    "D is correct. Any of the errors may occur. Hence, the program will have an undefined behavior."
 ]

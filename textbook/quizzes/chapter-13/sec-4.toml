@@ -1,0 +1,138 @@
+[[questions]]
+
+prompt = '''
+What is the correct order of steps to delete a node from a linked list?
+
+1. Free the dynamically allocated memory for the node we want to delete.
+2. Fix the links before and after the node we want to delete.
+3. Update the head of the list if necessary.
+4. Find the node we want to delete.
+'''
+
+answer = [2]
+
+distractors = [
+    "4, 2, 3, 1",
+    "2, 3, 1, 4",
+    "4, 2, 1, 3",
+    "2, 4, 3, 1",
+]
+
+explainations = [
+    "A is incorrect. The correct order is 4, 2, 1, 3.",
+    "B is incorrect. The correct order is 4, 2, 1, 3.",
+    "C is correct. The correct order is 4, 2, 1, 3.",
+    "D is incorrect. The correct order is 4, 2, 1, 3."
+]
+
+[[questions]]
+
+prompt = '''
+Which of the following correctly delete(s) the second last node of a linked list? 
+
+Also assume the following struct has been defined:
+```
+typedef struct node {
+    int data;
+    struct node *next;
+} Node;
+
+typedef struct list {
+  Node* head;
+} LinkedList;
+```
+'''
+
+answer = [3]
+
+distractors = [
+'''
+```
+void deleteNodes(LinkedList *list) {
+    Node *secondLast = list->head;
+    Node *thirdLast = list->head;
+    while (secondLast->next->next != NULL) {
+        secondLast = secondLast->next;
+    }
+    while (thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+
+    thirdLast->next = secondLast->next;
+    free(secondLast);
+}
+```
+''',
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+
+    Node *secondLast = list->head;
+    Node *thirdLast = list->head;
+    while (secondLast->next->next != NULL) {
+        secondLast = secondLast->next;
+    }
+    while (thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+    
+    thirdLast->next = secondLast->next;
+    free(secondLast);
+}
+```
+''',
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+
+    Node *secondLast = list->head;
+    Node *thirdLast = list->head;
+    while (secondLast->next->next != NULL) {
+        secondLast = secondLast->next;
+    }
+    while (secondLast != list->head && thirdLast->next->next->next != NULL) {
+        thirdLast = thirdLast->next;
+    }
+    
+    thirdLast->next = secondLast->next;
+    free(secondLast);
+}
+```
+''',
+'''
+```
+void deleteNodes(LinkedList *list) {
+    if (list->head == NULL || list->head->next == NULL) {
+        return;
+    }
+    
+    Node *secondLast = list->head;
+    Node *thirdLast = NULL;
+
+    while (secondLast->next->next != NULL) {
+        thirdLast = secondLast;
+        secondLast = secondLast->next;
+    }
+
+    if (thirdLast != NULL) {
+        thirdLast->next = secondLast->next;
+    }
+
+    free(secondLast);
+}
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. If the list is empty or there is only one node, it will run into a memory error when trying to access `secondLast->next->next`.",
+    "B is incorrect. If there are only two nodes in the list, it will run into a memory error when trying to access `thirdLast->next->next->next`.",
+    "C is correct. It will delete the second last node correctly.",
+    "D is correct. It will delete the second last node correctly."
+]

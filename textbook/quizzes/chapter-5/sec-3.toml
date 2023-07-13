@@ -5,15 +5,15 @@ What is the output of the following code?
 ```
 #include <stdio.h>
 
-int adddOne(int);
+int addOne(int);
 
 int main(void) {
   int n = 1;
-  printf("%d %d", n, adddOne(n));
+  printf("%d %d", n, addOne(n));
   return 0;
 }
 
-int adddOne(int n) {
+int addOne(int n) {
   n += 1;
   return n;
 }
@@ -31,7 +31,7 @@ distractors = [
 
 explainations = [
     "A is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed.",
-    "B is correct. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed.",
-    "C is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed.",
-    "D is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed."
+    "B is correct. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed. Also, the return value of `addOne(n)` is 2.",
+    "C is incorrect. The variable `n` in `addOne` is a local variable and is not the same as the variable `n` in `main`. Thus the value of `n` in `main` is not changed. Also, the return value of `addOne(n)` is 2.",
+    "D is incorrect. The function `addOne` returns the value of `n` plus 1, which is 2. Thus, the return value of ``addOne(n)` in `main` 2."
 ]

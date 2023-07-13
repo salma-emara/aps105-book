@@ -1,5 +1,5 @@
-let parsedObject;
-parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "Jade is learning C programming and wants to create a program that calculates the area of a rectangle. She opens her code editor and starts writing a C program to perform the calculation. Jade inputs the length and width of the rectangle, and the program calculates and displays the area on the screen. Which component(s) of the computer system is/are responsible for executing the C program and display the result on the screen?",
@@ -41,24 +41,22 @@ parsedObject = {
       ]
     },
     {
-      "prompt": "Jade is learning C programming and wants to create a program that calculates the area of a rectangle. She opens her code editor and starts writing a C program to perform the calculation. Jade inputs the length and width of the rectangle, and the program calculates and displays the area on the screen. Which component(s) of the computer system is/are responsible for executing the C program and display the result on the screen?",
+      "prompt": "Which of the following declare(s) the `struct` correctly?",
       "answer": [
         0,
-        1,
-        2,
-        3
+        1
       ],
       "distractors": [
-        "CPU",
-        "Main memory",
-        "Input/Ouput device",
-        "Operaing system"
+        "```\ntypedef struct APS105 {\n    int studentNumber;\n    char instructor[20];\n    double averageGrade;\n} APS105;\nAPS105 course;\n```\n",
+        "```\nstruct APS105 {\n    int studentNumber;\n    char instructor[20];\n    double averageGrade;\n} course;\n```\n",
+        "```\nstruct APS105 {\n    int studentNumber;\n    char instructor[20];\n    double averageGrade;\n};\nAPS105 course;\n```\n",
+        "```\nstruct Employee {\n    char name[20];\n    int age;\n    double salary;\n    struct Employee subordinate[20];\n} boss;\n```\n"
       ],
       "explainations": [
-        "CPU is responsible for executing the C program written by Jade. It performs the calculations required to determine the area of the rectangle based on the provided length and width. The CPU consists of components such as the arithmetic logic unit (ALU) and the control unit, which work together to execute the program's instructions and perform the necessary calculations.",
-        "It stores the C program code, as well as the data input (length and width of the rectangle) that Jade provides.",
-        "The input device (such as a keyboard) is used by Jade to enter the length and width of the rectangle, which are inputs to the program. The output device (such as the screen) displays the calculated area as the result of the program.",
-        "Although not directly mentioned in the scenario, the operating system plays a role in managing the execution of the program and coordinating the interaction between the CPU, main memory, and input/output devices."
+        "A is correct. It declares a `struct` named `APS105` and an alias of `struct APS105` called `APS105` at the same name. Then the variable `course` is declared as a variable of type `APS105`.",
+        "B is correct. This defines `struct APS105` and declares `course` in the same line.",
+        "C is incorrect. The `stuct` keyword is missing when declaring the variable `course`.",
+        "D is incorrect. The compiler will not know what `Employee` is when it is used in the declaration of `boss`. It can not decide the memory size of `boss`."
       ]
     }
   ]

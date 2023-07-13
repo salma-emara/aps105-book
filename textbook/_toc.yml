@@ -115,7 +115,6 @@ parts:
         - file: chapters/chapter16-binary-search-trees/binary-search-trees-functions.md
         - file: chapters/chapter16-binary-search-trees/exercises.md
 
-
   - caption: "Appendix: Additional information"
     chapters:
       - file: chapters/appendix/appendix.md

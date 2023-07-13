@@ -23,3 +23,4 @@ To execute instructions, the CPU fetches the instructions from the main memory, 
 
 
 
+{{quiz_embed | replace("%%FILENAME%%", "quiz1") }}

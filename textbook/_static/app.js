@@ -78,6 +78,11 @@ function closeFullscreenForm() {
         fullscreenForm.classList.remove("active");
         fullscreenForm.classList.add("mini");
 
+        const counters = document.querySelectorAll("[id^='counter']");
+        counters.forEach(counter => {
+            counter.classList.add("hidden");
+        });
+
         const containerheader = document.getElementById("container-header");
         containerheader.classList.add("hidden-imp");
 
@@ -209,7 +214,9 @@ function parse_and_generate_form(fileName) {
         // Create the counter
         const counter = document.createElement("p");
         counter.innerHTML = "Question " + (i + 1) + " / " + questions.length;
+        counter.id = "counter" + (i + 1);
         counter.style.textAlign = "right";
+        counter.classList.remove("hidden");
 
         // Append the title and counter to the container div
         container.appendChild(title);
@@ -414,13 +421,13 @@ function parse_and_generate_form(fileName) {
                 label.innerHTML = choice.replace(/\n/g, "<br>");
                 label.setAttribute("for", "choice" + (i + 1) + "-" + (j + 1));
 
+                // Append the checkbox and label to the container div
+                choiceContainer.appendChild(checkbox);
                 if (answerCodeSnippet) {
                     AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, checkbox);
                     label.innerHTML = '';
                 }
 
-                // Append the checkbox and label to the container div
-                choiceContainer.appendChild(checkbox);
                 choiceContainer.appendChild(label);
 
                 // Append the container div to the choices element
@@ -452,6 +459,12 @@ function parse_and_generate_form(fileName) {
 }
 
 function handle_submission(formId, answer, hint, filename) {
+
+    var isSingleCorrect = false;
+    if (answer.length == 1) {
+        isSingleCorrect = true;
+    }
+
     const formNumber = formId.replace("quizForm", "");
     const form = document.getElementById(formId);
     const selectedChoices = form.querySelectorAll("input[name='choice" + formId.slice(8) + "']:checked");
@@ -464,8 +477,7 @@ function handle_submission(formId, answer, hint, filename) {
         selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
         const isCorrect = answer.every(correctIndex => selectedIndices.includes(correctIndex));
         explainIndex = selectedIndices[0];
-
-        updateMessageElement(messageElement, isCorrect, hint, explainIndex);
+        updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
     } else {
         messageElement.innerHTML = "Please make a selection.";
         messageElement.style.color = "red";
@@ -497,7 +509,6 @@ function showNextQuestion() {
     currentQuestionIndex++;
 
     var submitButton = document.getElementById("submit-button" + (parseInt(currentQuestionIndex, 10) + 1));
-    console.log("submit-button" + currentQuestionIndex + 1);
     submitButton.classList.remove("hidden");
 
     if (currentQuestionIndex < quizForms.length) {
@@ -575,17 +586,49 @@ function AcodeSnippetFormatting(codeSnippet, choiceContainer, button) {
 }
 
 
-function updateMessageElement(messageElement, isCorrect, hint, explainIndex) {
+function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect) {
+    let message = "";
     if (isCorrect) {
-        messageElement.innerHTML = "Correct! <span class='hint-text'>" + hint[explainIndex].replace(/\n/g, "<br>") + "</span>";
-        messageElement.style.color = "green";
-        messageElement.style.fontWeight = "bold";
+        if (selectedIndices.length > 0) {
+            let explanations;
+            if (isSingleCorrect) {
+                explanations = hint[selectedIndices[0]];
+            } else {
+                explanations = selectedIndices.map(index => hint[index]).join("<br><br>");
+            }
+            messageElement.innerHTML = "Correct! <span class='hint-text'>" + explanations.replace(/\n/g, "<br>") + "</span>";
+            messageElement.style.color = "green";
+            messageElement.style.fontWeight = "bold";
+        }
     } else {
-        messageElement.innerHTML = "Incorrect! <span class='hint-text'>" + hint[explainIndex].replace(/\n/g, "<br>") + "</span>";
-        messageElement.style.color = "red";
+        const correctIndices = answer.filter(index => selectedIndices.includes(index));
+        const correctExplanations = correctIndices.map(index => hint[index]).join("<br><br>");
+        const incorrectExplanations = selectedIndices
+            .filter(index => !correctIndices.includes(index))
+            .map(index => hint[index])
+            .join("<br><br>");
+
+
+        if (correctExplanations.length > 0) {
+            if (correctIndices.length !== answer.length) {
+                message += "<span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
+                message += "<span style='color: blue;'>There are more correct choices.</span>";
+            }
+            else {
+                message += "<span style='color: green;'>Correct!</span> <span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
+
+            }
+        }
+        if (incorrectExplanations) {
+            message += "<span style='color: red;'>Incorrect!</span> <span class='hint-text'>" + incorrectExplanations.replace(/\n/g, "<br>") + "</span>";
+        }
+        messageElement.innerHTML = message;
         messageElement.style.fontWeight = "bold";
     }
+
 }
+
+
 
 function resetQuiz(fileName) {
     const header = document.getElementById("container-header");
@@ -613,5 +656,18 @@ function resetQuiz(fileName) {
 
     const resetButton = document.getElementById("reset-button");
     resetButton.classList.add("hidden");
+
+    const counters = document.querySelectorAll("[id^='counter']");
+    counters.forEach(counter => {
+        counter.classList.remove("hidden");
+    });
+
+    //add title
+    var quizTitles = document.getElementsByClassName("quiz-title");
+
+    for (var i = 0; i < quizTitles.length; i++) {
+        var quizTitle = quizTitles[i];
+        quizTitle.classList.remove("hidden");
+    }
 
 }

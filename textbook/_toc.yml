@@ -114,7 +114,6 @@ parts:
         - file: chapters/chapter16-binary-search-trees/what-are-binary-trees.md
         - file: chapters/chapter16-binary-search-trees/binary-search-trees-functions.md
         - file: chapters/chapter16-binary-search-trees/exercises.md
-        - file: chapters/chapter16-binary-search-trees/file.md
 
 
   - caption: "Appendix: Additional information"

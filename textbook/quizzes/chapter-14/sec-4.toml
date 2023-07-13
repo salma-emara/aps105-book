@@ -1,6 +1,6 @@
 [[questions]]
 
-prompt = "What is the purpose of the partitioning process in quick sort?"
+prompt = "What is the purpose of the partitioning process in quicksort?"
 
 answer = [0]
 
@@ -12,7 +12,7 @@ distractors = [
 ]
 
 explainations = [
-    "A is correct. The partitioning process in Quick Sort rearranges the array elements such that the pivot element is placed in its correct sorted position. Elements smaller than the pivot are moved to the left, and larger elements are moved to the right.",
+    "A is correct. The partitioning process in quicksort rearranges the array elements such that the pivot element is placed in its correct sorted position. Elements smaller than the pivot are moved to the left, and larger elements are moved to the right.",
     "B is incorrect. The partitioning process does not guarantee that the two sub-arrays will be of equal length.",
     "C is incorrect. The array is not sorted until the partitioning process has been applied to each sub-array.",
     "D is incorrect. A is correct."
@@ -20,7 +20,7 @@ explainations = [
 
 [[questions]] 
 
-prompt = "How many recursive calls are made in the Quick Sort algorithm in each iteration?"
+prompt = "How many recursive calls are made in the quicksort algorithm in each iteration?"
 
 answer = [1]
 
@@ -32,15 +32,15 @@ distractors = [
 ]
 
 explainations = [
-    "A is incorrect. In the Quick Sort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning.",
-    "B is correct. In the Quick Sort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning.",
-    "C is incorrect. In the Quick Sort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning.",
-    "D is incorrect. In the Quick Sort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning."
+    "A is incorrect. In the quicksort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning.",
+    "B is correct. In the quicksort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning.",
+    "C is incorrect. In the quicksort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning.",
+    "D is incorrect. In the quicksort algorithm, two recursive calls are typically made to sort the left and right sub-arrays after partitioning."
 ]
 
 [[questions]]
 
-prompt = "In which situation(s) the `quicksortHelper()` function mentioned in the matierial will do the most times of partitioning? (Assume the array have 100 elements)"
+prompt = "In which situation(s) the `quicksortHelper()` function mentioned earlier will do the most times of partitioning? (Assume the array have 100 elements)"
 
 answer = [0, 1, 2]
 

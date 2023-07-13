@@ -1,0 +1,126 @@
+[[questions]]
+
+prompt = "Which of the following code print(s) `APS105`?"
+
+answer = [0, 1, 2, 3]
+
+distractors = [
+'''
+```
+char s[] = "APS105";
+printf("%s\n", s);
+```
+''',
+'''
+```
+char s[] = "APS105\0APS105";
+printf("%s\n", s);
+```
+''',
+'''
+```
+char s[] = "APS105APS105";
+printf("%.6s\n", s + 6);
+```
+''',
+'''
+```
+char s[] = "APS105";
+puts(s);
+```
+'''
+]
+
+explainations = [
+    "A is correct. This is the basic way to print a string.",
+    "B is correct. The first null character terminates the string, so only `APS105` is printed.",
+    "C is correct. The precision field specifies the maximum number of characters from the pointer to print. Since the pointer is pointing to the 7th character, only `APS105` is printed.",
+    "D is correct. `puts` prints the string and a newline character."
+]
+
+[[questions]]
+
+prompt = "Which of the following code print(s) `APS105` after the given inputs?"
+
+answer = [0, 1, 2]
+
+distractors = [
+'''
+User input:
+```
+APS105
+```
+Code:
+```
+char s[6 + 1];
+scanf("%s", s);
+printf("%s\n", s);
+```
+''',
+'''
+User input:
+```
+    APS105
+```
+Code:
+```
+char s[6 + 1];
+scanf("%s", s);
+printf("%s\n", s);
+```
+''',
+'''
+User input:
+```
+APS    105
+```
+Code:
+```
+char s1[3 + 1];
+cahr s2[3 + 1];
+scanf("%s", s1);
+scanf("%s", s2);
+printf("%s", s1);
+printf("%s\n", s2);
+```
+''',
+'''
+User input:
+```
+APS105
+```
+Code:
+```
+char s[6 + 1];
+fgets(s, 6, stdin);
+printf("%s\n", s);
+```
+'''
+]
+
+explainations = [
+    "A is correct. This is the basic way to input and print a string.",
+    "B is correct. The leading spaces are ignored by `scanf`.",
+    "C is correct. `scanf` stops reading when it encounters a whitespace character. The first `scanf` reads `APS` and the second `scanf` reads `105`.",
+    "D is incorrect. The second argument of `fgets` specifies the maximum number of characters to read, including the null character. Therefore, only `APS10` is read."
+]
+
+[[questions]]
+
+prompt = "Which of the following statements are true regarding the `getStringSafely()` function?"
+
+answer = [1, 2]
+
+distractors = [
+    "The function reads characters from the user until it encounters a newline character.",
+    "The function uses the getchar() function to read characters from the user.",
+    "The function counts the number of characters read from the user to ensure that the string is shorter than the maximum length.",
+    "The function terminates the string with a null character at the maximum length."
+]
+
+explainations = [
+    "A is incorrect. The function reads characters from the user until it encounters a newline character or the maximum length is reached.",
+    "B is correct. The function uses the getchar() function to read characters from the user.",
+    "C is correct. The function counts the number of characters read from the user to ensure that the string is shorter than the maximum length.",
+    "D is incorrect. The function terminates the string with a null character at the total characters count if the user enters fewer characters than the maximum allowed length or at the maximum length if the user enters more characters than the maximum allowed length."
+]

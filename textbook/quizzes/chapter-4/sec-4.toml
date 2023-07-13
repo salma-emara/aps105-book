@@ -1,0 +1,88 @@
+[[questions]]
+
+prompt = '''
+Which of the following will print the following output?
+```
+  *
+ ***
+*****
+```
+'''
+
+answer = [2, 3]
+
+distractors = [
+'''
+```
+for (int line = 1; line <= 3; line++) {  // loop over lines
+    for (int star = 1; star <= 2 * line - 1; star++) {  // loop over stars in a single line
+        printf("*");
+    }
+    printf("\n");
+}
+```
+''',
+'''
+```
+for (int line = 1; line <= 3; line++) {
+    for (int space = 1; space <= 3 - line; space++) {
+        printf(" ");
+    }
+    printf("\n");
+    for (int star = 1; star <= 2 * line - 1; star++) {
+        printf("*");
+    }
+}
+```
+''',
+'''
+```
+for (int line = 0; line < 3; line++) {
+    for (int space = 1; space <= 2 - line; space++) {
+        printf(" ");
+    }
+    for (int star = 1; star <= 2 * line + 1; star++) {
+        printf("*");
+    }
+    printf("\n");
+}
+```
+''',
+'''
+```
+for (int line = 0; line < 3; line++, printf("\n")) {
+    for (int space = 1; space <= 2 - line; space++) {
+        printf(" ");
+    }
+    for (int star = 1; star <= 2 * line + 1; star++) {
+        printf("*");
+    }
+}
+```
+'''
+]
+
+explainations = [
+'''
+A is incorrect. The output will be like:
+```
+*
+***
+*****
+```
+''',
+'''
+B is incorrect. The output will be like:
+```
+*
+***
+*****
+```
+''',
+'''
+C is correct. It first prints spaces according to the line number, then prints stars according to the line number. Then it prints a new line after each line finishes.
+''',
+'''
+D is correct. Similar to C, it just moves the new line to the end of the outer loop.
+'''
+]

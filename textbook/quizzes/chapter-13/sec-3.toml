@@ -1,0 +1,299 @@
+[[questions]]
+
+prompt = '''
+Which of the following code can insert a node at the tail of a linked list?
+
+Assume the following struct and function have been defined:
+```
+typedef struct node {
+    int data;
+    struct node *next;
+} Node;
+
+Node *createNode(int value) {
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        return NULL;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+```
+'''
+
+answer = [1, 2, 3]
+
+distractors = [
+'''
+```
+typedef struct list {
+  Node* head;
+  Node* tail;
+} LinkedList;
+
+bool insertAtTail(LinkedList* list, int value) {
+    Node *temp = createNode(value);
+    if (temp == NULL) {
+        return false;
+    }
+    if(list->head == NULL) { // If the list is empty
+        list->head = temp;
+        list->tail = temp;
+    } else {
+        list->tail->next = temp;
+        temp->next = list->tail;
+    }
+    return true;
+}
+
+int main(void) {
+    LinkedList list;
+    list.head = createNode(1);
+    list.tail = list.head;
+
+    insertAtTail(&list, 2);
+    insertAtTail(&list, 3);
+
+    return 0;
+}
+```
+''',
+'''
+```
+typedef struct list {
+  Node* head;
+  Node* tail;
+} LinkedList;
+
+bool insertAtTail(LinkedList* list, int value) {
+    Node *temp = createNode(value);
+    if (temp == NULL) {
+        return false;
+    }
+    if(list->head == NULL) { // If the list is empty
+        list->head = temp;
+        list->tail = temp;
+    } else {
+        list->tail->next = temp;
+        list->tail = temp;
+    }    
+    return true;
+}
+
+int main(void) {
+    LinkedList list;
+    list.head = createNode(1);
+    list.tail = list.head;
+
+    insertAtTail(&list, 2);
+    insertAtTail(&list, 3);
+
+    return 0;
+}
+```
+''',
+'''
+```
+typedef struct list {
+  Node* head;
+  Node* tail;
+} LinkedList;
+
+bool insertAtTail(LinkedList *list, int value) {
+    Node *temp = createNode(value);
+    if (temp == NULL) {
+        return false;
+    }
+    Node *cur = list->head;
+    bool inserted = false;
+    while (cur != NULL && !inserted) {
+        if (cur->next == NULL) {
+            cur->next = temp;
+            list->tail = temp;
+            inserted = true;
+        } else {
+            cur = cur->next;
+        }
+    } 
+    if (!inserted){
+        list->head = temp;
+        list->tail = temp;
+    }
+    return true;
+}
+
+int main(void) {
+    LinkedList list;
+    list.head = createNode(1);
+    list.tail = list.head;
+
+    insertAtTail(&list, 2);
+    insertAtTail(&list, 3);
+
+    return 0;
+}
+```
+''',
+'''
+```
+typedef struct list {
+  Node* tail;
+} LinkedList;
+
+bool insertAtTail(LinkedList *list, int value) {
+    Node *temp = createNode(value);
+    if (temp == NULL) {
+        return false;
+    }
+    if (list->tail != NULL) {
+        list->tail->next = temp;
+    }
+    list->tail = temp;
+    return true;
+}
+
+int main(void) {
+    Node *head = createNode(1);
+    LinkedList list;
+    list.tail = head;
+
+    insertAtTail(&list, 2);
+    insertAtTail(&list, 3);
+
+    return 0;
+}
+```
+'''
+]
+
+explainations = [
+    "A is incorrect. The code incorrectly updates the tail pointer. The output of the code is a circular linked list.",
+    "B is correct. The code inserts the node at the tail of the linked list.",
+    "C is correct. The code traverses the linked list to find the tail node, and then inserts the node at the tail.",
+    "D is correct. The code create a new data structure to store the tail pointer, and then inserts the node at the tail."
+]
+
+[[questions]]
+
+prompt = '''
+Which of the following correctly traverse(s) and print(s) all elements of a linked list in order?
+
+Assume the following struct has been defined:
+```
+typedef struct node {
+    int data;
+    struct node *next;
+} Node;
+
+typedef struct list {
+  Node* head;
+} LinkedList;
+
+Node *createNode(int value) {
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    if (newNode == NULL) {
+        return NULL;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+```
+'''
+
+answer = [0, 2]
+
+distractors = [
+'''
+```
+int main(void) {
+    Node *node1 = createNode(1);
+    Node *node2 = createNode(2);
+    Node *node3 = createNode(3);
+
+    node1->next = node2;
+    node2->next = node3;
+    
+    Node *cur = node1;
+    while (cur != NULL) {
+        printf("%d ", cur->data);
+        cur = cur->next;
+    } 
+
+    return 0;
+}
+```
+''',
+'''
+```
+int main(void) {
+    Node *node1 = createNode(1);
+    Node *node2 = createNode(2);
+    Node *node3 = createNode(3);
+
+    node1->next = node2;
+    node2->next = node3;
+    
+    Node *cur = node1;
+    while (cur->next != NULL) {
+        printf("%d ", cur->data);
+        cur = cur->next;
+    } 
+
+    return 0;
+}
+```
+''',
+'''
+```
+int main(void) {
+    Node *node1 = createNode(1);
+    Node *node2 = createNode(2);
+    Node *node3 = createNode(3);
+
+    node1->next = node2;
+    node2->next = node3;
+    
+    Node *cur = node1;
+    do {
+        if (cur != NULL) {
+            printf("%d ", cur->data);
+            cur = cur->next;
+        }
+    } while (cur != NULL);
+
+    return 0;
+}
+```
+''',
+'''
+```
+int main(void) {
+    Node *node1 = createNode(1);
+    Node *node2 = createNode(2);
+    Node *node3 = createNode(3);
+
+    node1->next = node2;
+    node2->next = node3;
+    
+    Node *cur = node1;
+    do {
+        if (cur != NULL) {
+            printf("%d ", cur->data);
+            cur = cur->next;
+        }
+    } while (cur->next != NULL);
+
+    return 0;
+}
+```
+'''
+]
+
+explainations = [
+    "A is correct. This is the basic way to traverse a linked list.",
+    "B is incorrect. The code does not print the last element of the linked list.",
+    "C is correct. This is the same as A.",
+    "D is incorrect. The code does not print the last element of the linked list."
+]

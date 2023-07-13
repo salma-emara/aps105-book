@@ -25,21 +25,21 @@ We have a number of TAs who have carefully marked a large number of final exams 
 
 (a) Here are some sorting methods you know about. Which ones would work well, and which not well to allow the TAs to most quickly sort the exams? Why or why not would the particular method work well or not?
 
-|      Method      | OK?   |Reason                  |
-| ---------------- | ---- | ----------------------- |
-| Insertion Sort   |      |                         |
-| Selection Sort   |      |                         |
-| Bubble Sort      |      |                         |
-|  Quicksort       |      |                         |
+| Method         | OK? | Reason |
+| -------------- | --- | ------ |
+| Insertion Sort |     |        |
+| Selection Sort |     |        |
+| Bubble Sort    |     |        |
+| Quicksort      |     |        |
 
 ````{admonition} Answer
 :class: dropdown
-|      Method      |OK?   |Reason    |
-| ---------------- | ---- | -------- |
-| Insertion Sort   |  No  | All TAs have to work on looking for one element to place it at the end|
-| Selection Sort   |  No  |All TAs have to work on looking for one element to place it at the end|
-| Bubble Sort      |  No  |All TAs have to work on looking for one element to place it at the end|
-|  Quicksort       |  Yes |Each TA can work on groups of exams|
+| Method         | OK? | Reason                                                                 |
+| -------------- | --- | ---------------------------------------------------------------------- |
+| Insertion Sort | No  | All TAs have to work on looking for one element to place it at the end |
+| Selection Sort | No  | All TAs have to work on looking for one element to place it at the end |
+| Bubble Sort    | No  | All TAs have to work on looking for one element to place it at the end |
+| Quicksort      | Yes | Each TA can work on groups of exams                                    |
 ````
 
 
@@ -227,3 +227,40 @@ void bubbleSortLinkedList(LinkedList *list) {
 }
 ```
 ````
+
+
+python
+from ipywidgets import widgets
+from IPython.display import display, Markdown
+
+question = widgets.HTML(
+   value="<b>What is the first alphabet?</b>"
+)
+
+option_a = "A"
+option_b = "B"
+option_c = "C"
+
+options = [option_a, option_b, option_c]
+
+option_buttons = widgets.RadioButtons(
+   options=options,
+   description="Options:",
+   value=None
+)
+
+submit_button = widgets.Button(description="Submit")
+
+display(question, option_buttons, submit_button)
+
+def check_answer(button):
+    if option_buttons.value == "A":
+        display(Markdown("✅ Correct!"))
+    else:
+        display(Markdown("❌ Incorrect."))
+
+submit_button.on_click(check_answer)
+
+
+
+

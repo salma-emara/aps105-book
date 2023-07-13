@@ -18,7 +18,7 @@ To delete a node at the beginning of the list, we need to do the following:
 3. Update the head pointer to point to the second node in the list
 
 ```{figure} ./images/deleteAtFront-image.png
-:alt: deleteAtFront-image
+:alt: delete at front-image
 :width: 600px
 :align: center
 ```
@@ -28,7 +28,7 @@ To implement this function, we don't need to return anything, and we only pass t
 
 **Code**
 ```{figure} ./images/deleteAtFront-code.png
-:alt: deleteAtFront-code
+:alt: delete at front-code
 :width: 600px
 :align: center
 ```
@@ -48,7 +48,7 @@ To delete a node at the end of the list, we need to do the following:
 The following figure illustrates the steps above:
 
 ```{figure} ./images/deleteBack-image.png
-:alt: deleteBack-image
+:alt: delete back image
 :width: 600px
 :align: center
 
@@ -59,7 +59,7 @@ To implement this function, we don't need to return anything, and we only pass t
 
 **Code**
 ```{figure} ./images/deleteBack-code.png
-:alt: deleteBack-code
+:alt: delete back code
 :width: 600px
 :align: center
 ```
@@ -108,7 +108,7 @@ In lines $7 - 11$, we check if the list has one node. If it does, we call `delet
 
 ## Deleting all nodes in the linked list
 
-To delete all nodes in the linked list, we need to call deleteFront (or deleteBack) until the list is empty. 
+To delete all nodes in the linked list, we need to call `deleteFront` (or `deleteBack`) until the list is empty. 
 
 We implement a function named `deleteAllNodes` that deletes all nodes and returns the number of nodes deleted. It takes `LinkedList*` as a parameter. We implement it as follows:
 
@@ -141,7 +141,7 @@ To delete a node with a specific value, *e.g*, $3$  we need to do the following:
 The following figure illustrates the steps above:
 
 ```{figure} ./images/deleteFirstMatch_order.png
-:alt: deleteFirstMatch_order
+:alt: delete first match order
 :width: 600px
 :align: center
 ```
@@ -158,7 +158,7 @@ This means that the order of steps is crucial. We should do the steps in the fol
 The steps are illustrated in the following figure:
 
 ```{figure} ./images/deleteFirstMatch-image.png
-:alt: deleteFirstMatch-image
+:alt: delete first match image
 :width: 600px
 :align: center
 ```
@@ -166,7 +166,7 @@ The steps are illustrated in the following figure:
 We can write a function named `deleteFirstMatch` that takes the `LinkedList*` and the `searchVal` as parameters to implement the steps above. It returns `true` if it found the node and deleted it, and `false` otherwise. A draft is shown below:
 
 ```{figure} ./images/deleteFirstMatch-code.png
-:alt: deleteFirstMatch-code
+:alt: delete first match code
 :width: 600px
 :align: center
 ```

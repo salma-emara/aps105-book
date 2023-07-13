@@ -48,7 +48,7 @@ int median(int x, int y, int z) {
 }
 ```
 
-In line 2, `(x >= z && x <= y)` checks the $1$st possibility in the {ref}`Median Possibilities <median-possibilities>` figure above. This condition is OR-ed with the $2$nd possibility that makes `x` a median `(x >= y && x <= z)`.
+In line 2, `(x >= z && x <= y)` checks the first possibility in the {ref}`Median Possibilities <median-possibilities>` figure above. This condition is OR-ed with the second possibility that makes `x` a median `(x >= y && x <= z)`.
 
 In line $3$, the function will return the value of `x` if it is the median. This means further lines will never be executed. The same will happen if `y` is median in line $5$ and if `z` is median in line $7$. However, if your function is quite long and has several `return`s, it will be difficult to trace how many `return`s and debug the function if it has bugs.
 

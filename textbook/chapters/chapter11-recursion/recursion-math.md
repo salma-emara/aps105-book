@@ -18,12 +18,12 @@ Mathematically, the Euclidean algorithm is defined as follows:
 :alt: GCD of two numbers
 :width: 600px
 :align: center
-:name: gcd-math
+:name: GCD math
 
 GCD of two numbers is defined recursively.
 ```
 
-For example, the greatest common divisor of 20 and 8 is 4. To find the gcd using the formula above, $GCD(20, 8)$ $\rightarrow$ $GCD(8, 20 - 8 = 12)$ $\rightarrow$ $GCD(12, 8)$ $\rightarrow$ $GCD(8, 12 - 8 = 4)$ $\rightarrow$ $GCD(4, 8 - 4 = 4) = 4$. 
+For example, the greatest common divisor of 20 and 8 is 4. To find the GCD using the formula above, $GCD(20, 8)$ $\rightarrow$ $GCD(8, 20 - 8 = 12)$ $\rightarrow$ $GCD(12, 8)$ $\rightarrow$ $GCD(8, 12 - 8 = 4)$ $\rightarrow$ $GCD(4, 8 - 4 = 4) = 4$. 
 
 The Euclidean algorithm can be easily implemented recursively as follows. Download {download}`gcd.c <../../code/chapter11/gcd/gcd.c>` if you want to run the program yourself. 
 
@@ -92,7 +92,7 @@ We can define the factorial of a number **recursively**. The factorial of a numb
 :align: center
 :name: factorial-recursive-definition
 
-Factorial of a number can bes defined recursively.
+Factorial of a number can be defined recursively.
 ```
 
 Given the mathematical definition, we can implement the factorial function recursively as follows:

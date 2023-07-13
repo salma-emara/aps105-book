@@ -52,11 +52,11 @@ int main(void) {
 
 ## Longer nested-if statements
 
-Let's develop a C program that finds the maximum of three ints `x`, `y` and `z` and stores the maximum int in a variable named `max`.
+Let's develop a C program that finds the maximum of three integers `x`, `y` and `z` and stores the maximum int in a variable named `max`.
 
 **Step 1: Toy example.** Let's say we have `x = 3`, `y = 4` and `z = 5`. The maximum is expected to be `z`.
 
-**Step 2: Think of a solution.** We can compare two ints first, and then the maximum of them can be compared with the third int. For example, we compare `x` and `y`, and the larger number gets compared with `z`.
+**Step 2: Think of a solution.** We can compare two integers first, and then the maximum of them can be compared with the third int. For example, we compare `x` and `y`, and the larger number gets compared with `z`.
 
 ```{figure} ./images/max-of-3.png
 :alt: Maximum of three numbers

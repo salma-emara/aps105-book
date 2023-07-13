@@ -107,7 +107,7 @@ or without defining the number of rows.
 :alt: Declare and initialize a 2D array
 :width: 500px
 :align: center
-:name: initialize-2darray-row-num-unncessary
+:name: initialize-2d-array-row-number-unnecessary
 ```
 
 The number of rows is not required as the compiler will fill the array **row by row**, *i.e.* in "row major" order. For example, if the number of rows is unknown, the number of columns is $3$, and the array is initialized with $9$ elements, the first row will have 3 elements, the second row will have 3 elements and so on. Hence, the number of rows can be easily deduced if the number of columns and the elements are defined. To better understand "row major" order, let's dive deeper into how a 2D array is stored in the main memory.

@@ -6,7 +6,9 @@ In the previous chapter, we developed a program to calculate the number of slice
 ## Example: Convert Inches to Centimeters
 
 Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is $2.54$ centimeters per inch. Download {download}`inches-to-centimeters.c <../../code/chapter2/inches2cm/inches-to-cm.c>` to get the following source code.
-```c {.line-numbers}
+
+```{code-block} c
+:linenos:
 // Description: This program convert inches to centimeters
 #include <stdio.h>
 

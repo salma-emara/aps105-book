@@ -72,7 +72,7 @@ We write pseudocode for selection sort as follows:
 
 ## Implementation
 
-We implement selection sort as follows. In lines $8$ to $12$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`selection-sort.c <../../code/chapter15/selection-sort/selection-sort.c>` if you want to play with the code.
+We implement selection sort as follows. In lines $8$ to $12$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`selection-sort.c <../../code/chapter14/selection-sort/selection-sort.c>` if you want to play with the code.
 
 **Code**
 ```{code-block} c

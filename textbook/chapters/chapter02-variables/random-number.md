@@ -105,7 +105,7 @@ So far we found a way to generate pseudo-random numbers, and how to generate the
 
 If we use the current time as a seed, every time we run our program, our seed will be different. Hence, the set of random numbers change with every run! Voilà. We can use the `time` function from `time.h` library to get the current time. The prototype of the `time` function is as follows:
 
-```c
+```{code-block} c
 time_t time(time_t *tloc);
 // You are not required to know what is time_t or tloc in this course!
 ```

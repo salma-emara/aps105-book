@@ -57,7 +57,7 @@ If you declare a variable within `{}`, also referred as within a **compound stat
 :alt: Use x outside compound statement
 :width: 600px
 :name: outside-compound-statement
-Using `x` variable outside the compund statement where it was declared. This causes a compile time error as `x` is undefined at line 10.
+Using `x` variable outside the compound statement where it was declared. This causes a compile time error as `x` is undefined at line 10.
 ```
 
 **Code causing compile-time error**

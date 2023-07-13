@@ -73,7 +73,7 @@ To highlight the main steps of binary search, we can write the algorithm in pseu
 
 ## Implementation
 
-To implement binary search, we need to write a function that takes in an array, size of the array and an item to search for. The function should return the index of the item if it is found in the array. If the item is not found, the function should return `-1`. Download the following code {download}`binary-search.c <../../code/chapter14/binary-search/binary-search.c>` if you want to play with it.
+To implement binary search, we need to write a function that takes in an array, size of the array and an item to search for. The function should return the index of the item if it is found in the array. If the item is not found, the function should return `-1`. Download the following code {download}`binary-search.c <../../code/chapter15/binary-search/binary-search.c>` if you want to play with it.
 
 **Code**
 ```{code-block} c
@@ -154,7 +154,7 @@ Lines $12$--$13$ handle the recursive case when `item` is greater than `list[mid
 
 We can see that the values of `low` and `high` are updated in the recursive function call. This is how we reduce the size of the array from one function call to the next recursive function call.
 
-**Reduce number of arguments** I would like to point out that functions with several arguments passed is not ideal, as someone may forget how to call the recursive function. We can improve this! We can implement a function that takes three arguments, an array, the size of the array and an item to search for. The function can then call the recursive function with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. This is what we do in the following implementation. Download the following code {download}`binary-search-recursive.c <../../code/chapter14/binary-search-recursive/binary-search-recursive.c>` if you want to play with it.
+**Reduce number of arguments** I would like to point out that functions with several arguments passed is not ideal, as someone may forget how to call the recursive function. We can improve this! We can implement a function that takes three arguments, an array, the size of the array and an item to search for. The function can then call the recursive function with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. This is what we do in the following implementation. Download the following code {download}`binary-search-recursive.c <../../code/chapter15/binary-search-recursive/binary-search-recursive.c>` if you want to play with it.
 
 **Code**
 ```{code-block} c

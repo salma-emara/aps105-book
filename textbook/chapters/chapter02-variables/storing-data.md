@@ -43,7 +43,8 @@ To represent a single letter, symbol or digit, we can use the char data type. Ex
 
 **Example**
 
-```c {.line-numbers}
+```{code-block} c
+:linenos:
 #include <stdio.h>
 
 int main(void){
@@ -60,7 +61,7 @@ This code snippet would print `S` on the screen. The format specifier for `char`
 My first initial is S
 </pre>
 
-`char` is stored using 8 bits, i.e. 1 byte of memory. Each character is encoded into a unique number, and the number is stored in one cell of the memory. How does this unique number look like? The number is called American Standard Code for Information Interchange (ASCII) code. ASCII code is a standard encoding scheme for characters. It uses only 7-bits and the 8th bit is set to $0$. Since we are using 7 bits, then the ASCII code table has numbers between $0$ and $2^7 -1$, which is 128 numbers. Part of the ASCII code table is shown below, but you are **NOT** expected to memorize it.
+`char` is stored using 8 bits, i.e. 1 byte of memory. Each character is encoded into a unique number, and the number is stored in one cell of the memory. How does this unique number look like? The number is called American Standard Code for Information Interchange (ASCII) code. ASCII code is a standard encoding scheme for characters. It uses only 7-bits and the eighth bit is set to $0$. Since we are using 7 bits, then the ASCII code table has numbers between $0$ and $2^7 -1$, which is 128 numbers. Part of the ASCII code table is shown below, but you are **NOT** expected to memorize it.
 
 | Character | ASCII code (Decimal) | ASCII code (Binary) |
 | :-------: | :------------------: | :-----------------: |
@@ -91,7 +92,8 @@ Boolean `bool` data type is used to represent a logical value, i.e. either `true
 
 Write a C code that prints a `bool` variable. Code in {download}`isRaining.c <../../code/chapter2/boolVariable/isRaining.c>`.
 
-```c {.line-numbers}
+```{code-block} c
+:linenos:
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -109,7 +111,7 @@ Is it raining? 1
 
 There is no format specifier for `bool` specifically. We use `%d` to print the value (either 0 or 1) of a boolean variable. Hence, the above code prints `Is it raining? 1` NOT `Is it raining? true`.
 
-If you noticed, apart from `#include <stdio.h>` which gives us access to `printf` and `scanf` functions, we included another library for `bool` variables in `#include <stdbool.h>`. Without this library, the complier won't identify the `bool` variable type.
+If you noticed, apart from `#include <stdio.h>` which gives us access to `printf` and `scanf` functions, we included another library for `bool` variables in `#include <stdbool.h>`. Without this library, the compiler won't identify the `bool` variable type.
 
 (declare-vs-initialization)=
 ## Declaring Vs. Initializing Variables

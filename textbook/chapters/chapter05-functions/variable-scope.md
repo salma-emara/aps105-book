@@ -5,7 +5,7 @@ In the previous section, we found that we created a new variable `n` in `factori
 
 This is similar to what we discussed in for loops in {ref}`scope-for-loop`. We said that the following would cause a compile-time error, since `count` is declared inside the loop and is undefined outside the loop. The scope of `count` is only in the for loop.
 
-**Code snippit causing compile-time error at line $4$**
+**Code snippet causing compile-time error at line $4$**
 ```{code-block} c
 :linenos:
 :emphasize-lines: 4

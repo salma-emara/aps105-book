@@ -92,7 +92,8 @@ On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, this will yi
 {download}`zeroDivision.c <../../code/chapter2/divideByzero/zeroDivision.c>` to try the following code. 
 
 **Code**
-```c {.line-numbers}
+```{code-block} c
+:linenos:
 #include <stdio.h>
 
 int main(void) {
@@ -248,7 +249,7 @@ Another example, in `double x = 3/ 2.9;`, you may want to force `2.9` to be `int
 
 The type casting operator is `(` and `)`. The data type is placed in between the brackets. For example, `(int) 3.9` will evaluate as `3`. `(double) 3` will evaluate as `3.0`.
 
-## Sizeof() operator
+## `sizeof()` operator
 
 `sizeof(<data type>)` is an operator that evaluates the number of bytes required to store a data type on the operating computer. For example, `sizeof(int)` will evaluate as `4`, `sizeof(double)` will evaluate as `8`, and `sizeof(char)` will evaluate as `1` on my personal computer.
 

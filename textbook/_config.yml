@@ -73,6 +73,6 @@ parse:
           <div id = "close-button" onclick = "closeFullscreenForm()"> X </div>
                 <script> parse_and_generate_form("%%FILENAME%%") </script>
                 
-          </div>
         </div>
+
 

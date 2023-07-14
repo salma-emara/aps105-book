@@ -43,3 +43,5 @@ Clean coding can easily be a course by itself. If you want to be someone hirable
 :style: unsrt
 :filter: docname in docnames
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-1/sec-3") }}

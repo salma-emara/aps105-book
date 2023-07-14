@@ -492,3 +492,5 @@ This is what's left: orld!
 </pre>
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-2") }}

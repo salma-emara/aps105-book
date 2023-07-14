@@ -119,3 +119,5 @@ Since `months` is a 1D array of character pointers and each pointer is pointing 
 ```
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-4") }}

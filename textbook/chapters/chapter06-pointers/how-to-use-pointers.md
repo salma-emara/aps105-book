@@ -272,3 +272,5 @@ int main(void) {
 <pre>
 a = 11 and b = 8
 </pre>
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-6/sec-3") }}

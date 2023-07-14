@@ -117,3 +117,5 @@ Value of y: 7
 Value at address a: 6
 Value at address b: 7
 </pre>
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-6/sec-2") }}

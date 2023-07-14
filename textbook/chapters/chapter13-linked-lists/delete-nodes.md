@@ -303,3 +303,5 @@ int deleteAllMatches(LinkedList *list, int value) {
   return numDeleted;
 }
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-4") }}

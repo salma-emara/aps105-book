@@ -175,4 +175,4 @@ A recursive factorial function with a base/terminating case will call itself unt
 :align: center
 ```
 
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-11/sec-1") }}

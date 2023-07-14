@@ -167,3 +167,5 @@ if (<condition>)
   else  // this else belongs to the if statement above
     <statement>;
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-3/sec-3") }}

@@ -216,3 +216,5 @@ The following figure summarizes the two methods of defining and redefining a dat
 ```
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-12/sec-1") }}

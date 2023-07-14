@@ -38,3 +38,5 @@ double divideByTwo(double n) {
 To understand how variables from another function cannot be accessed and how "call by value" works under the hood, we look into how the variables of each function is stored in the main memory. The following video will execute the program one line at a time, and explain what happens in the main memory.
 
 {{ video_embed | replace("%%VID%%", "S32rqCAgOsQ")}}
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-5/sec-3") }}

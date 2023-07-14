@@ -76,5 +76,5 @@ Extending the list can also be easy by adding a new list to the end of the curre
 
 This list of numbers that we linked is called a **linked list**. It is more flexible to add new elements, delete elements, and extend the list than arrays. We will discuss how to implement a linked list in C in the next section.
 
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-1") }}
 

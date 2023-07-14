@@ -308,5 +308,5 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
 
 [^1]: Inputs to programs are in **bold**.
 
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-2") }}
 

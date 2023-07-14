@@ -396,3 +396,5 @@ bool insertRecursive(BSTree *tree, int value) {
   return inserted != NULL;
 }
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-16/sec-2") }}

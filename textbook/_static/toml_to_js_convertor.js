@@ -6,18 +6,27 @@ const path = require('path');
 function convertTomlToJs(tomlPath, jsPath) {
     const tomlData = fs.readFileSync(tomlPath, 'utf8');
     const jsonData = toml.parse(tomlData);
-    const jsData = `let parsedObject; \n  parsedObject = ${JSON.stringify(jsonData, null, 2)};`;
+    const jsData = `let parsedObject; \n  parsedObject = ${JSON.stringify(
+        jsonData,
+        null,
+        2
+    )};`;
     fs.writeFileSync(jsPath, jsData);
 }
 
-// Convert each TOML file in the folder
-const folderPath = "quiz"; // Path to the folder containing TOML files
+// Convert TOML files in each folder of the directory
+const directoryPath = "textbook/quizzes"; // Path to the directory containing folders with TOML files
 
-fs.readdirSync(folderPath)
-    .filter(file => file.endsWith('.toml'))
-    .forEach(file => {
-        const tomlPath = path.join(folderPath, file);
-        const jsPath = path.join(folderPath, `${file.replace('.toml', '.js')}`);
-        convertTomlToJs(tomlPath, jsPath);
-        console.log(`Converted ${tomlPath} to ${jsPath}`);
+fs.readdirSync(directoryPath, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .forEach((dirent) => {
+        const folderPath = path.join(directoryPath, dirent.name);
+        fs.readdirSync(folderPath)
+            .filter((file) => file.endsWith('.toml'))
+            .forEach((file) => {
+                const tomlPath = path.join(folderPath, file);
+                const jsPath = path.join(folderPath, `${file.replace('.toml', '.js')}`);
+                convertTomlToJs(tomlPath, jsPath);
+                console.log(`Converted ${tomlPath} to ${jsPath}`);
+            });
     });

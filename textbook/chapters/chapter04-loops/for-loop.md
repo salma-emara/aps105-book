@@ -253,4 +253,4 @@ You can use the:
 2. `do-while`: if you want to test the condition after executing the body of the loop at least once.
 3. `while`: if you want to test the condition before executing the body of the loop.
 
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-3") }}

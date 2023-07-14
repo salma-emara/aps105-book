@@ -58,7 +58,7 @@ parse:
     # repeating the quiz embed
     quiz_embed:
         <link rel="stylesheet" href = "../../_static/style.css">
-        <script src = "../../../../../quiz/%%FILENAME%%.js">
+        <script src = "../../../../../textbook/quizzes/%%FILENAME%%.js">
         <script src = "../../_static/app.js"> </script>
         
       <div id="container-header" class="container-box">

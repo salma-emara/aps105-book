@@ -195,3 +195,5 @@ Found 9 in index 4
 </pre>
 
 In lines $12$--$14$, we call the recursive function `binarySearchHelper` with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. As a developer, you can later just sell this function to your users, and they can call it with just three arguments, an array, size of the array and an item to search for. The function will then call the recursive function with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. 
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-15/sec-2") }}

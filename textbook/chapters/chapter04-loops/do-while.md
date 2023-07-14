@@ -123,3 +123,5 @@ The number entered is 5.
 ````
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-2") }}

@@ -398,3 +398,5 @@ Tracing printPattern function with n = 4: `printPattern(4)`.
 ```
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-11/sec-2") }}

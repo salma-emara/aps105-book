@@ -155,3 +155,5 @@ In the following figure, we show the scope of different variables in a function.
 :name: scope-variables-review
 Scope of different variables in a function.
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-6/sec-4") }}

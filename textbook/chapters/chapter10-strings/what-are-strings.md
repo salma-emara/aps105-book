@@ -229,5 +229,4 @@ int spacesCount(char str[]) {
 The number of spaces is 5.
 </pre>
 
-
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-1") }}

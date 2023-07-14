@@ -269,3 +269,4 @@ int main(void) {
 
 **Step 5: Test and debug your code.** You can test your code with different array with different positions of the consecutive $1$s. A **common mistake** is to forget to check that `col + step` is without the bounds of the array. If you don't, you will be accessing an element outside the bounds of the array, which might raise a "Segmentation Fault" error, because you are not permitted to access this location. Another common mistake is to forget to reset the `count` to $0$ for each element. This will result in counting all the 1's observed while looping over all rows and columns. 
 
+{{quiz_embed | replace("%%FILENAME%%", "chapter-9/sec-1") }}

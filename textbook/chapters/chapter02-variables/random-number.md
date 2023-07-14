@@ -184,3 +184,5 @@ int main(void) {
 <pre>
 Dice roll is 3
 </pre>
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-5") }}

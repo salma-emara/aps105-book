@@ -208,3 +208,5 @@ Enter the number of rows: <b>5</b>
 **Step 6: Debug the code.** It is possible that you do not get the expected output. Some common mistakes in printing patterns were discussed in the previous exercise. 
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-4") }}

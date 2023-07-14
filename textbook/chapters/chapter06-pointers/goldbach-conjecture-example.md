@@ -349,3 +349,5 @@ Goldbach conjecture is verified.
 Please refer to {download}`goldbach-conjecture.c <../../code/chapter06/gold-conjecture/gold-conjecture.c>` if you want to view the entire program and test it yourself.
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-6/sec-5") }}

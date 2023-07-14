@@ -137,3 +137,5 @@ Grade: 91%
 </pre>
 
 [^1]: Inputs to programs are in **bold**. 
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-1/sec-4") }}

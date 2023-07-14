@@ -612,7 +612,7 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
         if (correctExplanations.length > 0) {
             if (correctIndices.length !== answer.length) {
                 message += "<span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
-                message += "<span style='color: blue;'>There are more correct choices.</span>";
+                message += "<span style='color: blue;'>There are more correct choices.<br></span>";
             }
             else {
                 message += "<span style='color: green;'>Correct!</span> <span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";

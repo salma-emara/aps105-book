@@ -90,3 +90,5 @@ When you are planning your program, you must think of the variables you need and
 In the next section, we will see are these data types stored in the memory. 
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-1") }}

@@ -150,3 +150,5 @@ Using relational operators, we can:
 
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-3/sec-1") }}

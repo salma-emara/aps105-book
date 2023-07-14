@@ -205,3 +205,5 @@ int main(void) {
 }
 
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-5") }}

@@ -168,3 +168,5 @@ int main(void){
 </pre>
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-1") }}

@@ -174,3 +174,4 @@ Value of b: 13
 
 **Solution!!** Instead of passing just the values of `a` and `b`, we can pass the addresses of `a` and `b` in the `main` function memory space in the main memory. This way any changes to `a` and `b` in `swap` function happens in `main` function too. This is possible if we use **pointers**. This is what we discuss in the next section.
 
+{{quiz_embed | replace("%%FILENAME%%", "chapter-6/sec-1") }}

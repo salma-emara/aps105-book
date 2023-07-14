@@ -124,3 +124,4 @@ After iteration 5: 2 5 5 8 9 18
 2 5 5 8 9 18 
 </pre>
 
+{{quiz_embed | replace("%%FILENAME%%", "chapter-14/sec-2") }}

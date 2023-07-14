@@ -61,3 +61,5 @@ Using `pNeuron -> input` is equivalent to `(*pNeuron).input`. This accessed `inp
 When we are done with the dynamically allocated data structure, we can free the memory using the `free` function as we show in the above example.
 
 The benefits/usage of data structures in solving problems will all be discussed in the next chapter on linked lists, and again in the last chapter on binary search trees.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-12/sec-2") }}

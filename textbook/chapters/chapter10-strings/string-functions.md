@@ -691,3 +691,5 @@ The following table lists the most commonly used string functions.
 | `strstr` | Searches for a substring in a string. |
 
 [^1]: Inputs to programs are in **bold**.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-3") }}

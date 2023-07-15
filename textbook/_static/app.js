@@ -27,7 +27,14 @@ function startQuiz() {
     containerheader.classList.add("hidden-imp");
 
     if (quizForms.length === 1) {
-        nextButton.classList.add("hidden");
+
+        //hide the next buttons
+        var nextButtons = document.getElementsByClassName("next-button");
+
+        for (var i = 0; i < nextButtons.length; i++) {
+            var nextButton = nextButtons[i];
+            nextButton.classList.add("hidden");
+        }
     }
 
     var closeButton = document.getElementById("close-button");
@@ -195,6 +202,11 @@ function parse_and_generate_form(fileName) {
         const answer = questions[i].answer;
         const hint = questions[i].explainations;
 
+        var isSingleCorrect = false;
+        if (answer.length == 1) {
+            isSingleCorrect = true;
+        }
+
         //generate the quiz form in HTML
         const form = document.createElement("form");
         form.id = "quizForm" + (i + 1);
@@ -238,7 +250,7 @@ function parse_and_generate_form(fileName) {
 
         //extract question code snippet if available
         const regexTripleBackticks = /```([\s\S]*?)```/;
-        const regexSingleBacktick = /`([\s\S]*?)`/g;
+        const regexSingleBacktick = /`([^`]+)`(?!`)/g;
 
         let match = question.match(regexTripleBackticks);
         let questionCodeSnippet = '';
@@ -246,7 +258,7 @@ function parse_and_generate_form(fileName) {
         questionElement.appendChild(questionTitle);
 
         if (match) {
-            questionCodeSnippet = match[0].trim();
+            questionCodeSnippet = match[1].trim();
             question = question.replace(match[0], '');
             questionText.innerHTML = question;
             questionElement.appendChild(questionText);
@@ -351,6 +363,22 @@ function parse_and_generate_form(fileName) {
             for (let j = 0; j < choices.length; j++) {
                 let choice = choices[j];
 
+                //format code snippet in single ticks
+                const codeSnippetMatches = choice.match(regexSingleBacktick);
+                if (codeSnippetMatches) {
+                    for (let j = 0; j < codeSnippetMatches.length; j++) {
+                        const match = codeSnippetMatches[j];
+                        const ansCodeSnippet = match.slice(1, -1).trim();
+
+                        // Create a new <code> element
+                        const codeSnippetElement = document.createElement("code");
+                        codeSnippetElement.classList.add("code-snippet-single");
+                        codeSnippetElement.textContent = ansCodeSnippet;
+
+                        choice = choice.replace(match, codeSnippetElement.outerHTML);
+                    }
+                }
+
                 //extract code snippet if available
                 const match_answer = choice.match(regexTripleBackticks);
                 let answerCodeSnippet = '';
@@ -395,6 +423,22 @@ function parse_and_generate_form(fileName) {
             // Create checkbox choices
             for (let j = 0; j < choices.length; j++) {
                 let choice = choices[j];
+
+                //format code snippet in single ticks
+                const codeSnippetMatches = choice.match(regexSingleBacktick);
+                if (codeSnippetMatches) {
+                    for (let j = 0; j < codeSnippetMatches.length; j++) {
+                        const match = codeSnippetMatches[j];
+                        const ansCodeSnippet = match.slice(1, -1).trim();
+
+                        // Create a new <code> element
+                        const codeSnippetElement = document.createElement("code");
+                        codeSnippetElement.classList.add("code-snippet-single");
+                        codeSnippetElement.textContent = ansCodeSnippet;
+
+                        choice = choice.replace(match, codeSnippetElement.outerHTML);
+                    }
+                }
 
                 //extract code snippet if available
                 const match_answer = choice.match(regexTripleBackticks);
@@ -448,10 +492,11 @@ function parse_and_generate_form(fileName) {
                 choiceInput.checked = true;
             });
 
-            const explainIndex = selectedIndices[0]; // Get the first selected index
-            const isCorrect = answer.every(correctIndex => selectedIndices.includes(correctIndex));
+            //const explainIndex = selectedIndices[0]; // Get the first selected index
+            const isCorrect = answer.length === selectedIndices.length &&
+                answer.every(correctIndex => selectedIndices.includes(correctIndex));
 
-            updateMessageElement(messageElement, isCorrect, hint, explainIndex);
+            updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
         }
     }
 
@@ -475,8 +520,9 @@ function handle_submission(formId, answer, hint, filename) {
 
     if (selectedChoices.length > 0) {
         selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
-        const isCorrect = answer.every(correctIndex => selectedIndices.includes(correctIndex));
-        explainIndex = selectedIndices[0];
+        const isCorrect = answer.length === selectedIndices.length &&
+            answer.every(correctIndex => selectedIndices.includes(correctIndex));
+
         updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
     } else {
         messageElement.innerHTML = "Please make a selection.";
@@ -614,9 +660,12 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
                 message += "<span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
                 message += "<span style='color: blue;'>There are more correct choices.<br></span>";
             }
-            else {
+            else if (!incorrectExplanations) {
                 message += "<span style='color: green;'>Correct!</span> <span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
 
+            }
+            else {
+                message += "<span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
             }
         }
         if (incorrectExplanations) {

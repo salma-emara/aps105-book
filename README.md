@@ -56,7 +56,7 @@ For anyone with a write request to main branch, with every push Netlify will aut
 
 ## Quizzes: Add or Edit
 
-The quiz questions for the book are created in TOML files, which are then converted into JavaScript files to be read by the code to build the book.
+The quizzes for the book are created in TOML files, which are then converted into JavaScript files to be read by the code to build the book.
 
 To convert .toml files to .js files:
 
@@ -79,7 +79,7 @@ node toml_to_js_convertor.js
 ```
 A .js file will be created in the same folder for the .toml file.
 
-3- Open the .md file where you want the quiz to be and add the following line . Replace `file-name` with the name of your quiz file (without .js extension). 
+3- Open the .md file where you want the quiz to be and add the following line. Replace `file-name` with the name of your quiz file (without .js extension). 
 
 ```
 {{quiz_embed | replace("%%FILENAME%%", "file-name") }}

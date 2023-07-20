@@ -65,19 +65,19 @@ for (int line = 0; line < 3; line++, printf("\n")) {
 explainations = [
 '''
 A is incorrect. The output will be like:
-```
+`
 *
 ***
 *****
-```
+`
 ''',
 '''
 B is incorrect. The output will be like:
-```
+`
 *
 ***
 *****
-```
+`
 ''',
 '''
 C is correct. It first prints spaces according to the line number, then prints stars according to the line number. Then it prints a new line after each line finishes.

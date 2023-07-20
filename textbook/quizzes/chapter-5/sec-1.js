@@ -32,8 +32,8 @@ let parsedObject;
       "distractors": [
         "```\nvoid A() {\n}\n\nvoid P() {\n\n}\n\nvoid S() {\n\n}\n\nint main() {\n    A();\n    P();\n    S();\n\n    return 0;\n}\n```\n",
         "```\nvoid A();\nvoid P();\nvoid S();\n\nvoid A() {\n\n}\n\nvoid S() {\n\n}\n\nvoid P() {\n    S();\n}\n\nint main() {\n    A();\n    P();\n\n    return 0;\n}\n```\n",
-        "void S() {\n\n}\n\nvoid P() {\n    S();\n}\n\nvoid A() {\n    P();\n}\n\nint main() {\n    A();\n\n    return 0;\n}\n",
-        "void A();\nvoid P();\nvoid S();\n\nvoid A() {\n    P();\n    S();\n}\n\nint main() {\n    A();\n\n    return 0;\n}\n"
+        "```\nvoid S() {\n\n}\n\nvoid P() {\n    S();\n}\n\nvoid A() {\n    P();\n}\n\nint main() {\n    A();\n\n    return 0;\n}\n```\n",
+        "```\nvoid A();\nvoid P();\nvoid S();\n\nvoid A() {\n    P();\n    S();\n}\n\nint main() {\n    A();\n\n    return 0;\n}\n```\n"
       ],
       "explainations": [
         "A is correct. It calls `A()`, `P()`, and `S()` in order in `main()`.",

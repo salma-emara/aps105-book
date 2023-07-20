@@ -74,6 +74,7 @@ int main() {
 ```
 ''',
 '''
+```
 void S() {
 
 }
@@ -91,8 +92,10 @@ int main() {
 
     return 0;
 }
+```
 ''',
 '''
+```
 void A();
 void P();
 void S();
@@ -107,6 +110,7 @@ int main() {
 
     return 0;
 }
+```
 '''
 ]
 

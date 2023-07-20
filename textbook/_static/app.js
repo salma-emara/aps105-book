@@ -268,27 +268,28 @@ function parse_and_generate_form(fileName) {
             questionText.innerHTML = question;
             questionElement.appendChild(questionText);
             QcodeSnippetFormatting(questionCodeSnippet, questionElement, true);
-        } else {
-            codeSnippetMatches = question.match(regexSingleBacktick);
-            if (codeSnippetMatches) {
-                for (let j = 0; j < codeSnippetMatches.length; j++) {
-                    const match = codeSnippetMatches[j];
-                    questionText.innerHTML = question;
-                    const questionCodeSnippet = match.slice(1, -1).trim();
+        }
 
-                    // Create a new <code> element
-                    const codeSnippetElement = document.createElement("code");
-                    codeSnippetElement.classList.add("code-snippet-single");
-                    codeSnippetElement.textContent = questionCodeSnippet;
-
-                    question = question.replace(match, codeSnippetElement.outerHTML);
-                }
-
+        codeSnippetMatches = question.match(regexSingleBacktick);
+        if (codeSnippetMatches) {
+            for (let j = 0; j < codeSnippetMatches.length; j++) {
+                const match = codeSnippetMatches[j];
                 questionText.innerHTML = question;
+                const questionCodeSnippet = match.slice(1, -1).trim();
+
+                // Create a new <code> element
+                const codeSnippetElement = document.createElement("code");
+                codeSnippetElement.classList.add("code-snippet-single");
+                codeSnippetElement.textContent = questionCodeSnippet;
+
+                question = question.replace(match, codeSnippetElement.outerHTML);
             }
 
-            questionElement.appendChild(questionText);
+            questionText.innerHTML = question;
         }
+
+        questionElement.appendChild(questionText);
+
 
         form.appendChild(questionElement);
 

@@ -6,20 +6,28 @@ answer = [0, 1, 2]
 
 distractors = [
 '''
+```
 double m = 10 / (double) 3;
 printf("%.2f", m);
+```
 ''',
 '''
+```
 double m = (5.0 + 5.0) / 3;
 printf("%.2f", m);
+```
 ''',
 '''
+```
 double m = (5.0 + 5) / 3;
 printf("%.2f", m);
+```
 ''',
 '''
+```
 double m = 10 / 3 + 0.0;
 printf("%.2f", m);
+```
 '''
 ]
 

@@ -9,10 +9,10 @@ let parsedObject;
         2
       ],
       "distractors": [
-        "double m = 10 / (double) 3;\nprintf(\"%.2f\", m);\n",
-        "double m = (5.0 + 5.0) / 3;\nprintf(\"%.2f\", m);\n",
-        "double m = (5.0 + 5) / 3;\nprintf(\"%.2f\", m);\n",
-        "double m = 10 / 3 + 0.0;\nprintf(\"%.2f\", m);\n"
+        "```\ndouble m = 10 / (double) 3;\nprintf(\"%.2f\", m);\n```\n",
+        "```\ndouble m = (5.0 + 5.0) / 3;\nprintf(\"%.2f\", m);\n```\n",
+        "```\ndouble m = (5.0 + 5) / 3;\nprintf(\"%.2f\", m);\n```\n",
+        "```\ndouble m = 10 / 3 + 0.0;\nprintf(\"%.2f\", m);\n```\n"
       ],
       "explainations": [
         "A is correct. `10 / (double) 3` is a double division, as 3 has been explicitly converted to double type, so it will be `3.33`.",

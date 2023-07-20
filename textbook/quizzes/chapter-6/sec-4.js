@@ -8,7 +8,7 @@ let parsedObject;
       ],
       "distractors": [
         "```\n#include <stdio.h>\n\nint main() {\n    int *px = NULL;\n    {\n        int x = 0;\n        px = &x;\n        for (int i = 0; i < 21; i++) {\n            *px += 5;\n        }\n    }\n    printf(\"%d\", *px);\n    \n    return 0;\n}\n```\n",
-        "#include <stdio.h>\n\nvoid func(int*);\n\nint main() {\n    int i = 0;\n    int x = 0;\n    for (; i < 10; i++) {\n        x += 5;\n    }\n    func(&x);\n    printf(\"%d\", x);\n    \n    return 0;\n}\n\nvoid func(int *x) {\n    for (; i < 21; i++) {\n        *x += 5;\n    } \n}\n",
+        "```\n#include <stdio.h>\n\nvoid func(int*);\n\nint main() {\n    int i = 0;\n    int x = 0;\n    for (; i < 10; i++) {\n        x += 5;\n    }\n    func(&x);\n    printf(\"%d\", x);\n    \n    return 0;\n}\n\nvoid func(int *x) {\n    for (; i < 21; i++) {\n        *x += 5;\n    } \n}\n```\n",
         "```\n#include <stdio.h>\n\nvoid func(int);\n\nint x = 0;\n\nint main() {\n    int x = 0;\n    for (int i = 0;i < 10; i++) {\n        x += 5;\n    }\n    func(x);\n    printf(\"%d\", x);\n    \n    return 0;\n}\n\nvoid func(int x) {\n    for (int i = 0;i < 11; i++) {\n        x += 5;\n    } \n}\n```\n",
         "```\n#include <stdio.h>\n\nvoid func(int);\n\nint x = 0;\n\nint main() {\n    int x, y;\n    {\n        int x = 0;\n        for (int i = 0; i < 21; i++) {\n            x += 5;\n        }\n        y = x;\n    }\n    x = y;\n    printf(\"%d\", x);\n    \n    return 0;\n}\n```\n"
       ],

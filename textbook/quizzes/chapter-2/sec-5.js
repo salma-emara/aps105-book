@@ -7,10 +7,10 @@ let parsedObject;
         2
       ],
       "distractors": [
-        "int a = rand();\nint b = rand();\nint c = rand();\n",
-        "srand(1);\nint a = rand();\nint b = rand();\nint c = rand();\n",
-        "srand(time(NULL));\nint a = rand();\nint b = rand();\nint c = rand();\n",
-        "srand(rand());\nint a = rand();\nsrand(rand());\nint b = rand();\nsrand(rand());\nint c = rand();\n"
+        "```\nint a = rand();\nint b = rand();\nint c = rand();\n```\n",
+        "```\nsrand(1);\nint a = rand();\nint b = rand();\nint c = rand();\n```\n",
+        "```\nsrand(time(NULL));\nint a = rand();\nint b = rand();\nint c = rand();\n```\n",
+        "```\nsrand(rand());\nint a = rand();\nsrand(rand());\nint b = rand();\nsrand(rand());\nint c = rand();\n```\n"
       ],
       "explainations": [
         "A is incorrect. Every time run the code, `rand()` will always take the same default seed, so the values of `a`, `b`, and `c` will always be the same.",

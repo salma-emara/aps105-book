@@ -134,14 +134,15 @@ button {
     background-color: white;
 }
 
-.label {
+.choicesContainer {
     display: inline-flex;
     align-items: center;
     margin-right: 8px;
 }
 
-.label label {
+.choicesContainer label {
     padding-left: 8px;
+    vertical-align: top;
 }
 
 .code-snippet {

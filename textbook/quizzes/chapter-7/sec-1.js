@@ -46,8 +46,8 @@ let parsedObject;
       "distractors": [
         "```\nint arr[5] = {1, 2, 3};\n```\n",
         "```\nint arr[5] = {1, 2, 3, 4, 5};\n```\n",
-        "int arr[5];\nfor (int i = 1; i <= 5; i++) {\n    arr[i] = i;\n}\n",
-        "int arr[] = {1, 2, 3, 4, 5};\n"
+        "```\nint arr[5];\nfor (int i = 1; i <= 5; i++) {\n    arr[i] = i;\n}\n```\n",
+        "```\nint arr[] = {1, 2, 3, 4, 5};\n```\n"
       ],
       "explainations": [
         "A is correct. This is equivalent to `int arr[5] = {1, 2, 3, 0, 0};`, which means that the remaining elements in the array will be set to 0 when initializing fewer elements than the size of the array.",

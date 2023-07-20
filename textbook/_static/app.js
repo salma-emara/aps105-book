@@ -193,7 +193,12 @@ function parse_and_generate_form(fileName) {
     const questions = parsedObject.questions;
 
     const questionNumberElement = document.getElementById("question-number");
-    questionNumberElement.innerHTML = questions.length + " Questions";
+    if (questions.length === 1) {
+        questionNumberElement.innerHTML = questions.length + " Question";
+    }
+    else if (questions.length > 1) {
+        questionNumberElement.innerHTML = questions.length + " Questions";
+    }
 
     for (let i = 0; i < questions.length; i++) {
         let question = questions[i].prompt;
@@ -390,7 +395,7 @@ function parse_and_generate_form(fileName) {
 
                 // Create a container div
                 const choiceContainer = document.createElement("div");
-                choiceContainer.classList.add("label");
+                choiceContainer.classList.add("choicesContainer");
 
                 // Create the radio button
                 const radioButton = document.createElement("input");
@@ -401,16 +406,17 @@ function parse_and_generate_form(fileName) {
 
                 // Create the label
                 const label = document.createElement("label");
-                label.innerHTML = choice.replace(/\n/g, "<br>");
+                label.innerHTML = String.fromCharCode(65 + j) + ") " + choice.replace(/\n/g, "<br>");
                 label.setAttribute("for", "choice" + (i + 1) + "-" + (j + 1));
 
                 // Append the radio button and label to the container div
                 choiceContainer.appendChild(radioButton);
-                if (answerCodeSnippet) {
-                    AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, radioButton);
-                    label.innerHTML = '';
-                }
                 choiceContainer.appendChild(label);
+                if (answerCodeSnippet) {
+                    label.innerHTML = String.fromCharCode(65 + j) + ") ";
+                    choiceContainer.appendChild(label);
+                    AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, radioButton);
+                }
 
                 // Append the container div to the choices element
                 choicesElement.appendChild(choiceContainer);
@@ -451,7 +457,7 @@ function parse_and_generate_form(fileName) {
 
                 // Create a container div
                 const choiceContainer = document.createElement("div");
-                choiceContainer.classList.add("label");
+                choiceContainer.classList.add("choicesContainer");
 
                 // Create the checkbox
                 const checkbox = document.createElement("input");
@@ -462,17 +468,17 @@ function parse_and_generate_form(fileName) {
 
                 // Create the label
                 const label = document.createElement("label");
-                label.innerHTML = choice.replace(/\n/g, "<br>");
+                label.innerHTML = String.fromCharCode(65 + j) + ") " + choice.replace(/\n/g, "<br>");
                 label.setAttribute("for", "choice" + (i + 1) + "-" + (j + 1));
 
                 // Append the checkbox and label to the container div
                 choiceContainer.appendChild(checkbox);
-                if (answerCodeSnippet) {
-                    AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, checkbox);
-                    label.innerHTML = '';
-                }
-
                 choiceContainer.appendChild(label);
+                if (answerCodeSnippet) {
+                    label.innerHTML = String.fromCharCode(65 + j) + ") ";
+                    choiceContainer.appendChild(label);
+                    AcodeSnippetFormatting(answerCodeSnippet, choiceContainer, checkbox);
+                }
 
                 // Append the container div to the choices element
                 choicesElement.appendChild(choiceContainer);
@@ -655,21 +661,14 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
             .join("<br><br>");
 
 
-        if (correctExplanations.length > 0) {
+        if (correctExplanations.length > 0 && !incorrectExplanations) {
             if (correctIndices.length !== answer.length) {
-                message += "<span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
                 message += "<span style='color: blue;'>There are more correct choices.<br></span>";
-            }
-            else if (!incorrectExplanations) {
-                message += "<span style='color: green;'>Correct!</span> <span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
-
-            }
-            else {
                 message += "<span class='hint-text'>" + correctExplanations.replace(/\n/g, "<br>") + "</span><br>";
             }
         }
-        if (incorrectExplanations) {
-            message += "<span style='color: red;'>Incorrect!</span> <span class='hint-text'>" + incorrectExplanations.replace(/\n/g, "<br>") + "</span>";
+        else if (incorrectExplanations) {
+            message += "<span style='color: red;'>Incorrect!</span> <span class='hint-text'>" + incorrectExplanations.replace(/\n/g, "<br>") + "<br>" + correctExplanations.replace(/\n/g, "<br>") + "</span>";
         }
         messageElement.innerHTML = message;
         messageElement.style.fontWeight = "bold";

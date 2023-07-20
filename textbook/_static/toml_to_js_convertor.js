@@ -27,6 +27,5 @@ fs.readdirSync(directoryPath, { withFileTypes: true })
                 const tomlPath = path.join(folderPath, file);
                 const jsPath = path.join(folderPath, `${file.replace('.toml', '.js')}`);
                 convertTomlToJs(tomlPath, jsPath);
-                console.log(`Converted ${tomlPath} to ${jsPath}`);
             });
     });

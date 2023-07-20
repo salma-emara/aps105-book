@@ -54,13 +54,13 @@ Thank you in advance!
 
 For anyone with a write request to main branch, with every push Netlify will automatically deploy it to [learningc.org](learningc.org). This is done folowing instructions on [Netlify for Jupyter-Book](https://jupyterbook.org/en/stable/publish/netlify.html).
 
-## Contribute to Quizzes: Convert TOML to JS files
+## Quizzes: Add or Edit
 
 The quiz questions for the book are created in TOML files, which are then converted into JavaScript files to be read by the code to build the book.
 
-To convert your .toml files conaining the quizzes to .js files:
+To convert .toml files to .js files:
 
-1- Ensure yo have Node.js installed on your system. You can download it from their official website (https://nodejs.org), and follow the installation instructions there.
+1- Ensure you have Node.js installed on your system. You can download it from their official website (https://nodejs.org).
 
 2- Download the required package by executing the following command:
 
@@ -68,16 +68,32 @@ To convert your .toml files conaining the quizzes to .js files:
 npm install @iarna/toml
 ```
 
-3- Open textbook/_static/toml_to_js_convertor.js file on your device and replace "pathName" with the path of the folder contaiing TOML files.
+To add a new quiz:
+
+1- Create a new .toml file containing the quiz in tetbook/quizzes in the chapter folder of your choice.
+
+2- In your terminal, execute the following command.
 
 ```
-const folderPath = "pathName"; 
+node toml_to_js_convertor.js
+```
+A .js file will be created in the same folder for the .toml file.
+
+3- Open the .md file where you want the quiz to be and add the following line . Replace `file-name` with the name of your quiz file (without .js extension). 
+
+```
+{{quiz_embed | replace("%%FILENAME%%", "file-name") }}
 ```
 
-4- In your terminal, execute the following command.
+To edit an existing quiz:
+
+1- Open the .toml file of the quiz you want to edit and make the desired changes.
+
+2- In your terminal, execute the following command.
 
 ```
 node toml_to_js_convertor.js
 ```
 
-A .js file will be created in the same folder for each separate .toml file.
+
+Build the book locally and ensure the quiz is behaving as expected.

@@ -72,12 +72,12 @@ To add a new quiz:
 
 1- Create a new .toml file containing the quiz in tetbook/quizzes in the chapter folder of your choice.
 
-2- In your terminal, execute the following command.
+2- In your terminal, execute the following command in the home directory of the project, i.e. aps105-book.
 
 ```
-node toml_to_js_convertor.js
+node ./textbook/_static/toml_to_js_convertor.js
 ```
-A .js file will be created in the same folder for the .toml file.
+A .js file will be created in the corresponding folders for all the .toml files present in the textbook/quizzes directory.
 
 3- Open the .md file where you want the quiz to be and add the following line. Replace `file-name` with the name of your quiz file (without .js extension). 
 

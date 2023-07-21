@@ -43,10 +43,10 @@ let parsedObject;
         3
       ],
       "distractors": [
-        "int myArray[] = (int)malloc(10 * sizeof(int));",
-        "int myArray = (int*)malloc(10 * sizeof(int));",
-        "int* myArray = (int*)malloc(10 * sizeof(int*));",
-        "int* myArray = (int*)malloc(10 * sizeof(int));"
+        "`int myArray[] = (int)malloc(10 * sizeof(int));`",
+        "`int myArray = (int*)malloc(10 * sizeof(int));`",
+        "`int* myArray = (int*)malloc(10 * sizeof(int*));`",
+        "`int* myArray = (int*)malloc(10 * sizeof(int));`"
       ],
       "explainations": [
         "A is incorrect. The return type of `malloc()` is `void*`, which is supposed to be cast to the appropriate type according to the type of data being allocated. In this case, the type of data being allocated is `int` array, so the return value of `malloc()` should be cast to `int*`. Also, the syntax of `int myArray[]` indicates that myArray is a static array not dynamically allocated.",

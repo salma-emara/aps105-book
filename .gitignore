@@ -11,6 +11,9 @@ build/
 *.key
 *.mov
 *.m4v
+node_modules/
+package-lock.json
+package.json
 
 # Sphinx documentation
 docs/_build/

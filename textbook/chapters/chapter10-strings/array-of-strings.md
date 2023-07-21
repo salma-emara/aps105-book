@@ -105,11 +105,11 @@ int main(void) {
 
 Here, `months` is a 1D array of character pointers and each pointer is pointing to a constant string in the constants segment of the main memory. This is illustrated in the following figure.
 
-```{figure} ./images/1D-arr-char*.png
+```{figure} ./images/1D-arr-char-p.png
 :alt: 1D array of character pointers, where each pointer is pointing to a constant string
 :width: 600px
 :align: center
-:name: 1D-arr-char*
+:name: 1D-arr-char-p
 
 1D array of character pointers, where each pointer is pointing to a constant string.
 ```

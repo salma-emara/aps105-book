@@ -45,10 +45,10 @@ prompt = "Which of the following statements is/are correct to allocate memory dy
 answer = [3]
 
 distractors = [
-    "int myArray[] = (int)malloc(10 * sizeof(int));",
-    "int myArray = (int*)malloc(10 * sizeof(int));",
-    "int* myArray = (int*)malloc(10 * sizeof(int*));",
-    "int* myArray = (int*)malloc(10 * sizeof(int));"
+    "`int myArray[] = (int)malloc(10 * sizeof(int));`",
+    "`int myArray = (int*)malloc(10 * sizeof(int));`",
+    "`int* myArray = (int*)malloc(10 * sizeof(int*));`",
+    "`int* myArray = (int*)malloc(10 * sizeof(int));`"
 ]
 
 explainations = [

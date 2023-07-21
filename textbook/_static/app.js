@@ -669,7 +669,7 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
             }
         }
         else if (incorrectExplanations) {
-            message += "<span style='color: red;'>Incorrect!</span> <span class='hint-text'>" + incorrectExplanations.replace(/\n/g, "<br>") + "<br>" + correctExplanations.replace(/\n/g, "<br>") + "</span>";
+            message += "<span style='color: red;'>Incorrect!</span> <span class='hint-text'>" + incorrectExplanations.replace(/\n/g, "<br>") + "<br><br>" + correctExplanations.replace(/\n/g, "<br>") + "</span>";
         }
         messageElement.innerHTML = message;
         messageElement.style.fontWeight = "bold";

@@ -92,21 +92,22 @@ On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, this will yi
 {download}`zeroDivision.c <../../code/chapter2/divideByzero/zeroDivision.c>` to try the following code. 
 
 **Code**
-```{code-block} c
-:linenos:
+{{code_runner_header}}
+<code-runner language="c" output="Integer 0 division -1180252136
+Floating point zero division inf">
 #include <stdio.h>
-
+<br>
 int main(void) {
   printf("Integer 0 division %d\n", 3 / 0);
   printf("Floating point zero division %lf\n", 3.0 / 0);
   return 0;
 }
-```
-**Output**
+</code-runner>
+<!-- **Output**
 <pre>
 Integer 0 division -1180252136
 Floating point zero division inf
-</pre>
+</pre> -->
 
 (modulo-operator)=
 ## Modulo operator
@@ -187,9 +188,9 @@ Other assignment operators such as `+=`, `-=`, `*=`, `/=`, `%=` mean that the va
 As discussed earlier in {ref}`operations`, BEDMAS operators if they have the same precedence, they are evaluated from left to right (left-associative). Assignment operators are the **opposite**, from right to left (right-associative). This means that `x = y = z` is equivalent to `x = (y = z)`. Here, `y = z` is evaluated first, it returns the value of `y`, then the value of `y` is assigned to `x`. An example code is shown below. 
 
 **Code**
-```c {.line-numbers}
+<code-runner language="c" output="i = 10, j = 10, k = 10">
 #include <stdio.h>
-
+<br>
 int main() {
   int i = 1, j = 3, k = 10;
   i = j = k;  // first the value of k is assigned to j, 
@@ -197,12 +198,12 @@ int main() {
   printf("i = %d, j = %d, k = %d\n", i, j, k);
   return 0;
 }
-```
+</code-runner>
 
-**Output**
+<!-- **Output**
 <pre>
 i = 10, j = 10, k = 10
-</pre>
+</pre> -->
 
 However, for readability and to be able to easily spot bugs, we suggest having fewer operations in one line.
 
@@ -218,25 +219,26 @@ For example, in the following example `++i` is pre-fix, i.e. incrementing happen
 
 
 **Code**
-```c {.line-numbers}
+<code-runner language="c" output="With prefix: i = 2, j = 2
+With postfix: i = 2, j = 1">
 #include <stdio.h>
 int main() {
   int i = 1, j = 31;
   j = ++i;  // Equivalent to j = i = i + 1;
   printf("With prefix: i = %d, j = %d\n", i, j);
-
+<br>
   i = 1, j = 31;
   j = i++; //Equivalent to j = i; i = i + 1;
   printf("With postfix: i = %d, j = %d\n", i, j);
   return 0;
 }
-```
+</code-runner>
 
-**Output**
+<!-- **Output**
 <pre>
 With prefix: i = 2, j = 2
 With postfix: i = 2, j = 1
-</pre>
+</pre> -->
 
 It is confusing when the increment/decrement operator is used with other operators. Consequently, it is best to avoid using `++` and `--` in a complex expression -- with other operators.
 
@@ -254,16 +256,15 @@ The type casting operator is `(` and `)`. The data type is placed in between the
 `sizeof(<data type>)` is an operator that evaluates the number of bytes required to store a data type on the operating computer. For example, `sizeof(int)` will evaluate as `4`, `sizeof(double)` will evaluate as `8`, and `sizeof(char)` will evaluate as `1` on my personal computer.
 
 **Code**
-```{code-block} c
-
+<code-runner language="c" output="Number of bytes to store 5 int and 2 double is 36">
 #include <stdio.h>
-
+<br>
 int main(void){
    printf("Number of bytes to store 5 int and 2 double is %d\n", 
       5 * sizeof(int) + 2 * sizeof(double)); // 5 * 4 + 2 * 8 = 36
    return 0;
 }
-```
+</code-runner>
 
 ## Summary of Precedence
 

@@ -5,19 +5,16 @@
 In this section, we will write our first C program. We will write a program that prints the message "Hello World!" on the screen. This is a tradition in programming. The program is very simple, but it will give you a taste of what programming is like. Download {download}`hello-world.c <../../code/chapter1/hello-world/hello-world.c>` if you want to play with the code. 
 
 **Code**
-```{code-block} c
+{{code_runner_header}}
+<code-runner language="c" output="Hello World!">
 // This program prints the message "Hello World!" on the screen.
 #include <stdio.h>
-
+<br>
 int main(void){
-    printf("Hello World!\n");
-    return 0;
+   printf("Hello World!\n");
+   return 0;
 }
-```
-**Output**
-<pre>
-Hello World!
-</pre>
+</code-runner>
 
 Let's examine each line:
 
@@ -39,16 +36,11 @@ Let's examine each line:
 If we remove spaces, indentation and formatting of the above program, it will look like this:
 
 **Code**
-```{code-block} c
+<code-runner language="c" output="Hello World!">
 #include <stdio.h>
 // This program prints the message "Hello World!" on the screen.
 int main (void){printf("Hello World!\n");return 0;}
-```
-
-**Output**
-```
-Hello World!
-```
+</code-runner>
 
 However, it does not look easy to read and understand. For tips on better coding style, see [Coding Style](../appendix/coding-style.md).
 
@@ -59,9 +51,11 @@ Write a C code that prompts the user to enter the number of pizzas they have. Th
 <!-- [pizza.c](../../code/chapter1/pizza/pizza.c) -->
 
 **Code**
-```{code-block} c
+<code-runner language="c" input="6" output="How many pizzas do you have?
+<b>6</b> 
+You have 48 slices in 6 pizza.">
 #include <stdio.h>
-
+<br>
 int main(void){
     int numPizzas, numSlices;
     printf("How many pizzas do you have?\n");
@@ -70,13 +64,7 @@ int main(void){
     printf("You have %d slices in %d pizza.\n", numSlices, numPizzas);
     return 0;
 }
-```
-**Output[^1]** 
-<pre>
-How many pizzas do you have?
-<b>6</b>
-You have 48 slices in 6 pizza.
-</pre>
+</code-runner>
 
 Let's examine each line:
 
@@ -121,19 +109,12 @@ The following table lists how to print some of the escape sequences that are com
 If you still did not get this question, how do we print `%` itself? `%` is an escape character too used to specify the format of the variable to be printed. To print `%`, we require another `%`. Hence, `printf("%%")` prints `%`.
 
 **Code**
-```{code-block} c
+<code-runner language="c" output="Grade: 91%">
 #include <stdio.h>
-
+<br>
 int main(void){
     int grade = 91;
     printf("Grade: %d%%\n", grade);
     return 0;
 }
-```
-
-**Output**
-<pre>
-Grade: 91%
-</pre>
-
-[^1]: Inputs to programs are in **bold**. 
+</code-runner>

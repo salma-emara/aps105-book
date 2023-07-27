@@ -27,8 +27,8 @@ Line 1 includes the math library, without which we can not use math library func
 <code-runner language="c" input="2.5
 4.1" output="Enter the length of the first side: <b>2.5</b>
 Enter the length of the second side: <b>4.1</b>
-The length of the hypotenuse is 4.80">
-#include <math.h>
+The length of the hypotenuse is 4.80"
+highlight-lines="1 11">#include <math.h>
 #include <stdio.h>
 <br>
 int main(void) {
@@ -81,7 +81,6 @@ You can use `sqrt` in the following use cases:
     **Code** 
     <!-- TODO -->
     <!-- :emphasize-lines: 4 -->
-    {{code_runner_header}}
     <code-runner language="c" output="Square root of 2 is 1.41">
     #include &lt;math.h&gt;
     #include &lt;stdio.h&gt;
@@ -97,7 +96,6 @@ You can use `sqrt` in the following use cases:
     <!-- TODO: this has no output? -->
     **Code** 
     <!-- :emphasize-lines: 4 -->
-    {{code_runner_header}}
     <code-runner language="c" output="">
     #include &lt;math.h&gt;
     #include &lt;stdio.h&gt;

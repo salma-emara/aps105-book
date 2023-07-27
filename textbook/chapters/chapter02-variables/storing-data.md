@@ -141,12 +141,6 @@ int main() {
 }
 </code-runner>
 
-<!-- // **Potential output**
-```
-Value of uninitialized variable "var": 174739296
-Value of initialized variable "var": 0
-``` -->
-
 ```{note}
 If you compile the code above, you will get a warning stating: `variable ‘var’ is uninitialized when used here [-Wuninitialized]`. The compiler will also ask you to initialize `var` to silence the warning. 
 ```
@@ -179,12 +173,6 @@ Numbers entered: 1 1.200000 3 3.400000">
     }
     </code-runner>
 
-    <!-- **Output[^1]**
-    <pre>
-    Enter a number: <b>1 1.2 3 3.4</b>
-    Numbers entered: 1 1.200000 3 3.400000
-    </pre> -->
-
 2. **Take numbers and characters.**
 
     You can take numbers and characters in the same `scanf` line. The example code shown below takes in an ID from the user that begins with a character and is followed by a number. It does not require a delimiter between the character entered and the numbers. This is because the `%c` format specifier will take one character, and stop taking more input. The rest will be taken by `%d`. If the user enters a space between the character and the numbers it will be ignored.
@@ -206,12 +194,6 @@ Numbers entered: 1 1.200000 3 3.400000">
     }
     </code-runner>
 
-    <!-- **Output[^1]**
-    <pre>
-    Enter your ID: <b>S1321234</b>
-    ID entered: S1321234
-    </pre> -->
-
     You can also write the code above with no spaces between `%c` and `%d` in `scanf` as follows.
 
     **Code**
@@ -231,14 +213,6 @@ Numbers entered: 1 1.200000 3 3.400000">
     }
     </code-runner>
 
-    <!-- **Output[^1]**
-    <pre>
-    Enter your ID: <b>S1321234</b>
-    ID entered: S1321234
-    </pre> -->
-    
-    **Question:** Does the order of character or number matter? If you take the number before the character that is fine too as shown in the following code.
-
     **Code**
     <code-runner language="c" output="Enter your ID: <b>324245S</b>
   ID entered: S324245">
@@ -255,11 +229,6 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
-    <!-- **Output[^1]**
-    <pre>
-    Enter your ID: <b>324245S</b>
-    ID entered: S324245
-    </pre> -->
 
 3. **Take in characters and ignoring leading spaces.**
    
@@ -283,18 +252,14 @@ Numbers entered: 1 1.200000 3 3.400000">
     }
     </code-runner>
 
-    <!-- **Output[^1]**
-    <pre>
-    Enter license plate letters and numbers: <b>L MN Y 897</b>
-    Licence plate entered: LMNY-897
-    </pre> -->
-
 4. **Common mistake: Spaces after format specifiers**
 
     Do not include a space after a format specifier, if there is no format specifier after it in `scanf`, like `scanf("%d ", &num);`. This is because `scanf` will wait for a delimiter after you enter your number and another input too. Although it won't put that second input into another variable. For example, the following code will not proceed with executing other statements unless you enter another input after your number. 
 
     **Code**
-    <code-runner language="c" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
+    <code-runner language="c" input="7.89012
+    2432"
+     output="Enter license plate letters and numbers: <b>L MN Y 897</b>
     Enter a number: <b>7.89012</b>
           <b>2432</b>
     Number entered: 7.89">
@@ -309,15 +274,6 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
-    <!-- **Output**
-    <pre>
-    Enter a number: <b>7.89012</b>
-          <b>2432</b>
-    Number entered: 7.89
-    </pre> -->
-
-
-<!-- [^1]: Inputs to programs are in **bold**. -->
 
 
 

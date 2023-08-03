@@ -50,19 +50,19 @@ void func(int rows, int cols, int arr2D[][cols]){
 Let's write a program that uses a function to sum all elements of a 2D array. 
 
 **Code**
-```{code-block} c
-:linenos: 
-:emphasize-lines: 3, 7, 11, 15
-#include <stdio.h>
 
+{{code_runner_header}}
+<code-runner language="c"  highlight-lines="3 7 11 15">
+#include &lt;stdio.h&gt;
+<br>
 int sum2DArr(int rows, int cols, int arr2D[][cols]);
-
+<br>
 int main(void) {
   int arr2D[3][4] = {{2, 3, 1, 12}, {3, 8, 7, 10}, {8, 1, 0, 2}};
   sum2DArr(3, 4, arr2D);
   return 0;
 }
-
+<br>
 int sum2DArr(int rows, int cols, int arr2D[][cols]) {
   int sum = 0;
   for (int row = 0; row < rows; row++) {
@@ -72,7 +72,7 @@ int sum2DArr(int rows, int cols, int arr2D[][cols]) {
   }
   return sum;
 }
-```
+</code-runner>
 
 In line $3$, we write the function prototype such that `int arr2D[][cols]` has the number of columns defined and `cols` is defined before used in `int arr2D[][cols]`.
 

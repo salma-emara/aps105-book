@@ -128,26 +128,27 @@ arr = NULL;
 Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D-dyn-mem-alloc.c>` if you want to run the following program yourself. 
 
 **Code**
-```{code-block} c
+{{code_runner_header}}
+<code-runner language="c" >
 #include <stdlib.h>
-
+<br>
 int main(void) {
   // Dynamically allocate array of pointer
   int** arr = (int**)malloc(3 * sizeof(int*));
-
+  <br>
   // Dynamically allocate a 1D array for each row
   for (int row = 0; row < 3; row++) {
-    *(arr + row) = (int*)malloc(4 * sizeof(int));
+    \*(arr + row) = (int\*)malloc(4 * sizeof(int));
   }
-
+  <br>
   // Assign a value to each element
   for (int row = 0; row < 3; row++) {
     for (int col = 0; col < 4; col++) {
-      *(*(arr + row) + col) = row * 4 + col + 1;
+      \*(\*(arr + row) + col) = row * 4 + col + 1;
       // arr[row][col] =  row * 4 + col + 1;
     }
   }
-
+  <br>
   // Free the 1D arrays of rows first
   for (int row = 0; row < 3; row++) {
     free(*(arr + row));
@@ -155,14 +156,14 @@ int main(void) {
     // free(arr[row]);
     arr[row] = NULL;
   }
-
+  <br>
   // Then free the array of pointers
   free(arr);
   arr = NULL;
-
+  <br>
   return 0;
 }
-```
+</code-runner>
 
 ## Method 2: Static Allocation of an array of pointers
 
@@ -174,14 +175,14 @@ Third, we can access the elements as any 2D array.
 
 Forth, we free only the dynamically allocated **three** 1D arrays.
 
-```{code-block} c
-#include <stdlib.h>
-
+<code-runner language="c">
+#include &lt;stdlib.h&gt;
+<br>
 int main(void) {
   // on Stack, statically have allocate 3 pointers,
   // each will point to a 1D array corresponding to a row
   int* arr[3];
-
+  <br>
   // Access each pointer and make it point
   // to a newly dynamically allocated array
   for (int row = 0; row < 3; row++) {
@@ -197,11 +198,10 @@ int main(void) {
   for (int row = 0; row < 3; row++) {
     free(arr[row]);
   }
-
+  <br>
   return 0;
 }
-
-```
+</code-runner>
 
 
 ## Method 3: Dynamic Allocation of a 1D array
@@ -214,21 +214,21 @@ To access elements, you cannot use `arr[row][col]`, because the number of the co
 
 Finally, to free the dynamically allocated space, you only need to `free(arr);` which is a 1D array of `int`.
 
-```{code-block} c
-#include <stdlib.h>
-
+<code-runner language="c">
+#include &lt;stdlib.h&gt;
+<br>
 int main(void) {
   int rows = 3, cols = 4;
   int* arr = (int*)malloc(rows * cols * sizeof(int));
-
+  <br>
   for (int row = 0; row < rows; row++) {
     for (int col = 0; col < cols; col++) {
       *(arr + row * cols + col) = row * cols + col + 1;
     }
   }
-
+  <br>
   free(arr);
-
+  <br>
   return 0;
 }
-```
+</code-runner>

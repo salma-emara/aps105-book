@@ -44,26 +44,9 @@ The indexing of the rows and columns in a 2D array. Accessing `myArray[1][0] = 4
 You can initialize a 2D array using a nested for loop. The outer loop will be responsible for looping over the row index and the inner loop can loop over the column indices for each row. For example, in the following code we initialize a 2D array using a nested for loop. Download {download}`initialize-2d.c <../../code/chapter09/initialize-2d/initialize-2d.c>` if you want to run the program yourself. 
 
 **Code**
-```{code-block} c
-#include <stdio.h>
 
-int main(void) {
-  int myArray[3][4];
-
-  for (int row = 0; row < 3; row++) {
-    for (int col = 0; col < 4; col++) {
-      myArray[row][col] = row * 4 + col;
-      printf("myArray[%d][%d] = %d\n", row, col, myArray[row][col]);
-    }
-  }
-  return 0;
-}
-
-```
-
-**Output**
-<pre>
-myArray[0][0] = 0
+{{code_runner_header}}
+<code-runner language="c"  output="myArray[0][0] = 0
 myArray[0][1] = 1
 myArray[0][2] = 2
 myArray[0][3] = 3
@@ -74,8 +57,21 @@ myArray[1][3] = 7
 myArray[2][0] = 8
 myArray[2][1] = 9
 myArray[2][2] = 10
-myArray[2][3] = 11
-</pre>
+myArray[2][3] = 11">
+#include <stdio.h>
+<br>
+int main(void) {
+  int myArray[3][4];
+  <br>
+  for (int row = 0; row < 3; row++) {
+    for (int col = 0; col < 4; col++) {
+      myArray[row][col] = row * 4 + col;
+      printf("myArray[%d][%d] = %d\n", row, col, myArray[row][col]);
+    }
+  }
+  return 0;
+}
+</code-runner>
 
 ### Declaration and Initialization
 
@@ -162,37 +158,30 @@ Then, to get to a particular column, you need to add the index of the column. Fo
 ```
 
 **Code**
-```{code-block} c
+<code-runner language="c"  output="1   2   3
+  4   5   6">
 #include <stdio.h>
-
+<br>
 int main(void) {
   int myArray[2][3];
-
+  <br>
   for (int row = 0; row < 2; row++) {
     for (int col = 0; col < 3; col++) {
       myArray[row][col] = row * 3 + col + 1;
     }
   }
-
+  <br>
   for (int row = 0; row < 2; row++) {
     for (int col = 0; col < 3; col++) {
-      printf("%4d", *(*(myArray + row) + col));
+      printf("%4d", \*(\*(myArray + row) + col));
       // or printf("%4d", myArray[row][col]);
     }
     printf("\n");
   }
-
+  <br>
   return 0;
 }
-```
-
-**Output**
-<pre>
-  1   2   3
-  4   5   6
-</pre>
-
-````
+</code-runner>
 
 
 
@@ -228,9 +217,11 @@ $6 \times 6$ array filled with $0$s and $1$s. You are required to print the star
 **Step 4: Write code.**  Download {download}`initialize-2d.c <../../code/chapter09/initialize-2d/initialize-2d.c>` if you want to run the program yourself. 
 
 **Code**
-```{code-block} c
+<code-runner language="c"  output="(row, col) = (2, 1)
+(row, col) = (3, 2)
+(row, col) = (5, 0)">
 #include <stdio.h>
-
+<br>
 int main(void) {
   int board[6][6] = {
       {0, 1, 1, 0, 0, 0}, 
@@ -240,7 +231,7 @@ int main(void) {
       {0, 0, 0, 1, 1, 0}, 
       {1, 1, 1, 0, 1, 1},
   };
-
+<br>
   for (int row = 0; row < 6; row++) {
     for (int col = 0; col < 6; col++) {
       int count = 0;
@@ -256,15 +247,7 @@ int main(void) {
   }
   return 0;
 }
-
-```
-
-**Output**
-<pre>
-(row, col) = (2, 1)
-(row, col) = (3, 2)
-(row, col) = (5, 0)
-</pre>
+</code-runner>
 
 
 **Step 5: Test and debug your code.** You can test your code with different array with different positions of the consecutive $1$s. A **common mistake** is to forget to check that `col + step` is without the bounds of the array. If you don't, you will be accessing an element outside the bounds of the array, which might raise a "Segmentation Fault" error, because you are not permitted to access this location. Another common mistake is to forget to reset the `count` to $0$ for each element. This will result in counting all the 1's observed while looping over all rows and columns. 

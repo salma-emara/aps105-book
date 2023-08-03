@@ -4,7 +4,10 @@
 In the previous section, we developed the following program that printed to the user if they're eligible to work in Ontario, Canada based on their age. We wrote an `if-else` statement inside the `else` of another if-statement. This is referred to as a **nested-if statement**. Nested-if statements are useful when we want to check multiple conditions as we observed in the previous section.
 
 **Not elegant code**
-```{code-block} c
+{{code_runner_header}}
+<code-runner language="c" input="4"
+output="Enter your age: <b>4</b>
+You are not yet eligible to work.">
 #include <stdio.h>
 int main(void) {
   int age = 0;
@@ -24,20 +27,20 @@ int main(void) {
   }
   return 0;
 }
-```
+</code-runner>
 
 In the following code, we wrote a more elegant code. In line 9, we can see `else if (<condition>)`, which is evaluated only if the condition in the preceding `if` statement is `false`. This is also called a **nested-if statement**, but it is more readable and elegant. 
 
 **More elegant code**
-```{code-block} c
-:emphasize-lines: 9
-:linenos:
+<code-runner language="c" input="4" highlight-lines="9"
+output="Enter your age: <b>4</b>
+You are not yet eligible to work.">
 #include <stdio.h>
 int main(void) {
   int age = 0;
   printf("Enter your age: ");
   scanf("%d", &age);
-
+<br>
   if (age < 14) {
     printf("You are not yet eligible to work in Ontario.");
   } else if (age >= 14 &&
@@ -48,7 +51,7 @@ int main(void) {
   }
   return 0;
 }
-```
+</code-runner>
 
 ## Longer nested-if statements
 
@@ -85,13 +88,15 @@ Flow chart of the steps of comparing three numbers to find the maximum.
 **Step 6: Write the code.** The following code implements the steps of the flow chart. Download {download}`max-of-three-method1.c <../../code/chapter03/max-of-three-method1/max-of-three-method1.c>` to get the following code.
 
 **Code**
-```{code-block} c
+<code-runner language="c" input="5 3 4"
+output="Enter three integers: <b>5 3 4</b>
+The maximum is the first number entered: 5">
 #include <stdio.h>
 int main(void) {
   int x = 0, y = 0, z = 0;
   printf("Enter three integers: ");
   scanf("%d %d %d", &x, &y, &z);
-
+<br>
   // Maximum of x and y
   if (x > y) {
     if (x > z) {
@@ -108,24 +113,20 @@ int main(void) {
   }
   return 0;
 }
-```
-
-**Output**
-<pre>
-Enter three integers: <b>5 3 4</b>
-The maximum is the first number entered: 5
-</pre>
+</code-runner>
 
 More elegant code can be written if we thought backwards. We can think of the condition that is `true` only if `x` is the maximum, *i.e.*, `(x > y && x > z)` and the conditions that is true only if `y` is the maximum, *i.e.*, `(y > x && y > z)` and `else` `z` is the maximum. The following code implements this idea. Download {download}`max-of-three-method2.c <../../code/chapter03/max-of-three-method2/max-of-three-method2.c>` 
 
 **Code**
-```{code-block} c
+<code-runner language="c" input="1 3 4"
+output="Enter three integers: <b>1 3 4</b>
+The maximum is the third number entered: 4">
 #include <stdio.h>
 int main(void) {
   int x = 0, y = 0, z = 0;
   printf("Enter three integers: ");
   scanf("%d %d %d", &x, &y, &z);
-
+<br>
   if (x > y && x > z) {
     printf("The maximum is the first number entered: %d", x);
   } else if (y > x && y > z) {
@@ -135,13 +136,7 @@ int main(void) {
   }
   return 0;
 }
-```
-
-**Output**
-<pre>
-Enter three integers: <b>1 3 4</b>
-The maximum is the third number entered: 4
-</pre>
+</code-runner>
 
 
 ## Dangling else problem

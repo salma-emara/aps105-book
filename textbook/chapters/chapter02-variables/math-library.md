@@ -21,8 +21,6 @@ Line 1 includes the math library, without which we can not use math library func
 
 **Code**
 <!-- :caption: Getting the hypotenuse of a right-angled triangle -->
-<!-- TODO -->
-<!-- :emphasize-lines: 1, 11 -->
 {{code_runner_header}}
 <code-runner language="c" input="2.5
 4.1" output="Enter the length of the first side: <b>2.5</b>
@@ -79,10 +77,7 @@ You can use `sqrt` in the following use cases:
 1. It can accept an `int` too. In line 4 in the following code, implicit type conversion from `int` `2` to `double` `2.0` will occur. The output will be `Square root of 2 is 1.41`.
     
     **Code** 
-    <!-- TODO -->
-    <!-- :emphasize-lines: 4 -->
-    <code-runner language="c" output="Square root of 2 is 1.41">
-    #include &lt;math.h&gt;
+    <code-runner language="c" output="Square root of 2 is 1.41" highlight-lines="4">#include &lt;math.h&gt;
     #include &lt;stdio.h&gt;
     int main(void){
       printf("Square root of 2 is %.2lf\n", sqrt(2));
@@ -95,8 +90,7 @@ You can use `sqrt` in the following use cases:
 
     <!-- TODO: this has no output? -->
     **Code** 
-    <!-- :emphasize-lines: 4 -->
-    <code-runner language="c" output="">
+    <code-runner language="c" output="" highlight-lines="4">
     #include &lt;math.h&gt;
     #include &lt;stdio.h&gt;
     int main(void){

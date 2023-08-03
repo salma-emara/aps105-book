@@ -33,7 +33,6 @@ Within the function, we can access elements as we see appropriate. However, the 
 This is similar to finding the average of the elements in an array. 
 
 **Code**
-{{code_runner_header}}
 <code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
 #include <stdio.h>
 <br>

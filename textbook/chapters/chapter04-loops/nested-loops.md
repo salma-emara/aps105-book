@@ -47,9 +47,10 @@ The second step **"2. Print out stars equal to the line number."** can be decomp
 
 **Step 4: Write the code.** The code is shown below. Download {download}`print-stars-pattern.c <../../code/chapter04/print-stars-pattern/print-stars-pattern.c>` if you want to run the program yourself.
 
-```{code-block} c
-#include <stdio.h>
-
+{{code_runner_header}}
+<code-runner language="c" output="*<br>**<br>***">
+#include &lt;stdio.h&gt;
+<br>
 int main(void) {
   for (int line = 1; line <= 3; line += 1) {  // loop over lines
     for (int star = 1; star <= line;
@@ -60,10 +61,7 @@ int main(void) {
   }
   return 0;
 }
-```
-
-**Output**
-<pre>*<br>**<br>***</pre>
+</code-runner>
 
 **Step 5: Test the code.** Try changing 3 to 5 and see what happens. It should print the following pattern.
 
@@ -81,10 +79,9 @@ int main(void) {
   
     **Misplacing `printf("\n")` in the inner loop.**
 
-    ```{code-block} c
-    :emphasize-lines: 8
-    #include <stdio.h>
-
+    <code-runner language="c" highlight-lines="8"> 
+    #include &lt;stdio.h&gt;
+    <br>
     int main(void) {
       for (int line = 1; line <= 3; line += 1) {  // loop over lines
         for (int star = 1; star <= line;
@@ -95,7 +92,7 @@ int main(void) {
       }
       return 0;
     }
-    ```
+    </code-runner>
 
     **Undesired Output**
     <pre>*<br>*<br>*<br>*<br>*<br>*</pre>
@@ -106,11 +103,10 @@ int main(void) {
 2. Some people prefer to start `line` and `star` from `0`, instead of `1`. This is perfectly fine, unless you are printing out the number of stars that is equal to the line number. In that case, you need to change the condition in the outer loop to `line < 3` or `line <= 2`. There is no need to change the condition in the inner loop. This is because `line` is now already reduced by `1` since it starts from `0`.
 
     **Starting `line` and `star` from `0`.**
-      
-    ```{code-block} c
-    :emphasize-lines: 4, 5
+    <code-runner language="c" input="5" highlight-lines="4 5"
+    output="*<br>**<br>***">
     #include <stdio.h>
-
+    <br>
     int main(void) {
       for (int line = 0; line < 3; line += 1) {  // loop over lines
         for (int star = 0; star <= line;
@@ -121,10 +117,7 @@ int main(void) {
       }
       return 0;
     }
-    ```
-    **Output**
-    <pre>*<br>**<br>***</pre>
-
+    </code-runner>
 
 ## Let's tweak the pattern a little!
 
@@ -173,9 +166,10 @@ The second step **"2. Print out the number of spaces that is equal to $n$ - row 
 
 **Step 4: Write the code.** The code is shown below. Download {download}`reverse-stars-pattern.c <../../code/chapter04/reverse-stars-pattern/reverse-stars-pattern.c>` if you want to run the program yourself.
 
-```{code-block} c
-#include <stdio.h>
-
+<code-runner language="c" input="5"
+output="Enter the number of rows: <b>5</b> *<br>**<br>***<br>****<br>*****">
+#include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int n = 0;
   printf("Enter the number of rows: ");
@@ -192,19 +186,8 @@ int main(void) {
   }
   return 0;
 }
-```
-**Output[^1]**
-<pre>
-Enter the number of rows: <b>5</b>
-    *
-   **
-  ***
- ****
-*****
-</pre>
+</code-runner>
 
 **Step 5: Test the code.** Test the code with corner numbers that may break your code. For example, try changing $5$ to $1$ and see what happens. It should print only one `*`. Try changing $5$ to $0$ and see what happens. It should print nothing.
 
 **Step 6: Debug the code.** It is possible that you do not get the expected output. Some common mistakes in printing patterns were discussed in the previous exercise. 
-
-[^1]: Inputs to programs are in **bold**.

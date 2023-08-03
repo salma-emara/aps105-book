@@ -7,6 +7,7 @@ The while loop is a control flow statement that allows instructions/statements/c
 The syntax of the while loop is as follows:
 
 ```{code-block} c
+<code-runner language="c" output="*<br>**<br>***">
 while (<condition>) {
   <statements>;
 }
@@ -49,9 +50,10 @@ The execution of a program with a while loop.
 To print numbers $1$ to $10$, we can change the condition to `i <= 10`. The following program will print out the numbers $1$ through $10$. Download {download}`while-print-nums.c <../../code/chapter04/while-print-nums/while-print-nums.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
+{{code_runner_header}}
+<code-runner language="c" output="1 2 3 4 5 6 7 8 9 10">
 #include <stdio.h>
-
+<br>
 int main(void) {
   int i = 1;
   while (i <= 10) {
@@ -60,12 +62,8 @@ int main(void) {
   }
   return 0;
 }
-```
+</code-runner>
 
-**Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10
-</pre>
 
 ````{admonition} Exercise
 :class: note
@@ -102,9 +100,14 @@ The flow chart of the while loop exercise that finds the sum of numbers entered 
 
 **Step 5: Write the code.** Download {download}`sum-numbers-while.c <../../code/chapter04/sum-numbers-while/sum-numbers-while.c>` to get the following code.
 
-```{code-block} c
+<code-runner language="c" output="Enter a number: <b>18</b>
+<b>5</b>
+<b>2</b>
+<b>1</b>
+<b>-1</b>
+The sum is 26">
 #include <stdio.h>
-
+<br>
 int main(void){
     int sum = 0;
     int num;
@@ -117,17 +120,7 @@ int main(void){
     printf("The sum is %d\n", sum);
     return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Enter a number: <b>18</b>
-<b>5</b>
-<b>2</b>
-<b>1</b>
-<b>-1</b>
-The sum is 26
-</pre>
+</code-runner>
 
 ```{admonition} Common Confusions!
 :class: tip
@@ -149,9 +142,9 @@ Kindly, refer to the following video if you want to trace the code above.
 What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i >0` is always `true`:
 
 **Code**
-```{code-block} c
+<code-runner language="c"><pre>
 #include <stdio.h>
-
+<br>
 int main(void){
     int i = 1;
     while(i > 0){ //will always be true
@@ -159,12 +152,5 @@ int main(void){
         i++;
     }
     return 0;
-}
-```
-
-**Potential Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10 11 12 13 ... <(continues until the program crashes)>
-</pre>
-
-[^1]: Inputs to programs are in **bold**.
+}</pre>
+</code-runner>

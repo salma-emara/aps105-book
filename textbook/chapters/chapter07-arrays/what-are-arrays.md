@@ -53,8 +53,8 @@ In line 7, `int dist = q - x;`, where `x` is also the address of `x[0]`. Hence, 
 The following question was question 5 in Winter 2022 midterm exam for APS 105 in the University of Toronto. The question requires that you print the output of the following program. 
 
 **Code**
-```{code-block} c
-:linenos:
+{{code_runner_header}}
+<code-runner language="c" output="">
 #include <stdio.h>
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};
@@ -70,7 +70,7 @@ int main(void) {
   printf("\n");
   return 0;
 }
-```
+</code-runner>
 
 In line $3$, `first = 1`, `second = 2`, `data[0] = 10`, `data[1] = 20`, `data[2] = 30`, `data[3] = 40`.
 

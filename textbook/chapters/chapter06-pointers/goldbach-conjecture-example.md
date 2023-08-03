@@ -54,54 +54,51 @@ In line $8$, we are referring to the `int` variable that `number` has it's addre
 ```
 
 **Test with main function**
-```{code-block} c
-:linenos: 
-:emphasize-lines: 7
+<code-runner language="c" highlight-lines="7" input="-1
+3
+4" output="Enter a number to test the Goldbach conjecture: <b>-1</b> 
+Enter a number to test the Goldbach conjecture: <b>3</b> 
+Enter a number to test the Goldbach conjecture: <b>4</b>">
 #include <stdio.h>
-
+<br>
 void getUserInput(int *);
-
+<br>
 int main(void) {
   int num;
   getUserInput(&num);
   return 0;
 }
-
+<br>
 void getUserInput(int *number) {
   // Get user input from the keyboard
   // and validates it is even and greater than 2
-
+<br>
   do {
     printf("Enter a number to test the Goldbach conjecture: ");
     scanf("%d", number);
   } while (*number <= 2 || *number % 2 != 0);
 }
-```
-
-**Output[^1]**
-<pre>
-Enter a number to test the Goldbach conjecture: <b>-1</b> 
-Enter a number to test the Goldbach conjecture: <b>3</b> 
-Enter a number to test the Goldbach conjecture: <b>4</b>
-</pre>
+</code-runner>
 
 Currently, the prompt message is not telling the user why is their first and second input invalid. To have a clarifying prompt message after the user enters an invalid input, we can have a `bool` variable that indicates if it is the first time the user enters an input. We can use this `bool` variable to better explain to the user what is the expected input. The modified function is shown below. We added lines $17$, $19$ -- $22$. 
 
 **Improved `getUserInput` function**
-```{code-block} c
-:linenos:
-:emphasize-lines: 17, 19, 20, 21, 22 
+<code-runner language="c" highlight-lines="17 19 20 21 22" input="-1
+3
+4" output="Enter a number to test the Goldbach conjecture: <b>-1</b> 
+Enter a number to test the Goldbach conjecture: <b>3</b> 
+Enter a number to test the Goldbach conjecture: <b>4</b>">
 #include <stdbool.h>
 #include <stdio.h>
-
+<br>
 void getUserInput(int*);
-
+<br>
 int main(void) {
   int num;
   getUserInput(&num);
   return 0;
 }
-
+<br>
 void getUserInput(int *number) {
   // Get user input from the keyboard
   // and validates it is even and greater than 2 
@@ -116,14 +113,7 @@ void getUserInput(int *number) {
     scanf("%d", number);
   } while (*number <= 2 || *number % 2 != 0);
 }
-```
-
-**Output**
-<pre>
-Enter a number to test the Goldbach conjecture: <b>-1</b>  
-Your input was invalid, please enter another even number > 2: <b>3</b>
-Your input was invalid, please enter another even number > 2: <b>4</b>
-</pre>
+</code-runner>
 
 ### Test the Goldbach conjecture
 

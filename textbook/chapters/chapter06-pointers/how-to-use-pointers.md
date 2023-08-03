@@ -12,38 +12,32 @@ Highlight additions in code when we changed the swap function to call it by poin
 ```
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 8, 14-17
+{{code_runner_header}}
+<code-runner language="c" highlight-lines="3 8 14 15 16 17" output="Before swapping
+Value of a: 9
+Value of b: 13
+After swapping
+Value of a: 13
+Value of b: 9">
 #include <stdio.h>
-
+<br>
 void swap(int*, int*);
-
+<br>
 int main(void) {
   int a = 9, b = 13;
   printf("Before swapping\nValue of a: %d\nValue of b: %d\n", a, b);
   swap(&a, &b);
   printf("After swapping\nValue of a: %d\nValue of b: %d\n", a, b);
-
+<br>
   return 0;
 }
-
+<br>
 void swap(int* x, int* y) {
   int temp = *x;
   *x = *y;
   *y = temp;
 }
-```
-
-**Output**
-<pre>
-Before swapping
-Value of a: 9
-Value of b: 13
-After swapping
-Value of a: 13
-Value of b: 9
-</pre>
+</code-runner>
 
 In the following video, we trace the program to see how it works. 
 
@@ -60,10 +54,13 @@ In lines $14$ to $17$, we are dealing with the values stored in the addresses of
 We discussed before that old machines represent addresses using 32 bits, while modern machines use 64 bits. Let's test what does my computer uses. I tried running the following code, where I print the size of pointers to main data types we use such as `int*`, `double*`, `char*` and `bool*`. All pointers require 8 bytes to store the values of addresses, *i.e.* 64 bits. Try out the code by downloading {download}`size-of-pointer.c <../../code/chapter06/size-of-pointer/size-of-pointer.c>`, and can be copied from below.
 
 **Code**
-```{code-block} c
+<code-runner language="c" output="Size of pointer (int*) is 8.
+Size of pointer (double*) is 8.
+Size of pointer (bool*) is 8.
+Size of pointer (char*) is 8.">
 #include <stdbool.h>
 #include <stdio.h>
-
+<br>
 int main(void) {
   printf("Size of pointer (int*) is %d.\n", sizeof(int *));
   printf("Size of pointer (double*) is %d.\n", sizeof(double *));
@@ -71,46 +68,33 @@ int main(void) {
   printf("Size of pointer (char*) is %d.\n", sizeof(char *));
   return 0;
 }
-```
-
-**Output**
-<pre>
-Size of pointer (int*) is 8.
-Size of pointer (double*) is 8.
-Size of pointer (bool*) is 8.
-Size of pointer (char*) is 8.
-</pre>
+</code-runner>
 
 ## Can a pointer hold the address of another pointer?
 
 A pointer can hold the address of another pointer, since they are all addresses. However, if we have a pointer that holds address of an `int` its type is `int*`, and the type of the pointer that holds the address of that `int*` pointer is `int**` -- an additional `*` is added. For example,
 
 **Code**
-```{code-block} c
+<code-runner language="c" output="What i is storing: 10
+What pi is pointing to: 10
+What (ppi is pointing to) = pi is pointing to: 10">
 #include <stdio.h>
-
+<br>
 int main(void) {
   int i = 0;
   int *pi;
   int **ppi;
-
+<br>
   pi = &i;
   ppi = &pi;
   i = 10;
-
+<br>
   printf("What i is storing: %d\n", i);
   printf("What pi is pointing to: %d\n", *pi);
   printf("What (ppi is pointing to) = pi is pointing to: %d\n", **ppi);
   return 0;
 }
-```
-
-**Output**
-<pre>
-What i is storing: 10
-What pi is pointing to: 10
-What (ppi is pointing to) = pi is pointing to: 10
-</pre>
+</code-runner>
 
 In the main memory, the values of `i`, `pi` and `ppi` are shown in the following figure. Please note that addresses are arbitrary addresses.
 
@@ -143,11 +127,12 @@ pi = &i;
 Let's write a function that returns a pointer to the variable with the maximum value. The function takes in two pointers to two `double` variables and returns one pointer to the largest `double`.
 
 **Code**
-```{code-block} c
-:linenos:
+<code-runner language="c" output="Address of x: 0x304757170 having value 2.6.
+Address of y: 0x304757168 having value 7.3.
+Address of larger variable: 0x304757168.">
 #include <stdio.h>
 double* largestValLoc(double*, double*);
-
+<br>
 double* largestValLoc(double* a, double* b) {
   double* temp;
   if (*a > *b) {
@@ -157,7 +142,7 @@ double* largestValLoc(double* a, double* b) {
   }
   return temp;  // temp is double*, and return type is double*
 }
-
+<br>
 int main(void) {
   double x = 2.6, y = 7.3;
   double* p =
@@ -168,14 +153,7 @@ int main(void) {
   printf("Address of larger variable: %p.\n", p);
   return 0;
 }
-```
-
-**Output**
-<pre>
-Address of x: 0x304757170 having value 2.6.
-Address of y: 0x304757168 having value 7.3.
-Address of larger variable: 0x304757168.
-</pre>
+</code-runner>
 
 
 ## Initialization Vs. Declaration of a pointer variable
@@ -183,20 +161,18 @@ Address of larger variable: 0x304757168.
 As we discussed earlier in {ref}`declare-vs-initialization`, if you declare a variable without initializing it as in `int var;`, it is unknown what is the value of `var`. `var` holds a "garbage" value. Similarly, with pointers, if you declare a pointer without initializing it, it holds a "garbage" address. 
 
 For example, in the following program, we try using an uninitialized pointer. The warning message printed is "warning: variable 'p' is uninitialized when used here" as shown in the figure. 
-
+<!-- TODO: actually returns seg fault-->
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 5
+<code-runner language="c" output="">
 #include <stdio.h>
-
+<br>
 int main() {
   int* p;
   *p = 5;
-
+<br>
   return 0;
 }
-```
+</code-runner>
 
 ```{figure} ./images/uninitialized-pointer.png
 :alt: Warning message when using an uninitialized pointer variable.
@@ -221,26 +197,21 @@ In short, do not use an uninitialized pointer. This is why the compiler recommen
 **Then what is the benefit of initializing my pointer to NULL?** The benefit of initializing a pointer to `NULL` is that before you dereference it, you can check if it is NULL or not. If it is NULL, then it does not have a valid address, and you shouldn't dereference it. Otherwise, you can dereference it. For example, the following program checks if a pointer is NULL or not before dereferencing it. This good practice of checking if a pointer is NULL or not will be handy when we discuss "Linked Lists".
 
 **Code**
-```{code-block} c
+<code-runner language="c" output="Cannot dereference it!">
 #include <stdio.h>
-
+<br>
 int main() {
   int* p = NULL;
-
+<br>
   if (p == NULL) {
     printf("Cannot dereference it!\n");
   } else {
     printf("The value at address p is %d.\n", *p);
   }
-
+<br>
   return 0;
 }
-```
-
-**Output**
-<pre>
-Cannot dereference it!
-</pre>
+</code-runner>
 
 ## Practice Problem solved Winter 2018 Midterm Exam Q7
 
@@ -249,7 +220,7 @@ Cannot dereference it!
 What is the output of the following program? The solution is discussed in the video above.
 
 **Code**
-```{code-block} c
+<code-runner language="c" output="a = 11 and b = 8">
 #include <stdio.h>
 int *confuse(int *x, int *y) {
   (*y)++;
@@ -257,7 +228,7 @@ int *confuse(int *x, int *y) {
   *y = 10;
   return (y);
 }
-
+<br>
 int main(void) {
   int a = 6, b = 7;
   int *f = &b;
@@ -266,9 +237,4 @@ int main(void) {
   printf("a = %d and b = %d\n", a, b);
   return 0;
 }
-```
-
-**Output**
-<pre>
-a = 11 and b = 8
-</pre>
+</code-runner>

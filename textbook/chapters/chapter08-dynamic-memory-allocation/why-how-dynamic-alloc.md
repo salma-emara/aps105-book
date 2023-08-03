@@ -42,16 +42,18 @@ If you do not know the size of the array when you write a program, you have the 
 2. **Variable size array.** Allocate the array size equal to what the user inputs, which is *variable* every time we run the program.
 
     We can use the user input as the size of the area. For example,
-    ```{code-block} c
+    {{code_runner_header}}
+    <code-runner language="c" input="300" output="Enter size of array:">
     #include <stdio.h>
     int main(void) {
         int size;
         printf("Enter size of array: ");
         scanf("%d", &size);
         int arr[size];
+        printf("Array allocated from %p to %p", arr, arr+size);
         return 0;
     }
-    ```
+    </code-runner>
 
     **Problem.** However, again the array will be allocated on the stack. This means if the stack does not have enough space, the program will not run as expected. The problem is the same problem with the **fixed size arrays**.
 
@@ -90,14 +92,15 @@ If you do not know the size of the array when you write a program, you have the 
         For example, let's write a program that takes in the size of the array from the user. In a function named `getAverage`, the program dynamically allocates the array, takes in input numbers from the user, put these numbers in the array. Finally, the function will find the average of the numbers and returns this average to the `main` function.
 
         **Code with Memory Leaks**
-        ```{code-block} c
-        :linenos:
-        :emphasize-lines: 2, 16, 20, 24, 26
+        <code-runner language="c" input="5
+        4 8 9 3 7" highlight-lines="2 16 20 24 26" output="Enter size of array: <b>5</b>
+        Enter grades: <b>4 8 9 3 7</b>
+        Average is 6.20">
         #include <stdio.h>
         #include <stdlib.h>
-
+        <br>
         double getAverage(int);
-
+        <br>
         int main(void) {
           int size;
           printf("Enter size of array: ");
@@ -106,10 +109,10 @@ If you do not know the size of the array when you write a program, you have the 
           printf("Average is %.2lf\n", avg);
           return 0;
         }
-
+        <br>
         double getAverage(int size) {
           int* myArray = (int*)malloc(size * sizeof(int));
-
+          <br>
           printf("Enter grades: ");
           for (int index = 0; index < size; index++) {
             scanf("%d", &myArray[index]);
@@ -120,14 +123,7 @@ If you do not know the size of the array when you write a program, you have the 
           }
           return (double)sum / size;
         }
-        ``` 
-
-        **Output[^1]**
-        <pre>
-        Enter size of array: <b>5</b>
-        Enter grades: <b>4 8 9 3 7</b>
-        Average is 6.20
-        </pre>
+        </code-runner>
 
         In line $2$, we include `stdlib.h` library to get access to `malloc` and `free`.
 
@@ -152,14 +148,15 @@ If you do not know the size of the array when you write a program, you have the 
         Let's re-write the code above with the `free`. Download {download}`dynamic-alloc-free.c <../../code/chapter08/dynamic-alloc-free/dynamic-alloc-free.c>` if you want to run the program yourself.
         
         **Code with No Memory Leaks**
-        ```{code-block} c
-        :linenos:
-        :emphasize-lines: 26, 27
+        <code-runner language="c" input="5
+        4 8 9 3 7" highlight-lines="26 27" output="Enter size of array: <b>5</b>
+        Enter grades: <b>4 8 9 3 7</b>
+        Average is 6.20">
         #include <stdio.h>
         #include <stdlib.h>
-
+        <br>
         double getAverage(int);
-
+        <br>
         int main(void) {
           int size;
           printf("Enter size of array: ");
@@ -168,10 +165,10 @@ If you do not know the size of the array when you write a program, you have the 
           printf("Average is %.2lf\n", avg);
           return 0;
         }
-
+        <br>
         double getAverage(int size) {
           int* myArray = (int*)malloc(size * sizeof(int));
-
+          <br>
           printf("Enter grades: ");
           for (int index = 0; index < size; index++) {
             scanf("%d", &myArray[index]);
@@ -184,14 +181,7 @@ If you do not know the size of the array when you write a program, you have the 
           myArray = NULL;
           return (double)sum / size;
         }
-        ```
-
-        **Output[^1]**
-        <pre>
-        Enter size of array: <b>5</b>
-        Enter grades: <b>4 8 9 3 7</b>
-        Average is 6.20
-        </pre>
+        </code-runner>
 
         In line $26$, we free the dynamically allocated memory before `myArray` goes out of scope. Now, there is no memory leak. 
 
@@ -217,12 +207,19 @@ You are asked to write a function `int *merge(int *size)`, which receives two so
 Here is an example `main()` function that can be used to test your work:
 
 **Starter Code**
-```{code-block} c
+<code-runner language="c" input="3
+1 4 7
+4
+2 3 5 10" output="Please enter the size of array number 1: <b>3</b>
+Please enter the array number 1: <b>1 4 7</b>
+Please enter the size of array number 2: <b>4</b>
+Please enter the array number 2: <b>2 3 5 10</b>
+Result: 1 2 3 4 5 7 10 ">
 #include <stdio.h>
 #include <stdlib.h>
-
+<br>
 int *merge(int *size);
-
+<br>
 int main(void) {
   int size;
   int *mergedArray = merge(&size);
@@ -234,19 +231,11 @@ int main(void) {
   free(mergedArray);
   return 0;
 }
-
+<br>
 int *merge(int *size) {
-```
+<!-- TODO: missing function body here? -->
+</code-runner>
 
-
-**Expected Output[^1]**
-<pre>
-Please enter the size of array number 1: <b>3</b>
-Please enter the array number 1: <b>1 4 7</b>
-Please enter the size of array number 2: <b>4</b>
-Please enter the array number 2: <b>2 3 5 10</b>
-Result: 1 2 3 4 5 7 10 
-</pre>
 
 **Step 1: Toy example.** A toy example is shown in the expected output. The first array has `{1, 4, 7}` and the second array has `{2, 3, 5, 10}`, and the merged array should be `{1, 2, 3, 4, 5, 7, 10}`
 
@@ -281,14 +270,15 @@ Please note that towards the end, when array `a` was all copied to the merged ar
 
 **Step 4: Write code.** Download {download}`merge.c <../../code/chapter08/merge/merge.c>` if you want to run the program yourself.
 
-```{code-block} c
-:linenos:
-:emphasize-lines: 73 - 76
-#include <stdio.h>
-#include <stdlib.h>
-
+<code-runner language="c" highlight-lines="73 74 75 76" input="5
+1 2 3 4 5
+3
+60 70 80" output="">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+<br>
 int *merge(int *size);
-
+<br>
 int main(void) {
   int size;
   int *mergedArray = merge(&size);
@@ -300,7 +290,7 @@ int main(void) {
   free(mergedArray);
   return 0;
 }
-
+<br>
 int *merge(int *size) {
   *size = 0;
   int arraysEntered = 0;
@@ -309,7 +299,7 @@ int *merge(int *size) {
   while (arraysEntered < 2) {
     printf("Please enter the size of array number %d: ", arraysEntered + 1);
     scanf("%d", &sizeArray[arraysEntered]);
-
+    <br>
     // Dynamically allocate the array to be entered
     if (arraysEntered == 0) {
       arrA = (int *)malloc(sizeArray[arraysEntered] * sizeof(int));
@@ -327,14 +317,14 @@ int *merge(int *size) {
     }
     arraysEntered++;
   }
-
+  <br>
   // Merge the two arrays
   *size = sizeArray[0] + sizeArray[1];
   int *merged = (int *)malloc((*size) * sizeof(int));
   int indexA = 0;
   int indexB = 0;
   int index = 0;
-
+  <br>
   while (index < *size) {
     if (indexA == sizeArray[0]) {
       merged[index] = arrB[indexB];
@@ -362,11 +352,8 @@ int *merge(int *size) {
   arrB = NULL;
   return merged;
 }
-
-```
+</code-runner>
 
 **Note:** In lines $73$ -- $76$, we free any memory space that we will not have access to in the main function. We do not free `merge` array, because we are returning a pointer to the first element of `merge`. Hence, it is not a memory leak since we will still have access to it in the `main` function.
 
 **Step 5: Test your code.** Test this code with one sized arrays, zero sized arrays, positive and negative integers in the array to make sure it works.
-
-[^1]: Inputs to programs are in **bold**.

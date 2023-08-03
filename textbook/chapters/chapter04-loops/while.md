@@ -142,7 +142,7 @@ Kindly, refer to the following video if you want to trace the code above.
 What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i >0` is always `true`:
 
 **Code**
-<code-runner language="c"><pre>
+<code-runner language="c">
 #include <stdio.h>
 <br>
 int main(void){
@@ -152,5 +152,5 @@ int main(void){
         i++;
     }
     return 0;
-}</pre>
+}
 </code-runner>

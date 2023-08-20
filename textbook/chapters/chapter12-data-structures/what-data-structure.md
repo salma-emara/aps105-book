@@ -62,72 +62,51 @@ The variable `neuron` is of type `struct Neuron` that contains four members: `ne
 To access members/fields of a data structure, we can use the dot operator.  For example, in the following code we access the members of the data structure `struct Neuron` using the dot operator.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 11, 12
-#include <stdio.h>
-
+{{code_runner_header}}
+<code-runner language="c" highlight-lines="11 12" output='neuron.neuronNum=3'>
+#include &lt;stdio.h&gt;
+<br>
 struct Neuron {
   int neuronNum;
   double input1, input2;
   char areaName[20];
 };
-
+<br>
 int main(void) {
   struct Neuron neuron;
   neuron.neuronNum = 3;
   printf("neuron.neuronNum = %d\n", neuron.neuronNum);
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-neuron.neuronNum = 3
-</pre>
+</code-runner>
 
 ## Initialize a data structure
 
 When we declare a data structure variable, we can initialize all its members in the same statement. This is by using the curly brackets as with arrays `{}`. The order of the members in the curly brackets should be the same as the order of the members in the data structure definition. For example, in the following code we initialize the data structure variable `globalNeuron` and ``neuron` in the same statement as we declare them.
 
-```{code-block} c
-:linenos: 
-:emphasize-lines: 7, 10
-#include <stdio.h>
-
+<code-runner language="c" highlight-lines="7 10" output='globalNeuron.neuronNum = 1<br>globalNeuron.input1 = 9.10<br>globalNeuron.input2 = 8.30<br>globalNeuron.areaName = Frontal Lobe<br><br>neuron.neuronNum = 3<br>neuron.input1 = 90.00<br>neuron.input2 = 23.00<br>neuron.areaName = Frontal Cortex'>
+#include &lt;stdio.h&gt;
+<br>
 struct Neuron {
   int neuronNum;
   double input1, input2;
   char areaName[20];
 } globalNeuron = {1, 9.1, 8.3, "Frontal Lobe"};
-
+<br>
 int main(void) {
   struct Neuron neuron = {3, 90, 23, "Frontal Cortex"};
   printf("globalNeuron.neuronNum = %d\n", globalNeuron.neuronNum);
   printf("globalNeuron.input1 = %.2lf\n", globalNeuron.input1);
   printf("globalNeuron.input2 = %.2lf\n", globalNeuron.input2);
   printf("globalNeuron.areaName = %s\n\n", globalNeuron.areaName);
-
+<br>
   printf("neuron.neuronNum = %d\n", neuron.neuronNum);
   printf("neuron.input1 = %.2lf\n", neuron.input1);
   printf("neuron.input2 = %.2lf\n", neuron.input2);
   printf("neuron.areaName = %s\n\n", neuron.areaName);
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-globalNeuron.neuronNum = 1
-globalNeuron.input1 = 9.10
-globalNeuron.input2 = 8.30
-globalNeuron.areaName = Frontal Lobe
-
-neuron.neuronNum = 3
-neuron.input1 = 90.00
-neuron.input2 = 23.00
-neuron.areaName = Frontal Cortex
-</pre>
+</code-runner>
 
 ## Creating an alias for a data structure
 
@@ -147,65 +126,60 @@ typedef char byte;
 
 Now, we can use `byte` instead of `char` in our code. In the following code in lines $6$ and $7$, we use `byte` instead of `char` in our code.
 
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 6, 7
-#include <stdio.h>
-
+<code-runner language="c" output='oneLetter: S<br>sentence: Snefru' highlight-lines="3 6 7">
+#include &lt;stdio.h&gt;
+<br>
 typedef char byte;
-
+<br>
 int main(void) {
   byte oneLetter = 'S';          // also means char oneLetter = 'S';
   byte sentence[20] = "Snefru";  // also means char sentence[20] = "Snefru";
-
+<br>
   printf("oneLetter: %c\n", oneLetter);
   printf("sentence: %s\n", sentence);
   return 0;
 }
-```
+</code-runner>
 
 `typedef` is beneficial to redefine the name of the data structure we had, which was `struct Neuron` to just `Neuron`. For example, in the following code we create an alias/another name `Neuron` for the data structure `struct Neuron`.
 
-```{code-block} c
-:linenos:
-:emphasize-lines: 9, 12
-#include <stdio.h>
-
+<code-runner language="c" output='neuron.input1 = 7.90' highlight-line="9 12">
+#include &lt;stdio.h&gt;
+<br>
 struct Neuron {
   int neuronNum;
   double input1, input2;
   char areaName[20];
 };
-
+<br>
 typedef struct Neuron Neuron;
-
+<br>
 int main(void) {
   Neuron neuron;
   neuron.input1 = 7.9;
   printf("neuron.input1 = %.2lf\n", neuron.input1);
   return 0;
 }
-```
+</code-runner>
 
 We can define a data structure and create an alias for it in the same statement. For example, in the following code we define the data structure `struct Neuron` and create an alias `Neuron` for it in the same statement.
 
-```{code-block} c
-:emphasize-lines: 3 - 7
-#include <stdio.h>
-
+<code-runner language="c" output='neuron.input1 = 7.90' highlight-lines="3 4 5 6 7">
+#include &lt;stdio.h&gt;
+<br>
 typedef struct Neuron {
   int neuronNum;
   double input1, input2;
   char areaName[20];
 } Neuron;
-
+<br>
 int main(void) {
   Neuron neuron;
   neuron.input1 = 7.9;
   printf("neuron.input1 = %.2lf\n", neuron.input1);
   return 0;
 }
-```
+</code-runner>
 
 The following figure summarizes the two methods of defining and redefining a data structure. Please note that this does not declare any variable of this data type. Instead, it defines the data structure and creates an alias for it. It is only when we declare a variable of this data type that the data structure is actually created, *e.g.* `Neuron neuron` creates a variable of `Neuron` data type.
 
@@ -214,5 +188,3 @@ The following figure summarizes the two methods of defining and redefining a dat
 :width: 700px
 :align: center
 ```
-
-[^1]: Inputs to programs are in **bold**.

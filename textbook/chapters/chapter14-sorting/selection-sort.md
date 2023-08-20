@@ -75,22 +75,22 @@ We write pseudocode for selection sort as follows:
 We implement selection sort as follows. In lines $8$ to $12$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`selection-sort.c <../../code/chapter14/selection-sort/selection-sort.c>` if you want to play with the code.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 8 - 12
+{{code_runner_header}}
+<code-runner language="c" highlight-lines="8 9 10 11 12" output='After iteration 1: 9 5 2 8 5 18<br>After iteration 2: 5 5 2 8 9 18<br>After iteration 3: 5 5 2 8 9 18<br>After iteration 4: 2 5 5 8 9 18<br>After iteration 5: 2 5 5 8 9 18<br>2 5 5 8 9 18'>
+#include &lt;stdio.h&gt;
 void printArray(int list[], int listLength) {
   for (int i = 0; i < listLength; i++) {
     printf("%d ", list[i]);
   }
   printf("\n");
 }
-
+<br>
 void swap(int *x, int *y) {
   int temp = *x;
   *x = *y;
   *y = temp;
 }
-
+<br>
 void selectionSort(int list[], int n) {
   for (int top = n - 1; top > 0; top--) {
     // find largest from 0 to top
@@ -106,21 +106,10 @@ void selectionSort(int list[], int n) {
     printArray(list, 6);
   }
 }
-
+<br>
 int main(void) {
   int list[] = {9, 5, 18, 8, 5, 2};
   selectionSort(list, 6);
   printArray(list, 6);
 }
-```
-
-**Output**
-<pre>
-After iteration 1: 9 5 2 8 5 18 
-After iteration 2: 5 5 2 8 9 18 
-After iteration 3: 5 5 2 8 9 18 
-After iteration 4: 2 5 5 8 9 18 
-After iteration 5: 2 5 5 8 9 18 
-2 5 5 8 9 18 
-</pre>
-
+</code-runner>

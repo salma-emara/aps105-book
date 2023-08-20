@@ -138,24 +138,24 @@ The second function is the quicksort function, which takes in the sub-array, wit
 The following code snippet shows the implementation of partition and quicksort sort functions. Download {download}`quicksort.c <../../code/chapter14/quicksort/quicksort.c>` if you want to play with the code.
 
 **Code**
-```{code-block} c
-:linenos:
+{{code_runner_header}}
+<code-runner language="c" output='left = 1, right = 8<br>3 4 8 9 6 10 20 13 14<br>left = 1, right = 4<br>3 4 8 9 6 10 20 13 14<br>left = 2, right = 4<br>3 4 8 9 6 10 20 13 14<br>left = 3, right = 4<br>3 4 6 8 9 10 20 13 14<br>left = 7, right = 8<br>3 4 6 8 9 10 14 13 20<br>left = 7, right = 7<br>3 4 6 8 9 10 13 14 20<br>3 4 6 8 9 10 13 14 20'>
 #include <stdbool.h>
 #include <stdio.h>
-
+<br>
 void swap(int list[], int left, int right) {
   int t = list[right];
   list[right] = list[left];
   list[left] = t;
 }
-
+<br>
 void printArray(int list[], int listLength) {
   for (int i = 0; i < listLength; i++) {
     printf("%d ", list[i]);
   }
   printf("\n");
 }
-
+<br>
 int partition(int list[], int low, int high) {
   int pivot = low, left = low + 1, right = high;
   printf("left = %d, right = %d\n", left, right);
@@ -163,11 +163,11 @@ int partition(int list[], int low, int high) {
     while (left <= right && list[left] <= list[pivot]) {
       left++;
     }
-
+<br>
     while (left <= right && list[right] > list[pivot]) {
       right--;
     }
-
+<br>
     if (left < right) {
       swap(list, left, right);
     } else {
@@ -176,49 +176,30 @@ int partition(int list[], int low, int high) {
     }
   }
 }
-
+<br>
 void quicksortHelper(int list[], int low, int high) {
   if (low < high) {
     int pivot = partition(list, low, high);
-
+<br>
     printArray(list, 9);
-
+<br>
     quicksortHelper(list, low, pivot - 1);
     quicksortHelper(list, pivot + 1, high);
   }
 }
-
+<br>
 void quicksort(int list[], int length) {     
     quicksortHelper(list, 0, length - 1); 
 }
-
+<br>
 int main(void) {
   int list[9] = {10, 14, 8, 13, 20, 3, 6, 9, 4};
-
+<br>
   quicksort(list, 9);
   printArray(list, 9);
   return 0;
 }
-```
-**Output**
-<pre>
-left = 1, right = 8
-3 4 8 9 6 10 20 13 14 
-left = 1, right = 4
-3 4 8 9 6 10 20 13 14 
-left = 2, right = 4
-3 4 8 9 6 10 20 13 14 
-left = 3, right = 4
-3 4 6 8 9 10 20 13 14 
-left = 7, right = 8
-3 4 6 8 9 10 14 13 20 
-left = 7, right = 7
-3 4 6 8 9 10 13 14 20 
-3 4 6 8 9 10 13 14 20
-</pre>
-
-
-
+</code-runner>
 
 
 

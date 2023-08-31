@@ -62,10 +62,10 @@ Size of pointer (char*) is 8.">
 #include <stdio.h>
 <br>
 int main(void) {
-  printf("Size of pointer (int*) is %d.\n", sizeof(int *));
-  printf("Size of pointer (double*) is %d.\n", sizeof(double *));
-  printf("Size of pointer (bool*) is %d.\n", sizeof(bool *));
-  printf("Size of pointer (char*) is %d.\n", sizeof(char *));
+  printf("Size of pointer (int\*) is %d.\n", sizeof(int \*));
+  printf("Size of pointer (double\*) is %d.\n", sizeof(double \*));
+  printf("Size of pointer (bool\*) is %d.\n", sizeof(bool \*));
+  printf("Size of pointer (char\*) is %d.\n", sizeof(char \*));
   return 0;
 }
 </code-runner>
@@ -86,7 +86,7 @@ int main(void) {
   int **ppi;
 <br>
   pi = &i;
-  ppi = &pi;
+  ppi = & pi;
   i = 10;
 <br>
   printf("What i is storing: %d\n", i);

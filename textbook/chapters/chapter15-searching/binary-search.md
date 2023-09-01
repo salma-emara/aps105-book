@@ -76,6 +76,7 @@ To highlight the main steps of binary search, we can write the algorithm in pseu
 To implement binary search, we need to write a function that takes in an array, size of the array and an item to search for. The function should return the index of the item if it is found in the array. If the item is not found, the function should return `-1`. Download the following code {download}`binary-search.c <../../code/chapter15/binary-search/binary-search.c>` if you want to play with it.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="17" output='Found 9 at index 4'>
 #include <stdio.h>
 <br>
@@ -102,6 +103,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
   
 In line $17$, we have exited from the while loop. This means that we have searched the entire array and have not found `item`. Therefore, we return `-1` to indicate that `item` was not found.
 
@@ -151,6 +153,7 @@ We can see that the values of `low` and `high` are updated in the recursive func
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="12 13 14" output='Found 9 in index 4'>
 #include <stdio.h>
 <br>
@@ -180,5 +183,6 @@ int binarySearchHelper(int list[], int low, int high, int item) {
     return binarySearchHelper(list, middle + 1, high, item);
 }
 </code-runner>
+</pre>
 
 In lines $12$--$14$, we call the recursive function `binarySearchHelper` with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. As a developer, you can later just sell this function to your users, and they can call it with just three arguments, an array, size of the array and an item to search for. The function will then call the recursive function with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. 

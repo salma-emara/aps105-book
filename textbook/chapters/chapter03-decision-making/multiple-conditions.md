@@ -10,6 +10,7 @@ Back to extending our program! We can extend the block executed if the age is 14
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="10 11 12 13 14" input="15"
 output="Enter your age: <b>15</b>
 You are eligible to work only outside school hours.">
@@ -33,6 +34,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 <!-- TODO: still under development? -->
 ```{warning}
@@ -65,6 +67,7 @@ In summary, AND requires both `A` and `B` to be `true` to be `true`. OR requires
 For example, let's write a C code that checks if a character entered by the user is an upper case `'A'` or lower case `'a'`. If it is, we will print a prompt to the user saying so. Otherwise, we will print that it is not an `'A'` or `'a'`. Download {download}`upper-lowerA.c <../../code/chapter03/upper-lowerA/upper-lowerA.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="7" input="a"
 output="Enter a letter: <b>a</b>
 You entered an upper case or lower case A.">
@@ -82,6 +85,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **Exercise: NOT operator**
 
@@ -111,6 +115,7 @@ then negate it using `!`. This makes
 Using the diagram above, you can also develop the condition as `(letter < 'A') || (letter > 'Z' && letter < 'a') || (letter > 'z')`. Both conditions are equivalent. However, the first one is easier to think of if you did not have a figure. Download {download}`not-alphabet.c <../../code/chapter03/not-alphabet/not-alphabet.c>` to get the following code checking if a character entered by the user is an alphabet.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="7" input="$"
 output="Enter an alphabet letter: <b>$</b>
 You didn't enter an alphabet.">
@@ -127,6 +132,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ```{admonition} NOT *!* vs. NOT EQUAL *!=*
 `!` is a logical operator. It is not to be confused with a relational operator `!=`.

@@ -52,6 +52,7 @@ Let's write a program that uses a function to sum all elements of a 2D array.
 **Code**
 
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c"  highlight-lines="3 7 11 15">
 #include &lt;stdio.h&gt;
 <br>
@@ -73,6 +74,7 @@ int sum2DArr(int rows, int cols, int arr2D[][cols]) {
   return sum;
 }
 </code-runner>
+</pre>
 
 In line $3$, we write the function prototype such that `int arr2D[][cols]` has the number of columns defined and `cols` is defined before used in `int arr2D[][cols]`.
 

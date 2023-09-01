@@ -54,6 +54,7 @@ The following question was question 5 in Winter 2022 midterm exam for APS 105 in
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="">
 #include <stdio.h>
 int main(void) {
@@ -71,6 +72,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 In line $3$, `first = 1`, `second = 2`, `data[0] = 10`, `data[1] = 20`, `data[2] = 30`, `data[3] = 40`.
 

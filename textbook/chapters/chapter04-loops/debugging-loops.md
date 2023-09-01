@@ -25,6 +25,7 @@ The first step in debugging is to identify the common mistakes. Here are some co
 The following is a code to print a pattern of stars. The code is shown below. Download {download}`triangle-with-bugs.c <../../code/chapter04/triangle-with-bugs/triangle-with-bugs.c>` to debug the program yourself. 
 
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="5">
 #include &lt;stdio.h&gt;
 <br>
@@ -46,6 +47,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **Expected output**
 <pre>
@@ -86,6 +88,7 @@ Enter the number of rows: <b>5</b>
 You can find the corrected code below. Download {download}`triangle-fixed.c <../../code/chapter04/triangle-fixed/triangle-fixed.c>` to see the corrected code.
 
 **Corrected Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="5">
 #include &lt;stdio.h&gt;
 <br>
@@ -107,6 +110,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Debugging a program with a do-while loop
 
@@ -115,6 +119,7 @@ int main(void) {
 The following code is supposed to take input `int` from the user into `maxRange` variable, then finds a random prime number between $1$ and `maxRange`. However, it has a few bugs that we discuss and fix in the video above. You can try out debugging the code yourself here before watching the video: {download}`random-primeNum-with-bugs.c <../../code/chapter04/random-primeNum-with-bugs/random-primeNum-with-bugs.c>`. 
 
 **Code with bugs**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="100">
 // Question 11 in Winter 2018 Midterm Exam
 // Debug the following code
@@ -156,10 +161,12 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 Download the fixed code: {download}`random-primeNum.c <../../code/chapter04/random-primeNum/random-primeNum.c>`.
 
 **Fixed code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="100">
 // Question 11 in Winter 2018 Midterm Exam
 // Fixed code!
@@ -204,3 +211,4 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>

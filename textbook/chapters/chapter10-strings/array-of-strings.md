@@ -8,6 +8,7 @@ We can declare a 2D array, where each row has a string holding a month name. For
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5 6 9 10"
 output="january, february, march, april, may, june, july, august, september, october, november, december,">
 #include <stdio.h>
@@ -25,6 +26,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 In {numref}`2D-arr-char`, the elements of the 2D array are all stored in the stack of the main memory. This means we can change any of the characters in the 2D array. For example, in line $9$, we can change the first character of each month to the lower case. We can do so by subtracting the ASCII code of the first upper case letter in the alphabet `'A'` then adding the ASCII code of the first lower case letter in the alphabet `'a'`. This shifts the ASCII to lower case letters.
 
@@ -48,6 +50,7 @@ Since `months` is a 2D array of characters, you cannot change an entire row in o
 The other way to declare an array of strings, we can declare an array of `char*` as we do in line $4$ of the following code. To initialize element to point to a string, we can do it as in lines $6$ -- $17$. 
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 6 7 8 9 10 11 12 13 14 15 16 17"
 #include <stdio.h>
 <br>
@@ -70,10 +73,12 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 We can declare and initialize the array of character pointers as in line $4$ -- $6$ of the following code. 
 
 **Code (Declare and Initialize)**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5 6">
 #include <stdio.h>
 <br>
@@ -92,6 +97,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 Here, `months` is a 1D array of character pointers and each pointer is pointing to a constant string in the constants segment of the main memory. This is illustrated in the following figure.

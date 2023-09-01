@@ -129,6 +129,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" >
 #include <stdlib.h>
 <br>
@@ -164,6 +165,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Method 2: Static Allocation of an array of pointers
 
@@ -175,6 +177,7 @@ Third, we can access the elements as any 2D array.
 
 Forth, we free only the dynamically allocated **three** 1D arrays.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c">
 #include &lt;stdlib.h&gt;
 <br>
@@ -202,6 +205,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 ## Method 3: Dynamic Allocation of a 1D array
@@ -214,6 +218,7 @@ To access elements, you cannot use `arr[row][col]`, because the number of the co
 
 Finally, to free the dynamically allocated space, you only need to `free(arr);` which is a 1D array of `int`.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c">
 #include &lt;stdlib.h&gt;
 <br>
@@ -232,3 +237,4 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>

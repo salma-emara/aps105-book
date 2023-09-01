@@ -13,6 +13,7 @@ Highlight additions in code when we changed the swap function to call it by poin
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="3 8 14 15 16 17" output="Before swapping
 Value of a: 9
 Value of b: 13
@@ -38,6 +39,7 @@ void swap(int* x, int* y) {
   *y = temp;
 }
 </code-runner>
+</pre>
 
 In the following video, we trace the program to see how it works. 
 
@@ -54,6 +56,7 @@ In lines $14$ to $17$, we are dealing with the values stored in the addresses of
 We discussed before that old machines represent addresses using 32 bits, while modern machines use 64 bits. Let's test what does my computer uses. I tried running the following code, where I print the size of pointers to main data types we use such as `int*`, `double*`, `char*` and `bool*`. All pointers require 8 bytes to store the values of addresses, *i.e.* 64 bits. Try out the code by downloading {download}`size-of-pointer.c <../../code/chapter06/size-of-pointer/size-of-pointer.c>`, and can be copied from below.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Size of pointer (int*) is 8.
 Size of pointer (double*) is 8.
 Size of pointer (bool*) is 8.
@@ -69,12 +72,14 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Can a pointer hold the address of another pointer?
 
 A pointer can hold the address of another pointer, since they are all addresses. However, if we have a pointer that holds address of an `int` its type is `int*`, and the type of the pointer that holds the address of that `int*` pointer is `int**` -- an additional `*` is added. For example,
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="What i is storing: 10
 What pi is pointing to: 10
 What (ppi is pointing to) = pi is pointing to: 10">
@@ -95,6 +100,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 In the main memory, the values of `i`, `pi` and `ppi` are shown in the following figure. Please note that addresses are arbitrary addresses.
 
@@ -127,6 +133,7 @@ pi = &i;
 Let's write a function that returns a pointer to the variable with the maximum value. The function takes in two pointers to two `double` variables and returns one pointer to the largest `double`.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Address of x: 0x304757170 having value 2.6.
 Address of y: 0x304757168 having value 7.3.
 Address of larger variable: 0x304757168.">
@@ -154,6 +161,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 ## Initialization Vs. Declaration of a pointer variable
@@ -163,6 +171,7 @@ As we discussed earlier in {ref}`declare-vs-initialization`, if you declare a va
 For example, in the following program, we try using an uninitialized pointer. The warning message printed is "warning: variable 'p' is uninitialized when used here" as shown in the figure. 
 <!-- TODO: actually returns seg fault-->
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="">
 #include <stdio.h>
 <br>
@@ -173,6 +182,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 ```{figure} ./images/uninitialized-pointer.png
 :alt: Warning message when using an uninitialized pointer variable.
@@ -197,6 +207,7 @@ In short, do not use an uninitialized pointer. This is why the compiler recommen
 **Then what is the benefit of initializing my pointer to NULL?** The benefit of initializing a pointer to `NULL` is that before you dereference it, you can check if it is NULL or not. If it is NULL, then it does not have a valid address, and you shouldn't dereference it. Otherwise, you can dereference it. For example, the following program checks if a pointer is NULL or not before dereferencing it. This good practice of checking if a pointer is NULL or not will be handy when we discuss "Linked Lists".
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Cannot dereference it!">
 #include <stdio.h>
 <br>
@@ -212,6 +223,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Practice Problem solved Winter 2018 Midterm Exam Q7
 
@@ -220,6 +232,7 @@ int main() {
 What is the output of the following program? The solution is discussed in the video above.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="a = 11 and b = 8">
 #include <stdio.h>
 int *confuse(int *x, int *y) {
@@ -238,3 +251,4 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>

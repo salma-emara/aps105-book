@@ -43,7 +43,8 @@ If you do not know the size of the array when you write a program, you have the 
 
     We can use the user input as the size of the area. For example,
     {{code_runner_header}}
-    <code-runner language="c" input="300" output="Enter size of array:">
+    <pre class="code-runner-wrapper">
+<code-runner language="c" input="300" output="Enter size of array:">
     #include <stdio.h>
     int main(void) {
         int size;
@@ -54,6 +55,7 @@ If you do not know the size of the array when you write a program, you have the 
         return 0;
     }
     </code-runner>
+</pre>
 
     **Problem.** However, again the array will be allocated on the stack. This means if the stack does not have enough space, the program will not run as expected. The problem is the same problem with the **fixed size arrays**.
 
@@ -92,7 +94,8 @@ If you do not know the size of the array when you write a program, you have the 
         For example, let's write a program that takes in the size of the array from the user. In a function named `getAverage`, the program dynamically allocates the array, takes in input numbers from the user, put these numbers in the array. Finally, the function will find the average of the numbers and returns this average to the `main` function.
 
         **Code with Memory Leaks**
-        <code-runner language="c" input="5
+        <pre class="code-runner-wrapper">
+<code-runner language="c" input="5
         4 8 9 3 7" highlight-lines="2 16 20 24 26" output="Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
         Average is 6.20">
@@ -124,6 +127,7 @@ If you do not know the size of the array when you write a program, you have the 
           return (double)sum / size;
         }
         </code-runner>
+</pre>
 
         In line $2$, we include `stdlib.h` library to get access to `malloc` and `free`.
 
@@ -148,7 +152,8 @@ If you do not know the size of the array when you write a program, you have the 
         Let's re-write the code above with the `free`. Download {download}`dynamic-alloc-free.c <../../code/chapter08/dynamic-alloc-free/dynamic-alloc-free.c>` if you want to run the program yourself.
         
         **Code with No Memory Leaks**
-        <code-runner language="c" input="5
+        <pre class="code-runner-wrapper">
+<code-runner language="c" input="5
         4 8 9 3 7" highlight-lines="26 27" output="Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
         Average is 6.20">
@@ -182,6 +187,7 @@ If you do not know the size of the array when you write a program, you have the 
           return (double)sum / size;
         }
         </code-runner>
+</pre>
 
         In line $26$, we free the dynamically allocated memory before `myArray` goes out of scope. Now, there is no memory leak. 
 
@@ -207,6 +213,7 @@ You are asked to write a function `int *merge(int *size)`, which receives two so
 Here is an example `main()` function that can be used to test your work:
 
 **Starter Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="3
 1 4 7
 4
@@ -235,6 +242,7 @@ int main(void) {
 int *merge(int *size) {
 <!-- TODO: missing function body here? -->
 </code-runner>
+</pre>
 
 
 **Step 1: Toy example.** A toy example is shown in the expected output. The first array has `{1, 4, 7}` and the second array has `{2, 3, 5, 10}`, and the merged array should be `{1, 2, 3, 4, 5, 7, 10}`
@@ -270,6 +278,7 @@ Please note that towards the end, when array `a` was all copied to the merged ar
 
 **Step 4: Write code.** Download {download}`merge.c <../../code/chapter08/merge/merge.c>` if you want to run the program yourself.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="73 74 75 76" input="5
 1 2 3 4 5
 3
@@ -353,6 +362,7 @@ int *merge(int *size) {
   return merged;
 }
 </code-runner>
+</pre>
 
 **Note:** In lines $73$ -- $76$, we free any memory space that we will not have access to in the main function. We do not free `merge` array, because we are returning a pointer to the first element of `merge`. Hence, it is not a memory leak since we will still have access to it in the `main` function.
 

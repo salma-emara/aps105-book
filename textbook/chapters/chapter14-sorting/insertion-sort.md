@@ -86,6 +86,7 @@ The following code snippet shows the insertion sort function.
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='After iteration 1: 2 9 6 5 1 7<br>After iteration 2: 2 6 9 5 1 7<br>After iteration 3: 2 5 6 9 1 7<br>After iteration 4: 1 2 5 6 9 7<br>After iteration 5: 1 2 5 6 7 9<br>1 2 5 6 7 9'>
 #include &lt;stdio.h&gt;
 void printArray(int list[], int listLength) {
@@ -123,3 +124,4 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>

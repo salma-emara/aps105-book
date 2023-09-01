@@ -15,6 +15,7 @@ Using `i` variable before declaring it is not allowed, and will cause compile ti
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="(compile-time error)">
 int main() {
   i = 0;
@@ -23,6 +24,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 Variables declared in a function, can only be used in that function. These variables are referred to as **local variables** or **internal identifiers**. 
 
@@ -55,6 +57,7 @@ Using `x` variable outside the compound statement where it was declared. This ca
 ```
 
 **Code causing compile-time error**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="(compile-time error)">
 #include <stdio.h>
 int main() {
@@ -70,12 +73,14 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## External identifiers/global variables
 
 The external identifiers or global variables are defined at the top of the `.c` file outside the main function, and all other functions. Its scope is the entire program. However, it is not good practice to use them, as it can be error-prone. If several functions in your program are using the global variable, and each function is changing it can be difficult to manage/track the value of this global variable. Hence, it is not advisable to use global variables.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="In main: Global variable i = 0.
 In func: Global variable i = 0.
 In main after calling func: Global variable i = 5.">
@@ -97,6 +102,7 @@ void func() {
   i = 5;
 }
 </code-runner>
+</pre>
 
 ## Overlapping scope
 
@@ -111,6 +117,7 @@ The overlapping scope of two variables named `i`.
 ```
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Outer i = 1.
 Inner i = 2.
 Outer i = 1.">
@@ -128,6 +135,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 ## Practice problem

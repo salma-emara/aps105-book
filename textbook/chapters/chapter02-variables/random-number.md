@@ -16,6 +16,7 @@ Let's try running the following code.
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Random number 1: 1804289383
 Random number 2: 846930886
 Random number 3: 1681692777">
@@ -29,6 +30,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 <!-- **Output**
 
@@ -67,6 +69,7 @@ The subsequent calls to `rand()` after `srand(1);` will return the same set of r
 The following code illustrates the subsequent calls to `rand()` after `srand(1);`. Download {download}`seed.c <../../code/chapter2/seed/seed.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Random number 1: 16807
 Random number 2: 282475249
 Random number 3: 1622650073
@@ -96,6 +99,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 <!-- **Output**
 <pre>
@@ -130,6 +134,7 @@ The data type `time_t` is a signed 32-bit `int` type representing the number of 
 The following code will now generate different random numbers every time you run it. Download {download}`time-seed.c <../../code/chapter2/time-seed/time-seed.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Random number 1: 1783039037
 Random number 2: 1550284621">
 #include <stdio.h>
@@ -143,6 +148,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 <!-- **Potential Output**
 <pre>
@@ -179,6 +185,7 @@ To generate a number between `0` and `5`, we need to do `rand() % 6;`. While to 
 For example, let's develop a code for rolling a dice 🎲! We expect that every time we run the program we **do not** get the same dice number. Download {download}`roll-dice.c <../../code/chapter2/roll-dice/roll-dice.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Dice roll is 3">
 #include <stdlib.h>
 #include <time.h>
@@ -191,6 +198,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 <!-- **Potential output**
 <pre>

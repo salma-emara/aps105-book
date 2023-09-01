@@ -8,6 +8,7 @@ We can communicate from a function by returning a value. For example, in the fol
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="36" output="Enter a number: 36
 36 is a perfect square">
 #include <math.h>
@@ -37,6 +38,7 @@ bool isPerfectSquare(int x) {
   }
 }
 </code-runner>
+</pre>
 
 ````{admonition} Improvement!
 Multiple returns in one function is not neat! As you develop your code with if-statements, you may mistakenly forget to consider a condition where you had to return a value. To avoid such issues, we suggest that you have one return statement that is not part of any loop or if-statement. This is to ensure that it will be definitely executed and the function will return a value. 
@@ -54,6 +56,7 @@ bool isPerfectSquare(int x) {
 Another important usage of **return** is that we pass value to function by **calling by value**. Recall when we previously discussed {ref}`Call by value<variable-scope>`, whenever a parameter is passed to a function, a copy of the value is sent to the function not the variable itself. This means that whatever change happens to the value passed to the function, it wouldn't affect the variables in the caller function. For example, in the following simple code, even though `p` is changed in `simple` function, the value of `p` in `main` remains `12`. For details on why `p` in `main` function does not change refer to {ref}`Call by value<variable-scope>`.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="36" output="The value of p is 12.">
 #include <stdio.h>
 <br>
@@ -70,10 +73,12 @@ void simple(int p) {
     p = p / 2; 
 }
 </code-runner>
+</pre>
 
 If we want to pass the value of `p` in `simple` function after dividing it by $2$, we have to **return** `p` from `simple` function. For example, the following code highlights the lines we changed to return the value of `p` in `simple` function.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="The value of p is 6." highlight-lines="3 7 12 14">
 #include <stdio.h>
 <br>
@@ -91,6 +96,7 @@ int simple(int p) {
     return p;
 }
 </code-runner>
+</pre>
 
 ## Limitation of being only allowed to _return one value_
 
@@ -124,6 +130,7 @@ The following video traces the code that swaps two variables in a function. Unfo
 The code discussed in the video is available below. 
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="9" output="Before swapping
 Value of a: 9
 Value of b: 13
@@ -149,6 +156,7 @@ void swap(int x, int y) {
   y = temp;
 }
 </code-runner>
+</pre>
 
 **Solution!!** Instead of passing just the values of `a` and `b`, we can pass the addresses of `a` and `b` in the `main` function memory space in the main memory. This way any changes to `a` and `b` in `swap` function happens in `main` function too. This is possible if we use **pointers**. This is what we discuss in the next section.
 

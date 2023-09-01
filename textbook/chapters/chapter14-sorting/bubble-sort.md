@@ -50,6 +50,7 @@ We implement bubbble sort as follows. In lines $1$ to $5$, we implement the swap
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight="1 2 3 4 5" output='After iteration 1: 2 3 1 5<br>After iteration 2: 2 1 3 5 <br>After iteration 3: 1 2 3 5<br>1 2 3 5'>
 #include &lt;stdio.h&gt;
 #include &lt;stdbool.h&gt;
@@ -90,4 +91,5 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 

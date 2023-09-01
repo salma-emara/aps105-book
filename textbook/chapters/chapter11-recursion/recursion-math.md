@@ -29,6 +29,7 @@ The Euclidean algorithm can be easily implemented recursively as follows. Downlo
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='gcd(20, 8) = 4'>
 #include <stdio.h>
 <br>
@@ -50,6 +51,7 @@ int gcd(int a, int b) {
   }
 }
 </code-runner>
+</pre>
 
 **What really happens when we call `gcd` function?** 
 
@@ -98,6 +100,7 @@ Factorial of a number can be defined recursively.
 Given the mathematical definition, we can implement the factorial function recursively as follows:
 
 **Code [Errorneous]**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output=''>
 int factorial(int n);
 <br>
@@ -110,6 +113,7 @@ int factorial(int n) {
   return n * factorial(n - 1);
 }
 </code-runner>
+</pre>
 
 The above code will not work. Why? In {numref}`no-base-case`, we call the factorial function with `n = 4`, which calls the factorial with `n = 3`, then `n = 2`, then `n = 1`, then `n = 1`, then `n = 0`, then `n = -1`, and so on. The recursive call will never end. This is because the function does not have a base/terminating case. The smallest number of which the factorial is known is 0, and the factorial of 0 is 1. Hence, the function should `return 1` when `n = 0`. This is the **base or terminating** case. 
 
@@ -126,6 +130,7 @@ A recursive factorial function without a base/terminating case can call itself i
 A corrected factorial function looks as follows, or you can download {download}`factorial-recursive.c <../../code/chapter11/factorial-recursive/factorial-recursive.c>` to play with the code yourself.
 
 **Code [Correct]**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='4! = 24<br>1! = 1<br>0! = 1'>
 #include <stdio.h>
 <br>
@@ -146,6 +151,7 @@ int factorial(int n) {
   }
 }
 </code-runner>
+</pre>
 
 In {numref}`factorial-with-base`, we show the order of execution of the recursive function calls of the factorial function. The function returns a value to the previous function instance when it reaches the base case of `n = 0`.
 

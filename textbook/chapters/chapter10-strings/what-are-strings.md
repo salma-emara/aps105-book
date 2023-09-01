@@ -201,6 +201,7 @@ Inside the function, we should check the elements at each index: from `0` to the
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner pre language="c" output="The number of spaces is 5." >
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -224,6 +225,7 @@ int spacesCount(char str[]) {
   return count;
 }
 </code-runner>
+</pre>
 
 
 

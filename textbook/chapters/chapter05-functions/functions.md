@@ -64,6 +64,7 @@ The entire code in use will be as follows. Download {download}`print-pattern-fun
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5 6 12" input="5"
 output="Enter the number of lines in the pattern: <b>5</b><br>*<br>**<br>***<br>****<br>*****">
 // This program prints a pattern of stars using two functions
@@ -94,6 +95,7 @@ void printPattern(int numOfRows) {
   }
 }
 </code-runner>
+</pre>
 
 In lines $4$ -- $6$, we wrote down the **function prototypes** of `printStars` and `printPattern`. A function prototype tells the compiler three main features of a function:
 
@@ -146,6 +148,7 @@ Steps taken to execute a program with functions.
 There is another way to write your program when it has functions, that does not involve writing the function prototypes. It requires that you implement all the functions before the `main` function, instead of including the function prototypes. The following code shows the code above in this new way. Function prototypes are replaced with the function implementations, that were at the end of the program. You should not have function implementations at the end of the program in this case.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="5"> 
 // This program prints a pattern of stars using two functions
 #include <stdio.h>
@@ -171,6 +174,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **Why is this method not favorable?**
 

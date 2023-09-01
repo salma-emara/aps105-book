@@ -5,6 +5,7 @@ In the previous section, we developed the following program that printed to the 
 
 **Not elegant code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="4"
 output="Enter your age: <b>4</b>
 You are not yet eligible to work.">
@@ -28,10 +29,12 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 In the following code, we wrote a more elegant code. In line 9, we can see `else if (<condition>)`, which is evaluated only if the condition in the preceding `if` statement is `false`. This is also called a **nested-if statement**, but it is more readable and elegant. 
 
 **More elegant code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="4" highlight-lines="9"
 output="Enter your age: <b>4</b>
 You are not yet eligible to work.">
@@ -52,6 +55,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Longer nested-if statements
 
@@ -88,6 +92,7 @@ Flow chart of the steps of comparing three numbers to find the maximum.
 **Step 6: Write the code.** The following code implements the steps of the flow chart. Download {download}`max-of-three-method1.c <../../code/chapter03/max-of-three-method1/max-of-three-method1.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="5 3 4"
 output="Enter three integers: <b>5 3 4</b>
 The maximum is the first number entered: 5">
@@ -114,10 +119,12 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 More elegant code can be written if we thought backwards. We can think of the condition that is `true` only if `x` is the maximum, *i.e.*, `(x > y && x > z)` and the conditions that is true only if `y` is the maximum, *i.e.*, `(y > x && y > z)` and `else` `z` is the maximum. The following code implements this idea. Download {download}`max-of-three-method2.c <../../code/chapter03/max-of-three-method2/max-of-three-method2.c>` 
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="1 3 4"
 output="Enter three integers: <b>1 3 4</b>
 The maximum is the third number entered: 4">
@@ -137,6 +144,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 ## Dangling else problem

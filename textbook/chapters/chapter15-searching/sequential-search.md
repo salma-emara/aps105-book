@@ -34,6 +34,7 @@ In the following example, we look for the element 7 in the array. Download the f
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='Found 7 at index 3.'>
 #include <stdio.h>
 <br>
@@ -52,6 +53,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 The minimum number of comparisons to find the desired element is 1, and the maximum number of comparisons is the length of the list. The average number of comparisons is $\frac{n}{2}$, where $n$ is the length of the list.
 

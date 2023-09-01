@@ -48,6 +48,7 @@ Again if we want to print numbers from $1$ to $10$, we only change the condition
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" 
 output="1 2 3 4 5 6 7 8 9 10">
 #include <stdio.h>
@@ -59,6 +60,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 (scope-for-loop)=
 ## Scope of the loop variable
@@ -68,6 +70,7 @@ In the `for` loop, the initialization and declaration of the loop variable are d
 For example, if we compile the following code, we would get a compilation error.
 
 **Code with compilation error**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5"
 output="1 2 3 4 5 6 7 8 9 10">
 #include <stdio.h>
@@ -82,6 +85,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **Error**
 
@@ -98,6 +102,7 @@ The error message when the loop variable is used outside the loop.
 
 **Solution!** If you want to use the loop variable outside the loop, you can declare it outside the loop and initialize it inside the loop. For example, the following code will compile and run without any error. Download {download}`for-loop-scope.c <../../code/chapter04/for-loop-scope/for-loop-scope.c>` if you want to run the program yourself.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5"
 output="1 2 3 4 5 6 7 8 9 10
 The value of i when we existed the loop: 11">
@@ -114,6 +119,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 (variations-for-loop)=
 ## Variations in for loop
@@ -163,7 +169,8 @@ You can use the for loop in different ways, including omitting some statements.
     You can declare and initialize multiple variables in the initialization statement. For example, the following code snippet will print out the timetable of 7.
 
     **Code**
-    <code-runner language="c"
+    <pre class="code-runner-wrapper">
+<code-runner language="c"
     output="7 * 1 = 7
     7 * 2 = 14
     7 * 3 = 21
@@ -182,6 +189,7 @@ You can use the for loop in different ways, including omitting some statements.
       return 0;
     }
     </code-runner>
+</pre>
 
 4. You can have complex conditions. The condition can be complex using logical (`&&`, `||`, `!`) and relational operators (`>`, `>=`, `<`, `<=`, `==`, `!=`). Conditions cannot be separated using `,` as the initialization and increment statements can. 
 
@@ -217,7 +225,8 @@ You can use the for loop in different ways, including omitting some statements.
     **Step 5: Write the code.** You can write the code as follows.
 
     **Code**
-    <code-runner language="c" 
+    <pre class="code-runner-wrapper">
+<code-runner language="c" 
     output="1 4 9 16 25 36 49 64 81 100 121 144 169 196">
     #include <stdio.h>
     <br>
@@ -228,6 +237,7 @@ You can use the for loop in different ways, including omitting some statements.
       return 0;
     }
     </code-runner>
+</pre>
 
     **Step 6: Test your code.** You can test your code easily by looking at the numbers printed out. 196, which is the last square printed is less than 200. All numbers printed are squares. 196 is a square of 14, which is less than 50. Therefore, the code is $\sim 100\%$ correct. I have the $\sim$ to encourage you to be **skeptical**!
     ````

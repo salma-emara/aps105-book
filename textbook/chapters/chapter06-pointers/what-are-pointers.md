@@ -36,6 +36,7 @@ Assign contents pointed by `p` to `y`.
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Address of x: 0x30e2af178
  Value of x: 7
 Address of p: 0x30e2af170
@@ -60,6 +61,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 Key observations from the printed statements:
 
@@ -74,6 +76,7 @@ Let's trace the code below to get a better understanding of how pointers work. A
 {{ video_embed | replace("%%VID%%", "xR6kVdSQ7Bs")}}
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Before operations:
 Value of x: 3
 Value of y: 4
@@ -108,3 +111,4 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>

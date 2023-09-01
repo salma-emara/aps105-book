@@ -63,6 +63,7 @@ To access members/fields of a data structure, we can use the dot operator.  For 
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="11 12" output='neuron.neuronNum=3'>
 #include &lt;stdio.h&gt;
 <br>
@@ -79,11 +80,13 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Initialize a data structure
 
 When we declare a data structure variable, we can initialize all its members in the same statement. This is by using the curly brackets as with arrays `{}`. The order of the members in the curly brackets should be the same as the order of the members in the data structure definition. For example, in the following code we initialize the data structure variable `globalNeuron` and ``neuron` in the same statement as we declare them.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="7 10" output='globalNeuron.neuronNum = 1<br>globalNeuron.input1 = 9.10<br>globalNeuron.input2 = 8.30<br>globalNeuron.areaName = Frontal Lobe<br><br>neuron.neuronNum = 3<br>neuron.input1 = 90.00<br>neuron.input2 = 23.00<br>neuron.areaName = Frontal Cortex'>
 #include &lt;stdio.h&gt;
 <br>
@@ -107,6 +110,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Creating an alias for a data structure
 
@@ -126,6 +130,7 @@ typedef char byte;
 
 Now, we can use `byte` instead of `char` in our code. In the following code in lines $6$ and $7$, we use `byte` instead of `char` in our code.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='oneLetter: S<br>sentence: Snefru' highlight-lines="3 6 7">
 #include &lt;stdio.h&gt;
 <br>
@@ -140,9 +145,11 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 `typedef` is beneficial to redefine the name of the data structure we had, which was `struct Neuron` to just `Neuron`. For example, in the following code we create an alias/another name `Neuron` for the data structure `struct Neuron`.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='neuron.input1 = 7.90' highlight-line="9 12">
 #include &lt;stdio.h&gt;
 <br>
@@ -161,9 +168,11 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 We can define a data structure and create an alias for it in the same statement. For example, in the following code we define the data structure `struct Neuron` and create an alias `Neuron` for it in the same statement.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" output='neuron.input1 = 7.90' highlight-lines="3 4 5 6 7">
 #include &lt;stdio.h&gt;
 <br>
@@ -180,6 +189,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 The following figure summarizes the two methods of defining and redefining a data structure. Please note that this does not declare any variable of this data type. Instead, it defines the data structure and creates an alias for it. It is only when we declare a variable of this data type that the data structure is actually created, *e.g.* `Neuron neuron` creates a variable of `Neuron` data type.
 

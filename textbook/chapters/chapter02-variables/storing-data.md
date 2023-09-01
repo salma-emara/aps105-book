@@ -44,6 +44,7 @@ To represent a single letter, symbol or digit, we can use the char data type. Ex
 **Example**
 
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="My first initial is S.">
 #include &lt;stdio.h&gt;
 <br>
@@ -53,6 +54,7 @@ int main(void){
   return 0;
 }
 </code-runner>
+</pre>
 
 This code snippet would print `S` on the screen. The format specifier for `char` is `%c`.
 
@@ -92,6 +94,7 @@ Boolean `bool` data type is used to represent a logical value, i.e. either `true
 
 Write a C code that prints a `bool` variable. Code in {download}`isRaining.c <../../code/chapter2/boolVariable/isRaining.c>`.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Is it raining? 1">
 #include &lt;stdbool.h&gt;
 #include &lt;stdio.h&gt;
@@ -102,6 +105,7 @@ int main(void){
     return 0;
 }
 </code-runner>
+</pre>
 
 <!-- **Output**
 <pre>
@@ -128,6 +132,7 @@ For example, when I ran the code below on my computer, the value in `var` variab
 
 **Code**
 <!-- TODO: this doesn't actually give a warning right now -->
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Value of uninitialized variable 'var': 174739296
 Value of initialized variable 'var': 0">
 #include <stdio.h>
@@ -140,6 +145,7 @@ int main() {
   return 0;
 }
 </code-runner>
+</pre>
 
 ```{note}
 If you compile the code above, you will get a warning stating: `variable ‘var’ is uninitialized when used here [-Wuninitialized]`. The compiler will also ask you to initialize `var` to silence the warning. 
@@ -157,7 +163,8 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     You can take multiple numbers from the user in one single `scanf`. The `scanf` should separate the format specifiers by a space. The user should separate the numbers by **delimiters**. Delimiters can be a space, return or tab and are used to separate two different inputs. An example code that takes multiple numbers as input from user is shown below.
 
     **Code**
-    <code-runner language="c" output="Enter a number: <b>1 1.2 3 3.4</b>
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="Enter a number: <b>1 1.2 3 3.4</b>
 Numbers entered: 1 1.200000 3 3.400000">
     #include <stdio.h>
     <br>
@@ -172,13 +179,15 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
+</pre>
 
 2. **Take numbers and characters.**
 
     You can take numbers and characters in the same `scanf` line. The example code shown below takes in an ID from the user that begins with a character and is followed by a number. It does not require a delimiter between the character entered and the numbers. This is because the `%c` format specifier will take one character, and stop taking more input. The rest will be taken by `%d`. If the user enters a space between the character and the numbers it will be ignored.
     
     **Code**
-    <code-runner language="c" output="Enter your ID: <b>S1321234</b>
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="Enter your ID: <b>S1321234</b>
   ID entered: S1321234">
     #include <stdio.h>
     <br>
@@ -193,11 +202,13 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
+</pre>
 
     You can also write the code above with no spaces between `%c` and `%d` in `scanf` as follows.
 
     **Code**
-    <code-runner language="c" output="Enter your ID: <b>S1321234</b>
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="Enter your ID: <b>S1321234</b>
   ID entered: S1321234">
     #include <stdio.h>
     <br>
@@ -212,9 +223,11 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
+</pre>
 
     **Code**
-    <code-runner language="c" output="Enter your ID: <b>324245S</b>
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="Enter your ID: <b>324245S</b>
   ID entered: S324245">
     #include <stdio.h>
     <br>
@@ -229,13 +242,15 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
+</pre>
 
 3. **Take in characters and ignoring leading spaces.**
    
     If you want to take in character by character, but you are entering spaces or returns between them, what should you do? To ignore spaces between characters entered, you need to add a space between the format specifier `%c`. For example, the following code takes in the 4 letters and three numbers of a license plate in Ontario. If you do not add a space between the `%c`, any delimiter entered will be considered a character, and taken into the character variable. 
 
     **Code**
-    <code-runner language="c" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
     Licence plate entered: LMNY-897">
     #include <stdio.h>
     <br>
@@ -251,13 +266,15 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
+</pre>
 
 4. **Common mistake: Spaces after format specifiers**
 
     Do not include a space after a format specifier, if there is no format specifier after it in `scanf`, like `scanf("%d ", &num);`. This is because `scanf` will wait for a delimiter after you enter your number and another input too. Although it won't put that second input into another variable. For example, the following code will not proceed with executing other statements unless you enter another input after your number. 
 
     **Code**
-    <code-runner language="c" input="7.89012
+    <pre class="code-runner-wrapper">
+<code-runner language="c" input="7.89012
     2432"
      output="Enter license plate letters and numbers: <b>L MN Y 897</b>
     Enter a number: <b>7.89012</b>
@@ -274,6 +291,7 @@ Numbers entered: 1 1.200000 3 3.400000">
       return 0;
     }
     </code-runner>
+</pre>
 
 
 

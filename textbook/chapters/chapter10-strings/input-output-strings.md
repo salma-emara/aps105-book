@@ -17,6 +17,7 @@ Printing happens from the first character pointed to by the pointer. This means 
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="llo">
 #include <stdio.h>
 <br>
@@ -26,10 +27,12 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 If we want to print a particular number of characters, we can use the `%.*s` format specifier and replace `*` by the number of characters to print. For example, if we want to print the first two characters of the string, we can use the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="He">
 #include <stdio.h>
 <br>
@@ -39,6 +42,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 If the number of characters set to be printed is greater than the length of the string, it will print till `'\0'`.
 
@@ -47,6 +51,7 @@ If the number of characters set to be printed is greater than the length of the 
 If we want to print a string, we should use `%s` format specifier. If we use `%c` format specifier, we need to pass the character, not a pointer to the character. This is because `%c` expects a character, not a string. For example, the following code prints the second character of the string.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="e">
 #include <stdio.h>
 <br>
@@ -56,12 +61,14 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ### Using `puts`
 
 **Another function.** There is another function named `puts` that prints a string to the user. It is similar to `printf`, but it does not take a format string. It takes a pointer to the first character in the string. It prints the string and a newline character at the end. For example, the following code prints the string `Hello` to the user.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Hello">
 #include <stdio.h>
 <br>
@@ -71,6 +78,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ## Input strings
 
@@ -88,6 +96,7 @@ To take a string as input from the user using `scanf`, we also use `%s` format s
 For example, the following code takes a string as input from the user and prints it back to the user.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="ABCD" output="Enter a string: 
 <b>ABCD</b>
 s is saved as: ABCD">
@@ -101,6 +110,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **How does `scanf` work?** 
 
@@ -111,6 +121,7 @@ int main(void) {
 For example, in the following code, white spaces before `ABCD` are ignored, and `scanf` reads the string `ABCD` and terminates it with a null character `'\0'`. The remaining `ff` characters will be read by the next `scanf` call.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="    ABCD  ff" output="Enter a string: 
 <b>    ABCD  ff</b>
 s is saved as: ABCD
@@ -127,6 +138,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 To illustrate what happens to the array `st` with every `scanf`, we draw the contents of `st` after each `scanf` call in the following figure.
 
@@ -142,6 +154,7 @@ To illustrate what happens to the array `st` with every `scanf`, we draw the con
 For example, if the user input was `ABCDEFGHIJ` to the following program, what would happen?
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="6">
 #include <stdio.h>
 <br>
@@ -153,6 +166,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **<span style="color:red">Undefined Behaviour Output</span>**
 <pre>
@@ -223,6 +237,7 @@ We want to write a function that takes a string as input from the user and store
 
 For example, in the following code, we take a string from the user one character at a time and print each character on a new line till the user enters a new line character.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="APS105" output="Enter characters: 
 <b>APS105</b>
 A
@@ -243,6 +258,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **Step 3: Decompose into steps.** The function receives string `s` and maximum number of characters to read + 1 `n`. 
 
@@ -276,6 +292,7 @@ char* getStringSafely(char* s, int n) {
 **Test with few characters.** The following is the output if the user enters `AB` and presses <enter>.
 
 **Partially Correct Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="21" input="AB" output="Enter string: 
 <b>AB</b>
 User entered: AB��">
@@ -303,6 +320,7 @@ char* getStringSafely(char* s, int n) {
   return s;
 }
 </code-runner>
+</pre>
 
 There were garbage values in the array `st`. This is because we probably had our null character in the wrong place. In line $21$, we set the last element in the array `s` to a null character, while we only entered 2 characters. Hence, our null character should be after the two characters.
 
@@ -311,6 +329,7 @@ Instead of `s[n] = '\0';`, it is correct to have `s[charCount] = '\0';` in line 
 **Test with many characters.** In lines $9$ and $10$ of the following code, we try to see what is left in the input buffer after we read the string from the user.
 
 **Partially Correct Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="Helloworld!" highlight-lines="9 10 21" output="Enter string: 
 <b>Helloworld!</b>
 User entered: Hellow
@@ -341,6 +360,7 @@ char* getStringSafely(char* s, int n) {
   return s;
 }
 </code-runner>
+</pre>
 
 In the above output, we observe `'o'` character is not printed in what's left in the input buffer. There is probably a place in our function where we read the `'o'` and later find that we have already read `6` characters.
 
@@ -349,6 +369,7 @@ In `getStringSafely` function, in line $21$, we read the `'o'`, regardless if ou
 In the following code, we fixed the code in line $21$.
 
 **Correct Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="Helloworld!" highlight-lines="21" output="Enter string: 
 <b>Helloworld!</b>
 User entered: Hellow
@@ -379,6 +400,7 @@ char* getStringSafely(char* s, int n) {
   return s;
 }
 </code-runner>
+</pre>
 
 **Step 6: Improve style.** The following is the final code for the function `getStringSafely`.
 
@@ -387,6 +409,7 @@ We can improve the style of the code by reducing repetition of `charCount < n - 
 You may download {download}`getStringSafely.c <../../code/chapter10/getStringSafely/getStringSafely.c>` the following code and try to run it to see the output. 
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="Helloworld!" highlight-lines="18" output="Enter string: 
 <b>Helloworld!</b>
 User entered: Hellow
@@ -416,6 +439,7 @@ char* getStringSafely(char* s, int n) {
   return s;
 }
 </code-runner>
+</pre>
 
 In line $18$, if `(charCount < n - 1)` was `false` we will never evaluate the right hand size condition after `&&`, because the entire condition will be `false`. However, if `(charCount < n - 1)` was `true`, the right hand side condition should be evaluated. 
 

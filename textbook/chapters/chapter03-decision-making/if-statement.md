@@ -26,7 +26,8 @@ if (condition) {
     
     **Code**
     {{code_runner_header}}
-    <code-runner language="c" 
+    <pre class="code-runner-wrapper">
+<code-runner language="c" 
     output="The flag is true.">
     #include <stdbool.h>
     #include <stdio.h>
@@ -41,11 +42,13 @@ if (condition) {
       return 0;
     }
     </code-runner>
+</pre>
     
 2. The `condition` can be a numerical value. Recall that `true` is stored as `1`, and `false` is stored as `0` as we discussed in {ref}`bool-variable` section. To be more accurate, C is only strict in the representing `false` as 0. While `true` can be any non-zero number. *In other words, any *non-zero* value in the condition makes the condition `true`. While a *zero* value in the condition makes the condition `false`.*
 
     **Code**
-    <code-runner language="c" 
+    <pre class="code-runner-wrapper">
+<code-runner language="c" 
     output="The condition is true.">
     #include <stdio.h>
     <br>
@@ -58,6 +61,7 @@ if (condition) {
       return 0;
     }
     </code-runner>
+</pre>
 
 3. The `condition` can be a "relational expression" that evaluates to `true` or `false`. Relational expressions have relational operators summarized in the table below.
     | Relational Operator | Meaning |
@@ -72,7 +76,8 @@ if (condition) {
     For example, the code below is a program that prompts the user if they are eligible to work in Ontario, based on their age. Download {download}`eligible-age.c <../../code/chapter03/eligible-age/eligible-age.c>` to get the following code.
 
     **Code**
-    <code-runner language="c" input="13"
+    <pre class="code-runner-wrapper">
+<code-runner language="c" input="13"
     highlight-lines="7" output="Enter your age: <b>13</b>
     You are not yet eligible to work in Ontario.">
     #include <stdio.h>
@@ -89,11 +94,13 @@ if (condition) {
       return 0;
     }
     </code-runner>
+</pre>
 
     Another example, let's write a program in C that identifies if a shape is rectangle or square based on the two sides given by the user. Download {download}`square-rectangle.c <../../code/chapter03/square-rectangle/square-rectangle.c>` to get the following code.
 
     **Code**
-    <code-runner language="c" input="5 5"
+    <pre class="code-runner-wrapper">
+<code-runner language="c" input="5 5"
     highlight-lines="7" output="Please enter the height and width of your shape: <b>5 5</b>
     The shape is a square.">
     #include <stdio.h>
@@ -110,6 +117,7 @@ if (condition) {
       return 0;
     }
     </code-runner>
+</pre>
 
     ````{admonition} Equal to $==$ Vs. Assignment $=$
     One of the most common mistakes is that people confuse the relational operator `==` with the assignment operator `=`. The **relational operator** `==` compares the right hand side with the left hand side and returns `true` if they are equal and `false` otherwise. The **assignment operator** `=` assigns the value on the right hand side to the variable on the left hand side.

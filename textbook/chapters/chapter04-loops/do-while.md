@@ -43,6 +43,7 @@ If we want to print numbers from $1$ to $10$, we just need to change the conditi
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="1 2 3 4 5 6 7 8 9 10">
 #include <stdio.h>
 <br>
@@ -55,6 +56,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 (do-while-validate)=
 ## Do-while loop vs. while loop
@@ -92,6 +94,7 @@ The flow chart of the do while loop exercise that validates that the user input 
 **Step 5: Write the code.** Download {download}`validate-input.c <../../code/chapter04/validate-input/validate-input.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="5"
 output="Please enter a number between 1 and 10 (inclusive): <b>-2</b>
 Please enter a number between 1 and 10 (inclusive): <b>5</b>
@@ -110,6 +113,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 **Step 6: Test your code.** Test your code with other numbers. For example, try a number at the boundary, e.g., $1$, $10$ , $0$, $11$.
 ````

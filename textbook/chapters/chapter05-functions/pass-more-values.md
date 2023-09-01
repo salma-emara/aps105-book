@@ -74,6 +74,7 @@ What's left now is the main function that takes input from the user, calls media
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="3 9" input="2 7 5"
 output="Please enter three integers to find the median: <b>2 7 5</b>
 The median is 5">
@@ -100,6 +101,7 @@ int median(int x, int y, int z) {
   return result;
 }
 </code-runner>
+</pre>
 
 In line 3, there was no need to write the variable names of the three int arguments. Their types are enough.
 
@@ -110,6 +112,7 @@ In line 9, `median` is called with `a`, `b` and `c`, and in `median` the variabl
 If your program does not work, and it has many lines of code and many functions, it is difficult to find the errors. It is easier and faster to test each function separately. This method in testing is called **isolation**, where each function is tested in isolation. If I were to test the function `median` alone, I will copy it in another `.c` file and write a simple main function, where I call `median` with pre-set values. For example, in the following code we test `median` with several inputs. It is easier in this case to test `median` on many inputs, use the debugger without having to input numbers in the console, and quickly find which inputs cause issues. Download {download}`median-test.c <../../code/chapter05/median-test/median-test.c>` if you want to run the program yourself. 
 
 **Code for testing only**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="The median of (-105, -28, -73) is -73
 The median of (0, -101, 98) is 0
 The median of (-101, -67, 0) is -67">
@@ -135,6 +138,7 @@ int median(int x, int y, int z) {
   return result;
 }
 </code-runner>
+</pre>
 
 In lines $6$ -- $8$, we test median with three different inputs in the same code. 
 

@@ -51,6 +51,7 @@ The following code shows how the recursive function can be called from a functio
 
 
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c">
 #include &lt;stdbool.h&gt;
 #include &lt;stdio.h&gt;
@@ -77,5 +78,6 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 More worked examples in-progress!

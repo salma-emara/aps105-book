@@ -6,6 +6,7 @@ In this section, we will write our first C program. We will write a program that
 
 **Code**
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Hello World!">
 // This program prints the message "Hello World!" on the screen.
 #include <stdio.h>
@@ -15,6 +16,7 @@ int main(void){
    return 0;
 }
 </code-runner>
+</pre>
 
 Let's examine each line:
 
@@ -36,11 +38,13 @@ Let's examine each line:
 If we remove spaces, indentation and formatting of the above program, it will look like this:
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Hello World!">
 #include <stdio.h>
 // This program prints the message "Hello World!" on the screen.
 int main (void){printf("Hello World!\n");return 0;}
 </code-runner>
+</pre>
 
 However, it does not look easy to read and understand. For tips on better coding style, see [Coding Style](../appendix/coding-style.md).
 
@@ -51,6 +55,7 @@ Write a C code that prompts the user to enter the number of pizzas they have. Th
 <!-- [pizza.c](../../code/chapter1/pizza/pizza.c) -->
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="6" output="How many pizzas do you have?
 <b>6</b> 
 You have 48 slices in 6 pizza.">
@@ -65,6 +70,7 @@ int main(void){
     return 0;
 }
 </code-runner>
+</pre>
 
 Let's examine each line:
 
@@ -109,6 +115,7 @@ The following table lists how to print some of the escape sequences that are com
 If you still did not get this question, how do we print `%` itself? `%` is an escape character too used to specify the format of the variable to be printed. To print `%`, we require another `%`. Hence, `printf("%%")` prints `%`.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" output="Grade: 91%">
 #include <stdio.h>
 <br>
@@ -118,3 +125,4 @@ int main(void){
     return 0;
 }
 </code-runner>
+</pre>

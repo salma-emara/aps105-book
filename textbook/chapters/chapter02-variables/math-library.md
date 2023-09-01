@@ -22,6 +22,7 @@ Line 1 includes the math library, without which we can not use math library func
 **Code**
 <!-- :caption: Getting the hypotenuse of a right-angled triangle -->
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="2.5
 4.1" output="Enter the length of the first side: <b>2.5</b>
 Enter the length of the second side: <b>4.1</b>
@@ -41,6 +42,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 ````{admonition} Want fewer lines? You can also write the above code in fewer lines as shown below.
 **Code**
@@ -77,20 +79,23 @@ You can use `sqrt` in the following use cases:
 1. It can accept an `int` too. In line 4 in the following code, implicit type conversion from `int` `2` to `double` `2.0` will occur. The output will be `Square root of 2 is 1.41`.
     
     **Code** 
-    <code-runner language="c" output="Square root of 2 is 1.41" highlight-lines="4">#include &lt;math.h&gt;
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="Square root of 2 is 1.41" highlight-lines="4">#include &lt;math.h&gt;
     #include &lt;stdio.h&gt;
     int main(void){
       printf("Square root of 2 is %.2lf\n", sqrt(2));
       return 0;
     }  
     </code-runner>
+</pre>
 
 
 2. The output can be stored in an `int` too. In line 4 in the following example, the value returned from `sqrt(3.0)` -- 1.73205... -- will be truncated and stored in `val` as `1`.
 
     <!-- TODO: this has no output? -->
     **Code** 
-    <code-runner language="c" output="" highlight-lines="4">
+    <pre class="code-runner-wrapper">
+<code-runner language="c" output="" highlight-lines="4">
     #include &lt;math.h&gt;
     #include &lt;stdio.h&gt;
     int main(void){
@@ -98,6 +103,7 @@ You can use `sqrt` in the following use cases:
       return 0;
     }
     </code-runner>
+</pre>
 
 ## Other math library functions
 
@@ -155,6 +161,7 @@ Trials into developing a solution for rounding to the nearest 10th.
 Download {download}`nearest10.c <../../code/chapter2/nearest10/nearest10.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="2.18"
 output="Enter the number you want to round to the nearest 10th: <b>2.18</b>
 The number rounded to the nearest 10th is 2.2">
@@ -171,6 +178,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 ````{admonition} Exercise 2
@@ -201,6 +209,7 @@ Trials into developing a solution for rounding to the nearest nickle.
 Download {download}`nearest-nickle.c <../../code/chapter2/nearest-nickle/nearest-nickle.c>` to get the following code.
 
 **Code**
+<pre class="code-runner-wrapper">
 <code-runner language="c" input="2.94" 
 output="Enter the amount to round to the nearest nickle: <b>2.94</b>
 $2.94 rounded to the nearest nickle is $2.95">
@@ -216,6 +225,7 @@ int main(void) {
   return 0;
 }
 </code-runner>
+</pre>
 
 
 [^1]: To get the $\log_{n}(x)$, $\log$ base $n$ of $x$, where $n$ is any number, recall you can always use the following $\log_{n}(x) = \frac{\log_{10} (x)}{\log_{10} (n)}$. In C, `log10(x)/log10(n)` to calculate $\log_{n}(x)$.

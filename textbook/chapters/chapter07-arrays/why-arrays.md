@@ -118,6 +118,7 @@ Given that we now have an array that holds the grades of a class, let's write a 
 **Step 4: Write code.** Let's convert the steps into code. Download {download}`avg-array.c <../../code/chapter07/avg-array/avg-array.c>` if you want to run the program yourself.
 
 {{code_runner_header}}
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="10 13" output="Average is 104.86.">
 #include &lt;stdio.h&gt;
 #define SIZE 7 
@@ -136,6 +137,7 @@ int main(void){
     return 0;
 }
 </code-runner>
+</pre>
 
 **Step 5: Debug your code.** The above code is working fine for the given example. Some _common mistakes_ that will help you debug your code are:
 
@@ -178,6 +180,7 @@ An array with even number of elements before and after reversing.
 
 **Step 4: Write code.** Download {download}`reverse-array.c <../../code/chapter07/reverse-array/reverse-array.c>` if you want to run the program yourself.
 
+<pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="10 11 12 13" output="2, 5, 7, 8, 9, 12, 
 12, 9, 8, 7, 5, 2,">
 #include <stdio.h>
@@ -202,6 +205,7 @@ int main(void){
     return 0;
 }
 </code-runner>
+</pre>
 
 In line $10$, we initialize `low` and `high` in the initialization section of the for loop. Recall in Chapter 4.3 {ref}`variations-for-loop`, we can do so. Similarly, in the increment statement, we incremented `low` and decremented `high`. 
 

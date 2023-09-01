@@ -100,9 +100,9 @@ Write a C code that prints a `bool` variable. Code in {download}`isRaining.c <..
 #include &lt;stdio.h&gt;
 <br>
 int main(void){
-    bool isRaining = true;
-    printf("Is it raining? %d\n", isRaining);
-    return 0;
+  bool isRaining = true;
+  printf("Is it raining? %d\n", isRaining);
+  return 0;
 }
 </code-runner>
 </pre>
@@ -137,7 +137,7 @@ For example, when I ran the code below on my computer, the value in `var` variab
 Value of initialized variable 'var': 0">
 &#35;include &lt;stdio.h&gt;
 <br>
-int main() {
+int main(void) {
   int var;
   printf("Value of uninitialized variable \"var\": %d\n", var);
   int var2 = 0;
@@ -164,22 +164,21 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" output="Enter a number: <b>1 1.2 3 3.4</b>
-Numbers entered: 1 1.200000 3 3.400000">
+    <code-runner language="c" input="1 1.2 3 3.4" output="Enter a number: <b>1 1.2 3 3.4</b>Numbers entered: 1 1.200000 3 3.400000"> 
     &#35;include &lt;stdio.h&gt;
+    
+   int main(void) {
+     int num1 = 0, num2 = 0;
+     double dnum1 = 0, dnum2 = 0;
+     printf("Enter a number: ");
+     scanf("%d %lf %d %lf", &num1, &dnum1, &num2, &dnum2);
     <br>
-    int main(void) {
-      int num1 = 0, num2 = 0;
-      double dnum1 = 0, dnum2 = 0;
-      printf("Enter a number: ");
-      scanf("%d %lf %d %lf", &num1, &dnum1, &num2, &dnum2);
+     printf("Numbers entered: %d %lf %d %lf\n", num1, dnum1, num2, dnum2);
     <br>
-      printf("Numbers entered: %d %lf %d %lf\n", num1, dnum1, num2, dnum2);
-    <br>
-      return 0;
-    }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 2. **Take numbers and characters.**
 
@@ -187,62 +186,59 @@ Numbers entered: 1 1.200000 3 3.400000">
     
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" output="Enter your ID: <b>S1321234</b>
-  ID entered: S1321234">
+    <code-runner language="c" input="S1321234" output="Enter your ID: <b>S1321234</b>ID entered: S1321234">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      char idChar;
-      int idNum;
-      printf("Enter your ID: ");
-      scanf("%c %d", &idChar, &idNum);
+   int main(void) {
+     char idChar;
+     int idNum;
+     printf("Enter your ID: ");
+     scanf("%c %d", &idChar, &idNum);
     <br>
-      printf("ID entered: %c%d\n", idChar, idNum);
+     printf("ID entered: %c%d\n", idChar, idNum);
     <br>
-      return 0;
-    }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
     You can also write the code above with no spaces between `%c` and `%d` in `scanf` as follows.
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" output="Enter your ID: <b>S1321234</b>
-  ID entered: S1321234">
+    <code-runner language="c" input="S1321234" output="Enter your ID: <b>S1321234</b>ID entered: S1321234">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      char idChar;
-      int idNum;
-      printf("Enter your ID: ");
-      scanf("%c%d", &idChar, &idNum);
+   int main(void) {
+     char idChar;
+     int idNum;
+     printf("Enter your ID: ");
+     scanf("%c%d", &idChar, &idNum);
     <br>
-      printf("ID entered: %c%d\n", idChar, idNum);
+     printf("ID entered: %c%d\n", idChar, idNum);
     <br>
-      return 0;
-    }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" output="Enter your ID: <b>324245S</b>
-  ID entered: S324245">
+    <code-runner language="c" input="324245S" output="Enter your ID: <b>324245S</b>ID entered: S324245">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      char idChar;
-      int idNum;
-      printf("Enter your ID: ");
-      scanf("%d%c", &idNum, &idChar);
+   int main(void) {
+     char idChar;
+     int idNum;
+     printf("Enter your ID: ");
+     scanf("%d%c", &idNum, &idChar);
     <br>
-      printf("ID entered: %c%d\n", idChar, idNum);
+     printf("ID entered: %c%d\n", idChar, idNum);
     <br>
-      return 0;
-    }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 3. **Take in characters and ignoring leading spaces.**
    
@@ -250,23 +246,23 @@ Numbers entered: 1 1.200000 3 3.400000">
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
+    <code-runner language="c" input="L MN Y 897" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
     Licence plate entered: LMNY-897">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      char c1, c2, c3, c4, c5, c6, c7;
+   int main(void) {
+     char c1, c2, c3, c4, c5, c6, c7;
+    <br>
+     printf("Enter license plate letters and numbers: ");
+     scanf("%c %c %c %c %c %c %c", &c1, &c2, &c3, &c4, &c5, &c6, &c7);
       <br>
-      printf("Enter license plate letters and numbers: ");
-      scanf("%c %c %c %c %c %c %c", &c1, &c2, &c3, &c4, &c5, &c6, &c7);
-      <br>
-      printf("Licence plate entered: %c%c%c%c-%c%c%c\n", c1, c2, c3, c4, c5, c6,
+     printf("Licence plate entered: %c%c%c%c-%c%c%c\n", c1, c2, c3, c4, c5, c6,
             c7);
       <br>
-      return 0;
-    }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 4. **Common mistake: Spaces after format specifiers**
 
@@ -274,24 +270,23 @@ Numbers entered: 1 1.200000 3 3.400000">
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" input="7.89012
-    2432"
-     output="Enter license plate letters and numbers: <b>L MN Y 897</b>
+    <code-runner language="c" input="7.89012       2432"
+     output="
     Enter a number: <b>7.89012</b>
           <b>2432</b>
     Number entered: 7.89">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      double dnum1 = 0;
-      printf("Enter a number: ");
-      scanf(" %lf ", &dnum1);
+   int main(void) {
+     double dnum1 = 0;
+     printf("Enter a number: ");
+     scanf(" %lf ", &dnum1);
     <br>
-      printf("Number entered: %.2lf\n", dnum1);
-      return 0;
-    }
+     printf("Number entered: %.2lf\n", dnum1);
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 
 

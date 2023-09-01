@@ -23,7 +23,7 @@ Random number 3: 1681692777">
 &#35;include &lt;stdio.h&gt;
 &#35;include &lt;stdlib.h&gt;
 <br>
-int main() {
+int main(void) {
   printf("Random number 1: %d\n", rand());
   printf("Random number 2: %d\n", rand());
   printf("Random number 3: %d\n", rand());
@@ -82,7 +82,7 @@ Random number 9: 1622650073">
 &#35;include &lt;stdio.h&gt;
 &#35;include &lt;stdlib.h&gt;
 <br>
-int main() {
+int main(void) {
   srand(1);
   printf("Random number 1: %d\n", rand());
   printf("Random number 2: %d\n", rand());
@@ -141,7 +141,7 @@ Random number 2: 1550284621">
 &#35;include &lt;stdlib.h&gt;
 &#35;include &lt;time.h&gt;
 <br>
-int main() {
+int main(void) {
   srand(time(NULL));
   printf("Random number 1: %d\n", rand());
   printf("Random number 2: %d\n", rand());
@@ -187,6 +187,7 @@ For example, let's develop a code for rolling a dice 🎲! We expect that every 
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Dice roll is 3">
+&#35;include &lt;stdio.h&gt;
 &#35;include &lt;stdlib.h&gt;
 &#35;include &lt;time.h&gt;
 <br>

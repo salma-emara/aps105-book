@@ -62,12 +62,12 @@ You have 48 slices in 6 pizza.">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
-    int numPizzas, numSlices;
-    printf("How many pizzas do you have?\n");
-    scanf("%d", &numPizzas);
-    numSlices = numPizzas * 8;
-    printf("You have %d slices in %d pizza.\n", numSlices, numPizzas);
-    return 0;
+  int numPizzas, numSlices;
+  printf("How many pizzas do you have?\n");
+  scanf("%d", &numPizzas);
+  numSlices = numPizzas * 8;
+  printf("You have %d slices in %d pizza.\n", numSlices, numPizzas);
+  return 0;
 }
 </code-runner>
 </pre>
@@ -120,9 +120,9 @@ If you still did not get this question, how do we print `%` itself? `%` is an es
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
-    int grade = 91;
-    printf("Grade: %d%%\n", grade);
-    return 0;
+  int grade = 91;
+  printf("Grade: %d%%\n", grade);
+  return 0;
 }
 </code-runner>
 </pre>

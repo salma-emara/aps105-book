@@ -92,8 +92,7 @@ On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, may yield `i
 **Code**
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" output="Integer 0 division -1180252136
-Floating point zero division inf">
+<code-runner language="c" output="">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -192,7 +191,7 @@ As discussed earlier in {ref}`operations`, BEDMAS operators if they have the sam
 <code-runner language="c" output="i = 10, j = 10, k = 10">
 &#35;include &lt;stdio.h&gt;
 <br>
-int main() {
+int main(void) {
   int i = 1, j = 3, k = 10;
   i = j = k;  // first the value of k is assigned to j, 
               // then the value of j is assigned to i
@@ -225,7 +224,7 @@ For example, in the following example `++i` is pre-fix, i.e. incrementing happen
 <code-runner language="c" output="With prefix: i = 2, j = 2
 With postfix: i = 2, j = 1">
 &#35;include &lt;stdio.h&gt;
-int main() {
+int main(void) {
   int i = 1, j = 31;
   j = ++i;  // Equivalent to j = i = i + 1;
   printf("With prefix: i = %d, j = %d\n", i, j);
@@ -265,9 +264,9 @@ The type casting operator is `(` and `)`. The data type is placed in between the
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
-   printf("Number of bytes to store 5 int and 2 double is %d\n", 
-      5 * sizeof(int) + 2 * sizeof(double)); // 5 * 4 + 2 * 8 = 36
-   return 0;
+  printf("Number of bytes to store 5 int and 2 double is %d\n", 
+   5 * sizeof(int) + 2 * sizeof(double)); // 5 * 4 + 2 * 8 = 36
+  return 0;
 }
 </code-runner>
 </pre>

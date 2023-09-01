@@ -79,15 +79,14 @@ You can use `sqrt` in the following use cases:
 1. It can accept an `int` too. In line 4 in the following code, implicit type conversion from `int` `2` to `double` `2.0` will occur. The output will be `Square root of 2 is 1.41`.
     
     **Code** 
-    <pre class="code-runner-wrapper">
-<code-runner language="c" output="Square root of 2 is 1.41" highlight-lines="4">#include &lt;math.h&gt;
-    #include &lt;stdio.h&gt;
-    int main(void){
-      printf("Square root of 2 is %.2lf\n", sqrt(2));
-      return 0;
-    }  
+    <pre class="code-runner-wrapper"><code-runner language="c" output="Square root of 2 is 1.41" highlight-lines="4">#include &lt;math.h&gt; 
+   #include &lt;stdio.h&gt;
+   int main(void){
+     printf("Square root of 2 is %.2lf\n", sqrt(2));
+     return 0;
+   }  
     </code-runner>
-</pre>
+    </pre>
 
 
 2. The output can be stored in an `int` too. In line 4 in the following example, the value returned from `sqrt(3.0)` -- 1.73205... -- will be truncated and stored in `val` as `1`.
@@ -95,15 +94,15 @@ You can use `sqrt` in the following use cases:
     <!-- TODO: this has no output? -->
     **Code** 
     <pre class="code-runner-wrapper">
-<code-runner language="c" output="" highlight-lines="4">
+    <code-runner language="c" output="" highlight-lines="4">
     #include &lt;math.h&gt;
-    #include &lt;stdio.h&gt;
-    int main(void){
-      int val = sqrt(3.0);
-      return 0;
-    }
+   #include &lt;stdio.h&gt;
+   int main(void){
+     int val = sqrt(3.0);
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 ## Other math library functions
 
@@ -165,14 +164,14 @@ Download {download}`nearest10.c <../../code/chapter2/nearest10/nearest10.c>` to 
 <code-runner language="c" input="2.18"
 output="Enter the number you want to round to the nearest 10th: <b>2.18</b>
 The number rounded to the nearest 10th is 2.2">
-#include <math.h>
-#include <stdio.h>
+&#35;include &lt;math.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   double n = 0;
   printf("Enter the number you want to round to the nearest 10th: ");
   scanf("%lf", &n);
-<br>
+  <br>
   n = rint(n * 10) / 10;
   printf("The number rounded to the nearest 10th is %.1lf\n", n);
   return 0;
@@ -213,8 +212,8 @@ Download {download}`nearest-nickle.c <../../code/chapter2/nearest-nickle/nearest
 <code-runner language="c" input="2.94" 
 output="Enter the amount to round to the nearest nickle: <b>2.94</b>
 $2.94 rounded to the nearest nickle is $2.95">
-#include <math.h>
-#include <stdio.h>
+&#35;include &lt;math.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   double price = 0;

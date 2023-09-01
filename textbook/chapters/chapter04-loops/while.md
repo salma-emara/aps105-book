@@ -54,7 +54,7 @@ To print numbers $1$ to $10$, we can change the condition to `i <= 10`. The foll
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="1 2 3 4 5 6 7 8 9 10">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int i = 1;
@@ -110,7 +110,7 @@ The flow chart of the while loop exercise that finds the sum of numbers entered 
 <b>1</b>
 <b>-1</b>
 The sum is 26">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
     int sum = 0;
@@ -149,7 +149,7 @@ What happens when the condition in the while loop is always true? The while loop
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
     int i = 1;

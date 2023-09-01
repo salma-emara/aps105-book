@@ -130,9 +130,9 @@ The following code is supposed to take input `int` from the user into `maxRange`
 // Prime number is a number that is not divisible by any number
 // except for itself and 1.
 <br>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
 <br>
 int main(void) {
   // Enter input
@@ -177,9 +177,9 @@ Download the fixed code: {download}`random-primeNum.c <../../code/chapter04/rand
 // Prime number is a number that is not divisible by any number
 // except for itself and 1, e.g. 2, 3, 5, 11, 13 ...
 <br>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
 <br>
 int main(void) {
   // Enter input

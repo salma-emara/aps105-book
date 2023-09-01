@@ -44,7 +44,7 @@ Address of p: 0x30e2af170
 Address of y: 0x30e2af16c
  Value of y: 7
 Value stored in address 0x30e2af178 is 7">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int x = 7;
@@ -87,7 +87,7 @@ Value of x: 6
 Value of y: 7
 Value at address a: 6
 Value at address b: 7">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int x = 3, y = 4;

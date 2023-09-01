@@ -29,8 +29,8 @@ if (condition) {
     <pre class="code-runner-wrapper">
 <code-runner language="c" 
     output="The flag is true.">
-    #include <stdbool.h>
-    #include <stdio.h>
+    &#35;include &lt;stdbool.h&gt;
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       bool flag = true;
@@ -50,7 +50,7 @@ if (condition) {
     <pre class="code-runner-wrapper">
 <code-runner language="c" 
     output="The condition is true.">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       if (3) {
@@ -80,7 +80,7 @@ if (condition) {
 <code-runner language="c" input="13"
     highlight-lines="7" output="Enter your age: <b>13</b>
     You are not yet eligible to work in Ontario.">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     int main(void) {
       int age = 0;
       printf("Enter your age: ");
@@ -103,7 +103,7 @@ if (condition) {
 <code-runner language="c" input="5 5"
     highlight-lines="7" output="Please enter the height and width of your shape: <b>5 5</b>
     The shape is a square.">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     int main(void) {
       int height = 0, width = 0;
       printf("Please enter the height and width of your shape: ");

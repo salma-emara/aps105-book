@@ -14,7 +14,7 @@ Back to extending our program! We can extend the block executed if the age is 14
 <code-runner language="c" highlight-lines="10 11 12 13 14" input="15"
 output="Enter your age: <b>15</b>
 You are eligible to work only outside school hours.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int age = 0;
   printf("Enter your age: ");
@@ -71,7 +71,7 @@ For example, let's write a C code that checks if a character entered by the user
 <code-runner language="c" highlight-lines="7" input="a"
 output="Enter a letter: <b>a</b>
 You entered an upper case or lower case A.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   char letter = ' ';
   printf("Enter a letter: ");
@@ -119,7 +119,7 @@ Using the diagram above, you can also develop the condition as `(letter < 'A') |
 <code-runner language="c" highlight-lines="7" input="$"
 output="Enter an alphabet letter: <b>$</b>
 You didn't enter an alphabet.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   char letter = ' ';
   printf("Enter an alphabet letter: ");

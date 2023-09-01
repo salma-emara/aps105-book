@@ -27,8 +27,8 @@ Line 1 includes the math library, without which we can not use math library func
 4.1" output="Enter the length of the first side: <b>2.5</b>
 Enter the length of the second side: <b>4.1</b>
 The length of the hypotenuse is 4.80"
-highlight-lines="1 11">#include <math.h>
-#include <stdio.h>
+highlight-lines="1 11">&#35;include &lt;math.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   double a = 0, b = 0, c = 0;

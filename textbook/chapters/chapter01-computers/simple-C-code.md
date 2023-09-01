@@ -9,7 +9,7 @@ In this section, we will write our first C program. We will write a program that
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Hello World!">
 // This program prints the message "Hello World!" on the screen.
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
    printf("Hello World!\n");
@@ -40,7 +40,7 @@ If we remove spaces, indentation and formatting of the above program, it will lo
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Hello World!">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 // This program prints the message "Hello World!" on the screen.
 int main (void){printf("Hello World!\n");return 0;}
 </code-runner>
@@ -59,7 +59,7 @@ Write a C code that prompts the user to enter the number of pizzas they have. Th
 <code-runner language="c" input="6" output="How many pizzas do you have?
 <b>6</b> 
 You have 48 slices in 6 pizza.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
     int numPizzas, numSlices;
@@ -117,7 +117,7 @@ If you still did not get this question, how do we print `%` itself? `%` is an es
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Grade: 91%">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
     int grade = 91;

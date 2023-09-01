@@ -51,7 +51,7 @@ Again if we want to print numbers from $1$ to $10$, we only change the condition
 <pre class="code-runner-wrapper">
 <code-runner language="c" 
 output="1 2 3 4 5 6 7 8 9 10">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   for (int i = 1; i <= 10; i++) {
@@ -73,7 +73,7 @@ For example, if we compile the following code, we would get a compilation error.
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5"
 output="1 2 3 4 5 6 7 8 9 10">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   for (int i = 1; i <= 10; i++) {  // declare & initialize the loop variable inside the loop
@@ -106,7 +106,7 @@ The error message when the loop variable is used outside the loop.
 <code-runner language="c" highlight-lines="4 5"
 output="1 2 3 4 5 6 7 8 9 10
 The value of i when we existed the loop: 11">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int i;                       // declare the loop variable outside the loop
@@ -181,7 +181,7 @@ You can use the for loop in different ways, including omitting some statements.
     7 * 8 = 56
     7 * 9 = 63
     7 * 10 = 70">
-    #include <stdio.h>  
+    &#35;include &lt;stdio.h&gt;  
     <br>
     int main(void) {
       for (int i = 1, j = 7; i <= 10; printf("7 * %d = %d\n", i, j), i += 1, j += 7)
@@ -228,7 +228,7 @@ You can use the for loop in different ways, including omitting some statements.
     <pre class="code-runner-wrapper">
 <code-runner language="c" 
     output="1 4 9 16 25 36 49 64 81 100 121 144 169 196">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       for (int num = 1; (num <= 50) && (num * num < 200); num += 1) {

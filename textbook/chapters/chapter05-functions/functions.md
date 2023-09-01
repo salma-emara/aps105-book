@@ -68,7 +68,7 @@ The entire code in use will be as follows. Download {download}`print-pattern-fun
 <code-runner language="c" highlight-lines="4 5 6 12" input="5"
 output="Enter the number of lines in the pattern: <b>5</b><br>*<br>**<br>***<br>****<br>*****">
 // This program prints a pattern of stars using two functions
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 // Function prototypes: Headers of functions
 void printPattern(int numOfRows);
@@ -151,7 +151,7 @@ There is another way to write your program when it has functions, that does not 
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="5"> 
 // This program prints a pattern of stars using two functions
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void printStars(int numOfStars) {
   for (int star = 1; star <= numOfStars; star++) {

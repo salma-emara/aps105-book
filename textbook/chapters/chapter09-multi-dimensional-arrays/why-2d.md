@@ -59,7 +59,7 @@ myArray[2][0] = 8
 myArray[2][1] = 9
 myArray[2][2] = 10
 myArray[2][3] = 11">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int myArray[3][4];
@@ -163,7 +163,7 @@ Then, to get to a particular column, you need to add the index of the column. Fo
 <pre class="code-runner-wrapper">
 <code-runner language="c"  output="1   2   3
   4   5   6">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int myArray[2][3];
@@ -225,7 +225,7 @@ $6 \times 6$ array filled with $0$s and $1$s. You are required to print the star
 <code-runner language="c"  output="(row, col) = (2, 1)
 (row, col) = (3, 2)
 (row, col) = (5, 0)">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int board[6][6] = {

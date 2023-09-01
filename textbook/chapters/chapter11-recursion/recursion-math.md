@@ -31,7 +31,7 @@ The Euclidean algorithm can be easily implemented recursively as follows. Downlo
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output='gcd(20, 8) = 4'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int gcd(int a, int b);
 <br>
@@ -132,7 +132,7 @@ A corrected factorial function looks as follows, or you can download {download}`
 **Code [Correct]**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output='4! = 24<br>1! = 1<br>0! = 1'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int factorial(int n);
 <br>

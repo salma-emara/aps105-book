@@ -96,7 +96,7 @@ On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, this will yi
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Integer 0 division -1180252136
 Floating point zero division inf">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   printf("Integer 0 division %d\n", 3 / 0);
@@ -192,7 +192,7 @@ As discussed earlier in {ref}`operations`, BEDMAS operators if they have the sam
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="i = 10, j = 10, k = 10">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main() {
   int i = 1, j = 3, k = 10;
@@ -226,7 +226,7 @@ For example, in the following example `++i` is pre-fix, i.e. incrementing happen
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="With prefix: i = 2, j = 2
 With postfix: i = 2, j = 1">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main() {
   int i = 1, j = 31;
   j = ++i;  // Equivalent to j = i = i + 1;
@@ -264,7 +264,7 @@ The type casting operator is `(` and `)`. The data type is placed in between the
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Number of bytes to store 5 int and 2 double is 36">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
    printf("Number of bytes to store 5 int and 2 double is %d\n", 

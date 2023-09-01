@@ -20,8 +20,8 @@ Let's try running the following code.
 <code-runner language="c" output="Random number 1: 1804289383
 Random number 2: 846930886
 Random number 3: 1681692777">
-#include <stdio.h>
-#include <stdlib.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
 <br>
 int main() {
   printf("Random number 1: %d\n", rand());
@@ -79,8 +79,8 @@ Random number 6: 282475249
 Random number 7: 16807
 Random number 8: 282475249
 Random number 9: 1622650073">
-#include <stdio.h>
-#include <stdlib.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
 <br>
 int main() {
   srand(1);
@@ -137,9 +137,9 @@ The following code will now generate different random numbers every time you run
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Random number 1: 1783039037
 Random number 2: 1550284621">
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
+&#35;include &lt;time.h&gt;
 <br>
 int main() {
   srand(time(NULL));
@@ -187,8 +187,8 @@ For example, let's develop a code for rolling a dice 🎲! We expect that every 
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Dice roll is 3">
-#include <stdlib.h>
-#include <time.h>
+&#35;include &lt;stdlib.h&gt;
+&#35;include &lt;time.h&gt;
 <br>
 int main(void) {
   srand(time(NULL));

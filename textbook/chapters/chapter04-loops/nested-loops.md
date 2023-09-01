@@ -110,7 +110,7 @@ int main(void) {
     <pre class="code-runner-wrapper">
 <code-runner language="c" input="5" highlight-lines="4 5"
     output="*<br>**<br>***">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       for (int line = 0; line < 3; line += 1) {  // loop over lines

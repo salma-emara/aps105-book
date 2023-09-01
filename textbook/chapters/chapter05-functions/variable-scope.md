@@ -20,7 +20,7 @@ Similarly, variables inside a function cannot be accessed outside a function, ev
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 double divideByTwo(double);
 <br>

@@ -78,7 +78,7 @@ To implement binary search, we need to write a function that takes in an array, 
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="17" output='Found 9 at index 4'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int binarySearch(int list[], int listLength, int item) {
   int low = 0;
@@ -155,7 +155,7 @@ We can see that the values of `low` and `high` are updated in the recursive func
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="12 13 14" output='Found 9 in index 4'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int binarySearchHelper(int list[], int low, int high, int item);
 int binarySearchRecursive(int list[], int listLength, int item);

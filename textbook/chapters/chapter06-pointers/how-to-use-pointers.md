@@ -20,7 +20,7 @@ Value of b: 13
 After swapping
 Value of a: 13
 Value of b: 9">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void swap(int*, int*);
 <br>
@@ -61,8 +61,8 @@ We discussed before that old machines represent addresses using 32 bits, while m
 Size of pointer (double*) is 8.
 Size of pointer (bool*) is 8.
 Size of pointer (char*) is 8.">
-#include <stdbool.h>
-#include <stdio.h>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   printf("Size of pointer (int\*) is %d.\n", sizeof(int \*));
@@ -83,7 +83,7 @@ A pointer can hold the address of another pointer, since they are all addresses.
 <code-runner language="c" output="What i is storing: 10
 What pi is pointing to: 10
 What (ppi is pointing to) = pi is pointing to: 10">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int i = 0;
@@ -137,7 +137,7 @@ Let's write a function that returns a pointer to the variable with the maximum v
 <code-runner language="c" output="Address of x: 0x304757170 having value 2.6.
 Address of y: 0x304757168 having value 7.3.
 Address of larger variable: 0x304757168.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 double* largestValLoc(double*, double*);
 <br>
 double* largestValLoc(double* a, double* b) {
@@ -173,7 +173,7 @@ For example, in the following program, we try using an uninitialized pointer. Th
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main() {
   int* p;
@@ -209,7 +209,7 @@ In short, do not use an uninitialized pointer. This is why the compiler recommen
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Cannot dereference it!">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main() {
   int* p = NULL;
@@ -234,7 +234,7 @@ What is the output of the following program? The solution is discussed in the vi
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="a = 11 and b = 8">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int *confuse(int *x, int *y) {
   (*y)++;
   y = x;

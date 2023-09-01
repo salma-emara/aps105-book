@@ -40,7 +40,7 @@ The following code uses the recursive function `printRow`. Download {download}`p
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="4" output='Enter number of stars: <b>4</b><br>****' highlight-lines="15 17 18">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
 <br>
@@ -99,7 +99,7 @@ If we switch the order of `printf("*")` and `printRow(n - 1)` as in the followin
 <code-runner language="c" input="4" output='Enter number of stars: <b>4</b>
 *
 ***'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
 <br>
@@ -185,7 +185,7 @@ Download {download}`printTriangle.c <../../code/chapter11/printTriangle/printTri
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="5" output='Enter number of rows: <b>5</b><br>*****<br>****<br>***<br>**<br>*' highlight-lines="14 15 16 17 18 19">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
 void printTriangle(int n);
@@ -255,7 +255,7 @@ The following code snippet is one way to implement the recursive function `print
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="16 17" input="3" output='Enter number of rows: <b>3</b><br>*<br>**<br>***'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
 void printInvertedTriangle(int n);
@@ -336,7 +336,7 @@ The following code is one way to implement the recursive function `printPattern`
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="3" output='Enter number of max stars in a row: <b>3</b>*<br>**<br>***<br>' 
 highlight-lines="16 17 18">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
 void printPattern(int n);

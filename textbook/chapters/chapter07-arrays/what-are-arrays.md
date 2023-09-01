@@ -56,7 +56,7 @@ The following question was question 5 in Winter 2022 midterm exam for APS 105 in
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};
   int *third = &second, *fourth = &first, *fifth = data + first + 1;

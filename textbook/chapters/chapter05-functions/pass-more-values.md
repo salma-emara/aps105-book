@@ -78,7 +78,7 @@ What's left now is the main function that takes input from the user, calls media
 <code-runner language="c" highlight-lines="3 9" input="2 7 5"
 output="Please enter three integers to find the median: <b>2 7 5</b>
 The median is 5">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int median(int, int, int);
 <br>
@@ -116,7 +116,7 @@ If your program does not work, and it has many lines of code and many functions,
 <code-runner language="c" output="The median of (-105, -28, -73) is -73
 The median of (0, -101, 98) is 0
 The median of (-101, -67, 0) is -67">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int median(int, int, int);
 <br>

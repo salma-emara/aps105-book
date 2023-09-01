@@ -45,7 +45,7 @@ If you do not know the size of the array when you write a program, you have the 
     {{code_runner_header}}
     <pre class="code-runner-wrapper">
 <code-runner language="c" input="300" output="Enter size of array:">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     int main(void) {
         int size;
         printf("Enter size of array: ");
@@ -99,8 +99,8 @@ If you do not know the size of the array when you write a program, you have the 
         4 8 9 3 7" highlight-lines="2 16 20 24 26" output="Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
         Average is 6.20">
-        #include <stdio.h>
-        #include <stdlib.h>
+        &#35;include &lt;stdio.h&gt;
+        &#35;include &lt;stdlib.h&gt;
         <br>
         double getAverage(int);
         <br>
@@ -157,8 +157,8 @@ If you do not know the size of the array when you write a program, you have the 
         4 8 9 3 7" highlight-lines="26 27" output="Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
         Average is 6.20">
-        #include <stdio.h>
-        #include <stdlib.h>
+        &#35;include &lt;stdio.h&gt;
+        &#35;include &lt;stdlib.h&gt;
         <br>
         double getAverage(int);
         <br>
@@ -222,8 +222,8 @@ Please enter the array number 1: <b>1 4 7</b>
 Please enter the size of array number 2: <b>4</b>
 Please enter the array number 2: <b>2 3 5 10</b>
 Result: 1 2 3 4 5 7 10 ">
-#include <stdio.h>
-#include <stdlib.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
 <br>
 int *merge(int *size);
 <br>

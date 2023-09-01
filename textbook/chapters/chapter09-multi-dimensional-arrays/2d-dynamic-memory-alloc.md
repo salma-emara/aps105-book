@@ -131,7 +131,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" >
-#include <stdlib.h>
+&#35;include &lt;stdlib.h&gt;
 <br>
 int main(void) {
   // Dynamically allocate array of pointer

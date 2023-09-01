@@ -60,7 +60,7 @@ In line $8$, we are referring to the `int` variable that `number` has it's addre
 4" output="Enter a number to test the Goldbach conjecture: <b>-1</b> 
 Enter a number to test the Goldbach conjecture: <b>3</b> 
 Enter a number to test the Goldbach conjecture: <b>4</b>">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void getUserInput(int *);
 <br>
@@ -91,8 +91,8 @@ Currently, the prompt message is not telling the user why is their first and sec
 4" output="Enter a number to test the Goldbach conjecture: <b>-1</b> 
 Enter a number to test the Goldbach conjecture: <b>3</b> 
 Enter a number to test the Goldbach conjecture: <b>4</b>">
-#include <stdbool.h>
-#include <stdio.h>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 void getUserInput(int*);
 <br>

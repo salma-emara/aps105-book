@@ -135,7 +135,7 @@ For example, when I ran the code below on my computer, the value in `var` variab
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Value of uninitialized variable 'var': 174739296
 Value of initialized variable 'var': 0">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main() {
   int var;
@@ -166,7 +166,7 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     <pre class="code-runner-wrapper">
 <code-runner language="c" output="Enter a number: <b>1 1.2 3 3.4</b>
 Numbers entered: 1 1.200000 3 3.400000">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       int num1 = 0, num2 = 0;
@@ -189,7 +189,7 @@ Numbers entered: 1 1.200000 3 3.400000">
     <pre class="code-runner-wrapper">
 <code-runner language="c" output="Enter your ID: <b>S1321234</b>
   ID entered: S1321234">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       char idChar;
@@ -210,7 +210,7 @@ Numbers entered: 1 1.200000 3 3.400000">
     <pre class="code-runner-wrapper">
 <code-runner language="c" output="Enter your ID: <b>S1321234</b>
   ID entered: S1321234">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       char idChar;
@@ -229,7 +229,7 @@ Numbers entered: 1 1.200000 3 3.400000">
     <pre class="code-runner-wrapper">
 <code-runner language="c" output="Enter your ID: <b>324245S</b>
   ID entered: S324245">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       char idChar;
@@ -252,7 +252,7 @@ Numbers entered: 1 1.200000 3 3.400000">
     <pre class="code-runner-wrapper">
 <code-runner language="c" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
     Licence plate entered: LMNY-897">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       char c1, c2, c3, c4, c5, c6, c7;
@@ -280,7 +280,7 @@ Numbers entered: 1 1.200000 3 3.400000">
     Enter a number: <b>7.89012</b>
           <b>2432</b>
     Number entered: 7.89">
-    #include <stdio.h>
+    &#35;include &lt;stdio.h&gt;
     <br>
     int main(void) {
       double dnum1 = 0;

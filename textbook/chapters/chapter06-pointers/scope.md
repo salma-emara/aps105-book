@@ -59,7 +59,7 @@ Using `x` variable outside the compound statement where it was declared. This ca
 **Code causing compile-time error**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="(compile-time error)">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main() {
   int i = 0;
 <br>
@@ -84,7 +84,7 @@ The external identifiers or global variables are defined at the top of the `.c` 
 <code-runner language="c" output="In main: Global variable i = 0.
 In func: Global variable i = 0.
 In main after calling func: Global variable i = 5.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int i = 0;
 <br>
@@ -121,7 +121,7 @@ The overlapping scope of two variables named `i`.
 <code-runner language="c" output="Outer i = 1.
 Inner i = 2.
 Outer i = 1.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int i = 1;

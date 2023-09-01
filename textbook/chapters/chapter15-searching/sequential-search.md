@@ -36,7 +36,7 @@ In the following example, we look for the element 7 in the array. Download the f
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output='Found 7 at index 3.'>
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int sequentialSearch(int list[], int listLength, int item) {
   for (int index = 0; index < listLength; index++) {

@@ -45,7 +45,7 @@ If we want to print numbers from $1$ to $10$, we just need to change the conditi
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="1 2 3 4 5 6 7 8 9 10">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int i = 1;
@@ -99,7 +99,7 @@ The flow chart of the do while loop exercise that validates that the user input 
 output="Please enter a number between 1 and 10 (inclusive): <b>-2</b>
 Please enter a number between 1 and 10 (inclusive): <b>5</b>
 The number entered is 5.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int num;

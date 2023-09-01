@@ -12,7 +12,7 @@ Write a program that converts inches to centimeters. The program should prompt t
 <code-runner language="c" input="3.7" output="Enter the number of inches to convert to cm: <b>3.7</b>
 The number of centimeters is 9.40">
 // Description: This program convert inches to centimeters
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
   // Declare variables

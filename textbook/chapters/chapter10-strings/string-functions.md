@@ -18,8 +18,8 @@ The following program demonstrates the use of `strlen`:
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="String length is 5.">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -37,8 +37,8 @@ Let's implement `strlen`. We will name it `stringLength`. This function should h
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="String length is 5.">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int stringLength(char* s);
 <br>
@@ -64,7 +64,7 @@ int stringLength(char* s) {
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="3 12" output="String length is 5.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int stringLength(const char* s);
 <br>
@@ -105,8 +105,8 @@ The following program demonstrates the use of `strcpy`:
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="d after copying has 'Hello'.">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -124,7 +124,7 @@ Why do we need `strcpy`, when we can assign a string to another string? The foll
 **Code with Compile-time Error**
 <pre class="code-runner-wrapper">
 <code-runner language="c"> 
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -146,8 +146,8 @@ Let's implement `strcpy`. We will name it `stringCopy`. This function should hav
 **Code using `[]` in `stringCopy`**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="d after copying has 'Hello'.">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 char* stringCopy(char* dest, const char* src);
 <br>
@@ -176,8 +176,8 @@ char* stringCopy(char* dest, const char* src) {
 **Code without using `[]` in `stringCopy`**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="14 15 16 17 18 19 20" output="d after copying has 'Hello'.">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 char* stringCopy(char* dest, const char* src);
 <br>
@@ -240,8 +240,8 @@ The following program demonstrates the use of `strncpy`:
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Copied exactly 6 characters: Hello">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char d[] = "Hello world!";
@@ -371,8 +371,8 @@ The following program demonstrates the use of `strncat`:
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="strncpy null terminates the destination if it wasn't!
 Concatenated string: OhN">
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char s[4] = "Oh";
@@ -415,8 +415,8 @@ The following program demonstrates the use of `strcmp`:
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="rice rice" output='Enter two strings separated by new line or white space: <b>rice rice</b>
 "rice" is identical to "rice"!'>
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char s1[40];
@@ -464,8 +464,8 @@ The following program demonstrates the use of `strncmp`:
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="grandma grandpa" output='Enter two strings separated by new line or white space: <b>grandma grandpa</b>
 The first 5 character in "grandma" is identical to "grandpa"!'>
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char s1[40];
@@ -505,8 +505,8 @@ The following program demonstrates the use of `strchr`:
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output='The first m is found at index 6 in "Programming"'>
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char s[] = "Programming";
@@ -532,8 +532,8 @@ The following program demonstrates the use of `strstr`:
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output='Printing characters after "Enjoy": Enjoy APS105!'>
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 int main(void) {
   char str[] = "Note: Enjoy APS105!";
@@ -565,9 +565,9 @@ Let's implement `strstr` function using string functions we mentioned in this se
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="16 18 19 25" output='Printing characters after "Enjoy": Enjoy APS105!'>
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
 <br>
 char* findString(char* s1, char* s2);
 <br>

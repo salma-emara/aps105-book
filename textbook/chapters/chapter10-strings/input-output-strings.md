@@ -19,7 +19,7 @@ Printing happens from the first character pointed to by the pointer. This means 
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="llo">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -34,7 +34,7 @@ If we want to print a particular number of characters, we can use the `%.*s` for
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="He">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -53,7 +53,7 @@ If we want to print a string, we should use `%s` format specifier. If we use `%c
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="e">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -70,7 +70,7 @@ int main(void) {
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Hello">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char s[] = "Hello";
@@ -100,7 +100,7 @@ For example, the following code takes a string as input from the user and prints
 <code-runner language="c" input="ABCD" output="Enter a string: 
 <b>ABCD</b>
 s is saved as: ABCD">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char st[10];
@@ -126,7 +126,7 @@ For example, in the following code, white spaces before `ABCD` are ignored, and 
 <b>    ABCD  ff</b>
 s is saved as: ABCD
 s is now saved as: ff">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char st[10];
@@ -156,7 +156,7 @@ For example, if the user input was `ABCDEFGHIJ` to the following program, what w
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="6">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char st[7 + 1];
@@ -246,7 +246,7 @@ S
 1
 0
 5">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   printf("Enter characters: \n");
@@ -296,7 +296,7 @@ char* getStringSafely(char* s, int n) {
 <code-runner language="c" highlight-lines="21" input="AB" output="Enter string: 
 <b>AB</b>
 User entered: AB��">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 char* getStringSafely(char* s, int n);
 <br>
@@ -334,7 +334,7 @@ Instead of `s[n] = '\0';`, it is correct to have `s[charCount] = '\0';` in line 
 <b>Helloworld!</b>
 User entered: Hellow
 This is what's left: rld!">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 char* getStringSafely(char* s, int n);
 <br>
@@ -374,7 +374,7 @@ In the following code, we fixed the code in line $21$.
 <b>Helloworld!</b>
 User entered: Hellow
 This is what's left: orld!">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 char* getStringSafely(char* s, int n);
 <br>
@@ -414,7 +414,7 @@ You may download {download}`getStringSafely.c <../../code/chapter10/getStringSaf
 <b>Helloworld!</b>
 User entered: Hellow
 This is what's left: orld!">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 char* getStringSafely(char* s, int n);
 <br>

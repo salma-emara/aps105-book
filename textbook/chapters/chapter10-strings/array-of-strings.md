@@ -11,7 +11,7 @@ We can declare a 2D array, where each row has a string holding a month name. For
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5 6 9 10"
 output="january, february, march, april, may, june, july, august, september, october, november, december,">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char months[][10] = {"January",   "February", "March",    "April",
@@ -52,7 +52,7 @@ The other way to declare an array of strings, we can declare an array of `char*`
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 6 7 8 9 10 11 12 13 14 15 16 17"
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char* months[12];
@@ -80,7 +80,7 @@ We can declare and initialize the array of character pointers as in line $4$ -- 
 **Code (Declare and Initialize)**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5 6">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
   char* months[12] = {"January",   "February", "March",    "April",

@@ -141,8 +141,8 @@ The following code snippet shows the implementation of partition and quicksort s
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" output='left = 1, right = 8<br>3 4 8 9 6 10 20 13 14<br>left = 1, right = 4<br>3 4 8 9 6 10 20 13 14<br>left = 2, right = 4<br>3 4 8 9 6 10 20 13 14<br>left = 3, right = 4<br>3 4 6 8 9 10 20 13 14<br>left = 7, right = 8<br>3 4 6 8 9 10 14 13 20<br>left = 7, right = 7<br>3 4 6 8 9 10 13 14 20<br>3 4 6 8 9 10 13 14 20'>
-#include <stdbool.h>
-#include <stdio.h>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 void swap(int list[], int left, int right) {
   int t = list[right];

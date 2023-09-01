@@ -183,7 +183,7 @@ An array with even number of elements before and after reversing.
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="10 11 12 13" output="2, 5, 7, 8, 9, 12, 
 12, 9, 8, 7, 5, 2,">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 #define SIZE 6
 <br>
 int main(void){

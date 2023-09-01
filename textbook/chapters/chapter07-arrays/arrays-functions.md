@@ -6,7 +6,7 @@ To pass an array to a function, all what you need to do is pass the pointer to t
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="2 6 9">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 double f(int []);
 <br>
 int main(void){
@@ -37,7 +37,7 @@ This is similar to finding the average of the elements in an array.
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int sumData(int[], const int);
 <br>
@@ -72,7 +72,7 @@ Since **array identifiers** are also **pointers**, is it possible to index eleme
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int sumData(int*, int);
 <br>
@@ -107,7 +107,7 @@ The syntax of pointers -- `*` and `&` -- and syntax of arrays -- `[]` are interc
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="3 4 14 15 18 19" output="Sum of elements in the array: 11.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 // Input is int*
 int sumData(int*, int); 
@@ -150,7 +150,7 @@ In the following code, we print the array `x` before and after calling the funct
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="Before swapping: 3 5 8 1 7 
 After swapping: 7 5 8 1 3">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void swap(int[], int, int);
 void printArray(int[], const int);

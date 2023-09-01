@@ -9,7 +9,7 @@ In the previous section, we developed the following program that printed to the 
 <code-runner language="c" input="4"
 output="Enter your age: <b>4</b>
 You are not yet eligible to work.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int age = 0;
   printf("Enter your age: ");
@@ -38,7 +38,7 @@ In the following code, we wrote a more elegant code. In line 9, we can see `else
 <code-runner language="c" input="4" highlight-lines="9"
 output="Enter your age: <b>4</b>
 You are not yet eligible to work.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int age = 0;
   printf("Enter your age: ");
@@ -96,7 +96,7 @@ Flow chart of the steps of comparing three numbers to find the maximum.
 <code-runner language="c" input="5 3 4"
 output="Enter three integers: <b>5 3 4</b>
 The maximum is the first number entered: 5">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int x = 0, y = 0, z = 0;
   printf("Enter three integers: ");
@@ -128,7 +128,7 @@ More elegant code can be written if we thought backwards. We can think of the co
 <code-runner language="c" input="1 3 4"
 output="Enter three integers: <b>1 3 4</b>
 The maximum is the third number entered: 4">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int x = 0, y = 0, z = 0;
   printf("Enter three integers: ");

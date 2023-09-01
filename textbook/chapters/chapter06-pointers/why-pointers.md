@@ -11,9 +11,9 @@ We can communicate from a function by returning a value. For example, in the fol
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="36" output="Enter a number: 36
 36 is a perfect square">
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
+&#35;include &lt;math.h&gt;
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
 <br>
 bool isPerfectSquare(int);
 <br>
@@ -58,7 +58,7 @@ Another important usage of **return** is that we pass value to function by **cal
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="36" output="The value of p is 12.">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void simple(int);
 <br>
@@ -80,7 +80,7 @@ If we want to pass the value of `p` in `simple` function after dividing it by $2
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c" output="The value of p is 6." highlight-lines="3 7 12 14">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 int simple(int);
 <br>
@@ -137,7 +137,7 @@ Value of b: 13
 After swapping
 Value of a: 9
 Value of b: 13">
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 <br>
 void swap(int, int);
 <br>

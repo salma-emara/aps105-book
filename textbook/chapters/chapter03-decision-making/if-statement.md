@@ -27,41 +27,41 @@ if (condition) {
     **Code**
     {{code_runner_header}}
     <pre class="code-runner-wrapper">
-<code-runner language="c" 
+    <code-runner language="c" 
     output="The flag is true.">
     &#35;include &lt;stdbool.h&gt;
-    &#35;include &lt;stdio.h&gt;
+   &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      bool flag = true;
-      if (flag) {
-        printf("The flag is true.");
-      } else {
-        printf("The flag is false.");
-      }
-      return 0;
-    }
+   int main(void) {
+     bool flag = true;
+     if (flag) {
+       printf("The flag is true.");
+     } else {
+       printf("The flag is false.");
+     }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
     
 2. The `condition` can be a numerical value. Recall that `true` is stored as `1`, and `false` is stored as `0` as we discussed in {ref}`bool-variable` section. To be more accurate, C is only strict in the representing `false` as 0. While `true` can be any non-zero number. *In other words, any *non-zero* value in the condition makes the condition `true`. While a *zero* value in the condition makes the condition `false`.*
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" 
+    <code-runner language="c" 
     output="The condition is true.">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      if (3) {
-        printf("The condition is true.");
-      } else {
-        printf("The condition is false.");
-      }
-      return 0;
-    }
+   int main(void) {
+     if (3) {
+       printf("The condition is true.");
+     } else {
+       printf("The condition is false.");
+     }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 3. The `condition` can be a "relational expression" that evaluates to `true` or `false`. Relational expressions have relational operators summarized in the table below.
     | Relational Operator | Meaning |
@@ -77,47 +77,47 @@ if (condition) {
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" input="13"
+    <code-runner language="c" input="13"
     highlight-lines="7" output="Enter your age: <b>13</b>
     You are not yet eligible to work in Ontario.">
     &#35;include &lt;stdio.h&gt;
-    int main(void) {
-      int age = 0;
-      printf("Enter your age: ");
-      scanf("%d", &age);
-      <br>
-      if (age < 14) {  // Condition checking if age is less than 14
-        printf("You are not yet eligible to work in Ontario.");
-      } else {
-        printf("You are eligible to work in Ontario.");
-      }
-      return 0;
-    }
+   int main(void) {
+     int age = 0;
+     printf("Enter your age: ");
+     scanf("%d", &age);
+     <br>
+     if (age < 14) {  // Condition checking if age is less than 14
+       printf("You are not yet eligible to work in Ontario.");
+     } else {
+       printf("You are eligible to work in Ontario.");
+     }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
     Another example, let's write a program in C that identifies if a shape is rectangle or square based on the two sides given by the user. Download {download}`square-rectangle.c <../../code/chapter03/square-rectangle/square-rectangle.c>` to get the following code.
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" input="5 5"
+    <code-runner language="c" input="5 5"
     highlight-lines="7" output="Please enter the height and width of your shape: <b>5 5</b>
     The shape is a square.">
     &#35;include &lt;stdio.h&gt;
-    int main(void) {
-      int height = 0, width = 0;
-      printf("Please enter the height and width of your shape: ");
-      scanf("%d %d", &height, &width);
+   int main(void) {
+     int height = 0, width = 0;
+     printf("Please enter the height and width of your shape: ");
+     scanf("%d %d", &height, &width);
     <br>
-      if (height == width) {
-        printf("The shape is a square.");
-      } else {
-        printf("The shape is a rectangle.");
-      }
-      return 0;
-    }
+     if (height == width) {
+       printf("The shape is a square.");
+     } else {
+       printf("The shape is a rectangle.");
+     }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
     ````{admonition} Equal to $==$ Vs. Assignment $=$
     One of the most common mistakes is that people confuse the relational operator `==` with the assignment operator `=`. The **relational operator** `==` compares the right hand side with the left hand side and returns `true` if they are equal and `false` otherwise. The **assignment operator** `=` assigns the value on the right hand side to the variable on the left hand side.

@@ -205,7 +205,7 @@ void printList(LinkedList *list) {
 To fully test the function, we can create a linked list with 3 nodes, and print the linked list. The following code shows how we can create a linked list with 3 nodes, and print the linked list. Download {download}`insertAtFront.c <../../code/chapter13/insertAtFront/insertAtFront.c>` if you want to play with the code.
 
 ```{code-block} c
-&#35;include &lt;stdbool.h&gt;
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 

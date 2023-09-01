@@ -1,6 +1,6 @@
 # How do we pass an array to a function?
 
-To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function. 
+To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function.
 
 **Code Skeleton**
 {{code_runner_header}}
@@ -10,12 +10,12 @@ To pass an array to a function, all what you need to do is pass the pointer to t
 double f(int []);
 <br>
 int main(void){
-    int x[3] = {1, 7, 3};
-    double result = f(x);
-    return 0;
+  int x[3] = {1, 7, 3};
+  double result = f(x);
+  return 0;
 }
 double f(int list[]){
-    //statements;
+  //statements;
 }
 </code-runner>
 </pre>
@@ -42,9 +42,8 @@ This is similar to finding the average of the elements in an array.
 int sumData(int[], const int);
 <br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
@@ -77,9 +76,8 @@ Since **array identifiers** are also **pointers**, is it possible to index eleme
 int sumData(int*, int);
 <br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
@@ -113,9 +111,8 @@ The syntax of pointers -- `*` and `&` -- and syntax of arrays -- `[]` are interc
 int sumData(int*, int); 
 <br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
@@ -156,13 +153,12 @@ void swap(int[], int, int);
 void printArray(int[], const int);
 <br>
 int main(void) {
-  const int size = 5;
-  int x[size] = {3, 5, 8, 1, 7};
+  int x[5] = {3, 5, 8, 1, 7};
   printf("Before swapping: ");
-  printArray(x, size);
+  printArray(x, 5);
   swap(x, 0, 4);
   printf("After swapping: ");
-  printArray(x, size);
+  printArray(x, 5);
   return 0;
 }
 <br>

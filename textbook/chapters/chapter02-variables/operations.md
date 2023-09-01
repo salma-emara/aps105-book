@@ -82,14 +82,12 @@ We learned before in {ref}`Think! <float-in-int>`, if a floating point number is
 (zero-division)=
 ## What happens when we divide by 0?
 
-In math, the result of dividing a number by 0 is undefined. What would undefined mean if a program divides a number by 0? If we were to divide an **int 3 by int 0**, e.g. `3/0`, the compiler will successfully compile your code. However, it will produce a "warning message". This warning message would state `warning: division by zero is undefined.` If that `0` was stored in a variable, the compiler will **not** produce a warning message. 
+In math, the result of dividing a number by 0 is undefined. What would undefined mean if a program divides a number by 0? If we were to divide an **int 3 by int 0**, e.g. `3/0`, the compiler may or may not successfully compile your code.
 
-The trickiest part is that if you run the program, the result of the division is undefined. Some computers may yield a *weird* number resulting from this *illegal* division. 
+The trickiest part is that if your program compiles and you run it, the result of the division is undefined. Some computers may yield a *weird* number resulting from this *illegal* division. Hence, it is important to check if the denominator is 0 before you divide.
 
-When 0 is stored in a variable, it is difficult to know if the undefined behavior in your code is because of division by 0. Hence, it is important to check if the denominator is 0 before you divide.
-
-On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, this will yield `inf`. Download 
-{download}`zeroDivision.c <../../code/chapter2/divideByzero/zeroDivision.c>` to try the following code. 
+On the other hand, dividing by 0 in a float division, e.g. `3.0/0`, may yield `inf`. Download 
+{download}`zeroDivision.c <../../code/chapter2/divideByzero/zeroDivision.c>` to try the following code on your computer.
 
 **Code**
 {{code_runner_header}}

@@ -1,20 +1,20 @@
 # How do we pass an array to a function?
 
-To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function. 
+To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function.
 
 **Code Skeleton**
 {{code_runner_header}}
 <code-runner language="c" highlight-lines="2 6 9">
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 double f(int []);
 <br>
 int main(void){
-    int x[3] = {1, 7, 3};
-    double result = f(x);
-    return 0;
+  int x[3] = {1, 7, 3};
+  double result = f(x);
+  return 0;
 }
 double f(int list[]){
-    //statements;
+  //statements;
 }
 </code-runner>
 
@@ -33,15 +33,15 @@ Within the function, we can access elements as we see appropriate. However, the 
 This is similar to finding the average of the elements in an array. 
 
 **Code**
-<code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
-#include <stdio.h>
+{{code_runner_header}}
+<pre><code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
+#include &lt;stdio.h&gt;
 <br>
 int sumData(int[], const int);
 <br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
@@ -53,7 +53,7 @@ int sumData(int list[], const int size) {
   }
   return sum;
 }
-</code-runner>
+</code-runner></pre>
 
 In line $3$, we define the inputs to the function as `int[]`, which is the type of the pointer to the first element in an array and `int`, which is the type of the size of the array.
 
@@ -66,15 +66,14 @@ In line $16$, we access the elements of `list` array as we would do with arrays 
 Since **array identifiers** are also **pointers**, is it possible to index elements in the array using pointers instead of `[]`? Yes, it is possible, and we show below how.
 
 **Code**
-<code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
+<pre><code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
 #include <stdio.h>
 <br>
 int sumData(int*, int);
 <br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
@@ -86,7 +85,7 @@ int sumData(int* list, int size) {
   }
   return sum;
 }
-</code-runner>
+</code-runner></pre>
 
 In line $3$, we accept `int*` instead of `int[]`, because they are equivalent.
 
@@ -106,9 +105,8 @@ The syntax of pointers -- `*` and `&` -- and syntax of arrays -- `[]` are interc
 int sumData(int*, int); 
 <br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
@@ -147,13 +145,12 @@ void swap(int[], int, int);
 void printArray(int[], const int);
 <br>
 int main(void) {
-  const int size = 5;
-  int x[size] = {3, 5, 8, 1, 7};
+  int x[5] = {3, 5, 8, 1, 7};
   printf("Before swapping: ");
-  printArray(x, size);
+  printArray(x, 5);
   swap(x, 0, 4);
   printf("After swapping: ");
-  printArray(x, size);
+  printArray(x, 5);
   return 0;
 }
 <br>

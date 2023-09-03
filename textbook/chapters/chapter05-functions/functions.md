@@ -149,7 +149,7 @@ There is another way to write your program when it has functions, that does not 
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="5"> 
+<code-runner language="c" input="5" output="Enter the number of lines in the pattern: <b>5</b><br>*<br>**<br>***<br>****<br>*****"> 
 // This program prints a pattern of stars using two functions
 &#35;include &lt;stdio.h&gt;
 <br>

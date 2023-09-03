@@ -7,8 +7,6 @@ The while loop is a control flow statement that allows instructions/statements/c
 The syntax of the while loop is as follows:
 
 ```{code-block} c
-<pre class="code-runner-wrapper">
-<code-runner language="c" output="*<br>**<br>***">
 while (<condition>) {
   <statements>;
 }
@@ -104,7 +102,7 @@ The flow chart of the while loop exercise that finds the sum of numbers entered 
 **Step 5: Write the code.** Download {download}`sum-numbers-while.c <../../code/chapter04/sum-numbers-while/sum-numbers-while.c>` to get the following code.
 
 <pre class="code-runner-wrapper">
-<code-runner language="c" output="Enter a number: <b>18</b>
+<code-runner language="c" input="18 5 2 1 -1" output="Enter a number: <b>18</b>
 <b>5</b>
 <b>2</b>
 <b>1</b>
@@ -113,16 +111,16 @@ The sum is 26">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
-    int sum = 0;
-    int num;
-    printf("Enter a number: ");
+  int sum = 0;
+  int num;
+  printf("Enter a number: ");
+  scanf("%d", &num);
+  while(num >= 0){
+    sum += num;
     scanf("%d", &num);
-    while(num >= 0){
-        sum += num;
-        scanf("%d", &num);
-    }
-    printf("The sum is %d\n", sum);
-    return 0;
+  }
+  printf("The sum is %d\n", sum);
+  return 0;
 }
 </code-runner>
 </pre>
@@ -144,7 +142,7 @@ Kindly, refer to the following video if you want to trace the code above.
 
 ## Infinite Loops
 
-What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i >0` is always `true`:
+What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i > 0` is always `true`:
 
 **Code**
 <pre class="code-runner-wrapper">
@@ -152,12 +150,12 @@ What happens when the condition in the while loop is always true? The while loop
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void){
-    int i = 1;
-    while(i > 0){ //will always be true
-        printf("%d ", i);
-        i++;
-    }
-    return 0;
+  int i = 1;
+  while(i > 0){ //will always be true
+    printf("%d ", i);
+    i++;
+  }
+  return 0;
 }
 </code-runner>
 </pre>

@@ -71,8 +71,7 @@ For example, if we compile the following code, we would get a compilation error.
 
 **Code with compilation error**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="4 5"
-output="1 2 3 4 5 6 7 8 9 10">
+<code-runner language="c" highlight-lines="4 5">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -105,7 +104,7 @@ The error message when the loop variable is used outside the loop.
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5"
 output="1 2 3 4 5 6 7 8 9 10
-The value of i when we existed the loop: 11">
+We exited the loop with i = 11">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -170,26 +169,26 @@ You can use the for loop in different ways, including omitting some statements.
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c"
+    <code-runner language="c"
     output="7 * 1 = 7
-    7 * 2 = 14
-    7 * 3 = 21
-    7 * 4 = 28
-    7 * 5 = 35
-    7 * 6 = 42
-    7 * 7 = 49
-    7 * 8 = 56
-    7 * 9 = 63
-    7 * 10 = 70">
+   7 * 2 = 14
+   7 * 3 = 21
+   7 * 4 = 28
+   7 * 5 = 35
+   7 * 6 = 42
+   7 * 7 = 49
+   7 * 8 = 56
+   7 * 9 = 63
+   7 * 10 = 70">
     &#35;include &lt;stdio.h&gt;  
     <br>
-    int main(void) {
-      for (int i = 1, j = 7; i <= 10; printf("7 * %d = %d\n", i, j), i += 1, j += 7)
-        ;
-      return 0;
-    }
+   int main(void) {
+     for (int i = 1, j = 7; i <= 10; printf("7 * %d = %d\n", i, j), i += 1, j += 7)
+       ;
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 4. You can have complex conditions. The condition can be complex using logical (`&&`, `||`, `!`) and relational operators (`>`, `>=`, `<`, `<=`, `==`, `!=`). Conditions cannot be separated using `,` as the initialization and increment statements can. 
 
@@ -226,7 +225,7 @@ You can use the for loop in different ways, including omitting some statements.
 
     **Code**
     <pre class="code-runner-wrapper">
-<code-runner language="c" 
+    <code-runner language="c" 
     output="1 4 9 16 25 36 49 64 81 100 121 144 169 196">
     &#35;include &lt;stdio.h&gt;
     <br>
@@ -237,7 +236,7 @@ You can use the for loop in different ways, including omitting some statements.
       return 0;
     }
     </code-runner>
-</pre>
+    </pre>
 
     **Step 6: Test your code.** You can test your code easily by looking at the numbers printed out. 196, which is the last square printed is less than 200. All numbers printed are squares. 196 is a square of 14, which is less than 50. Therefore, the code is $\sim 100\%$ correct. I have the $\sim$ to encourage you to be **skeptical**!
     ````

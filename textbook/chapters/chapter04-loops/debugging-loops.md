@@ -26,7 +26,8 @@ The following is a code to print a pattern of stars. The code is shown below. Do
 
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="5">
+<code-runner language="c" input="5" output="Enter the number of rows:<br>    
+   *<br>  **<br> ***<br>****<br>">
 #include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -89,7 +90,7 @@ You can find the corrected code below. Download {download}`triangle-fixed.c <../
 
 **Corrected Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="5">
+<code-runner language="c" input="5" output="Enter the number of rows:<br>    *<br>   ***<br>  *****<br> *******<br>*********<br>">
 #include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -120,7 +121,7 @@ The following code is supposed to take input `int` from the user into `maxRange`
 
 **Code with bugs**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="100">
+<code-runner language="c" input="100" output="Enter the maximum range: <b>100</b><br>Random prime number generated is 84">
 // Question 11 in Winter 2018 Midterm Exam
 // Debug the following code
 // The program is supposed to take in from the user
@@ -167,7 +168,7 @@ Download the fixed code: {download}`random-primeNum.c <../../code/chapter04/rand
 
 **Fixed code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="100">
+<code-runner language="c" input="100" output="Enter the maximum range: <b>100</b><br>Random prime number generated is 41">
 // Question 11 in Winter 2018 Midterm Exam
 // Fixed code!
 // The program is supposed to take in from the user

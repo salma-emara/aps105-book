@@ -95,7 +95,7 @@ The flow chart of the do while loop exercise that validates that the user input 
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="5"
+<code-runner language="c" input="-2 5"
 output="Please enter a number between 1 and 10 (inclusive): <b>-2</b>
 Please enter a number between 1 and 10 (inclusive): <b>5</b>
 The number entered is 5.">

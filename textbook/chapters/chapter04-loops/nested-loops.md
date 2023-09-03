@@ -82,21 +82,21 @@ int main(void) {
     **Misplacing `printf("\n")` in the inner loop.**
 
     <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="8"> 
+    <code-runner language="c" highlight-lines="8" output="*<br>*<br>*<br>*<br>*<br>*"> 
     #include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      for (int line = 1; line <= 3; line += 1) {  // loop over lines
-        for (int star = 1; star <= line;
-           star += 1) {  // loop over stars in a single line
-          printf("*");
-          printf("\n");  // misplaced
-        }
-      }
-      return 0;
-    }
+   int main(void) {
+     for (int line = 1; line <= 3; line += 1) {  // loop over lines
+       for (int star = 1; star <= line;
+          star += 1) {  // loop over stars in a single line
+         printf("*");
+         printf("\n");  // misplaced
+       }
+     }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
     **Undesired Output**
     <pre>*<br>*<br>*<br>*<br>*<br>*</pre>
@@ -108,22 +108,22 @@ int main(void) {
 
     **Starting `line` and `star` from `0`.**
     <pre class="code-runner-wrapper">
-<code-runner language="c" input="5" highlight-lines="4 5"
+    <code-runner language="c" input="5" highlight-lines="4 5"
     output="*<br>**<br>***">
     &#35;include &lt;stdio.h&gt;
     <br>
-    int main(void) {
-      for (int line = 0; line < 3; line += 1) {  // loop over lines
-        for (int star = 0; star <= line;
-             star += 1) {  // loop over stars in a single line
-          printf("*");
-        }
-        printf("\n");
-      }
-      return 0;
-    }
+   int main(void) {
+     for (int line = 0; line < 3; line += 1) {  // loop over lines
+       for (int star = 0; star <= line;
+          star += 1) {  // loop over stars in a single line
+         printf("*");
+       }
+       printf("\n");
+     }
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
 ## Let's tweak the pattern a little!
 

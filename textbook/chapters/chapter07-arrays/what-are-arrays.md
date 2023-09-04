@@ -55,7 +55,8 @@ The following question was question 5 in Winter 2022 midterm exam for APS 105 in
 **Code**
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" output="">
+<code-runner language="c" output="first = 2, second = 3, third = 3, fourth = 2, fifth = 30
+10, 20, 30, 37, ">
 &#35;include &lt;stdio.h&gt;
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};

@@ -124,17 +124,17 @@ Given that we now have an array that holds the grades of a class, let's write a 
 #define SIZE 7 
 <br>
 int main(void){
-    int grades[SIZE] = {100, 95, 67, 99, 72, 101, 200};
+  int grades[SIZE] = {100, 95, 67, 99, 72, 101, 200};
 <br>
-    int sum = 0;
-    double avg = 0;
+  int sum = 0;
+  double avg = 0;
 <br>
-    for (int index = 0; index < SIZE; index++ ){
-        sum = sum + grades[index];
-    }
-    avg = (double) sum / SIZE;
-    printf("Average is %.2lf", avg);
-    return 0;
+  for (int index = 0; index < SIZE; index++){
+    sum = sum + grades[index];
+  }
+  avg = (double) sum / SIZE;
+  printf("Average is %.2lf", avg);
+  return 0;
 }
 </code-runner>
 </pre>
@@ -187,22 +187,22 @@ An array with even number of elements before and after reversing.
 #define SIZE 6
 <br>
 int main(void){
-    int arr[SIZE] = {2, 5, 7, 8, 9, 12};
-    for (int index = 0; index < SIZE; index++){
-        printf("%d, ", arr[index]);
-    } 
-    printf("\n");
-    for(int low = 0, high = SIZE - 1; low < high; low++, high\-\-){
-        int temp = arr[low];
-        arr[low] = arr[high];
-        arr[high] = temp; 
-    }
+  int arr[SIZE] = {2, 5, 7, 8, 9, 12};
+  for (int index = 0; index < SIZE; index++){
+      printf("%d, ", arr[index]);
+  } 
+  printf("\n");
+  for(int low = 0, high = SIZE - 1; low < high; low++, high--){
+    int temp = arr[low];
+    arr[low] = arr[high];
+    arr[high] = temp; 
+  }
 <br>
-    for (int index = 0; index < SIZE; index++){
-        printf("%d, ", arr[index]);
-    } 
-    printf("\n");
-    return 0;
+  for (int index = 0; index < SIZE; index++){
+    printf("%d, ", arr[index]);
+  } 
+  printf("\n");
+  return 0;
 }
 </code-runner>
 </pre>

@@ -36,7 +36,7 @@ This is similar to finding the average of the elements in an array.
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
+<code-runner language="c" highlight-lines="3 12 15" output="Sum of elements in the array: 11.">
 &#35;include &lt;stdio.h&gt;
 <br>
 int sumData(int[], const int);
@@ -70,7 +70,7 @@ Since **array identifiers** are also **pointers**, is it possible to index eleme
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="3 13 16" output="Sum of elements in the array: 11.">
+<code-runner language="c" highlight-lines="3 12 15" output="Sum of elements in the array: 11.">
 &#35;include &lt;stdio.h&gt;
 <br>
 int sumData(int*, int);
@@ -103,8 +103,8 @@ In line $16$, we can access elements in the array by adding `i` to the pointer `
 The syntax of pointers -- `*` and `&` -- and syntax of arrays -- `[]` are interchangeable. This means that we can use any syntax at any time in our program as long as the statements are correct! For example,
 
 **Code**
-<pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="3 4 14 15 18 19" output="Sum of elements in the array: 11.">
+{{code_runner_header}}
+<pre class="code-runner-wrapper"> <code-runner language="c" highlight-lines="4 14 18" output="Sum of elements in the array: 11.">
 &#35;include &lt;stdio.h&gt;
 <br>
 // Input is int*
@@ -130,6 +130,7 @@ int sumData(int list[], const int size) {
 </pre>
 
 In line $4$, we define the input as a pointer: `int*`. However, we set the input in the header of the function as `int[]` in line $15$, since `int*` and `int[]` are equivalent. Similarly, in line $19$, we index in the array list as `*(list + index)`, since it is equivalent to `list[i]`.
+````
 
 ## Are we passing the array by value or by pointers?
 

@@ -54,10 +54,9 @@ In line $8$, we are referring to the `int` variable that `number` has it's addre
 ```
 
 **Test with main function**
+{{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="7" input="-1
-3
-4" output="Enter a number to test the Goldbach conjecture: <b>-1</b> 
+<code-runner language="c" highlight-lines="7" input="-1 3 4" output="Enter a number to test the Goldbach conjecture: <b>-1</b> 
 Enter a number to test the Goldbach conjecture: <b>3</b> 
 Enter a number to test the Goldbach conjecture: <b>4</b>">
 &#35;include &lt;stdio.h&gt;

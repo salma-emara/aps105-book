@@ -96,8 +96,8 @@ If you do not know the size of the array when you write a program, you have the 
         **Code with Memory Leaks**
         <pre class="code-runner-wrapper">
         <code-runner language="c" input="5
-        4 8 9 3 7" highlight-lines="2 16 20 24 26" output="Enter size of array: <b>5</b>
-        Enter grades: <b>4 8 9 3 7</b>
+        4 8 9 3 7" highlight-lines="2 16 20 24 26" output="Enter size of array:<b>5</b>
+        Enter grades:<b>4 8 9 3 7</b>
         Average is 6.20">
         &#35;include &lt;stdio.h&gt;
         &#35;include &lt;stdlib.h&gt;
@@ -106,7 +106,7 @@ If you do not know the size of the array when you write a program, you have the 
         <br>
         int main(void) {
           int size;
-          printf("Enter size of array: ");
+          printf("Enter size of array:");
           scanf("%d", &size);
           double avg = getAverage(size);
           printf("Average is %.2lf\n", avg);
@@ -116,7 +116,7 @@ If you do not know the size of the array when you write a program, you have the 
         double getAverage(int size) {
           int* myArray = (int*)malloc(size * sizeof(int));
           <br>
-          printf("Enter grades: ");
+          printf("Enter grades:");
           for (int index = 0; index < size; index++) {
             scanf("%d", &myArray[index]);
           }
@@ -154,9 +154,9 @@ If you do not know the size of the array when you write a program, you have the 
         **Code with No Memory Leaks**
         <pre class="code-runner-wrapper">
         <code-runner language="c" input="5
-        4 8 9 3 7" highlight-lines="26 27" output="Enter size of array: <b>5</b>
-        Enter grades: <b>4 8 9 3 7</b>
-        Average is 6.20">
+      4 8 9 3 7" highlight-lines="26 27" output="Enter size of array:<b>5</b>
+      Enter grades:<b>4 8 9 3 7</b>
+      Average is 6.20">
         &#35;include &lt;stdio.h&gt;
         &#35;include &lt;stdlib.h&gt;
         <br>
@@ -164,7 +164,7 @@ If you do not know the size of the array when you write a program, you have the 
         <br>
         int main(void) {
           int size;
-          printf("Enter size of array: ");
+          printf("Enter size of array:");
           scanf("%d", &size);
           double avg = getAverage(size);
           printf("Average is %.2lf\n", avg);
@@ -174,7 +174,7 @@ If you do not know the size of the array when you write a program, you have the 
         double getAverage(int size) {
           int* myArray = (int*)malloc(size * sizeof(int));
           <br>
-          printf("Enter grades: ");
+          printf("Enter grades:");
           for (int index = 0; index < size; index++) {
             scanf("%d", &myArray[index]);
           }

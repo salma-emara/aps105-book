@@ -174,12 +174,12 @@ The second step **"2. Print out the number of spaces that is equal to $n$ - row 
 
 <pre class="code-runner-wrapper">
 <code-runner language="c" input="5"
-output="Enter the number of rows: <b>5</b> *<br>**<br>***<br>****<br>*****">
+output="Enter the number of rows:<b>5</b><br>    *<br>   **<br>  ***<br> ****<br>*****">
 #include &lt;stdio.h&gt;
 <br>
 int main(void) {
   int n = 0;
-  printf("Enter the number of rows: ");
+  printf("Enter the number of rows:");
   scanf("%d", &n);
   for (int row = 1; row <= n; row += 1) {
     for (int col = 1; col <= n; col += 1) {

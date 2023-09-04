@@ -66,7 +66,7 @@ The entire code in use will be as follows. Download {download}`print-pattern-fun
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c" highlight-lines="4 5 6 12" input="5"
-output="Enter the number of lines in the pattern: <b>5</b><br>*<br>**<br>***<br>****<br>*****">
+output="Enter the number of lines in the pattern:<b>5</b><br>*<br>**<br>***<br>****<br>*****">
 // This program prints a pattern of stars using two functions
 &#35;include &lt;stdio.h&gt;
 <br>
@@ -76,7 +76,7 @@ void printStars(int numOfStars);
 <br>
 int main(void) {
   int lines;
-  printf("Enter the number of lines in the pattern: ");
+  printf("Enter the number of lines in the pattern:");
   scanf("%d", &lines);
   printPattern(lines);
   return 0;
@@ -149,7 +149,7 @@ There is another way to write your program when it has functions, that does not 
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="5" output="Enter the number of lines in the pattern: <b>5</b><br>*<br>**<br>***<br>****<br>*****"> 
+<code-runner language="c" input="5" output="Enter the number of lines in the pattern:<b>5</b><br>*<br>**<br>***<br>****<br>*****"> 
 // This program prints a pattern of stars using two functions
 &#35;include &lt;stdio.h&gt;
 <br>
@@ -168,7 +168,7 @@ void printPattern(int numOfRows) {
 <br>
 int main(void) {
   int lines;
-  printf("Enter the number of lines in the pattern: ");
+  printf("Enter the number of lines in the pattern:");
   scanf("%d", &lines);
   printPattern(lines);
   return 0;

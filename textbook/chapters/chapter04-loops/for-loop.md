@@ -71,7 +71,7 @@ For example, if we compile the following code, we would get a compilation error.
 
 **Code with compilation error**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="4 5">
+<code-runner language="c" highlight-lines="4 5" output="(compiler-time error)">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {

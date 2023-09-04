@@ -9,7 +9,7 @@ We can communicate from a function by returning a value. For example, in the fol
 **Code**
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="36" output="Enter a number: 36
+<code-runner language="c" input="36" output="Enter a number:<b>36</b>
 36 is a perfect square">
 &#35;include &lt;math.h&gt;
 &#35;include &lt;stdbool.h&gt;
@@ -19,7 +19,7 @@ bool isPerfectSquare(int);
 <br>
 int main(void) {
   int num;
-  printf("Enter a number: ");
+  printf("Enter a number:");
   scanf("%d", &num);
 <br>
   if (isPerfectSquare(num)) {

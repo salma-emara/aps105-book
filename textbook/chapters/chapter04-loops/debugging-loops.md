@@ -95,7 +95,7 @@ You can find the corrected code below. Download {download}`triangle-fixed.c <../
 <br>
 int main(void) {
   int n = 0;
-  printf("Enter the number of rows: ");
+  printf("Enter the number of rows:");
   scanf("%d", &n);
   <br>
   for (int row = 1; row <= n; row += 1) {

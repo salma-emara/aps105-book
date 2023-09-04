@@ -44,18 +44,18 @@ If you do not know the size of the array when you write a program, you have the 
     We can use the user input as the size of the area. For example,
     {{code_runner_header}}
     <pre class="code-runner-wrapper">
-<code-runner language="c" input="300" output="Enter size of array:">
+    <code-runner language="c" input="300" output="Enter size of array:">
     &#35;include &lt;stdio.h&gt;
-    int main(void) {
-        int size;
-        printf("Enter size of array: ");
-        scanf("%d", &size);
-        int arr[size];
-        printf("Array allocated from %p to %p", arr, arr+size);
-        return 0;
-    }
+   int main(void) {
+     int size;
+     printf("Enter size of array: ");
+     scanf("%d", &size);
+     int arr[size];
+     printf("Array allocated from %p to %p", arr, arr+size);
+     return 0;
+   }
     </code-runner>
-</pre>
+    </pre>
 
     **Problem.** However, again the array will be allocated on the stack. This means if the stack does not have enough space, the program will not run as expected. The problem is the same problem with the **fixed size arrays**.
 
@@ -95,7 +95,7 @@ If you do not know the size of the array when you write a program, you have the 
 
         **Code with Memory Leaks**
         <pre class="code-runner-wrapper">
-<code-runner language="c" input="5
+        <code-runner language="c" input="5
         4 8 9 3 7" highlight-lines="2 16 20 24 26" output="Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
         Average is 6.20">
@@ -127,7 +127,7 @@ If you do not know the size of the array when you write a program, you have the 
           return (double)sum / size;
         }
         </code-runner>
-</pre>
+        </pre>
 
         In line $2$, we include `stdlib.h` library to get access to `malloc` and `free`.
 
@@ -153,7 +153,7 @@ If you do not know the size of the array when you write a program, you have the 
         
         **Code with No Memory Leaks**
         <pre class="code-runner-wrapper">
-<code-runner language="c" input="5
+        <code-runner language="c" input="5
         4 8 9 3 7" highlight-lines="26 27" output="Enter size of array: <b>5</b>
         Enter grades: <b>4 8 9 3 7</b>
         Average is 6.20">
@@ -187,7 +187,7 @@ If you do not know the size of the array when you write a program, you have the 
           return (double)sum / size;
         }
         </code-runner>
-</pre>
+        </pre>
 
         In line $26$, we free the dynamically allocated memory before `myArray` goes out of scope. Now, there is no memory leak. 
 
@@ -213,20 +213,12 @@ You are asked to write a function `int *merge(int *size)`, which receives two so
 Here is an example `main()` function that can be used to test your work:
 
 **Starter Code**
-<pre class="code-runner-wrapper">
-<code-runner language="c" input="3
-1 4 7
-4
-2 3 5 10" output="Please enter the size of array number 1: <b>3</b>
-Please enter the array number 1: <b>1 4 7</b>
-Please enter the size of array number 2: <b>4</b>
-Please enter the array number 2: <b>2 3 5 10</b>
-Result: 1 2 3 4 5 7 10 ">
-&#35;include &lt;stdio.h&gt;
-&#35;include &lt;stdlib.h&gt;
-<br>
+```{code-block} c
+#include <stdio.h>
+#include <stdlib.h>
+
 int *merge(int *size);
-<br>
+
 int main(void) {
   int size;
   int *mergedArray = merge(&size);
@@ -238,10 +230,18 @@ int main(void) {
   free(mergedArray);
   return 0;
 }
-<br>
+
 int *merge(int *size) {
-<!-- TODO: missing function body here? -->
-</code-runner>
+
+```
+
+**Expected Output[^1]**
+<pre>
+Please enter the size of array number 1: <b>3</b>
+Please enter the array number 1: <b>1 4 7</b>
+Please enter the size of array number 2: <b>4</b>
+Please enter the array number 2: <b>2 3 5 10</b>
+Result: 1 2 3 4 5 7 10 
 </pre>
 
 
@@ -279,10 +279,15 @@ Please note that towards the end, when array `a` was all copied to the merged ar
 **Step 4: Write code.** Download {download}`merge.c <../../code/chapter08/merge/merge.c>` if you want to run the program yourself.
 
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="73 74 75 76" input="5
-1 2 3 4 5
-3
-60 70 80" output="">
+<code-runner language="c" highlight-lines="73 74 75 76" input="3
+1 4 7
+4
+2 3 5 10" output="Please enter the size of array number 1: <b>3</b>
+ Please enter the array number 1: <b>1 4 7</b>
+ Please enter the size of array number 2: <b>4</b>
+ Please enter the array number 2: <b>2 3 5 10</b>
+ Result:
+ 1 2 3 4 5 7 10">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 <br>
@@ -367,3 +372,5 @@ int *merge(int *size) {
 **Note:** In lines $73$ -- $76$, we free any memory space that we will not have access to in the main function. We do not free `merge` array, because we are returning a pointer to the first element of `merge`. Hence, it is not a memory leak since we will still have access to it in the `main` function.
 
 **Step 5: Test your code.** Test this code with one sized arrays, zero sized arrays, positive and negative integers in the array to make sure it works.
+
+[^1]: Inputs to programs are in bold.

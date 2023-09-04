@@ -70,7 +70,7 @@ int main(void) {
 }
 <br>
 void simple(int p) { 
-    p = p / 2; 
+  p = p / 2; 
 }
 </code-runner>
 </pre>
@@ -92,8 +92,8 @@ int main(void) {
 }
 <br>
 int simple(int p) { 
-    p = p / 2; 
-    return p;
+  p = p / 2; 
+  return p;
 }
 </code-runner>
 </pre>

@@ -39,14 +39,14 @@ The following code uses the recursive function `printRow`. Download {download}`p
 **Code**
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="4" output='Enter number of stars: <b>4</b><br>****' highlight-lines="15 17 18">
+<code-runner language="c" input="4" output='Enter number of stars:<b>4</b><br>****' highlight-lines="15 17 18">
 &#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
 <br>
 int main(void) {
   int stars;
-  printf("Enter number of stars: ");
+  printf("Enter number of stars:");
   scanf("%d", &stars);
   printRow(stars);
   return 0;
@@ -54,9 +54,9 @@ int main(void) {
 <br>
 void printRow(int n) {
   if (n == 1) {
-    printf("\*\n");
+    printf("*\n");
   } else {
-    printf("\*");
+    printf("*");
     printRow(n - 1);
   }
 }
@@ -96,7 +96,8 @@ If we switch the order of `printf("*")` and `printRow(n - 1)` as in the followin
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="4" output='Enter number of stars: <b>4</b>
+<code-runner language="c" input="4
+" output='Enter number of stars:<b>4</b>
 *
 ***'>
 &#35;include &lt;stdio.h&gt;
@@ -105,7 +106,7 @@ void printRow(int n);
 <br>
 int main(void) {
   int stars;
-  printf("Enter number of stars: ");
+  printf("Enter number of stars:");
   scanf("%d", &stars);
   printRow(stars);
   return 0;
@@ -113,10 +114,10 @@ int main(void) {
 <br>
 void printRow(int n) {
   if (n == 1) {
-    printf("\*\n");
+    printf("*\n");
   } else {
     printRow(n - 1);
-    printf("\*");
+    printf("*");
   }
 }
 </code-runner>
@@ -184,7 +185,8 @@ Download {download}`printTriangle.c <../../code/chapter11/printTriangle/printTri
 **Code**
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="5" output='Enter number of rows: <b>5</b><br>*****<br>****<br>***<br>**<br>*' highlight-lines="14 15 16 17 18 19">
+<code-runner language="c" input="5" output='Enter number of rows:<b>5</b>
+*****<br>****<br>***<br>**<br>*' highlight-lines="14 15 16 17 18 19">
 &#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
@@ -192,7 +194,7 @@ void printTriangle(int n);
 <br>
 int main(void) {
   int rows;
-  printf("Enter number of rows: ");
+  printf("Enter number of rows:");
   scanf("%d", &rows);
   printTriangle(rows);
   return 0;
@@ -207,9 +209,9 @@ void printTriangle(int n) {
 <br>
 void printRow(int n) {
   if (n == 1) {
-    printf("\*\n");
+    printf("*\n");
   } else {
-    printf("\*");
+    printf("*");
     printRow(n - 1);
   }
 }
@@ -254,7 +256,7 @@ The following code snippet is one way to implement the recursive function `print
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="16 17" input="3" output='Enter number of rows: <b>3</b><br>*<br>**<br>***'>
+<code-runner language="c" highlight-lines="16 17" input="3" output='Enter number of rows:<b>3</b><br>*<br>**<br>***'>
 &#35;include &lt;stdio.h&gt;
 <br>
 void printRow(int n);
@@ -262,7 +264,7 @@ void printInvertedTriangle(int n);
 <br>
 int main(void) {
   int rows;
-  printf("Enter number of rows: ");
+  printf("Enter number of rows:");
   scanf("%d", &rows);
   printInvertedTriangle(rows);
   return 0;
@@ -277,9 +279,9 @@ void printInvertedTriangle(int n) {
 <br>
 void printRow(int n) {
   if (n == 1) {
-    printf("\*\n");
+    printf("*\n");
   } else {
-    printf("\*");
+    printf("*");
     printRow(n - 1);
   }
 }
@@ -334,7 +336,8 @@ The following code is one way to implement the recursive function `printPattern`
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="3" output='Enter number of max stars in a row: <b>3</b>*<br>**<br>***<br>' 
+<code-runner language="c" input="3" output='Enter number of max stars in a row:<b>3</b>
+***<br>**<br>*<br>*<br>**<br>***<br>' 
 highlight-lines="16 17 18">
 &#35;include &lt;stdio.h&gt;
 <br>
@@ -343,7 +346,7 @@ void printPattern(int n);
 <br>
 int main(void) {
   int rows;
-  printf("Enter number of max stars in a row: ");
+  printf("Enter number of max stars in a row:");
   scanf("%d", &rows);
   printPattern(rows);
   return 0;
@@ -359,9 +362,9 @@ void printPattern(int n) {
 <br>
 void printRow(int n) {
   if (n == 1) {
-    printf("\*\n");
+    printf("*\n");
   } else {
-    printf("\*");
+    printf("*");
     printRow(n - 1);
   }
 }

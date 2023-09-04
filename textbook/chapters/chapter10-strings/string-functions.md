@@ -111,7 +111,7 @@ The following program demonstrates the use of `strcpy`:
 int main(void) {
   char s[] = "Hello";
   char d[6];
-  printf("d after copying has '%s\\'.\n", strcpy(d, s));
+  printf("d after copying has '%s\'.\n", strcpy(d, s));
   return 0;
 }
 </code-runner>
@@ -516,6 +516,7 @@ int main(void) {
   return 0;
 }
 </coder-runner>
+</pre>
 
 ### `strstr`
 

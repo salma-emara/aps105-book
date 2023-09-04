@@ -51,7 +51,7 @@ The other way to declare an array of strings, we can declare an array of `char*`
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="4 6 7 8 9 10 11 12 13 14 15 16 17"
+<code-runner language="c" highlight-lines="2 4 5 6 7 8 9 10 11 12 13 14 15"
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {

@@ -155,7 +155,9 @@ For example, if the user input was `ABCDEFGHIJ` to the following program, what w
 
 **Code**
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="6">
+<code-runner language="c" highlight-lines="6" input="ABCDEFJI" output="Enter a string: 
+<b>ABCDEFJI</b>
+s is saved as: ABCDEFJI">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -238,7 +240,8 @@ We want to write a function that takes a string as input from the user and store
 For example, in the following code, we take a string from the user one character at a time and print each character on a new line till the user enters a new line character.
 
 <pre class="code-runner-wrapper">
-<code-runner language="c" input="APS105" output="Enter characters: 
+<code-runner language="c" input="APS105
+" output="Enter characters: 
 <b>APS105</b>
 A
 P

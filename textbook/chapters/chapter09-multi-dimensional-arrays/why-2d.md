@@ -162,7 +162,7 @@ Then, to get to a particular column, you need to add the index of the column. Fo
 **Code**
 <pre class="code-runner-wrapper">
 <code-runner language="c"  output="1   2   3
-  4   5   6">
+4   5   6">
 &#35;include &lt;stdio.h&gt;
 <br>
 int main(void) {
@@ -176,7 +176,7 @@ int main(void) {
   <br>
   for (int row = 0; row < 2; row++) {
     for (int col = 0; col < 3; col++) {
-      printf("%4d", \*(\*(myArray + row) + col));
+      printf("%4d", *(*(myArray + row) + col));
       // or printf("%4d", myArray[row][col]);
     }
     printf("\n");

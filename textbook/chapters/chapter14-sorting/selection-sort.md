@@ -77,7 +77,7 @@ We implement selection sort as follows. In lines $8$ to $12$, we implement the s
 **Code**
 {{code_runner_header}}
 <pre class="code-runner-wrapper">
-<code-runner language="c" highlight-lines="8 9 10 11 12" output='After iteration 1: 9 5 2 8 5 18<br>After iteration 2: 5 5 2 8 9 18<br>After iteration 3: 5 5 2 8 9 18<br>After iteration 4: 2 5 5 8 9 18<br>After iteration 5: 2 5 5 8 9 18<br>2 5 5 8 9 18'>
+<code-runner language="c" highlight-lines="9 10 11 12 13" output='After iteration 1: 9 5 2 8 5 18<br>After iteration 2: 5 5 2 8 9 18<br>After iteration 3: 5 5 2 8 9 18<br>After iteration 4: 2 5 5 8 9 18<br>After iteration 5: 2 5 5 8 9 18<br>2 5 5 8 9 18'>
 #include &lt;stdio.h&gt;
 void printArray(int list[], int listLength) {
   for (int i = 0; i < listLength; i++) {

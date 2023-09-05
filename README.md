@@ -72,7 +72,7 @@ To add a new quiz:
 
 1- Create a new .toml file containing the quiz in tetbook/quizzes in the chapter folder of your choice.
 
-2- In your terminal, execute the following command in the home directory of the project, i.e. aps105-book.
+2- In your terminal, execute the following command in `aps105-book` directory.
 
 ```
 node ./textbook/_static/toml_to_js_convertor.js
@@ -89,10 +89,10 @@ To edit an existing quiz:
 
 1- Open the .toml file of the quiz you want to edit and make the desired changes.
 
-2- In your terminal, execute the following command.
+2- In your terminal, go to `aps105-book` directory and execute the following command.
 
 ```
-node toml_to_js_convertor.js
+node ./textbook/_static/toml_to_js_convertor.js
 ```
 
 

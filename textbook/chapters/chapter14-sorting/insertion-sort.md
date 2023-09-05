@@ -85,50 +85,43 @@ We write pseudocode for insertion sort as follows:
 The following code snippet shows the insertion sort function.
 
 **Code**
-```{code-block} c
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output='After iteration 1: 2 9 6 5 1 7<br>After iteration 2: 2 6 9 5 1 7<br>After iteration 3: 2 5 6 9 1 7<br>After iteration 4: 1 2 5 6 9 7<br>After iteration 5: 1 2 5 6 7 9<br>1 2 5 6 7 9'>
+#include &lt;stdio.h&gt;
 void printArray(int list[], int listLength) {
   for (int i = 0; i < listLength; i++) {
     printf("%d ", list[i]);
   }
   printf("\n");
 }
-
+<br>
 void insertionSort(int A[], int listLength) {
   int top;
-
+<br>
   for (top = 1; top < listLength; top++) {
     int item = A[top];
     int ind = top;
-
+<br>
     while (ind > 0 && item < A[ind - 1]) {
       // shift all elements > item to the right
       A[ind] = A[ind - 1];  
       ind--;
     }
-
+<br>
     A[ind] = item;
     printf("After iteration %d: ", top);
     printArray(A, listLength);
   }
 }
-
+<br>
 int main(void) {
   int list[] = {9, 2, 6, 5, 1, 7};
-
+<br>
   insertionSort(list, 6);
   printArray(list, 6);
-
+<br>
   return 0;
 }
-```
-
-**Output**
-<pre>
-After iteration 1: 2 9 6 5 1 7 
-After iteration 2: 2 6 9 5 1 7 
-After iteration 3: 2 5 6 9 1 7 
-After iteration 4: 1 2 5 6 9 7 
-After iteration 5: 1 2 5 6 7 9 
-1 2 5 6 7 9 
+</code-runner>
 </pre>

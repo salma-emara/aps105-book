@@ -76,16 +76,15 @@ To highlight the main steps of binary search, we can write the algorithm in pseu
 To implement binary search, we need to write a function that takes in an array, size of the array and an item to search for. The function should return the index of the item if it is found in the array. If the item is not found, the function should return `-1`. Download the following code {download}`binary-search.c <../../code/chapter15/binary-search/binary-search.c>` if you want to play with it.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 17
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="17" output='Found 9 at index 4'>
+&#35;include &lt;stdio.h&gt;
+<br>
 int binarySearch(int list[], int listLength, int item) {
   int low = 0;
   int high = listLength - 1;
   int middle;
-
+<br>
   while (low <= high) {
     middle = (low + high) / 2;
     if (item == list[middle])
@@ -97,17 +96,13 @@ int binarySearch(int list[], int listLength, int item) {
   }
   return -1;
 }
-
+<br>
 int main() {
   int list[] = {1, 3, 5, 7, 9, 10, 12};
   printf("Found 9 at index %d\n", binarySearch(list, 7, 9));
   return 0;
 }
-```
-
-**Output**
-<pre>
-Found 9 at index 4
+</code-runner>
 </pre>
   
 In line $17$, we have exited from the while loop. This means that we have searched the entire array and have not found `item`. Therefore, we return `-1` to indicate that `item` was not found.
@@ -157,28 +152,28 @@ We can see that the values of `low` and `high` are updated in the recursive func
 **Reduce number of arguments** I would like to point out that functions with several arguments passed is not ideal, as someone may forget how to call the recursive function. We can improve this! We can implement a function that takes three arguments, an array, the size of the array and an item to search for. The function can then call the recursive function with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. This is what we do in the following implementation. Download the following code {download}`binary-search-recursive.c <../../code/chapter15/binary-search-recursive/binary-search-recursive.c>` if you want to play with it.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 12-14
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="12 13 14" output='Found 9 in index 4'>
+&#35;include &lt;stdio.h&gt;
+<br>
 int binarySearchHelper(int list[], int low, int high, int item);
 int binarySearchRecursive(int list[], int listLength, int item);
-
+<br>
 int main(){
     int list[] = {1, 3, 5, 7, 9, 10, 12};
     printf("Found 9 in index %d", binarySearchRecursive(list, 7, 9));
     return 0;
 }
-
+<br>
 int binarySearchRecursive(int list[], int listLength, int item) {
   return binarySearchHelper(list, 0, listLength - 1, item);
 }
-
+<br>
 int binarySearchHelper(int list[], int low, int high, int item) {
   if (high < low)  // failure - item not in list
     return -1;
-
+<br>
   int middle = (low + high) / 2;
   if (item == list[middle])  // success
     return middle;
@@ -187,11 +182,7 @@ int binarySearchHelper(int list[], int low, int high, int item) {
   else  // try top half
     return binarySearchHelper(list, middle + 1, high, item);
 }
-```
-
-**Output**
-<pre>
-Found 9 in index 4
+</code-runner>
 </pre>
 
 In lines $12$--$14$, we call the recursive function `binarySearchHelper` with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. As a developer, you can later just sell this function to your users, and they can call it with just three arguments, an array, size of the array and an item to search for. The function will then call the recursive function with the values of `low` and `high` set to `0` and the length of the array - 1, respectively. 

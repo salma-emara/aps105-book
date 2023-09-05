@@ -33,9 +33,11 @@ If `item` is found, the algorithm returns the index of the element in the list i
 In the following example, we look for the element 7 in the array. Download the following code {download}`sequential-search.c <../../code/chapter15/sequential-search/sequential-search.c>` if you want to play with it.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output='Found 7 at index 3.'>
+&#35;include &lt;stdio.h&gt;
+<br>
 int sequentialSearch(int list[], int listLength, int item) {
   for (int index = 0; index < listLength; index++) {
     if (item == list[index]) {
@@ -44,18 +46,14 @@ int sequentialSearch(int list[], int listLength, int item) {
   }
   return -1;
 }
-
+<br>
 int main(void) {
   int list[] = {3, 5, 6, 7, 9};
   printf("Found 7 at index %d.\n", sequentialSearch(list, 5, 7));
   return 0;
 }
-```
-
-**Output**
-```
-Found 7 at index 3.
-```
+</code-runner>
+</pre>
 
 The minimum number of comparisons to find the desired element is 1, and the maximum number of comparisons is the length of the list. The average number of comparisons is $\frac{n}{2}$, where $n$ is the length of the list.
 

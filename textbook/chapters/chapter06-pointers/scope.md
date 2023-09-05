@@ -14,21 +14,17 @@ Using `i` variable before declaring it is not allowed, and will cause compile ti
 ```
 
 **Code**
-```{code-block} c
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="(compile-time error)">
 int main() {
   i = 0;
   int i;
-
+<br>
   return 0;
 }
-```
-
-**Compile-time error**
-```{code-block} c
-error: use of undeclared identifier 'i'
-```
-
-## Variables inside a function are only scoped within the function.
+</code-runner>
+</pre>
 
 Variables declared in a function, can only be used in that function. These variables are referred to as **local variables** or **internal identifiers**. 
 
@@ -61,52 +57,51 @@ Using `x` variable outside the compound statement where it was declared. This ca
 ```
 
 **Code causing compile-time error**
-```{code-block} c
-#include <stdio.h>
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="(compile-time error)">
+&#35;include &lt;stdio.h&gt;
 int main() {
   int i = 0;
-
+<br>
   {
     int x = 5;
     printf("Inside compound statement: x = %d.\n", x);
   }
   //  Causes compile-time error as x is undefined
   printf("Outside compound statement: x = %d.\n", x);
-
+<br>
   return 0;
 }
-```
+</code-runner>
+</pre>
 
 ## External identifiers/global variables
 
 The external identifiers or global variables are defined at the top of the `.c` file outside the main function, and all other functions. Its scope is the entire program. However, it is not good practice to use them, as it can be error-prone. If several functions in your program are using the global variable, and each function is changing it can be difficult to manage/track the value of this global variable. Hence, it is not advisable to use global variables.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="In main: Global variable i = 0.
+In func: Global variable i = 0.
+In main after calling func: Global variable i = 5.">
+&#35;include &lt;stdio.h&gt;
+<br>
 int i = 0;
-
+<br>
 void func();
-
+<br>
 int main(void) {
   printf("In main: Global variable i = %d.\n", i);
   func();
   printf("In main after calling func: Global variable i = %d.\n", i);
   return 0;
 }
-
+<br>
 void func() {
   printf("In func: Global variable i = %d.\n", i);
   i = 5;
 }
-```
-
-**Output**
-<pre>
-In main: Global variable i = 0.
-In func: Global variable i = 0.
-In main after calling func: Global variable i = 5.
+</code-runner>
 </pre>
 
 ## Overlapping scope
@@ -122,9 +117,12 @@ The overlapping scope of two variables named `i`.
 ```
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Outer i = 1.
+Inner i = 2.
+Outer i = 1.">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int i = 1;
   printf("Outer i = %d.\n", i);
@@ -133,15 +131,10 @@ int main(void) {
     printf("Inner i = %d.\n", i);
   }
   printf("Outer i = %d.\n", i);
-
+<br>
   return 0;
 }
-```
-**Output**
-<pre>
-Outer i = 1.
-Inner i = 2.
-Outer i = 1.
+</code-runner>
 </pre>
 
 

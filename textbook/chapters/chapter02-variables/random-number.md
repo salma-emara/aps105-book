@@ -15,25 +15,30 @@ int rand();
 Let's try running the following code.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Random number 1: 1804289383
+Random number 2: 846930886
+Random number 3: 1681692777">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
+<br>
+int main(void) {
   printf("Random number 1: %d\n", rand());
   printf("Random number 2: %d\n", rand());
   printf("Random number 3: %d\n", rand());
   return 0;
 }
-```
+</code-runner>
+</pre>
 
-**Output**
+<!-- **Output**
 
 <pre>
 Random number 1: 16807
 Random number 2: 282475249
 Random number 3: 1622650073
-</pre> 
+</pre>  -->
 
 Wait! I tried running the code again, and I got the same numbers. How is `rand()` then generating a random number? The answer is that `rand()` is generating *pseudo*-random numbers. A *pseudo*-random number is a number that appears to be random, but is actually **not** 🤯. Who decides these *pseudo*-random numbers? It is a pseudo-random number generator. As programmers, we can choose our pseudo-random number generator. We can do so by setting a **seed**. What on earth is a **seed**?
 
@@ -64,11 +69,20 @@ The subsequent calls to `rand()` after `srand(1);` will return the same set of r
 The following code illustrates the subsequent calls to `rand()` after `srand(1);`. Download {download}`seed.c <../../code/chapter2/seed/seed.c>` to get the following code.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Random number 1: 16807
+Random number 2: 282475249
+Random number 3: 1622650073
+Random number 4: 16807
+Random number 5: 16807
+Random number 6: 282475249
+Random number 7: 16807
+Random number 8: 282475249
+Random number 9: 1622650073">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
+<br>
+int main(void) {
   srand(1);
   printf("Random number 1: %d\n", rand());
   printf("Random number 2: %d\n", rand());
@@ -84,9 +98,10 @@ int main() {
   printf("Random number 9: %d\n", rand());
   return 0;
 }
-```
+</code-runner>
+</pre>
 
-**Output**
+<!-- **Output**
 <pre>
 Random number 1: 16807
 Random number 2: 282475249
@@ -97,7 +112,7 @@ Random number 6: 282475249
 Random number 7: 16807
 Random number 8: 282475249
 Random number 9: 1622650073
-</pre>
+</pre> -->
 
 ## Are we generating random numbers?
 
@@ -119,24 +134,27 @@ The data type `time_t` is a signed 32-bit `int` type representing the number of 
 The following code will now generate different random numbers every time you run it. Download {download}`time-seed.c <../../code/chapter2/time-seed/time-seed.c>` to get the following code.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-int main() {
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Random number 1: 1783039037
+Random number 2: 1550284621">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
+&#35;include &lt;time.h&gt;
+<br>
+int main(void) {
   srand(time(NULL));
   printf("Random number 1: %d\n", rand());
   printf("Random number 2: %d\n", rand());
   return 0;
 }
-```
+</code-runner>
+</pre>
 
-**Potential Output**
+<!-- **Potential Output**
 <pre>
 Random number 1: 1783039037
 Random number 2: 1550284621
-</pre>
+</pre> -->
 
 **Question:** If we do `srand(rand());` instead of `srand(time(NULL));`, would this make the seed random? The answer is **NO**. The first call to `rand()` in `srand()` would return the same random number everytime we run the program. The default seed has a default of `1`. This makes `srand(rand());` always pick a fixed seed.
 
@@ -167,20 +185,23 @@ To generate a number between `0` and `5`, we need to do `rand() % 6;`. While to 
 For example, let's develop a code for rolling a dice 🎲! We expect that every time we run the program we **do not** get the same dice number. Download {download}`roll-dice.c <../../code/chapter2/roll-dice/roll-dice.c>` to get the following code.
 
 **Code**
-```{code-block} c
-#include <stdlib.h>
-#include <time.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Dice roll is 3">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;stdlib.h&gt;
+&#35;include &lt;time.h&gt;
+<br>
 int main(void) {
   srand(time(NULL));
-
+<br>
   printf("Dice roll is %d\n", rand() % 6 + 1);
-
+<br>
   return 0;
 }
-```
+</code-runner>
+</pre>
 
-**Potential output**
+<!-- **Potential output**
 <pre>
 Dice roll is 3
-</pre>
+</pre> -->

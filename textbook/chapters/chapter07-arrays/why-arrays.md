@@ -117,31 +117,26 @@ Given that we now have an array that holds the grades of a class, let's write a 
 
 **Step 4: Write code.** Let's convert the steps into code. Download {download}`avg-array.c <../../code/chapter07/avg-array/avg-array.c>` if you want to run the program yourself.
 
-
-```{code-block} c
-:linenos:
-:emphasize-lines: 10, 13
-#include <stdio.h>
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="10 13" output="Average is 104.86.">
+#include &lt;stdio.h&gt;
 #define SIZE 7 
-
+<br>
 int main(void){
-    int grades[SIZE] = {100, 95, 67, 99, 72, 101, 200};
-
-    int sum = 0;
-    double avg = 0;
-
-    for (int index = 0; index < SIZE; index++ ){
-        sum = sum + grades[index];
-    }
-    avg = (double) sum / SIZE;
-    printf("Average is %.2lf", avg);
-    return 0;
+  int grades[SIZE] = {100, 95, 67, 99, 72, 101, 200};
+<br>
+  int sum = 0;
+  double avg = 0;
+<br>
+  for (int index = 0; index < SIZE; index++){
+    sum = sum + grades[index];
+  }
+  avg = (double) sum / SIZE;
+  printf("Average is %.2lf", avg);
+  return 0;
 }
-```
-
-**Output**
-<pre>
-Average is 104.86.
+</code-runner>
 </pre>
 
 **Step 5: Debug your code.** The above code is working fine for the given example. Some _common mistakes_ that will help you debug your code are:
@@ -185,36 +180,31 @@ An array with even number of elements before and after reversing.
 
 **Step 4: Write code.** Download {download}`reverse-array.c <../../code/chapter07/reverse-array/reverse-array.c>` if you want to run the program yourself.
 
-```{code-block} c
-:emphasize-lines: 10, 11 - 13
-:linenos:
-#include <stdio.h>
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="10 11 12 13" output="2, 5, 7, 8, 9, 12, 
+12, 9, 8, 7, 5, 2,">
+&#35;include &lt;stdio.h&gt;
 #define SIZE 6
-
+<br>
 int main(void){
-    int arr[SIZE] = {2, 5, 7, 8, 9, 12};
-    for (int index = 0; index < SIZE; index++){
-        printf("%d, ", arr[index]);
-    } 
-    printf("\n");
-    for(int low = 0, high = SIZE - 1; low < high; low++, high--){
-        int temp = arr[low];
-        arr[low] = arr[high];
-        arr[high] = temp; 
-    }
-
-    for (int index = 0; index < SIZE; index++){
-        printf("%d, ", arr[index]);
-    } 
-    printf("\n");
-    return 0;
+  int arr[SIZE] = {2, 5, 7, 8, 9, 12};
+  for (int index = 0; index < SIZE; index++){
+      printf("%d, ", arr[index]);
+  } 
+  printf("\n");
+  for(int low = 0, high = SIZE - 1; low < high; low++, high--){
+    int temp = arr[low];
+    arr[low] = arr[high];
+    arr[high] = temp; 
+  }
+<br>
+  for (int index = 0; index < SIZE; index++){
+    printf("%d, ", arr[index]);
+  } 
+  printf("\n");
+  return 0;
 }
-```
-
-**Output**
-<pre>
-2, 5, 7, 8, 9, 12, 
-12, 9, 8, 7, 5, 2,
+</code-runner>
 </pre>
 
 In line $10$, we initialize `low` and `high` in the initialization section of the for loop. Recall in Chapter 4.3 {ref}`variations-for-loop`, we can do so. Similarly, in the increment statement, we incremented `low` and decremented `high`. 

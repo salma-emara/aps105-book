@@ -49,25 +49,27 @@ We write pseudocode for bubble sort as follows:
 We implement bubbble sort as follows. In lines $1$ to $5$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`bubble-sort.c <../../code/chapter14/bubble-sort/bubble-sort.c>` if you want to play with the code.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 1 - 5
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight="1 2 3 4 5" output='After iteration 1: 2 3 1 5<br>After iteration 2: 2 1 3 5 <br>After iteration 3: 1 2 3 5<br>1 2 3 5'>
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
 void swap(int *x, int *y) {
   int temp = *x;
   *x = *y;
   *y = temp;
 }
-
+<br>
 void printArray(int list[], int n) {
   for (int i = 0; i < n; i++) {
     printf("%d ", list[i]);
   }
   printf("\n");
 }
-
+<br>
 void bubbleSort(int list[], int n) {
   bool sorted = false;
-
+<br>
   for (int top = n - 1; top > 0 && !sorted; top--) {
     sorted = true;
     for (int i = 0; i < top; i++) {
@@ -80,21 +82,14 @@ void bubbleSort(int list[], int n) {
     printArray(list, n);
   }
 }
-
+<br>
 int main(void) {
   int list[4] = {2, 5, 3, 1};
-
+<br>
   bubbleSort(list, 4);
   printArray(list, 4);
   return 0;
 }
-```
-
-**Output**
-<pre>
-After iteration 1: 2 3 1 5 
-After iteration 2: 2 1 3 5 
-After iteration 3: 1 2 3 5 
-1 2 3 5
+</code-runner>
 </pre>
 

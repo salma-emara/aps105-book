@@ -37,21 +37,21 @@ Print a row of stars recursively.
 The following code uses the recursive function `printRow`. Download {download}`printRow.c <../../code/chapter11/printRow/printRow.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 15, 17 - 18
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="4" output='Enter number of stars:<b>4</b><br>****' highlight-lines="15 17 18">
+&#35;include &lt;stdio.h&gt;
+<br>
 void printRow(int n);
-
+<br>
 int main(void) {
   int stars;
-  printf("Enter number of stars: ");
+  printf("Enter number of stars:");
   scanf("%d", &stars);
   printRow(stars);
   return 0;
 }
-
+<br>
 void printRow(int n) {
   if (n == 1) {
     printf("*\n");
@@ -60,12 +60,7 @@ void printRow(int n) {
     printRow(n - 1);
   }
 }
-```
-
-**Output[^1]**
-<pre>
-Enter number of stars: <b>4</b>
-****
+</code-runner>
 </pre>
 
 Line $15$ will be executed only once in the base case, when `n == 1`.
@@ -100,19 +95,23 @@ The order of execution of `printRow(4)`.
 If we switch the order of `printf("*")` and `printRow(n - 1)` as in the following code, the order of execution of print statements will be different.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="4
+" output='Enter number of stars:<b>4</b>
+*
+***'>
+&#35;include &lt;stdio.h&gt;
+<br>
 void printRow(int n);
-
+<br>
 int main(void) {
   int stars;
-  printf("Enter number of stars: ");
+  printf("Enter number of stars:");
   scanf("%d", &stars);
   printRow(stars);
   return 0;
 }
-
+<br>
 void printRow(int n) {
   if (n == 1) {
     printf("*\n");
@@ -121,13 +120,7 @@ void printRow(int n) {
     printf("*");
   }
 }
-```
-
-**Output[^1]**
-<pre>
-Enter number of stars: <b>4</b>
-*
-***
+</code-runner>
 </pre>
 
 In {numref}`print-row-execution-switch`, we show the order of execution when the order of `printf("*")` and `printRow(n - 1)` is switched. In this case, the recursive call `printRow(n - 1)` is executed for all n first, then the `printf("*")` statements will be executed. This will make the first executed `printf` statement to be the one in the base case, and the last print statement to be the one in the recursive call with largest `n`.
@@ -190,29 +183,30 @@ The following code shows another way to implement the recursive function `printT
 Download {download}`printTriangle.c <../../code/chapter11/printTriangle/printTriangle.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 14 - 19
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="5" output='Enter number of rows:<b>5</b>
+*****<br>****<br>***<br>**<br>*' highlight-lines="14 15 16 17 18 19">
+&#35;include &lt;stdio.h&gt;
+<br>
 void printRow(int n);
 void printTriangle(int n);
-
+<br>
 int main(void) {
   int rows;
-  printf("Enter number of rows: ");
+  printf("Enter number of rows:");
   scanf("%d", &rows);
   printTriangle(rows);
   return 0;
 }
-
+<br>
 void printTriangle(int n) {
   if (n > 0) {
     printRow(n);
     printTriangle(n - 1);
   }
 }
-
+<br>
 void printRow(int n) {
   if (n == 1) {
     printf("*\n");
@@ -221,16 +215,7 @@ void printRow(int n) {
     printRow(n - 1);
   }
 }
-```
-
-**Output[^1]**
-<pre>
-Enter number of rows: <b>5</b>
-*****
-****
-***
-**
-*
+</code-runner>
 </pre>
 
 The following figure shows the order of execution of `printTriangle(4)`.
@@ -270,29 +255,28 @@ Thinking recursively to print an inverted triangle of stars.
 The following code snippet is one way to implement the recursive function `printInvertedTriangle`. The function `printRow` is the same as the one we used in the previous section. Download {download}`printInvertedTriangle.c <../../code/chapter11/printInvertedTriangle/printInvertedTriangle.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 16 - 17
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="16 17" input="3" output='Enter number of rows:<b>3</b><br>*<br>**<br>***'>
+&#35;include &lt;stdio.h&gt;
+<br>
 void printRow(int n);
 void printInvertedTriangle(int n);
-
+<br>
 int main(void) {
   int rows;
-  printf("Enter number of rows: ");
+  printf("Enter number of rows:");
   scanf("%d", &rows);
   printInvertedTriangle(rows);
   return 0;
 }
-
+<br>
 void printInvertedTriangle(int n) {
   if (n > 0) {
     printInvertedTriangle(n - 1);
     printRow(n);
   }
 }
-
+<br>
 void printRow(int n) {
   if (n == 1) {
     printf("*\n");
@@ -301,7 +285,8 @@ void printRow(int n) {
     printRow(n - 1);
   }
 }
-```
+</code-runner>
+</pre>
 
 In the above code, notice that we switched the order of `printRow(n)` call and `printInvertedTriangle(n - 1);` call. This is because we want to print a smaller triangle first, then a row of stars. The following figure shows the order of execution of `printInvertedTriangle(4)`. Remember that `printInvertedTriangle(0)` will not execute anything, since `n` is `0`. Also, recall that calls to `printRow` function will recursively call `printRow` until `n == 1`, then print `*` and return as we discussed in {numref}`printRow-recursively`.
 
@@ -350,22 +335,23 @@ Thinking recursively to print a pattern of stars.
 The following code is one way to implement the recursive function `printPattern`. The function `printRow` is the same as the one we used in the previous sections. Download {download}`printPattern.c <../../code/chapter11/printPattern/printPattern.c>`
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 16 - 18
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="3" output='Enter number of max stars in a row:<b>3</b>
+***<br>**<br>*<br>*<br>**<br>***<br>' 
+highlight-lines="16 17 18">
+&#35;include &lt;stdio.h&gt;
+<br>
 void printRow(int n);
 void printPattern(int n);
-
+<br>
 int main(void) {
   int rows;
-  printf("Enter number of max starts in a row: ");
+  printf("Enter number of max stars in a row:");
   scanf("%d", &rows);
   printPattern(rows);
   return 0;
 }
-
+<br>
 void printPattern(int n) {
   if (n > 0) {
     printRow(n);
@@ -373,7 +359,7 @@ void printPattern(int n) {
     printRow(n);
   }
 }
-
+<br>
 void printRow(int n) {
   if (n == 1) {
     printf("*\n");
@@ -382,7 +368,8 @@ void printRow(int n) {
     printRow(n - 1);
   }
 }
-```
+</code-runner>
+</pre>
 
 Notice that lines $16$ -- $18$ is the same order of statements illustrated in {numref}`print-pattern-recursively`.
 
@@ -396,5 +383,3 @@ The following figure shows the order of execution of `printPattern(4)`. Remember
 
 Tracing `printPattern` function with n = 4: `printPattern(4)`.
 ```
-
-[^1]: Inputs to programs are in **bold**.

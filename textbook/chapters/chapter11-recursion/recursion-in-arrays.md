@@ -50,11 +50,13 @@ We can have a function with only one parameter that takes the string, and this f
 The following code shows how the recursive function can be called from a function with only one parameter using a `"helper"` that takes in three parameters. Download {download}`isPalindrome.c <../../code/chapter11/isPalindrome/isPalindrome.c>` if you want to run the program yourself.
 
 
-```{code-block} c
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c">
+#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+<br>
 bool isPalindromeHelper(char *s, int low, int high) {
   if (low >= high)
     return true;
@@ -63,11 +65,11 @@ bool isPalindromeHelper(char *s, int low, int high) {
   else
     return isPalindromeHelper(s, low + 1, high - 1);
 }
-
+<br>
 bool isPalindrome(char *s) { 
     return isPalindromeHelper(s, 0, strlen(s) - 1); 
 }
-
+<br>
 int main(void) {
   printf("isPalindrome(\"racecar\") = %d\n", isPalindrome("racecar"));
   printf("isPalindrome(\"e\") = %d\n", isPalindrome("e"));
@@ -75,6 +77,7 @@ int main(void) {
   printf("isPalindrome(\"race\") = %d\n", isPalindrome("race"));
   return 0;
 }
-```
+</code-runner>
+</pre>
 
 More worked examples in-progress!

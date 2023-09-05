@@ -14,3 +14,4 @@ build/
 
 # Sphinx documentation
 docs/_build/
+.venv

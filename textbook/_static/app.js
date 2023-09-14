@@ -243,6 +243,7 @@ function parse_and_generate_form(fileName) {
         form.appendChild(container);
 
         //add question text
+        // Create a container element for the question
         let questionElement = document.createElement("div");
         questionElement.id = "question" + (i + 1);
         questionElement.classList.add("question-box");
@@ -250,46 +251,50 @@ function parse_and_generate_form(fileName) {
         const questionTitle = document.createElement("h4");
         questionTitle.innerHTML = "Question " + (i + 1);
 
-        let questionText = document.createElement("p");
-        questionText.innerHTML = question;
-
-        //extract question code snippet if available
-        const regexTripleBackticks = /```([\s\S]*?)```/;
+        const regexTripleBackticks = /```([\s\S]*?)```/g;
         const regexSingleBacktick = /`([^`]+)`(?!`)/g;
 
-        let match = question.match(regexTripleBackticks);
-        let questionCodeSnippet = '';
+        let matches;
+        let lastIndex = 0;
 
-        questionElement.appendChild(questionTitle);
+        while ((matches = regexTripleBackticks.exec(question))) {
+            const questionSnippet = question.substring(lastIndex, matches.index);
 
-        if (match) {
-            questionCodeSnippet = match[1].trim();
-            question = question.replace(match[0], '');
-            questionText.innerHTML = question;
-            questionElement.appendChild(questionText);
-            QcodeSnippetFormatting(questionCodeSnippet, questionElement, true);
+            // Add the text between code snippets to the question element
+            let questionSnippetText = document.createElement("p");
+            questionSnippetText.innerHTML = questionSnippet;
+
+            questionElement.appendChild(questionSnippetText);
+
+            // Extract and format the code snippet
+            const codeSnippet = matches[1].trim();
+            QcodeSnippetFormatting(codeSnippet, questionElement, true);
+
+            lastIndex = regexTripleBackticks.lastIndex;
         }
 
-        codeSnippetMatches = question.match(regexSingleBacktick);
-        if (codeSnippetMatches) {
-            for (let j = 0; j < codeSnippetMatches.length; j++) {
-                const match = codeSnippetMatches[j];
-                questionText.innerHTML = question;
-                const questionCodeSnippet = match.slice(1, -1).trim();
+        // Process single backticks outside the while loop
+        const remainingQuestionText = question.substring(lastIndex);
+
+        let remainingQuestionTextElement = document.createElement("p");
+        remainingQuestionTextElement.innerHTML = remainingQuestionText;
+        questionElement.appendChild(remainingQuestionTextElement);
+
+        // Find and format single backticks
+        const singleBacktickMatches = question.match(regexSingleBacktick);
+        if (singleBacktickMatches) {
+            for (let j = 0; j < singleBacktickMatches.length; j++) {
+                const match = singleBacktickMatches[j];
+                const codeSnippet = match.slice(1, -1).trim();
 
                 // Create a new <code> element
                 const codeSnippetElement = document.createElement("code");
                 codeSnippetElement.classList.add("code-snippet-single");
-                codeSnippetElement.textContent = questionCodeSnippet;
+                codeSnippetElement.textContent = codeSnippet;
 
-                question = question.replace(match, codeSnippetElement.outerHTML);
+                questionElement.innerHTML = questionElement.innerHTML.replace(match, codeSnippetElement.outerHTML);
             }
-
-            questionText.innerHTML = question;
         }
-
-        questionElement.appendChild(questionText);
-
 
         form.appendChild(questionElement);
 
@@ -386,7 +391,8 @@ function parse_and_generate_form(fileName) {
                 }
 
                 //extract code snippet if available
-                const match_answer = choice.match(regexTripleBackticks);
+                const regexTripleBackticksAns = /```([\s\S]*?)```/;
+                const match_answer = choice.match(regexTripleBackticksAns);
                 let answerCodeSnippet = '';
 
                 if (match_answer) {
@@ -448,7 +454,8 @@ function parse_and_generate_form(fileName) {
                 }
 
                 //extract code snippet if available
-                const match_answer = choice.match(regexTripleBackticks);
+                const regexTripleBackticksAns = /```([\s\S]*?)```/;
+                const match_answer = choice.match(regexTripleBackticksAns);
                 let answerCodeSnippet = '';
 
                 if (match_answer) {

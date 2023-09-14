@@ -149,7 +149,6 @@ button {
     overflow-x: auto;
     width: fit-content;
     margin-left: 10px;
-    white-space: normal;
 }
 
 .code-snippet-single {

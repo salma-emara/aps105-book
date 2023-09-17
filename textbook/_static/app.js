@@ -139,8 +139,9 @@ function closeFullscreenForm() {
         }
 
         // Get the radio buttons and checkboxes
-        const radioButtons = document.querySelectorAll('input[type="radio"]');
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const radioButtons = document.querySelectorAll('input[type="radio"][id^="choice"]');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][id^="choice"]');
+
 
         // Disable the radio buttons
         radioButtons.forEach((radioButton) => {

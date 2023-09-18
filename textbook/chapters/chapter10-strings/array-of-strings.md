@@ -114,3 +114,6 @@ Here, `months` is a 1D array of character pointers and each pointer is pointing 
 ```{note}
 Since `months` is a 1D array of character pointers and each pointer is pointing to a constant string in the constants segment of the main memory, you cannot change an individual element of the string, e.g. `months[0][0] = "j";`. This is because `months[0][0]` is constant and cannot be changed. Instead, you can change what the pointer points to, e.g. `months[0] = "january";`. Refer to notes in {ref}`Section 10.1.1.3 <summary-can-cannot>` for an explanation of what can and cannot be done, while dealing with strings.
 ```
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-4") }}

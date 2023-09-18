@@ -517,3 +517,5 @@ The following figure shows the function we need to implement to find a node with
 :width: 600px
 :align: center
 ```
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-3") }}

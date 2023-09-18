@@ -198,3 +198,6 @@ The following figure summarizes the two methods of defining and redefining a dat
 :width: 700px
 :align: center
 ```
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-12/sec-1") }}

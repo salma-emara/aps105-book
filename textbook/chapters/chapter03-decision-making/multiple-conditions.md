@@ -249,3 +249,4 @@ Clearly, `!(x > 10)` is not equivalent to `!x > 10`. A programmer needs to make 
 
 ````
 
+{{quiz_embed | replace("%%FILENAME%%", "chapter-3/sec-2") }}

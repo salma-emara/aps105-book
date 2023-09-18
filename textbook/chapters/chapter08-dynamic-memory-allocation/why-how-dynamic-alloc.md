@@ -373,4 +373,4 @@ int *merge(int *size) {
 
 **Step 5: Test your code.** Test this code with one sized arrays, zero sized arrays, positive and negative integers in the array to make sure it works.
 
-[^1]: Inputs to programs are in bold.
+{{quiz_embed | replace("%%FILENAME%%", "chapter-8/sec-1") }}

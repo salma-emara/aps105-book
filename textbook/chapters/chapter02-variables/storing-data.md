@@ -289,4 +289,6 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     </pre>
 
 
+{{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-2") }}
+
 

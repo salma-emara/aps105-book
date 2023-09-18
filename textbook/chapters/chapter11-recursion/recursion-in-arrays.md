@@ -81,3 +81,5 @@ int main(void) {
 </pre>
 
 More worked examples in-progress!
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-11/sec-3") }}

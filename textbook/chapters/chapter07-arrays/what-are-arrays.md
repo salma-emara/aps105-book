@@ -95,3 +95,5 @@ The output is
 first = 2, second = 3, third = 3, fourth = 2, fifth = 30
 10, 20, 30, 37,
 </pre>
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-7/sec-2") }}

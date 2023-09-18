@@ -25,10 +25,10 @@ prompt = "Which of the following correctly declares a 2D array (3 rows and 2 col
 answer= [0, 3]
 
 distractors = [
-    "int arr[][2] = {1, 2, 3, 4, 5, 6};",
-    "int arr[3][] = {1, 2, 3, 4, 5, 6};",
-    "int arr[3][2] = {{1, 2, 3}, {4, 5, 6}};",
-    "int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};"
+    "`int arr[][2] = {1, 2, 3, 4, 5, 6};`",
+    "`int arr[3][] = {1, 2, 3, 4, 5, 6};`",
+    "`int arr[3][2] = {{1, 2, 3}, {4, 5, 6}};`",
+    "`int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};`"
 ]
 
 explainations = [
@@ -42,18 +42,16 @@ explainations = [
 
 prompt = '''
 Which of the following correctly accesses the second element in the third row of the following array?
-```
-int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};
-```
+`int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};`
 '''
 
 answer = [0, 1, 2]
 
 distractors = [
-    "arr[2][1]",
-    "*(*(arr + 2) + 1)",
-    "*(arr[2] + 1)",
-    "*(arr + 2) + 1"
+    "`arr[2][1]`",
+    "`*(*(arr + 2) + 1)`",
+    "`*(arr[2] + 1)`",
+    "`*(arr + 2) + 1`"
 ]
 
 explainations = [

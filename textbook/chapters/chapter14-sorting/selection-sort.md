@@ -115,3 +115,5 @@ int main(void) {
 }
 </code-runner>
 </pre>
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-14/sec-2") }}

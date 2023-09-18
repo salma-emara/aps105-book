@@ -383,3 +383,6 @@ The following figure shows the order of execution of `printPattern(4)`. Remember
 
 Tracing `printPattern` function with n = 4: `printPattern(4)`.
 ```
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-11/sec-2") }}

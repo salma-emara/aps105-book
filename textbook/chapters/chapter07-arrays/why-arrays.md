@@ -233,3 +233,5 @@ In lines $11$ -- $13$, we did what we did in the `swap` function in Chapter 6.3:
 4. If you try accessing an element at an index greater than the SIZE of the array, the behavior is undefined. You may get a segmentation fault, or you may access a memory space having garbage value. Hence, please ensure that the value of the variable you are using as an index is between $0$ and the size of the array - 1.
 
 [^1]: All names referred here are fictional character names, and any similarities between these names and reality is probably by coincidence.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-7/sec-1") }}

@@ -654,3 +654,6 @@ The following table lists the most commonly used string functions.
 | `strncmp` | Compares the first `n` characters of two strings. |
 | `strchr` | Searches for a character in a string. |
 | `strstr` | Searches for a substring in a string. |
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-3") }}

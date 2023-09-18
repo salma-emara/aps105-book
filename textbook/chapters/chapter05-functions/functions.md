@@ -199,3 +199,6 @@ When you pass a parameter to a function, the name used inside the function shoul
 
 ```
 -->
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-5/sec-1") }}

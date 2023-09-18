@@ -20,7 +20,7 @@ explainations = [
 
 [[questions]]
 
-prompt = "In which of the following, the content of the character array `myString` stores `"hello"` or the pointer `pStr` points to is `"hello"` after the execution?"
+prompt = "In which of the following, the content of the character array `myString` stores `\"hello\"` or the pointer `pStr` points to is `\"hello\"` after the execution?"
 
 answer = [0, 3]
 

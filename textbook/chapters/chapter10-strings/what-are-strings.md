@@ -227,5 +227,4 @@ int spacesCount(char str[]) {
 </code-runner>
 </pre>
 
-
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-1") }}

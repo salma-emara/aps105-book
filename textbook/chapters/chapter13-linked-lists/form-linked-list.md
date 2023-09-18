@@ -89,5 +89,5 @@ To free the dynamic memory, we free all the space allocated on heap, which is po
 
 It is silly to have to repeat code/statements to add or delete nodes to a linked list. We can write a set of functions that allow us to do operations on a linked list. In the next few sections, we will be developing functions to help us implement these operations.
 
-
+{{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-2") }}
 

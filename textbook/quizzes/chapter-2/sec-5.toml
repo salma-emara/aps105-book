@@ -6,29 +6,37 @@ answer = [2]
 
 distractors = [
 '''
+```
 int a = rand();
 int b = rand();
 int c = rand();
+```
 ''',
 '''
+```
 srand(1);
 int a = rand();
 int b = rand();
 int c = rand();
+```
 ''',
 '''
+```
 srand(time(NULL));
 int a = rand();
 int b = rand();
 int c = rand();
+```
 ''',
 '''
+```
 srand(rand());
 int a = rand();
 srand(rand());
 int b = rand();
 srand(rand());
 int c = rand();
+```
 '''
 ]
 

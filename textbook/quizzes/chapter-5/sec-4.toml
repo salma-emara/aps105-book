@@ -10,15 +10,17 @@ double howMuchToPay(int, int, double);
 int main(void) {
     int number;
     double unitPrice, discount;
-    printf("Please enter the number of notebooks you want to buy, the price per notebook and the student discount: ");
-    scanf("%d %lf %lf", &number, &unitPrice, &discount);
-    printf("The total price is %d\n", howMuchToPay(number, unitPrice));
-    return 0;
+    printf("Please enter the number of notebooks you want to buy,
+     the price per notebook and the student discount: ");
+   scanf("%d %lf %lf", &number, &unitPrice, &discount);
+   printf("The total price is %d\n", howMuchToPay(number, unitPrice));
+   return 0;
 }
 
 double howMuchToPay(int number, double unitPrice, double discount) {
     if (discount <= 0) {
-        discount = 1.0;  // when discount is 0 or negative, it is set to 1.0 (no discount)
+        discount = 1.0;  // when discount is 0 or negative,
+         it is set to 1.0 (no discount)
     }
     double price = number * unitPrice * (1 - discount);
     return price;

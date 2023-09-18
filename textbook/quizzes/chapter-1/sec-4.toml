@@ -155,7 +155,7 @@ printf("%d%d\\tab%d%d", num);
 ]
 
 explainations = [
-    "A) is correct. Note that `\t` is an escape character. For `%` to be printed, you need to use `%%`; There are two decimal numbers to be printed, so you need to use two `%d`s and follow the format specifier with the two variables separately, even though they are the same.",
+    "A) is correct. Note that `\\t` is an escape character. For `%` to be printed, you need to use `%%`; There are two decimal numbers to be printed, so you need to use two `%d`s and follow the format specifier with the two variables separately, even though they are the same.",
     "B) is incorrect. It should use `%%` to print `%`. Here the first two `%d`s will be replaced by the two numbers, and the last two `%d`s will be replaced by garbage values.",
     "C) is incorrect. It should use two `%d`s to print the two numbers. The last `%d` will be replaced by a garbage value.",
     "D) is incorrect. It should use `%%` to print `%`. Here the first `%d` will be replaced by the number, and the rest will be replaced by garbage values."

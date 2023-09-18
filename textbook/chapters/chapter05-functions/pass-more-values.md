@@ -143,3 +143,6 @@ int median(int x, int y, int z) {
 In lines $6$ -- $8$, we test median with three different inputs in the same code. 
 
 **Step 6:  Debug the code.** If the desired output was not produced as you test in isolation, using the debugger will easily help you find the bug in your `median` function. Only if we are confident that `median` function is correct, now we can integrate it with the `main` function where we take input from the user or with other functions (if there are any).
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-5/sec-4") }}

@@ -142,3 +142,6 @@ Using relational operators, we can:
 
 4. Compare the values of `char` and `int` values, e.g., `('0' == 0)` $\rightarrow$ `false` since `'0'` has an ASCII code of 48, which is not equal to `0`.
 
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-3/sec-1") }}

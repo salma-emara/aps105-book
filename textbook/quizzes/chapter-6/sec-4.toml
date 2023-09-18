@@ -25,6 +25,7 @@ int main() {
 ```
 ''',
 '''
+```
 #include <stdio.h>
 
 void func(int*);
@@ -46,6 +47,7 @@ void func(int *x) {
         *x += 5;
     } 
 }
+```
 ''',
 '''
 ```

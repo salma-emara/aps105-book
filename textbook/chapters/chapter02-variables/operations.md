@@ -282,3 +282,5 @@ int main(void){
 5. `=` `+=` `-=` `*=` `/=` `%=`
    
    (5) if two operands with same precedence occur, they are evaluated from right to left (right-associative).
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-3") }}

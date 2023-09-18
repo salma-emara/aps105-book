@@ -50,3 +50,5 @@ What is special about the above binary tree? It is ordered in such a way that th
 We have seen that arrays and linked lists are not very efficient in searching for elements. We have seen how **binary search** is quick when an array or linked list is sorted. A binary search tree is ordered in a way that makes searching for elements quick. For example, to look for an item in a binary search tree, we can start at the root node. If the item is *smaller* than the root node, we can look at the **left child** of the root node. If the item is *larger* than the root node, we can look at the **right child** of the root node. We can continue this process until we find the item or we reach a leaf node and not find the item.
 
 We will discuss details on how to search for elements in a binary search tree in the next sections.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-16/sec-1") }}

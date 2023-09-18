@@ -180,3 +180,4 @@ void printArray(int list[], const int size) {
 
 As observed, since we are passing to `swap` the pointer to the first element in the array, any change to the array in the function is also reflected in the caller function.
 
+{{quiz_embed | replace("%%FILENAME%%", "chapter-7/sec-3") }}

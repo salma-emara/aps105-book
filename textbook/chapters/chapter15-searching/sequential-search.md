@@ -58,3 +58,5 @@ int main(void) {
 The minimum number of comparisons to find the desired element is 1, and the maximum number of comparisons is the length of the list. The average number of comparisons is $\frac{n}{2}$, where $n$ is the length of the list.
 
 This would mean if I have 1000 elements in my list, the worst case scenario would be 1000 comparisons. If I have 10000 elements in my list, the worst case scenario would be 10000 comparisons. This is not very efficient. Is there a more efficient way to search for a desired element? Yes, there is. We will discuss this in the next section.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-15/sec-1") }}

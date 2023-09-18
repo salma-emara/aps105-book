@@ -109,3 +109,5 @@ How much is $2^{32}$ bytes? Let's breakup $2^{32}$ into $2^2 \times 2^{10} \time
 Modern computers use 64-bits to represent their addresses. How many bytes can a 64-bit address represent? $2^{64}$ bytes is 16 exabytes. That's a lot of memory!
 
 Now, that we know how is the data represented inside the main memory and how is each byte addressed, let's see the cycle of developing a program in C. 
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-1/sec-2") }}

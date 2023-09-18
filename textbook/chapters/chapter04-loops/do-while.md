@@ -117,3 +117,6 @@ int main(void) {
 
 **Step 6: Test your code.** Test your code with other numbers. For example, try a number at the boundary, e.g., $1$, $10$ , $0$, $11$.
 ````
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-2") }}

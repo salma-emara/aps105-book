@@ -1,0 +1,170 @@
+/* styles.css */
+
+#fullscreen-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: none;
+    justify-content: center;
+    z-index: 9999;
+    padding-top: 3vh;
+    padding-left: 7vh;
+    padding-right: 7vh;
+    overflow-y: auto;
+}
+
+.quiz-form {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 90vh;
+    border-radius: 5px;
+    display: inline-block;
+    height: fit-content;
+    overflow-y: auto;
+}
+
+
+#fullscreen-form.mini {
+    position: static;
+    width: max-content;
+    max-width: 60vw;
+    height: auto;
+    padding: 0;
+    display: block;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#fullscreen-form.active {
+    display: flex;
+    overflow-y: auto;
+}
+
+#close-button {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    padding: 5px;
+    cursor: pointer;
+    color: black;
+    z-index: 9999;
+}
+
+
+.hidden-imp {
+    display: none !important;
+}
+
+.hidden {
+    display: none;
+}
+
+
+#submit-button {
+    margin-right: 10px;
+    background-color: white;
+}
+
+.next-button {
+    margin-top: 10px;
+}
+
+button {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+.parent-container {
+    position: relative;
+    display: inline-block;
+}
+
+
+.question-box {
+    background-color: #f0f0f0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 5px;
+}
+
+
+.line-number {
+    color: grey;
+    user-select: none;
+    padding-right: 1em;
+    font-size: .8em;
+}
+
+.hint-text {
+    display: block;
+    color: black;
+    font-weight: normal;
+}
+
+.container-box {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#container-header p {
+    text-align: right;
+}
+
+#start-button {
+    width: fit-content;
+    background-color: white;
+}
+
+.choicesContainer {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.choicesContainer label {
+    padding-left: 8px;
+    vertical-align: top;
+}
+
+.code-snippet {
+    overflow-x: auto;
+    width: fit-content;
+    margin-left: 10px;
+}
+
+.code-snippet-single {
+    display: inline-block;
+    padding: 8px;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}
+
+.reset-button {
+    margin-top: 10px;
+    margin-left: 15px;
+}

@@ -199,3 +199,6 @@ int main(void) {
 **Step 5: Test the code.** Test the code with corner numbers that may break your code. For example, try changing $5$ to $1$ and see what happens. It should print only one `*`. Try changing $5$ to $0$ and see what happens. It should print nothing.
 
 **Step 6: Debug the code.** It is possible that you do not get the expected output. Some common mistakes in printing patterns were discussed in the previous exercise. 
+
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-4") }}

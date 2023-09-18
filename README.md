@@ -69,3 +69,46 @@ Thank you in advance!
 
 For anyone with a write request to main branch, with every push Netlify will automatically deploy it to [learningc.org](learningc.org). This is done following instructions on [Netlify for Jupyter-Book](https://jupyterbook.org/en/stable/publish/netlify.html).
 
+## Quizzes: Add or Edit
+
+The quizzes for the book are created in TOML files, which are then converted into JavaScript files to be read by the code to build the book.
+
+To convert .toml files to .js files:
+
+1- Ensure you have Node.js installed on your system. You can download it from their official website (https://nodejs.org).
+
+2- Download the required package by executing the following command:
+
+```
+npm install @iarna/toml
+```
+
+To add a new quiz:
+
+1- Create a new .toml file containing the quiz in textbook/quizzes in the chapter folder of your choice.
+
+2- In your terminal, execute the following command in `aps105-book` directory.
+
+```
+node ./textbook/_static/toml_to_js_convertor.js
+```
+A .js file will be created in the corresponding folders for all the .toml files present in the textbook/quizzes directory.
+
+3- Open the .md file where you want the quiz to be and add the following line. Replace `file-name` with the name of your quiz file (without .js extension). 
+
+```
+{{quiz_embed | replace("%%FILENAME%%", "file-name") }}
+```
+
+To edit an existing quiz:
+
+1- Open the .toml file of the quiz you want to edit and make the desired changes.
+
+2- In your terminal, go to `aps105-book` directory and execute the following command.
+
+```
+node ./textbook/_static/toml_to_js_convertor.js
+```
+
+
+Build the book locally and ensure the quiz is behaving as expected.

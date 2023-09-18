@@ -83,3 +83,5 @@ In line $7$, `sum2DArr(3, 4, arr2D);` $3$ is passed to rows and $4$ is passed to
 In line $11$, has the function header the same as the function prototype.
 
 In line $15$, we access the elements in the 2D array as we do with any other 2D array.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-9/sec-2") }}

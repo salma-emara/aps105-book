@@ -449,3 +449,5 @@ In line $18$, if `(charCount < n - 1)` was `false` we will never evaluate the ri
 In the right hand side condition, `((c = getchar()) != '\n')`, we get the character in `c = getchar()`. Recall that in C, assignment operator `=` returns the value assigned to the variable. Hence, `c = getchar()` is evaluated to the character read from the user. We then check if the character is not a new line character. If it is not a new line character, we execute the while loop body. If it is a new line character, we exit the while loop.
 
 We now do not need the `getchar` outside of the while loop at line $16$ previously, and we can remove the `if` statement and the `getchar` call previously in line $21$.
+
+{{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-2") }}

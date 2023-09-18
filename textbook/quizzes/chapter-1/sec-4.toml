@@ -123,7 +123,7 @@ At the end of the `return 0` line, there is a missing semicolon (`;`). In C, a s
 
 [[questions]]
 
-prompt = "Consider the code snippet below. How can you print the `2%d\\tab2%d` using printf?"
+prompt = "Consider the code snippet below. How can you print the `2%d\tab2%d` using printf?"
 
 answer = [0]
 

@@ -44,26 +44,10 @@ The indexing of the rows and columns in a 2D array. Accessing `myArray[1][0] = 4
 You can initialize a 2D array using a nested for loop. The outer loop will be responsible for looping over the row index and the inner loop can loop over the column indices for each row. For example, in the following code we initialize a 2D array using a nested for loop. Download {download}`initialize-2d.c <../../code/chapter09/initialize-2d/initialize-2d.c>` if you want to run the program yourself. 
 
 **Code**
-```{code-block} c
-#include <stdio.h>
 
-int main(void) {
-  int myArray[3][4];
-
-  for (int row = 0; row < 3; row++) {
-    for (int col = 0; col < 4; col++) {
-      myArray[row][col] = row * 4 + col;
-      printf("myArray[%d][%d] = %d\n", row, col, myArray[row][col]);
-    }
-  }
-  return 0;
-}
-
-```
-
-**Output**
-<pre>
-myArray[0][0] = 0
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c"  output="myArray[0][0] = 0
 myArray[0][1] = 1
 myArray[0][2] = 2
 myArray[0][3] = 3
@@ -74,7 +58,21 @@ myArray[1][3] = 7
 myArray[2][0] = 8
 myArray[2][1] = 9
 myArray[2][2] = 10
-myArray[2][3] = 11
+myArray[2][3] = 11">
+&#35;include &lt;stdio.h&gt;
+<br>
+int main(void) {
+  int myArray[3][4];
+  <br>
+  for (int row = 0; row < 3; row++) {
+    for (int col = 0; col < 4; col++) {
+      myArray[row][col] = row * 4 + col;
+      printf("myArray[%d][%d] = %d\n", row, col, myArray[row][col]);
+    }
+  }
+  return 0;
+}
+</code-runner>
 </pre>
 
 ### Declaration and Initialization
@@ -107,7 +105,7 @@ or without defining the number of rows.
 :alt: Declare and initialize a 2D array
 :width: 500px
 :align: center
-:name: initialize-2darray-row-num-unncessary
+:name: initialize-2d-array-row-number-unnecessary
 ```
 
 The number of rows is not required as the compiler will fill the array **row by row**, *i.e.* in "row major" order. For example, if the number of rows is unknown, the number of columns is $3$, and the array is initialized with $9$ elements, the first row will have 3 elements, the second row will have 3 elements and so on. Hence, the number of rows can be easily deduced if the number of columns and the elements are defined. To better understand "row major" order, let's dive deeper into how a 2D array is stored in the main memory.
@@ -162,18 +160,20 @@ Then, to get to a particular column, you need to add the index of the column. Fo
 ```
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c"  output="1   2   3
+4   5   6">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int myArray[2][3];
-
+  <br>
   for (int row = 0; row < 2; row++) {
     for (int col = 0; col < 3; col++) {
       myArray[row][col] = row * 3 + col + 1;
     }
   }
-
+  <br>
   for (int row = 0; row < 2; row++) {
     for (int col = 0; col < 3; col++) {
       printf("%4d", *(*(myArray + row) + col));
@@ -181,18 +181,11 @@ int main(void) {
     }
     printf("\n");
   }
-
+  <br>
   return 0;
 }
-```
-
-**Output**
-<pre>
-  1   2   3
-  4   5   6
+</code-runner>
 </pre>
-
-````
 
 
 
@@ -228,9 +221,12 @@ $6 \times 6$ array filled with $0$s and $1$s. You are required to print the star
 **Step 4: Write code.**  Download {download}`initialize-2d.c <../../code/chapter09/initialize-2d/initialize-2d.c>` if you want to run the program yourself. 
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c"  output="(row, col) = (2, 1)
+(row, col) = (3, 2)
+(row, col) = (5, 0)">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int board[6][6] = {
       {0, 1, 1, 0, 0, 0}, 
@@ -240,7 +236,7 @@ int main(void) {
       {0, 0, 0, 1, 1, 0}, 
       {1, 1, 1, 0, 1, 1},
   };
-
+<br>
   for (int row = 0; row < 6; row++) {
     for (int col = 0; col < 6; col++) {
       int count = 0;
@@ -256,14 +252,7 @@ int main(void) {
   }
   return 0;
 }
-
-```
-
-**Output**
-<pre>
-(row, col) = (2, 1)
-(row, col) = (3, 2)
-(row, col) = (5, 0)
+</code-runner>
 </pre>
 
 

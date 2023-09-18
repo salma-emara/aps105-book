@@ -26,10 +26,10 @@ let parsedObject;
         3
       ],
       "distractors": [
-        "```int arr[][2] = {1, 2, 3, 4, 5, 6};```",
-        "```int arr[3][] = {1, 2, 3, 4, 5, 6};```",
-        "```int arr[3][2] = {{1, 2, 3}, {4, 5, 6}};```",
-        "```int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};```"
+        "`int arr[][2] = {1, 2, 3, 4, 5, 6};`",
+        "`int arr[3][] = {1, 2, 3, 4, 5, 6};`",
+        "`int arr[3][2] = {{1, 2, 3}, {4, 5, 6}};`",
+        "`int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};`"
       ],
       "explainations": [
         "A is correct. The compiler will fill the array row by row, filling 2 columns in each row. This will result in a 3 row and 2 column 2D array.",
@@ -39,17 +39,17 @@ let parsedObject;
       ]
     },
     {
-      "prompt": "Which of the following correctly accesses the second element in the third row of the following array?\n```\nint arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};\n```\n",
+      "prompt": "Which of the following correctly accesses the second element in the third row of the following array?\n`int arr[3][2] = {{1, 2}, {3, 4}, {5, 6}};`\n",
       "answer": [
         0,
         1,
         2
       ],
       "distractors": [
-        "```arr[2][1]```",
-        "```*(*(arr + 2) + 1)```",
-        "```*(arr[2] + 1)```",
-        "```*(arr + 2) + 1```"
+        "`arr[2][1]`",
+        "`*(*(arr + 2) + 1)`",
+        "`*(arr[2] + 1)`",
+        "`*(arr + 2) + 1`"
       ],
       "explainations": [
         "A is correct. This is the basic way to access the second element in the third row of the array.",

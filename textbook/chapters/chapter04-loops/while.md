@@ -49,9 +49,11 @@ The execution of a program with a while loop.
 To print numbers $1$ to $10$, we can change the condition to `i <= 10`. The following program will print out the numbers $1$ through $10$. Download {download}`while-print-nums.c <../../code/chapter04/while-print-nums/while-print-nums.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="1 2 3 4 5 6 7 8 9 10">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int i = 1;
   while (i <= 10) {
@@ -60,12 +62,9 @@ int main(void) {
   }
   return 0;
 }
-```
-
-**Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10
+</code-runner>
 </pre>
+
 
 ````{admonition} Exercise
 :class: note
@@ -102,31 +101,28 @@ The flow chart of the while loop exercise that finds the sum of numbers entered 
 
 **Step 5: Write the code.** Download {download}`sum-numbers-while.c <../../code/chapter04/sum-numbers-while/sum-numbers-while.c>` to get the following code.
 
-```{code-block} c
-#include <stdio.h>
-
-int main(void){
-    int sum = 0;
-    int num;
-    printf("Enter a number: ");
-    scanf("%d", &num);
-    while(num >= 0){
-        sum += num;
-        scanf("%d", &num);
-    }
-    printf("The sum is %d\n", sum);
-    return 0;
-}
-```
-
-**Output[^1]**
-<pre>
-Enter a number: <b>18</b>
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="18 5 2 1 -1" output="Enter a number: <b>18</b>
 <b>5</b>
 <b>2</b>
 <b>1</b>
 <b>-1</b>
-The sum is 26
+The sum is 26">
+&#35;include &lt;stdio.h&gt;
+<br>
+int main(void){
+  int sum = 0;
+  int num;
+  printf("Enter a number: ");
+  scanf("%d", &num);
+  while(num >= 0){
+    sum += num;
+    scanf("%d", &num);
+  }
+  printf("The sum is %d\n", sum);
+  return 0;
+}
+</code-runner>
 </pre>
 
 ```{admonition} Common Confusions!
@@ -146,27 +142,22 @@ Kindly, refer to the following video if you want to trace the code above.
 
 ## Infinite Loops
 
-What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i >0` is always `true`:
+What happens when the condition in the while loop is always true? The while loop will never stop and the program will never exit. This is called an infinite loop. For example, the following program will never stop since `i > 0` is always `true`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void){
-    int i = 1;
-    while(i > 0){ //will always be true
-        printf("%d ", i);
-        i++;
-    }
-    return 0;
+  int i = 1;
+  while(i > 0){ //will always be true
+    printf("%d ", i);
+    i++;
+  }
+  return 0;
 }
-```
-
-**Potential Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10 11 12 13 ... <(continues until the program crashes)>
+</code-runner>
 </pre>
-
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-1") }}

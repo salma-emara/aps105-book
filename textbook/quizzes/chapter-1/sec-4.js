@@ -38,7 +38,7 @@ let parsedObject;
       ]
     },
     {
-      "prompt": "Consider the code snippet below. How can you print the `2%d\\tab2%d` using printf?",
+      "prompt": "Consider the code snippet below. How can you print the `2%d\tab2%d` using printf?",
       "answer": [
         0
       ],

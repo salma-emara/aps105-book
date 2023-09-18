@@ -9,15 +9,17 @@ You may guess that we can write the condition as `(14 <= age <= 16)`. However, i
 Back to extending our program! We can extend the block executed if the age is 14 or higher, which is the `else` block. There, we can check if the age is between 14 and 16. If it is, we need to print an extra warning message stating that it is only permissible to work outside of school hours. To extend our program, we write the highlighted code segment. 
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 10 - 14
-#include <stdio.h>
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="10 11 12 13 14" input="15"
+output="Enter your age: <b>15</b>
+You are eligible to work only outside school hours.">
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int age = 0;
   printf("Enter your age: ");
   scanf("%d", &age);
-
+<br>
   if (age < 14) {
     printf("You are not yet eligible to work.");
   } else {
@@ -31,12 +33,10 @@ int main(void) {
   }
   return 0;
 }
-```
-**Output[^1]**
-<pre>
-Enter your age: <b>15</b>
-You are eligible to work only outside school hours.</pre>
+</code-runner>
+</pre>
 
+<!-- TODO: still under development? -->
 ```{warning}
 The above code is still under development. In the {ref}`nested-if` section, it will look better.
 ```
@@ -67,14 +67,16 @@ In summary, AND requires both `A` and `B` to be `true` to be `true`. OR requires
 For example, let's write a C code that checks if a character entered by the user is an upper case `'A'` or lower case `'a'`. If it is, we will print a prompt to the user saying so. Otherwise, we will print that it is not an `'A'` or `'a'`. Download {download}`upper-lowerA.c <../../code/chapter03/upper-lowerA/upper-lowerA.c>` to get the following code.
 
 **Code**
-```{code-block} c
-:emphasize-lines: 7
-#include <stdio.h>
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="7" input="a"
+output="Enter a letter: <b>a</b>
+You entered an upper case or lower case A.">
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   char letter = ' ';
   printf("Enter a letter: ");
   scanf("%c", &letter);
-
+  <br>
   if (letter == 'A' || letter == 'a') {
     printf("You entered an upper case or lower case A.");
   } else {
@@ -82,12 +84,8 @@ int main(void) {
   }
   return 0;
 }
-```
-**Output[^1]**
-<pre>
-Enter a letter: <b>a</b>
-You entered an upper case or lower case A.</pre>
-
+</code-runner>
+</pre>
 
 **Exercise: NOT operator**
 
@@ -117,26 +115,24 @@ then negate it using `!`. This makes
 Using the diagram above, you can also develop the condition as `(letter < 'A') || (letter > 'Z' && letter < 'a') || (letter > 'z')`. Both conditions are equivalent. However, the first one is easier to think of if you did not have a figure. Download {download}`not-alphabet.c <../../code/chapter03/not-alphabet/not-alphabet.c>` to get the following code checking if a character entered by the user is an alphabet.
 
 **Code**
-```{code-block} c
-:emphasize-lines: 7
-#include <stdio.h>
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="7" input="$"
+output="Enter an alphabet letter: <b>$</b>
+You didn't enter an alphabet.">
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   char letter = ' ';
   printf("Enter an alphabet letter: ");
   scanf("%c", &letter);
-
+  <br>
   if (!(((letter >= 'A') && (letter <= 'Z')) ||
         ((letter >= 'a') && (letter <= 'z')))) {
     printf("You didn't enter an alphabet.");
   }
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Enter an alphabet letter: <b>$</b>
-You didn't enter an alphabet.</pre>
+</code-runner>
+</pre>
 
 ```{admonition} NOT *!* vs. NOT EQUAL *!=*
 `!` is a logical operator. It is not to be confused with a relational operator `!=`.
@@ -252,7 +248,5 @@ While in `!(x > 10)`, if `x` is 5, `!(x > 10)` would be `!(false)` which is `tru
 Clearly, `!(x > 10)` is not equivalent to `!x > 10`. A programmer needs to make sure enough parentheses are used to avoid such mistakes.
 
 ````
-
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-3/sec-2") }}

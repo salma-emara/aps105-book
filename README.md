@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```
 # To build everything
 jupyter-book build --all textbook 
-# To build after updating an md file
+# To build after updating a markdown file
 jupyter-book build textbook
 ```
 
@@ -34,13 +34,28 @@ jupyter-book build textbook
 
 ```open textbook/_build/html/index.html```
 
+### Check spelling mistakes
+
+To check spelling mistakes, you need to install `pyspelling` using the following command:
+
+```
+pip install pyspelling
+```
+
+Then run the following command:
+
+```
+cd spell-check/
+pyspelling -c spell-check.yml
+```
+
 ## Contributing
 
 Most contributions require knowledge of Markdown. I ask you to be consistent with the rest of the book if you will make substantial changes. If you want to add advanced features, you may seek help from [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) website. 
 
-If you are using VS Code, install MyST-Markdown extension to allow syntax highlighting for .md files.
+If you are using VS Code, install MyST-Markdown extension to allow syntax highlighting for `.md` files.
 
-When you add a new .md file, remember to include it in `textbook/_toc.yml`.
+When you add a new `.md` file, remember to include it in `textbook/_toc.yml`.
 
 ## Correcting mistakes 
 
@@ -52,7 +67,7 @@ Thank you in advance!
 
 ## Automatic Deployment
 
-For anyone with a write request to main branch, with every push Netlify will automatically deploy it to [learningc.org](learningc.org). This is done folowing instructions on [Netlify for Jupyter-Book](https://jupyterbook.org/en/stable/publish/netlify.html).
+For anyone with a write request to main branch, with every push Netlify will automatically deploy it to [learningc.org](learningc.org). This is done following instructions on [Netlify for Jupyter-Book](https://jupyterbook.org/en/stable/publish/netlify.html).
 
 ## Quizzes: Add or Edit
 
@@ -70,7 +85,7 @@ npm install @iarna/toml
 
 To add a new quiz:
 
-1- Create a new .toml file containing the quiz in tetbook/quizzes in the chapter folder of your choice.
+1- Create a new .toml file containing the quiz in textbook/quizzes in the chapter folder of your choice.
 
 2- In your terminal, execute the following command in `aps105-book` directory.
 

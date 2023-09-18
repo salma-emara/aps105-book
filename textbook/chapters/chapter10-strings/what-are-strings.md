@@ -92,7 +92,7 @@ myString[3] = '\0';
 ```
 
 (summary-can-cannot)=
-### Method 3: Declare a Pointer Pointing to a Const String
+### Method 3: Declare a Pointer Pointing to a Constant String
 
 We can declare a pointer of type `(char*)` and initialize it to point to the first character of a **"constant string"** as in the following statement.
 
@@ -106,7 +106,7 @@ This would create a variable named `pStr` that can hold an address to a characte
 :alt: Change upper case `'H'` to lower case `'h'`
 :width: 600px
 :align: center
-:name: pointer-to-const-string
+:name: pointer-to-constant-string
 
 Pointer having the address of the first character in a constant string.
 ```
@@ -143,7 +143,7 @@ Since `pStr` is not a constant, it can point to the first character in an array 
 :alt: Change pointer to string on stack
 :width: 600px
 :align: center
-:name: change-pointer-to-stack-str
+:name: change-pointer-to-stack-string
 
 Change the value of `pStr` pointer to have the address of the first character of another string that is on the **stack**.
 ```
@@ -200,19 +200,21 @@ int spacesCount(char* str);
 Inside the function, we should check the elements at each index: from `0` to the index that has the last element. The last element here is the element having `'\0'`. If an element is a space, we increment a counter than counts the number of spaces. We can write the code as follows, or you can download {download}`spacesCount.c <../../code/chapter10/spacesCount/spacesCount.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner pre language="c" output="The number of spaces is 5." >
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+<br>
 int spacesCount(char str[]);
-
+<br>
 int main(void) {
   char str[] = "Welcome to Chapter 10 in Snefru";
   printf("The number of spaces is %d.\n", spacesCount(str));
-
+<br>
   return 0;
 }
-
+<br>
 int spacesCount(char str[]) {
   int count = 0;
   for (int ind = 0; str[ind] != '\0'; ind++) {
@@ -222,11 +224,7 @@ int spacesCount(char str[]) {
   }
   return count;
 }
-```
-
-**Output**
-<pre>
-The number of spaces is 5.
+</code-runner>
 </pre>
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-1") }}

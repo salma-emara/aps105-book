@@ -2,13 +2,15 @@
 
 prompt = '''
 Jade writes a program to print the following figure (input is 3):
-```
+<br>
+`
 11111
 12221
 12321
 12221
 11111
-```
+`
+<br>
 The figure is a lots of squares. Each square is made of numbers. The numbers in the square are the same. The numbers in the square are from 1 to the half of the width of the square. The width of the square is an odd number. The width of the square is 5 in the example above.
 
 Here is the code Jade writes:
@@ -100,6 +102,7 @@ The 18th line, print new line should be outside the inner loop.
 ''',
 '''
 D is incorrect. There are 2 errors in the code.
+
 Error 1:
 The 11th line, condition `col < temp_row - 1` is incorrect. When `n` is 5, `col` is 1 and `row` is 2, this condition will be true. The output will be like:
 `

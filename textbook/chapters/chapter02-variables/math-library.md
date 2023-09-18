@@ -20,33 +20,30 @@ We use `sqrt` function to get the square root of a number. A function has inputs
 Line 1 includes the math library, without which we can not use math library functions. Line 11 in the following code uses `sqrt` function to get the square root of $a^2 + b^2$. Download {download}`hypotenuse.c <../../code/chapter2/hypotenuse/hypotenuse.c>` to get the following code.
 
 **Code**
-```{code-block} c
-:caption: Getting the hypotenuse of a right-angled triangle
-:emphasize-lines: 1, 11
-:linenos:
-#include <math.h>
-#include <stdio.h>
-
+<!-- :caption: Getting the hypotenuse of a right-angled triangle -->
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="2.5
+4.1" output="Enter the length of the first side: <b>2.5</b>
+Enter the length of the second side: <b>4.1</b>
+The length of the hypotenuse is 4.80"
+highlight-lines="1 11">&#35;include &lt;math.h&gt;
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   double a = 0, b = 0, c = 0;
   printf("Enter the length of the first side: ");
   scanf("%lf", &a);
   printf("Enter the length of the second side: ");
   scanf("%lf", &b);
-
+<br>
   c = sqrt(a * a + b * b);
   printf("The length of the hypotenuse is %.2lf\n", c);
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Enter the length of the first side: <b>2.5</b>
-Enter the length of the second side: <b>4.1</b>
-The length of the hypotenuse is 4.80
+</code-runner>
 </pre>
-    
+
 ````{admonition} Want fewer lines? You can also write the above code in fewer lines as shown below.
 **Code**
 ```{code-block} c
@@ -82,32 +79,30 @@ You can use `sqrt` in the following use cases:
 1. It can accept an `int` too. In line 4 in the following code, implicit type conversion from `int` `2` to `double` `2.0` will occur. The output will be `Square root of 2 is 1.41`.
     
     **Code** 
-    ```{code-block} c
-    :linenos:
-    :emphasize-lines: 4
-    #include <math.h>
-    #include <stdio.h>
-    int main(void){
-    printf("Square root of 2 is %.2lf\n", sqrt(2));
-    return 0;
-    }
-    ```
-
+    <pre class="code-runner-wrapper"><code-runner language="c" output="Square root of 2 is 1.41" highlight-lines="4">#include &lt;math.h&gt; 
+   #include &lt;stdio.h&gt;
+   int main(void){
+     printf("Square root of 2 is %.2lf\n", sqrt(2));
+     return 0;
+   }  
+    </code-runner>
+    </pre>
 
 
 2. The output can be stored in an `int` too. In line 4 in the following example, the value returned from `sqrt(3.0)` -- 1.73205... -- will be truncated and stored in `val` as `1`.
 
+    <!-- TODO: this has no output? -->
     **Code** 
-    ```{code-block} c
-    :linenos:
-    :emphasize-lines: 4
-    #include <math.h>
-    #include <stdio.h>
-    int main(void){
-      int val = sqrt(3.0);
-      return 0;
-    }
-    ```
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" output="" highlight-lines="4">
+    #include &lt;math.h&gt;
+   #include &lt;stdio.h&gt;
+   int main(void){
+     int val = sqrt(3.0);
+     return 0;
+   }
+    </code-runner>
+    </pre>
 
 ## Other math library functions
 
@@ -118,12 +113,12 @@ Some of the relevant math library functions are listed below.
 |$\sqrt{x}$| `double sqrt(double x);`|returns the square root of `x`|`sqrt(4)` returns `2.0`|
 |$x^y$     | `double pow(double x, double y);`|returns `x` to the power of `y`|`pow(2, 3)` returns `8.0`|
 |$e^x$     |`double exp(double x);`|returns `e` -- Euler's number -- to the power of `x`|`exp(1)` returns `2.718281828459045`|
-|$\log_{10}x$[^2]| `double log10(double x);`|returns the logarithm to the base 10 of `x`|`log10(100)` returns `2.0`|
-|$\ln(x)$ | `double log(double x);`|returns the natural logarithm of `x`|`log(M_E)`[^3] returns `1.0`|
+|$\log_{10}x$[^1]| `double log10(double x);`|returns the logarithm to the base 10 of `x`|`log10(100)` returns `2.0`|
+|$\ln(x)$ | `double log(double x);`|returns the natural logarithm of `x`|`log(M_E)`[^2] returns `1.0`|
 |$\mid x \mid$|`double fabs(double x);`|returns the absolute value of `x`|`fabs(-2)` returns `2.0`|
-|$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^4] returns `0.0`|
-|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^4] returns `-1.0`|
-|$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^4] returns `0.0`|
+|$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^3] returns `0.0`|
+|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^3] returns `-1.0`|
+|$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^3] returns `0.0`|
 |$\sin^{-1}(x)$ or $\arcsin(x)$|`double asin(double x);`|returns the arc sine of `x` in radians (not degrees)|`asin(0.5)` returns `0.523599`|
 |$\cos^{-1}(x)$ or $\arccos(x)$|`double acos(double x);`|returns the arc cosine of `x` in radians (not degrees)|`acos(0.5)` returns `1.047198`|
 |$\tan^{-1}(x)$ or $\arctan(x)$|`double atan(double x);`|returns the arc tangent of `x` in radians (not degrees)|`atan(2)` returns `1.107149`|
@@ -131,7 +126,7 @@ Some of the relevant math library functions are listed below.
 |$\min(x)$|`double fmin(double x, double y);`|returns the minimum of `x` and `y`|`fmin(-6.1, -7.3)` returns `-7.3`|
 |$\lfloor x \rfloor$|`double floor(double x);`|returns the greatest integer that is less than or equal to `x`, i.e., rounds down `x`|`floor(9.6)` returns `9.0`|
 |$\lceil x \rceil$|`double ceil(double x);`|returns the smallest integer that is greater than or equal to `x`, i.e., rounds up `x`|`ceil(3.09)` returns `4.0`|
-|$x \mod y$|`double fmod(double x, double y);`|returns the remainder[^5] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` if for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
+|$x \mod y$|`double fmod(double x, double y);`|returns the remainder[^4] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` if for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
 |$\lfloor x \rceil$|`double rint(double x);`|returns the nearest integer to x, i.e., rounds `x`|`rint(-2.1)` returns `-2.0`|
 
 ## Example use cases for math library functions
@@ -165,28 +160,24 @@ Trials into developing a solution for rounding to the nearest 10th.
 Download {download}`nearest10.c <../../code/chapter2/nearest10/nearest10.c>` to get the following code.
 
 **Code**
-```{code-block} c
-#include <math.h>
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="2.18"
+output="Enter the number you want to round to the nearest 10th: <b>2.18</b>
+The number rounded to the nearest 10th is 2.2">
+&#35;include &lt;math.h&gt;
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   double n = 0;
   printf("Enter the number you want to round to the nearest 10th: ");
   scanf("%lf", &n);
-
+  <br>
   n = rint(n * 10) / 10;
   printf("The number rounded to the nearest 10th is %.1lf\n", n);
   return 0;
 }
-```
-
-**Output[^1]**
-
-<pre>
-Enter the number you want to round to the nearest 10th: <b>2.18</b>
-The number rounded to the nearest 10th is 2.2
-</pre> 
-
+</code-runner>
+</pre>
 ````
 
 ````{admonition} Exercise 2
@@ -217,10 +208,13 @@ Trials into developing a solution for rounding to the nearest nickle.
 Download {download}`nearest-nickle.c <../../code/chapter2/nearest-nickle/nearest-nickle.c>` to get the following code.
 
 **Code**
-```{code-block} c
-#include <math.h>
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="2.94" 
+output="Enter the amount to round to the nearest nickle: <b>2.94</b>
+$2.94 rounded to the nearest nickle is $2.95">
+&#35;include &lt;math.h&gt;
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   double price = 0;
   printf("Enter the amount to round to the nearest nickle: ");
@@ -229,20 +223,13 @@ int main(void) {
          rint(price * 100 / 5) / 100 * 5);
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Enter the amount to round to the nearest nickle: <b>2.94</b>
-$2.94 rounded to the nearest nickle is $2.95
+</code-runner>
 </pre>
 ````
 
-
-[^1]: Inputs to programs are in **bold**.
-[^2]: To get the $\log_{n}(x)$, $\log$ base $n$ of $x$, where $n$ is any number, recall you can always use the following $\log_{n}(x) = \frac{\log_{10} (x)}{\log_{10} (n)}$. In C, `log10(x)/log10(n)` to calculate $\log_{n}(x)$.
-[^3]: `M_E` is a constant defined in math library, denoting the value of $\exp$. It is approximately equal to 2.718281828... 
-[^4]: `M_PI` is a constant defined in math library, denoting the value of $\pi$. It is approximately equal to 3.14159...
-[^5]: How do we get remainders for floating point numbers? For example, $\frac{5.3}{2.1}$ yields $2.523...$. To get the remainder of this division, we remove the whole number $2$ from $2.523...$, and we are left with $0.523...$. The remainder would be $0.523... \times 2.1$. Hence, `fmod(5.3, 2.1)` is $1.1$.
+[^1]: To get the $\log_{n}(x)$, $\log$ base $n$ of $x$, where $n$ is any number, recall you can always use the following $\log_{n}(x) = \frac{\log_{10} (x)}{\log_{10} (n)}$. In C, `log10(x)/log10(n)` to calculate $\log_{n}(x)$.
+[^2]: `M_E` is a constant defined in math library, denoting the value of $\exp$. It is approximately equal to 2.718281828... 
+[^3]: `M_PI` is a constant defined in math library, denoting the value of $\pi$. It is approximately equal to 3.14159...
+[^4]: How do we get remainders for floating point numbers? For example, $\frac{5.3}{2.1}$ yields $2.523...$. To get the remainder of this division, we remove the whole number $2$ from $2.523...$, and we are left with $0.523...$. The remainder would be $0.523... \times 2.1$. Hence, `fmod(5.3, 2.1)` is $1.1$.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-4") }}

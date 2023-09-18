@@ -43,24 +43,27 @@ To represent a single letter, symbol or digit, we can use the char data type. Ex
 
 **Example**
 
-```c {.line-numbers}
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="My first initial is S.">
+#include &lt;stdio.h&gt;
+<br>
 int main(void){
-    char firstInitial = 'S';
-    printf("My first initial is %c.\n", firstInitial);
-    return 0;
+  char firstInitial = 'S';
+  printf("My first initial is %c.\n", firstInitial);
+  return 0;
 }
-```
+</code-runner>
+</pre>
 
 This code snippet would print `S` on the screen. The format specifier for `char` is `%c`.
 
-**Output**
+<!-- **Output**
 <pre>
 My first initial is S
-</pre>
+</pre> -->
 
-`char` is stored using 8 bits, i.e. 1 byte of memory. Each character is encoded into a unique number, and the number is stored in one cell of the memory. How does this unique number look like? The number is called American Standard Code for Information Interchange (ASCII) code. ASCII code is a standard encoding scheme for characters. It uses only 7-bits and the 8th bit is set to $0$. Since we are using 7 bits, then the ASCII code table has numbers between $0$ and $2^7 -1$, which is 128 numbers. Part of the ASCII code table is shown below, but you are **NOT** expected to memorize it.
+`char` is stored using 8 bits, i.e. 1 byte of memory. Each character is encoded into a unique number, and the number is stored in one cell of the memory. How does this unique number look like? The number is called American Standard Code for Information Interchange (ASCII) code. ASCII code is a standard encoding scheme for characters. It uses only 7-bits and the eighth bit is set to $0$. Since we are using 7 bits, then the ASCII code table has numbers between $0$ and $2^7 -1$, which is 128 numbers. Part of the ASCII code table is shown below, but you are **NOT** expected to memorize it.
 
 | Character | ASCII code (Decimal) | ASCII code (Binary) |
 | :-------: | :------------------: | :-----------------: |
@@ -91,25 +94,27 @@ Boolean `bool` data type is used to represent a logical value, i.e. either `true
 
 Write a C code that prints a `bool` variable. Code in {download}`isRaining.c <../../code/chapter2/boolVariable/isRaining.c>`.
 
-```c {.line-numbers}
-#include <stdbool.h>
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Is it raining? 1">
+#include &lt;stdbool.h&gt;
+#include &lt;stdio.h&gt;
+<br>
 int main(void){
-    bool isRaining = true;
-    printf("Is it raining? %d\n", isRaining);
-    return 0;
+  bool isRaining = true;
+  printf("Is it raining? %d\n", isRaining);
+  return 0;
 }
-```
+</code-runner>
+</pre>
 
-**Output**
+<!-- **Output**
 <pre>
 Is it raining? 1
-</pre>
+</pre> -->
 
 There is no format specifier for `bool` specifically. We use `%d` to print the value (either 0 or 1) of a boolean variable. Hence, the above code prints `Is it raining? 1` NOT `Is it raining? true`.
 
-If you noticed, apart from `#include <stdio.h>` which gives us access to `printf` and `scanf` functions, we included another library for `bool` variables in `#include <stdbool.h>`. Without this library, the complier won't identify the `bool` variable type.
+If you noticed, apart from `#include <stdio.h>` which gives us access to `printf` and `scanf` functions, we included another library for `bool` variables in `#include <stdbool.h>`. Without this library, the compiler won't identify the `bool` variable type.
 
 (declare-vs-initialization)=
 ## Declaring Vs. Initializing Variables
@@ -126,23 +131,21 @@ The variable is **uninitialized**. It is not holding any value. It is just a var
 For example, when I ran the code below on my computer, the value in `var` variable was `174739296`, because I never initialized `var`. However, when you run the code, you may get a different value. The value will be different for each run too. You can download from {download}`declare-vs-initialize.c <../../code/chapter2/declare-vs-initialize/declare-vs-initialize.c>` to play with the code.
 
 **Code**
-```c {.line-numbers}
-#include <stdio.h>
-
-int main() {
+<!-- TODO: this doesn't actually give a warning right now -->
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Value of uninitialized variable 'var': 174739296
+Value of initialized variable 'var': 0">
+&#35;include &lt;stdio.h&gt;
+<br>
+int main(void) {
   int var;
   printf("Value of uninitialized variable \"var\": %d\n", var);
   int var2 = 0;
   printf("Value of initialized variable \"var\": %d\n", var2);
   return 0;
 }
-```
-
-**Potential output**
-```
-Value of uninitialized variable "var": 174739296
-Value of initialized variable "var": 0
-```
+</code-runner>
+</pre>
 
 ```{note}
 If you compile the code above, you will get a warning stating: `variable ‘var’ is uninitialized when used here [-Wuninitialized]`. The compiler will also ask you to initialize `var` to silence the warning. 
@@ -160,25 +163,21 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     You can take multiple numbers from the user in one single `scanf`. The `scanf` should separate the format specifiers by a space. The user should separate the numbers by **delimiters**. Delimiters can be a space, return or tab and are used to separate two different inputs. An example code that takes multiple numbers as input from user is shown below.
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      int num1 = 0, num2 = 0;
-      double dnum1 = 0, dnum2 = 0;
-      printf("Enter a number: ");
-      scanf("%d %lf %d %lf", &num1, &dnum1, &num2, &dnum2);
-
-      printf("Numbers entered: %d %lf %d %lf\n", num1, dnum1, num2, dnum2);
-
-      return 0;
-    }
-    ```
-
-    **Output[^1]**
-    <pre>
-    Enter a number: <b>1 1.2 3 3.4</b>
-    Numbers entered: 1 1.200000 3 3.400000
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" input="1 1.2 3 3.4" output="Enter a number: <b>1 1.2 3 3.4</b>Numbers entered: 1 1.200000 3 3.400000"> 
+    &#35;include &lt;stdio.h&gt;
+    
+   int main(void) {
+     int num1 = 0, num2 = 0;
+     double dnum1 = 0, dnum2 = 0;
+     printf("Enter a number: ");
+     scanf("%d %lf %d %lf", &num1, &dnum1, &num2, &dnum2);
+    <br>
+     printf("Numbers entered: %d %lf %d %lf\n", num1, dnum1, num2, dnum2);
+    <br>
+     return 0;
+   }
+    </code-runner>
     </pre>
 
 2. **Take numbers and characters.**
@@ -186,72 +185,59 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     You can take numbers and characters in the same `scanf` line. The example code shown below takes in an ID from the user that begins with a character and is followed by a number. It does not require a delimiter between the character entered and the numbers. This is because the `%c` format specifier will take one character, and stop taking more input. The rest will be taken by `%d`. If the user enters a space between the character and the numbers it will be ignored.
     
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      char idChar;
-      int idNum;
-      printf("Enter your ID: ");
-      scanf("%c %d", &idChar, &idNum);
-
-      printf("ID entered: %c%d\n", idChar, idNum);
-
-      return 0;
-    }
-    ```
-
-    **Output[^1]**
-    <pre>
-    Enter your ID: <b>S1321234</b>
-    ID entered: S1321234
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" input="S1321234" output="Enter your ID: <b>S1321234</b>ID entered: S1321234">
+    &#35;include &lt;stdio.h&gt;
+    <br>
+   int main(void) {
+     char idChar;
+     int idNum;
+     printf("Enter your ID: ");
+     scanf("%c %d", &idChar, &idNum);
+    <br>
+     printf("ID entered: %c%d\n", idChar, idNum);
+    <br>
+     return 0;
+   }
+    </code-runner>
     </pre>
 
     You can also write the code above with no spaces between `%c` and `%d` in `scanf` as follows.
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      char idChar;
-      int idNum;
-      printf("Enter your ID: ");
-      scanf("%c%d", &idChar, &idNum);
-
-      printf("ID entered: %c%d\n", idChar, idNum);
-
-      return 0;
-    }
-    ```
-
-    **Output[^1]**
-    <pre>
-    Enter your ID: <b>S1321234</b>
-    ID entered: S1321234
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" input="S1321234" output="Enter your ID: <b>S1321234</b>ID entered: S1321234">
+    &#35;include &lt;stdio.h&gt;
+    <br>
+   int main(void) {
+     char idChar;
+     int idNum;
+     printf("Enter your ID: ");
+     scanf("%c%d", &idChar, &idNum);
+    <br>
+     printf("ID entered: %c%d\n", idChar, idNum);
+    <br>
+     return 0;
+   }
+    </code-runner>
     </pre>
-    
-    **Question:** Does the order of character or number matter? If you take the number before the character that is fine too as shown in the following code.
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      char idChar;
-      int idNum;
-      printf("Enter your ID: ");
-      scanf("%d%c", &idNum, &idChar);
-
-      printf("ID entered: %c%d\n", idChar, idNum);
-
-      return 0;
-    }
-    ```
-    **Output[^1]**
-    <pre>
-    Enter your ID: <b>324245S</b>
-    ID entered: S324245
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" input="324245S" output="Enter your ID: <b>324245S</b>ID entered: S324245">
+    &#35;include &lt;stdio.h&gt;
+    <br>
+   int main(void) {
+     char idChar;
+     int idNum;
+     printf("Enter your ID: ");
+     scanf("%d%c", &idNum, &idChar);
+    <br>
+     printf("ID entered: %c%d\n", idChar, idNum);
+    <br>
+     return 0;
+   }
+    </code-runner>
     </pre>
 
 3. **Take in characters and ignoring leading spaces.**
@@ -259,26 +245,23 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     If you want to take in character by character, but you are entering spaces or returns between them, what should you do? To ignore spaces between characters entered, you need to add a space between the format specifier `%c`. For example, the following code takes in the 4 letters and three numbers of a license plate in Ontario. If you do not add a space between the `%c`, any delimiter entered will be considered a character, and taken into the character variable. 
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      char c1, c2, c3, c4, c5, c6, c7;
-
-      printf("Enter license plate letters and numbers: ");
-      scanf("%c %c %c %c %c %c %c", &c1, &c2, &c3, &c4, &c5, &c6, &c7);
-
-      printf("Licence plate entered: %c%c%c%c-%c%c%c\n", c1, c2, c3, c4, c5, c6,
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" input="L MN Y 897" output="Enter license plate letters and numbers: <b>L MN Y 897</b>
+    Licence plate entered: LMNY-897">
+    &#35;include &lt;stdio.h&gt;
+    <br>
+   int main(void) {
+     char c1, c2, c3, c4, c5, c6, c7;
+    <br>
+     printf("Enter license plate letters and numbers: ");
+     scanf("%c %c %c %c %c %c %c", &c1, &c2, &c3, &c4, &c5, &c6, &c7);
+      <br>
+     printf("Licence plate entered: %c%c%c%c-%c%c%c\n", c1, c2, c3, c4, c5, c6,
             c7);
-
-      return 0;
-    }
-    ```
-
-    **Output[^1]**
-    <pre>
-    Enter license plate letters and numbers: <b>L MN Y 897</b>
-    Licence plate entered: LMNY-897
+      <br>
+     return 0;
+   }
+    </code-runner>
     </pre>
 
 4. **Common mistake: Spaces after format specifiers**
@@ -286,27 +269,26 @@ Given that we now know the format specifiers of `int`, `double`, `char` and `boo
     Do not include a space after a format specifier, if there is no format specifier after it in `scanf`, like `scanf("%d ", &num);`. This is because `scanf` will wait for a delimiter after you enter your number and another input too. Although it won't put that second input into another variable. For example, the following code will not proceed with executing other statements unless you enter another input after your number. 
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      double dnum1 = 0;
-      printf("Enter a number: ");
-      scanf(" %lf ", &dnum1);
-
-      printf("Number entered: %.2lf\n", dnum1);
-      return 0;
-    }
-    ```
-    **Output**
-    <pre>
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" input="7.89012       2432"
+     output="
     Enter a number: <b>7.89012</b>
           <b>2432</b>
-    Number entered: 7.89
+    Number entered: 7.89">
+    &#35;include &lt;stdio.h&gt;
+    <br>
+   int main(void) {
+     double dnum1 = 0;
+     printf("Enter a number: ");
+     scanf(" %lf ", &dnum1);
+    <br>
+     printf("Number entered: %.2lf\n", dnum1);
+     return 0;
+   }
+    </code-runner>
     </pre>
 
 
-[^1]: Inputs to programs are in **bold**.
-
 {{quiz_embed | replace("%%FILENAME%%", "chapter-2/sec-2") }}
+
 

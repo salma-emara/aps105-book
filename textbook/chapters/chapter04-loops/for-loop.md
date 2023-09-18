@@ -47,20 +47,19 @@ The execution of a program with a for loop.
 Again if we want to print numbers from $1$ to $10$, we only change the condition from `i <= 3` to `i <= 10`. The following program will print out the numbers $1$ through $10$ using a for loop. Download {download}`for-print-nums.c <../../code/chapter04/for-print-nums/for-print-nums.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" 
+output="1 2 3 4 5 6 7 8 9 10">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   for (int i = 1; i <= 10; i++) {
     printf("%d ", i);
   }
   return 0;
 }
-```
-
-**Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10
+</code-runner>
 </pre>
 
 (scope-for-loop)=
@@ -71,22 +70,21 @@ In the `for` loop, the initialization and declaration of the loop variable are d
 For example, if we compile the following code, we would get a compilation error.
 
 **Code with compilation error**
-```{code-block} c
-:linenos: 
-:emphasize-lines: 4, 5
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="4 5" output="(compiler-time error)">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
-  for (int i = 1; i <= 10;
-       i++) {  // declare & initialize the loop variable inside the loop
+  for (int i = 1; i <= 10; i++) {  // declare & initialize the loop variable inside the loop
     printf("%d ", i);
   }
-
-  printf("\nWe existed the loop with i = %d \n", i);
+  <br>  
+  printf("\nWe exited the loop with i = %d \n", i);
 
   return 0;
 }
-```
+</code-runner>
+</pre>
 
 **Error**
 
@@ -103,25 +101,23 @@ The error message when the loop variable is used outside the loop.
 
 **Solution!** If you want to use the loop variable outside the loop, you can declare it outside the loop and initialize it inside the loop. For example, the following code will compile and run without any error. Download {download}`for-loop-scope.c <../../code/chapter04/for-loop-scope/for-loop-scope.c>` if you want to run the program yourself.
 
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="4 5"
+output="1 2 3 4 5 6 7 8 9 10
+We exited the loop with i = 11">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int i;                       // declare the loop variable outside the loop
   for (i = 1; i <= 10; i++) {  // initialize the loop variable inside the loop
     printf("%d ", i);
   }
-
-  printf("\nWe existed the loop with i = %d \n", i);
-
+  <br>
+  printf("\nWe exited the loop with i = %d \n", i);
+  <br>
   return 0;
 }
-```
-
-**Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10 
-The value of i when we existed the loop: 11
+</code-runner>
 </pre>
 
 (variations-for-loop)=
@@ -172,27 +168,27 @@ You can use the for loop in different ways, including omitting some statements.
     You can declare and initialize multiple variables in the initialization statement. For example, the following code snippet will print out the timetable of 7.
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
-    int main(void) {
-      for (int i = 1, j = 7; i <= 10; printf("7 * %d = %d\n", i, j), i += 1, j += 7)
-        ;
-      return 0;
-    }
-    ```
-    **Output**
-    <pre>
-    7 * 1 = 7
-    7 * 2 = 14
-    7 * 3 = 21
-    7 * 4 = 28
-    7 * 5 = 35
-    7 * 6 = 42
-    7 * 7 = 49
-    7 * 8 = 56
-    7 * 9 = 63
-    7 * 10 = 70</pre>
+    <pre class="code-runner-wrapper">
+    <code-runner language="c"
+    output="7 * 1 = 7
+   7 * 2 = 14
+   7 * 3 = 21
+   7 * 4 = 28
+   7 * 5 = 35
+   7 * 6 = 42
+   7 * 7 = 49
+   7 * 8 = 56
+   7 * 9 = 63
+   7 * 10 = 70">
+    &#35;include &lt;stdio.h&gt;  
+    <br>
+   int main(void) {
+     for (int i = 1, j = 7; i <= 10; printf("7 * %d = %d\n", i, j), i += 1, j += 7)
+       ;
+     return 0;
+   }
+    </code-runner>
+    </pre>
 
 4. You can have complex conditions. The condition can be complex using logical (`&&`, `||`, `!`) and relational operators (`>`, `>=`, `<`, `<=`, `==`, `!=`). Conditions cannot be separated using `,` as the initialization and increment statements can. 
 
@@ -228,19 +224,19 @@ You can use the for loop in different ways, including omitting some statements.
     **Step 5: Write the code.** You can write the code as follows.
 
     **Code**
-    ```{code-block} c
-    #include <stdio.h>
-
+    <pre class="code-runner-wrapper">
+    <code-runner language="c" 
+    output="1 4 9 16 25 36 49 64 81 100 121 144 169 196">
+    &#35;include &lt;stdio.h&gt;
+    <br>
     int main(void) {
       for (int num = 1; (num <= 50) && (num * num < 200); num += 1) {
         printf("%d ", num * num);
       }
       return 0;
     }
-    ```
-    **Output**
-    <pre>
-    1 4 9 16 25 36 49 64 81 100 121 144 169 196</pre>
+    </code-runner>
+    </pre>
 
     **Step 6: Test your code.** You can test your code easily by looking at the numbers printed out. 196, which is the last square printed is less than 200. All numbers printed are squares. 196 is a square of 14, which is less than 50. Therefore, the code is $\sim 100\%$ correct. I have the $\sim$ to encourage you to be **skeptical**!
     ````

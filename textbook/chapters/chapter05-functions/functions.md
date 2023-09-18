@@ -63,47 +63,38 @@ Function implementation of `printPattern` that prints a pattern by calling `prin
 The entire code in use will be as follows. Download {download}`print-pattern-functions.c <../../code/chapter05/print-pattern-functions/print-pattern-functions.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 4 - 6, 12
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="4 5 6 12" input="5"
+output="Enter the number of lines in the pattern:<b>5</b><br>*<br>**<br>***<br>****<br>*****">
 // This program prints a pattern of stars using two functions
-#include <stdio.h>
-
+&#35;include &lt;stdio.h&gt;
+<br>
 // Function prototypes: Headers of functions
 void printPattern(int numOfRows);
 void printStars(int numOfStars);
-
+<br>
 int main(void) {
   int lines;
-  printf("Enter the number of lines in the pattern: ");
+  printf("Enter the number of lines in the pattern:");
   scanf("%d", &lines);
   printPattern(lines);
   return 0;
 }
-
+<br>
 void printStars(int numOfStars) {
   for (int star = 1; star <= numOfStars; star++) {
     printf("%c", '*');
   }
   printf("\n");  // to start a newline 
 }
-
+<br>
 void printPattern(int numOfRows) {
   for (int row = 1; row <= numOfRows; row++) {
     printStars(row);
   }
 }
-```
-
-**Output[^1]**
-<pre>
-Enter the number of lines in the pattern: <b>5</b>
-*
-**
-***
-****
-*****
+</code-runner>
 </pre>
 
 In lines $4$ -- $6$, we wrote down the **function prototypes** of `printStars` and `printPattern`. A function prototype tells the compiler three main features of a function:
@@ -157,31 +148,33 @@ Steps taken to execute a program with functions.
 There is another way to write your program when it has functions, that does not involve writing the function prototypes. It requires that you implement all the functions before the `main` function, instead of including the function prototypes. The following code shows the code above in this new way. Function prototypes are replaced with the function implementations, that were at the end of the program. You should not have function implementations at the end of the program in this case.
 
 **Code**
-```{code-block} c
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="5" output="Enter the number of lines in the pattern:<b>5</b><br>*<br>**<br>***<br>****<br>*****"> 
 // This program prints a pattern of stars using two functions
-#include <stdio.h>
-
+&#35;include &lt;stdio.h&gt;
+<br>
 void printStars(int numOfStars) {
   for (int star = 1; star <= numOfStars; star++) {
     printf("%c", '*');
   }
   printf("\n");  // to start a newline 
 }
-
+<br>
 void printPattern(int numOfRows) {
   for (int row = 1; row <= numOfRows; row++) {
     printStars(row);
   }
 }
-
+<br>
 int main(void) {
   int lines;
-  printf("Enter the number of lines in the pattern: ");
+  printf("Enter the number of lines in the pattern:");
   scanf("%d", &lines);
   printPattern(lines);
   return 0;
 }
-```
+</code-runner>
+</pre>
 
 **Why is this method not favorable?**
 
@@ -207,6 +200,5 @@ When you pass a parameter to a function, the name used inside the function shoul
 ```
 -->
 
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-5/sec-1") }}

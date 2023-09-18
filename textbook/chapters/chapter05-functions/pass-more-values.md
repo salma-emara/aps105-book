@@ -48,7 +48,7 @@ int median(int x, int y, int z) {
 }
 ```
 
-In line 2, `(x >= z && x <= y)` checks the $1$st possibility in the {ref}`Median Possibilities <median-possibilities>` figure above. This condition is OR-ed with the $2$nd possibility that makes `x` a median `(x >= y && x <= z)`.
+In line 2, `(x >= z && x <= y)` checks the first possibility in the {ref}`Median Possibilities <median-possibilities>` figure above. This condition is OR-ed with the second possibility that makes `x` a median `(x >= y && x <= z)`.
 
 In line $3$, the function will return the value of `x` if it is the median. This means further lines will never be executed. The same will happen if `y` is median in line $5$ and if `z` is median in line $7$. However, if your function is quite long and has several `return`s, it will be difficult to trace how many `return`s and debug the function if it has bugs.
 
@@ -73,13 +73,15 @@ int median(int x, int y, int z) {
 What's left now is the main function that takes input from the user, calls median function and prints the median. Download {download}`median-function.c <../../code/chapter05/median-function/median-function.c>` if you want to run the program yourself. 
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 9
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="3 9" input="2 7 5"
+output="Please enter three integers to find the median: <b>2 7 5</b>
+The median is 5">
+&#35;include &lt;stdio.h&gt;
+<br>
 int median(int, int, int);
-
+<br>
 int main(void) {
   int a, b, c;
   printf("Please enter three integers to find the median: ");
@@ -87,7 +89,7 @@ int main(void) {
   printf("The median is %d\n", median(a, b, c));
   return 0;
 }
-
+<br>
 int median(int x, int y, int z) {
   int result = 0;
   if ((x >= z && x <= y) || (x >= y && x <= z))
@@ -98,12 +100,7 @@ int median(int x, int y, int z) {
     result = z;
   return result;
 }
-```
-
-**Output[^1]**
-<pre>
-Please enter three integers to find the median: <b>2 7 5</b>
-The median is 5
+</code-runner>
 </pre>
 
 In line 3, there was no need to write the variable names of the three int arguments. Their types are enough.
@@ -115,19 +112,21 @@ In line 9, `median` is called with `a`, `b` and `c`, and in `median` the variabl
 If your program does not work, and it has many lines of code and many functions, it is difficult to find the errors. It is easier and faster to test each function separately. This method in testing is called **isolation**, where each function is tested in isolation. If I were to test the function `median` alone, I will copy it in another `.c` file and write a simple main function, where I call `median` with pre-set values. For example, in the following code we test `median` with several inputs. It is easier in this case to test `median` on many inputs, use the debugger without having to input numbers in the console, and quickly find which inputs cause issues. Download {download}`median-test.c <../../code/chapter05/median-test/median-test.c>` if you want to run the program yourself. 
 
 **Code for testing only**
-```{code-block} c
-:linenos:
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="The median of (-105, -28, -73) is -73
+The median of (0, -101, 98) is 0
+The median of (-101, -67, 0) is -67">
+&#35;include &lt;stdio.h&gt;
+<br>
 int median(int, int, int);
-
+<br>
 int main(void) {
   printf("The median of (%d, %d, %d) is %d\n", -105, -28, -73, median(-105, -28, -73));
   printf("The median of (%d, %d, %d) is %d\n", 0, -101, 98, median(0, -101, 98));
   printf("The median of (%d, %d, %d) is %d\n", -101, -67, 0, median(-101, -67, 0));
   return 0;
 }
-
+<br>
 int median(int x, int y, int z) {
   int result = 0;
   if ((x >= z && x <= y) || (x >= y && x <= z))
@@ -138,19 +137,12 @@ int median(int x, int y, int z) {
     result = z;
   return result;
 }
-```
-
-**Output**
-<pre>
-The median of (-105, -28, -73) is -73
-The median of (0, -101, 98) is 0
-The median of (-101, -67, 0) is -67
+</code-runner>
 </pre>
 
 In lines $6$ -- $8$, we test median with three different inputs in the same code. 
 
 **Step 6:  Debug the code.** If the desired output was not produced as you test in isolation, using the debugger will easily help you find the bug in your `median` function. Only if we are confident that `median` function is correct, now we can integrate it with the `main` function where we take input from the user or with other functions (if there are any).
 
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-5/sec-4") }}

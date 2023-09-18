@@ -1,4 +1,4 @@
-# Operations on a binary search treee
+# Operations on a binary search tree
 
 In this section, we will discuss how to how to **print** the values of the nodes in order in a binary search tree, how to **search** for and **insert** elements in a binary search tree. We will **not** discuss how to delete elements from a binary search tree.
 
@@ -26,7 +26,7 @@ Similar to the linked list, we can create a node in a binary search tree using t
 
 **Code**
 ```{figure} ./images/createNode.png
-:alt: createNode
+:alt: create node
 :width: 600px
 :align: center
 ```
@@ -122,8 +122,6 @@ The following figure shows the order of function calls when `printHelper` functi
 
 ## Search for a node with a given value
 
-
-
 Searching for a node in a binary search tree is easier
 than printing nodes, because printing nodes requires us to traverse the entire tree, while searching for a node requires us to traverse only a part of the tree as we will show now.
 
@@ -145,7 +143,7 @@ However, if we were looking for `9` in the tree, we have to go to the right of `
 
 In summary, we can start from the root, and compare the value of the root with the value we are looking for. If the value of the root is smaller than the value we are looking for, we can search for the value in the right subtree. If the value of the root is larger than the value we are looking for, we can search for the value in the left subtree. If the value of the root is equal to the value we are looking for, we have found the node we are looking for. If we reach a `NULL` node, we can conclude that the value we are looking for is not found.
 
-### Iteratively
+### Iterative search
 
 Since we are only traversing one branch of the tree, we only need to keep track of one node at a time. Therefore, we can use a non-recursive function to search for a node with a given value.
 
@@ -178,7 +176,7 @@ Line $4$ is the condition for the loop to keep iterating. Of course, we need to 
 
 When we exit the loop, either `current` is pointing to the node we are looking for, or `current` is `NULL` if the value is not found. Hence, we can return `current` as the result of the function.
 
-### Recursively
+### Recursive search
 
 We can also write a recursive function to search for a node with a given value. The following function `searchRecursiveHelper` is a helper function that receives a pointer `n` to the current node, and a `value` to search for. The function returns a pointer to the node that was found, or `NULL` if the node was not found.
 
@@ -245,8 +243,7 @@ Inserting a node with a given value is a similar to searching for a node with a 
 We can only insert a node at an empty place in the tree. Therefore, we need to traverse the tree until we reach a `NULL` node. It can be a leaf node or a node 
 with only one child.
 
-
-### Iteratively
+### Iterative insertion
 
 We can use the following function `insert` to insert a node with a given value. The following function receives a pointer `tree` to the binary search tree data structure, and a value `value` to insert. The function returns a `bool` value, which is `true` if the node that was inserted, or `false` if the node was not inserted.
 
@@ -343,7 +340,7 @@ bool insert(BSTree *tree, int value) {
 We are making an assumption that before calling `insert`, we have checked that the value we are inserting is not already in the tree. If the value is already in the tree, we should not insert it again.
 ```
 
-### Recursively
+### Recursive insertion
 
 We can also implement the `insert` function recursively. The following function `insertRecursiveHelper` receives a pointer `n` to the current node, and a value `value` to insert. The function returns a pointer to the root node.
 

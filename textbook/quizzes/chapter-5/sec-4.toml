@@ -12,9 +12,9 @@ int main(void) {
     double unitPrice, discount;
     printf("Please enter the number of notebooks you want to buy,
      the price per notebook and the student discount: ");
-    scanf("%d %lf %lf", &number, &unitPrice, &discount);
-    printf("The total price is %d\n", howMuchToPay(number, unitPrice));
-    return 0;
+   scanf("%d %lf %lf", &number, &unitPrice, &discount);
+   printf("The total price is %d\n", howMuchToPay(number, unitPrice));
+   return 0;
 }
 
 double howMuchToPay(int number, double unitPrice, double discount) {

@@ -113,7 +113,7 @@ char* lastStringInStringAlt(char* s1, char* s2) {
 **Question 11 in Winter 2018 Final Exam [Intermediate]**
 
 Write a C function called `preamble` that takes two parameters: a string `str` and an int-type integer `n`. The function will then return a new string that is dynamically allocated, and that contains at most the first `n` characters in the string `str`. For example, if `str` is `"Toronto"`, and `n` is `3`, then the function will return `"Tor"` (the first three characters in `"Toronto"`). If `str` is `"Toronto"` and `n` is `8`,
-then the function will return `"Toronto"`. If str is NULL, the function will also return `NULL`.
+then the function will return `"Toronto"`. If `str` is NULL, the function will also return `NULL`.
 
 ```{code-block} c
 char *preamble(char *str, mt n) {
@@ -224,7 +224,7 @@ bool isAnagram(char* s1, char* s2) {
 Write a C function called `checkPlagiarism`, the prototype of which is given below, that returns `true` if the two suspected codes `code1` and `code2` have high similarity. *High similarity* is defined as matching exactly, but ignoring any spaces or newline character`\n`. For example, the function `checkPlagiarism` returns `true` when comparing the example strings  `c1` and `c2` below. You may assume that `c1` and `c2` are null-terminated strings. **Hint:** your code should return `false` as soon as it finds evidence of mis-match.
 
 ```{code-block} c
-#include <stdbool.h>
+&#35;include &lt;stdbool.h&gt;
 #include <stdio.h>
 
 bool checkPlagiarism(char *code1, char *code2);

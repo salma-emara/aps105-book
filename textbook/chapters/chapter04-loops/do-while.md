@@ -42,9 +42,11 @@ The execution of a program with a do-while loop.
 If we want to print numbers from $1$ to $10$, we just need to change the condition from `i <= 3` to `i <= 10` as in the following code. Download {download}`do-while-print-nums.c <../../code/chapter04/do-while-print-nums/do-while-print-nums.c>` if you want to run the program yourself.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="1 2 3 4 5 6 7 8 9 10">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int i = 1;
   do {
@@ -53,11 +55,7 @@ int main(void) {
   } while (i <= 10);
   return 0;
 }
-```
-
-**Output**
-<pre>
-1 2 3 4 5 6 7 8 9 10
+</code-runner>
 </pre>
 
 (do-while-validate)=
@@ -96,32 +94,29 @@ The flow chart of the do while loop exercise that validates that the user input 
 **Step 5: Write the code.** Download {download}`validate-input.c <../../code/chapter04/validate-input/validate-input.c>` to get the following code.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="-2 5"
+output="Please enter a number between 1 and 10 (inclusive): <b>-2</b>
+Please enter a number between 1 and 10 (inclusive): <b>5</b>
+The number entered is 5.">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int num;
-
+<br>
   do {
     printf("Please enter a number between 1 and 10 (inclusive): ");
     scanf("%d", &num);
   } while (num < 1 || num > 10);
-
+<br>
   printf("The number entered is %d.\n", num);
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Please enter a number between 1 and 10 (inclusive): <b>-2</b>
-Please enter a number between 1 and 10 (inclusive): <b>5</b>
-The number entered is 5.
+</code-runner>
 </pre>
 
 **Step 6: Test your code.** Test your code with other numbers. For example, try a number at the boundary, e.g., $1$, $10$ , $0$, $11$.
 ````
 
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-4/sec-2") }}

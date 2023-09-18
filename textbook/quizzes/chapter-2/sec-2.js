@@ -45,10 +45,10 @@ let parsedObject;
         3
       ],
       "distractors": [
-        "```\nprintf(\"The course number is %c%c%c%c%c%c.\", 'A', 'P', 'S', '1', '0', '5');\n```\n",
-        "```\nprintf(\"The course number is %c%c%c%d%d%d.\", 'A', 'P', 'S', '1', '0', '5');\n```\n",
-        "```\nprintf(\"The course number is %c%c%c%c%c%c.\", 'A', 'P', 'S', 49, 48, 53);\n```\n",
-        "```\nprintf(\"The course number is %c%c%c%c%c%c.\", 'A', 'P', 'S', '0' + 1, '0' + 0, '0' + 5);\n```\n"
+        "`printf(\"The course number is %c%c%c%c%c%c.\", 'A', 'P', 'S', '1', '0', '5');`\n",
+        "`printf(\"The course number is %c%c%c%d%d%d.\", 'A', 'P', 'S', '1', '0', '5');`\n",
+        "`printf(\"The course number is %c%c%c%c%c%c.\", 'A', 'P', 'S', 49, 48, 53);`\n",
+        "`printf(\"The course number is %c%c%c%c%c%c.\", 'A', 'P', 'S', '0' + 1, '0' + 0, '0' + 5);`\n"
       ],
       "explainations": [
         "A is correct. It literally prints each character of `APS105` one by one.",
@@ -65,10 +65,10 @@ let parsedObject;
         3
       ],
       "distractors": [
-        "```\nbool isPositive = n > 0;\n```\n",
-        "```\nbool isPositive = n;\n```\n",
-        "```\nbool isPositive = n > 0 != 0;\n```\n",
-        "```\nbool isPositive = n <= 0 != 1;\n```\n"
+        "`bool isPositive = n > 0;`\n",
+        "`bool isPositive = n;`\n",
+        "`bool isPositive = n > 0 != 0;`\n",
+        "`bool isPositive = n <= 0 != 1;`\n"
       ],
       "explainations": [
         "A is correct. The condition `n > 0` is literally checking if `n` is positive.",

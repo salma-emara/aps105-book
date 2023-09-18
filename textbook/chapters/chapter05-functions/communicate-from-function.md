@@ -42,6 +42,5 @@ Basic skeleton of a program that uses functions.
 
 The order of the parameters passed to a function MUST be the same as the order of the parameters in the header of the function.
 
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-5/sec-2") }}

@@ -1,23 +1,24 @@
 # How do we pass an array to a function?
 
-To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function. 
+To pass an array to a function, all what you need to do is pass the pointer to the first element of the array. For example, in the following code skeleton, we show how do we pass an array to a function.
 
 **Code Skeleton**
-```{code-block} c
-:linenos:
-:emphasize-lines: 2, 6, 9
-#include <stdio.h>
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="2 6 9">
+&#35;include &lt;stdio.h&gt;
 double f(int []);
-
+<br>
 int main(void){
-    int x[3] = {1, 7, 3};
-    double result = f(x);
-    return 0;
+  int x[3] = {1, 7, 3};
+  double result = f(x);
+  return 0;
 }
 double f(int list[]){
-    //statements;
+  //statements;
 }
-```
+</code-runner>
+</pre>
 
 In line $2$, the input data type is `int []`. This means that when the function is called, the input will be a pointer to the first element in the array, which is also the array identifier.
 
@@ -34,21 +35,19 @@ Within the function, we can access elements as we see appropriate. However, the 
 This is similar to finding the average of the elements in an array. 
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 13, 16
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="3 12 15" output="Sum of elements in the array: 11.">
+&#35;include &lt;stdio.h&gt;
+<br>
 int sumData(int[], const int);
-
+<br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
-
+<br>
 int sumData(int list[], const int size) {
   int sum = 0;
   for (int index = 0; index < size; index++) {
@@ -56,11 +55,7 @@ int sumData(int list[], const int size) {
   }
   return sum;
 }
-```
-
-**Output**
-<pre>
-Sum of elements in the array: 11.
+</code-runner>
 </pre>
 
 In line $3$, we define the inputs to the function as `int[]`, which is the type of the pointer to the first element in an array and `int`, which is the type of the size of the array.
@@ -74,21 +69,19 @@ In line $16$, we access the elements of `list` array as we would do with arrays 
 Since **array identifiers** are also **pointers**, is it possible to index elements in the array using pointers instead of `[]`? Yes, it is possible, and we show below how.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 13, 16
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="3 12 15" output="Sum of elements in the array: 11.">
+&#35;include &lt;stdio.h&gt;
+<br>
 int sumData(int*, int);
-
+<br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
-
+<br>
 int sumData(int* list, int size) {
   int sum = 0;
   for (int index = 0; index < size; index++) {
@@ -96,11 +89,7 @@ int sumData(int* list, int size) {
   }
   return sum;
 }
-```
-
-**Output**
-<pre>
-Sum of elements in the array: 11.
+</code-runner>
 </pre>
 
 In line $3$, we accept `int*` instead of `int[]`, because they are equivalent.
@@ -114,22 +103,20 @@ In line $16$, we can access elements in the array by adding `i` to the pointer `
 The syntax of pointers -- `*` and `&` -- and syntax of arrays -- `[]` are interchangeable. This means that we can use any syntax at any time in our program as long as the statements are correct! For example,
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 4, 14, 15, 18, 19
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper"> <code-runner language="c" highlight-lines="4 14 18" output="Sum of elements in the array: 11.">
+&#35;include &lt;stdio.h&gt;
+<br>
 // Input is int*
 int sumData(int*, int); 
-
+<br>
 int main(void) {
-  const int size = 3;
-  int x[size] = {1, 7, 3};
-  int result = sumData(x, size);
+  int x[3] = {1, 7, 3};
+  int result = sumData(x, 3);
   printf("Sum of elements in the array: %d.\n", result);
   return 0;
 }
-
+<br>
 // Input is int[]
 int sumData(int list[], const int size) {
   int sum = 0;
@@ -139,15 +126,11 @@ int sumData(int list[], const int size) {
   }
   return sum;
 }
-
-```
-**Output**
-<pre>
-Sum of elements in the array: 11.
+</code-runner>
 </pre>
-````
 
 In line $4$, we define the input as a pointer: `int*`. However, we set the input in the header of the function as `int[]` in line $15$, since `int*` and `int[]` are equivalent. Similarly, in line $19$, we index in the array list as `*(list + index)`, since it is equivalent to `list[i]`.
+````
 
 ## Are we passing the array by value or by pointers?
 
@@ -162,42 +145,37 @@ We also implement a function that prints the elements of the array. It takes in 
 In the following code, we print the array `x` before and after calling the function `swap` to swap the element at index `i = 0` with element at index `j = 4`. 
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Before swapping: 3 5 8 1 7 
+After swapping: 7 5 8 1 3">
+&#35;include &lt;stdio.h&gt;
+<br>
 void swap(int[], int, int);
 void printArray(int[], const int);
-
+<br>
 int main(void) {
-  const int size = 5;
-  int x[size] = {3, 5, 8, 1, 7};
+  int x[5] = {3, 5, 8, 1, 7};
   printf("Before swapping: ");
-  printArray(x, size);
+  printArray(x, 5);
   swap(x, 0, 4);
   printf("After swapping: ");
-  printArray(x, size);
+  printArray(x, 5);
   return 0;
 }
-
+<br>
 void swap(int list[], int i, int j) {
   int temp = list[i];
   list[i] = list[j];
   list[j] = temp;
 }
-
+<br>
 void printArray(int list[], const int size) {
   for (int index = 0; index < size; index++) {
     printf("%d ", list[index]);
   }
   printf("\n");
 }
-
-```
-
-**Output**
-<pre>
-Before swapping: 3 5 8 1 7 
-After swapping: 7 5 8 1 3
+</code-runner>
 </pre>
 
 As observed, since we are passing to `swap` the pointer to the first element in the array, any change to the array in the function is also reflected in the caller function.

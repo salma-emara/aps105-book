@@ -2,11 +2,12 @@
 
 prompt = '''
 Which of the following will print the following output?
-```
+
+<pre>
   *
  ***
 *****
-```
+</pre>
 '''
 
 answer = [2, 3]
@@ -14,8 +15,8 @@ answer = [2, 3]
 distractors = [
 '''
 ```
-for (int line = 1; line <= 3; line++) {  // loop over lines
-    for (int star = 1; star <= 2 * line - 1; star++) {  // loop over stars in a single line
+for (int line = 1; line <= 3; line++) {  
+    for (int star = 1; star <= 2 * line - 1; star++) {  
         printf("*");
     }
     printf("\n");
@@ -65,19 +66,19 @@ for (int line = 0; line < 3; line++, printf("\n")) {
 explainations = [
 '''
 A is incorrect. The output will be like:
-`
+```
 *
 ***
 *****
-`
+```
 ''',
 '''
 B is incorrect. The output will be like:
-`
+```
 *
 ***
 *****
-`
+```
 ''',
 '''
 C is correct. It first prints spaces according to the line number, then prints stars according to the line number. Then it prints a new line after each line finishes.

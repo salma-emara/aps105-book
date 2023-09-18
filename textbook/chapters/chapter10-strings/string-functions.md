@@ -15,41 +15,40 @@ size_t strlen(char *str);
 The following program demonstrates the use of `strlen`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="String length is 5.">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char s[] = "Hello";
   int size = strlen(s);
   printf("String length is %d.\n", size);
   return 0;
 }
-```
-
-**Output**
-<pre>
-String length is 5.
+</code-runner>
 </pre>
 
-### Implementation of strlen
+### Implementation of `strlen`
 
 Let's implement `strlen`. We will name it `stringLength`. This function should have a loop that loops over all the contents of the string. If the element is not `'\0'`, we should increment a counter. Then we should return the counter indicating the number of non-null characters. The following shows a program that implements and uses `stringLength` function.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="String length is 5.">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int stringLength(char* s);
-
+<br>
 int main(void) {
   char s[] = "Hello";
   int size = stringLength(s);
   printf("String length is %d.\n", size);
   return 0;
 }
-
+<br>
 int stringLength(char* s) {
   int count = 0;
   while (s[count] != '\0') {
@@ -57,30 +56,25 @@ int stringLength(char* s) {
   }
   return count;
 }
-```
-
-**Output**
-<pre>
-String length is 5.
+</code-runner>
 </pre>
 
 **Guard against changes to the string.** Within the `stringLength` function, you should not change the contents of the string, since we are only required to count the number of characters. Recall that if you mistakenly change the string, you change this contents in the original string since the string is passed as a pointer. To guard against mistakenly changing the string inside a function, we can receive it as a constant string. This requires that you use `const` qualifier to indicate that the string passed should not be changed. If you were to change a `const` string, it will result in a compile-time error. A constant string has a type of `const char*`. The following is the revised implementation of `stringLength`, you may download it from here: {download}`stringLength.c <../../code/chapter10/stringLength/stringLength.c>`.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 3, 12
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="3 12" output="String length is 5.">
+&#35;include &lt;stdio.h&gt;
+<br>
 int stringLength(const char* s);
-
+<br>
 int main(void) {
   char s[] = "Hello";
   int size = stringLength(s);
   printf("String length is %d.\n", size);
   return 0;
 }
-
+<br>
 int stringLength(const char* s) {
   int count = 0;
   while (s[count] != '\0') {
@@ -88,14 +82,15 @@ int stringLength(const char* s) {
   }
   return count;
 }
-```
+</code-runner>
+</pre>
 
 <!-- TODO: Pointer implementation of stringLength-->
 <!-- TODO: Difference between const char* and char const*-->
 
 ## Copy a string into another string
 
-### strcpy
+### `strcpy`
 
 The function `strcpy` copies the contents of one string into another string. The function prototype is as follows:
 
@@ -108,64 +103,64 @@ The function copies characters in `src` till and including the null character `\
 The following program demonstrates the use of `strcpy`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="d after copying has 'Hello'.">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char s[] = "Hello";
   char d[6];
-  printf("d after copying has \"%s\".\n", strcpy(d, s));
+  printf("d after copying has '%s\'.\n", strcpy(d, s));
   return 0;
 }
-```
-
-**Output**
-<pre>
-d after copying has "Hello".
+</code-runner>
 </pre>
 
 ````{admonition} Why do we need strcpy?
 
-Why do we need strcpy, when we can assign a string to another string? The following program demonstrates the problem with assigning a string to another string.
+Why do we need `strcpy`, when we can assign a string to another string? The following program demonstrates the problem with assigning a string to another string.
 
 **Code with Compile-time Error**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c"> 
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   char s[] = "Hello";
   char d[6];
   d = s;  // d is not assignable because it is an array
   return 0;
 }
-```
+</code-runner>
+</pre>
 Note that the program above will not compile. The reason is that `d` is an array, and arrays are not assignable. 
 
 <!-- TODO: do it with pointers-->
 ````
 
-#### Implementation of strcpy
+#### Implementation of `strcpy`
 
 Let's implement `strcpy`. We will name it `stringCopy`. This function should have a loop that loops over all the contents of the source string. We should copy the all the elements to the destination string including the `'\0'` at the end of the source string. Then, we should return the address of the destination string. To guard against any changes to the source string, we will use the `const` qualifier. The following is the implementation of `strcpy`, and you can download it here: {download}`stringCopy.c <../../code/chapter10/stringCopy/stringCopy.c>`.
 
 **Code using `[]` in `stringCopy`**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="d after copying has 'Hello'.">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 char* stringCopy(char* dest, const char* src);
-
+<br>
 int main(void) {
   char s[] = "Hello";
   char d[6];
-  printf("d after copying has \"%s\".\n", stringCopy(d, s));
+  printf("d after copying has '%s'.\n", stringCopy(d, s));
   return 0;
 }
-
+<br>
 char* stringCopy(char* dest, const char* src) {
   int ind = 0;
-
+  <br>
   while (src[ind] != '\0') {
     dest[ind] = src[ind];
     ind++;
@@ -173,31 +168,26 @@ char* stringCopy(char* dest, const char* src) {
   dest[ind] = '\0';
   return dest;
 }
-```
-
-**Output**
-<pre>
-d after copying has "Hello".
+</code-runner>
 </pre>
 
 **Exercise.** Implement `stringCopy` using pointers only, *i.e.* without using `[]`.
 
 **Code without using `[]` in `stringCopy`**
-```{code-block} c
-:linenos:
-:emphasize-lines: 14 - 20
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="14 15 16 17 18 19 20" output="d after copying has 'Hello'.">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 char* stringCopy(char* dest, const char* src);
-
+<br>
 int main(void) {
   char s[] = "Hello";
   char d[6];
-  printf("d after copying has \"%s\".\n", stringCopy(d, s));
+  printf("d after copying has '%s'.\n", stringCopy(d, s));
   return 0;
 }
-
+<br>
 char* stringCopy(char* pdest, const char* psrc) {
   char* pdestCopy = pdest;
   while (*psrc != '\0') {
@@ -208,12 +198,13 @@ char* stringCopy(char* pdest, const char* psrc) {
   *pdestCopy = '\0';
   return pdest;
 }
-```
+</code-runner>
+</pre>
 
 To help with visualization, we will use the following diagram to show the values of `pdest`, `pdestCopy` and `psrc` after a few iterations of the while loop in `stringCopy`.
 
 ```{figure} ./images/strcpy-pointers.png
-:alt: Showing the values of pdestCopy and psrc after a few iterations of the while loop in `stringCopy`.
+:alt: Showing the values of `pdestCopy` and `psrc` after a few iterations of the while loop in `stringCopy`.
 :width: 400px
 :align: center
 :name: strcpy-pointers
@@ -234,7 +225,7 @@ The while loop will exit when the element at `psrc` is the end of the source str
 In line $14$, we copied the address of `pdest` to `pdestCopy`. This is because we want to return the address of the destination string. We cannot return the address of `pdestCopy` because it will point to the last element in the destination string after the while loop exits. We want to return the address of the first element in the destination string stored in `pdest`.
 
 
-### strncpy
+### `strncpy`
 
 `strcpy` copies the entire source string into the destination string. This can cause problems if the destination string is not large enough to hold the source string. The function `strncpy` copies the first `n` characters of the source string into the destination string, or until it observes a `'\0'` character in the source string. The function prototype is as follows:
 
@@ -247,21 +238,18 @@ The function copies `n` characters in `src` into `dest`. If `n` is larger than t
 The following program demonstrates the use of `strncpy`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Copied exactly 6 characters: Hello">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char d[] = "Hello world!";
   strncpy(d, "Hello", 6);
   printf("Copied exactly 6 characters: %s\n", d);
   return 0;
 }
-```
-
-**Output**
-<pre>
-Copied exactly 6 characters: Hello
+</code-runner>
 </pre>
 
 In the above code, the function `strncpy` copies 6 characters into `d`, which is the 5 characters in `"Hello"` and the null character `\0`. Hence, when printing `d`, we only see the first 5 characters in `"Hello"` till the first null character. As the figure below shows, the other characters in `"Hello world!"` are not overwritten.
@@ -270,7 +258,7 @@ In the above code, the function `strncpy` copies 6 characters into `d`, which is
 :alt: Copy 6 characters including the null character.
 :width: 500px
 :align: center
-:name: strncpy-6-characters
+:name: special string copy 6 characters
 
 Copy 6 characters including the null character.
 ```
@@ -279,22 +267,19 @@ Copy 6 characters including the null character.
 :class: warning
 The function `strncpy` does not add any null character to the end of the destination string by default. For example, in the following code, the destination string `d` will not be null-terminated, because we only copy 5 characters from `"Hello"` into `d`.
 
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Copied exactly 5 characters: Hello world!">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+<br>
 int main(void) {
   char d[] = "Hello world!";
   strncpy(d, "Hello", 5);
   printf("Copied exactly 5 characters: %s\n", d);
-
+  <br>
   return 0;
 }
-```
-
-**Output**
-<pre>
-Copied exactly 5 characters: Hello world!
+</code-runner>
 </pre>
 
 The figure below shows that the null character `\0` in `"Hello"` is not copied to `d`, hence, when printing `d`, all characters before the null-character were printed.
@@ -331,7 +316,7 @@ Copy 7 characters with extra padding of `\0`.
 
 ## Concatenating Strings
 
-### strcat
+### `strcat`
 
 The function `strcat` concatenates the source string to the end of the destination string. The function prototype is as follows:
 
@@ -349,7 +334,7 @@ The following program demonstrates the use of `strcat`:
 :alt: Concatenates the source string to the end of the destination string.
 :width: 1000px
 :align: center
-:name: strcat-demo
+:name: string concatenate demo
 
 Concatenates the source string to the end of the destination string.
 ```
@@ -359,7 +344,7 @@ Concatenates the source string to the end of the destination string.
 Concatenated string: Helloworld!
 </pre>
 
-### strncat
+### `strncat`
 
 The problem with `strcat` is that it concatenates the entire source string to the end of the destination string. This can cause problems if the destination string is not large enough to hold the concatenated string. For example, in the following figure, we concatenate an array with 3 elements `"No"` to an array with 2 elements starting from the null-character. The function `strcat` will concatenate the `'N'` and `'o'`, but there is no space for the `'\0`', which will cause a buffer overflow.
 
@@ -367,7 +352,7 @@ The problem with `strcat` is that it concatenates the entire source string to th
 :alt: Concatenates the source string to the end of the destination string, while the destination string does not have enough space.
 :width: 600px
 :align: center
-:name: strcat-issue
+:name: string concatenate issue
 
 ***Error!*** Concatenates the source string to the end of the destination string, while the destination string does not have enough space
 ```
@@ -383,10 +368,12 @@ The function concatenates the first `n` characters of the source string `src` to
 The following program demonstrates the use of `strncat`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="strncpy null terminates the destination if it wasn't!
+Concatenated string: OhN">
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char s[4] = "Oh";
   s[3] = 'x'; 
@@ -398,12 +385,7 @@ int main(void) {
   printf("Concatenated string: %s\n", s);
   return 0;
 }
-```
-
-**Output**
-<pre>
-strncpy null terminates the destination if it wasn't!
-Concatenated string: OhN
+</code-runner>
 </pre>
 
 If `n` is larger than the size of `src`, and `dest` has enough space, the function will copy characters in `src` till and including the null character `\0` in the `src` string, but **opposite to `strncpy`**, it will not put `'\0'` for the remaining characters that should be copied into `dest`. 
@@ -411,7 +393,7 @@ If `n` is larger than the size of `src`, and `dest` has enough space, the functi
 
 ## Comparing Strings
 
-### strcmp
+### `strcmp`
 
 The function `strcmp` compares two strings. The function prototype is as follows:
 
@@ -430,10 +412,12 @@ The function compares the strings character by character, and stops comparing wh
 The following program demonstrates the use of `strcmp`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="rice rice" output='Enter two strings separated by new line or white space: <b>rice rice</b>
+"rice" is identical to "rice"!'>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char s1[40];
   char s2[40];
@@ -441,23 +425,19 @@ int main(void) {
   scanf("%s", s1);
   scanf("%s", s2);
   if (strcmp(s1, s2) < 0) {
-    printf("\"%s\" is before \"%s\" in dictionary!\n", s1, s2);
+    printf("'%s' is before '%s' in dictionary!\n", s1, s2);
   } else if (strcmp(s1, s2) > 0) {
-    printf("\"%s\" is after \"%s\" in dictionary!\n", s1, s2);
+    printf("'%s' is after '%s' in dictionary!\n", s1, s2);
   } else if (strcmp(s1, s2) == 0) {
-    printf("\"%s\" is identical to \"%s\"!\n", s1, s2);
+    printf("'%s' is identical to '%s'!\n", s1, s2);
   }
-
+<br>
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Enter two strings separated by new line or white space: <b>rice rice</b>
-"rice" is identical to "rice"!
+</code-runner>
 </pre>
 
+**More examples**
 <pre>
 Enter two strings separated by new line or white space: <b>apple book</b>
 "apple" is before "book" in dictionary!
@@ -468,7 +448,7 @@ Enter two strings separated by new line or white space: <b>dog dig</b>
 "dog" is after "dig" in dictionary!
 </pre>
 
-### strncmp
+### `strncmp`
 
 The function `strncmp` compares at most the first `n` characters of two strings. The function prototype is as follows:
 
@@ -481,10 +461,12 @@ The function compares at most the first `n` characters of the two strings `s1` a
 The following program demonstrates the use of `strncmp`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" input="grandma grandpa" output='Enter two strings separated by new line or white space: <b>grandma grandpa</b>
+The first 5 character in "grandma" is identical to "grandpa"!'>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char s1[40];
   char s2[40];
@@ -493,27 +475,22 @@ int main(void) {
   scanf("%s", s1);
   scanf("%s", s2);
   if (strncmp(s1, s2, n) < 0) {
-    printf("\"%s\" is before \"%s\" in dictionary!\n", s1, s2);
+    printf("'%s' is before '%s' in dictionary!\n", s1, s2);
   } else if (strncmp(s1, s2, n) > 0) {
-    printf("\"%s\" is after \"%s\" in dictionary!\n", s1, s2);
+    printf("'%s' is after '%s' in dictionary!\n", s1, s2);
   } else if (strncmp(s1, s2, n) == 0) {
-    printf("The first %d character in \"%s\" is identical to \"%s\"!\n", n, s1,
+    printf("The first %d character in '%s' is identical to '%s'!\n", n, s1,
            s2);
   }
-
+<br>
   return 0;
 }
-```
-
-**Output[^1]**
-<pre>
-Enter two strings separated by new line or white space: <b>grandma grandpa</b>
-The first 5 character in "grandma" is identical to "grandpa"!
+</code-runner>
 </pre>
 
 ## Looking for something in a string
 
-### strchr
+### `strchr`
 
 The function `strchr` searches for a character in a string. The function prototype is as follows:
 
@@ -526,25 +503,22 @@ The function searches for the first occurrence of the character `c` in the strin
 The following program demonstrates the use of `strchr`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output='The first m is found at index 6 in "Programming"'>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char s[] = "Programming";
   char c = 'm';
   int dist = strchr(s, c) - s;
-  printf("The first %c is found at index %d in \"%s\"\n", c, dist, s);
+  printf("The first %c is found at index %d in '%s'\n", c, dist, s);
   return 0;
 }
-```
-
-**Output**
-<pre>
-The first m is found at index 6 in "Programming"
+</coder-runner>
 </pre>
 
-### strstr
+### `strstr`
 
 The function `strstr` searches for a substring in a string. The function prototype is as follows:
 
@@ -557,23 +531,19 @@ The function searches for the first occurrence of the string `s2` in the string 
 The following program demonstrates the use of `strstr`:
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output='Printing characters after "Enjoy": Enjoy APS105!'>
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 int main(void) {
   char str[] = "Note: Enjoy APS105!";
   char search[] = "Enjoy";
-  printf("Printing characters after \"%s\": %s\n", search, strstr(str, search));
+  printf("Printing characters after '%s': %s\n", search, strstr(str, search));
   return 0;
 }
-```
-
-**Output**
-<pre>
-Printing characters after "Enjoy": Enjoy APS105!
+</code-runner>
 </pre>
-
 
 ## Exercise using string functions
 
@@ -594,23 +564,22 @@ Let's implement `strstr` function using string functions we mentioned in this se
 **Step 4: Write a code.**
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 16, 18, 19, 25
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight-lines="16 18 19 25" output='Printing characters after "Enjoy": Enjoy APS105!'>
+&#35;include &lt;stdbool.h&gt;
+&#35;include &lt;stdio.h&gt;
+&#35;include &lt;string.h&gt;
+<br>
 char* findString(char* s1, char* s2);
-
+<br>
 int main(void) {
   char str[] = "Note: Enjoy APS105!";
   char search[] = "Enjoy";
-  printf("Printing characters after \"%s\": %s\n", search,
+  printf("Printing characters after '%s': %s\n", search,
          findString(str, search));
   return 0;
 }
-
+<br>
 char* findString(char* s1, char* s2) {
   char* temp = s1;
   bool found = false;
@@ -628,11 +597,7 @@ char* findString(char* s1, char* s2) {
     return NULL;
   }
 }
-```
-
-**Output**
-<pre>
-Printing characters after "Enjoy": Enjoy APS105!
+</code-runner>
 </pre>
 
 In line $16$, we set `temp` to point to the first character in `s1`.
@@ -690,6 +655,5 @@ The following table lists the most commonly used string functions.
 | `strchr` | Searches for a character in a string. |
 | `strstr` | Searches for a substring in a string. |
 
-[^1]: Inputs to programs are in **bold**.
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-10/sec-3") }}

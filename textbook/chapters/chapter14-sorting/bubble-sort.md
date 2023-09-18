@@ -9,7 +9,7 @@ Bubble sort works as follows:
 1. In the first iteration, compare the first element with the second element. If the first element is greater than the second element, swap them. Otherwise, do nothing. Then, compare the second element with the third element. If the second element is greater than the third element, swap them. Otherwise, do nothing. The process repeats till the last element of the array. After the first iteration, the last element of the array is sorted, and is holding the maximum element of the array. We "bubbled" the last element to the end of the array.
 
     ```{figure} ./images/first-iter-bubble-sort.png
-    :alt: first-iter-bubble-sort
+    :alt: first iteration bubble sort
     :width: 600px
     :align: center
     ```
@@ -17,7 +17,7 @@ Bubble sort works as follows:
 2. In the second iteration, compare the first element with the second element. If the first element is greater than the second element, swap them. Otherwise, do nothing. Then, compare the second element with the third element. If the second element is greater than the third element, swap them. Otherwise, do nothing. The process repeats till the **second** last element of the array. After the second iteration, the last two elements of the array are sorted, holding the maximum two elements of the array.
 
     ```{figure} ./images/second-iter-bubble-sort.png
-    :alt: second-iter-bubble-sort
+    :alt: second iteration bubble sort
     :width: 600px
     :align: center
     ```
@@ -25,7 +25,7 @@ Bubble sort works as follows:
 3. In the third iteration, compare the first element with the second element. If the first element is greater than the second element, swap them. Otherwise, do nothing. The process repeats till the **third** last element of the array. After the third iteration, the last three elements of the array are sorted, holding the maximum three elements of the array. In our example, this is the last iteration because the array has only four elements. Hence, the maximum number of iterations is the size of the array minus one.
 
     ```{figure} ./images/third-iter-bubble-sort.png
-    :alt: third-iter-bubble-sort
+    :alt: third iteration bubble sort
     :width: 600px
     :align: center
     ```
@@ -46,28 +46,30 @@ We write pseudocode for bubble sort as follows:
 
 ## Implementation
 
-We implement bubbble sort as follows. In lines $1$ to $5$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`bubble-sort.c <../../code/chapter15/bubble-sort/bubble-sort.c>` if you want to play with the code.
+We implement bubbble sort as follows. In lines $1$ to $5$, we implement the swap function that swaps two `int` values. We implemented the swap function before in {numref}`swap-function`. Download {download}`bubble-sort.c <../../code/chapter14/bubble-sort/bubble-sort.c>` if you want to play with the code.
 
 **Code**
-```{code-block} c
-:linenos:
-:emphasize-lines: 1 - 5
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" highlight="1 2 3 4 5" output='After iteration 1: 2 3 1 5<br>After iteration 2: 2 1 3 5 <br>After iteration 3: 1 2 3 5<br>1 2 3 5'>
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
 void swap(int *x, int *y) {
   int temp = *x;
   *x = *y;
   *y = temp;
 }
-
+<br>
 void printArray(int list[], int n) {
   for (int i = 0; i < n; i++) {
     printf("%d ", list[i]);
   }
   printf("\n");
 }
-
+<br>
 void bubbleSort(int list[], int n) {
   bool sorted = false;
-
+<br>
   for (int top = n - 1; top > 0 && !sorted; top--) {
     sorted = true;
     for (int i = 0; i < top; i++) {
@@ -80,22 +82,15 @@ void bubbleSort(int list[], int n) {
     printArray(list, n);
   }
 }
-
+<br>
 int main(void) {
   int list[4] = {2, 5, 3, 1};
-
+<br>
   bubbleSort(list, 4);
   printArray(list, 4);
   return 0;
 }
-```
-
-**Output**
-<pre>
-After iteration 1: 2 3 1 5 
-After iteration 2: 2 1 3 5 
-After iteration 3: 1 2 3 5 
-1 2 3 5
+</code-runner>
 </pre>
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-14/sec-3") }}

@@ -50,24 +50,16 @@ answer = [0, 2, 3]
 
 distractors = [
 '''
-```
-printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', '1', '0', '5');
-```
+`printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', '1', '0', '5');`
 ''',
 '''
-```
-printf("The course number is %c%c%c%d%d%d.", 'A', 'P', 'S', '1', '0', '5');
-```
+`printf("The course number is %c%c%c%d%d%d.", 'A', 'P', 'S', '1', '0', '5');`
 ''',
 '''
-```
-printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', 49, 48, 53);
-```
+`printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', 49, 48, 53);`
 ''',
 '''
-```
-printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', '0' + 1, '0' + 0, '0' + 5);
-```
+`printf("The course number is %c%c%c%c%c%c.", 'A', 'P', 'S', '0' + 1, '0' + 0, '0' + 5);`
 '''
 ]
 
@@ -86,24 +78,16 @@ answer = [0, 2, 3]
 
 distractors = [
 '''
-```
-bool isPositive = n > 0;
-```
+`bool isPositive = n > 0;`
 ''',
 '''
-```
-bool isPositive = n;
-```
+`bool isPositive = n;`
 ''',
 '''
-```
-bool isPositive = n > 0 != 0;
-```
+`bool isPositive = n > 0 != 0;`
 ''',
 '''
-```
-bool isPositive = n <= 0 != 1;
-```
+`bool isPositive = n <= 0 != 1;`
 '''
 ]
 

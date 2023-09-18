@@ -28,7 +28,7 @@ In the box provided below, write the output generated after the following progra
 
 ```{code-block} c
 :linenos:
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};
   int *third = &second, *fourth = &first, *fifth = data + first + 1;
@@ -74,7 +74,7 @@ first = 2, second = 3, third = 3, fourth = 2, fifth = 30
 What is the output of the following program?
 
 ```{code-block} c
-#include <stdio.h>
+&#35;include &lt;stdio.h&gt;
 int main(void) {
   int *p, x;
   int fiveInt[5] = {1, 2, 3, 4, 5};

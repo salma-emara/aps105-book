@@ -25,7 +25,7 @@ If we use it anyway, we will get a segmentation fault. Segmentation fault is a c
 ```
 
 ```{figure} ./images/createNode-func.png
-:alt: createNode function
+:alt: create node function
 :width: 600px
 :align: center
 ```
@@ -33,7 +33,7 @@ If we use it anyway, we will get a segmentation fault. Segmentation fault is a c
 We can use `createNode` to form the following linked list:
 
 ```{figure} ./images/creaNode-example-linkedlist.png
-:alt: createNode linked list
+:alt: create node linked list
 :width: 600px
 :align: center
 ```
@@ -42,7 +42,7 @@ Download the following code {download}`createNode-example.c <../../code/chapter1
 
 **Code**
 ```{figure} ./images/use-createNode.png
-:alt: use createNode
+:alt: use create node function
 :width: 600px
 :align: center
 ```
@@ -73,7 +73,7 @@ It can be confusing to keep track of `->next` numbers in a statement. Instead, w
 To insert a node at the beginning of the list, we need to create a new node, and set its `next` pointer to point to the current head. We then set the head to point to the newly created node. The steps are illustrated in the following figure.
 
 ```{figure} ./images/insertAtFront-example.png
-:alt: insertAtFront example
+:alt: insert at front example
 :width: 600px
 :align: center
 ```
@@ -82,7 +82,7 @@ We can implement a function to insert a node at the front of the list. The funct
 
 **Errorneous Code**
 ```{figure} ./images/insertAtFront-by-value.png
-:alt: insertAtFront by value
+:alt: insert at front by value
 :width: 600px
 :align: center
 ```
@@ -160,7 +160,7 @@ We can then create a new data structure in `main` function. The following figure
 
 **Code**
 ```{figure} ./images/linkedlist-data-struct-example.png
-:alt: linkedlist data struct example
+:alt: linked list data struct example
 :width: 600px
 :align: center
 ```
@@ -169,7 +169,7 @@ We can then pass a pointer to the data structure `LinkedList` to the `insertAtFr
 
 **Code snippet**
 ```{figure} ./images/linkedlist-data-struct-insertAtFront.png
-:alt: linkedlist data struct insertAtFront
+:alt: linked list data struct insertAtFront
 :width: 500px
 :align: center
 ```
@@ -181,7 +181,7 @@ We can print the linked list to check if the node was inserted.
 We start with a pointer named `Node* current` pointing at the first node in the list. Then print `current->data`, and traverse to the next node by setting `current` to `current->next`. This can continue till `current` is `NULL`. This is when `current` reached the end of the list. The following figure shows how we can traverse the list to print the linked list.
 
 ```{figure} ./images/traverse-LinkedList.png
-:alt: traverse LinkedList
+:alt: traverse Linked List
 :width: 600px
 :align: center
 ```
@@ -273,7 +273,7 @@ Node *createNode(int value) {
 If we want to insert a node at the end of the linked list, we have to traverse till the last node, and insert the new node at the next of the last node. The following figure shows how we can insert a node at the end of the linked list.
 
 ```{figure} ./images/insertAtBack-traversal.png
-:alt: insertAtBack traversal
+:alt: insert at back traversal
 :width: 600px
 :align: center
 ```
@@ -327,7 +327,7 @@ We are given a list sorted in ascending order according to the value of `data`. 
 In the function, we will traverse the linked list with a `Node*` pointer named `current`. We should stop at the node **before** inserting the new node. This is when `current->next->data` is greater than `value`. Then, we can insert the new node between `current` and `current->next`. We cannot stop `current` at the node with `data` > `value`, because we will lose access to the previous node after which we should insert our node. The following figure shows how we can traverse the linked list with the pointer `current` to stop at the node after which our new node will be inserted.
 
 ```{figure} ./images/insertIntoOrdered-current-location.png
-:alt: insertIntoOrderedList
+:alt: insert into ordered list
 :width: 600px
 :align: center
 
@@ -337,7 +337,7 @@ When traversing the linked list, we need to stop just before where we want to in
 When `current` is pointing to the node after which we will insert the **new** node, we can now (i) link the next of new node to the next of `current`: `newNode->next = current -> next`, and (ii) link the next of current to the newNode: `current->next = newNode;`. Obviously, we need to first link the next of new node to the next of `current`, because we do not want to lose access to the node after current.
 
 ```{figure} ./images/insertIntoOrderedList.png
-:alt: insertIntoOrderedList
+:alt: insert into ordered list
 :width: 600px
 :align: center
 
@@ -347,7 +347,7 @@ When `current` is pointing to the node after which we will insert the node, we c
 The following code shows how we can implement the function that inserts a node between 2 nodes into an ordered linked list.
 
 ```{figure} ./images/insertIntoOrder-general.png
-:alt: insertIntoOrderedList
+:alt: insert into ordered list
 :width: 800px
 :align: center
 ```
@@ -400,7 +400,7 @@ bool insertIntoOrderedList(LinkedList *orderedList, int value) {
 **Special case 2: The value of the new node is greater than the value of the last node in the linked list.** This will make the present implementation in lines $9$ to $12$ loop till `current` points to the last node in the linked list. After that if we check the condition of the loop `current->next->data`, we get a segmentation fault since `current->next` is `NULL`. We can handle this case by checking if `current->next` is `NULL` before checking `current->next->data`. If `current->next` is `NULL`, we just make `current->next` point to the `newNode`: `current->next = newNode`. This is after creating the node first and point to it by `newNode`. We return `true` if the node is successfully created, `false` otherwise. The following figure shows what we can do to insert the node at the tail of the linked list, when the value of the new node is greater than the value of the last node.
 
 ```{figure} ./images/insertIntoOrder-last.png
-:alt: insertIntoOrderedList
+:alt: insert into ordered list
 :width: 600px
 :align: center
 
@@ -456,7 +456,7 @@ In line $25$, we set `current->next = newNode;` to link the last node in the lin
 Before checking if the second node has a value greater than the value we want to insert using `current->next->data`, we need to check the first node `data`. If the value of the first node was larger than the value we want to insert, then we need to insert the new node at front. The following figure shows what we need to do to handle this case. 
 
 ```{figure} ./images/insertIntoOrder-front.png
-:alt: insertIntoOrderedList-front
+:alt: insert into ordered list front
 :width: 600px
 :align: center
 
@@ -513,7 +513,7 @@ Let's practice finding a node with a particular value into an ordered linked lis
 The following figure shows the function we need to implement to find a node with a particular value in the linked list. Download {download}`findFirstNode.c <../../code/chapter13/findFirstNode/findFirstNode.c>` if you want to play with the code. 
 
 ```{figure} ./images/findFirstNode-code.png
-:alt: findFirstNode
+:alt: find first node
 :width: 600px
 :align: center
 ```

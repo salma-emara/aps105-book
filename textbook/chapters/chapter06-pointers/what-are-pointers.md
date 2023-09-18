@@ -35,34 +35,32 @@ Assign contents pointed by `p` to `y`.
 **Deep-dive** Let's look a little closer on the addresses and values stored in some addresses. In the following code, we print addresses and values stored in `int`s `x` and `y`, and in `int*` `p`. A format specifier for a pointer is `%p`. Download {download}`reference-deference.c <../../code/chapter06/reference-deference/reference-deference.c>` if you want to play with the code yourself.
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+{{code_runner_header}}
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Address of x: 0x30e2af178
+ Value of x: 7
+Address of p: 0x30e2af170
+ Value of p: 0x30e2af178
+Address of y: 0x30e2af16c
+ Value of y: 7
+Value stored in address 0x30e2af178 is 7">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int x = 7;
   int *p;
   p = &x;
   int y;
   y = *p;
-
+<br>
   printf("Address of x: %p\n Value of x: %d\n", &x, x);
   printf("Address of p: %p\n Value of p: %p\n", &p, p);
   printf("Address of y: %p\n Value of y: %d\n", &y, y);
   printf("Value stored in address %p is %d\n", p, *p);
-
+<br>
   return 0;
 }
-```
-
-**Potential Output**
-<pre>
-Address of x: 0x30e2af178
- Value of x: 7
-Address of p: 0x30e2af170
- Value of p: 0x30e2af178
-Address of y: 0x30e2af16c
- Value of y: 7
-Value stored in address 0x30e2af178 is 7
+</code-runner>
 </pre>
 
 Key observations from the printed statements:
@@ -78,13 +76,23 @@ Let's trace the code below to get a better understanding of how pointers work. A
 {{ video_embed | replace("%%VID%%", "xR6kVdSQ7Bs")}}
 
 **Code**
-```{code-block} c
-#include <stdio.h>
-
+<pre class="code-runner-wrapper">
+<code-runner language="c" output="Before operations:
+Value of x: 3
+Value of y: 4
+Value at address a: 3
+Value at address b: 4
+After operations:
+Value of x: 6
+Value of y: 7
+Value at address a: 6
+Value at address b: 7">
+&#35;include &lt;stdio.h&gt;
+<br>
 int main(void) {
   int x = 3, y = 4;
   int *a, *b;
-
+<br>
   a = &x;
   b = &y;
   printf("Before operations:\n");
@@ -92,7 +100,7 @@ int main(void) {
   printf("Value of y: %d\n", y);
   printf("Value at address a: %d\n", *a);
   printf("Value at address b: %d\n", *b);
-
+<br>
   *a = 6;
   *b = *b + 3;
   printf("After operations:\n");
@@ -102,20 +110,7 @@ int main(void) {
   printf("Value at address b: %d\n", *b);
   return 0;
 }
-```
-
-**Output**
-<pre>
-Before operations:
-Value of x: 3
-Value of y: 4
-Value at address a: 3
-Value at address b: 4
-After operations:
-Value of x: 6
-Value of y: 7
-Value at address a: 6
-Value at address b: 7
+</code-runner>
 </pre>
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-6/sec-2") }}

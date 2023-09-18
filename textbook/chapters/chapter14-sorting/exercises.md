@@ -134,10 +134,10 @@ void bubbleSortRecords(Record records[], int n) {
 
 **Question 13 in Winter 2017 Final Exam[Intermediate]**
 
-QuickSort is considered one of the fastest sorting algorithms in practice. However, it turns out that insertion sort is faster than quicksort for smaller arrays; e.g., for arrays with 10 or fewer elements. Because of this, many implementations use a combination of both algorithms: they use quickSort when the size of the array segment to be sorted is larger than 10, but switch over to insertion sort
+Quicksort is considered one of the fastest sorting algorithms in practice. However, it turns out that insertion sort is faster than quicksort for smaller arrays; e.g., for arrays with 10 or fewer elements. Because of this, many implementations use a combination of both algorithms: they use quicksort when the size of the array segment to be sorted is larger than 10, but switch over to insertion sort
 when the size of the array segment to be sorted is less than or equal to 10.
 
-Your job is to implement quickSort for an array of `double`s that automatically switches over to insertion sort for the small array segments with less than or equal to 10 elements. To make your job easier, you can assume the following function is available:
+Your job is to implement quicksort for an array of `double`s that automatically switches over to insertion sort for the small array segments with less than or equal to 10 elements. To make your job easier, you can assume the following function is available:
 ```{code-block} c
 int selectPivotAndPartition(double list[], int from, int to);
 ```

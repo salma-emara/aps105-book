@@ -41,8 +41,8 @@ function startQuiz() {
     closeButton.classList.remove("hidden");
 
     // Get the radio buttons and checkboxes
-    const radioButtons = document.querySelectorAll('input[type="radio"]');
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const radioButtons = document.querySelectorAll('input[type="radio"][id^="choice"]');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"][id^="choice"]');
 
     // Clear pre-selected options and enable radio buttons
     radioButtons.forEach((radioButton) => {

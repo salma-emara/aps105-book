@@ -233,7 +233,7 @@ We want to write a function that takes a string as input from the user and store
 
 **Step 2: Think of a solution!** We need to read the string character by character and store it in the array. We need to stop reading the string when we have read `n - 1` characters. We need to terminate the string with a null character. If the character entered is a new line character, we need to terminate the string with a null character.
 
-````{admonition} getchar() function
+```{admonition} getchar() function
 
 `getchar()` function is a very handy function that reads a character from the user and returns it. It is defined in `stdio.h` library. It takes in no input parameters and returns the read character. 
 
@@ -262,6 +262,8 @@ int main(void) {
 }
 </code-runner>
 </pre>
+
+```
 
 **Step 3: Decompose into steps.** The function receives string `s` and maximum number of characters to read + 1 `n`. 
 

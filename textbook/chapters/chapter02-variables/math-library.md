@@ -178,7 +178,7 @@ int main(void) {
 }
 </code-runner>
 </pre>
-
+````
 
 ````{admonition} Exercise 2
 :class: tip
@@ -225,7 +225,7 @@ int main(void) {
 }
 </code-runner>
 </pre>
-
+````
 
 [^1]: To get the $\log_{n}(x)$, $\log$ base $n$ of $x$, where $n$ is any number, recall you can always use the following $\log_{n}(x) = \frac{\log_{10} (x)}{\log_{10} (n)}$. In C, `log10(x)/log10(n)` to calculate $\log_{n}(x)$.
 [^2]: `M_E` is a constant defined in math library, denoting the value of $\exp$. It is approximately equal to 2.718281828... 

@@ -55,25 +55,22 @@ parse:
     # The %%VID%% part of the src attribute is replaced by the YouTube video
     # id at each place where a video is linked in the textbook source.
     video_embed: '<div class="container16x9"><iframe src="https://www.youtube.com/embed/%%VID%%" class="responsive-iframe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
-    # The quiz_embed substitution below is essentially a macro to avoid 
+    # The quiz_embed substitution below is essentially a macro to avoid
     # repeating the quiz embed
-    quiz_embed:
-        <link rel="stylesheet" href = "../../_static/style.css">
-        <script src = "../../../../../textbook/quizzes/%%FILENAME%%.js">
-        <script src = "../../_static/app.js"> </script>
-        
+    quiz_embed: <link rel="stylesheet" href = "../../_static/style.css">
+      <script src = "../../quizzes/%%FILENAME%%.js">
+      <script src = "../../_static/app.js"> </script>
+
       <div id="container-header" class="container-box">
-        <div class = "header">  
-          <h3>Quiz</h3>
-          <p id="question-number">0 Questions</p>
-        </div>
-        <button id = "start-button" onclick = "startQuiz()"> Start Quiz </button>        
+      <div class = "header">
+      <h3>Quiz</h3>
+      <p id="question-number">0 Questions</p>
+      </div>
+      <button id = "start-button" onclick = "startQuiz()"> Start Quiz </button>
       </div>
 
-        <div id = "fullscreen-form" class="parent-container">
-          <div id = "close-button" onclick = "closeFullscreenForm()"> X </div>
-                <script> parse_and_generate_form("%%FILENAME%%") </script>
-                
-        </div>
+      <div id = "fullscreen-form" class="parent-container">
+      <div id = "close-button" onclick = "closeFullscreenForm()"> X </div>
+      <script> parse_and_generate_form("%%FILENAME%%") </script>
 
-
+      </div>

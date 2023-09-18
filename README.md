@@ -28,6 +28,10 @@ pip install -r requirements.txt
 jupyter-book build --all textbook 
 # To build after updating a markdown file
 jupyter-book build textbook
+# To build after updating quizzes
+node ./textbook/_static/toml_to_js_convertor.js
+jupyter-book build --all textbook
+cp -r textbook/quizzes/ textbook/_build/html/quizzes
 ```
 
 4- To view the book, you can run:

@@ -18,8 +18,10 @@ count = 10;  // undefined variable
 Similarly, variables inside a function cannot be accessed outside a function, even if they have similar names. For example, in the following code, the `main` function has a variable `n`, and it calls `divideByTwo` function by transferring the **value** of `n`. This is called "call by value", as we call to transfer only the value of `n`. Inside `divideByTwo` function, another variable `n` is created, that is totally different from `n` in the `main` function. Download {download}`divideByTwo.c <../../code/chapter05/divideByTwo/divideByTwo.c>` if you want to run the program yourself.
 
 **Code**
+{{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c">
+
 &#35;include &lt;stdio.h&gt;
 <br>
 double divideByTwo(double);

@@ -224,7 +224,7 @@ bool isAnagram(char* s1, char* s2) {
 Write a C function called `checkPlagiarism`, the prototype of which is given below, that returns `true` if the two suspected codes `code1` and `code2` have high similarity. *High similarity* is defined as matching exactly, but ignoring any spaces or newline character`\n`. For example, the function `checkPlagiarism` returns `true` when comparing the example strings  `c1` and `c2` below. You may assume that `c1` and `c2` are null-terminated strings. **Hint:** your code should return `false` as soon as it finds evidence of mis-match.
 
 ```{code-block} c
-&#35;include &lt;stdbool.h&gt;
+#include <stdbool.h>
 #include <stdio.h>
 
 bool checkPlagiarism(char *code1, char *code2);

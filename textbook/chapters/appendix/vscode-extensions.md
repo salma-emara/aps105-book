@@ -42,6 +42,3 @@ Error Gutters in action
 
 [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) is another extension that helps you identify errors in your code. It will show a red dot on the left side of the line where the error is. You can hover over the red dot to see the error message.
 
-## Tabnine Autocomplete AI
-
-[Tabnine Autocomplete AI](https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode) is an extension that will help you auto-complete some lines of your code. This will help you be more productive, but you need to make sure the recommended code is what you want.

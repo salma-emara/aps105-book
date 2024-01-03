@@ -1,45 +1,92 @@
 # Set up Visual Studio Code
 
-There are two approaches to creating, compiling and running the C programs that you will write for this course: Either you can use a separate tool to perform each of these actions --- a text editor to create the program file, a compile command to compile it, and another command to run it. Instead, you can use an Integrated Development Environment (IDE), which allows you to perform many tasks from a single, usually graphical, application. In this course, we will use Visual Studio Code (VS Code) as our IDE. 
+There are two approaches to creating, compiling and running C programs you will write. The first approach is to use a separate tool to perform each of these actions --- a text editor to create the program file, a compile command to compile it, and another command to run it. The second approach is to use an Integrated Development Environment (IDE), which allows you to perform many tasks from a single, usually graphical, application.
 
-VS Code is the most popular IDE among developers in 2022[^1]. 
+VS Code is the most popular IDE among developers in 2023[^1]. 
 
 ## For Windows Users
 
 You can follow along the following video for steps on setting up VS Code on Windows. Brief steps are also provided below.
 
-{{ video_embed | replace("%%VID%%", "m7TLAtkrNR4")}}
+{{ video_embed | replace("%%VID%%", "93nahBXdldk")}}
 
-**[Step 1]** Go to [code.visualstudio.com](https://code.visualstudio.com/), and download VS Code. It will take seconds. 
+**[Step 1]** Go to [code.visualstudio.com](https://code.visualstudio.com/), and download VS Code. It will take seconds.
 
 **[Step 2]** Click on the downloaded file to open it. Accept the agreement, and press Next and Install when appropriate. Make sure to tick **Create a Desktop icon**. It takes a few more seconds. Then press Finish.
 
-**[Step 3]** Go to [MSYS2](https://www.msys2.org/) and follow the installation steps from 1 to 6.
+**[Step 3]** Follow the following steps taken from steps 1 to 6 in [https://www.msys2.org/](https://www.msys2.org/).
+        
+1. Download the installer by clicking [msys2.exe](https://github.com/msys2/msys2-installer/releases/download/2023-10-26/msys2-x86_64-20231026.exe)
+2. Run/double click on the downloaded file
+3. When asked about the installer folder, choose `C:\msys64`
+4. When done, make sure "Run MSYS2 now" is selected and click "Finish"
+5. In the black window that pops, type in `pacman -S mingw-w64-ucrt-x86_64-gcc`, and press "Enter"
+6. Press "Enter" again to proceed with installation.
 
-**[Step 4]** Additionally, you need to run step 5 in [GCC on Windows](https://code.visualstudio.com/docs/cpp/config-mingw), which asks you to additionally run this command:
-```
-$ pacman -S --needed base-devel mingw-w64-x86_64-toolchain
-```
-Please note `$` is not part of the command. 
 
-in the MSYS2 terminal. Press Enter to accept the default option. This will take a few minutes.
+**[Step 4]** Additionally, you need to run the following command in the same MSYS2 UCRT64 terminal. This is taken from step 5 in [https://code.visualstudio.com/docs/cpp/config-mingw](https://code.visualstudio.com/docs/cpp/config-mingw).
 
-**[Step 5]** Check GCC is installed by running the following command in the MSYS2 terminal.
-```
-$ gcc --version
+```{code-block} bash
+pacman -S --needed base-devel mingw-w64-x86_64-toolchain
 ```
 
-**[Step 6]** Go to **Settings** using the search at the bottom left. In **Find a setting**, search for "Edit environment variables for your account". Click on **Path**, and click **Edit**. In the new window, press **New** on the right and add ```C:\msys64\mingw64\bin``` and click **OK**.
+Press "Enter" to accept the default option. This will take a few minutes.
+
+**[Step 5]** In the MSYS2 UCRT64 terminal, type in the following commands to make sure the compiler and debugger are installed. If you do not see something similar to the expected output, do not proceed. Either repeat the steps or seek help.
+
+*Command 1*
+
+```{code-block} bash
+gcc --version
+```
+
+*Expected output*
+
+```{code-block} bash
+gcc.exe (Rev2, Built by MSYS2 project) 13.2.0
+```
+
+*Command 2*
+
+```{code-block} bash
+gdb --version
+```
+
+*Expected output*
+
+```{code-block} bash
+GNU gdb (GDB) 13.2
+```
+
+*Command 3*
+
+```{code-block} bash
+g++ --version
+```
+
+*Expected output*
+
+```{code-block} bash
+g++.exe (Rev2, Built by MSYS2 project) 13.2.0
+```
+
+**[Step 6]** Go to **Settings** using the search at the bottom left. In {\bf Find a setting}, search for "Edit environment variables for your account". Click on **Path**, and click **Edit**. In the new window, press **New** on the right and add `C:\msys64\ucrt64\bin` and click **OK**.
+
+```{figure} ./images/environment-variable.png
+:alt: Edit Path
+:width: 800px
+:align: center
+
+Edit Path
+```    
 
 **[Step 7]** Open/Launch *Visual Studio Code*.
-
 
 ## For Mac/Linux Users
 
 You can follow along the following video for steps on setting up VS Code on Windows. Brief steps are also provided below.
 
-{{ video_embed | replace("%%VID%%", "IaQt45IZK40")}}
-
+{{ video_embed | replace("%%VID%%", "pbPgkOYireQ")}}
 
 **[Step 1]** Go to [code.visualstudio.com](https://code.visualstudio.com/), and download VS Code. It will take seconds. 
 
@@ -65,7 +112,7 @@ $ gcc --version
 , to see version number of gcc.
 
 If it is not installed, you will see 
-```
+```{code-block} bash
 gcc: Command not found
 ```
 
@@ -82,7 +129,7 @@ gcc: Command not found
 
 **[Step 4]** To compile using VS Code, we need to install two necessary extensions. Go to Extensions below the Explorer icon. 
 
-**[Step 5]** Install **C/C++** and **C/C++ Runner** extensions by clicking on ``Install'' after you click on each of them. **Note:** For Windows, please additionally install **C/C++ Extension Pack** and **CodeLLDB**. Close the tabs when installations are complete.
+**[Step 5]** Install **C/C++** and **C/C++ Runner** extensions by clicking on ``Install'' after you click on each of them.
 
 **[Step 6]** On the bottom left of your window, you should see **Select Folder**. This helps you select a particular working folder. In our case, we want to select `aps105-labs/lab0`.
 
@@ -98,4 +145,4 @@ This will ensure that your code is formatted according to the Google C++ Style G
 
 **[Step 11]** Click on the **Debug** button to start a debugging session. Your code will stop at your breakpoint without executing it, unless you press **Step over** button. As you step over, you will execute further lines and observe variable values changing on the left. If you want to continue running the program, without debugging further, you can press the **Continue** button.
 
-[^1]: Stack Overflow Developer Survey 2022, Integrated Development Environment, 2022. [Web](https://survey.stackoverflow.co/2022/)
+[^1]: Stack Overflow Developer Survey 2023, Integrated Development Environment, 2023. [Web](https://survey.stackoverflow.co/2023/)

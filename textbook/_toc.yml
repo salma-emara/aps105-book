@@ -115,6 +115,5 @@ parts:
       - file: chapters/appendix/linux-basics.md
       - file: chapters/appendix/setup-vscode.md
       - file: chapters/appendix/vscode-extensions.md
-      - file: chapters/appendix/compile-run.md
       - file: chapters/appendix/coding-style.md
       - file: chapters/appendix/debugging.md

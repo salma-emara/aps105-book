@@ -112,8 +112,8 @@ parts:
   - caption: "Appendix: Additional information"
     chapters:
       - file: chapters/appendix/appendix.md
-      - file: chapters/appendix/linux-basics.md
       - file: chapters/appendix/setup-vscode.md
       - file: chapters/appendix/vscode-extensions.md
       - file: chapters/appendix/coding-style.md
       - file: chapters/appendix/debugging.md
+      - file: chapters/appendix/unix-commands.md

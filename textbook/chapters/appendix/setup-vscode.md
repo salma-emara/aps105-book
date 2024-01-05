@@ -27,7 +27,7 @@ You can follow along the following video for steps on setting up VS Code on Wind
 **[Step 4]** Additionally, you need to run the following command in the same MSYS2 UCRT64 terminal. This is taken from step 5 in [https://code.visualstudio.com/docs/cpp/config-mingw](https://code.visualstudio.com/docs/cpp/config-mingw).
 
 ```{code-block} bash
-pacman -S --needed base-devel mingw-w64-x86_64-toolchain
+pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 ```
 
 Press "Enter" to accept the default option. This will take a few minutes.

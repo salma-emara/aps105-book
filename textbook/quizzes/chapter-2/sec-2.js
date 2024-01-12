@@ -2,24 +2,6 @@ let parsedObject;
   parsedObject = {
   "questions": [
     {
-      "prompt": "`int`, `short`, `long`, `long long`, `float`, `double` are most commonly used number data types in C. Which of the following is correct about the byte size of these data types?",
-      "answer": [
-        1
-      ],
-      "distractors": [
-        "`int` is 2 bytes, `short` is 4 bytes, `long` is 8 bytes, `long long` is 16 bytes, `float` is 4 bytes, `double` is 8 bytes",
-        "`int` is 4 bytes, `short` is 2 bytes, `long` is 8 bytes, `long long` is 8 bytes, `float` is 4 bytes, `double` is 8 bytes",
-        "`int` is 4 bytes, `short` is 2 bytes, `long` is 8 bytes, `long long` is 16 bytes, `float` is 8 bytes, `double` is 16 bytes",
-        "`int` is 4 bytes, `short` is 2 bytes, `long` is 8 bytes, `long long` is 8 bytes, `float` is 2 bytes, `double` is 4 bytes"
-      ],
-      "explainations": [
-        "A  is incorrect. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).\n",
-        "B is correct. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).\n",
-        "C is incorrect. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).\n",
-        "D is incorrect. `int` uses 32 bits (4 bytes), `short` uses 16 bits (2 bytes), `long` uses 64 bits (8 bytes), `long long` uses 64 bits (8 bytes), `float` uses 32 bits (4 bytes), `double` uses 64 bits (8 bytes).\n"
-      ]
-    },
-    {
       "prompt": "Let's say you want to design a new number type for integer number, called `myint`. You want to use 12 bits to represent an integer. Which of the following range is correct for the new number type?",
       "answer": [
         0

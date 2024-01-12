@@ -43,10 +43,10 @@ let parsedObject;
         0
       ],
       "distractors": [
-        "```\nint num = 2;\nprintf(\"%d%%d\\\\tab%d%%d\", num, num);\n```\n",
-        "```\nint num = 2;\nprintf(\"%d\\\\%d\\\\tab%d\\\\%d\", num, num);\n```\n",
-        "```\nint num = 2;\nprintf(\"%d%%d\\\\tab%d%%d\", num);\n```\n",
-        "```\nint num = 2;\nprintf(\"%d%d\\\\tab%d%d\", num);\n```\n"
+        "```\nint num = 2;\nprintf(\"%d%%d\\tab%d%%d\", num, num);\n```\n",
+        "```\nint num = 2;\nprintf(\"%d\\\\%d\\tab%d\\\\%d\", num, num);\n```\n",
+        "```\nint num = 2;\nprintf(\"%d%%d\\tab%d%%d\", num);\n```\n",
+        "```\nint num = 2;\nprintf(\"%d%d\\tab%d%d\", num);\n```\n"
       ],
       "explainations": [
         "A) is correct. Note that `\\t` is an escape character. For `%` to be printed, you need to use `%%`; There are two decimal numbers to be printed, so you need to use two `%d`s and follow the format specifier with the two variables separately, even though they are the same.",

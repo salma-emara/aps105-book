@@ -131,25 +131,25 @@ distractors = [
 '''
 ```
 int num = 2;
-printf("%d%%d\\tab%d%%d", num, num);
+printf("%d%%d\tab%d%%d", num, num);
 ```
 ''',
 '''
 ```
 int num = 2;
-printf("%d\\%d\\tab%d\\%d", num, num);
+printf("%d\\%d\tab%d\\%d", num, num);
 ```
 ''',
 '''
 ```
 int num = 2;
-printf("%d%%d\\tab%d%%d", num);
+printf("%d%%d\tab%d%%d", num);
 ```
 ''',
 '''
 ```
 int num = 2;
-printf("%d%d\\tab%d%d", num);
+printf("%d%d\tab%d%d", num);
 ```
 '''
 ]

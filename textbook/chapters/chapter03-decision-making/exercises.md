@@ -112,7 +112,7 @@ int main(void) {
 
 **Modified Version of Question 4 in Winter 2022 Midterm Exam**
 
-The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one `if` statement.
+The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one nested `if-else` statement.
 
 ```{code-block} c
 int main(void) {

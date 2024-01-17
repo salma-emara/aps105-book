@@ -91,7 +91,7 @@ int main(void) {
 
 The NOT operator is typically used to reverse a condition, or create a more readable code. For example, `if (done == false)` can be written as `if (!done)`, where if `done` is `true`, the conditions are both `false` and vice versa.
 
-Another example, let's write a C code that checks if the characters entered by the user is not an alphabet. **Note:** ASCII code of all *upper* case alphabets is larger than *lower* case alphabets.
+Another example, let's write a C code that checks if the characters entered by the user is not an alphabet. **Note:** ASCII code of all *upper* case alphabets is smaller than *lower* case alphabets.
 
 To write this condition, we need to think of the range of ASCII codes of alphabets. Alphabets have their ASCII codes between `'A'` and `'Z'` or between `'a'` and `'z'`. If the character is not between these two ranges, it is not an alphabet. Find the figure below for an illustration. 
 

@@ -126,7 +126,7 @@ Some of the relevant math library functions are listed below.
 |$\min(x)$|`double fmin(double x, double y);`|returns the minimum of `x` and `y`|`fmin(-6.1, -7.3)` returns `-7.3`|
 |$\lfloor x \rfloor$|`double floor(double x);`|returns the greatest integer that is less than or equal to `x`, i.e., rounds down `x`|`floor(9.6)` returns `9.0`|
 |$\lceil x \rceil$|`double ceil(double x);`|returns the smallest integer that is greater than or equal to `x`, i.e., rounds up `x`|`ceil(3.09)` returns `4.0`|
-|$x \mod y$|`double fmod(double x, double y);`|returns the remainder[^4] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` if for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
+|$x \mod y$|`double fmod(double x, double y);`|returns the remainder[^4] of `x / y`. Recall `%` operator is for `int` operands only, while `fmod` is for `double` operands too. |`fmod(5.3, 2.1)` returns `1.1`|
 |$\lfloor x \rceil$|`double rint(double x);`|returns the nearest integer to x, i.e., rounds `x`|`rint(-2.1)` returns `-2.0`|
 
 ## Example use cases for math library functions

@@ -117,7 +117,7 @@ Some of the relevant math library functions are listed below.
 |$\ln(x)$ | `double log(double x);`|returns the natural logarithm of `x`|`log(M_E)`[^2] returns `1.0`|
 |$\mid x \mid$|`double fabs(double x);`|returns the absolute value of `x`|`fabs(-2)` returns `2.0`|
 |$\sin(x)$|`double sin(double x);`|returns the sine of `x`, where `x` is in radians (not degrees)|`sin(M_PI * 2)`[^3] returns `0.0`|
-|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^3] returns `-1.0`|
+|$\cos(x)$|`double cos(double x);`|returns the cosine of `x`, where `x` is in radians (not degrees)|`cos(M_PI * 2)`[^3] returns `1.0`|
 |$\tan(x)$|`double tan(double x);`|returns the tangent of `x`, where `x` is in radians (not degrees)|`tan(M_PI)`[^3] returns `0.0`|
 |$\sin^{-1}(x)$ or $\arcsin(x)$|`double asin(double x);`|returns the arc sine of `x` in radians (not degrees)|`asin(0.5)` returns `0.523599`|
 |$\cos^{-1}(x)$ or $\arccos(x)$|`double acos(double x);`|returns the arc cosine of `x` in radians (not degrees)|`acos(0.5)` returns `1.047198`|

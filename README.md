@@ -114,5 +114,4 @@ To edit an existing quiz:
 node ./textbook/_static/toml_to_js_convertor.js
 ```
 
-
 Build the book locally and ensure the quiz is behaving as expected.

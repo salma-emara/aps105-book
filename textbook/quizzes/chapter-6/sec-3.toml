@@ -128,7 +128,7 @@ int* innerFunc(int **ppval1, int **ppval2) {
 }
 
 int outerFunc(int *largest, int *pval1, int *pval2) {
-    int *temp;
+    int temp;
     if (largest == pval1) {
         temp = *largest - *pval2;
     } else {

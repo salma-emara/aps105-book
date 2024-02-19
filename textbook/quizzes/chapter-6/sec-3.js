@@ -38,7 +38,7 @@ let parsedObject;
       ]
     },
     {
-      "prompt": "When inputting `10 5` and `5 10` to the following program, what is the output?\n```\n#include <stdio.h>\n\nint* innerFunc(int**, int**);\nint outerFunc(int*, int*, int*);\n\nint main() {\n    int val1, val2;\n    scanf(\"%d %d\", &val1, &val2);\n    int *pval1 = &val1;\n    int *pval2 = &val2;\n    printf(\"%d\", outerFunc(innerFunc(&pval1, &pval2), pval1, pval2));\n    \n    return 0;\n}\n\nint* innerFunc(int **ppval1, int **ppval2) {\n    int* temp;\n    if (**ppval1 > **ppval2) {\n        temp = *ppval1;\n    } else {\n        temp = *ppval2; \n    }\n    return temp;\n}\n\nint outerFunc(int *largest, int *pval1, int *pval2) {\n    int *temp;\n    if (largest == pval1) {\n        temp = *largest - *pval2;\n    } else {\n        temp = *largest - *pval1;\n    }\n    return temp;\n}\n```\n",
+      "prompt": "When inputting `10 5` and `5 10` to the following program, what is the output?\n```\n#include <stdio.h>\n\nint* innerFunc(int**, int**);\nint outerFunc(int*, int*, int*);\n\nint main() {\n    int val1, val2;\n    scanf(\"%d %d\", &val1, &val2);\n    int *pval1 = &val1;\n    int *pval2 = &val2;\n    printf(\"%d\", outerFunc(innerFunc(&pval1, &pval2), pval1, pval2));\n    \n    return 0;\n}\n\nint* innerFunc(int **ppval1, int **ppval2) {\n    int* temp;\n    if (**ppval1 > **ppval2) {\n        temp = *ppval1;\n    } else {\n        temp = *ppval2; \n    }\n    return temp;\n}\n\nint outerFunc(int *largest, int *pval1, int *pval2) {\n    int temp;\n    if (largest == pval1) {\n        temp = *largest - *pval2;\n    } else {\n        temp = *largest - *pval1;\n    }\n    return temp;\n}\n```\n",
       "answer": [
         3
       ],

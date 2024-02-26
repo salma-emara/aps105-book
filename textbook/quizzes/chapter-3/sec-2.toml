@@ -1,6 +1,6 @@
 [[questions]]
 
-prompt = "A rectangle can be represented by the coordinations of the top-right corner and bottom-left corner (e.g., `(4, 2)` and `(2, 1)` are the top-right and bottom-left coordinations of a rectangle repectively). Which of the follwing conditons is/are true when one of the rectangles is overlapping with the other? (Rectangle 1: top-right: `(top_right_x1, top_right_y1)`, bottom-left: `(bottom_left_x1, bottom_left_y1)`; Rectangle 2: top-right: `(top_right_x2, top_right_y2)`, bottom-left: `(bottom_left_x2, bottom_left_y2)`)"
+prompt = "A rectangle can be represented by the coordinations of the top-right corner and bottom-left corner (e.g., `(4, 2)` and `(2, 1)` are the top-right and bottom-left coordinations of a rectangle respectively). Which of the following conditions is/are true only when one of the rectangles is overlapping with the other? (Rectangle 1: top-right: `(top_right_x1, top_right_y1)`, bottom-left: `(bottom_left_x1, bottom_left_y1)`; Rectangle 2: top-right: `(top_right_x2, top_right_y2)`, bottom-left: `(bottom_left_x2, bottom_left_y2)`)"
 
 answer = [0]
 

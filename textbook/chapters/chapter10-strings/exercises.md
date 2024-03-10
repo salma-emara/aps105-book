@@ -34,7 +34,7 @@ W: 1
 </pre>
 
 ```{code-block} c
-int countLetters(char *s, mt count[]) ( 
+int countLetters(char *s, int count[]) ( 
 ```
 
 ````{admonition} Answer
@@ -116,7 +116,7 @@ Write a C function called `preamble` that takes two parameters: a string `str` a
 then the function will return `"Toronto"`. If `str` is NULL, the function will also return `NULL`.
 
 ```{code-block} c
-char *preamble(char *str, mt n) {
+char *preamble(char *str, int n) {
 ```
 
 ````{admonition} Answer

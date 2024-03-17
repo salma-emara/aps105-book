@@ -34,7 +34,7 @@ W: 1
 </pre>
 
 ```{code-block} c
-int countLetters(char *s, int count[]) ( 
+int countLetters(char *s, int count[]) {
 ```
 
 ````{admonition} Answer
@@ -57,7 +57,7 @@ int countLetters(char *s, int count[]) {
 
 **Question 10 in Winter 2022 Final Exam [Intermediate]**
 
-Write a function called `lastStringInString`, the prototype of which is provided below, that returns the pointer to the **last** occurrence of the string `s1` in the string \verb|s2|. If the string \verb|s1| cannot be found in the string \verb|s2|, the function returns \verb|NULL|. For example, if we are looking for the string `"is"` as \verb|s1| in the string `"This is a sample string"` as `s2`, the pointer to the second `"is"` in the string `"s2"` will be returned by the function. Another example, if we are looking for the string `"the"` as `s1` in the string `s2` `"The apple"`, the function should return `NULL`. This is because `'t'` is lower case in `"the"`. 
+Write a function called `lastStringInString`, the prototype of which is provided below, that returns the pointer to the **last** occurrence of the string `s1` in the string `s2`. If the string `s1` cannot be found in the string `s2`, the function returns `NULL`. For example, if we are looking for the string `"is"` as `s1` in the string `"This is a sample string"` as `s2`, the pointer to the second `"is"` in the string `"s2"` will be returned by the function. Another example, if we are looking for the string `"the"` as `s1` in the string `s2` `"The apple"`, the function should return `NULL`. This is because `'t'` is lower case in `"the"`. 
 
 **Note:** You can use any function from the library `string.h`, **except** for `strstr()` --- you are not allowed to use it.  
 

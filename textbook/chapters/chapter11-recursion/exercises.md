@@ -123,25 +123,31 @@ bool compareLines(const char *lineOne, const char *lineTwo);
 ````{admonition} Answer
 :class: dropdown
 ```{code-block} c
-bool compareLines(const char *lineOne, const char *lineTwo) {
+bool compareLines(const char* lineOne, const char* lineTwo) {
+  if (*lineOne == ' ' || *lineOne == '.') {
+    lineOne++;
+    return compareLines(lineOne, lineTwo);
+  }
+  if (*lineTwo == ' ' || *lineTwo == '.') {
+    lineTwo++;
+    return compareLines(lineOne, lineTwo);
+  }
+
+  if (!*lineOne && !*lineTwo) {
+    return true;
+  }
+
   if (*lineOne && *lineTwo) {
     if (*lineOne == *lineTwo) {
       lineOne++;
       lineTwo++;
     } else {
-      if (*lineOne == ' ' || *lineOne == '.')
-        lineOne++;
-      else if (*lineTwo == ' ' || *lineTwo == '.')
-        lineTwo++;
-      else
-        return false;
+      return false;
     }
     return compareLines(lineOne, lineTwo);
   }
-  if (!*lineOne || !*lineTwo)
-    return true;
-  else
-    return false;
+
+  return false;
 }
 ```
 ````

@@ -2,3 +2,4 @@ ipython==8.12
 jupyter-book==0.13.1
 matplotlib
 numpy
+lxml[html_clean]

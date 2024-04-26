@@ -71,7 +71,7 @@ Write a C function called `borderSum` that adds all the border elements of the t
 13   14    15    16 
 </pre>
 
-The header of the `borderSum` function is provided below, where `26` is the number of rows and columns in the 2D array `mat`, and `n` is the size of the square matrix to which we need to get the sum of its border. You can safely assume `n $\leq$ `26`.
+The header of the `borderSum` function is provided below, where `26` is the number of rows and columns in the 2D array `mat`, and `n` is the size of the square matrix to which we need to get the sum of its border. You can safely assume `n` $\leq$ `26`.
 
 ```{code-block} c
 int borderSum(int mat[][26], int n){

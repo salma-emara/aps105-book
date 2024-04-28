@@ -14,7 +14,7 @@ let parsedObject;
         "2, 4, 3, 1"
       ],
       "explainations": [
-        "A is incorrect. The correct order is 4, 2, 1, 3.",
+        "A is correct. The correct order is 4, 2, 1, 3.",
         "B is incorrect. The correct order is 4, 2, 1, 3.",
         "C is correct. The correct order is 4, 2, 1, 3.",
         "D is incorrect. The correct order is 4, 2, 1, 3."

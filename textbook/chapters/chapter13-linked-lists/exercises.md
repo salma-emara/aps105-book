@@ -37,7 +37,7 @@ typedef struct node {
 Node *search(Node *head, int key) {
   Node *current = head;
 
-  while (current->data != key) {
+  while (current != NULL && current->data != key) {
     current = current->link;
   }
 

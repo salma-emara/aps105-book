@@ -9,7 +9,7 @@ What is the correct order of steps to delete a node from a linked list?
 4. Find the node we want to delete.
 '''
 
-answer = [2]
+answer = [1, 2]
 
 distractors = [
     "4, 2, 3, 1",

@@ -1,0 +1,214 @@
+get_md_files took 0.0090 seconds
+read_markdown_file took 0.0143 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0017 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0065 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0084 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0234 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0190 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0151 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0195 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0012 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0589 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0319 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0052 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0221 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0021 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0043 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0014 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0015 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0013 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0208 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0057 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0013 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0121 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0036 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0067 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0108 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0077 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0014 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0272 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0062 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0449 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0124 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0101 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0011 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0380 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0312 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0238 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0084 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0161 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0139 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0019 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0329 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0037 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0019 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0478 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0097 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0266 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0393 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0024 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0197 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0192 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0086 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0238 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0015 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0500 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0826 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0161 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0172 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0241 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0019 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0444 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0195 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0108 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0031 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0174 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0115 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0248 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0094 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0200 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0022 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0172 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0257 seconds
+file_path_to_url took 0.0004 seconds
+read_markdown_file took 0.0713 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0021 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0192 seconds
+file_path_to_url took 0.0004 seconds
+read_markdown_file took 0.0229 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0415 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0179 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0050 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0443 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0319 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0623 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0325 seconds
+file_path_to_url took 0.0006 seconds
+read_markdown_file took 0.0503 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0205 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0459 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0018 seconds
+file_path_to_url took 0.0004 seconds
+read_markdown_file took 0.0311 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0208 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0193 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0216 seconds
+file_path_to_url took 0.0002 seconds
+read_markdown_file took 0.0028 seconds
+file_path_to_url took 0.0001 seconds
+read_markdown_file took 0.0369 seconds
+file_path_to_url took 0.0003 seconds
+read_markdown_file took 0.0229 seconds
+file_path_to_url took 0.0005 seconds
+/opt/anaconda3/lib/python3.9/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+semantic_search took 0.4602 seconds
+Text: What are pointers?
+URL: https://learningc.org/chapters/chapter06-pointers/what-are-pointers
+Position: sentence 1
+Distance: 0.1327201873064041
+
+Text: pointer
+URL: https://learningc.org/chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc
+Position: sentence 253
+Distance: 0.2546968162059784
+
+Text: pointer
+URL: https://learningc.org/chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc
+Position: sentence 255
+Distance: 0.2546968162059784
+
+Text: pointer
+URL: https://learningc.org/chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc
+Position: sentence 256
+Distance: 0.2546968162059784
+
+Text: pointer
+URL: https://learningc.org/chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc
+Position: sentence 257
+Distance: 0.2546968162059784

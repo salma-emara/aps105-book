@@ -9,17 +9,17 @@ import pickle  # Allows for serializing and deserializing Python object structur
 print("Loading embeddings, mappings, and FAISS index...")
 
 # Load embeddings and mapping
-with open('embeddings.npy', 'rb') as f:
+with open('embeddings_p&l.npy', 'rb') as f:
     embeddings_np = np.load(f)
 
-with open('embedding_to_location.pkl', 'rb') as f:
+with open('embedding_to_location_p&l.pkl', 'rb') as f:
     embedding_to_location = pickle.load(f)
 
-with open('all_text_data.pkl', 'rb') as f:
+with open('all_text_data_p&l.pkl', 'rb') as f:
     all_text_data = pickle.load(f)
 
 # Load FAISS index
-index = faiss.read_index('faiss_index.bin')
+index = faiss.read_index('faiss_index_p&l.bin')
 
 # Initialize Sentence-Transformer model
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -39,14 +39,25 @@ def semantic_search(query, top_k=20):
         results.append(result)
     return results
 
-# Example search query
-query = "why do we need linked list"
-results = semantic_search(query)
+if __name__ == "__main__":
 
-# Display results
-for result in results:
-    print(f"Text: {result['text']}")
-    print(f"URL: {result['url']}")
-    print(f"Position: {result['position']}")
-    print(f"Distance: {result['distance']}")
-    print()
+# # Example search query
+# query = "why do we need linked list"
+# results = semantic_search(query)
+
+    # Main loop to handle terminal input
+    while True:
+        query = input("Enter your query (or type 'quit' to exit): ")
+        if query.lower() == 'quit':
+            print("Exiting...")
+            break
+
+        results = semantic_search(query)
+
+        # Display results
+        for result in results:
+            print(f"Text: {result['text']}")
+            print(f"URL: {result['url']}")
+            print(f"Position: {result['position']}")
+            print(f"Distance: {result['distance']}")
+            print()

@@ -8,8 +8,8 @@ import re
 import pickle
 
 # Personal
-from smartSearch.func_time import time_block
-from smartSearch.md_finder import get_md_files
+from func_time import time_block
+from md_finder import get_md_files
 
 # Apply the time_block decorator to the imported functions
 get_md_files = time_block("get_md_files")(get_md_files)
@@ -23,7 +23,7 @@ def read_markdown_file(file_path):
         soup = BeautifulSoup(html_content, "html.parser")
         
         elements = []
-        for element in soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code', 'li', 'table']):
+        for element in soup.find_all(['p', 'li']):
             text = element.get_text(separator="\n")
             # Split text into sentences based on punctuation
             sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
@@ -33,7 +33,7 @@ def read_markdown_file(file_path):
 
 # Get list of markdown files
 base_directory = ''
-directory = 'textbook/chapters'
+directory = '../textbook/chapters'
 file_paths = get_md_files(directory, base_directory)
 
 base_url = "https://learningc.org/"
@@ -76,13 +76,13 @@ index = faiss.IndexFlatL2(embeddings_np.shape[1])
 index.add(embeddings_np)
 
 # Save embeddings, FAISS index, and mapping
-with open('embeddings.npy', 'wb') as f:
+with open('embeddings_p&l.npy', 'wb') as f:
     np.save(f, embeddings_np)
 
-with open('embedding_to_location.pkl', 'wb') as f:
+with open('embedding_to_location_p&l.pkl', 'wb') as f:
     pickle.dump(embedding_to_location, f)
 
-with open('all_text_data.pkl', 'wb') as f:
+with open('all_text_data_p&l.pkl', 'wb') as f:
     pickle.dump(all_text_data, f)
 
-faiss.write_index(index, 'faiss_index.bin')
+faiss.write_index(index, 'faiss_index_p&l.bin')

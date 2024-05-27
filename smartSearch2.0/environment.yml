@@ -1,0 +1,42 @@
+name: smartSearch
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - beautifulsoup4=4.12.2=py39hecd8cb5_0
+  - blas=1.0=mkl
+  - ca-certificates=2024.3.11=hecd8cb5_0
+  - faiss=1.7.4=py39h7f0aafb_0_cpu
+  - faiss-cpu=1.7.4=he781eb1_0
+  - intel-openmp=2023.1.0=ha357a0b_43548
+  - libblas=3.9.0=1_h508aa58_netlib
+  - libcxx=17.0.6=h88467a6_0
+  - libfaiss=1.7.4=h335e8f1_0_cpu
+  - libfaiss-avx2=1.7.4=h1234567_0_cpu
+  - libffi=3.4.4=hecd8cb5_1
+  - libgfortran=5.0.0=13_2_0_h97931a8_3
+  - libgfortran5=13.2.0=h2873a65_3
+  - liblapack=3.9.0=5_h0661a58_netlib
+  - llvm-openmp=18.1.6=h15ab845_0
+  - mkl=2023.1.0=h8e150cf_43560
+  - mkl-service=2.4.0=py39h6c40b1e_1
+  - mkl_fft=1.3.8=py39h6c40b1e_0
+  - mkl_random=1.2.4=py39ha357a0b_0
+  - ncurses=6.4=hcec6c5f_0
+  - numpy=1.26.4=py39h827a554_0
+  - numpy-base=1.26.4=py39ha186be2_0
+  - openssl=3.0.13=hca72f7f_2
+  - pip=24.0=py39hecd8cb5_0
+  - python=3.9.19=h5ee71fb_1
+  - python_abi=3.9=2_cp39
+  - readline=8.2=hca72f7f_0
+  - setuptools=69.5.1=py39hecd8cb5_0
+  - soupsieve=2.5=py39hecd8cb5_0
+  - sqlite=3.45.3=h6c40b1e_0
+  - tbb=2021.8.0=ha357a0b_0
+  - tk=8.6.14=h4d00af3_0
+  - tzdata=2024a=h04d1e81_0
+  - wheel=0.43.0=py39hecd8cb5_0
+  - xz=5.4.6=h6c40b1e_1
+  - zlib=1.2.13=h4b97444_1
+prefix: /opt/anaconda3/envs/smartSearch

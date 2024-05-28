@@ -17,7 +17,7 @@ from md_finder import get_md_files
 
 # Configuration
 BASE_DIRECTORY = ''
-HTML_DIRECTORY = 'textbook/_build/html/chapters'
+HTML_DIRECTORY = 'textbook/_build/html/chapters/chapter04-loops'
 BASE_URL = "https://learningc.org/"
 OUTPUT_DIR = './smartSearch2.0/output_embeddings'
 
@@ -50,6 +50,14 @@ def read_html_file(file_path):
             html_content = file.read()
             soup = BeautifulSoup(html_content, "html.parser")
             
+            # Remove the sidebar elements
+            for sidebar in soup.find_all(class_="bd-sidebar"):
+                sidebar.decompose()
+
+            # Remove the table of contents
+            for toc in soup.find_all(class_="bd-toc"):
+                toc.decompose()
+                
             elements = []
             for element in soup.find_all(['p', 'li']):
                 text = element.get_text(separator="\n")
@@ -119,16 +127,16 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     # Save embeddings, FAISS index, and mapping to the output directory
-    with open(os.path.join(OUTPUT_DIR, 'embeddings_p&l.npy'), 'wb') as f:
+    with open(os.path.join(OUTPUT_DIR, 'embeddings_p&l_chapter4.npy'), 'wb') as f:
         np.save(f, embeddings_np)
 
-    with open(os.path.join(OUTPUT_DIR, 'embedding_to_location_p&l.pkl'), 'wb') as f:
+    with open(os.path.join(OUTPUT_DIR, 'embedding_to_location_p&l_chapter4.pkl'), 'wb') as f:
         pickle.dump(embedding_to_location, f)
 
-    with open(os.path.join(OUTPUT_DIR, 'all_text_data_p&l.pkl'), 'wb') as f:
+    with open(os.path.join(OUTPUT_DIR, 'all_text_data_p&l_chapter4.pkl'), 'wb') as f:
         pickle.dump(all_text_data, f)
 
-    faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index_p&l.bin'))
+    faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index_p&l_chapter4.bin'))
 
 
 if __name__ == "__main__":

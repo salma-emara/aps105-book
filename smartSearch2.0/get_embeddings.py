@@ -50,22 +50,23 @@ def read_html_file(file_path):
             html_content = file.read()
             soup = BeautifulSoup(html_content, "html.parser")
             
-            # Remove the sidebar elements
-            for sidebar in soup.find_all(class_="bd-sidebar"):
-                sidebar.decompose()
+            # Find the <main> tag
+            main_content = soup.find('main')
+            if not main_content:
+                logging.warning(f"No <main> tag found in {file_path}")
+                return []
 
-            # Remove the table of contents
-            for toc in soup.find_all(class_="bd-toc"):
-                toc.decompose()
-                
             elements = []
-            for element in soup.find_all(['p', 'li']):
-                text = element.get_text(separator="\n")
+            for element in main_content.find_all(['p', 'li']):
+                text = element.get_text(separator="\n").strip()
+                # Remove multiple spaces and newlines
+                text = re.sub(r'\s+', ' ', text)
                 # Split text into sentences based on punctuation
                 sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
-                elements.extend(sentences)
+                elements.extend([sentence.strip() for sentence in sentences if sentence])
             
             return elements
+                
     except Exception as e:
         logging.error(f"Error reading file {file_path}: {e}")
         return []

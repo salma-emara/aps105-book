@@ -46,11 +46,11 @@ def semantic_search(query, top_k=20):
     results = []
     for i, idx in enumerate(indices[0]):
         result = {
+            "rank": i + 1,
             "text": all_text_data[idx],
             "url": embedding_to_location[idx]["url"],
             "position": embedding_to_location[idx]["position"],
-            "distance": distances[0][i],
-            "rank": i + 1  # Adding the rank based on the index
+            "distance": distances[0][i]
         }
         results.append(result)
     return results
@@ -68,13 +68,14 @@ if __name__ == "__main__":
         results = semantic_search(query)
 
         # Display results
-        print("\n" + "=" * 40 + f"\nResults for query: '{query}'\n" + "=" * 40 + "\n")
+        print("\n" + "="*40)
+        print(f"Results for query: '{query}'")
+        print("="*40)
         for result in results:
             print(f"Rank: {result['rank']}")
             print(f"Text: {result['text']}")
             print(f"URL: {result['url']}")
             print(f"Position: {result['position']}")
-            print(f"Distance: {result['distance']}\n")
-
-        # Separation between different queries
-        print("\n" + "#" * 80 + "\n")
+            print(f"Distance: {result['distance']}")
+            print()
+        print("#" * 80 + "\n")

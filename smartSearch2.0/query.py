@@ -9,17 +9,17 @@ print("Loading embeddings, mappings, and FAISS index...")
 
 try:
     # Load embeddings and mapping
-    with open('smartSearch2.0/output_embeddings/embeddings_p&l_chapter4.npy', 'rb') as f:
+    with open('smartSearch2.0/output_embeddings/embeddings.npy', 'rb') as f:
         embeddings_np = np.load(f)
 
-    with open('smartSearch2.0/output_embeddings/embedding_to_location_p&l_chapter4.pkl', 'rb') as f:
+    with open('smartSearch2.0/output_embeddings/embedding_to_location.pkl', 'rb') as f:
         embedding_to_location = pickle.load(f)
 
-    with open('smartSearch2.0/output_embeddings/all_text_data_p&l_chapter4.pkl', 'rb') as f:
+    with open('smartSearch2.0/output_embeddings/all_text_data.pkl', 'rb') as f:
         all_text_data = pickle.load(f)
 
     # Load FAISS index
-    index = faiss.read_index('smartSearch2.0/output_embeddings/faiss_index_p&l_chapter4.bin')
+    index = faiss.read_index('smartSearch2.0/output_embeddings/faiss_index.bin')
 except FileNotFoundError as e:
     print(f"File not found: {e}")
     sys.exit(1)

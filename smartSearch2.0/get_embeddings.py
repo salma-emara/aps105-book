@@ -1,12 +1,13 @@
 import sys
-import os
+import os  # Provides functions to interact with the operating system, including file and directory operations.
 import re
-from sentence_transformers import SentenceTransformer
-import numpy as np
-import faiss
-import pickle
-import logging
-from bs4 import BeautifulSoup
+from sentence_transformers import SentenceTransformer  # Provides pre-trained models to generate embeddings for sentences and paragraphs.
+import numpy as np  # A powerful library for numerical computing, especially with arrays and matrices.
+import faiss  # A library for efficient similarity search and clustering of dense vectors.
+import pickle  # Allows for serializing and deserializing Python object structures, useful for saving and loading data.
+import sys  # Provides access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter.
+import logging  # Provides a way to configure logging and log messages from the script.
+from bs4 import BeautifulSoup  # Library for parsing HTML and XML documents.
 
 # Add the parent directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'smartSearch')))
@@ -16,7 +17,7 @@ from md_finder import get_md_files
 
 # Configuration
 BASE_DIRECTORY = ''
-HTML_DIRECTORY = 'textbook/_build/html/chapters/chapter04-loops'
+HTML_DIRECTORY = 'textbook/_build/html/chapters'
 BASE_URL = "https://learningc.org/"
 OUTPUT_DIR = './smartSearch2.0/output_embeddings'
 
@@ -57,14 +58,24 @@ def read_html_file(file_path):
 
             elements = []
             previous_sentence = None
-            for element in main_content.find_all(['p', 'li']):
-                # Check for nested spans and handle them accordingly
-                if element.find('span', class_='caption-number') or element.find('span', class_='caption-text'):
-                    text = element.get_text(separator=" ").strip()
-                    if text != previous_sentence:
-                        elements.append(text)
-                        previous_sentence = text
+            
+            def handle_table(table):
+                rows = table.find_all('tr')
+                table_text = []
+                for row in rows:
+                    columns = row.find_all(['th', 'td'])
+                    row_text = [col.get_text(separator=" ").strip() for col in columns]
+                    table_text.append(" | ".join(row_text))
+                return "\n".join(table_text)
+
+            for element in main_content.find_all(['p', 'li', 'table']):
+                if element.name == 'table':
+                    text = handle_table(element)
+                    elements.append(text)
                 else:
+                    # Check if the element is inside a table
+                    if element.find_parent('table'):
+                        continue  # Skip <p> and <li> elements inside a table
                     text = element.get_text(separator="\n").strip()
                     # Remove multiple spaces and newlines
                     text = re.sub(r'\s+', ' ', text)
@@ -72,7 +83,6 @@ def read_html_file(file_path):
                     sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
                     for sentence in sentences:
                         sentence = sentence.strip()
-                        # Ensure the sentence has more than one word and is not a duplicate
                         if len(sentence.split()) > 1 and sentence != previous_sentence:
                             elements.append(sentence)
                             previous_sentence = sentence
@@ -155,16 +165,16 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     # Save embeddings, FAISS index, and mapping to the output directory
-    with open(os.path.join(OUTPUT_DIR, 'embeddings_p&l_chapter4.npy'), 'wb') as f:
+    with open(os.path.join(OUTPUT_DIR, 'embeddings.npy'), 'wb') as f:
         np.save(f, embeddings_np)
 
-    with open(os.path.join(OUTPUT_DIR, 'embedding_to_location_p&l_chapter4.pkl'), 'wb') as f:
+    with open(os.path.join(OUTPUT_DIR, 'embedding_to_location.pkl'), 'wb') as f:
         pickle.dump(embedding_to_location, f)
 
-    with open(os.path.join(OUTPUT_DIR, 'all_text_data_p&l_chapter4.pkl'), 'wb') as f:
+    with open(os.path.join(OUTPUT_DIR, 'all_text_data.pkl'), 'wb') as f:
         pickle.dump(all_text_data, f)
 
-    faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index_p&l_chapter4.bin'))
+    faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index.bin'))
 
 if __name__ == "__main__":
     main()

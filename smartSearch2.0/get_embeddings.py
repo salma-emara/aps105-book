@@ -8,7 +8,6 @@ import pickle
 import logging
 from bs4 import BeautifulSoup
 
-# Personal
 # Add the parent directory to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'smartSearch')))
 
@@ -73,6 +72,7 @@ def read_html_file(file_path):
                     sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
                     for sentence in sentences:
                         sentence = sentence.strip()
+                        # Ensure the sentence has more than one word and is not a duplicate
                         if len(sentence.split()) > 1 and sentence != previous_sentence:
                             elements.append(sentence)
                             previous_sentence = sentence

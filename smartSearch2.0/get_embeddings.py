@@ -40,7 +40,7 @@ def get_html_files(directory, base_directory):
     logging.info(f"Found {len(html_files)} HTML files.")
     return html_files
 
-#@time_block("read_html_file")
+@time_block("read_html_file")
 def read_html_file(file_path):
     """
     Read an HTML file and extract sentences from paragraphs and list items.
@@ -57,21 +57,25 @@ def read_html_file(file_path):
                 return []
 
             elements = []
+            previous_sentence = None
             for element in main_content.find_all(['p', 'li']):
                 # Check for nested spans and handle them accordingly
                 if element.find('span', class_='caption-number') or element.find('span', class_='caption-text'):
-                    # This is for Fig. and 4.5 case
                     text = element.get_text(separator=" ").strip()
-                    elements.append(text)
+                    if text != previous_sentence:
+                        elements.append(text)
+                        previous_sentence = text
                 else:
                     text = element.get_text(separator="\n").strip()
                     # Remove multiple spaces and newlines
                     text = re.sub(r'\s+', ' ', text)
                     # Split text into sentences based on punctuation
                     sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
-                    # Filter out one-word sentences
-                    sentences = [sentence for sentence in sentences if len(sentence.split()) > 1]
-                    elements.extend([sentence.strip() for sentence in sentences if sentence])
+                    for sentence in sentences:
+                        sentence = sentence.strip()
+                        if len(sentence.split()) > 1 and sentence != previous_sentence:
+                            elements.append(sentence)
+                            previous_sentence = sentence
             
             return elements
                 
@@ -79,7 +83,6 @@ def read_html_file(file_path):
         logging.error(f"Error reading file {file_path}: {e}")
         return []
 
-#@time_block("file_path_to_url")
 def file_path_to_url(file_path):
     """
     Convert a file path to a URL.

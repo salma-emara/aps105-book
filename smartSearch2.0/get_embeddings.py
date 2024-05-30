@@ -69,6 +69,8 @@ def read_html_file(file_path):
                     text = re.sub(r'\s+', ' ', text)
                     # Split text into sentences based on punctuation
                     sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
+                    # Filter out one-word sentences
+                    sentences = [sentence for sentence in sentences if len(sentence.split()) > 1]
                     elements.extend([sentence.strip() for sentence in sentences if sentence])
             
             return elements
@@ -97,7 +99,23 @@ def save_to_file(data, file_name):
     except Exception as e:
         logging.error(f"Error saving data to {file_name}: {e}")
 
+def clear_output_directory(directory):
+    """
+    Clear the output directory.
+    """
+    try:
+        for filename in os.listdir(directory):
+            file_path = os.path.join(directory, filename)
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        logging.info(f"Cleared output directory: {directory}")
+    except Exception as e:
+        logging.error(f"Failed to clear output directory: {e}")
+
 def main():
+    # Clear the output directory before saving new files
+    clear_output_directory(OUTPUT_DIR)
+    
     # Get list of HTML files
     file_paths = get_html_files(HTML_DIRECTORY, BASE_DIRECTORY)
     all_text_data = []
@@ -144,7 +162,6 @@ def main():
         pickle.dump(all_text_data, f)
 
     faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index_p&l_chapter4.bin'))
-
 
 if __name__ == "__main__":
     main()

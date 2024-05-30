@@ -58,12 +58,18 @@ def read_html_file(file_path):
 
             elements = []
             for element in main_content.find_all(['p', 'li']):
-                text = element.get_text(separator="\n").strip()
-                # Remove multiple spaces and newlines
-                text = re.sub(r'\s+', ' ', text)
-                # Split text into sentences based on punctuation
-                sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
-                elements.extend([sentence.strip() for sentence in sentences if sentence])
+                # Check for nested spans and handle them accordingly
+                if element.find('span', class_='caption-number') or element.find('span', class_='caption-text'):
+                    # This is for Fig. and 4.5 case
+                    text = element.get_text(separator=" ").strip()
+                    elements.append(text)
+                else:
+                    text = element.get_text(separator="\n").strip()
+                    # Remove multiple spaces and newlines
+                    text = re.sub(r'\s+', ' ', text)
+                    # Split text into sentences based on punctuation
+                    sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
+                    elements.extend([sentence.strip() for sentence in sentences if sentence])
             
             return elements
                 

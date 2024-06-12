@@ -44,9 +44,10 @@ html:
   comments:
     hypothesis: true
   extra_navbar: |
-        <div id="custom-nav-content">
-            your html
-        </div>
+        <form class="bd-search d-flex align-items-center" action="#" method="get" id="semantic-search-form">
+          <i class="icon fas fa-search"></i>
+          <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Semantically Search this book..." aria-label="Semantically Search this book..." autocomplete="off">
+        </form>
   theme:
     name: "sphinx_book_theme"
     custom_css: "semantic-finder.css"

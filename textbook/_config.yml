@@ -38,6 +38,10 @@ launch_buttons:
   # Add GitHub buttons to your book
   # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
+  custom_js:
+    - semantic-search.js
+  custom_css:
+    - semantic-search.css
   use_issues_button: true
   use_repository_button: true
   #Add highlight and annotate feature

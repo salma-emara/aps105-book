@@ -1,0 +1,19 @@
+#search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-query {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+#search-results {
+    margin-top: 20px;
+}
+
+#search-results h2 {
+    text-align: center;
+}

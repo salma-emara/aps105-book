@@ -43,6 +43,17 @@ html:
   #Add highlight and annotate feature
   comments:
     hypothesis: true
+  extra_navbar: |
+        <div id="custom-nav-content">
+            your html
+        </div>
+  theme:
+    name: "sphinx_book_theme"
+    custom_css: "semantic-finder.css"
+  extra_javascript:
+    - "semantic-finder.js"
+  
+
 parse:
   myst_enable_extensions:
     - dollarmath

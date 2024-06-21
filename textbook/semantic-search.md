@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
   if (query) {
     const titleElement = document.getElementById('semantic-search-title');
     if (titleElement) {
-      titleElement.innerText = 'Searching...';
-      console.log('Progress: Searching...');
+      titleElement.innerText = `Searching for ${query}...`;
+      console.log(`Progress: Searching for ${query}...`);
     }
     performSemanticSearch(query).catch(error => {
       console.error("Error in performSemanticSearch:", error);

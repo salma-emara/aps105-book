@@ -14,8 +14,12 @@ search_exclude: true
 hide_footer: true
 ---
 
-<div id="semantic-search-results">
-  <!-- The search results will be injected here by JavaScript -->
+<div>
+  <span id="semantic-search-title"> </span>
+  <div id="semantic-search-results" class="semantic-results-container">
+    <span id="search-progress" style="padding-left: 10px; font-style: italic;"></span>
+    <!-- The search results will be injected here by JavaScript -->
+  </div>
 </div>
 
 <script type="module">
@@ -29,7 +33,17 @@ document.addEventListener("DOMContentLoaded", function() {
   console.log("Query parameter:", query);
 
   if (query) {
-    performSemanticSearch(query).catch(error => console.error("Error in performSemanticSearch:", error));
+    const titleElement = document.getElementById('semantic-search-title');
+    if (titleElement) {
+      titleElement.innerText = 'Searching...';
+      console.log('Progress: Searching...');
+    }
+    performSemanticSearch(query).catch(error => {
+      console.error("Error in performSemanticSearch:", error);
+      if (titleElement) {
+        titleElement.innerText = 'Error during search. Please try again.';
+      }
+    });
   }
 });
 
@@ -41,6 +55,10 @@ async function loadSemantic(modelName) {
     return extractor;
   } catch (error) {
     console.error("Error loading model:", error);
+    const progressElement = document.getElementById('search-progress');
+    if (progressElement) {
+      progressElement.innerText = 'Error loading model. Please try again.';
+    }
     throw error;
   }
 }
@@ -53,23 +71,45 @@ async function embedQuery(extractor, text) {
     return output.tolist()[0]; // Convert Tensor to nested array and return the first embedding
   } catch (error) {
     console.error("Error embedding query:", error);
+    const progressElement = document.getElementById('search-progress');
+    if (progressElement) {
+      progressElement.innerText = 'Error embedding query. Please try again.';
+    }
     throw error;
   }
 }
 
 async function performSemanticSearch(query) {
   console.log("Performing semantic search for query:", query);
+  const progressElement = document.getElementById('search-progress');
+  if (progressElement) {
+    progressElement.innerText = 'Loading model...';
+    console.log('Progress: Loading model...');
+  }
   const extractor = await loadSemantic('Xenova/all-MiniLM-L6-v2');
+  if (progressElement) {
+    progressElement.innerText = 'Embedding query...';
+    console.log('Progress: Embedding query...');
+  }
   const queryEmbedding = await embedQuery(extractor, query);
 
-  console.log("Fetching embeddings and metadata");
+  if (progressElement) {
+    progressElement.innerText = 'Fetching embeddings and metadata...';
+    console.log('Progress: Fetching embeddings and metadata...');
+  }
   const embeddings = await fetch('outputs/embeddings.json').then(res => res.json());
   const metadata = await fetch('outputs/embedding_to_location.json').then(res => res.json());
   const textData = await fetch('outputs/all_text_data.json').then(res => res.json());
 
-  console.log("Embeddings, metadata, and text data fetched successfully");
-
+  if (progressElement) {
+    progressElement.innerText = 'Calculating similarities...';
+    console.log('Progress: Calculating similarities...');
+  }
   const similarities = await getSimilarities(queryEmbedding, embeddings);
+  if (progressElement) {
+    progressElement.innerText = 'Displaying results...';
+    console.log('Progress: Displaying results...');
+  }
   displayResults(similarities, metadata, textData);
 }
 
@@ -104,11 +144,58 @@ function displayResults(similarities, metadata, textData) {
   const resultsContainer = document.getElementById('semantic-search-results');
   resultsContainer.innerHTML = ''; // Clear previous results
   similarities.forEach(result => {
-    const div = document.createElement('div');
     const location = metadata[result.index];
-    div.innerHTML = `<a href="${location.url}">${textData[result.index]} - Similarity: ${result.similarity}</a>`;
-    resultsContainer.appendChild(div);
+    const text = textData[result.index];
+    const similarity = result.similarity;
+
+    const resultDiv = document.createElement('div');
+    resultDiv.classList.add('search-result');
+
+    const resultLink = document.createElement('a');
+    resultLink.href = location.url;
+    resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
+    resultLink.classList.add('search-result-link');
+
+    resultDiv.appendChild(resultLink);
+    resultsContainer.appendChild(resultDiv);
   });
+
+  const titleElement = document.getElementById('semantic-search-title');
+  if (titleElement) {
+    titleElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
+    console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
+  }
   console.log("Results displayed successfully");
 }
 </script>
+
+<style>
+.semantic-results-container {
+  margin-top: 20px;
+}
+
+.search-result {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-result-link {
+  text-decoration: none;
+  color: #1a0dab;
+  font-weight: bold;
+}
+
+.search-result-link:hover {
+  text-decoration: underline;
+}
+
+.similarity-score {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.result-text {
+  display: block;
+  font-size: 1em;
+}
+</style>

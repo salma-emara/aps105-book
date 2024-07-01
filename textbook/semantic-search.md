@@ -38,6 +38,17 @@ document.addEventListener("DOMContentLoaded", function() {
       titleElement.innerText = `Searching for ${query}...`;
       console.log(`Progress: Searching for ${query}...`);
     }
+    
+    // Check if the result is already in local storage
+    const cachedResult = localStorage.getItem(query);
+    if (cachedResult) {
+      console.log("Using cached result");
+      const cachedData = JSON.parse(cachedResult);
+      displayResults(cachedData.similarities, cachedData.metadata, cachedData.textData);
+      titleElement.innerText = `Search finished, found ${cachedData.similarities.length} pages best matching the search query.`;
+      return;
+    }
+    
     performSemanticSearch(query).catch(error => {
       console.error("Error in performSemanticSearch:", error);
       if (titleElement) {
@@ -111,6 +122,9 @@ async function performSemanticSearch(query) {
     console.log('Progress: Displaying results...');
   }
   displayResults(similarities, metadata, textData);
+
+  // Cache the result in local storage
+  localStorage.setItem(query, JSON.stringify({ similarities, metadata, textData }));
 }
 
 async function getSimilarities(queryEmbedding, embeddings) {
@@ -145,6 +159,10 @@ function displayResults(similarities, metadata, textData) {
   resultsContainer.innerHTML = ''; // Clear previous results
   similarities.forEach(result => {
     const location = metadata[result.index];
+    if (!location) {
+      console.error(`Metadata for index ${result.index} not found.`);
+      return;
+    }
     const text = textData[result.index];
     const similarity = result.similarity;
 

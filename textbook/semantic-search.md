@@ -108,9 +108,12 @@ async function performSemanticSearch(query) {
     progressElement.innerText = 'Fetching embeddings and metadata...';
     console.log('Progress: Fetching embeddings and metadata...');
   }
-  const embeddings = await fetch('outputs/embeddings.json').then(res => res.json());
-  const metadata = await fetch('outputs/embedding_to_location.json').then(res => res.json());
-  const textData = await fetch('outputs/all_text_data.json').then(res => res.json());
+
+  // Adding a cache-busting parameter to the URLs
+  const timestamp = new Date().getTime();
+  const embeddings = await fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json());
+  const metadata = await fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json());
+  const textData = await fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json());
 
   if (progressElement) {
     progressElement.innerText = 'Calculating similarities...';
@@ -166,11 +169,14 @@ function displayResults(similarities, metadata, textData) {
     const text = textData[result.index];
     const similarity = result.similarity;
 
+    // Construct the full URL using the domain and the relative path
+    const resultLinkUrl = `${window.location.origin}/${location.url}`;
+
     const resultDiv = document.createElement('div');
     resultDiv.classList.add('search-result');
 
     const resultLink = document.createElement('a');
-    resultLink.href = location.url;
+    resultLink.href = resultLinkUrl;
     resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
     resultLink.classList.add('search-result-link');
 

@@ -94,13 +94,13 @@ def read_html_file(file_path):
 
 def file_path_to_url(file_path, anchor=""):
     """
-    Convert a file path to a URL with an optional anchor.
+    Convert a file path to a URL relative to web root with an optional anchor.
     """
     relative_path = os.path.relpath(file_path, start='textbook/_build/html')
-    url_path = relative_path.replace(os.sep, '/').replace('.html', '')
+    relative_url_path = relative_path.replace(os.sep, '/').replace('.html', '')
     if anchor:
-        return BASE_URL + url_path + "#" + anchor
-    return BASE_URL + url_path
+        return relative_url_path + ".html" + "#" + anchor
+    return relative_url_path + ".html"
 
 def save_to_file(data, file_name):
     """
@@ -159,9 +159,9 @@ def main():
                 position += 1
             all_text_data.append(sentence)  # Collecting all sentences for embedding
             # Forming the URL including the anchor for precise navigation
-            url = file_path_to_url(file_path, anchor)
+            relative_url = file_path_to_url(file_path, anchor)
             embedding_to_location[current_index] = {
-                "url": url,
+                "url": relative_url,
                 "position": f"sentence {position}"
             }
             current_index += 1

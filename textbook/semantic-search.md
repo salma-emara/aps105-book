@@ -162,21 +162,14 @@ function displayResults(similarities, metadata, textData) {
   resultsContainer.innerHTML = ''; // Clear previous results
   similarities.forEach(result => {
     const location = metadata[result.index];
-    if (!location) {
-      console.error(`Metadata for index ${result.index} not found.`);
-      return;
-    }
     const text = textData[result.index];
     const similarity = result.similarity;
-
-    // Construct the full URL using the domain and the relative path
-    const resultLinkUrl = `${window.location.origin}/${location.url}`;
 
     const resultDiv = document.createElement('div');
     resultDiv.classList.add('search-result');
 
     const resultLink = document.createElement('a');
-    resultLink.href = resultLinkUrl;
+    resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
     resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
     resultLink.classList.add('search-result-link');
 

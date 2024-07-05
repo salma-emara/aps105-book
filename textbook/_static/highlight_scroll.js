@@ -4,12 +4,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Split the URL at '?' to separate query parameters
   const urlParts = url.split('?');
-  const queryString = urlParts[1]; // This should now contain 'highlight=ca%20' or null if there's no query parameters
-  console.log(queryString);
+  const highlightString = urlParts[1]; // This should now contain 'highlight=ca%20' or null if there's no query parameters
+  console.log("Getting highlightString")
+  console.log(highlightString);
 
   // Parse query parameters from the query string
-  if (queryString) {
-    const params = new URLSearchParams(queryString);
+  if (highlightString) {
+    const params = new URLSearchParams(highlightString);
     const highlightText = params.get('semantic-highlight');
 
     console.log("Getting highlight text:");
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function highlightAndScrollToText(searchText) {
-  console.log("go");
+  // console.log("Highlight and Scroll!");
   const mainContent = document.querySelector('main#main-content');
   if (!mainContent) {
     console.error("Main content section not found.");
@@ -33,12 +34,12 @@ function highlightAndScrollToText(searchText) {
   
   // Normalize the search text to handle spaces and special characters
   const normalizedSearchText = normalizeText(searchText);
-   console.log(normalizedSearchText);
+  // console.log(normalizedSearchText);
 
   let foundElement = null;
   for (let el of contentElements) {
     const elementText = normalizeText(el.textContent);
-     console.log(elementText);
+    // console.log(elementText);
     if (elementText.includes(normalizedSearchText)) {
       foundElement = el;
       break;

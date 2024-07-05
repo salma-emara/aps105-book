@@ -1,19 +1,9 @@
 ---
-title: Semantic Search Results
-hide:
-  - navigation
-  - toc
-  - footer
-  - header
-  - breadcrumbs
-  - search
-hide_toc: true
-hide_navbar: true
-hide_pagenav: true
-search_exclude: true
-hide_footer: true
+orphan: true
+# https://github.com/executablebooks/jupyter-book/issues/1006
 ---
 
+# Semantic Search Results
 <div>
   <span id="semantic-search-title"> </span>
   <div id="semantic-search-results" class="semantic-results-container">

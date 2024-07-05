@@ -3,8 +3,8 @@ import os
 import re
 from sentence_transformers import SentenceTransformer
 import numpy as np
-import faiss
-import pickle
+# import faiss
+# import pickle
 import logging
 from bs4 import BeautifulSoup
 import json
@@ -18,7 +18,7 @@ BASE_URL = "https://learningc.org/"
 OUTPUT_DIR = './embeddings/outputs'
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 @time_block("get_html_files")
 def get_html_files(directory, base_directory):
@@ -36,7 +36,7 @@ def get_html_files(directory, base_directory):
 @time_block("read_html_file")
 def read_html_file(file_path):
     """
-    Read an HTML file and extract content from paragraphs, list items, and tables, associating with anchors.
+    Read an HTML file and extract content from headers, paragraphs, list items, and tables, associating with anchors.
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -67,6 +67,8 @@ def read_html_file(file_path):
                 if element.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                     anchor_tag = element.find('a', class_='headerlink')
                     current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor
+                    text = element.get_text(separator=" ").strip()
+                    elements.append((text, current_anchor))
                 elif element.name == 'table':
                     text = handle_table(element)
                     elements.append((text, current_anchor))
@@ -102,16 +104,17 @@ def file_path_to_url(file_path, anchor=""):
         return relative_url_path + ".html" + "#" + anchor
     return relative_url_path + ".html"
 
-def save_to_file(data, file_name):
-    """
-    Save data to a file.
-    """
-    try:
-        with open(file_name, 'wb') as f:
-            pickle.dump(data, f)
-        logging.info(f"Data saved to {file_name}.")
-    except Exception as e:
-        logging.error(f"Error saving data to {file_name}: {e}")
+# def save_to_file(data, file_name):
+#     """
+#     Save data to a file.
+#     Used for FAISS version (Terminal Version and App version (a second server)) before Semantic-Finder
+#     """
+#     try:
+#         with open(file_name, 'wb') as f:
+#             pickle.dump(data, f)
+#         logging.info(f"Data saved to {file_name}.")
+#     except Exception as e:
+#         logging.error(f"Error saving data to {file_name}: {e}")
 
 def save_to_json(data, file_name):
     """
@@ -174,13 +177,12 @@ def main():
 
     # Convert embeddings to a numpy array
     embeddings_np = np.array(embeddings, dtype='float32')
+    
+    # # Initialize FAISS index
+    # index = faiss.IndexFlatL2(embeddings_np.shape[1])
 
-    # Initialize FAISS index
-    index = faiss.IndexFlatL2(embeddings_np.shape[1])
-
-    # Add embeddings to the index
-    index.add(embeddings_np)
-
+    # # Add embeddings to the index
+    # index.add(embeddings_np)
     # Ensure the output directory exists
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -190,7 +192,7 @@ def main():
     save_to_json(embedding_to_location, os.path.join(OUTPUT_DIR, 'embedding_to_location.json'))
     save_to_json(all_text_data, os.path.join(OUTPUT_DIR, 'all_text_data.json'))
 
-    faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index.bin'))
+    # faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index.bin'))
 
 if __name__ == "__main__":
     main()

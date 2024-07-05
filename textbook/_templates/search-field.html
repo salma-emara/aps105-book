@@ -1,0 +1,11 @@
+<form class="bd-search d-flex align-items-center" action="{{ pathto('search') }}" method="get">
+    <i class="icon fas fa-search"></i>
+    <input type="search" class="form-control" name="q" id="search-input" placeholder="{{ _(theme_search_bar_text) }}" aria-label="{{ theme_search_bar_text }}" autocomplete="off" >
+  </form>
+  
+<!-- Above is Default Template -->
+<!-- Below is my custome semantic search bar added -->
+<form class="bd-search d-flex align-items-center" action="{{ pathto('semantic-search') }}" method="get" id="semantic-search-form">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Semantically Search this book..." aria-label="Semantically Search this book..." autocomplete="off">
+</form>

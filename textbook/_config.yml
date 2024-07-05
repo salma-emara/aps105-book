@@ -8,6 +8,10 @@ logo: logo.png
 only_build_toc_files: true
 
 sphinx:
+# Pydata: https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/index.html
+# Jupyter-Book: https://jupyterbook.org/en/stable/advanced/sphinx.html
+
+  recursive_update: true # suggested here https://jupyterbook.org/en/stable/advanced/sphinx.html#manual-sphinx-configuration
   config:
     # Specifying the language can improve accessibility in screen readers
     # and translators
@@ -44,24 +48,10 @@ html:
   #Add highlight and annotate feature
   comments:
     hypothesis: true
-  # extra_navbar: | 
-  # THis add custom UI component to the bottom of left side bar 
-  #       <form class="bd-search d-flex align-items-center" action="#" method="get" id="semantic-search-form">
-  #         <i class="icon fas fa-search"></i>
-  #         <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Semantically Search this book..." aria-label="Semantically Search this book..." autocomplete="off">
-  #       </form>
-  # No Longer Needed as the custom search bar is integrated natively during build process
-  # through overriding semantic-field.html  at .venv/lib/python3.8/site-packages/pydata_sphinx_theme/theme/pydata_sphinx_theme/search-field.html
-  # by adding _templates/search_field.html and modifying textbook/_config.yml
   theme:
     name: "sphinx_book_theme"
-    custom_css: "semantic-finder.css"
   extra_javascript:
-    - "semantic-finder.js"
-
-html_theme_options:
-  search_bar_position: navbar
-  path_to_custom_templates: "_templates"
+    - "highlight_scroll.js" # this is for auto hightlight and scroll when jumped from semantic search result page
 
 parse:
   myst_enable_extensions:

@@ -169,7 +169,10 @@ function displayResults(similarities, metadata, textData) {
     resultDiv.classList.add('search-result');
 
     const resultLink = document.createElement('a');
-    resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
+    
+    resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`; 
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+
     resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
     resultLink.classList.add('search-result-link');
 

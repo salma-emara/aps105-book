@@ -1,13 +1,21 @@
 ---
 orphan: true
 # https://github.com/executablebooks/jupyter-book/issues/1006
+
+# orphan was supposed to disconnect this page from the the jupyter book; that is to say,
+# this page should not appear on toc left-side nav bar and not included in default search and etc.
+
+# However, orphan or hidden directives did not work as expected, 
+# the above expected behavior is poorly done by not having a title for this page, 
+# as the line below is not placed in markdown: 
+
+# Semantic Search Result
 ---
 
-# Semantic Search Results
 <div>
-  <span id="semantic-search-title"> </span>
+  <h2 id="semantic-search-title"> </h2>
+  <p id="search-progress" class="search-summary"></p>
   <div id="semantic-search-results" class="semantic-results-container">
-    <span id="search-progress" style="padding-left: 10px; font-style: italic;"></span>
     <!-- The search results will be injected here by JavaScript -->
   </div>
 </div>
@@ -35,14 +43,14 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("Using cached result");
       const cachedData = JSON.parse(cachedResult);
       displayResults(cachedData.similarities, cachedData.metadata, cachedData.textData);
-      titleElement.innerText = `Search finished, found ${cachedData.similarities.length} pages best matching the search query.`;
+      titleElement.innerText = `Semantic Search Results for ${query}`;
       return;
     }
     
     performSemanticSearch(query).catch(error => {
       console.error("Error in performSemanticSearch:", error);
       if (titleElement) {
-        titleElement.innerText = 'Error during search. Please try again.';
+        titleElement.innerText = `An Error Occurred during search for ${query}`;
       }
     });
   }
@@ -115,6 +123,11 @@ async function performSemanticSearch(query) {
     console.log('Progress: Displaying results...');
   }
   displayResults(similarities, metadata, textData);
+  const titleElement = document.getElementById('semantic-search-title');
+  if (titleElement) {
+    titleElement.innerText = `Semantic Search Results for ${query}`;
+    console.log(`Results displayed successfully.`);
+  }
 
   // Cache the result in local storage
   localStorage.setItem(query, JSON.stringify({ similarities, metadata, textData }));
@@ -170,9 +183,9 @@ function displayResults(similarities, metadata, textData) {
     resultsContainer.appendChild(resultDiv);
   });
 
-  const titleElement = document.getElementById('semantic-search-title');
-  if (titleElement) {
-    titleElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
+  const progressElement = document.getElementById('search-progress');
+  if (progressElement) {
+    progressElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
     console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
   }
   console.log("Results displayed successfully");

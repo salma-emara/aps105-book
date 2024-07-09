@@ -28,7 +28,7 @@ pip install -r requirements.txt
 node ./textbook/_static/toml_to_js_convertor.js
 jupyter-book build --all textbook
 cp -r textbook/quizzes/ textbook/_build/html/quizzes
-cp -r embeddings/outputs textbook/_build/html/outputs
+cp -r embeddings/outputs textbook/_build/html
 
 # To build everything
 jupyter-book build --all textbook 
@@ -68,7 +68,7 @@ cp -r textbook/quizzes/ textbook/_build/html/quizzes
 2. Run the following commands:
    ```bash
    python embeddings/generate.py
-   cp -r embeddings/outputs textbook/_build/html/outputs
+   cp -r embeddings/outputs textbook/_build/html
    ```
 ### Check spelling mistakes
 

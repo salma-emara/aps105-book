@@ -55,12 +55,12 @@ def read_html_file(file_path):
 
             def handle_table(table):
                 rows = table.find_all('tr')
-                table_text = []
+                table_sentences = []
                 for row in rows:
                     columns = row.find_all(['th', 'td'])
-                    row_text = [col.get_text(separator=" ").strip() for col in columns]
-                    table_text.append(" | ".join(row_text))
-                return "\n".join(table_text)
+                    row_text = " ".join([col.get_text(separator=" ").strip() for col in columns])
+                    table_sentences.append(row_text)
+                return table_sentences
 
             # Find headers and update current_anchor based on header links
             for element in main_content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'li', 'table']):
@@ -70,8 +70,9 @@ def read_html_file(file_path):
                     text = element.get_text(separator=" ").strip()
                     elements.append((text, current_anchor))
                 elif element.name == 'table':
-                    text = handle_table(element)
-                    elements.append((text, current_anchor))
+                    sentences = handle_table(element)
+                    for sentence in sentences:
+                        elements.append((sentence, current_anchor))
                 else:
                     if element.find_parent('table'):
                         continue  # Skip <p> and <li> elements inside a table

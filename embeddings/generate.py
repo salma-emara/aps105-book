@@ -63,7 +63,8 @@ def read_html_file(file_path):
                 return table_sentences
 
             # Find headers and update current_anchor based on header links
-            for element in main_content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'li', 'table']):
+            for element in main_content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'table']):
+                # removed find for 'li' because in jupyter book it duplicates with 'p'
                 if element.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                     anchor_tag = element.find('a', class_='headerlink')
                     current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor

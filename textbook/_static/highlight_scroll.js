@@ -60,7 +60,7 @@ function highlightAndScrollToText(searchText) {
     return;
   }
 
-  const contentElements = mainContent.querySelectorAll('p, li, tr, h1, h2, h3, h4, h5, h6');
+  const contentElements = mainContent.querySelectorAll('p, tr, h1, h2, h3, h4, h5, h6');
   
   // Normalize the search text to handle spaces and special characters
   const normalizedSearchText = normalizeText(searchText);

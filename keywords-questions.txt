@@ -3,3 +3,23 @@ Elon Musk
 salma email
 email me
 please email
+reimplement
+fig 2.1
+node
+list
+linkedlist
+search
+compiler
+installation
+data type
+variable declaration
+int float difference
+operators
+arithmetic operators
+for loop
+if else
+enumerations
+sorting
+quick sort
+debug
+binary tree

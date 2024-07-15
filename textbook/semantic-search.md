@@ -1,4 +1,6 @@
 ---
+:orphan:
+:hidden:
 orphan: true
 # https://github.com/executablebooks/jupyter-book/issues/1006
 
@@ -42,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (cachedResult) {
       console.log("Using cached result");
       const cachedData = JSON.parse(cachedResult);
-      displayResults(cachedData.similarities, cachedData.metadata, cachedData.textData);
+      displayCachedResults(cachedData.similarities, cachedData.metadata, cachedData.textData);
       titleElement.innerText = `Semantic Search Results for ${query}`;
       return;
     }
@@ -122,27 +124,48 @@ async function performSemanticSearch(query) {
     progressElement.innerText = 'Displaying results...';
     console.log('Progress: Displaying results...');
   }
-  displayResults(similarities, metadata, textData);
+  displayNewResults(similarities, metadata, textData);
   const titleElement = document.getElementById('semantic-search-title');
   if (titleElement) {
     titleElement.innerText = `Semantic Search Results for ${query}`;
     console.log(`Results displayed successfully.`);
   }
 
-  // Cache the result in local storage
-  localStorage.setItem(query, JSON.stringify({ similarities, metadata, textData }));
+  // Cache only the necessary data
+  const cachedData = {
+    similarities,
+    metadata: similarities.map(result => metadata[result.index]),
+    textData: similarities.map(result => textData[result.index])
+  };
+  localStorage.setItem(query, JSON.stringify(cachedData));
 }
 
+/**
+ * Calculates the cosine similarities between a query embedding and an array of embeddings.
+ *
+ * @param {Array<number>} queryEmbedding - The embedding of the query.
+ * @param {Array<Array<number>>} embeddings - The array of embeddings to compare against.
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of the top 10 similarities, each with an index and similarity score.
+ */
 async function getSimilarities(queryEmbedding, embeddings) {
-  console.log("Calculating similarities");
-  const results = [];
+  console.log("Calculating similarities"); // Log the start of the calculation process
+
+  const results = []; // Initialize an array to store the results
+
+  // Iterate over each embedding in the embeddings array
   for (let i = 0; i < embeddings.length; i++) {
-    const embedding = embeddings[i];
-    const similarity = calculateCosineSimilarity(queryEmbedding, embedding);
-    results.push({ index: i, similarity });
+    const embedding = embeddings[i]; // Get the current embedding
+    const similarity = calculateCosineSimilarity(queryEmbedding, embedding); // Calculate the cosine similarity between the query embedding and the current embedding
+    results.push({ index: i, similarity }); // Add the index and similarity score to the results array
   }
+
+  // Sort the results array in descending order based on the similarity score
   results.sort((a, b) => b.similarity - a.similarity);
+
+  // Log the top 10 similarities
   console.log("Similarities calculated:", results.slice(0, 10));
+
+  // Return the top 10 similarities
   return results.slice(0, 10);
 }
 
@@ -159,8 +182,8 @@ function calculateCosineSimilarity(embedding1, embedding2) {
   return similarity;
 }
 
-function displayResults(similarities, metadata, textData) {
-  console.log("Displaying results");
+function displayNewResults(similarities, metadata, textData) {
+  console.log("Displaying newly computed results");
   const resultsContainer = document.getElementById('semantic-search-results');
   resultsContainer.innerHTML = ''; // Clear previous results
   similarities.forEach(result => {
@@ -168,19 +191,7 @@ function displayResults(similarities, metadata, textData) {
     const text = textData[result.index];
     const similarity = result.similarity;
 
-    const resultDiv = document.createElement('div');
-    resultDiv.classList.add('search-result');
-
-    const resultLink = document.createElement('a');
-    
-    resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`; 
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
-
-    resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
-    resultLink.classList.add('search-result-link');
-
-    resultDiv.appendChild(resultLink);
-    resultsContainer.appendChild(resultDiv);
+    displayResult(similarity, text, location);
   });
 
   const progressElement = document.getElementById('search-progress');
@@ -190,6 +201,60 @@ function displayResults(similarities, metadata, textData) {
   }
   console.log("Results displayed successfully");
 }
+
+// Note: metadata, textData, for cached is different from the actual metadata and textData, as there's only "ten" of them
+function displayCachedResults(similarities, metadata, textData) {
+  console.log("Displaying cached results");
+  const resultsContainer = document.getElementById('semantic-search-results');
+  resultsContainer.innerHTML = ''; // Clear previous results
+  similarities.forEach((result, i) => {
+    const location = metadata[i];
+    const text = textData[i];
+    const similarity = result.similarity;
+
+    displayResult(similarity, text, location);
+  });
+
+  const progressElement = document.getElementById('search-progress');
+  if (progressElement) {
+    progressElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
+    console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
+  }
+  console.log("Results displayed successfully");
+}
+
+/**
+ * Displays the search result on the web page.
+ *
+ * @param {number} similarity - The similarity score of the search result.
+ * @param {string} text - The text content of the search result.
+ * @param {Object} location - The location object containing the URL of the search result.
+ */
+function displayResult(similarity, text, location) {
+  // Create a new div element to hold the search result
+  const resultDiv = document.createElement('div');
+  resultDiv.classList.add('search-result'); // Add the 'search-result' class to the div
+
+  // Create a new anchor element to act as a link to the search result
+  const resultLink = document.createElement('a');
+  
+  // Set the href attribute of the link to the URL with the search text highlighted
+  resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
+  // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+
+  // Set the inner HTML of the link to display the search text and similarity score
+  resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
+  resultLink.classList.add('search-result-link'); // Add the 'search-result-link' class to the link
+
+  // Append the link to the result div
+  resultDiv.appendChild(resultLink);
+
+  const resultsContainer = document.getElementById('semantic-search-results');
+  // Append the result div to the results container on the web page
+  resultsContainer.appendChild(resultDiv);
+}
+
 </script>
 
 <style>

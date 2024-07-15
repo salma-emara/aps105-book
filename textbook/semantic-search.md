@@ -138,9 +138,12 @@ async function performSemanticSearch(query) {
 
   // Fetch embeddings and metadata with cache-busting parameter
   const timestamp = new Date().getTime();
-  const embeddings = await fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json());
-  const metadata = await fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json());
-  const textData = await fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json());
+  // Asynchronous Fetching: use Promise.all to fetch embeddings, metadata, and textData simultaneously.
+  const [embeddings, metadata, textData] = await Promise.all([
+      fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json()),
+      fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json()),
+      fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json())
+    ]);
 
   if (progressElement) {
     progressElement.innerText = 'Calculating similarities...';

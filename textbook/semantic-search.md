@@ -28,11 +28,14 @@ import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
 
 document.addEventListener("DOMContentLoaded", function() {
   console.log("DOM fully loaded and parsed");
+
+  // Retrieve query parameter from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get('q');
   console.log("Query parameter:", query);
 
   if (query) {
+    // Update the page title with the query
     const titleElement = document.getElementById('semantic-search-title');
     if (titleElement) {
       titleElement.innerText = `Searching for ${query}...`;
@@ -49,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
     
+    // Perform semantic search if no cached result is found
     performSemanticSearch(query).catch(error => {
       console.error("Error in performSemanticSearch:", error);
       if (titleElement) {
@@ -58,6 +62,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+/**
+ * Loads the semantic model for feature extraction.
+ *
+ * @param {string} modelName - The name of the model to load.
+ * @returns {Promise<Object>} A promise that resolves to the feature extractor.
+ */
 async function loadSemantic(modelName) {
   try {
     console.log(`Loading model: ${modelName}`);
@@ -74,6 +84,13 @@ async function loadSemantic(modelName) {
   }
 }
 
+/**
+ * Embeds the query text using the feature extractor.
+ *
+ * @param {Object} extractor - The feature extractor.
+ * @param {string} text - The query text to embed.
+ * @returns {Promise<Array<number>>} A promise that resolves to the query embedding.
+ */
 async function embedQuery(extractor, text) {
   try {
     console.log(`Embedding query: ${text}`);
@@ -90,18 +107,28 @@ async function embedQuery(extractor, text) {
   }
 }
 
+/**
+ * Performs the semantic search for the given query.
+ *
+ * @param {string} query - The query text.
+ */
 async function performSemanticSearch(query) {
   console.log("Performing semantic search for query:", query);
+
   const progressElement = document.getElementById('search-progress');
   if (progressElement) {
     progressElement.innerText = 'Loading model...';
     console.log('Progress: Loading model...');
   }
+
+  // Load the semantic model
   const extractor = await loadSemantic('Xenova/all-MiniLM-L6-v2');
   if (progressElement) {
     progressElement.innerText = 'Embedding query...';
     console.log('Progress: Embedding query...');
   }
+
+  // Embed the query text
   const queryEmbedding = await embedQuery(extractor, query);
 
   if (progressElement) {
@@ -109,7 +136,7 @@ async function performSemanticSearch(query) {
     console.log('Progress: Fetching embeddings and metadata...');
   }
 
-  // Adding a cache-busting parameter to the URLs
+  // Fetch embeddings and metadata with cache-busting parameter
   const timestamp = new Date().getTime();
   const embeddings = await fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json());
   const metadata = await fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json());
@@ -119,12 +146,17 @@ async function performSemanticSearch(query) {
     progressElement.innerText = 'Calculating similarities...';
     console.log('Progress: Calculating similarities...');
   }
+
+  // Calculate similarities between query embedding and document embeddings
   const similarities = await getSimilarities(queryEmbedding, embeddings);
   if (progressElement) {
     progressElement.innerText = 'Displaying results...';
     console.log('Progress: Displaying results...');
   }
+
+  // Display the search results
   displayNewResults(similarities, metadata, textData);
+
   const titleElement = document.getElementById('semantic-search-title');
   if (titleElement) {
     titleElement.innerText = `Semantic Search Results for ${query}`;
@@ -169,23 +201,45 @@ async function getSimilarities(queryEmbedding, embeddings) {
   return results.slice(0, 10);
 }
 
+/**
+ * Calculates the cosine similarity between two embeddings.
+ *
+ * @param {Array<number>} embedding1 - The first embedding.
+ * @param {Array<number>} embedding2 - The second embedding.
+ * @returns {number} The cosine similarity between the two embeddings.
+ */
 function calculateCosineSimilarity(embedding1, embedding2) {
   let dotProduct = 0.0;
   let normA = 0.0;
   let normB = 0.0;
+
+  // Calculate dot product and norms
   for (let i = 0; i < embedding1.length; i++) {
     dotProduct += embedding1[i] * embedding2[i];
     normA += embedding1[i] ** 2;
     normB += embedding2[i] ** 2;
   }
+
+  // Compute cosine similarity
   const similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
   return similarity;
 }
 
+/**
+ * Displays the newly computed search results on the web page.
+ *
+ * @param {Array<Object>} similarities - The array of similarities with index and similarity score.
+ * @param {Array<Object>} metadata - The array of metadata corresponding to the embeddings.
+ * @param {Array<string>} textData - The array of text data corresponding to the embeddings.
+ */
 function displayNewResults(similarities, metadata, textData) {
   console.log("Displaying newly computed results");
+
+  // Get the results container element
   const resultsContainer = document.getElementById('semantic-search-results');
   resultsContainer.innerHTML = ''; // Clear previous results
+
+  // Iterate over the similarities and display each result
   similarities.forEach(result => {
     const location = metadata[result.index];
     const text = textData[result.index];
@@ -202,11 +256,21 @@ function displayNewResults(similarities, metadata, textData) {
   console.log("Results displayed successfully");
 }
 
-// Note: metadata, textData, for cached is different from the actual metadata and textData, as there's only "ten" of them
+/**
+ * Displays the cached search results on the web page.
+ *
+ * @param {Array<Object>} similarities - The array of similarities with index and similarity score.
+ * @param {Array<Object>} metadata - The array of metadata corresponding to the cached embeddings.
+ * @param {Array<string>} textData - The array of text data corresponding to the cached embeddings.
+ */
 function displayCachedResults(similarities, metadata, textData) {
   console.log("Displaying cached results");
+
+  // Get the results container element
   const resultsContainer = document.getElementById('semantic-search-results');
   resultsContainer.innerHTML = ''; // Clear previous results
+
+  // Iterate over the similarities and display each cached result
   similarities.forEach((result, i) => {
     const location = metadata[i];
     const text = textData[i];
@@ -258,30 +322,36 @@ function displayResult(similarity, text, location) {
 </script>
 
 <style>
+/* Style for the semantic results container */
 .semantic-results-container {
   margin-top: 20px;
 }
 
+/* Style for each search result */
 .search-result {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
+/* Style for the search result link */
 .search-result-link {
   text-decoration: none;
   color: #1a0dab;
   font-weight: bold;
 }
 
+/* Hover style for the search result link */
 .search-result-link:hover {
   text-decoration: underline;
 }
 
+/* Style for the similarity score */
 .similarity-score {
   font-size: 0.9em;
   color: #555;
 }
 
+/* Style for the result text */
 .result-text {
   display: block;
   font-size: 1em;

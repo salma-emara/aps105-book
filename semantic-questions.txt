@@ -1,0 +1,50 @@
+What is C and why is it important to learn?
+How do I install a C compiler on my computer?
+What are the basic data types in C?
+How do I declare a variable in C?
+What is the difference between int and float?
+How do I write a simple "Hello, World!" program in C?
+What are the basic operators in C?
+How do I use arithmetic operators in C?
+How do I use relational operators in C?
+What are logical operators and how do I use them?
+What is the syntax for an if statement in C?
+How do I write a for loop in C?
+How do I write a while loop in C?
+What is the difference between while and do-while loops?
+How do I create and use arrays in C?
+What is a pointer in C?
+How do I declare and use pointers?
+What is the difference between & and * in pointers?
+How do I pass a pointer to a function?
+What is a function in C and how do I write one?
+How do I call a function in C?
+What is the difference between void and int return types in functions?
+How do I use scanf and printf for input and output?
+What is the main function and why is it important?
+How do I handle errors in C?
+What are header files and how do I use them?
+What is the #include directive?
+How do I use preprocessor directives like #define?
+What is the difference between malloc and calloc?
+How do I free dynamically allocated memory?
+What is a structure in C and how do I define one?
+How do I use structures to store complex data?
+What is a union and how is it different from a structure?
+How do I open, read, write, and close files in C?
+What is the difference between text and binary files?
+How do I handle command-line arguments in C?
+What is the purpose of the return statement?
+How do I use the switch statement for multi-way branching?
+What are enumerations and how do I use them?
+How do I use const and volatile qualifiers?
+What is the purpose of static variables and functions?
+How do I create and use multi-dimensional arrays?
+What are function pointers and how do I use them?
+How do I debug a C program?
+What is the difference between local and global variables?
+How do I use recursion in C?
+How do I implement linked lists in C?
+What are the best practices for writing clean and efficient C code?
+How do I use libraries in C?
+What are the common pitfalls and mistakes to avoid when programming in C?

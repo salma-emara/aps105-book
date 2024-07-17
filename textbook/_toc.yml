@@ -117,3 +117,9 @@ parts:
       - file: chapters/appendix/coding-style.md
       - file: chapters/appendix/debugging.md
       - file: chapters/appendix/unix-commands.md
+
+  - caption: "Hidden Pages"
+    hidden: true
+    chapters:
+      - file: semantic-search.md
+

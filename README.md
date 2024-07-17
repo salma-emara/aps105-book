@@ -24,20 +24,52 @@ pip install -r requirements.txt
 3- To build the book locally, run the following command:
 
 ```
+# To build everything for the first time 
+node ./textbook/_static/toml_to_js_convertor.js
+jupyter-book build --all textbook
+cp -r textbook/quizzes/ textbook/_build/html/quizzes
+cp -r embeddings/outputs textbook/_build/html
+
 # To build everything
 jupyter-book build --all textbook 
+
 # To build after updating a markdown file
 jupyter-book build textbook
+
 # To build after updating quizzes
 node ./textbook/_static/toml_to_js_convertor.js
 jupyter-book build --all textbook
 cp -r textbook/quizzes/ textbook/_build/html/quizzes
 ```
 
-4- To view the book, you can run:
 
-```open textbook/_build/html/index.html```
+4- To view the book, you have two options:
 
+1. **Open directly**:
+   ```bash
+   open textbook/_build/html/index.html
+   ```
+   **Note**: Opening the book this way uses the `file:///` protocol, which may cause issues with functionalities like search or semantic search due to CORS policies.
+
+2. **Run a local server** (recommended for full functionality):
+   ```bash
+   cd textbook/_build/html
+   python -m http.server 8000
+   open http://localhost:8000
+   ```
+   This method ensures all functionalities, including search and semantic search, work correctly.
+
+5- To update text embeddings for Semantic Search after a change, follow these steps:
+
+1. Ensure you have installed the necessary packages as described in the `embeddings/README.md` file. Or run the following command 
+   ```bash
+   pip install sentence-transformers beautifulsoup4 numpy
+   ```
+2. Run the following commands:
+   ```bash
+   python embeddings/generate.py
+   cp -r embeddings/outputs textbook/_build/html
+   ```
 ### Check spelling mistakes
 
 To check spelling mistakes, you need to install `pyspelling` using the following command:

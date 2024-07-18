@@ -23,3 +23,7 @@ sorting
 quick sort
 debug
 binary tree
+question 10 winter 2017
+input string is longer than the array
+avoid buffer overflow
+tested in isolation

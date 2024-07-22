@@ -1,7 +1,8 @@
 .DS_Store
-
+!textbook/_build/html/semantic-search#.html
 # Distribution / packaging
 _build/
+!_build/html/semantic-search#.html
 eggs/
 .eggs/
 lib/
@@ -18,3 +19,6 @@ package.json
 # Sphinx documentation
 docs/_build/
 .venv
+
+# Personal Virtual Environment
+myenv

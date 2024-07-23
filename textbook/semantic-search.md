@@ -17,9 +17,9 @@ orphan: true
 <div>
   <h2 id="semantic-search-title"> </h2>
   <p id="search-progress" class="search-summary"></p>
-  <div id="semantic-search-results" class="semantic-results-container">
+  <ul id="semantic-search-results" class="search">
     <!-- The search results will be injected here by JavaScript -->
-  </div>
+  </ul>
 </div>
 
 <script type="module">
@@ -298,65 +298,49 @@ function displayCachedResults(similarities, metadata, textData) {
  * @param {Object} location - The location object containing the URL of the search result.
  */
 function displayResult(similarity, text, location) {
-  // Create a new div element to hold the search result
-  const resultDiv = document.createElement('div');
-  resultDiv.classList.add('search-result'); // Add the 'search-result' class to the div
+  // Create a new li element to hold one search result
+  const li = document.createElement('li');
 
-  // Create a new anchor element to act as a link to the search result
-  const resultLink = document.createElement('a');
-  
+  // Create a page title element and act as a link to the search result
+  const a= document.createElement('a');
   // Set the href attribute of the link to the URL with the search text highlighted
-  resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
+  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
   // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
 
-  // Set the inner HTML of the link to display the search text and similarity score
-  resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
-  resultLink.classList.add('search-result-link'); // Add the 'search-result-link' class to the link
+  // Include the section number and page title in the display
+  const pageTitle = location.page_title ? `${location.page_title}` : '';
+  const sectionNumber = location.section_number ? `<span class="section-number">${location.section_number} </span>` : '';
+  const sectionName = location.section_name ? location.section_name : '';
+  if (sectionName == ''){
+    a.innerHTML = pageTitle;
+  } else {
+    a.innerHTML = `${pageTitle} - ${sectionName}`;
+  }
+  // Create <p> element for context
+  const p = document.createElement('p');
+  p.className = 'context';
+  
+  const highlightedText = `<span class="highlighted" style="color:black">${text}</span>`;
+  p.innerHTML = `${highlightedText}`;
 
-  // Append the link to the result div
-  resultDiv.appendChild(resultLink);
+  //<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>
+
+  // Append <a> and <p> elements to <li> element
+  li.appendChild(a);
+  li.appendChild(p);
 
   const resultsContainer = document.getElementById('semantic-search-results');
-  // Append the result div to the results container on the web page
-  resultsContainer.appendChild(resultDiv);
+  // Append the result li to the results container on the web page
+  resultsContainer.appendChild(li);
 }
 
 </script>
 
 <style>
-/* Style for the semantic results container */
-.semantic-results-container {
-  margin-top: 20px;
-}
-
-/* Style for each search result */
-.search-result {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Style for the search result link */
-.search-result-link {
-  text-decoration: none;
-  color: #1a0dab;
-  font-weight: bold;
-}
-
-/* Hover style for the search result link */
-.search-result-link:hover {
-  text-decoration: underline;
-}
-
 /* Style for the similarity score */
 .similarity-score {
   font-size: 0.9em;
   color: #555;
-}
-
-/* Style for the result text */
-.result-text {
-  display: block;
-  font-size: 1em;
 }
 </style>

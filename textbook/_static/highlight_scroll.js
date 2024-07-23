@@ -14,14 +14,15 @@
  * 2. Retrieve the full URL of the current page.
  * 3. Extract the query parameters from the URL.
  * 4. Parse the 'semantic-highlight' parameter to get the text to be highlighted.
- * 5. Call the highlightAndScrollToText function with the extracted text.
+ * 5. Call the highlightAndScrollToText function with the extracted text and the anchor (if present).
  * 6. The highlightAndScrollToText function:
  *    a. Searches for the main content section on the page.
  *    b. Normalizes the search text to handle spaces and special characters.
- *    c. Iterates through content elements (paragraphs, list items, tables, headers).
- *    d. Compares the normalized text content of each element to the normalized search text.
- *    e. Highlights the first matching element and scrolls to it smoothly.
- * 7. If the target text is not found, log an error message.
+ *    c. Collects all relevant content elements (paragraphs, table rows, headers).
+ *    d. If an anchor is provided, identifies the parent element of the anchor link and starts searching from there.
+ *    e. Iterates through the content elements to compare their normalized text content to the normalized search text.
+ *    f. Highlights the first matching element and scrolls to it smoothly.
+ * 7. If the target text is not found, logs an error message.
  *
  * The script ensures that the search is case-insensitive and whitespace-neutral
  * by normalizing both the search text and the content text.
@@ -32,37 +33,58 @@ document.addEventListener("DOMContentLoaded", function() {
   // Get the full URL
   const url = window.location.href;
 
-  // Split the URL at '?' to separate query parameters
-  const urlParts = url.split('?');
-  const highlightString = urlParts[1]; // This should now contain 'highlight=ca%20' or null if there's no query parameters
-  console.log("Getting highlightString")
-  console.log(highlightString);
-
-  // Parse query parameters from the query string
+  // Extract the query parameters and the anchor
+  const urlObj = new URL(url);
+  const highlightString = urlObj.search; // Query parameters
+  const anchor = urlObj.hash.substring(1); // Anchor without '#'
+  // console.log("Anchor is");
+  // console.log(anchor);
   if (highlightString) {
     const params = new URLSearchParams(highlightString);
     const highlightText = params.get('semantic-highlight');
 
-    console.log("Getting highlight text:");
-    console.log(highlightText);
+    // console.log("Getting highlight text:");
+    // console.log(highlightText);
 
     if (highlightText) {
-      highlightAndScrollToText(highlightText);
+      highlightAndScrollToText(highlightText, anchor);
     }
   }
 });
 
-function highlightAndScrollToText(searchText) {
-  // console.log("Highlight and Scroll!");
+function highlightAndScrollToText(searchText, anchor) {
   const mainContent = document.querySelector('main#main-content');
   if (!mainContent) {
     console.error("Main content section not found.");
     return;
   }
 
-  const contentElements = mainContent.querySelectorAll('p, tr, h1, h2, h3, h4, h5, h6');
-  
-  // Normalize the search text to handle spaces and special characters
+  // Collect all relevant elements within the main content
+  let contentElements = Array.from(mainContent.querySelectorAll('p, tr, h1, h2, h3, h4, h5, h6'));
+
+  if (anchor) {
+    const anchorElement = mainContent.querySelector(`a[href="#${anchor}"]`);
+    if (anchorElement) {
+
+      // console.log("anchorElement is ...")
+      // console.log(anchorElement)
+
+      // Find the parent of the anchor link
+      const parentElement = anchorElement.closest('h1, h2, h3, h4, h5, h6');
+      if (parentElement) {
+
+        // console.log("h# is found!");
+        // console.log(parentElement);
+
+        // Filter elements to those that follow the parent element of the anchor
+        const index = contentElements.indexOf(parentElement);
+        contentElements = contentElements.slice(index + 1);
+      }
+    } else {
+      console.error("Anchor element not found. Searching from the beginning of the main content.");
+    }
+  }
+
   const normalizedSearchText = normalizeText(searchText);
   // console.log(normalizedSearchText);
 

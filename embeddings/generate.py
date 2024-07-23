@@ -186,7 +186,7 @@ def main():
                 position += 1
             all_text_data.append(sentence)  # Collecting all sentences for embedding
             # Forming the URL including the anchor for precise navigation
-            relative_url = file_path_to_url(file_path, anchor)
+            relative_url = file_path_to_url(file_path)
             embedding_to_location[current_index] = {
                 "url": relative_url,
                 "position": f"sentence {position}",

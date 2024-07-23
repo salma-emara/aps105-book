@@ -303,8 +303,9 @@ function displayResult(similarity, text, location) {
 
   // Create a page title element and act as a link to the search result
   const a= document.createElement('a');
+  const anchor = location.anchor ? `#${location.anchor}` : '';
   // Set the href attribute of the link to the URL with the search text highlighted
-  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
+  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}${anchor}`;
   // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
 

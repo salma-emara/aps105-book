@@ -1,0 +1,1396 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Semantic Search &#8212; Snefru: Learning Programming with C</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script src="_static/code-runner-setup.js"></script>
+    <script src="_static/highlight_scroll.js"></script>
+    <script src="_static/app.js"></script>
+    <script src="_static/toml_to_js_convertor.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Basic UNIX Commands" href="chapters/appendix/unix-commands.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Snefru: Learning Programming with C</h1>
+      
+    </a>
+</div><!-- original search-field.html at the path below-->
+<!--.venv/lib/python3.8/site-packages/pydata_sphinx_theme/theme/pydata_sphinx_theme/search-field.html-->
+
+<!-- Default Keyword Search Bar -->
+<form class="bd-search d-flex align-items-center hide-search-bar" action="search.html" method="get" id="keyword-search-form">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="pointer" aria-label="Search this book..." autocomplete="off">
+</form>
+
+<!-- Custom Semantic Search Bar -->
+<form class="bd-search d-flex align-items-center" action="#" method="get" id="semantic-search-form">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="what is a pointer" aria-label="Semantically Search this book..." autocomplete="off">
+</form>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button id="keyword-search-tab" class="tab-button">Keyword</button>
+  <button id="semantic-search-tab" class="tab-button active">Semantic</button>
+</div>
+
+<style>
+  /* Style the tab bar */
+  .tab-bar {
+    display: flex;
+    justify-content: space-between; /* Ensure buttons spread across the entire row */
+    margin-top: -10px; /* Adjust to bring the buttons closer to the search bar */
+    margin-bottom: -7px;
+    border-radius: 5px; /* Rounded corners for the tab bar */
+    padding: 0px; /* Padding for the tab bar */
+  }
+
+  /* Style the buttons */
+  .tab-button {
+    flex: 1; /* Ensure buttons spread across the entire row */
+    padding: 5px 10px !important; /* Reduce padding inside the buttons */
+    margin: 0 5px;
+    background-color: #1a73e8 !important; /* Jupyter Book blue */
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    border-radius: 5px !important;
+    font-size: 14px !important; /* Reduce font size if needed */
+    text-align: center; /* Center the text inside the button */
+  }
+
+  /* Style the active button */
+  .tab-button.active {
+    background-color: #185abc !important; /* Darker blue for active state */
+  }
+
+  /* Ensure the search forms are styled correctly */
+  .search-content {
+    margin-top: 10px;
+  }
+
+  /* Hide keyword search form by default */
+  .hide-search-bar {
+    display: none !important;
+  }
+
+</style>
+
+<script>
+  const keywordSearchTab = document.getElementById('keyword-search-tab');
+  const semanticSearchTab = document.getElementById('semantic-search-tab');
+  const keywordSearchForm = document.getElementById('keyword-search-form');
+  const semanticSearchForm = document.getElementById('semantic-search-form');
+
+  keywordSearchTab.addEventListener('click', function() {
+    keywordSearchForm.classList.remove('hide-search-bar');
+    semanticSearchForm.classList.add('hide-search-bar');
+    keywordSearchTab.classList.add('active');
+    semanticSearchTab.classList.remove('active');
+  });
+
+  semanticSearchTab.addEventListener('click', function() {
+    keywordSearchForm.classList.add('hide-search-bar');
+    semanticSearchForm.classList.remove('hide-search-bar');
+    keywordSearchTab.classList.remove('active');
+    semanticSearchTab.classList.add('active');
+  });
+
+  // Set initial state to show semantic search
+  keywordSearchForm.classList.add('hide-search-bar');
+  semanticSearchForm.classList.remove('hide-search-bar');
+  keywordSearchTab.classList.remove('active');
+  semanticSearchTab.classList.add('active');
+</script><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover.html">
+                    Snefru: Learning Programming with C
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/preface/intro.html">
+   What about programming?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/preface/principles.html">
+   Principles of using this textbook
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Book Chapters
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter01-computers/intro.html">
+   1. Introduction to Programming Computers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter01-computers/basic-structure.html">
+     1.1. The Basic Structure of Computers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter01-computers/main-memory.html">
+     1.2. Binary representation in memory
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter01-computers/dev-cycle.html">
+     1.3. Development Cycle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter01-computers/simple-C-code.html">
+     1.4. Write Simple C Programs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter02-variables/intro.html">
+   2. Data representation and operations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter02-variables/data-types.html">
+     2.1. Double data type for real numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter02-variables/storing-data.html">
+     2.2. Data types and representation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter02-variables/operations.html">
+     2.3. Operations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter02-variables/math-library.html">
+     2.4. Math library
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter02-variables/random-number.html">
+     2.5. Random numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter02-variables/exercises.html">
+     2.6. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter03-decision-making/intro.html">
+   3. Decision-Making Statements
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter03-decision-making/if-statement.html">
+     3.1. If-statements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter03-decision-making/multiple-conditions.html">
+     3.2. Multiple Conditions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter03-decision-making/nested-if.html">
+     3.3. Nested-if statements
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter03-decision-making/exercises.html">
+     3.4. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter04-loops/intro.html">
+   4. Repetition
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter04-loops/while.html">
+     4.1. While Loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter04-loops/do-while.html">
+     4.2. Do-while loop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter04-loops/for-loop.html">
+     4.3. For loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter04-loops/nested-loops.html">
+     4.4. Nested loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter04-loops/debugging-loops.html">
+     4.5. Debugging for loops
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter04-loops/exercises.html">
+     4.6. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter05-functions/intro.html">
+   5. Functions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter05-functions/functions.html">
+     5.1. Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter05-functions/communicate-from-function.html">
+     5.2. Communicate from a function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter05-functions/variable-scope.html">
+     5.3. Variable scope
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter05-functions/pass-more-values.html">
+     5.4. Pass more values to a function
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter05-functions/exercises.html">
+     5.5. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter06-pointers/intro.html">
+   6. Pointers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter06-pointers/why-pointers.html">
+     6.1. Why do we need pointers?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter06-pointers/what-are-pointers.html">
+     6.2. What are pointers?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter06-pointers/how-to-use-pointers.html">
+     6.3. How to use pointers to communicate more with functions?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter06-pointers/scope.html">
+     6.4. Rules defining scope of variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter06-pointers/goldbach-conjecture-example.html">
+     6.5. Goldbach conjecture
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter06-pointers/exercises.html">
+     6.6. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter07-arrays/intro.html">
+   7. Arrays
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter07-arrays/why-arrays.html">
+     7.1. Why and how to use arrays?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter07-arrays/what-are-arrays.html">
+     7.2. What are arrays, and how are they stored?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter07-arrays/arrays-functions.html">
+     7.3. How do we pass an array to a function?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter07-arrays/exercises.html">
+     7.4. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter08-dynamic-memory-allocation/intro.html">
+   8. Dynamic Memory Allocation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc.html">
+     8.1. What is dynamic memory allocation?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter08-dynamic-memory-allocation/exercises.html">
+     8.2. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter09-multi-dimensional-arrays/intro.html">
+   9. Multi-dimensional Arrays
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter09-multi-dimensional-arrays/why-2d.html">
+     9.1. Why and how to use 2D arrays?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter09-multi-dimensional-arrays/pass-2d-functions.html">
+     9.2. How do we pass a 2D array to a function?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter09-multi-dimensional-arrays/2d-dynamic-memory-alloc.html">
+     9.3. Dynamic Memory Allocation of 2D Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter09-multi-dimensional-arrays/exercises.html">
+     9.4. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter10-strings/intro.html">
+   10. Strings
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter10-strings/what-are-strings.html">
+     10.1. What are strings?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter10-strings/input-output-strings.html">
+     10.2. Input/Output Strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter10-strings/string-functions.html">
+     10.3. String Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter10-strings/array-of-strings.html">
+     10.4. Array of Strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter10-strings/exercises.html">
+     10.5. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter11-recursion/intro.html">
+   11. Recursion
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+  <label for="toctree-checkbox-11">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter11-recursion/recursion-math.html">
+     11.1. Recursive functions by definition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter11-recursion/recursion-in-patterns.html">
+     11.2. Recursion in Patterns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter11-recursion/recursion-in-arrays.html">
+     11.3. Recursion in arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter11-recursion/exercises.html">
+     11.4. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter12-data-structures/intro.html">
+   12. Data Structures
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+  <label for="toctree-checkbox-12">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter12-data-structures/what-data-structure.html">
+     12.1. What are data structures?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter12-data-structures/pointers-to-data-structure.html">
+     12.2. Pointers to Data Structures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter12-data-structures/exercises.html">
+     12.3. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter13-linked-lists/intro.html">
+   13. Linked Lists
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+  <label for="toctree-checkbox-13">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter13-linked-lists/why-linked-lists.html">
+     13.1. Why linked lists?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter13-linked-lists/form-linked-list.html">
+     13.2. Form a linked list
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter13-linked-lists/insert-find-observe-into-linkedlist.html">
+     13.3. Insert nodes into a linked list
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter13-linked-lists/delete-nodes.html">
+     13.4. Delete nodes in a linked list
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter13-linked-lists/exercises.html">
+     13.5. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter14-sorting/intro.html">
+   14. Sorting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+  <label for="toctree-checkbox-14">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter14-sorting/insertion-sort.html">
+     14.1. Insertion Sort
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter14-sorting/selection-sort.html">
+     14.2. Selection Sort
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter14-sorting/bubble-sort.html">
+     14.3. Bubble sort
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter14-sorting/exercises.html">
+     14.4. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="chapters/chapter15-searching/intro.html">
+   15. Searching
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+  <label for="toctree-checkbox-15">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter15-searching/sequential-search.html">
+     15.1. Linear/Sequential Search
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter15-searching/binary-search.html">
+     15.2. Binary Search
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapters/chapter15-searching/exercises.html">
+     15.3. Exercises
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix: Additional information
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/appendix/appendix.html">
+   Appendix: Additional Resources
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/appendix/setup-vscode.html">
+   Set up Visual Studio Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/appendix/vscode-extensions.html">
+   More Extensions in VS Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/appendix/coding-style.html">
+   Coding style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/appendix/debugging.html">
+   Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapters/appendix/unix-commands.html">
+   Basic UNIX Commands
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/salma-emara/aps105-book/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/salma-emara/aps105-book//issues/new?title=Issue%20on%20page%20%2Fsemantic-search.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/semantic-search.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1><no title></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div>
+  <h2 id="semantic-search-title"> </h2>
+  <p id="search-progress" class="search-summary"></p>
+  <ul id="semantic-search-results" class="search">
+    <!-- The search results will be injected here by JavaScript -->
+  </ul>
+</div>
+<script type="module">
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
+
+document.addEventListener("DOMContentLoaded", function() {
+  // console.log("DOM fully loaded and parsed");
+
+  // Retrieve query parameter from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('q');
+  // console.log("Query parameter:", query);
+
+  if (query) {
+    // Update the page title with the query
+    const titleElement = document.getElementById('semantic-search-title');
+    if (titleElement) {
+      titleElement.innerText = `Searching for ${query}...`;
+      // console.log(`Progress: Searching for ${query}...`);
+    }
+    
+    // Check if the result is already in local storage
+    const cachedResult = localStorage.getItem(query);
+    if (cachedResult) {
+      // console.log("Using cached result");
+      const cachedData = JSON.parse(cachedResult);
+      displayCachedResults(cachedData.similarities, cachedData.metadata, cachedData.textData, cachedData.prevTexts, cachedData.nextTexts);
+      titleElement.innerText = `Semantic Search Results for ${query}`;
+      return;
+    }
+    
+    // Perform semantic search if no cached result is found
+    performSemanticSearch(query).catch(error => {
+      console.error("Error in performSemanticSearch:", error);
+      if (titleElement) {
+        titleElement.innerText = `An Error Occurred during search for ${query}`;
+      }
+    });
+  }
+});
+
+/**
+ * Loads the semantic model for feature extraction.
+ *
+ * @param {string} modelName - The name of the model to load.
+ * @returns {Promise<Object>} A promise that resolves to the feature extractor.
+ */
+async function loadSemantic(modelName) {
+  try {
+    // console.log(`Loading model: ${modelName}`);
+    const extractor = await pipeline('feature-extraction', modelName, { ort });
+    // console.log("Model loaded successfully");
+    return extractor;
+  } catch (error) {
+    console.error("Error loading model:", error);
+    const progressElement = document.getElementById('search-progress');
+    if (progressElement) {
+      progressElement.innerText = 'Error loading model. Please try again.';
+    }
+    throw error;
+  }
+}
+
+/**
+ * Embeds the query text using the feature extractor.
+ *
+ * @param {Object} extractor - The feature extractor.
+ * @param {string} text - The query text to embed.
+ * @returns {Promise<Array<number>>} A promise that resolves to the query embedding.
+ */
+async function embedQuery(extractor, text) {
+  try {
+    // console.log(`Embedding query: ${text}`);
+    const output = await extractor([text], { pooling: 'mean', normalize: true });
+    // console.log("Query embedded successfully:", output);
+    return output.tolist()[0]; // Convert Tensor to nested array and return the first embedding
+  } catch (error) {
+    console.error("Error embedding query:", error);
+    const progressElement = document.getElementById('search-progress');
+    if (progressElement) {
+      progressElement.innerText = 'Error embedding query. Please try again.';
+    }
+    throw error;
+  }
+}
+
+/**
+ * Performs the semantic search for the given query.
+ *
+ * @param {string} query - The query text.
+ */
+async function performSemanticSearch(query) {
+  // console.log("Performing semantic search for query:", query);
+
+  const progressElement = document.getElementById('search-progress');
+  if (progressElement) {
+    progressElement.innerText = 'Loading model...';
+    // console.log('Progress: Loading model...');
+  }
+
+  // Load the semantic model
+  const extractor = await loadSemantic('Xenova/all-MiniLM-L6-v2');
+  if (progressElement) {
+    progressElement.innerText = 'Embedding query...';
+    // console.log('Progress: Embedding query...');
+  }
+
+  // Embed the query text
+  const queryEmbedding = await embedQuery(extractor, query);
+
+  if (progressElement) {
+    progressElement.innerText = 'Fetching embeddings and metadata...';
+    // console.log('Progress: Fetching embeddings and metadata...');
+  }
+
+  // Fetch embeddings and metadata with cache-busting parameter
+  const timestamp = new Date().getTime();
+  // Asynchronous Fetching: use Promise.all to fetch embeddings, metadata, and textData simultaneously.
+  const [embeddings, metadata, textData] = await Promise.all([
+    fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json()),
+    fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json()),
+    fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json())
+  ]);
+
+  if (progressElement) {
+    progressElement.innerText = 'Calculating similarities...';
+    // console.log('Progress: Calculating similarities...');
+  }
+
+  // Calculate similarities between query embedding and document embeddings
+  const similarities = await getSimilarities(queryEmbedding, embeddings);
+  if (progressElement) {
+    progressElement.innerText = 'Displaying results...';
+    // console.log('Progress: Displaying results...');
+  }
+
+  // Display the search results
+  displayNewResults(similarities, metadata, textData);
+
+  const titleElement = document.getElementById('semantic-search-title');
+  if (titleElement) {
+    titleElement.innerText = `Semantic Search Results for ${query}`;
+    // console.log(`Results displayed successfully.`);
+  }
+
+  // Cache only the necessary data
+  const cachedData = {
+    similarities,
+    metadata: similarities.map(result => metadata[result.index]),
+    textData: similarities.map(result => textData[result.index]),
+    prevTexts: similarities.map(result => {
+      if (result.index > 0 && metadata[result.index - 1].anchor === metadata[result.index].anchor) {
+        return textData[result.index - 1];
+      }
+      return '';
+    }),
+    nextTexts: similarities.map(result => {
+      if (result.index < textData.length - 1 && metadata[result.index + 1].anchor === metadata[result.index].anchor) {
+        return textData[result.index + 1];
+      }
+      return '';
+    })
+  };
+  localStorage.setItem(query, JSON.stringify(cachedData));
+}
+
+/**
+ * Calculates the cosine similarities between a query embedding and an array of embeddings.
+ *
+ * @param {Array<number>} queryEmbedding - The embedding of the query.
+ * @param {Array<Array<number>>} embeddings - The array of embeddings to compare against.
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of the top 10 similarities, each with an index and similarity score.
+ */
+async function getSimilarities(queryEmbedding, embeddings) {
+  // console.log("Calculating similarities"); // Log the start of the calculation process
+
+  const results = []; // Initialize an array to store the results
+
+  // Iterate over each embedding in the embeddings array
+  for (let i = 0; i < embeddings.length; i++) {
+    const embedding = embeddings[i]; // Get the current embedding
+    const similarity = calculateCosineSimilarity(queryEmbedding, embedding); // Calculate the cosine similarity between the query embedding and the current embedding
+    results.push({ index: i, similarity }); // Add the index and similarity score to the results array
+  }
+
+  // Sort the results array in descending order based on the similarity score
+  results.sort((a, b) => b.similarity - a.similarity);
+
+  // Log the top 10 similarities
+  // console.log("Similarities calculated:", results.slice(0, 10));
+
+  // Return the top 10 similarities
+  return results.slice(0, 10);
+}
+
+/**
+ * Calculates the cosine similarity between two embeddings.
+ *
+ * @param {Array<number>} embedding1 - The first embedding.
+ * @param {Array<number>} embedding2 - The second embedding.
+ * @returns {number} The cosine similarity between the two embeddings.
+ */
+function calculateCosineSimilarity(embedding1, embedding2) {
+  let dotProduct = 0.0;
+  let normA = 0.0;
+  let normB = 0.0;
+
+  // Calculate dot product and norms
+  for (let i = 0; i < embedding1.length; i++) {
+    dotProduct += embedding1[i] * embedding2[i];
+    normA += embedding1[i] ** 2;
+    normB += embedding2[i] ** 2;
+  }
+
+  // Compute cosine similarity
+  const similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+  return similarity;
+}
+
+/**
+ * Displays the newly computed search results on the web page.
+ *
+ * @param {Array<Object>} similarities - The array of similarities with index and similarity score.
+ * @param {Array<Object>} metadata - The array of metadata corresponding to the embeddings.
+ * @param {Array<string>} textData - The array of text data corresponding to the embeddings.
+ */
+function displayNewResults(similarities, metadata, textData) {
+  // console.log("Displaying newly computed results");
+
+  // Get the results container element
+  const resultsContainer = document.getElementById('semantic-search-results');
+  resultsContainer.innerHTML = ''; // Clear previous results
+
+  // Iterate over the similarities and display each result
+  similarities.forEach(result => {
+    const location = metadata[result.index];
+    const text = textData[result.index];
+    const similarity = result.similarity;
+
+    let prev_text = '';
+    let next_text = '';
+
+    // Check for previous sentence
+    if (result.index > 0 && metadata[result.index - 1].anchor === metadata[result.index].anchor) {
+      prev_text = textData[result.index - 1];
+    }
+
+    // Check for next sentence
+    if (result.index < textData.length - 1 && metadata[result.index + 1].anchor === metadata[result.index].anchor) {
+      next_text = textData[result.index + 1];
+    }
+
+    displayResult(similarity, text, location, prev_text, next_text);
+  });
+
+  const progressElement = document.getElementById('search-progress');
+  if (progressElement) {
+    progressElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
+    // console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
+  }
+  // console.log("Results displayed successfully");
+}
+
+/**
+ * Displays the cached search results on the web page.
+ *
+ * @param {Array<Object>} similarities - The array of similarities with index and similarity score.
+ * @param {Array<Object>} metadata - The array of metadata corresponding to the cached embeddings.
+ * @param {Array<string>} textData - The array of text data corresponding to the cached embeddings.
+ */
+function displayCachedResults(similarities, metadata, textData, prevTexts, nextTexts) {
+  // console.log("Displaying cached results");
+
+  // Get the results container element
+  const resultsContainer = document.getElementById('semantic-search-results');
+  resultsContainer.innerHTML = ''; // Clear previous results
+
+  // Iterate over the similarities and display each cached result
+  similarities.forEach((result, i) => {
+    const location = metadata[i];
+    const text = textData[i];
+    const similarity = result.similarity;
+    const prev_text = prevTexts[i];
+    const next_text = nextTexts[i];
+    displayResult(similarity, text, location, prev_text, next_text);
+  });
+
+  const progressElement = document.getElementById('search-progress');
+  if (progressElement) {
+    progressElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
+    // console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
+  }
+  // console.log("Results displayed successfully");
+}
+
+/**
+ * Displays the search result on the web page.
+ *
+ * @param {number} similarity - The similarity score of the search result.
+ * @param {string} text - The text content of the search result.
+ * @param {Object} location - The location object containing the URL of the search result.
+ * @param {string} prev_text - The previous sentence text.
+ * @param {string} next_text - The next sentence text.
+ */
+function displayResult(similarity, text, location, prev_text, next_text) {
+  // Create a new li element to hold one search result
+  const li = document.createElement('li');
+
+  // Create a page title element and act as a link to the search result
+  const a = document.createElement('a');
+  const anchor = location.anchor ? `#${location.anchor}` : '';
+  // Set the href attribute of the link to the URL with the search text highlighted
+  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}${anchor}`;
+  // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
+
+  // Include the section number and page title in the display
+  const pageTitle = location.page_title ? `${location.page_title}` : '';
+  const sectionNumber = location.section_number ? `<span class="section-number">${location.section_number} </span>` : '';
+  const sectionName = location.section_name ? location.section_name : '';
+  if (sectionName == '') {
+    a.innerHTML = pageTitle;
+  } else {
+    a.innerHTML = `${pageTitle} - ${sectionName}`;
+  }
+
+  // Create <p> element for context
+  const p = document.createElement('p');
+  p.className = 'context';
+  
+  const highlightedText = `<span class="highlighted" style="color:black">${text}</span>`;
+  p.innerHTML = `${prev_text} ${highlightedText} ${next_text}`;
+
+  //<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>
+
+  // Append <a> and <p> elements to <li> element
+  li.appendChild(a);
+  li.appendChild(p);
+
+  const resultsContainer = document.getElementById('semantic-search-results');
+  // Append the result li to the results container on the web page
+  resultsContainer.appendChild(li);
+}
+
+</script>
+<style>
+/* Style for the similarity score */
+.similarity-score {
+  font-size: 0.9em;
+  color: #555;
+}
+</style>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "salma-emara/aps105-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chapters/appendix/unix-commands.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Basic UNIX Commands</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Salma Emara et al.<br/>
+  
+      &copy; Copyright 2024.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

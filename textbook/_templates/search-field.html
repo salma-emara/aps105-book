@@ -1,11 +1,90 @@
-<form class="bd-search d-flex align-items-center" action="{{ pathto('search') }}" method="get">
-    <i class="icon fas fa-search"></i>
-    <input type="search" class="form-control" name="q" id="search-input" placeholder="{{ _(theme_search_bar_text) }}" aria-label="{{ theme_search_bar_text }}" autocomplete="off" >
-  </form>
-  
-<!-- Above is Default Template -->
-<!-- Below is my custome semantic search bar added -->
+<!-- original search-field.html at the path below-->
+<!--.venv/lib/python3.8/site-packages/pydata_sphinx_theme/theme/pydata_sphinx_theme/search-field.html-->
+
+<!-- Default Keyword Search Bar -->
+<form class="bd-search d-flex align-items-center hide-search-bar" action="{{ pathto('search') }}" method="get" id="keyword-search-form">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="pointer" aria-label="{{ theme_search_bar_text }}" autocomplete="off">
+</form>
+
+<!-- Custom Semantic Search Bar -->
 <form class="bd-search d-flex align-items-center" action="{{ pathto('semantic-search') }}" method="get" id="semantic-search-form">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Semantically Search this book..." aria-label="Semantically Search this book..." autocomplete="off">
+  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="what is a pointer" aria-label="Semantically Search this book..." autocomplete="off">
 </form>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button id="keyword-search-tab" class="tab-button">Keyword</button>
+  <button id="semantic-search-tab" class="tab-button active">Semantic</button>
+</div>
+
+<style>
+  /* Style the tab bar container to look like a shadow */
+  .tab-bar {
+    display: flex;
+    justify-content: space-between; /* Ensure buttons spread across the entire row */
+    margin-top: -10px; /* Adjust to bring the buttons closer to the search bar */
+    background-color: #e0e0e0; /* Light gray background to mimic shadow */
+    border-radius: 5px; /* Rounded corners for the tab bar */
+    padding: 5px; /* Padding for the tab bar */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  }
+
+  /* Style the buttons */
+  .tab-button {
+    flex: 1; /* Ensure buttons spread across the entire row */
+    padding: 5px 10px !important; /* Reduce padding inside the buttons */
+    margin: 0 5px;
+    background-color: #1a73e8 !important; /* Jupyter Book blue */
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    border-radius: 5px !important;
+    font-size: 14px !important; /* Reduce font size if needed */
+    text-align: center; /* Center the text inside the button */
+  }
+
+  /* Style the active button */
+  .tab-button.active {
+    background-color: #185abc !important; /* Darker blue for active state */
+  }
+
+  /* Ensure the search forms are styled correctly */
+  .search-content {
+    margin-top: 10px;
+  }
+
+  /* Hide keyword search form by default */
+  .hide-search-bar {
+    display: none !important;
+  }
+
+</style>
+
+<script>
+  const keywordSearchTab = document.getElementById('keyword-search-tab');
+  const semanticSearchTab = document.getElementById('semantic-search-tab');
+  const keywordSearchForm = document.getElementById('keyword-search-form');
+  const semanticSearchForm = document.getElementById('semantic-search-form');
+
+  keywordSearchTab.addEventListener('click', function() {
+    keywordSearchForm.classList.remove('hide-search-bar');
+    semanticSearchForm.classList.add('hide-search-bar');
+    keywordSearchTab.classList.add('active');
+    semanticSearchTab.classList.remove('active');
+  });
+
+  semanticSearchTab.addEventListener('click', function() {
+    keywordSearchForm.classList.add('hide-search-bar');
+    semanticSearchForm.classList.remove('hide-search-bar');
+    keywordSearchTab.classList.remove('active');
+    semanticSearchTab.classList.add('active');
+  });
+
+  // Set initial state to show semantic search
+  keywordSearchForm.classList.add('hide-search-bar');
+  semanticSearchForm.classList.remove('hide-search-bar');
+  keywordSearchTab.classList.remove('active');
+  semanticSearchTab.classList.add('active');
+</script>

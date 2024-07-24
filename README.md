@@ -70,6 +70,31 @@ cp -r textbook/quizzes/ textbook/_build/html/quizzes
    python embeddings/generate.py
    cp -r embeddings/outputs textbook/_build/html
    ```
+
+### Extra: to solve no title issue for semantic-search page
+1. Run the following command when deploying on Netlify:
+   ```bash
+   cp -r textbook/semantic-search.html textbook/_build/html
+   ```
+2. Whenever a change that could affect table of content or semantic-search page
+   1. Run the following command after jupyter-book build to update locally stored semantic-search.html
+      ```bash
+      cp -r textbook/_build/html/semantic-search.html textbook
+      ```
+   2. Run the folloing command or open directly the local semantic-search.html in VSCode edit mode
+      ```bash
+      code textbook/semantic-search.html
+      ```
+   3. Make changes in the local semantic-search.html
+      1. Use ctrl + F or cmd + F and search for title
+      2. change  
+         ```<title>&lt;no title&gt; &#8212; Snefru: Learning Programming with C</title>```  
+         to below:  
+         ```<title>Semantic Search &#8212; Snefru: Learning Programming with C</title>```
+   4. Run the folloing command again to update the changes in _build when deploying on Netlify
+      ```bash
+      cp -r textbook/semantic-search.html textbook/_build/html
+      ```
 ### Check spelling mistakes
 
 To check spelling mistakes, you need to install `pyspelling` using the following command:

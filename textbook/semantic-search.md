@@ -17,9 +17,9 @@ orphan: true
 <div>
   <h2 id="semantic-search-title"> </h2>
   <p id="search-progress" class="search-summary"></p>
-  <div id="semantic-search-results" class="semantic-results-container">
+  <ul id="semantic-search-results" class="search">
     <!-- The search results will be injected here by JavaScript -->
-  </div>
+  </ul>
 </div>
 
 <script type="module">
@@ -27,27 +27,27 @@ import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17
 import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
 
 document.addEventListener("DOMContentLoaded", function() {
-  console.log("DOM fully loaded and parsed");
+  // console.log("DOM fully loaded and parsed");
 
   // Retrieve query parameter from the URL
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get('q');
-  console.log("Query parameter:", query);
+  // console.log("Query parameter:", query);
 
   if (query) {
     // Update the page title with the query
     const titleElement = document.getElementById('semantic-search-title');
     if (titleElement) {
       titleElement.innerText = `Searching for ${query}...`;
-      console.log(`Progress: Searching for ${query}...`);
+      // console.log(`Progress: Searching for ${query}...`);
     }
     
     // Check if the result is already in local storage
     const cachedResult = localStorage.getItem(query);
     if (cachedResult) {
-      console.log("Using cached result");
+      // console.log("Using cached result");
       const cachedData = JSON.parse(cachedResult);
-      displayCachedResults(cachedData.similarities, cachedData.metadata, cachedData.textData);
+      displayCachedResults(cachedData.similarities, cachedData.metadata, cachedData.textData, cachedData.prevTexts, cachedData.nextTexts);
       titleElement.innerText = `Semantic Search Results for ${query}`;
       return;
     }
@@ -70,9 +70,9 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 async function loadSemantic(modelName) {
   try {
-    console.log(`Loading model: ${modelName}`);
+    // console.log(`Loading model: ${modelName}`);
     const extractor = await pipeline('feature-extraction', modelName, { ort });
-    console.log("Model loaded successfully");
+    // console.log("Model loaded successfully");
     return extractor;
   } catch (error) {
     console.error("Error loading model:", error);
@@ -93,9 +93,9 @@ async function loadSemantic(modelName) {
  */
 async function embedQuery(extractor, text) {
   try {
-    console.log(`Embedding query: ${text}`);
+    // console.log(`Embedding query: ${text}`);
     const output = await extractor([text], { pooling: 'mean', normalize: true });
-    console.log("Query embedded successfully:", output);
+    // console.log("Query embedded successfully:", output);
     return output.tolist()[0]; // Convert Tensor to nested array and return the first embedding
   } catch (error) {
     console.error("Error embedding query:", error);
@@ -113,19 +113,19 @@ async function embedQuery(extractor, text) {
  * @param {string} query - The query text.
  */
 async function performSemanticSearch(query) {
-  console.log("Performing semantic search for query:", query);
+  // console.log("Performing semantic search for query:", query);
 
   const progressElement = document.getElementById('search-progress');
   if (progressElement) {
     progressElement.innerText = 'Loading model...';
-    console.log('Progress: Loading model...');
+    // console.log('Progress: Loading model...');
   }
 
   // Load the semantic model
   const extractor = await loadSemantic('Xenova/all-MiniLM-L6-v2');
   if (progressElement) {
     progressElement.innerText = 'Embedding query...';
-    console.log('Progress: Embedding query...');
+    // console.log('Progress: Embedding query...');
   }
 
   // Embed the query text
@@ -133,28 +133,28 @@ async function performSemanticSearch(query) {
 
   if (progressElement) {
     progressElement.innerText = 'Fetching embeddings and metadata...';
-    console.log('Progress: Fetching embeddings and metadata...');
+    // console.log('Progress: Fetching embeddings and metadata...');
   }
 
   // Fetch embeddings and metadata with cache-busting parameter
   const timestamp = new Date().getTime();
   // Asynchronous Fetching: use Promise.all to fetch embeddings, metadata, and textData simultaneously.
   const [embeddings, metadata, textData] = await Promise.all([
-      fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json()),
-      fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json()),
-      fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json())
-    ]);
+    fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json()),
+    fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json()),
+    fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json())
+  ]);
 
   if (progressElement) {
     progressElement.innerText = 'Calculating similarities...';
-    console.log('Progress: Calculating similarities...');
+    // console.log('Progress: Calculating similarities...');
   }
 
   // Calculate similarities between query embedding and document embeddings
   const similarities = await getSimilarities(queryEmbedding, embeddings);
   if (progressElement) {
     progressElement.innerText = 'Displaying results...';
-    console.log('Progress: Displaying results...');
+    // console.log('Progress: Displaying results...');
   }
 
   // Display the search results
@@ -163,14 +163,26 @@ async function performSemanticSearch(query) {
   const titleElement = document.getElementById('semantic-search-title');
   if (titleElement) {
     titleElement.innerText = `Semantic Search Results for ${query}`;
-    console.log(`Results displayed successfully.`);
+    // console.log(`Results displayed successfully.`);
   }
 
   // Cache only the necessary data
   const cachedData = {
     similarities,
     metadata: similarities.map(result => metadata[result.index]),
-    textData: similarities.map(result => textData[result.index])
+    textData: similarities.map(result => textData[result.index]),
+    prevTexts: similarities.map(result => {
+      if (result.index > 0 && metadata[result.index - 1].anchor === metadata[result.index].anchor) {
+        return textData[result.index - 1];
+      }
+      return '';
+    }),
+    nextTexts: similarities.map(result => {
+      if (result.index < textData.length - 1 && metadata[result.index + 1].anchor === metadata[result.index].anchor) {
+        return textData[result.index + 1];
+      }
+      return '';
+    })
   };
   localStorage.setItem(query, JSON.stringify(cachedData));
 }
@@ -183,7 +195,7 @@ async function performSemanticSearch(query) {
  * @returns {Promise<Array<Object>>} A promise that resolves to an array of the top 10 similarities, each with an index and similarity score.
  */
 async function getSimilarities(queryEmbedding, embeddings) {
-  console.log("Calculating similarities"); // Log the start of the calculation process
+  // console.log("Calculating similarities"); // Log the start of the calculation process
 
   const results = []; // Initialize an array to store the results
 
@@ -198,7 +210,7 @@ async function getSimilarities(queryEmbedding, embeddings) {
   results.sort((a, b) => b.similarity - a.similarity);
 
   // Log the top 10 similarities
-  console.log("Similarities calculated:", results.slice(0, 10));
+  // console.log("Similarities calculated:", results.slice(0, 10));
 
   // Return the top 10 similarities
   return results.slice(0, 10);
@@ -236,7 +248,7 @@ function calculateCosineSimilarity(embedding1, embedding2) {
  * @param {Array<string>} textData - The array of text data corresponding to the embeddings.
  */
 function displayNewResults(similarities, metadata, textData) {
-  console.log("Displaying newly computed results");
+  // console.log("Displaying newly computed results");
 
   // Get the results container element
   const resultsContainer = document.getElementById('semantic-search-results');
@@ -248,15 +260,28 @@ function displayNewResults(similarities, metadata, textData) {
     const text = textData[result.index];
     const similarity = result.similarity;
 
-    displayResult(similarity, text, location);
+    let prev_text = '';
+    let next_text = '';
+
+    // Check for previous sentence
+    if (result.index > 0 && metadata[result.index - 1].anchor === metadata[result.index].anchor) {
+      prev_text = textData[result.index - 1];
+    }
+
+    // Check for next sentence
+    if (result.index < textData.length - 1 && metadata[result.index + 1].anchor === metadata[result.index].anchor) {
+      next_text = textData[result.index + 1];
+    }
+
+    displayResult(similarity, text, location, prev_text, next_text);
   });
 
   const progressElement = document.getElementById('search-progress');
   if (progressElement) {
     progressElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
-    console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
+    // console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
   }
-  console.log("Results displayed successfully");
+  // console.log("Results displayed successfully");
 }
 
 /**
@@ -266,8 +291,8 @@ function displayNewResults(similarities, metadata, textData) {
  * @param {Array<Object>} metadata - The array of metadata corresponding to the cached embeddings.
  * @param {Array<string>} textData - The array of text data corresponding to the cached embeddings.
  */
-function displayCachedResults(similarities, metadata, textData) {
-  console.log("Displaying cached results");
+function displayCachedResults(similarities, metadata, textData, prevTexts, nextTexts) {
+  // console.log("Displaying cached results");
 
   // Get the results container element
   const resultsContainer = document.getElementById('semantic-search-results');
@@ -278,16 +303,17 @@ function displayCachedResults(similarities, metadata, textData) {
     const location = metadata[i];
     const text = textData[i];
     const similarity = result.similarity;
-
-    displayResult(similarity, text, location);
+    const prev_text = prevTexts[i];
+    const next_text = nextTexts[i];
+    displayResult(similarity, text, location, prev_text, next_text);
   });
 
   const progressElement = document.getElementById('search-progress');
   if (progressElement) {
     progressElement.innerText = `Search finished, found ${similarities.length} pages best matching the search query.`;
-    console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
+    // console.log(`Progress: Search finished, found ${similarities.length} pages best matching the search query.`);
   }
-  console.log("Results displayed successfully");
+  // console.log("Results displayed successfully");
 }
 
 /**
@@ -296,67 +322,55 @@ function displayCachedResults(similarities, metadata, textData) {
  * @param {number} similarity - The similarity score of the search result.
  * @param {string} text - The text content of the search result.
  * @param {Object} location - The location object containing the URL of the search result.
+ * @param {string} prev_text - The previous sentence text.
+ * @param {string} next_text - The next sentence text.
  */
-function displayResult(similarity, text, location) {
-  // Create a new div element to hold the search result
-  const resultDiv = document.createElement('div');
-  resultDiv.classList.add('search-result'); // Add the 'search-result' class to the div
+function displayResult(similarity, text, location, prev_text, next_text) {
+  // Create a new li element to hold one search result
+  const li = document.createElement('li');
 
-  // Create a new anchor element to act as a link to the search result
-  const resultLink = document.createElement('a');
-  
+  // Create a page title element and act as a link to the search result
+  const a = document.createElement('a');
+  const anchor = location.anchor ? `#${location.anchor}` : '';
   // Set the href attribute of the link to the URL with the search text highlighted
-  resultLink.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}`;
+  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}${anchor}`;
   // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
 
-  // Set the inner HTML of the link to display the search text and similarity score
-  resultLink.innerHTML = `<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>`;
-  resultLink.classList.add('search-result-link'); // Add the 'search-result-link' class to the link
+  // Include the section number and page title in the display
+  const pageTitle = location.page_title ? `${location.page_title}` : '';
+  const sectionNumber = location.section_number ? `<span class="section-number">${location.section_number} </span>` : '';
+  const sectionName = location.section_name ? location.section_name : '';
+  if (sectionName == '') {
+    a.innerHTML = pageTitle;
+  } else {
+    a.innerHTML = `${pageTitle} - ${sectionName}`;
+  }
 
-  // Append the link to the result div
-  resultDiv.appendChild(resultLink);
+  // Create <p> element for context
+  const p = document.createElement('p');
+  p.className = 'context';
+  
+  const highlightedText = `<span class="highlighted" style="color:black">${text}</span>`;
+  p.innerHTML = `${prev_text} ${highlightedText} ${next_text}`;
+
+  //<span class="result-text">${text}</span> - <span class="similarity-score">Similarity: ${similarity.toFixed(4)}</span>
+
+  // Append <a> and <p> elements to <li> element
+  li.appendChild(a);
+  li.appendChild(p);
 
   const resultsContainer = document.getElementById('semantic-search-results');
-  // Append the result div to the results container on the web page
-  resultsContainer.appendChild(resultDiv);
+  // Append the result li to the results container on the web page
+  resultsContainer.appendChild(li);
 }
 
 </script>
 
 <style>
-/* Style for the semantic results container */
-.semantic-results-container {
-  margin-top: 20px;
-}
-
-/* Style for each search result */
-.search-result {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Style for the search result link */
-.search-result-link {
-  text-decoration: none;
-  color: #1a0dab;
-  font-weight: bold;
-}
-
-/* Hover style for the search result link */
-.search-result-link:hover {
-  text-decoration: underline;
-}
-
 /* Style for the similarity score */
 .similarity-score {
   font-size: 0.9em;
   color: #555;
-}
-
-/* Style for the result text */
-.result-text {
-  display: block;
-  font-size: 1em;
 }
 </style>

@@ -36,7 +36,7 @@ def get_html_files(directory, base_directory):
 @time_block("read_html_file")
 def read_html_file(file_path):
     """
-    Read an HTML file and extract content from headers, paragraphs, list items, and tables, associating with anchors.
+    Read an HTML file and extract content from headers, paragraphs, list items, and tables, associating with anchors and sections' info.
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -51,6 +51,9 @@ def read_html_file(file_path):
 
             elements = []
             current_anchor = ""
+            current_section_number = ""
+            current_section_name = "" # a section is from one 'h2' to the next 'h2' in this jupyter book
+            current_page_title = "" # a page title include section-number and page title, this usually is a h1
             previous_sentence = None
 
             def handle_table(table):
@@ -61,25 +64,47 @@ def read_html_file(file_path):
                     row_text = " ".join([col.get_text(separator=" ").strip() for col in columns])
                     table_sentences.append(row_text)
                 return table_sentences
-
             # Find headers and update current_anchor based on header links
-            for element in main_content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'table']):
-                # removed find for 'li' because in jupyter book it duplicates with 'p'
-                if element.name in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+            for element in main_content.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'table']): # no 'li' because in jupyter book it duplicates with 'p'
+                if element.name == 'h1':
+                    anchor_tag = element.find('a', class_='headerlink')
+                    current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else ""
+                    title_text = element.get_text(separator=" ").strip()
+                    # Remove the trailing '#' from the title text if it exists
+                    current_page_title = title_text[:-1].strip() if title_text.endswith('#') else title_text
+                    current_section_number = ""
+                    current_section_name = ""
+                    # elements.append((current_page_title, current_anchor, current_section_number, current_section_name, current_page_title))
+                elif element.name == 'h2': # updates anchor, current_section_number, and current_section_name
+                    anchor_tag = element.find('a', class_='headerlink')
+                    current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor
+
+                    # Extract the section number
+                    section_number = element.find('span', class_='section-number')
+                    current_section_number = section_number.get_text(strip=True) if section_number else ""
+                    
+                    section_text = element.get_text(' ', strip=True)
+                    if section_number:
+                        section_text = section_text.replace(current_section_number, '', 1).strip()
+                    # Remove the trailing '#' from the title text if it exists
+                    if section_text.endswith('#'):
+                        section_text = section_text[:-1].strip()
+                    current_section_name = section_text if section_text else current_section_name    
+                elif element.name in ['h3', 'h4', 'h5', 'h6']: # updates anchor, and inclue text in semantic search
                     anchor_tag = element.find('a', class_='headerlink')
                     current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor
                     text = element.get_text(separator=" ").strip()
-                    elements.append((text, current_anchor))
+                    elements.append((text, current_anchor, current_section_number, current_section_name, current_page_title))
                 elif element.name == 'table':
-                    sentences = handle_table(element)
-                    for sentence in sentences:
-                        elements.append((sentence, current_anchor))
+                    rows = handle_table(element)
+                    for row in rows:
+                        elements.append((row, current_anchor, current_section_number, current_section_name, current_page_title))
                 else:
                     if element.find_parent('table'):
                         continue  # Skip <p> and <li> elements inside a table
                     if element.find('span', class_='caption-number') or element.find('span', class_='caption-text'):
                         text = element.get_text(separator=" ").strip()
-                        elements.append((text, current_anchor))
+                        elements.append((text, current_anchor, current_section_number, current_section_name, current_page_title))
                     else:
                         text = element.get_text(separator="\n").strip()
                         text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
@@ -87,7 +112,7 @@ def read_html_file(file_path):
                         for sentence in sentences:
                             sentence = sentence.strip()
                             if len(sentence.split()) > 1 and sentence != previous_sentence:
-                                elements.append((sentence, current_anchor))
+                                elements.append((sentence, current_anchor, current_section_number, current_section_name, current_page_title))
                                 previous_sentence = sentence
             
             return elements
@@ -143,10 +168,7 @@ def clear_output_directory(directory):
         logging.error(f"Failed to clear output directory: {e}")
 
 def main():
-    # Clear the output directory before saving new files
     clear_output_directory(OUTPUT_DIR)
-    
-    # Get list of HTML files
     file_paths = get_html_files(HTML_DIRECTORY, BASE_DIRECTORY)
     all_text_data = []
     embedding_to_location = {}
@@ -154,9 +176,9 @@ def main():
     prev_anchor = ''
 
     for file_path in file_paths:
-        text_data = read_html_file(file_path)  # text_data now includes tuples (sentence, anchor)
+        text_data = read_html_file(file_path)  # text_data now includes tuples (sentence, anchor, ...)
         position = 0
-        for sentence, anchor in text_data:
+        for sentence, anchor, section_number, section_name, page_title in text_data:
             if anchor != prev_anchor:
                 position = 1
                 prev_anchor = anchor
@@ -164,10 +186,14 @@ def main():
                 position += 1
             all_text_data.append(sentence)  # Collecting all sentences for embedding
             # Forming the URL including the anchor for precise navigation
-            relative_url = file_path_to_url(file_path, anchor)
+            relative_url = file_path_to_url(file_path)
             embedding_to_location[current_index] = {
                 "url": relative_url,
-                "position": f"sentence {position}"
+                "position": f"sentence {position}",
+                "anchor": anchor,
+                "section_number": section_number,
+                "section_name" : section_name,
+                "page_title": page_title
             }
             current_index += 1
 
@@ -179,22 +205,10 @@ def main():
 
     # Convert embeddings to a numpy array
     embeddings_np = np.array(embeddings, dtype='float32')
-    
-    # # Initialize FAISS index
-    # index = faiss.IndexFlatL2(embeddings_np.shape[1])
-
-    # # Add embeddings to the index
-    # index.add(embeddings_np)
-    # Ensure the output directory exists
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    # Save embeddings, FAISS index, and mapping to the output directory
-    # np.save(os.path.join(OUTPUT_DIR, 'embeddings.npy'), embeddings_np)
     save_to_json(embeddings_np.tolist(), os.path.join(OUTPUT_DIR, 'embeddings.json'))
     save_to_json(embedding_to_location, os.path.join(OUTPUT_DIR, 'embedding_to_location.json'))
     save_to_json(all_text_data, os.path.join(OUTPUT_DIR, 'all_text_data.json'))
-
-    # faiss.write_index(index, os.path.join(OUTPUT_DIR, 'faiss_index.bin'))
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,92 @@
+.card-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 400px;
+  }
+  
+  #user-chat {
+    background-color: blue;
+  }
+  
+  #chat {
+    scroll-behavior: smooth;
+  }
+  
+  /* HTML: <div class="loader"></div> */
+  .loader {
+    width: 60px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side, rgb(103, 103, 103) 90%, #36333300);
+    background:
+      var(--_g) 0% 50%,
+      var(--_g) 50% 50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/5) 50%;
+    animation: l3 1s infinite linear;
+  }
+  
+  @keyframes l3 {
+    20% {
+      background-position: 0% 0%, 50% 50%, 100% 50%
+    }
+  
+    40% {
+      background-position: 0% 100%, 50% 0%, 100% 50%
+    }
+  
+    60% {
+      background-position: 0% 50%, 50% 100%, 100% 0%
+    }
+  
+    80% {
+      background-position: 0% 50%, 50% 50%, 100% 100%
+    }
+  }
+  
+  .btn-floating {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    left: auto;
+  }
+  
+  .float-chat-container {
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    width: 400px;
+    z-index: 9999;
+  }
+  
+  
+  .float-btn-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+  
+  
+  .btn-minus {
+    border-color: transparent;
+    background-color: transparent;
+  }
+  
+  .btn-minus:hover .fa:hover {
+    color: black;
+  }
+  
+  .btn-minus .fa {
+    color: gray;
+  }
+  
+  
+  .show {
+    visibility: visible;
+    transition: all .2s ease-out
+  }
+  
+  .hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+  

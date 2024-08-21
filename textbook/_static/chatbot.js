@@ -64,7 +64,7 @@ document.write(`<head>
                 <textarea
                   type="text"
                   class="form-control"
-                  placeholder="Type Your Quesstion Here"
+                  placeholder="Type Your Question Here"
                   id="userInput"
                   style="overflow: hidden"
                 ></textarea>

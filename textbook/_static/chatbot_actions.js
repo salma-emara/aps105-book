@@ -176,16 +176,13 @@ function createUserMessage(message) {
   const newDiv = document.createElement("div");
   newDiv.className = "d-flex flex-row justify-content-end mt-0";
   newDiv.id = "user-message";
-  newDiv.style = "min-height: auto;";
-  const newDiv1 = document.createElement("div");
-  const paragraph = document.createElement("p");
-  paragraph.textContent = message;
-  paragraph.className = "small p-2 me-0 text-white rounded-3 bg-primary";
-  newDiv1.appendChild(paragraph);
-  newDiv.appendChild(newDiv1);
+  newDiv.style.minHeight = "auto";
 
-  const parent = document.getElementById("chat");
-  parent.appendChild(newDiv);
+  const newDiv1 = document.createElement("div");
+  newDiv1.innerHTML = `<p class="small p-2 me-0 text-white rounded-3 bg-primary">${message}</p>`;
+
+  newDiv.appendChild(newDiv1);
+  document.getElementById("chat").appendChild(newDiv);
 }
 
 function createBotMessage(message, is_markdown) {
@@ -206,8 +203,7 @@ function createBotMessage(message, is_markdown) {
     paragraph.className = "small p-2 me-0 mb-5 rounded-3 bg-body-tertiary";
     newDiv1.appendChild(paragraph);
   } else {
-    const html = `<md-block>${message}</md-block>`;
-    newDiv1.insertAdjacentHTML("beforeend", html);
+    newDiv1.innerHTML = `<md-block>${message}</md-block>`;
   }
 
   newDiv.appendChild(newDiv1);
@@ -221,36 +217,29 @@ function createChooseButtons() {
   const newDiv = document.createElement("div");
   newDiv.className = "d-flex flex-row justify-content-start mt-1";
   newDiv.id = "bot-message-choose";
-  newDiv.style = "height: auto;";
+  newDiv.style.height = "auto";
+
   const newDiv1 = document.createElement("div");
   newDiv1.className = "d-flex flex-row";
-  newDiv1.style = "gap: 20px";
+  newDiv1.style.gap = "20px";
 
-  const btn0 = document.createElement("button");
-  btn0.className = "btn btn-primary";
-  btn0.textContent = "followup";
-  btn0.id = "followup-question";
-  btn0.onclick = function () {
-    handleChooseButtonClick("followup-question");
-  };
+  const buttons = [
+    { text: "followup", id: "followup-question" },
+    { text: "New Question", id: "new-question" },
+  ];
 
-  const btn1 = document.createElement("button");
-  btn1.className = "btn btn-primary";
-  btn1.textContent = "New Question";
-  btn1.id = "new-question";
-  btn1.onclick = function () {
-    handleChooseButtonClick("new-question");
-  };
+  buttons.forEach(({ text, id }) => {
+    const btn = document.createElement("button");
+    btn.className = "btn btn-primary";
+    btn.textContent = text;
+    btn.id = id;
+    btn.onclick = () => handleChooseButtonClick(id);
+    newDiv1.appendChild(btn);
+  });
 
-  newDiv1.appendChild(btn0);
-  newDiv1.appendChild(btn1);
   newDiv.appendChild(newDiv1);
-
-  const parent = document.getElementById("chat");
-  parent.appendChild(newDiv);
-
-  const input = document.getElementById("userInput");
-  input.disabled = true;
+  document.getElementById("chat").appendChild(newDiv);
+  document.getElementById("userInput").disabled = true;
 }
 
 function handleChooseButtonClick(buttonID) {

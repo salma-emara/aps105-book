@@ -61,14 +61,13 @@ document.write(`<head>
               class="card-footer text-muted d-flex justify-content-start align-items-center p-3"
             >
               <div class="input-group mb-0">
-                <input
+                <textarea
                   type="text"
                   class="form-control"
                   placeholder="Type Your Quesstion Here"
-                  aria-label="Recipient's username"
-                  aria-describedby="button-addon2"
                   id="userInput"
-                />
+                  style="overflow: hidden"
+                ></textarea>
                 <button
                   data-mdb-button-init
                   data-mdb-ripple-init

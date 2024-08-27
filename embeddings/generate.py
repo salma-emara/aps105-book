@@ -108,7 +108,7 @@ def read_html_file(file_path):
                     else:
                         text = element.get_text(separator="\n").strip()
                         text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
-                        sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<!Fig\.)(?<=\.|\?)\s', text)
+                        sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<!Fig\.)(?<!vs\.)(?<=\.|\?)\s', text)
                         for sentence in sentences:
                             sentence = sentence.strip()
                             if len(sentence.split()) > 1 and sentence != previous_sentence:

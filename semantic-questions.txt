@@ -1,6 +1,6 @@
 How do I install a C compiler on my computer?
-What is the difference between int and float?
-how do i compare two variables?
+What is the difference between double and float?
+how do i compare if two variables are equivalent?
 How do I write a while loop?
 What is the difference between while and do-while loops?
 Why do I need pointers?

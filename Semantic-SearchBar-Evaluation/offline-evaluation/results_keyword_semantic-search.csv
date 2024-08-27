@@ -1,0 +1,38 @@
+Query ID,Query Text,Answer Chapter,Note,Result 1,Score 1,Result 2,Score 2,Result 3,Score 3,Result 4,Score 4,Result 5,Score 5,Result 6,Score 6,Result 7,Score 7,Result 8,Score 8,Result 9,Score 9,Result 10,Score 10,Precision@5,MRR,DCG@5,NDCG@5
+1,pointer,6.2,I wonder if captial entire word will improve accuracy,6.6,2.0,6.2,3.0,6.3,2.0,10.1,1.0,13.3,1.0,,,,,,,,,,,0.6,0.5,5.710318626022307,0.9392915547644913
+2,Elon Musk ,  chapter 7.1. and 9,sentence segmentation issue: 1.3 Robert C. Martin [1].,7.1,3.0,9.0,3.0,2.1,0.0,3.2,0.0,1.3,0.0,,,,,,,,,,,0.4,1.0,4.892789260714372,1.0
+3,salma email,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+4,email me,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+5,please email,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+6,reimplement,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+7,fig 2.1,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+8,node,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+9,list,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+10,linkedlist,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+11,search,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+12,compiler,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+13,installation,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+14,data type,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+15,variable declaration,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+16,int float difference,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+17,logical operators,chapter 3.2,is relational operator the same thing?,3.2,3.0,3.1,1.0,2.3,1.0,4.3,2.0,4.5,1.0,,,,,,,,,,,0.4,1.0,5.379135676952785,0.9641083996695681
+18,arithmetic operators,chapter 2.3,,2.4,2.0,2.3,3.0,3.1,2.0,1.1,1.0,2.5,2.0,,,,,,,,,,,0.8,0.5,6.0971714332568485,0.9365760603063332
+19,for loop,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+20,if else,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+21,enumerations,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+22,sorting,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+23,quick sort,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+24,debug,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+25,binary tree,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+26,question 11 winter 2017 ,chapter 10.5,,15.3,1.0,3.4,1.0,11.4,1.0,10.5,3.0,6.6,1.0,,,,,,,,,,,0.2,0.25,3.809812235026179,0.7698986984637216
+27,input string is longer than the array,chapter 10.2,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+28,avoid buffer overflow,chapter 10.2,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+29,tested in isolation,chapter 5.4,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+30,print pattern,"chapter 4.4, 5.1, 11.2",,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+31,print pattern recursively,,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+32,binary representation,1.2,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+33,dynamically allocation for data structure,", chapter 12.2",,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+34,passing head by value,13.3,,,,,,,,,,,,,,,,,,,,,,0.0,0.0,,
+35,selction sort,14.2,,14.4,2.0,14.0,2.0,14.2,3.0,14.3,1.0,13.3,0.0,,,,,,,,,,,0.6,0.3333333333333333,5.192536065216308,0.9121656860366328
+36,set up vs code,Set Up Visual Studio Code,"document 5 results if top result is in, or keep on documenting",Set Up Visual Studio Code,3.0,1.3,2.0,8.1,0.0,6.5,0.0,What about programming,0.0,,,,,,,,,,,0.4,1.0,4.2618595071429155,1.0
+Average,N/A,,,,,,,,,,,,,,,,,,,,,,,0.09444444444444446,0.12731481481481483,5.049088972047388,0.9317200570343924

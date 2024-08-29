@@ -13,7 +13,6 @@ How do I destroy dynamically allocated memory?
 How do I use structures to store complex data?
 What is the purpose of the return statement?
 How do I create and use multi-dimensional arrays?
-How do I debug a C program?
 What is the difference between local and global variables?
 why do we need recursion
 How do I implement linked lists?

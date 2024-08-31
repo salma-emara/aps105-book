@@ -81,7 +81,7 @@ cp -r textbook/quizzes/ textbook/_build/html/quizzes
       ```bash
       cp -r textbook/_build/html/semantic-search.html textbook
       ```
-   2. Run the folloing command or open directly the local semantic-search.html in VSCode edit mode
+   2. Run the following command or open directly the local semantic-search.html in VSCode edit mode
       ```bash
       code textbook/semantic-search.html
       ```
@@ -91,7 +91,7 @@ cp -r textbook/quizzes/ textbook/_build/html/quizzes
          ```<title>&lt;no title&gt; &#8212; Snefru: Learning Programming with C</title>```  
          to below:  
          ```<title>Semantic Search &#8212; Snefru: Learning Programming with C</title>```
-   4. Run the folloing command again to update the changes in _build when deploying on Netlify
+   4. Run the following command again to update the changes in _build when deploying on Netlify
       ```bash
       cp -r textbook/semantic-search.html textbook/_build/html
       ```

@@ -84,7 +84,7 @@ Edit Path
 
 ## For Mac/Linux Users
 
-You can follow along the following video for steps on setting up VS Code on Windows. Brief steps are also provided below.
+You can follow along the following video for steps on setting up VS Code on Mac/Linux. Brief steps are also provided below.
 
 {{ video_embed | replace("%%VID%%", "pbPgkOYireQ")}}
 

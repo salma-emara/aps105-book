@@ -1,0 +1,25 @@
+pointer	6.2
+Elon Musk 	  chapter 7.1. and 9
+email	Priciple… or Snefru…
+Fig. 2.1	2.1
+empty linked list	13.3 or 13.4
+binary search	15.2
+hello world	1.4
+declare variable	2.2
+logical operators	chapter 3.2
+arithmetic operators	chapter 2.3
+for loop	4.3
+if else	3.1
+concatenate	10.3
+pointer	6.2
+question 11 winter 2017 	chapter 10.5
+input string is longer than the array	chapter 10.2
+avoid buffer overflow	chapter 10.2
+tested in isolation	chapter 5.4
+print pattern	chapter 4.4, 5.1, 11.2
+recursion function	11.1
+binary representation	1.2
+dynamically allocation for data structure	, chapter 12.2
+passing head by value	13.3
+selection sort	14.2
+set up vs code	Set Up Visual Studio Code

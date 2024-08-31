@@ -1,0 +1,25 @@
+How do I install a C compiler on my computer?
+What is the difference between double and float?
+how do i compare if two variables are equivalent?
+How do I write a while loop?
+What is the difference between while and do-while loops?
+Why do I need pointers?
+What is the difference between & and * in pointers?
+How do I pass a pointer to a function?
+What is the difference between void and int return types in functions?
+How do i print a string?
+how do i take string as an input
+How do I destroy dynamically allocated memory?
+How do I use structures to store complex data?
+What is the purpose of the return statement?
+How do I create and use multi-dimensional arrays?
+What is the difference between local and global variables?
+why do we need recursion
+How do I implement linked lists?
+What are the best practices for writing clean and efficient C code?
+how to i prevent changes to a variable
+how do i add two strings
+what happens to a variable when it is passed to a function
+what is the answer to the question that requires merging two linked list
+how do i delete a string in a string
+how to detect copying

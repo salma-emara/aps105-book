@@ -8,7 +8,7 @@ This book is the textbook for APS105: Computer Fundamentals at the University of
 
 We would like to acknowledge the help of *Yvonne Yang*, an undergraduate student at University of Toronto. Her meticulous efforts helped in transforming static code blocks into interactive, editable, and runnable segments that aim at enhancing the learning experience for our readers. The library that made interactive code blocks possible was developed by *Jared Van Valkengoed*, and is available [https://github.com/MarketingPipeline/Code-Runner-Web-Component](https://github.com/MarketingPipeline/Code-Runner-Web-Component).
 
-The current semantic search engine was developed by *Jiahan (William) Wen*, an undergraduate student at the University of Toronto. 
+The current semantic search engine was developed by *Jiahan (William) Wen*, an undergraduate student at the University of Toronto. It helps in finding closely relevant information in the textbook, instead of searching for keywords. 
 
 If you have been utilizing this textbook in your teaching, we kindly invite you to share your experiences via email   <span style="color:blue"><u>salma<i>@</i>ece<i>.</i>utoronto<i>.</i>ca</u></span>. Whether it be success stories from your classroom, constructive feedback, or suggestions for improvement, we are eager to hear from you.
 

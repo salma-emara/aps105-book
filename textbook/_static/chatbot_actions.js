@@ -131,8 +131,8 @@ function submit() {
 function getResponse() {
   createLoading();
   scrollToBottom();
-  // const url = "https://aps105.ece.utoronto.ca";
-  const url = "http://127.0.0.1:8000/api/v1/chat";
+  const url = "https://aps105.ece.utoronto.ca";
+  // const url = "http://127.0.0.1:8000/api/v1/chat";
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   fetchRetry(url, {
     method: "POST",

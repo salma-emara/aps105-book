@@ -1,17 +1,3 @@
-var is_followup = false;
-var is_pre_chat_rendered = false;
-if (sessionStorage.getItem("userData") === null) {
-  sessionStorage.setItem(
-    "userData",
-    JSON.stringify({
-      contexts: [],
-      latest_new_question: "",
-      messages: [],
-      sessionID: generateUUID(),
-    })
-  );
-}
-// Util Functions
 function generateUUID() {
   var d = new Date().getTime(); //Timestamp
   var d2 =
@@ -40,27 +26,52 @@ function updateUserDataInSessionStorage(
   latest_new_question,
   sessionID
 ) {
-  sessionStorage.setItem(
-    "userData",
-    JSON.stringify({ contexts, latest_new_question, messages, sessionID })
-  );
+  const userData = {
+    contexts,
+    latest_new_question,
+    messages,
+    sessionID,
+  };
+  sessionStorage.setItem("userData", JSON.stringify(userData));
 }
 
 function wait(delay) {
   return new Promise((resolve) => setTimeout(resolve, delay));
 }
-
-// Chat Bot Functions
+var is_followup = false;
+var is_pre_chat_rendered = false;
+if (sessionStorage.getItem("userData") === null) {
+  sessionStorage.setItem(
+    "userData",
+    JSON.stringify({
+      contexts: [],
+      latest_new_question: "",
+      messages: [],
+      sessionID: generateUUID(),
+    })
+  );
+}
 // Render the saved messages
 function renderPrevChats() {
   if (!is_pre_chat_rendered) {
     var curr_userData = JSON.parse(sessionStorage.getItem("userData"));
     var messages = curr_userData["messages"];
+    const references = JSON.parse(sessionStorage.getItem("latestReference"));
     for (let i = 0; i < messages.length; i++) {
       if (messages[i]["role"] === "user") {
         createUserMessage(messages[i]["content"]);
       } else if (messages[i]["role"] === "assistant") {
         createBotMessage(messages[i]["content"], true);
+        console.log(references);
+        references.forEach((reference) => {
+          if (reference.index === i) {
+            createReference(
+              reference.chapterName,
+              reference.chapterNumber,
+              reference.sectionName
+            );
+          }
+        });
       }
       if (i == messages.length - 1 && messages[i]["role"] == "assistant") {
         createChooseButtons();
@@ -68,9 +79,11 @@ function renderPrevChats() {
     }
     is_pre_chat_rendered = true;
   }
+  scrollToBottom();
 }
 function pushMessage(message, role) {
   // Push the message to sessionStorage
+  // userData.messages.push({ role: role, content: message });
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   var messages = userData["messages"];
   messages.push({ role: role, content: message });
@@ -86,9 +99,11 @@ function submit() {
   // Get input element
   var input = document.getElementById("userInput");
   if (input.value === "") {
+    console.log("value empty");
     return;
   }
   const user_query = input.value;
+  console.log("something");
 
   // Reset Input
   input.value = "";
@@ -113,11 +128,11 @@ function submit() {
   // Fetch message
   getResponse();
 }
-
 function getResponse() {
   createLoading();
   scrollToBottom();
-  const url = "https://aps105.ece.utoronto.ca/";
+  // const url = "https://aps105.ece.utoronto.ca";
+  const url = "http://127.0.0.1:8000/api/v1/chat";
   const userData = JSON.parse(sessionStorage.getItem("userData"));
   fetchRetry(url, {
     method: "POST",
@@ -129,31 +144,47 @@ function getResponse() {
     .then((response) => response.json())
     .then((data) => {
       removeLoading();
-      const messages = data.userData.messages;
-      const contexts = data.userData.contexts;
-      const latest_new_question = data.userData.latest_new_question;
+      const { messages, contexts, latest_new_question, sessionID } =
+        data.userData;
+      const { chapterNumber, chapterName, sectionName } = data.reference;
       const new_message = messages[messages.length - 1].content;
       createBotMessage(new_message, true);
+      setLatestReference(
+        chapterNumber,
+        chapterName,
+        sectionName,
+        messages.length - 1
+      );
+      createReference(chapterName, chapterNumber, sectionName);
       createChooseButtons();
-      // update userData
-      sessionStorage.setItem(
-        "userData",
-        JSON.stringify({
-          contexts: contexts,
-          latest_new_question: latest_new_question,
-          messages: messages,
-          sessionID: data.userData.sessionID,
-        })
+      updateUserDataInSessionStorage(
+        messages,
+        contexts,
+        latest_new_question,
+        sessionID
       );
     })
     .then(() => {
       scrollToBottom();
     })
     .catch((error) => {
+      console.log(error);
       removeLoading();
       createBotMessage("Something went wrong ...", false);
       scrollToBottom();
     });
+}
+
+function fetchTest() {
+  const x = fetchRetry(
+    "http://aps105.ece.utoronto.ca:8090/api/v1/dummyresponse",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).then((res) => console.log(res));
 }
 
 function fetchRetry(url, options, retries = 3) {
@@ -174,7 +205,7 @@ function fetchRetry(url, options, retries = 3) {
 // Chat Front End
 function createUserMessage(message) {
   const newDiv = document.createElement("div");
-  newDiv.className = "d-flex flex-row justify-content-end mt-0";
+  newDiv.className = "d-flex flex-row justify-content-end mt-3";
   newDiv.id = "user-message";
   newDiv.style.minHeight = "auto";
 
@@ -215,13 +246,13 @@ function createBotMessage(message, is_markdown) {
 function createChooseButtons() {
   // Create New Question and Follow Up question
   const newDiv = document.createElement("div");
-  newDiv.className = "d-flex flex-row justify-content-start mt-1";
+  newDiv.className = "justify-content-start mt-3";
   newDiv.id = "bot-message-choose";
   newDiv.style.height = "auto";
 
   const newDiv1 = document.createElement("div");
   newDiv1.className = "d-flex flex-row";
-  newDiv1.style.gap = "20px";
+  newDiv1.style.gap = "10px";
 
   const buttons = [
     { text: "followup", id: "followup-question" },
@@ -240,6 +271,25 @@ function createChooseButtons() {
   newDiv.appendChild(newDiv1);
   document.getElementById("chat").appendChild(newDiv);
   document.getElementById("userInput").disabled = true;
+}
+
+function createReference(chapterName, chapterNumber, sectionName) {
+  const newDiv = document.createElement("div");
+  newDiv.className = "justify-content-start mt-0 rounded-3 shadow-2-strong";
+  newDiv.style.backgroundColor = "#f8f9fa";
+  newDiv.id = "reference";
+
+  var text = "Read more in: <br/>";
+
+  sectionName.forEach((name) => {
+    text += getReferenceHTML(chapterNumber, chapterName, name) + "<br/>";
+  });
+  const paragraph = document.createElement("p");
+  paragraph.className = "p-2 me-0 justify-content-center";
+  paragraph.id = "reference";
+  paragraph.innerHTML = text;
+  newDiv.appendChild(paragraph);
+  document.getElementById("chat").appendChild(newDiv);
 }
 
 function handleChooseButtonClick(buttonID) {
@@ -280,6 +330,7 @@ function scrollToBottom() {
 // Actions
 function showChat() {
   const chatBox = document.getElementById("chat-box");
+  // chatBox.style.display = "block";
   chatBox.classList.remove("hide");
   chatBox.classList.add("show");
   var input = document.getElementById("userInput");
@@ -297,7 +348,7 @@ function clearChat() {
   // Deletes the messages and hide the chat
   const chats = document.getElementById("chat");
   chats.innerHTML = "";
-  // Input is enabled
+  // Make sure input is enabled
   const input = document.getElementById("userInput");
   input.disabled = false;
   // Reset Chat history
@@ -317,4 +368,55 @@ function hideChat() {
   const chatBox = document.getElementById("chat-box");
   // chatBox.style.display = "none";
   chatBox.classList.add("hide");
+}
+
+function getReferenceHTML(chapterNumber, chapterName, sectionName) {
+  const baseURL = window.location.origin;
+  const url =
+    baseURL +
+    "/chapters/" +
+    chapterNumber +
+    "-" +
+    chapterName +
+    "/" +
+    sectionName +
+    ".html";
+  return `<a href=${url}>${reformatChapterNumber(
+    chapterNumber
+  )} - ${firstletterUpperCase(chapterName)}: ${firstletterUpperCase(
+    sectionName,
+    (splitChar = "-")
+  )}</a>`;
+}
+
+function setLatestReference(chapterNumber, chapterName, sectionName, index) {
+  if (sessionStorage.getItem("latestReference") === null) {
+    sessionStorage.setItem(
+      "latestReference",
+      JSON.stringify([{ chapterName, chapterNumber, sectionName, index }])
+    );
+  } else {
+    const latestReference = JSON.parse(
+      sessionStorage.getItem("latestReference")
+    );
+    latestReference.push({ chapterName, chapterNumber, sectionName, index });
+    sessionStorage.setItem("latestReference", JSON.stringify(latestReference));
+  }
+}
+
+function reformatChapterNumber(chapterNumber) {
+  // chapterNumber: "chapter01" -> "Chapter 01"
+  var chapter = chapterNumber.slice(0, -2);
+  var number = chapterNumber.slice(-2);
+
+  chapter = chapter.charAt(0).toUpperCase() + chapter.slice(1);
+  return chapter + " " + number;
+}
+
+function firstletterUpperCase(string, splitChar = " ") {
+  const words = string.split(splitChar);
+  words.forEach((word, index) => {
+    words[index] = word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  return words.join(splitChar);
 }

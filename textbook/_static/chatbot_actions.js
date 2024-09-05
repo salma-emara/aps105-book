@@ -175,18 +175,6 @@ function getResponse() {
     });
 }
 
-function fetchTest() {
-  const x = fetchRetry(
-    "http://aps105.ece.utoronto.ca:8090/api/v1/dummyresponse",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  ).then((res) => console.log(res));
-}
-
 function fetchRetry(url, options, retries = 3) {
   return fetch(url, options)
     .then((res) => {

@@ -354,7 +354,6 @@ function closeChat() {
 function hideChat() {
   // Hides the chat only
   const chatBox = document.getElementById("chat-box");
-  // chatBox.style.display = "none";
   chatBox.classList.add("hide");
 }
 

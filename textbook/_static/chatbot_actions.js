@@ -342,6 +342,7 @@ function clearChat() {
   // Reset Chat history
   const sessionID = JSON.parse(sessionStorage.getItem("userData"))["sessionID"];
   updateUserDataInSessionStorage([], [], "", sessionID);
+  sessionStorage.setItem("latestReference", JSON.stringify([]));
 }
 
 function closeChat() {

@@ -431,6 +431,7 @@ function getReferenceHTML(chapterNumber, chapterName, sectionName) {
   if (!validSections.includes(sectionName)) {
     return "";
   }
+  chapterNumber = validateChapterNum(chapterNumber);
   const baseURL = window.location.origin;
   const url =
     baseURL +
@@ -479,4 +480,23 @@ function firstletterUpperCase(string, splitChar = " ") {
     words[index] = word.charAt(0).toUpperCase() + word.slice(1);
   });
   return words.join(splitChar);
+}
+
+function checkIfValidChapter(chapterNumber) {
+  const regex = /^chapter\d{2}$/;
+  return regex.test(chapterNumber);
+}
+
+function validateChapterNum(chapterNum) {
+  if (checkIfValidChapter(chapterNum)) {
+    return chapterNum;
+  } else {
+    var number = chapterNum.match(/\d+/);
+    number = parseInt(number);
+    if (number < 10) {
+      return `chapter0${number}`;
+    } else {
+      return `chapter${number}`;
+    }
+  }
 }

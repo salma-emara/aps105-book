@@ -312,7 +312,9 @@ function removeLoading() {
 function scrollToBottom() {
   // Scroll to the bottom of the chat
   const parent = document.getElementById("chat");
-  parent.scrollTop = parent.scrollHeight;
+  setTimeout(() => {
+    parent.scrollTop = parent.scrollHeight;
+  }, 100);
 }
 
 // Actions

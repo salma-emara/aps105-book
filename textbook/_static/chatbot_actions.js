@@ -273,8 +273,14 @@ function createReference(chapterName, chapterNumber, sectionName) {
   var text = "Read more in: <br/>";
 
   sectionName.forEach((name) => {
-    text += getReferenceHTML(chapterNumber, chapterName, name) + "<br/>";
+    const reference = getReferenceHTML(chapterNumber, chapterName, name);
+    if (reference !== "") {
+      text += reference + "<br/>";
+    }
   });
+  if (text === "Read more in: <br/>") {
+    return;
+  }
   const paragraph = document.createElement("p");
   paragraph.className = "p-2 me-0 justify-content-center";
   paragraph.id = "reference";
@@ -364,6 +370,67 @@ function hideChat() {
 }
 
 function getReferenceHTML(chapterNumber, chapterName, sectionName) {
+  const validSections = [
+    "pointers-to-data-structure",
+    "goldbach-conjecture-example",
+    "math-library",
+    "what-are-arrays",
+    "main-memory",
+    "sequential-search",
+    "recursion-math",
+    "debugging-loops",
+    "why-how-dynamic-alloc",
+    "exercises",
+    "do-while",
+    "pass-2d-functions",
+    "form-linked-list",
+    "what-are-strings",
+    "storing-data",
+    "scope",
+    "bubble-sort",
+    "binary-search-trees-functions",
+    "recursion-in-patterns",
+    "how-to-use-pointers",
+    "2d-dynamic-memory-alloc",
+    "delete-nodes",
+    "why-linked-lists",
+    "data-types",
+    "nested-loops",
+    "array-of-strings",
+    "simple-C-code",
+    "why-arrays",
+    "quick-sort",
+    "why-pointers",
+    "operations",
+    "arrays-functions",
+    "what-are-binary-trees",
+    "string-functions",
+    "variable-scope",
+    "what-are-pointers",
+    "nested-if",
+    "functions",
+    "multiple-conditions",
+    "basic-structure",
+    "binary-search",
+    "pass-more-values",
+    "why-2d",
+    "input-output-strings",
+    "insertion-sort",
+    "intro",
+    "dev-cycle",
+    "selection-sort",
+    "for-loop",
+    "communicate-from-function",
+    "while",
+    "what-data-structure",
+    "random-number",
+    "recursion-in-arrays",
+    "if-statement",
+    "insert-find-observe-into-linkedlist",
+  ];
+  if (!validSections.includes(sectionName)) {
+    return "";
+  }
   const baseURL = window.location.origin;
   const url =
     baseURL +

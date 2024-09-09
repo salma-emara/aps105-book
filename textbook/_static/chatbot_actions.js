@@ -75,6 +75,9 @@ function renderPrevChats() {
       }
       if (i == messages.length - 1 && messages[i]["role"] == "assistant") {
         createChooseButtons();
+      } else if (i == messages.length - 1 && messages[i]["role"] == "user") {
+        document.getElementById("userInput").disabled = true;
+        getResponse();
       }
     }
     is_pre_chat_rendered = true;

@@ -323,7 +323,7 @@ function scrollToBottom() {
   const parent = document.getElementById("chat");
   setTimeout(() => {
     parent.scrollTop = parent.scrollHeight;
-  }, 100);
+  }, 500);
 }
 
 // Actions

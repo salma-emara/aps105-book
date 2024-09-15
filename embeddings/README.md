@@ -44,7 +44,7 @@ Optional (if using FAISS):
 1. Ensure your HTML files are placed in the `textbook/_build/html/chapters` directory.
 2. Run the script:
     ```bash
-    python generate.py
+    python ./embeddings/generate.py
     ```
 
 ## Configuration
@@ -92,4 +92,4 @@ The script generates several output files in the `./embeddings/outputs` director
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GPL-3.0 license.

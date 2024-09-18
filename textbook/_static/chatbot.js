@@ -18,7 +18,29 @@ document.write(`<head>
   <script src="chatbot_actions.js"></script>
 
   <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-</head>
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [
+          ["\\(", "\\)"],
+          ["$", "$"],
+        ], // Allow \( ... \) and $ ... $
+        displayMath: [
+          ["$$", "$$"],
+          ["\\[", "\\]"],
+        ], // Display math environments
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  </script>
+  </head>
 
 <body>
   <script

@@ -225,7 +225,11 @@ function createBotMessage(message, is_markdown) {
     paragraph.className = "small p-2 me-0 mb-5 rounded-3 bg-body-tertiary";
     newDiv1.appendChild(paragraph);
   } else {
-    newDiv1.innerHTML = `<md-block>${message}</md-block>`;
+    const mdBlock = document.createElement("md-block");
+    const new_message = escapeLatex(message);
+    mdBlock.innerHTML = message;
+    newDiv1.appendChild(mdBlock);
+    MathJax.typesetPromise([mdBlock]);
   }
 
   newDiv.appendChild(newDiv1);
@@ -499,4 +503,8 @@ function validateChapterNum(chapterNum) {
       return `chapter${number}`;
     }
   }
+}
+
+function escapeLatex(latexString) {
+  return latexString.replace(/\\/g, "\\\\");
 }

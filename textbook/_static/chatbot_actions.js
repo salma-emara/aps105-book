@@ -226,7 +226,6 @@ function createBotMessage(message, is_markdown) {
     newDiv1.appendChild(paragraph);
   } else {
     const mdBlock = document.createElement("md-block");
-    const new_message = escapeLatex(message);
     mdBlock.innerHTML = message;
     newDiv1.appendChild(mdBlock);
     MathJax.typesetPromise([mdBlock]);

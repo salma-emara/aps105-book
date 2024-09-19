@@ -47,7 +47,6 @@ document.write(`<head>
     src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"
   ></script>
   <section>
-  <div><button onclick="test()">TEST</button></div>
     <div class="float-chat-container hide" id="chat-box" style="height: auto">
       <div class="row d-flex">
         <div class="col-md-8 col-lg-6 col-xl-4" style="width: 100%">

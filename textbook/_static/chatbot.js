@@ -1,4 +1,6 @@
-document.write(`<head>
+document.write(`
+  <!DOCTYPE html>
+  <head>
   <!-- Font Awesome -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -18,27 +20,22 @@ document.write(`<head>
   <script src="chatbot_actions.js"></script>
 
   <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+  <!-- Include KaTeX CSS and JS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+  />
   <script
-    id="MathJax-script"
-    async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
   ></script>
-  <script type="text/javascript">
-    window.MathJax = {
-      tex: {
-        inlineMath: [
-          ["$", "$"],
-        ], // $ ... $
-        displayMath: [
-          ["$$", "$$"],
-          ["\\[", "\\]"],
-        ], // Display math environments
-      },
-      svg: {
-        fontCache: "global",
-      },
-    };
-  </script>
+  <!-- KaTeX Auto-render extension -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  ></script>
+  <!-- Include Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </head>
 
 <body>

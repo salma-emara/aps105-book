@@ -208,7 +208,6 @@ function createUserMessage(message) {
 }
 
 function createBotMessage(message, is_markdown) {
-  var message = message.replaceAll("<", "&lt");
   const newDiv = document.createElement("div");
   newDiv.className = "d-flex flex-row justify-content-start mt-0";
   newDiv.id = "bot-message";
@@ -225,10 +224,17 @@ function createBotMessage(message, is_markdown) {
     paragraph.className = "small p-2 me-0 mb-5 rounded-3 bg-body-tertiary";
     newDiv1.appendChild(paragraph);
   } else {
-    const mdBlock = document.createElement("md-block");
-    mdBlock.innerHTML = message;
-    newDiv1.appendChild(mdBlock);
-    MathJax.typesetPromise([mdBlock]);
+    const markdownBlock = document.createElement("div");
+    const htmlContent = marked.parse(message);
+    markdownBlock.innerHTML = htmlContent;
+    renderMathInElement(markdownBlock, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true }, // Block math using $$...$$
+        { left: "$", right: "$", display: false }, // Inline math using $...$
+      ],
+      throwOnError: false, // Prevent errors from stopping rendering
+    });
+    newDiv1.appendChild(markdownBlock);
   }
 
   newDiv.appendChild(newDiv1);

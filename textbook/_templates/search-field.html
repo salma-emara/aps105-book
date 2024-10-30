@@ -62,38 +62,49 @@
 </style>
 
 <script>
+  // document.addEventListener('DOCContentLoaded', function() {
   const keywordSearchTab = document.getElementById('keyword-search-tab');
   const semanticSearchTab = document.getElementById('semantic-search-tab');
   const keywordSearchForm = document.getElementById('keyword-search-form');
   const semanticSearchForm = document.getElementById('semantic-search-form');
 
-  keywordSearchTab.addEventListener('click', function() {
-    keywordSearchForm.classList.remove('hide-search-bar');
-    semanticSearchForm.classList.add('hide-search-bar');
-    keywordSearchTab.classList.add('active');
-    semanticSearchTab.classList.remove('active');
-  });
+  function setSearchBarState(isKeyword) {
+    if (isKeyword) {
+      keywordSearchForm.classList.remove('hide-search-bar');
+      semanticSearchForm.classList.add('hide-search-bar');
+      keywordSearchTab.classList.add('active');
+      semanticSearchTab.classList.remove('active');
+      localStorage.setItem('lastSearchType', 'keyword');
+    } else {
+      keywordSearchForm.classList.add('hide-search-bar');
+      semanticSearchForm.classList.remove('hide-search-bar');
+      keywordSearchTab.classList.remove('active');
+      semanticSearchTab.classList.add('active');
+      localStorage.setItem('lastSearchType', 'semantic');
+    }
+  }
 
-  semanticSearchTab.addEventListener('click', function() {
-    keywordSearchForm.classList.add('hide-search-bar');
-    semanticSearchForm.classList.remove('hide-search-bar');
-    keywordSearchTab.classList.remove('active');
-    semanticSearchTab.classList.add('active');
-  });
+  keywordSearchTab.addEventListener('click', () => setSearchBarState(true));
+  semanticSearchTab.addEventListener('click', () => setSearchBarState(false));
 
-  // Set initial state to show semantic search
-  keywordSearchForm.classList.add('hide-search-bar');
-  semanticSearchForm.classList.remove('hide-search-bar');
-  keywordSearchTab.classList.remove('active');
-  semanticSearchTab.classList.add('active');
+  const lastSearchType = localStorage.getItem('lastSearchType');
+    if (lastSearchType === 'keyword') {
+      setSearchBarState(true); 
+    } else {
+      setSearchBarState(false);
+    }
+  // });
 </script>
   
 <script type="module">
-  import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js';
 
   async function preloadModel() {
     try {
       console.log("Preloading model...");
+
+      // Dynamically import the pipeline from the CDN within the preload function
+      const {pipeline} = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js');
+
       // Initialize the model pipeline (e.g., feature extraction pipeline for embeddings)
       const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
       console.log("Model preloaded successfully.");

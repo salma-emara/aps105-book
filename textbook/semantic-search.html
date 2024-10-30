@@ -46,7 +46,6 @@
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="_static/code-runner-setup.js"></script>
-    <script src="_static/service-worker.js"></script>
     <script src="_static/highlight_scroll.js"></script>
     <script src="_static/app.js"></script>
     <script src="_static/toml_to_js_convertor.js"></script>
@@ -119,7 +118,7 @@ const thebe_selector_output = ".output, .cell_output"
 <!-- Custom Semantic Search Bar -->
 <form class="bd-search d-flex align-items-center" action="#" method="get" id="semantic-search-form">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="what is a pointer" aria-label="Semantically Search this book..." autocomplete="off">
+  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Why pointer are so fun?" aria-label="Semantically Search this book..." autocomplete="off">
 </form>
 
 <!-- Tab Bar -->
@@ -171,48 +170,78 @@ const thebe_selector_output = ".output, .cell_output"
 </style>
 
 <script>
+  // document.addEventListener('DOCContentLoaded', function() {
   const keywordSearchTab = document.getElementById('keyword-search-tab');
   const semanticSearchTab = document.getElementById('semantic-search-tab');
   const keywordSearchForm = document.getElementById('keyword-search-form');
   const semanticSearchForm = document.getElementById('semantic-search-form');
 
-  keywordSearchTab.addEventListener('click', function() {
-    keywordSearchForm.classList.remove('hide-search-bar');
-    semanticSearchForm.classList.add('hide-search-bar');
-    keywordSearchTab.classList.add('active');
-    semanticSearchTab.classList.remove('active');
-  });
-
-  semanticSearchTab.addEventListener('click', function() {
-    keywordSearchForm.classList.add('hide-search-bar');
-    semanticSearchForm.classList.remove('hide-search-bar');
-    keywordSearchTab.classList.remove('active');
-    semanticSearchTab.classList.add('active');
-  });
-
-  // Set initial state to show semantic search
-  keywordSearchForm.classList.add('hide-search-bar');
-  semanticSearchForm.classList.remove('hide-search-bar');
-  keywordSearchTab.classList.remove('active');
-  semanticSearchTab.classList.add('active');
-</script>
-
-<script>
-  // Check if Service Workers are supported
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('_static/service-worker.js').then(
-        function (registration) {
-          console.log('Service Worker registration successful with scope: ', registration.scope);
-        },
-        function (err) {
-          console.log('Service Worker registration failed: ', err);
-        }
-      );
-    });
+  function setSearchBarState(isKeyword) {
+    if (isKeyword) {
+      keywordSearchForm.classList.remove('hide-search-bar');
+      semanticSearchForm.classList.add('hide-search-bar');
+      keywordSearchTab.classList.add('active');
+      semanticSearchTab.classList.remove('active');
+      localStorage.setItem('lastSearchType', 'keyword');
+    } else {
+      keywordSearchForm.classList.add('hide-search-bar');
+      semanticSearchForm.classList.remove('hide-search-bar');
+      keywordSearchTab.classList.remove('active');
+      semanticSearchTab.classList.add('active');
+      localStorage.setItem('lastSearchType', 'semantic');
+    }
   }
-  </script>
-  <nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+
+  keywordSearchTab.addEventListener('click', () => setSearchBarState(true));
+  semanticSearchTab.addEventListener('click', () => setSearchBarState(false));
+
+  const lastSearchType = localStorage.getItem('lastSearchType');
+    if (lastSearchType === 'keyword') {
+      setSearchBarState(true); 
+    } else {
+      setSearchBarState(false);
+    }
+  
+  if (window.location.pathname.includes("semantic-search.html")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    const semanticSearchInput = document.getElementById('semantic-search-input');
+    semanticSearchInput.value = query;
+  };
+  // });
+</script>
+  
+<script type="module">
+
+  async function preloadModel() {
+    try {
+      console.log("Preloading model...");
+
+      // Dynamically import the pipeline from the CDN within the preload function
+      const {pipeline} = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js');
+
+      // Initialize the model pipeline (e.g., feature extraction pipeline for embeddings)
+      const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+      console.log("Model preloaded successfully.");
+
+      // Mark model as preloaded in the session
+      sessionStorage.setItem("modelPreloaded", "true");
+    } catch (error) {
+      console.error("Error preloading model:", error);
+    }
+  }
+
+  // Defer model preload until all page content is fully loaded
+  window.addEventListener("load", () => {
+    // Check if we're on `semantic-search.html` or if the model has already been preloaded
+    if (window.location.pathname.includes("semantic-search.html") || sessionStorage.getItem("modelPreloaded")) {
+      console.log("Skipping model preload for this page or session.");
+    } else {
+      // Delay model preload 
+      setTimeout(preloadModel, 0);
+    }
+  });
+</script><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -1002,7 +1031,7 @@ title="Print to PDF"
 </div>
 <script type="module">
 // min.js is enough to use model just for embed
-import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js';
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js';
 // ONNX is unecessary for this project for sympilicity
 // import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
 
@@ -1150,8 +1179,8 @@ async function performSemanticSearch(query) {
   }
   // Check if lengths match
   if (numEmbeddings !== textData.length) {
-    console.log(metadata.length);
-    console.log(textData.length);
+    // console.log(metadata.length);
+    // console.log(textData.length);
     throw new Error('Mismatch in lengths: embeddings, embedding_to_location, or all_text_data have different sizes.');
   }
 

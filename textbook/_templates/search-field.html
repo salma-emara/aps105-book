@@ -87,22 +87,6 @@
   keywordSearchTab.classList.remove('active');
   semanticSearchTab.classList.add('active');
 </script>
-
-<script>
-  // Check if Service Workers are supported
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/service-worker.js').then(
-        function (registration) {
-          console.log('Service Worker registration successful with scope: ', registration.scope);
-        },
-        function (err) {
-          console.log('Service Worker registration failed: ', err);
-        }
-      );
-    });
-  }
-  </script>
   
   <script type="module">
     import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0.min.js';

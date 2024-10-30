@@ -88,24 +88,31 @@
   semanticSearchTab.classList.add('active');
 </script>
   
-  <script type="module">
-    import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0.min.js';
-  
-    async function preloadModel() {
-      try {
-        console.log("Preloading model...");
-        // Initialize the model pipeline (e.g., feature extraction pipeline for embeddings)
-        const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-        console.log("Model preloaded successfully.");
-      } catch (error) {
-        console.error("Error preloading model:", error);
-      }
+<script type="module">
+  import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js';
+
+  async function preloadModel() {
+    try {
+      console.log("Preloading model...");
+      // Initialize the model pipeline (e.g., feature extraction pipeline for embeddings)
+      const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+      console.log("Model preloaded successfully.");
+
+      // Mark model as preloaded in the session
+      sessionStorage.setItem("modelPreloaded", "true");
+    } catch (error) {
+      console.error("Error preloading model:", error);
     }
-  
-    // Defer model preload until all page content is fully loaded
-    window.addEventListener("load", () => {
+  }
+
+  // Defer model preload until all page content is fully loaded
+  window.addEventListener("load", () => {
+    // Check if we're on `semantic-search.html` or if the model has already been preloaded
+    if (!window.location.pathname.includes("semantic-search.html") && !sessionStorage.getItem("modelPreloaded")) {
       // Delay model load further if you want to absolutely minimize any impact on performance
       setTimeout(preloadModel, 0);
-    });
-  </script>
-  
+    } else {
+      console.log("Skipping model preload for this page or session.");
+    }
+  });
+</script>

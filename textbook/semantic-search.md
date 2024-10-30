@@ -23,9 +23,14 @@ orphan: true
 </div>
 
 <script type="module">
-import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
-import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
+// min.js is enough to use model just for embed
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js';
+// ONNX is unecessary for this project for sympilicity
+// import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
 
+const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2';
+const EMBEDDING_DIMENSION = 384;
+const TOP_K = 10;
 document.addEventListener("DOMContentLoaded", function() {
   // console.log("DOM fully loaded and parsed");
 
@@ -70,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 async function loadSemantic(modelName) {
   try {
-    // console.log(`Loading model: ${modelName}`);
-    const extractor = await pipeline('feature-extraction', modelName, { ort });
-    // console.log("Model loaded successfully");
+    // console.time(`Loading model: ${modelName}`);
+    const extractor = await pipeline('feature-extraction', modelName);
+    // console.timeEnd("Model loaded successfully");
     return extractor;
   } catch (error) {
     console.error("Error loading model:", error);
@@ -89,16 +94,19 @@ async function loadSemantic(modelName) {
  *
  * @param {Object} extractor - The feature extractor.
  * @param {string} text - The query text to embed.
- * @returns {Promise<Array<number>>} A promise that resolves to the query embedding.
+ * @returns {Promise<Float32Array>} A promise that resolves to the query embedding.
  */
 async function embedQuery(extractor, text) {
   try {
     // console.log(`Embedding query: ${text}`);
-    const output = await extractor([text], { pooling: 'mean', normalize: true });
+    const output = await extractor(text, { pooling: 'mean', normalize: true });
     // console.log("Query embedded successfully:", output);
-    return output.tolist()[0]; // Convert Tensor to nested array and return the first embedding
+    const queryEmbedding = new Float32Array(output[0]);
+    return queryEmbedding; // This line will be output.tolist()[0]; if we used onnx ort
   } catch (error) {
     console.error("Error embedding query:", error);
+
+    // DIsplay error message on the page
     const progressElement = document.getElementById('search-progress');
     if (progressElement) {
       progressElement.innerText = 'Error embedding query. Please try again.';
@@ -122,7 +130,7 @@ async function performSemanticSearch(query) {
   }
 
   // Load the semantic model
-  const extractor = await loadSemantic('Xenova/all-MiniLM-L6-v2');
+  const extractor = await loadSemantic(EMBEDDING_MODEL);
   if (progressElement) {
     progressElement.innerText = 'Embedding query...';
     // console.log('Progress: Embedding query...');
@@ -136,15 +144,46 @@ async function performSemanticSearch(query) {
     // console.log('Progress: Fetching embeddings and metadata...');
   }
 
-  // Fetch embeddings and metadata with cache-busting parameter
-  const timestamp = new Date().getTime();
+  // // Fetch embeddings and metadata with cache-busting parameter
+  // //const timestamp = new Date().getTime();
+  // // Asynchronous Fetching: use Promise.all to fetch embeddings, metadata, and textData simultaneously.
+  // const [embeddings, metadata, textData] = await Promise.all([
+  //   fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json()),
+  //   fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json()),
+  //   fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json())
+  // ]);
+  
+  // No need for caching as Netlify will invalid cache on deploy
   // Asynchronous Fetching: use Promise.all to fetch embeddings, metadata, and textData simultaneously.
-  const [embeddings, metadata, textData] = await Promise.all([
-    fetch(`outputs/embeddings.json?t=${timestamp}`).then(res => res.json()),
-    fetch(`outputs/embedding_to_location.json?t=${timestamp}`).then(res => res.json()),
-    fetch(`outputs/all_text_data.json?t=${timestamp}`).then(res => res.json())
+  const [embeddingsArrayBuffer, metadata, textData] = await Promise.all([
+    fetch(`outputs/embeddings.bin`).then(res => res.arrayBuffer()),
+    fetch(`outputs/embedding_to_location.json`).then(res => res.json()),
+    fetch(`outputs/all_text_data.json`).then(res => res.json())
   ]);
+  
+  const embeddingsArray = new Float32Array(embeddingsArrayBuffer);
 
+  // Calculate the number of embeddings
+  const numEmbeddings = embeddingsArray.length / EMBEDDING_DIMENSION;
+
+  // Check if embeddingsArray length is divvisible by EMBEDDING_DIMENSION
+  if (!Number.isInteger(numEmbeddings)) {
+    throw new Error ('Embedding data is corrupted ot has an unexpected length.');
+  }
+  // Check if lengths match
+  if (numEmbeddings !== textData.length) {
+    // console.log(metadata.length);
+    // console.log(textData.length);
+    throw new Error('Mismatch in lengths: embeddings, embedding_to_location, or all_text_data have different sizes.');
+  }
+
+  const embeddings = [];
+  for (let i = 0; i < numEmbeddings; i++) {
+    const startIdx = i * EMBEDDING_DIMENSION; // This is inclusive
+    const endIdx = startIdx + EMBEDDING_DIMENSION; // This is exclusive
+    // subarray create views into Float32Array without copying data
+    embeddings.push(embeddingsArray.subarray(startIdx, endIdx)); 
+  }
   if (progressElement) {
     progressElement.innerText = 'Calculating similarities...';
     // console.log('Progress: Calculating similarities...');
@@ -190,8 +229,8 @@ async function performSemanticSearch(query) {
 /**
  * Calculates the cosine similarities between a query embedding and an array of embeddings.
  *
- * @param {Array<number>} queryEmbedding - The embedding of the query.
- * @param {Array<Array<number>>} embeddings - The array of embeddings to compare against.
+ * @param {Float32Array} queryEmbedding - The embedding of the query.
+ * @param {Array<Float32Array>} embeddings - The array of embeddings to compare against.
  * @returns {Promise<Array<Object>>} A promise that resolves to an array of the top 10 similarities, each with an index and similarity score.
  */
 async function getSimilarities(queryEmbedding, embeddings) {
@@ -213,14 +252,14 @@ async function getSimilarities(queryEmbedding, embeddings) {
   // console.log("Similarities calculated:", results.slice(0, 10));
 
   // Return the top 10 similarities
-  return results.slice(0, 10);
+  return results.slice(0, TOP_K);
 }
 
 /**
  * Calculates the cosine similarity between two embeddings.
  *
- * @param {Array<number>} embedding1 - The first embedding.
- * @param {Array<number>} embedding2 - The second embedding.
+ * @param {Float32Array} embedding1 - The first embedding.
+ * @param {Float32Array} embedding2 - The second embedding.
  * @returns {number} The cosine similarity between the two embeddings.
  */
 function calculateCosineSimilarity(embedding1, embedding2) {
@@ -230,9 +269,11 @@ function calculateCosineSimilarity(embedding1, embedding2) {
 
   // Calculate dot product and norms
   for (let i = 0; i < embedding1.length; i++) {
-    dotProduct += embedding1[i] * embedding2[i];
-    normA += embedding1[i] ** 2;
-    normB += embedding2[i] ** 2;
+    const val1 = embedding1[i];
+    const val2 = embedding2[i];
+    dotProduct += val1 * val2;
+    normA += val1 * val1;
+    normB += val2 * val2;
   }
 
   // Compute cosine similarity

@@ -10,7 +10,7 @@
 <!-- Custom Semantic Search Bar -->
 <form class="bd-search d-flex align-items-center" action="{{ pathto('semantic-search') }}" method="get" id="semantic-search-form">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Why pointers are so fun?" aria-label="Semantically Search this book..." autocomplete="off">
+  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Why pointer are so fun?" aria-label="Semantically Search this book..." autocomplete="off">
 </form>
 
 <!-- Tab Bar -->
@@ -93,6 +93,13 @@
     } else {
       setSearchBarState(false);
     }
+  
+  if (window.location.pathname.includes("semantic-search.html")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    const semanticSearchInput = document.getElementById('semantic-search-input');
+    semanticSearchInput.value = query;
+  };
   // });
 </script>
   

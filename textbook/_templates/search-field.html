@@ -9,7 +9,7 @@
 
 <!-- Custom Semantic Search Bar -->
 <form class="bd-search d-flex align-items-center" action="{{ pathto('semantic-search') }}" method="get" id="semantic-search-form">
-  <i class="icon fas fa-search"></i>
+  <i class="icon fas fa-search-plus"></i>
   <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Why pointer are so fun?" aria-label="Semantically Search this book..." autocomplete="off">
 </form>
 
@@ -35,18 +35,24 @@
     flex: 1; /* Ensure buttons spread across the entire row */
     padding: 5px 10px !important; /* Reduce padding inside the buttons */
     margin: 0 5px;
-    background-color: #1a73e8 !important; /* Jupyter Book blue */
-    color: white !important;
+    background-color: #cfe3fc !important; /* Jupyter Book blue */
+    color: #777 !important; /* Dark grey text */
     border: none !important;
     cursor: pointer !important;
     border-radius: 5px !important;
-    font-size: 14px !important; /* Reduce font size if needed */
+    font-size: 14px !important; /* Adjust font size */
     text-align: center; /* Center the text inside the button */
+    box-sizing: border-box; /* Ensure padding and border do not affect button size */
+    box-shadow: inset 0 0 0 2px white; /* White box shadow to mimic outline */
+    transition: all 0.3s ease;
   }
 
-  /* Style the active button */
+  /* Style the active button with a light cyan box shadow */
   .tab-button.active {
     background-color: #185abc !important; /* Darker blue for active state */
+    font-size: 15px;
+    color: white !important;
+    box-shadow: inset 0 0 0 3px #b3e5fc; /* Sky Light Cyan shadow to mimic outline */
   }
 
   /* Ensure the search forms are styled correctly */

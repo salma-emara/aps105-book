@@ -24,9 +24,9 @@ orphan: true
 
 <script type="module">
 // min.js is enough to use model just for embed
-import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js';
 // ONNX is unecessary for this project for sympilicity
-import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
+// import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
 
 const EMBEDDING_MODEL = 'Xenova/all-MiniLM-L6-v2';
 const EMBEDDING_DIMENSION = 384;
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
 async function loadSemantic(modelName) {
   try {
     // console.time(`Loading model: ${modelName}`);
-    const extractor = await pipeline('feature-extraction', modelName, {ort});
+    const extractor = await pipeline('feature-extraction', modelName);
     // console.timeEnd("Model loaded successfully");
     return extractor;
   } catch (error) {
@@ -101,7 +101,7 @@ async function embedQuery(extractor, text) {
     // console.log(`Embedding query: ${text}`);
     const output = await extractor(text, { pooling: 'mean', normalize: true });
     // console.log("Query embedded successfully:", output);
-    const queryEmbedding = new Float32Array(output.tolist()[0]);
+    const queryEmbedding = new Float32Array(output[0]);
     return queryEmbedding; // This line will be output.tolist()[0]; if we used onnx ort
   } catch (error) {
     console.error("Error embedding query:", error);

@@ -218,7 +218,7 @@ const thebe_selector_output = ".output, .cell_output"
       console.log("Preloading model...");
 
       // Dynamically import the pipeline from the CDN within the preload function
-      const {pipeline} = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js');
+      const {pipeline} = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0');
 
       // Initialize the model pipeline (e.g., feature extraction pipeline for embeddings)
       const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');

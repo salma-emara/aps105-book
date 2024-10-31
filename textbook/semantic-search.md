@@ -24,7 +24,7 @@ orphan: true
 
 <script type="module">
 // min.js is enough to use model just for embed
-import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0/dist/transformers.min.js';
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0';
 // ONNX is unecessary for this project for sympilicity
 // import * as ort from 'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.js';
 

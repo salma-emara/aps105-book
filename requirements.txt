@@ -2,5 +2,5 @@ ipython==8.12
 jupyter-book==0.13.1
 matplotlib
 numpy
-attrs>=22.2.0
+attrs>=20.3,<22
 lxml[html_clean]

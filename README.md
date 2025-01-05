@@ -172,3 +172,18 @@ node ./textbook/_static/toml_to_js_convertor.js
 ```
 
 Build the book locally and ensure the quiz is behaving as expected.
+
+### License
+
+This project is licensed under the GPL-3.0 license. However, it includes components licensed under the Apache License 2.0, specifically the `all-MiniLM-L6-v2` model from Hugging Face.
+
+- The GPL-3.0 license applies to the project as a whole.
+- The `all-MiniLM-L6-v2` model is licensed under the Apache License 2.0, which is compatible with GPL-3.0 and is included here accordingly.
+
+By using this project, you agree to the terms of the GPL-3.0 license for the overall project and the terms of the Apache License 2.0 for the `all-MiniLM-L6-v2` component.
+
+Note: The `all-MiniLM-L6-v2` model is provided "as-is" without any warranties, as per the terms of the Apache License 2.0.
+
+The model was obtained from [Hugging Face: sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/main), with the JavaScript version available [Xenova/all-MiniLM-L6-v2](https://huggingface.co/Xenova/all-MiniLM-L6-v2).
+
+For more information, see the full texts of the [GPL-3.0 License](LICENSE) and [Apache License 2.0](LICENSE.Apache-2.0) included in this repository.

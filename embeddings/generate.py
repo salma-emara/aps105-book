@@ -206,7 +206,8 @@ def main():
     # Convert embeddings to a numpy array
     embeddings_np = np.array(embeddings, dtype='float32')
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    save_to_json(embeddings_np.tolist(), os.path.join(OUTPUT_DIR, 'embeddings.json'))
+    embeddings_np.tofile(os.path.join(OUTPUT_DIR, 'embeddings.bin')) # tofile() wrties the array data to a binary file in raw format
+    print("Binary Data saved to " + OUTPUT_DIR + "embeddings.bin")
     save_to_json(embedding_to_location, os.path.join(OUTPUT_DIR, 'embedding_to_location.json'))
     save_to_json(all_text_data, os.path.join(OUTPUT_DIR, 'all_text_data.json'))
 

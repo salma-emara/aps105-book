@@ -672,3 +672,6 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
+This project also includes the `all-MiniLM-L6-v2` model, which is licensed under the Apache License 2.0. 
+See `LICENSE.Apache-2.0` for details.

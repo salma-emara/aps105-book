@@ -9,8 +9,8 @@
 
 <!-- Custom Semantic Search Bar -->
 <form class="bd-search d-flex align-items-center" action="{{ pathto('semantic-search') }}" method="get" id="semantic-search-form">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="what is a pointer" aria-label="Semantically Search this book..." autocomplete="off">
+  <i class="icon fas fa-search-plus"></i>
+  <input type="search" class="form-control" name="q" id="semantic-search-input" placeholder="Why pointer are so fun?" aria-label="Semantically Search this book..." autocomplete="off">
 </form>
 
 <!-- Tab Bar -->
@@ -35,18 +35,24 @@
     flex: 1; /* Ensure buttons spread across the entire row */
     padding: 5px 10px !important; /* Reduce padding inside the buttons */
     margin: 0 5px;
-    background-color: #1a73e8 !important; /* Jupyter Book blue */
-    color: white !important;
+    background-color: #cfe3fc !important; /* Jupyter Book blue */
+    color: #777 !important; /* Dark grey text */
     border: none !important;
     cursor: pointer !important;
     border-radius: 5px !important;
-    font-size: 14px !important; /* Reduce font size if needed */
+    font-size: 14px !important; /* Adjust font size */
     text-align: center; /* Center the text inside the button */
+    box-sizing: border-box; /* Ensure padding and border do not affect button size */
+    box-shadow: inset 0 0 0 2px white; /* White box shadow to mimic outline */
+    transition: all 0.3s ease;
   }
 
-  /* Style the active button */
+  /* Style the active button with a light cyan box shadow */
   .tab-button.active {
     background-color: #185abc !important; /* Darker blue for active state */
+    font-size: 15px;
+    color: white !important;
+    box-shadow: inset 0 0 0 3px #b3e5fc; /* Sky Light Cyan shadow to mimic outline */
   }
 
   /* Ensure the search forms are styled correctly */
@@ -62,28 +68,75 @@
 </style>
 
 <script>
+  // document.addEventListener('DOCContentLoaded', function() {
   const keywordSearchTab = document.getElementById('keyword-search-tab');
   const semanticSearchTab = document.getElementById('semantic-search-tab');
   const keywordSearchForm = document.getElementById('keyword-search-form');
   const semanticSearchForm = document.getElementById('semantic-search-form');
 
-  keywordSearchTab.addEventListener('click', function() {
-    keywordSearchForm.classList.remove('hide-search-bar');
-    semanticSearchForm.classList.add('hide-search-bar');
-    keywordSearchTab.classList.add('active');
-    semanticSearchTab.classList.remove('active');
-  });
+  function setSearchBarState(isKeyword) {
+    if (isKeyword) {
+      keywordSearchForm.classList.remove('hide-search-bar');
+      semanticSearchForm.classList.add('hide-search-bar');
+      keywordSearchTab.classList.add('active');
+      semanticSearchTab.classList.remove('active');
+      localStorage.setItem('lastSearchType', 'keyword');
+    } else {
+      keywordSearchForm.classList.add('hide-search-bar');
+      semanticSearchForm.classList.remove('hide-search-bar');
+      keywordSearchTab.classList.remove('active');
+      semanticSearchTab.classList.add('active');
+      localStorage.setItem('lastSearchType', 'semantic');
+    }
+  }
 
-  semanticSearchTab.addEventListener('click', function() {
-    keywordSearchForm.classList.add('hide-search-bar');
-    semanticSearchForm.classList.remove('hide-search-bar');
-    keywordSearchTab.classList.remove('active');
-    semanticSearchTab.classList.add('active');
-  });
+  keywordSearchTab.addEventListener('click', () => setSearchBarState(true));
+  semanticSearchTab.addEventListener('click', () => setSearchBarState(false));
 
-  // Set initial state to show semantic search
-  keywordSearchForm.classList.add('hide-search-bar');
-  semanticSearchForm.classList.remove('hide-search-bar');
-  keywordSearchTab.classList.remove('active');
-  semanticSearchTab.classList.add('active');
+  const lastSearchType = localStorage.getItem('lastSearchType');
+    if (lastSearchType === 'keyword') {
+      setSearchBarState(true); 
+    } else {
+      setSearchBarState(false);
+    }
+  
+  if (window.location.pathname.includes("semantic-search.html")) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    const semanticSearchInput = document.getElementById('semantic-search-input');
+    semanticSearchInput.value = query;
+  };
+  // });
+</script>
+  
+<script type="module">
+
+  async function preloadModel() {
+    try {
+      console.log("Preloading model...");
+
+      // Dynamically import the pipeline from the CDN within the preload function
+      const {pipeline} = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js');
+
+      // Initialize the model pipeline (e.g., feature extraction pipeline for embeddings)
+      const extractor = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+      console.log("Model preloaded successfully.");
+
+      // Mark model as preloaded in the session
+      sessionStorage.setItem("modelPreloaded", "true");
+    } catch (error) {
+      console.error("Error preloading model:", error);
+    }
+  }
+
+  // Defer model preload until all page content is fully loaded
+  window.addEventListener("load", () => {
+    // Check if we're on `semantic-search.html` or if the model has already been preloaded
+    if (!sessionStorage.getItem("modelPreloaded") && !window.location.pathname.includes("semantic-search.html")) {
+      // Delay model load further
+      setTimeout(preloadModel, 0);
+    } else {
+      console.log("Skipping model preload for this page or session.");
+    }
+  });
 </script>

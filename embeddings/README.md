@@ -81,7 +81,7 @@ Logging is set up to provide information on the script's progress and any potent
 
 The script generates several output files in the `./embeddings/outputs` directory:
 
-- `embeddings.json`: Contains the sentence embeddings.
+- `embeddings.bin`: Contains the sentence embeddings with a dimension of 384.
 - `embedding_to_location.json`: Maps each embedding to its corresponding URL and position in the text.
 - `all_text_data.json`: Contains all extracted sentences.
 
@@ -92,4 +92,13 @@ The script generates several output files in the `./embeddings/outputs` director
 
 ## License
 
-This project is licensed under the GPL-3.0 license.
+This project is licensed under the GPL-3.0 license. However, it includes components licensed under the Apache License 2.0, specifically the `all-MiniLM-L6-v2` model from Hugging Face.
+
+- The GPL-3.0 license applies to the project as a whole.
+- The `all-MiniLM-L6-v2` model is licensed under the Apache License 2.0, which is compatible with GPL-3.0 and is included here accordingly.
+
+By using this project, you agree to the terms of the GPL-3.0 license for the overall project and the terms of the Apache License 2.0 for the `all-MiniLM-L6-v2` component.
+
+Note: The `all-MiniLM-L6-v2` model is provided "as-is" without any warranties, as per the terms of the Apache License 2.0.
+
+The model was obtained from [Hugging Face: sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/tree/main), with the JavaScript version available [Xenova/all-MiniLM-L6-v2](https://huggingface.co/Xenova/all-MiniLM-L6-v2).

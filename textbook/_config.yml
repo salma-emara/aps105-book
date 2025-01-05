@@ -8,8 +8,8 @@ logo: logo.png
 only_build_toc_files: true
 
 sphinx:
-# Pydata: https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/index.html
-# Jupyter-Book: https://jupyterbook.org/en/stable/advanced/sphinx.html
+  # Pydata: https://pydata-sphinx-theme.readthedocs.io/en/latest/user_guide/index.html
+  # Jupyter-Book: https://jupyterbook.org/en/stable/advanced/sphinx.html
 
   recursive_update: true # suggested here https://jupyterbook.org/en/stable/advanced/sphinx.html#manual-sphinx-configuration
   config:
@@ -43,6 +43,8 @@ launch_buttons:
   # Add GitHub buttons to your book
   # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
+  extra_footer: |
+    <script src="../../_static/chatbot.js"/>
   use_issues_button: true
   use_repository_button: true
   #Add highlight and annotate feature
@@ -52,7 +54,6 @@ html:
     name: "sphinx_book_theme"
   extra_javascript:
     - "highlight_scroll.js" # this is for auto hightlight and scroll when jumped from semantic search result page
-
 parse:
   myst_enable_extensions:
     - dollarmath

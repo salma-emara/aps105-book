@@ -14,7 +14,7 @@ If you have been utilizing this textbook in your teaching, we kindly invite you 
 
 The textbook is being referred to in ELEX 2125: C Programming for Electronics at British Columbia Institute of Technology. Thanks to *Joselito Laguio* for adopting the textbook in his course.
 
-**Copyright 2022–2024 Salma Emara.** Released under the <a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License version 3.0 (GPL-3.0)</a>.
+**Copyright 2022–2025 Salma Emara.** Released under the <a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License version 3.0 (GPL-3.0)</a>.
 
 <a rel="license" href="https://www.gnu.org/licenses/gpl-3.0.html">
 <img alt="GNU General Public License version 3.0 (GPL-3.0)" style="border-width:0"

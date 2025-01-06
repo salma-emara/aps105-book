@@ -68,7 +68,7 @@
 </style>
 
 <script>
-  // document.addEventListener('DOCContentLoaded', function() {
+  // document.addEventListener('DOMContentLoaded', function() {
   const keywordSearchTab = document.getElementById('keyword-search-tab');
   const semanticSearchTab = document.getElementById('semantic-search-tab');
   const keywordSearchForm = document.getElementById('keyword-search-form');
@@ -77,13 +77,17 @@
   function setSearchBarState(isKeyword) {
     if (isKeyword) {
       keywordSearchForm.classList.remove('hide-search-bar');
+      keywordSearchForm.classList.add('d-flex');
       semanticSearchForm.classList.add('hide-search-bar');
+      semanticSearchForm.classList.remove('d-flex');
       keywordSearchTab.classList.add('active');
       semanticSearchTab.classList.remove('active');
       localStorage.setItem('lastSearchType', 'keyword');
     } else {
       keywordSearchForm.classList.add('hide-search-bar');
+      keywordSearchForm.classList.remove('d-flex');
       semanticSearchForm.classList.remove('hide-search-bar');
+      semanticSearchForm.classList.add('d-flex');
       keywordSearchTab.classList.remove('active');
       semanticSearchTab.classList.add('active');
       localStorage.setItem('lastSearchType', 'semantic');

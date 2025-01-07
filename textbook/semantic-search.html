@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/chatbot_styles.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
@@ -46,6 +47,8 @@
     <script src="_static/togglebutton.js"></script>
     <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
     <script src="_static/code-runner-setup.js"></script>
+    <script src="_static/chatbot_actions.js"></script>
+    <script src="_static/chatbot.js"></script>
     <script src="_static/highlight_scroll.js"></script>
     <script src="_static/app.js"></script>
     <script src="_static/toml_to_js_convertor.js"></script>
@@ -176,7 +179,7 @@ const thebe_selector_output = ".output, .cell_output"
 </style>
 
 <script>
-  // document.addEventListener('DOCContentLoaded', function() {
+  // document.addEventListener('DOMContentLoaded', function() {
   const keywordSearchTab = document.getElementById('keyword-search-tab');
   const semanticSearchTab = document.getElementById('semantic-search-tab');
   const keywordSearchForm = document.getElementById('keyword-search-form');
@@ -185,13 +188,17 @@ const thebe_selector_output = ".output, .cell_output"
   function setSearchBarState(isKeyword) {
     if (isKeyword) {
       keywordSearchForm.classList.remove('hide-search-bar');
+      keywordSearchForm.classList.add('d-flex');
       semanticSearchForm.classList.add('hide-search-bar');
+      semanticSearchForm.classList.remove('d-flex');
       keywordSearchTab.classList.add('active');
       semanticSearchTab.classList.remove('active');
       localStorage.setItem('lastSearchType', 'keyword');
     } else {
       keywordSearchForm.classList.add('hide-search-bar');
+      keywordSearchForm.classList.remove('d-flex');
       semanticSearchForm.classList.remove('hide-search-bar');
+      semanticSearchForm.classList.add('d-flex');
       keywordSearchTab.classList.remove('active');
       semanticSearchTab.classList.add('active');
       localStorage.setItem('lastSearchType', 'semantic');
@@ -1387,7 +1394,9 @@ function displayResult(similarity, text, location, prev_text, next_text) {
   const a = document.createElement('a');
   const anchor = location.anchor ? `#${location.anchor}` : '';
   // Set the href attribute of the link to the URL with the search text highlighted
-  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}${anchor}`;
+  a.href = `${location.url}#:~:text=${encodeURIComponent(text)}`;
+  // Text_fragments API to highlight answer sentence in the content page
+  // https://developer.mozilla.org/en-US/docs/Web/URI/Fragment/Text_fragments
   // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
 
@@ -1471,7 +1480,11 @@ function displayResult(similarity, text, location, prev_text, next_text) {
   
     By Salma Emara et al.<br/>
   
-      &copy; Copyright 2024.<br/>
+      &copy; Copyright 2022–2025.<br/>
+    <div class="extra_footer">
+      <script src="../../_static/chatbot.js"/>
+
+    </div>
 </p>
         </footer>
     </div>

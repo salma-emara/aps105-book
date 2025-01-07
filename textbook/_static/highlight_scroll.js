@@ -2,6 +2,10 @@
  * Author: William J Wen
  * Contact: jwilliam.wen@mail.utoronto.ca
  *
+ * This is no longer needed for we are using Text Fragments API of modern Browser now.
+ * Tradeoff:
+ * Text Fragments API only highlights first occurence but is of high performance.
+ * 
  * This is a custom JavaScript file designed to work with Jupyter Book.
  * It applies to all pages within a Jupyter Book and is an addition to the Jupyter Book package.
  * 

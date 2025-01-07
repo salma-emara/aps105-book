@@ -374,7 +374,9 @@ function displayResult(similarity, text, location, prev_text, next_text) {
   const a = document.createElement('a');
   const anchor = location.anchor ? `#${location.anchor}` : '';
   // Set the href attribute of the link to the URL with the search text highlighted
-  a.href = `${location.url}?semantic-highlight=${encodeURIComponent(text)}${anchor}`;
+  a.href = `${location.url}#:~:text=${encodeURIComponent(text)}`;
+  // Text_fragments API to highlight answer sentence in the content page
+  // https://developer.mozilla.org/en-US/docs/Web/URI/Fragment/Text_fragments
   // encodeURIComponent is used to ensure the text is properly encoded for use in a URL
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
 

@@ -104,6 +104,10 @@ def read_html_file(file_path):
                         continue  # Skip <p> and <li> elements inside a table
                     if element.find('span', class_='caption-number') or element.find('span', class_='caption-text'):
                         text = element.get_text(separator=" ").strip()
+                        if text.endswith('#'):
+                            text = text[:-1].strip()
+                        text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
+                        text = re.sub(r'\s+([.?!,:;])', r'\1', text) # remove white space before punctuation
                         elements.append((text, current_anchor, current_section_number, current_section_name, current_page_title))
                     else:
                         text = element.get_text(separator="\n").strip()

@@ -90,7 +90,7 @@ def read_html_file(file_path):
                     if section_text.endswith('#'):
                         section_text = section_text[:-1].strip()
                     current_section_name = section_text if section_text else current_section_name    
-                elif element.name in ['h3', 'h4', 'h5', 'h6']: # updates anchor, and inclue text in semantic search
+                elif element.name in ['h3', 'h4', 'h5', 'h6']: # updates anchor, and include text in semantic search
                     anchor_tag = element.find('a', class_='headerlink')
                     current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor
                     text = element.get_text(separator=" ").strip()
@@ -108,6 +108,7 @@ def read_html_file(file_path):
                     else:
                         text = element.get_text(separator="\n").strip()
                         text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
+                        text = re.sub(r'\s+([.?!,:;])', r'\1', text) # remove white space before punctuation
                         sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<!Fig\.)(?<!vs\.)(?<=\.|\?)\s', text)
                         for sentence in sentences:
                             sentence = sentence.strip()

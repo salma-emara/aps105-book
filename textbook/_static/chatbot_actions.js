@@ -507,6 +507,12 @@ function showChat() {
   // chatBox.style.display = "block";
   chatBox.classList.remove("hide");
   chatBox.classList.add("show");
+
+  // Hides the button
+  const chatBtn = document.getElementById("chat-btn");
+  chatBtn.classList.remove("show");
+  chatBtn.classList.add("hide");
+
   var input = document.getElementById("userInput");
   // Add Enter key to submit
   input.addEventListener("keypress", function (event) {
@@ -541,6 +547,11 @@ function hideChat() {
   // Hides the chat only
   const chatBox = document.getElementById("chat-box");
   chatBox.classList.add("hide");
+
+  // Show the button
+  const chatBtn = document.getElementById("chat-btn");
+  chatBtn.classList.remove("hide");
+  chatBtn.classList.add("show");
 }
 
 // ################################

@@ -72,9 +72,11 @@ def read_html_file(file_path):
                     title_text = element.get_text(separator=" ").strip()
                     # Remove the trailing '#' from the title text if it exists
                     current_page_title = title_text[:-1].strip() if title_text.endswith('#') else title_text
+                    current_page_title = re.sub(r'\s+', ' ', current_page_title)  # Normalize whitespace
+                    current_page_title = re.sub(r'\s+([.?!,:;])', r'\1', current_page_title) # remove white space before punctuation
                     current_section_number = ""
                     current_section_name = ""
-                    # elements.append((current_page_title, current_anchor, current_section_number, current_section_name, current_page_title))
+                    elements.append((current_page_title, current_anchor, current_section_number, current_section_name, current_page_title))
                 elif element.name == 'h2': # updates anchor, current_section_number, and current_section_name
                     anchor_tag = element.find('a', class_='headerlink')
                     current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor
@@ -89,8 +91,10 @@ def read_html_file(file_path):
                     # Remove the trailing '#' from the title text if it exists
                     if section_text.endswith('#'):
                         section_text = section_text[:-1].strip()
-                    current_section_name = section_text if section_text else current_section_name    
-                elif element.name in ['h3', 'h4', 'h5', 'h6']: # updates anchor, and inclue text in semantic search
+                    current_section_name = section_text if section_text else current_section_name   
+
+                    elements.append((section_text, current_anchor, current_section_number, current_section_name, current_page_title)) 
+                elif element.name in ['h3', 'h4', 'h5', 'h6']: # updates anchor, and include text in semantic search
                     anchor_tag = element.find('a', class_='headerlink')
                     current_anchor = anchor_tag.get('href').lstrip('#') if anchor_tag else current_anchor
                     text = element.get_text(separator=" ").strip()
@@ -104,10 +108,15 @@ def read_html_file(file_path):
                         continue  # Skip <p> and <li> elements inside a table
                     if element.find('span', class_='caption-number') or element.find('span', class_='caption-text'):
                         text = element.get_text(separator=" ").strip()
+                        if text.endswith('#'):
+                            text = text[:-1].strip()
+                        text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
+                        text = re.sub(r'\s+([.?!,:;])', r'\1', text) # remove white space before punctuation
                         elements.append((text, current_anchor, current_section_number, current_section_name, current_page_title))
                     else:
                         text = element.get_text(separator="\n").strip()
                         text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
+                        text = re.sub(r'\s+([.?!,:;])', r'\1', text) # remove white space before punctuation
                         sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<!Fig\.)(?<!vs\.)(?<=\.|\?)\s', text)
                         for sentence in sentences:
                             sentence = sentence.strip()

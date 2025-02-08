@@ -51,7 +51,7 @@ document.write(`
             <div
               class="card-header d-flex justify-content-between align-items-center"
             >
-              <h5 class="mb-0">Bot</h5>
+              <h5 class="mb-0">Snefru Chatbot</h5>
               <div class="d-flex flex-row align-items-center">
                 <button
                   class="btn-minus"
@@ -103,15 +103,9 @@ document.write(`
         </div>
       </div>
     </div>
-    <div class="float-btn-container">
-      <button
-        type="button"
-        class="btn btn-primary btn-floating btn-lg"
-        data-mdb-ripple-init
-        onclick="showChat()"
-      >
-        <i class="fas fa-plus"></i>
-      </button>
+    <div class="float-btn-container-large show" id="chat-btn" onclick="showChat()">
+      <span class="button-text">Snefru Chatbot</span>
+      <i class="fas fa-plus"></i>
     </div>
   </section>
 </body>

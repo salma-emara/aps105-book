@@ -52,8 +52,8 @@ html:
     hypothesis: true
   theme:
     name: "sphinx_book_theme"
-  extra_javascript:
-    - "highlight_scroll.js" # this is for auto hightlight and scroll when jumped from semantic search result page
+  # extra_javascript:
+  #  - "highlight_scroll.js" # this is for auto hightlight and scroll when jumped from semantic search result page # replaced by using mordern browsers' text fragments ability
 parse:
   myst_enable_extensions:
     - dollarmath

@@ -10,6 +10,8 @@ We would like to acknowledge the help of *Yvonne Yang*, an undergraduate student
 
 The current semantic search engine was developed by *Jiahan (William) Wen*, an undergraduate student at the University of Toronto. It helps in finding closely relevant information in the textbook, instead of searching for keywords. 
 
+The Snefru chatbot was developed by *Yuanrong (Rex) Han*, a graduate student at the University of Toronto. It helps in answering questions related to the textbook content.
+
 If you have been utilizing this textbook in your teaching, we kindly invite you to share your experiences via email   <span style="color:blue"><u>salma<i>@</i>ece<i>.</i>utoronto<i>.</i>ca</u></span>. Whether it be success stories from your classroom, constructive feedback, or suggestions for improvement, we are eager to hear from you.
 
 The textbook is being referred to in ELEX 2125: C Programming for Electronics at British Columbia Institute of Technology. Thanks to *Joselito Laguio* for adopting the textbook in his course.

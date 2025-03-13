@@ -207,7 +207,7 @@ st is saved as: AB
 ```{admonition} If user enters fewer characters than the maximum number of characters to be read, what happens?
 If user enters fewer characters than the maximum number of characters to be read, for example, in the above example, if the user only enters 1 character and pressed <enter>, what happens?
 
-In the above example, `fgets` will read the characters till either the number of characters read is 2 or till the user enters a new line character. In the above example, if the user enters `A` and presses <enter>, `fgets` will read the character `A` and a new line character. The first element of the array `st` will be `A`. The second element of the array `st` will be a null character `'\0'`. The remaining elements of the array `st` will be garbage values. The following is the output if the user enters `A` and presses <enter>.
+In the above example, `fgets` will read the characters till either the number of characters read is 2 or till the user enters a new line character. In the above example, if the user enters `A` and presses `<enter>`, `fgets` will read the character `A` and a new line character. The first element of the array `st` will be `A`, the second element of the array `st` will be a newline character, and the third element is a null character `'\0'`. The remaining elements of the array `st` will be garbage values. The following is the output if the user enters `A` and presses `<enter>`.
 
 **Output**
 <pre>

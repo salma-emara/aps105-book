@@ -16,7 +16,7 @@ There are three ways we can set up a string in a null-terminated array of charac
 
 ### Method 1: Declare and Initialize
 
-To declare a 1D array of characters, and initialize its elements to `'H'`, `'e'`, `'l'`, `'l'`, `'e'` and finally a `'\0'`, we can do the following.
+To declare a 1D array of characters, and initialize its elements to `'H'`, `'e'`, `'l'`, `'l'`, `'o'` and finally a `'\0'`, we can do the following.
 
 ```{code-block} c
 char myString[] = "Hello";

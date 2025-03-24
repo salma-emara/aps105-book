@@ -15,7 +15,7 @@ Array elements are stored contiguously in a the main memory. Since the array is 
 
 In the figure above, we also say that `x` is not just the identifier of the array, instead it is also a pointer to the first element in the array. This means that `x` is equivalent to `&x[0]`. Hence, if we dereference `x`, we get the first element of the array `*x` $\rightarrow$ `*(&x[0])` $\rightarrow$ `x[0]`.
 
-We can refer to the second element in the array, if we add $1$ to the address of the first element `x`, *i.e.* `x+1` is equivalent to `x[1]`.
+We can refer to the second element in the array, if we add $1$ to the address of the first element `x`, *i.e.* `x+1` is equivalent to `&x[1]`.
 
 The following figure summarizes how can `x` be used as a pointer to different elements in the array.
 

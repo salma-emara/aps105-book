@@ -39,7 +39,7 @@ int main(void) {
 
 ### Method 2: Define the data structure and declare a variable in the same statement.
 
-In the same statement, we can declare a data structure and define a variable. For example, in the following figure we define `struct Neuron` and declare a variable `neuron` of type `struct Neuron`.
+In the same statement, we can define a data structure and declare a variable. For example, in the following figure we define `struct Neuron` and declare a variable `neuron` of type `struct Neuron`.
 
 ```{figure} ./images/define-declare-data-structure.png
 :alt: Define and declare a data structure

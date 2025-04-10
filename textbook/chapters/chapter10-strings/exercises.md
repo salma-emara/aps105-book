@@ -144,6 +144,7 @@ char* preamble(char* str, int n) {
     return NULL;
   char* newString = (char*)malloc((n + 1) * sizeof(char));
   strncpy(newString, str, n);
+  newString[n] = '\0';
   return newString;
 }
 ```

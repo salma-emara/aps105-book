@@ -4,7 +4,7 @@ The first sorting algorithm we discuss is insertion sort. Insertion sort is a si
 
 ## Algorithm
 
-The general idea of insertion sort is to iterate through the array, and insert each element into its correct position with respect to the elements that have already been sorted. For example, if the only the first 3 elements of the array are sorted, the forth element will be inserted into its correct position with respect to the first 4 elements. This happens by by shifting all elements that are greater than the forth element to the right, and inserting `A[top]` in place of the left most element greater than forth element. This places the forth element in its correct position with respect to the first four elements.
+The general idea of insertion sort is to iterate through the array, and insert each element into its correct position with respect to the elements that have already been sorted. For example if only the first 3 elements of the array are sorted, the fourth element will be inserted into its correct position with respect to the first 4 elements. This happens by shifting all elements that are greater than the forth element to the right, and inserting `A[top]` in place of the left most element greater than forth element. This places the forth element in its correct position with respect to the first four elements.
 
 Given the following example array named `int A[] = {9, 2, 6, 5, 1, 7};`
 

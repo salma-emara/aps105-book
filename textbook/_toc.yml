@@ -12,6 +12,11 @@ parts:
   - caption: Book Chapters
     numbered: True
     chapters:
+
+      - file: chapters/chapter00-interactive-quizzes/intro.md
+        sections:
+          - file: chapters/chapter00-interactive-quizzes/interactive-quizzes.md
+
       - file: chapters/chapter01-computers/intro.md
         sections:
           - file: chapters/chapter01-computers/basic-structure.md

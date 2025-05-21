@@ -1,5 +1,15 @@
 let currentQuestionIndex = 0;
 
+// local storage includes
+// - quizStarted
+// - currentQuestionIndex
+// - fullscreenActivated
+
+document.addEventListener("submit", function (e) {
+    e.preventDefault(); 
+  });
+  
+
 function startQuiz() {
 
     currentQuestionIndex = 0;
@@ -157,6 +167,17 @@ function closeFullscreenForm() {
         const resetButton = document.getElementById("reset-button");
         resetButton.classList.remove("hidden");
 
+        // locks user's code 
+        const textArea = document.querySelector("#codetorun .ace_text-input");
+        textArea.setAttribute("readonly", "");
+        const editorContainer = document.getElementById("codetorun");
+        editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
+                
+        // locks input
+        const inputArea = document.querySelector("#input_section > textarea");
+        textArea.setAttribute("readonly", "");
+        inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+
     }
     else {
         var fullscreenForms = document.getElementById("fullscreen-form");
@@ -177,6 +198,8 @@ function closeFullscreenForm() {
     }
 }
 
+
+
 function parse_and_generate_form(fileName) {
 
     const doc = document.getElementById("fullscreen-form");
@@ -188,7 +211,9 @@ function parse_and_generate_form(fileName) {
     resetButton.innerHTML = "Reset Quiz";
     resetButton.classList.add("reset-button");
     resetButton.classList.add("hidden");
-    resetButton.addEventListener("click", () => resetQuiz(fileName));
+    resetButton.addEventListener("click", () => {
+        resetQuiz(fileName);
+    });
     doc.appendChild(resetButton);
 
     const questions = parsedObject.questions;
@@ -203,6 +228,27 @@ function parse_and_generate_form(fileName) {
 
     for (let i = 0; i < questions.length; i++) {
         let question = questions[i].prompt;
+
+        let isProgrammingQuestion = questions[i].programming;
+
+        let actualCode = "";
+        let output = "";
+
+        if (isProgrammingQuestion){
+            
+            let rawCode = questions[i].code || "";
+            actualCode = rawCode
+                .replace(/&#35;/g, '#')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/<br>/g, '\n')
+                .replace(/&quot;/g, '"')
+                .replace(/&amp;/g, '&');
+
+            output = questions[i].output || "";
+            
+        }
+
         const choices = questions[i].distractors;
         const codeSnippet = questions[i].codeSnippet;
         const answer = questions[i].answer;
@@ -299,11 +345,38 @@ function parse_and_generate_form(fileName) {
 
         form.appendChild(questionElement);
 
-        //add choices
+        //add choices            
         const choicesElement = document.createElement("div");
-        choicesElement.id = "choices" + (i + 1);
-        form.appendChild(choicesElement);
 
+        // code runner 
+    
+        // create pre class element 
+        const pre = document.createElement("pre");
+        pre.classList.add("code-runner-quizzes");
+          
+        // creating <code-runner language="c" output="Hello World!"> 
+        const codeRunner = document.createElement("code-runner");
+
+        codeRunner.setAttribute("language", "c");
+        codeRunner.setAttribute("output", "");
+            
+        codeRunner.textContent = actualCode;
+
+        if (isProgrammingQuestion) {
+
+            // append together 
+            pre.appendChild(codeRunner);
+            form.appendChild(pre);    
+            console.log("testing user code: ", actualCode);
+   
+            
+        } else {
+
+            choicesElement.id = "choices" + (i + 1);
+            form.appendChild(choicesElement);
+
+        }
+                        
         //add submit button
         const submitButton = document.createElement("button");
         submitButton.type = "button";
@@ -311,7 +384,7 @@ function parse_and_generate_form(fileName) {
         submitButton.innerHTML = "Submit";
         submitButton.classList.add("submit-button");
         submitButton.addEventListener("click", function () {
-            handle_submission(form.id, answer, hint, fileName);
+            handle_submission(form.id, answer, hint, fileName, output, isProgrammingQuestion);
         });
         form.appendChild(submitButton);
 
@@ -499,27 +572,92 @@ function parse_and_generate_form(fileName) {
             form.style.display = "none";
         }
 
-        // Check if there are stored values for the current form
-        const selectedIndices = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1)));
-        if (selectedIndices && selectedIndices.length !== 0) {
-            const choiceInputs = selectedIndices.map(index => document.getElementById("choice" + (i + 1) + "-" + (index + 1)));
-            choiceInputs.forEach(choiceInput => {
-                choiceInput.checked = true;
-            });
 
-            //const explainIndex = selectedIndices[0]; // Get the first selected index
-            const isCorrect = answer.length === selectedIndices.length &&
-                answer.every(correctIndex => selectedIndices.includes(correctIndex));
+        if (isProgrammingQuestion) {
 
-            updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
+            const progData = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_programming"));
+
+            if (progData && typeof progData.correctOutput !== "undefined") {
+
+                updateMessageElement(messageElement, progData.correctOutput, hint, [], answer, isSingleCorrect, true);
+                codeRunner.textContent = progData.userCode;
+
+                codeRunner.setAttribute("output", progData.userOutput);  
+
+                // LOCKING THE QUIZ
+            
+                // setTimeout(() => {
+                //     const aceTextarea = document.querySelector("#codetorun .ace_text-input");
+                //     if (aceTextarea) aceTextarea.setAttribute("readonly", "");
+                // }, 500); 
+
+                window.addEventListener("load", () => {
+                    
+                    // user's code
+                    const textArea = document.querySelector("#codetorun .ace_text-input");
+                    textArea.setAttribute("readonly", "");
+                    const editorContainer = document.getElementById("codetorun");
+                    editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
+
+                    // input
+                    const inputArea = document.querySelector("#input_section > textarea");
+                    textArea.setAttribute("readonly", "");
+                    inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+            
+                });           
+                                
+            }
+
+        } else {
+
+            // Check if there are stored values for the current form
+            const selectedIndices = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_choices"));
+            if (selectedIndices && selectedIndices.length !== 0) {
+                const choiceInputs = selectedIndices.map(index => 
+                    document.getElementById("choice" + (i + 1) + "-" + (index + 1)));
+                choiceInputs.forEach(choiceInput => {
+                    choiceInput.checked = true;
+                });
+
+                //const explainIndex = selectedIndices[0]; // Get the first selected index
+                const isCorrect = answer.length === selectedIndices.length &&
+                    answer.every(correctIndex => selectedIndices.includes(correctIndex));
+
+                updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
+            }
         }
+
     }
 
     closeFullscreenForm();
 }
 
-function handle_submission(formId, answer, hint, filename) {
+function handle_submission(formId, answer, hint, filename, output, isProgrammingQuestion) {
 
+
+    var correctOutput = false; 
+
+    if (isProgrammingQuestion){
+
+        let outputElement = document.querySelector("code-runner pre#result");
+
+        // let inputElement = document.querySelector("code-runner #input_section > textarea");
+
+        // const userInput = inputElement.value;
+        // inputElement.value = 8;
+
+        // const codeRunner = document.querySelector("code-runner");
+        // const userCode = codeRunner.textContent;
+        // console.log(userCode);
+
+        const outputText = outputElement?.textContent.trim();
+
+        if (outputText === output){
+            correctOutput = true;
+        } 
+
+    }
+    
     var isSingleCorrect = false;
     if (answer.length == 1) {
         isSingleCorrect = true;
@@ -538,7 +676,11 @@ function handle_submission(formId, answer, hint, filename) {
         const isCorrect = answer.length === selectedIndices.length &&
             answer.every(correctIndex => selectedIndices.includes(correctIndex));
 
-        updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
+        updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
+    } else if (isProgrammingQuestion) {
+
+        updateMessageElement(messageElement, correctOutput, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
+        
     } else {
         messageElement.innerHTML = "Please make a selection.";
         messageElement.style.color = "red";
@@ -557,8 +699,41 @@ function handle_submission(formId, answer, hint, filename) {
     }
 
     // Store the user's answer in local storage
-    const key = filename + formId;
-    localStorage.setItem(key, JSON.stringify(selectedIndices));
+    // const key = filename + formId;
+    // localStorage.setItem(key, JSON.stringify(selectedIndices));
+
+    const baseKey = filename + formId;
+
+    if (isProgrammingQuestion) {
+
+        const code = editor.getValue();  // get code from Ace
+
+        let outputElement = document.querySelector("code-runner pre#result");
+        const outputText = outputElement?.textContent.trim();
+        
+        localStorage.setItem(filename + formId + "_programming", JSON.stringify({
+            correctOutput: correctOutput,
+            userCode: code,
+            userOutput: outputText
+        }));
+
+        console.log("testing output 1: ", outputText);
+
+        // // locks user's code on submit
+        // const textArea = document.querySelector("#codetorun .ace_text-input");
+        // textArea.setAttribute("readonly", "");
+        // const editorContainer = document.getElementById("codetorun");
+        // editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
+
+        // // locks input on submit
+        // const inputArea = document.querySelector("#input_section > textarea");
+        // textArea.setAttribute("readonly", "");
+        // inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+
+    } else {
+        localStorage.setItem(baseKey + "_choices", JSON.stringify(selectedIndices));
+    }
+
 }
 
 
@@ -647,7 +822,7 @@ function AcodeSnippetFormatting(codeSnippet, choiceContainer, button) {
 }
 
 
-function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect) {
+function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion) {
     let message = "";
     if (isCorrect) {
         if (selectedIndices.length > 0) {
@@ -660,7 +835,19 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
             messageElement.innerHTML = "Correct! <span class='hint-text'>" + explanations.replace(/\n/g, "<br>") + "</span>";
             messageElement.style.color = "green";
             messageElement.style.fontWeight = "bold";
+        
+        } else if (isProgrammingQuestion){
+            messageElement.innerHTML = "Correct!";
+            messageElement.style.color = "green";
+            messageElement.style.fontWeight = "bold";
         }
+        
+    } else if (isProgrammingQuestion){
+
+        messageElement.innerHTML = "Incorrect Output";
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+
     } else {
         const correctIndices = answer.filter(index => selectedIndices.includes(index));
         const correctExplanations = correctIndices.map(index => hint[index]).join("<br><br>");
@@ -703,6 +890,24 @@ function resetQuiz(fileName) {
         if (key && key.startsWith(prefix)) {
             localStorage.removeItem(key);
         }
+    
+    }
+
+    // unlock everything 
+    const textArea = document.querySelector("#codetorun .ace_text-input");
+    if (textArea) {
+        textArea.removeAttribute("readonly");
+    }
+
+    const editorContainer = document.getElementById("codetorun");
+    if (editorContainer) {
+        editorContainer.style.backgroundColor = ""; 
+    }
+
+    const inputArea = document.querySelector("#input_section > textarea");
+    if (inputArea) {
+        inputArea.removeAttribute("readonly");
+        inputArea.style.backgroundColor = ""; 
     }
 
     const quizForms = document.querySelectorAll("[id^='quizForm']");

@@ -16,6 +16,10 @@
     overflow-y: auto;
 }
 
+.code-runner-quizzes {
+    all: initial;
+}
+
 .quiz-form {
     border: 1px solid black;
     padding: 10px;

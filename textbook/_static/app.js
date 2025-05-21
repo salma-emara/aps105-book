@@ -378,7 +378,7 @@ function parse_and_generate_form(fileName) {
         submitButton.innerHTML = "Submit";
         submitButton.classList.add("submit-button");
         submitButton.addEventListener("click", function () {
-            handle_submission(form.id, answer, hint, fileName, output, isProgrammingQuestion);
+            handle_submission(form.id, answer, hint, fileName, output, isProgrammingQuestion, actualCode);
         });
         form.appendChild(submitButton);
 
@@ -578,12 +578,7 @@ function parse_and_generate_form(fileName) {
 
                 codeRunner.setAttribute("output", progData.userOutput);  
 
-                // LOCKING THE QUIZ
-            
-                // setTimeout(() => {
-                //     const aceTextarea = document.querySelector("#codetorun .ace_text-input");
-                //     if (aceTextarea) aceTextarea.setAttribute("readonly", "");
-                // }, 500); 
+                // locking quiz even when reloaded
 
                 window.addEventListener("load", () => {
                     
@@ -626,7 +621,7 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
-function handle_submission(formId, answer, hint, filename, output, isProgrammingQuestion) {
+function handle_submission(formId, answer, hint, filename, output, isProgrammingQuestion, originalCode) {
 
 
     var correctOutput = false; 
@@ -694,6 +689,7 @@ function handle_submission(formId, answer, hint, filename, output, isProgramming
         const outputText = outputElement?.textContent.trim();
         
         localStorage.setItem(filename + formId + "_programming", JSON.stringify({
+            originalCode: originalCode,
             correctOutput: correctOutput,
             userCode: code,
             userOutput: outputText
@@ -857,8 +853,26 @@ function resetQuiz(fileName) {
 
     for (let i = localStorage.length - 1; i >= 0; i--) {
         const key = localStorage.key(i);
+    
+        if (key && key.startsWith(prefix) && key.endsWith("_programming")) {
 
-        if (key && key.startsWith(prefix)) {
+            // get original code from localStorage
+            const progData = JSON.parse(localStorage.getItem(key));
+            defaultCode = progData.originalCode || "";
+
+            // create new code runner with same functionality as original
+            const newCodeRunner = document.createElement("code-runner");
+            newCodeRunner.setAttribute("language", "c");
+            newCodeRunner.setAttribute("output", "");
+            newCodeRunner.textContent = defaultCode;
+
+            // get the existing code-runner and replace with new on in DOM
+            const codeRunner = document.querySelector("code-runner");
+            codeRunner.parentNode.replaceChild(newCodeRunner, codeRunner);
+    
+            localStorage.removeItem(key);
+    
+        } else if (key && key.startsWith(prefix)) {
             localStorage.removeItem(key);
         }
     

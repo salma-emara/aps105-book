@@ -77,6 +77,28 @@ function startQuiz() {
 
 }
 
+window.addEventListener("load", () => {
+    if (localStorage.getItem("formsLocked") === "true") {
+        const quizForms = document.querySelectorAll("[id^='quizForm']");
+
+        for (let i = 0; i < quizForms.length; i++) {
+            const form = quizForms[i];
+            
+            // lock the user's code editor
+            const textArea = form.querySelector("#codetorun .ace_text-input");
+            textArea.setAttribute("readonly", "");
+            const editorContainer = form.querySelector("#codetorun");
+            editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
+
+            // locks input
+            const inputArea = form.querySelector("#input_section > textarea");
+            textArea.setAttribute("readonly", "");
+            inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+        
+        }
+    }
+  });
+
 function closeFullscreenForm() {
 
     var forms = document.querySelectorAll("[id^='quizForm']");
@@ -161,17 +183,21 @@ function closeFullscreenForm() {
         const resetButton = document.getElementById("reset-button");
         resetButton.classList.remove("hidden");
 
-        // locks user's code 
-        const textArea = document.querySelector("#codetorun .ace_text-input");
-        textArea.setAttribute("readonly", "");
-        const editorContainer = document.getElementById("codetorun");
-        editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
-                
-        // locks input
-        const inputArea = document.querySelector("#input_section > textarea");
-        textArea.setAttribute("readonly", "");
-        inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+        for (let i = 0; i < quizForms.length; i++) {
+            const form = quizForms[i];
+            
+            // lock the user's code editor
+            const textArea = form.querySelector("#codetorun .ace_text-input");
+            textArea.setAttribute("readonly", "");
+            const editorContainer = form.querySelector("#codetorun");
+            editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
 
+            // locks input
+            const inputArea = form.querySelector("#input_section > textarea");
+            textArea.setAttribute("readonly", "");
+            inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+        
+        }
     }
     else {
         var fullscreenForms = document.getElementById("fullscreen-form");
@@ -577,23 +603,6 @@ function parse_and_generate_form(fileName) {
                 codeRunner.textContent = progData.userCode;
 
                 codeRunner.setAttribute("output", progData.userOutput);  
-
-                // locking quiz even when reloaded
-
-                window.addEventListener("load", () => {
-                    
-                    // user's code
-                    const textArea = document.querySelector("#codetorun .ace_text-input");
-                    textArea.setAttribute("readonly", "");
-                    const editorContainer = document.getElementById("codetorun");
-                    editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
-
-                    // input
-                    const inputArea = document.querySelector("#input_section > textarea");
-                    textArea.setAttribute("readonly", "");
-                    inputArea.style.backgroundColor = "var(--bg, #edebeb)";
-            
-                });           
                                 
             }
 
@@ -628,7 +637,9 @@ function handle_submission(formId, answer, hint, filename, output, isProgramming
 
     if (isProgrammingQuestion){
 
-        let outputElement = document.querySelector("code-runner pre#result");
+        const form = document.getElementById(formId);
+
+        let outputElement = form.querySelector("code-runner pre#result");
 
         const outputText = outputElement?.textContent.trim();
 
@@ -683,12 +694,15 @@ function handle_submission(formId, answer, hint, filename, output, isProgramming
 
     if (isProgrammingQuestion) {
 
-        const code = editor.getValue();  // get code from Ace
+        const form = document.getElementById(formId);  
+        const editorContainer = form.querySelector("#codetorun"); // ace editor container inside that form
+        const editor = ace.edit(editorContainer); // ace editor instance for that container
+        const code = editor.getValue();            
 
-        let outputElement = document.querySelector("code-runner pre#result");
+        let outputElement = form.querySelector("code-runner pre#result");
         const outputText = outputElement?.textContent.trim();
         
-        localStorage.setItem(filename + formId + "_programming", JSON.stringify({
+        localStorage.setItem(baseKey + "_programming", JSON.stringify({
             originalCode: originalCode,
             correctOutput: correctOutput,
             userCode: code,
@@ -842,6 +856,49 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
 
 
 function resetQuiz(fileName) {
+
+    localStorage.removeItem("formsLocked");
+
+    const quizForms = document.querySelectorAll("[id^='quizForm']");
+
+    for (let i = 0; i < quizForms.length; i++) {
+        quizForms[i].style.display = "none";
+
+        const form = quizForms[i];
+
+        const key = fileName + "quizForm" + (i+1) + "_programming";
+        const progData = JSON.parse(localStorage.getItem(key));
+        console.log(key);
+
+        if (progData){ // true if programming question
+
+            // unlock everything 
+            const textArea = form.querySelector("#codetorun .ace_text-input");
+            textArea.removeAttribute("readonly");
+            const editorContainer = form.querySelector("#codetorun");
+            editorContainer.style.backgroundColor = ""; 
+
+            const inputArea = form.querySelector("#input_section > textarea");
+            inputArea.removeAttribute("readonly");
+            inputArea.style.backgroundColor = ""; 
+
+            // get original code from localStorage
+            defaultCode = progData.originalCode || "";
+
+            // create new code runner with same functionality as original
+            const newCodeRunner = document.createElement("code-runner");
+            newCodeRunner.setAttribute("language", "c");
+            newCodeRunner.setAttribute("output", "");
+            newCodeRunner.textContent = defaultCode;
+
+            // get the existing code-runner and replace with new on in DOM
+            const codeRunner = form.querySelector("code-runner");
+            codeRunner.parentNode.replaceChild(newCodeRunner, codeRunner);
+
+            localStorage.removeItem(key);
+        }
+    }
+
     const header = document.getElementById("container-header");
     header.classList.remove("hidden-imp");
 
@@ -854,51 +911,10 @@ function resetQuiz(fileName) {
     for (let i = localStorage.length - 1; i >= 0; i--) {
         const key = localStorage.key(i);
     
-        if (key && key.startsWith(prefix) && key.endsWith("_programming")) {
-
-            // get original code from localStorage
-            const progData = JSON.parse(localStorage.getItem(key));
-            defaultCode = progData.originalCode || "";
-
-            // create new code runner with same functionality as original
-            const newCodeRunner = document.createElement("code-runner");
-            newCodeRunner.setAttribute("language", "c");
-            newCodeRunner.setAttribute("output", "");
-            newCodeRunner.textContent = defaultCode;
-
-            // get the existing code-runner and replace with new on in DOM
-            const codeRunner = document.querySelector("code-runner");
-            codeRunner.parentNode.replaceChild(newCodeRunner, codeRunner);
-    
-            localStorage.removeItem(key);
-    
-        } else if (key && key.startsWith(prefix)) {
+        if (key && key.startsWith(prefix)) {
             localStorage.removeItem(key);
         }
     
-    }
-
-    // unlock everything 
-    const textArea = document.querySelector("#codetorun .ace_text-input");
-    if (textArea) {
-        textArea.removeAttribute("readonly");
-    }
-
-    const editorContainer = document.getElementById("codetorun");
-    if (editorContainer) {
-        editorContainer.style.backgroundColor = ""; 
-    }
-
-    const inputArea = document.querySelector("#input_section > textarea");
-    if (inputArea) {
-        inputArea.removeAttribute("readonly");
-        inputArea.style.backgroundColor = ""; 
-    }
-
-    const quizForms = document.querySelectorAll("[id^='quizForm']");
-
-    for (let i = 0; i < quizForms.length; i++) {
-        quizForms[i].style.display = "none";
     }
 
     const resetButton = document.getElementById("reset-button");

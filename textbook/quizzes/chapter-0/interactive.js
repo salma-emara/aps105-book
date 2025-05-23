@@ -11,6 +11,16 @@ let parsedObject;
       "explainations": []
     },
     {
+      "prompt": "Write a C program that prints \"pizza\"",
+      "programming": true,
+      "code": "// This program prints the message \"pizza\" on the screen.\n#include <stdio.h>\n\nint main(void){\n    printf(\"pi\");\n    return 0;\n}",
+      "output": "pizza",
+      "answer": [],
+      "distractors": [],
+      "explainations": []
+    },
+
+    {
       "prompt": "Let's say you want to design a \"micro\" computer with exactly 64KB of memory. How many bits would you need to address each byte of memory?",
       "programming": false,
       "code": "",

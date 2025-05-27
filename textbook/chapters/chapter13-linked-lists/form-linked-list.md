@@ -91,3 +91,7 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-2") }}
 
+
+{{ visualize_embed | replace("%%FILENAME%%", "chapter-1/test1") }}
+{{ visualize_embed | replace("%%FILENAME%%", "chapter-2/test2") }}
+{{ visualize_embed | replace("%%FILENAME%%", "chapter-3/test3") }}

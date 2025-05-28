@@ -1,7 +1,7 @@
 import os
 
 TEMPLATE = '''document.querySelectorAll('iframe[data-code-file="{filename}"]').forEach((iframe) => {{
-    fetch("/visualize_examples/{c_path}")
+    fetch("../../visualize_examples/{c_path}")
         .then(res => res.text())
         .then(code => {{
             iframe.src = "https://pythontutor.com/iframe-embed.html#code=" + 

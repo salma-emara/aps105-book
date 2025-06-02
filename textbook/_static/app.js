@@ -196,6 +196,7 @@ function closeFullscreenForm() {
             const inputArea = form.querySelector("#input_section > textarea");
             textArea.setAttribute("readonly", "");
             inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+            localStorage.setItem("formsLocked", "true");
         
         }
     }
@@ -252,7 +253,7 @@ function parse_and_generate_form(fileName) {
         let isProgrammingQuestion = questions[i].programming;
 
         let actualCode = "";
-        let output = "";
+        let outputArray = [];
 
         if (isProgrammingQuestion){
             
@@ -265,8 +266,12 @@ function parse_and_generate_form(fileName) {
                 .replace(/&quot;/g, '"')
                 .replace(/&amp;/g, '&');
 
-            output = questions[i].output || "";
-            
+                const rawOutput = questions[i].output || [];
+
+                for (let j = 0; j < rawOutput.length; j++) {
+                    outputArray[j] = rawOutput[j] || "";
+                }
+                        
         }
 
         const choices = questions[i].distractors;
@@ -378,7 +383,8 @@ function parse_and_generate_form(fileName) {
         const codeRunner = document.createElement("code-runner");
 
         codeRunner.setAttribute("language", "c");
-        codeRunner.setAttribute("output", "");
+        codeRunner.setAttribute("output", "12");
+        codeRunner.setAttribute("inputTestcase", "10");
             
         codeRunner.textContent = actualCode;
 
@@ -403,8 +409,17 @@ function parse_and_generate_form(fileName) {
         submitButton.id = "submit-button" + (i + 1);
         submitButton.innerHTML = "Submit";
         submitButton.classList.add("submit-button");
-        submitButton.addEventListener("click", function () {
-            handle_submission(form.id, answer, hint, fileName, output, isProgrammingQuestion, actualCode);
+        submitButton.addEventListener("click", async function () {
+
+            if (isProgrammingQuestion) {
+                const codeRunner = form.querySelector("code-runner");
+
+                await runTestCases(codeRunner, questions[i].input);
+
+            }
+                    
+            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode);
+
         });
         form.appendChild(submitButton);
 
@@ -630,10 +645,10 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
-function handle_submission(formId, answer, hint, filename, output, isProgrammingQuestion, originalCode) {
-
+async function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode) {
 
     var correctOutput = false; 
+    let outputText = "";
 
     if (isProgrammingQuestion){
 
@@ -641,12 +656,30 @@ function handle_submission(formId, answer, hint, filename, output, isProgramming
 
         let outputElement = form.querySelector("code-runner pre#result");
 
-        const outputText = outputElement?.textContent.trim();
+        await new Promise((resolve) => {
 
-        if (outputText === output){
-            correctOutput = true;
-        } 
+            const checkOutputReady = setInterval(() => {
 
+                outputText = outputElement?.textContent.trim();
+      
+                if (outputText && outputText !== "Loading...") {
+                    clearInterval(checkOutputReady);
+                    
+                    for (let i = 0; i < outputArray.length; i++){
+                        if (outputText === outputArray[i]) {
+                            correctOutput = true;
+                            break;
+                        }
+                    }
+                    
+                    resolve(); // resolve promise, allowing code to continue
+                }
+
+            }, 100);
+
+          });
+      
+          
     }
     
     var isSingleCorrect = false;
@@ -698,9 +731,6 @@ function handle_submission(formId, answer, hint, filename, output, isProgramming
         const editorContainer = form.querySelector("#codetorun"); // ace editor container inside that form
         const editor = ace.edit(editorContainer); // ace editor instance for that container
         const code = editor.getValue();            
-
-        let outputElement = form.querySelector("code-runner pre#result");
-        const outputText = outputElement?.textContent.trim();
         
         localStorage.setItem(baseKey + "_programming", JSON.stringify({
             originalCode: originalCode,

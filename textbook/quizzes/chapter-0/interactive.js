@@ -2,10 +2,13 @@ let parsedObject;
   parsedObject = {
   "questions": [
     {
-      "prompt": "Write a C program that prints \"Hello, World!\"",
+      "prompt": "Write a C program that prints \"Hello, World!\" or \"Hello\"",
       "programming": true,
-      "code": "// This program prints the message \"Hello, World!\" on the screen.\n#include <stdio.h>\n\nint main(void){\n    printf(\"\");\n    return 0;\n}",
-      "output": "Hello, World!",
+      "code": "#include <stdio.h>\n\nint main(void){\n    printf(\"\");\n    return 0;\n}",
+      "output": [
+        "Hello, World!",
+        "Hello"
+      ],
       "answer": [],
       "distractors": [],
       "explainations": []
@@ -13,13 +16,15 @@ let parsedObject;
     {
       "prompt": "Write a C program that prints \"pizza\"",
       "programming": true,
-      "code": "// This program prints the message \"pizza\" on the screen.\n#include <stdio.h>\n\nint main(void){\n    printf(\"pi\");\n    return 0;\n}",
-      "output": "pizza",
+      "code": "// Description: This program convert inches to centimeters\n#include <stdio.h>\n\nint main(void){\n  // Declare variables\n  const double InchesToCm = 2.54;\n  double inputInches, outputCm;\n\n  // Prompt user for input\n  scanf(\"%lf\", &inputInches);\n  // Convert inches to centimeters\n  outputCm = inputInches * InchesToCm;\n \n  // Display output in 2 decimal places\n  printf(\"The number of centimeters is %.2lf\\n\", outputCm);\n  return 0;\n}",
+      "output": [
+        "The number of centimeters is 25.40"
+      ],
+      "input": "10",
       "answer": [],
       "distractors": [],
       "explainations": []
     },
-
     {
       "prompt": "Let's say you want to design a \"micro\" computer with exactly 64KB of memory. How many bits would you need to address each byte of memory?",
       "programming": false,

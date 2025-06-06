@@ -11,8 +11,6 @@ int main(void){
     return 0;
 }'''
 
-output = ["Hello, World!"]
-
 answer = []
 
 distractors = []
@@ -43,10 +41,6 @@ int main(void){
   printf("The number of centimeters is %.2lf\n", outputCm);
   return 0;
 }'''
-
-output = ["The number of centimeters is 25.40", "The number of centimeters is 12.70"]
-
-input = ["10", "5"]
 
 answer = []
 
@@ -91,3 +85,18 @@ To address 64KB of memory, we can use a 16-bit address. This allows us to repres
 To address 64KB of memory, we can use a 16-bit address. This allows us to represent 2^16 = 65,536 unique addresses, which covers the range of 64KB.
 '''
 ]
+
+[[testcases]]
+question = 0
+input = [""]
+output = ["Hello", "Hello, World!"]
+
+[[testcases]]
+question = 1
+input = ["10"]
+output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
+
+[[testcases]]
+question = 1
+input = ["5"]
+output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]

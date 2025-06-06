@@ -267,14 +267,18 @@ function parse_and_generate_form(fileName) {
                 .replace(/&quot;/g, '"')
                 .replace(/&amp;/g, '&');
 
-                const rawOutput = questions[i].output || [];
-                const rawInput = questions[i].input || [];
+            // Collect all testcases for this question
+            const questionTestcases = parsedObject.testcases.filter(t => t.question === i);
+            console.log("Question index:", i);
+            console.log("Matching testcases:", questionTestcases);
 
-            for (let j = 0; j < rawOutput.length; j++) {
-                outputArray[j] = rawOutput[j];
-                inputArray[j] = rawInput[j];
-            }
-                        
+            for (let j = 0; j < questionTestcases.length; j++) {
+                inputArray.push(questionTestcases[j].input || []);
+                outputArray.push(questionTestcases[j].output || []);
+            } 
+            
+            console.log("Inputs:", inputArray);
+            console.log("Outputs:", outputArray);
         }
 
         const choices = questions[i].distractors;
@@ -696,13 +700,13 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
 
             console.log("TESTCASE #", i+1);
 
-            const expected = outputArray[i].trim();
+            const expected = outputArray[i].map(e => e.trim()); // multiple correct outputs
             const actual = (userOutput[i] || "").trim();
 
             console.log("expected output: ", expected);
             console.log("actual output: ", actual);
 
-			if (expected !== actual) {
+			if (!expected.includes(actual)) {
                 console.log("wrong output for testcase #", i+1);
 				correctOutput = false;
 			} else {

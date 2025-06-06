@@ -254,6 +254,7 @@ function parse_and_generate_form(fileName) {
 
         let actualCode = "";
         let outputArray = [];
+        let inputArray = [];
 
         if (isProgrammingQuestion){
             
@@ -267,16 +268,18 @@ function parse_and_generate_form(fileName) {
                 .replace(/&amp;/g, '&');
 
                 const rawOutput = questions[i].output || [];
+                const rawInput = questions[i].input || [];
 
-                for (let j = 0; j < rawOutput.length; j++) {
-                    outputArray[j] = rawOutput[j] || "";
-                }
+            for (let j = 0; j < rawOutput.length; j++) {
+                outputArray[j] = rawOutput[j];
+                inputArray[j] = rawInput[j];
+            }
                         
         }
 
         const choices = questions[i].distractors;
         const codeSnippet = questions[i].codeSnippet;
-        const answer = questions[i].answer;
+        const answer = questions[i].answer || [];
         const hint = questions[i].explainations;
 
         var isSingleCorrect = false;
@@ -383,8 +386,8 @@ function parse_and_generate_form(fileName) {
         const codeRunner = document.createElement("code-runner");
 
         codeRunner.setAttribute("language", "c");
-        codeRunner.setAttribute("output", "12");
-        codeRunner.setAttribute("inputTestcase", "10");
+        codeRunner.setAttribute("output", "");
+        codeRunner.setAttribute("inputTestcase", "");
             
         codeRunner.textContent = actualCode;
 
@@ -392,9 +395,7 @@ function parse_and_generate_form(fileName) {
 
             // append together 
             pre.appendChild(codeRunner);
-            form.appendChild(pre);    
-            console.log("testing user code: ", actualCode);
-   
+            form.appendChild(pre);       
             
         } else {
 
@@ -411,14 +412,17 @@ function parse_and_generate_form(fileName) {
         submitButton.classList.add("submit-button");
         submitButton.addEventListener("click", async function () {
 
+            let userOutput;
+
             if (isProgrammingQuestion) {
                 const codeRunner = form.querySelector("code-runner");
-
-                await runTestCases(codeRunner, questions[i].input);
+                console.log("Input Array:", inputArray);
+                userOutput = await runTestCases(codeRunner, inputArray);
+                console.log("Returned Outputs:", userOutput);
 
             }
                     
-            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode);
+            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, userOutput);
 
         });
         form.appendChild(submitButton);
@@ -645,41 +649,66 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
-async function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode) {
+function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, userOutput) {
 
-    var correctOutput = false; 
+    console.log("-----------NEW SUBMISSION------------");
+
+    var correctOutput = true; 
     let outputText = "";
 
     if (isProgrammingQuestion){
 
-        const form = document.getElementById(formId);
+        // const form = document.getElementById(formId);
 
-        let outputElement = form.querySelector("code-runner pre#result");
+        // let outputElement = form.querySelector("code-runner pre#result");
 
-        await new Promise((resolve) => {
+        // await new Promise((resolve) => {
 
-            const checkOutputReady = setInterval(() => {
+        //     const checkOutputReady = setInterval(() => {
 
-                outputText = outputElement?.textContent.trim();
+        //         outputText = outputElement?.textContent.trim();
       
-                if (outputText && outputText !== "Loading...") {
-                    clearInterval(checkOutputReady);
+        //         if (outputText && outputText !== "Loading...") {
+        //             clearInterval(checkOutputReady);
                     
-                    for (let i = 0; i < outputArray.length; i++){
-                        if (outputText === outputArray[i]) {
-                            correctOutput = true;
-                            break;
-                        }
-                    }
-                    
-                    resolve(); // resolve promise, allowing code to continue
-                }
+        //             for (let i = 0; i < outputArray.length; i++){
+        //                 if (outputText === outputArray[i]) {
+        //                     correctOutput = true;
+        //                     break;
+        //                 }
+        //             }
+        //             o
+        //             resolve(); // resolve promise, allowing code to continue
+        //         }
 
-            }, 100);
+        //     }, 100);
 
-          });
-      
-          
+        //   });
+
+        for (let i = 0; i < outputArray.length; i++) {
+
+            // outputText at submission
+            const form = document.getElementById(formId);
+            let outputElement = form.querySelector("code-runner pre#result");
+            outputText = outputElement?.textContent.trim() || "";
+
+            // testcases
+
+            console.log("TESTCASE #", i+1);
+
+            const expected = outputArray[i].trim();
+            const actual = (userOutput[i] || "").trim();
+
+            console.log("expected output: ", expected);
+            console.log("actual output: ", actual);
+
+			if (expected !== actual) {
+                console.log("wrong output for testcase #", i+1);
+				correctOutput = false;
+			} else {
+                console.log("correct output for testcase #", i+1)
+            }
+		}
     }
     
     var isSingleCorrect = false;
@@ -738,8 +767,6 @@ async function handle_submission(formId, answer, hint, filename, outputArray, is
             userCode: code,
             userOutput: outputText
         }));
-
-        console.log("testing output 1: ", outputText);
 
     } else {
         localStorage.setItem(baseKey + "_choices", JSON.stringify(selectedIndices));
@@ -898,7 +925,6 @@ function resetQuiz(fileName) {
 
         const key = fileName + "quizForm" + (i+1) + "_programming";
         const progData = JSON.parse(localStorage.getItem(key));
-        console.log(key);
 
         if (progData){ // true if programming question
 

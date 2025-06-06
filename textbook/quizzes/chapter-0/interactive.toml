@@ -11,7 +11,7 @@ int main(void){
     return 0;
 }'''
 
-output = ["Hello, World!", "Hello"]
+output = ["Hello, World!"]
 
 answer = []
 
@@ -44,9 +44,9 @@ int main(void){
   return 0;
 }'''
 
-output = ["The number of centimeters is 25.40"]
+output = ["The number of centimeters is 25.40", "The number of centimeters is 12.70"]
 
-input = "10"
+input = ["10", "5"]
 
 answer = []
 

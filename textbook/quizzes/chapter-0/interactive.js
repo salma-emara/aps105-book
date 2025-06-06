@@ -6,8 +6,7 @@ let parsedObject;
       "programming": true,
       "code": "#include <stdio.h>\n\nint main(void){\n    printf(\"\");\n    return 0;\n}",
       "output": [
-        "Hello, World!",
-        "Hello"
+        "Hello, World!"
       ],
       "answer": [],
       "distractors": [],
@@ -18,9 +17,13 @@ let parsedObject;
       "programming": true,
       "code": "// Description: This program convert inches to centimeters\n#include <stdio.h>\n\nint main(void){\n  // Declare variables\n  const double InchesToCm = 2.54;\n  double inputInches, outputCm;\n\n  // Prompt user for input\n  scanf(\"%lf\", &inputInches);\n  // Convert inches to centimeters\n  outputCm = inputInches * InchesToCm;\n \n  // Display output in 2 decimal places\n  printf(\"The number of centimeters is %.2lf\\n\", outputCm);\n  return 0;\n}",
       "output": [
-        "The number of centimeters is 25.40"
+        "The number of centimeters is 25.40",
+        "The number of centimeters is 12.70"
       ],
-      "input": "10",
+      "input": [
+        "10",
+        "5"
+      ],
       "answer": [],
       "distractors": [],
       "explainations": []

@@ -10,7 +10,7 @@ let parsedObject;
       "explainations": []
     },
     {
-      "prompt": "Write a C program that prints \"pizza\"",
+      "prompt": "Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is 2.54 centimeters per inch.",
       "programming": true,
       "code": "// Description: This program convert inches to centimeters\n#include <stdio.h>\n\nint main(void){\n  // Declare variables\n  const double InchesToCm = 2.54;\n  double inputInches, outputCm;\n\n  // Prompt user for input\n  scanf(\"%lf\", &inputInches);\n  // Convert inches to centimeters\n  outputCm = inputInches * InchesToCm;\n \n  // Display output in 2 decimal places\n  printf(\"The number of centimeters is %.2lf\\n\", outputCm);\n  return 0;\n}",
       "answer": [],
@@ -68,6 +68,15 @@ let parsedObject;
       "output": [
         "The number of centimeters is 12.70",
         "The number of centimeters is 12.7"
+      ]
+    },
+    {
+      "question": 1,
+      "input": [
+        "3.4"
+      ],
+      "output": [
+        "The number of centimeters is 8.64"
       ]
     }
   ]

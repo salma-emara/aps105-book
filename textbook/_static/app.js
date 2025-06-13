@@ -86,7 +86,7 @@ window.addEventListener("load", () => {
             
             // lock the user's code editor
             const textArea = form.querySelector("#codetorun .ace_text-input");
-            textArea.setAttribute("readonly", "");
+            if (textArea) textArea.setAttribute("readonly", "");
             const editorContainer = form.querySelector("#codetorun");
             editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
 
@@ -188,7 +188,7 @@ function closeFullscreenForm() {
             
             // lock the user's code editor
             const textArea = form.querySelector("#codetorun .ace_text-input");
-            textArea.setAttribute("readonly", "");
+            if (textArea) textArea.setAttribute("readonly", "");
             const editorContainer = form.querySelector("#codetorun");
             editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
 
@@ -197,6 +197,8 @@ function closeFullscreenForm() {
             textArea.setAttribute("readonly", "");
             inputArea.style.backgroundColor = "var(--bg, #edebeb)";
             localStorage.setItem("formsLocked", "true");
+            
+            localStorage.setItem("displayTestcases", "true");
         
         }
     }
@@ -222,6 +224,25 @@ function closeFullscreenForm() {
 
 
 function parse_and_generate_form(fileName) {
+
+    window.addEventListener("load", () => {
+
+        if (localStorage.getItem("displayTestcases") === "true"){
+
+            const quizForms = document.querySelectorAll("[id^='quizForm']");
+            for (let i = 0; i < quizForms.length; i++) {
+                const formId = "quizForm" + (i + 1);
+                const form = document.getElementById(formId);
+
+                const savedData = JSON.parse(localStorage.getItem(fileName + formId + "_programming"));
+                console.log("input:", savedData.inputArray);
+                console.log("expected output:", savedData.outputArray);
+                console.log("actual output:", savedData.actualOutput);
+                
+                if (savedData) displayTestcaseResults(form, savedData.inputArray, savedData.outputArray, savedData.actualOutput);
+            }
+        }
+    });
 
     const doc = document.getElementById("fullscreen-form");
 
@@ -282,7 +303,6 @@ function parse_and_generate_form(fileName) {
         }
 
         const choices = questions[i].distractors;
-        const codeSnippet = questions[i].codeSnippet;
         const answer = questions[i].answer || [];
         const hint = questions[i].explainations;
 
@@ -416,17 +436,14 @@ function parse_and_generate_form(fileName) {
         submitButton.classList.add("submit-button");
         submitButton.addEventListener("click", async function () {
 
-            let userOutput;
+            let actualOutput;
 
             if (isProgrammingQuestion) {
                 const codeRunner = form.querySelector("code-runner");
-                console.log("Input Array:", inputArray);
-                userOutput = await runTestCases(codeRunner, inputArray);
-                console.log("Returned Outputs:", userOutput);
-
+                actualOutput = await runTestCases(codeRunner, inputArray);
             }
                     
-            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, userOutput);
+            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray);
 
         });
         form.appendChild(submitButton);
@@ -625,7 +642,7 @@ function parse_and_generate_form(fileName) {
                 updateMessageElement(messageElement, progData.correctOutput, hint, [], answer, isSingleCorrect, true);
                 codeRunner.textContent = progData.userCode;
 
-                codeRunner.setAttribute("output", progData.userOutput);  
+                codeRunner.setAttribute("output", progData.outputUI);  
                                 
             }
 
@@ -653,66 +670,39 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
-function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, userOutput) {
+
+function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, actualOutput, inputArray) {
 
     console.log("-----------NEW SUBMISSION------------");
 
     var correctOutput = true; 
-    let outputText = "";
+    let outputUI = "";
 
     if (isProgrammingQuestion){
 
-        // const form = document.getElementById(formId);
-
-        // let outputElement = form.querySelector("code-runner pre#result");
-
-        // await new Promise((resolve) => {
-
-        //     const checkOutputReady = setInterval(() => {
-
-        //         outputText = outputElement?.textContent.trim();
-      
-        //         if (outputText && outputText !== "Loading...") {
-        //             clearInterval(checkOutputReady);
-                    
-        //             for (let i = 0; i < outputArray.length; i++){
-        //                 if (outputText === outputArray[i]) {
-        //                     correctOutput = true;
-        //                     break;
-        //                 }
-        //             }
-        //             o
-        //             resolve(); // resolve promise, allowing code to continue
-        //         }
-
-        //     }, 100);
-
-        //   });
-
         for (let i = 0; i < outputArray.length; i++) {
 
-            // outputText at submission
+            // outputUI text at submission
             const form = document.getElementById(formId);
             let outputElement = form.querySelector("code-runner pre#result");
-            outputText = outputElement?.textContent.trim() || "";
+            outputUI = outputElement?.textContent.trim() || "";
 
-            // testcases
+            // console.log("TESTCASE #", i+1);
 
-            console.log("TESTCASE #", i+1);
+            // const expected = outputArray[i].map(e => e.trim()); // multiple correct outputs
+            // const actual = (userOutput[i] || "").trim();
+            // const passed = expected.includes(actual);
 
-            const expected = outputArray[i].map(e => e.trim()); // multiple correct outputs
-            const actual = (userOutput[i] || "").trim();
+            // console.log("expected output: ", expected);
+            // console.log("actual output: ", actual);
 
-            console.log("expected output: ", expected);
-            console.log("actual output: ", actual);
-
-			if (!expected.includes(actual)) {
-                console.log("wrong output for testcase #", i+1);
-				correctOutput = false;
-			} else {
-                console.log("correct output for testcase #", i+1)
-            }
-		}
+			// if (!passed) {
+            //     console.log("wrong output for testcase #", i+1);
+			// 	correctOutput = false;
+			// } else {
+            //     console.log("correct output for testcase #", i+1)
+            // }
+        }
     }
     
     var isSingleCorrect = false;
@@ -736,8 +726,9 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
         updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
     } else if (isProgrammingQuestion) {
 
+        correctOutput = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
         updateMessageElement(messageElement, correctOutput, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
-        
+
     } else {
         messageElement.innerHTML = "Please make a selection.";
         messageElement.style.color = "red";
@@ -769,7 +760,10 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
             originalCode: originalCode,
             correctOutput: correctOutput,
             userCode: code,
-            userOutput: outputText
+            outputUI: outputUI,
+            actualOutput: actualOutput,
+            inputArray: inputArray,
+            outputArray: outputArray
         }));
 
     } else {
@@ -914,11 +908,118 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
 
 }
 
+function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
+    // remove previous testcase block if exists
+    const existingTestcaseContainer = form.querySelector(".testcase-container");
+    if (existingTestcaseContainer) existingTestcaseContainer.remove();
+
+    const testcaseContainer = document.createElement("div");
+    testcaseContainer.classList.add("testcase-container");
+
+    const header = document.createElement("h5");
+    header.textContent = "Testcases";
+    testcaseContainer.appendChild(header);
+
+    // container for buttons 
+    const testcaseButtonContainer = document.createElement("div");
+    testcaseButtonContainer.classList.add("testcase-button-container");
+    testcaseContainer.appendChild(testcaseButtonContainer);
+
+    // container for test case info
+    const testcaseInfoContainer = document.createElement("div");
+    testcaseInfoContainer.classList.add("testcase-info-container");
+    testcaseContainer.appendChild(testcaseInfoContainer);
+
+    let allPassed = true;
+
+    for (let i = 0; i < inputArray.length; i++) {
+        
+        // test case button
+        const testcaseButton = document.createElement("button");
+        testcaseButton.type = "button";
+        testcaseButton.id = "testcase" + (i+1);
+        testcaseButton.innerHTML = `Case ${i + 1}`;
+        testcaseButton.classList.add("testcase-button");
+        testcaseButtonContainer.appendChild(testcaseButton);
+
+        const testcaseDiv = document.createElement("div");
+        testcaseDiv.classList.add("testcase");
+
+        testcaseDiv.style.display = "none";
+
+        const expected = outputArray[i].map(e => e.trim());
+        const actual = (actualOutput[i] || "").trim();
+        const passed = expected.includes(actual);
+
+        if (!passed) allPassed = false;
+
+        // input
+        if (inputArray[i] != ""){
+            const inputPara = document.createElement("p");
+            inputPara.innerHTML = `
+                <strong>Input:</strong><br>
+                ${inputArray[i].join("<br>")}
+            `;
+            testcaseDiv.appendChild(inputPara);
+        }
+
+        // expected output
+        const outputPara = document.createElement("p");
+        outputPara.innerHTML = `
+            <strong>Expected Output:</strong><br>
+            ${expected.join("<br>")}
+        `;
+        testcaseDiv.appendChild(outputPara);
+
+        // actual output
+        const actualPara = document.createElement("p");
+        actualPara.innerHTML = `
+            <strong>Actual Output:</strong><br>
+            ${actual}
+        `;
+        testcaseDiv.appendChild(actualPara);
+
+        // results
+        const resultPara = document.createElement("p");
+        const resultText = passed ? "Passed" : "Failed";
+        const resultColor = passed ? "green" : "red";
+        resultPara.innerHTML = `
+            <strong>Result:</strong> 
+            <span style="color: ${resultColor};">
+                ${resultText}
+            </span>
+        `;
+
+        testcaseButton.style.color = passed ? "green" : "red";
+
+        testcaseDiv.appendChild(resultPara);
+
+        testcaseInfoContainer.appendChild(testcaseDiv);
+
+        testcaseButton.addEventListener("click", () => {
+
+            const allInfo = testcaseInfoContainer.children;
+            const allInfoArray = Array.from(allInfo);
+
+            allInfoArray.forEach(div => {
+                 div.style.display = "none";
+            });
+            
+            testcaseDiv.style.display = "block";
+
+        });
+    }
+
+    form.appendChild(testcaseContainer);
+
+    return allPassed;
+}
 
 
 function resetQuiz(fileName) {
 
     localStorage.removeItem("formsLocked");
+    localStorage.removeItem("displayTestcases");
 
     const quizForms = document.querySelectorAll("[id^='quizForm']");
 
@@ -926,6 +1027,10 @@ function resetQuiz(fileName) {
         quizForms[i].style.display = "none";
 
         const form = quizForms[i];
+
+        // remove previous test case block if exists
+        const existingTestcaseContainer = form.querySelector(".testcase-container");
+        if (existingTestcaseContainer) existingTestcaseContainer.remove();
 
         const key = fileName + "quizForm" + (i+1) + "_programming";
         const progData = JSON.parse(localStorage.getItem(key));

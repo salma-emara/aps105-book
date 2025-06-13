@@ -438,7 +438,16 @@ function parse_and_generate_form(fileName) {
 
             if (isProgrammingQuestion) {
                 const codeRunner = form.querySelector("code-runner");
+                
+                // display "Loading..." message
+                displayTestcaseSummary(messageElement, true, false, 0, 0);
+
                 actualOutput = await runTestCases(codeRunner, inputArray);
+
+                if (actualOutput.includes("Please try again")){
+                    displayTestcaseSummary(messageElement, false, true, 0, 0);
+                    return;
+                }
             }
                     
             handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray);
@@ -635,9 +644,9 @@ function parse_and_generate_form(fileName) {
 
             const progData = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_programming"));
 
-            if (progData && typeof progData.correctOutput !== "undefined") {
+            if (progData && typeof progData.totalTestcases !== "undefined") {
 
-                updateMessageElement(messageElement, progData.correctOutput, hint, [], answer, isSingleCorrect, true);
+                displayTestcaseSummary(messageElement, false, false, progData.numTestcasesPassed, progData.totalTestcases);
                 codeRunner.textContent = progData.userCode;
 
                 codeRunner.setAttribute("output", progData.outputUI);  
@@ -673,7 +682,6 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
 
     console.log("-----------NEW SUBMISSION------------");
 
-    var correctOutput = true; 
     let outputUI = "";
 
     if (isProgrammingQuestion){
@@ -685,21 +693,6 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
             let outputElement = form.querySelector("code-runner pre#result");
             outputUI = outputElement?.textContent.trim() || "";
 
-            // console.log("TESTCASE #", i+1);
-
-            // const expected = outputArray[i].map(e => e.trim()); // multiple correct outputs
-            // const actual = (userOutput[i] || "").trim();
-            // const passed = expected.includes(actual);
-
-            // console.log("expected output: ", expected);
-            // console.log("actual output: ", actual);
-
-			// if (!passed) {
-            //     console.log("wrong output for testcase #", i+1);
-			// 	correctOutput = false;
-			// } else {
-            //     console.log("correct output for testcase #", i+1)
-            // }
         }
     }
     
@@ -715,6 +708,8 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
     const messageElement = form.querySelector("#message" + formId.slice(8));
 
     let selectedIndices = [];
+    let numTestcasesPassed;
+    let totalTestcases;
 
     if (selectedChoices.length > 0) {
         selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
@@ -723,9 +718,9 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
 
         updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
     } else if (isProgrammingQuestion) {
-
-        correctOutput = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
-        updateMessageElement(messageElement, correctOutput, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
+        totalTestcases = actualOutput.length;
+        numTestcasesPassed = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
+        displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases);
 
     } else {
         messageElement.innerHTML = "Please make a selection.";
@@ -756,12 +751,13 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
         
         localStorage.setItem(baseKey + "_programming", JSON.stringify({
             originalCode: originalCode,
-            correctOutput: correctOutput,
             userCode: code,
             outputUI: outputUI,
             actualOutput: actualOutput,
             inputArray: inputArray,
-            outputArray: outputArray
+            outputArray: outputArray,
+            numTestcasesPassed: numTestcasesPassed,
+            totalTestcases: totalTestcases
         }));
 
     } else {
@@ -855,6 +851,27 @@ function AcodeSnippetFormatting(codeSnippet, choiceContainer, button) {
     });
 }
 
+function displayTestcaseSummary(messageElement, runningTestcases, error, numTestcasesPassed, totalTestcases){
+
+    if (runningTestcases){
+        messageElement.innerHTML = "Testing...";
+        messageElement.style.color = "grey";
+        messageElement.style.fontWeight = "bold";
+    } else if (error){
+        messageElement.innerHTML = "Please try submitting again";
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+    } else if (numTestcasesPassed == totalTestcases){
+        messageElement.innerHTML = `Correct! ${numTestcasesPassed}/${totalTestcases} testcases passed`;
+        messageElement.style.color = "green";
+        messageElement.style.fontWeight = "bold";
+    } else {
+        messageElement.innerHTML = `${numTestcasesPassed}/${totalTestcases} testcases passed. Please try again!`;
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+    }
+
+}
 
 function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion) {
     let message = "";
@@ -928,7 +945,7 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
     testcaseInfoContainer.classList.add("testcase-info-container");
     testcaseContainer.appendChild(testcaseInfoContainer);
 
-    let allPassed = true;
+    let numTestcasesPassed = 0;
 
     for (let i = 0; i < inputArray.length; i++) {
         
@@ -949,7 +966,7 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
         const actual = (actualOutput[i] || "").trim();
         const passed = expected.includes(actual);
 
-        if (!passed) allPassed = false;
+        if (passed) numTestcasesPassed++;
 
         // input
         if (inputArray[i] != ""){
@@ -1010,7 +1027,7 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
 
     form.appendChild(testcaseContainer);
 
-    return allPassed;
+    return numTestcasesPassed;
 }
 
 

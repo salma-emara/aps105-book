@@ -445,6 +445,17 @@ function parse_and_generate_form(fileName) {
                 actualOutput = await runTestCases(codeRunner, inputArray);
 
                 if (actualOutput.includes("Please try again")){
+
+                    const existingTestcaseContainer = form.querySelector(".testcase-container");
+                    if (existingTestcaseContainer) {
+                        existingTestcaseContainer.remove();
+                        // hide the next buttons
+                        var nextButtons = document.getElementsByClassName("next-button");
+                        for (var i = 0; i < nextButtons.length; i++) {
+                            var nextButton = nextButtons[i];
+                            nextButton.classList.add("hidden");
+                        }
+                    }
                     displayTestcaseSummary(messageElement, false, true, 0, 0);
                     return;
                 }

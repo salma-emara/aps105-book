@@ -90,18 +90,17 @@ button:hover{
 
 .testcase-button {
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .testcase-button-container {
     margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     flex-wrap: nowrap;
+    white-space: nowrap;
     overflow-x: auto; /* scroll horizontally if too many buttons */
 }
-
-/* .test-case-button:hover {
-    background-color: #f0f0f0;
-} */
 
 .parent-container {
     position: relative;

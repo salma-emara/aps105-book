@@ -63,6 +63,43 @@ output = ["The number of centimeters is 12.70", "The number of centimeters is 12
 input = ["3.4"]
 output = ["The number of centimeters is 8.64"]
 
+[[questions.testcases]]
+input = ["10"]
+output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
+
+[[questions.testcases]]
+input = ["5"]
+output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
+
+[[questions.testcases]]
+input = ["3.4"]
+output = ["The number of centimeters is 8.64"]
+
+[[questions.testcases]]
+input = ["10"]
+output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
+
+[[questions.testcases]]
+input = ["5"]
+output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
+
+[[questions.testcases]]
+input = ["3.4"]
+output = ["The number of centimeters is 8.64"]
+
+[[questions.testcases]]
+input = ["10"]
+output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
+
+[[questions.testcases]]
+input = ["5"]
+output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
+
+[[questions.testcases]]
+input = ["3.4"]
+output = ["The number of centimeters is 8.64"]
+
+
 [[questions]]
 
 prompt = "Let's say you want to design a \"micro\" computer with exactly 64KB of memory. How many bits would you need to address each byte of memory?"

@@ -982,28 +982,34 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
         // input
         if (inputArray[i] != ""){
             const inputPara = document.createElement("p");
-            inputPara.innerHTML = `
-                <strong>Input:</strong><br>
-                ${inputArray[i].join("<br>")}
-            `;
+            inputPara.innerHTML = `<strong>Input:</strong>`;
             testcaseDiv.appendChild(inputPara);
+
+            const preInput = document.createElement("pre");
+            preInput.textContent = inputArray[i].join("\n");
+            testcaseDiv.appendChild(preInput);
         }
 
         // expected output
         const outputPara = document.createElement("p");
-        outputPara.innerHTML = `
-            <strong>Expected Output:</strong><br>
-            ${expected.join("<br>")}
-        `;
+        if (outputArray[i].length > 1) outputPara.innerHTML = `<strong>Expected Outputs:</strong>`;
+        else outputPara.innerHTML = `<strong>Expected Output:</strong>`;
         testcaseDiv.appendChild(outputPara);
+
+        expected.forEach((i) => {
+            const preExpected = document.createElement("pre");
+            preExpected.textContent = i;
+            testcaseDiv.appendChild(preExpected);
+        });
 
         // actual output
         const actualPara = document.createElement("p");
-        actualPara.innerHTML = `
-            <strong>Actual Output:</strong><br>
-            ${actual}
-        `;
+        actualPara.innerHTML = `<strong>Actual Output:</strong>`;
         testcaseDiv.appendChild(actualPara);
+
+        const preActual = document.createElement("pre");
+        preActual.textContent = actual;
+        testcaseDiv.appendChild(preActual);
 
         // results
         const resultPara = document.createElement("p");

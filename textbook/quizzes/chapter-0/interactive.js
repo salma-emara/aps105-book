@@ -53,6 +53,84 @@ let parsedObject;
           "output": [
             "The number of centimeters is 8.64"
           ]
+        },
+        {
+          "input": [
+            "10"
+          ],
+          "output": [
+            "The number of centimeters is 25.40",
+            "The number of centimeters is 25.4"
+          ]
+        },
+        {
+          "input": [
+            "5"
+          ],
+          "output": [
+            "The number of centimeters is 12.70",
+            "The number of centimeters is 12.7"
+          ]
+        },
+        {
+          "input": [
+            "3.4"
+          ],
+          "output": [
+            "The number of centimeters is 8.64"
+          ]
+        },
+        {
+          "input": [
+            "10"
+          ],
+          "output": [
+            "The number of centimeters is 25.40",
+            "The number of centimeters is 25.4"
+          ]
+        },
+        {
+          "input": [
+            "5"
+          ],
+          "output": [
+            "The number of centimeters is 12.70",
+            "The number of centimeters is 12.7"
+          ]
+        },
+        {
+          "input": [
+            "3.4"
+          ],
+          "output": [
+            "The number of centimeters is 8.64"
+          ]
+        },
+        {
+          "input": [
+            "10"
+          ],
+          "output": [
+            "The number of centimeters is 25.40",
+            "The number of centimeters is 25.4"
+          ]
+        },
+        {
+          "input": [
+            "5"
+          ],
+          "output": [
+            "The number of centimeters is 12.70",
+            "The number of centimeters is 12.7"
+          ]
+        },
+        {
+          "input": [
+            "3.4"
+          ],
+          "output": [
+            "The number of centimeters is 8.64"
+          ]
         }
       ]
     },

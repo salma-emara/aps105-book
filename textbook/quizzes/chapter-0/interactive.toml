@@ -17,6 +17,9 @@ distractors = []
 
 explainations = []
 
+[[questions.testcases]]
+input = [""]
+output = ["Hello", "Hello, World!"]
 
 [[questions]]
 
@@ -48,6 +51,17 @@ distractors = []
 
 explainations = []
 
+[[questions.testcases]]
+input = ["10"]
+output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
+
+[[questions.testcases]]
+input = ["5"]
+output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
+
+[[questions.testcases]]
+input = ["3.4"]
+output = ["The number of centimeters is 8.64"]
 
 [[questions]]
 
@@ -85,23 +99,3 @@ To address 64KB of memory, we can use a 16-bit address. This allows us to repres
 To address 64KB of memory, we can use a 16-bit address. This allows us to represent 2^16 = 65,536 unique addresses, which covers the range of 64KB.
 '''
 ]
-
-[[testcases]]
-question = 0
-input = [""]
-output = ["Hello", "Hello, World!"]
-
-[[testcases]]
-question = 1
-input = ["10"]
-output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
-
-[[testcases]]
-question = 1
-input = ["5"]
-output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
-
-[[testcases]]
-question = 1
-input = ["3.4"]
-output = ["The number of centimeters is 8.64"]

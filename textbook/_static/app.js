@@ -289,15 +289,13 @@ function parse_and_generate_form(fileName) {
                 .replace(/&amp;/g, '&');
 
             // Collect all testcases for this question
-            const questionTestcases = parsedObject.testcases.filter(t => t.question === i);
-            console.log("Question index:", i);
-            console.log("Matching testcases:", questionTestcases);
+            const questionTestcases = questions[i].testcases;
 
             for (let j = 0; j < questionTestcases.length; j++) {
                 inputArray.push(questionTestcases[j].input || []);
                 outputArray.push(questionTestcases[j].output || []);
             } 
-            
+
             console.log("Inputs:", inputArray);
             console.log("Outputs:", outputArray);
         }

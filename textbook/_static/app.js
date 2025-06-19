@@ -440,22 +440,22 @@ function parse_and_generate_form(fileName) {
                 const codeRunner = form.querySelector("code-runner");
                 
                 // display "Loading..." message
-                displayTestcaseSummary(messageElement, true, false, 0, 0);
+                // displayTestcaseSummary(messageElement, true, false, 0, 0);
 
-                actualOutput = await runTestCases(codeRunner, inputArray);
+                const existingTestcaseContainer = form.querySelector(".testcase-container");
+                if (existingTestcaseContainer) {
+                    existingTestcaseContainer.remove();
+                    // hide the next buttons
+                    var nextButtons = document.getElementsByClassName("next-button");
+                    for (var i = 0; i < nextButtons.length; i++) {
+                        var nextButton = nextButtons[i];
+                        nextButton.classList.add("hidden");
+                    }
+                }
+
+                actualOutput = await runTestCases(codeRunner, inputArray, messageElement);
 
                 if (actualOutput.includes("Please try again")){
-
-                    const existingTestcaseContainer = form.querySelector(".testcase-container");
-                    if (existingTestcaseContainer) {
-                        existingTestcaseContainer.remove();
-                        // hide the next buttons
-                        var nextButtons = document.getElementsByClassName("next-button");
-                        for (var i = 0; i < nextButtons.length; i++) {
-                            var nextButton = nextButtons[i];
-                            nextButton.classList.add("hidden");
-                        }
-                    }
                     displayTestcaseSummary(messageElement, false, true, 0, 0);
                     return;
                 }

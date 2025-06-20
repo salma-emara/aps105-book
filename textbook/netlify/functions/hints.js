@@ -1,12 +1,14 @@
-const OpenAI = require("openai");
-const fetch = require('node-fetch');
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  fetch,
-});
 
 exports.handler = async (event, context) => {
+  // import node-fetch
+  const fetch = (await import('node-fetch')).default;
+  globalThis.fetch = fetch;
+
+  const OpenAI = require('openai');
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
   try {
     console.log("Received event:", event);
     const { prompt } = JSON.parse(event.body);

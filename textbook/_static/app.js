@@ -23,6 +23,7 @@ document.addEventListener("submit", function (e) {
 // }
 
 async function getChatCompletion(prompt) {
+    console.log("Sending prompt:", prompt);
     try {
         const response = await fetch('/.netlify/functions/hints', {
             method: 'POST',
@@ -39,9 +40,11 @@ async function getChatCompletion(prompt) {
         }
 
         console.log("Success:", data.reply);
+        return data.reply;
     } catch (err) {
         console.error("Network or parsing error:", err);
     }
+
 }
 
 function startQuiz() {

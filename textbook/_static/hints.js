@@ -4,7 +4,7 @@ const cors = require('cors');
 const OpenAI = require('openai');
 const path = require('path');
 
-// Load environment variables from textbook/.env
+// Load environment variables from textbook/.env 
 dotenv.config({ path: path.resolve('./textbook/.env') });
 
 const app = express();

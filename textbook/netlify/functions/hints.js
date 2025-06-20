@@ -1,7 +1,9 @@
 const OpenAI = require("openai");
+const fetch = require('node-fetch');
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  fetch,
 });
 
 exports.handler = async (event, context) => {

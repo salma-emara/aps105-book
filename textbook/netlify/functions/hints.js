@@ -1,24 +1,21 @@
+const OpenAI = require('openai');
 
 exports.handler = async (event, context) => {
   // import node-fetch
   const fetch = (await import('node-fetch')).default;
   globalThis.fetch = fetch;
 
-  const OpenAI = require('openai');
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
 
   try {
-    console.log("Received event:", event);
     const { prompt } = JSON.parse(event.body);
-    console.log("Prompt:", prompt);
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [{ role: "user", content: prompt }],
     });
-    console.log("OpenAI response received");
 
     return {
       statusCode: 200,

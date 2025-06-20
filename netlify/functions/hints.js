@@ -1,14 +1,15 @@
-const OpenAI = require('openai');
-
 exports.handler = async (event, context) => {
 
-  console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");
-  
-  // import node-fetch
-  const fetch = (await import('node-fetch')).default;
-  globalThis.fetch = fetch;
+  const fetchModule = await import('node-fetch');
+  globalThis.fetch = fetchModule.default;
+  globalThis.Headers = fetchModule.Headers;
+  globalThis.Request = fetchModule.Request;
+  globalThis.Response = fetchModule.Response;
 
-  console.log("RAW BODY:", event.body); // this helps you debug
+  const OpenAI = require('openai');
+
+  console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");
+  console.log("RAW BODY:", event.body);
 
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -20,6 +21,10 @@ exports.handler = async (event, context) => {
     }
 
     const { prompt } = JSON.parse(event.body);
+
+    if (!prompt) {
+      throw new Error("Prompt is empty");
+    }
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o",

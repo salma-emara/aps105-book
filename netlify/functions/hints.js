@@ -9,6 +9,9 @@ exports.handler = async (event, context) => {
   const { Blob } = await import('fetch-blob');
   globalThis.Blob = Blob;
 
+  const { FormData } = await import('formdata-node');
+  globalThis.FormData = FormData;
+
   const OpenAI = require('openai');
 
   console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");

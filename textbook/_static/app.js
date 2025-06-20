@@ -25,22 +25,22 @@ document.addEventListener("submit", function (e) {
 async function getChatCompletion(prompt) {
     try {
         const response = await fetch('/.netlify/functions/hints', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt }),
         });
 
-    const data = await response.json();
+        const data = await response.json();
 
-    if (!response.ok) {
+        if (!response.ok) {
             // Log error and detail from server response
             console.error("Fetch error:", data.error, data.detail || "(no details)");
             return;
-    }
+        }
 
-    console.log("Success:", data.reply);
+        console.log("Success:", data.reply);
     } catch (err) {
-    console.error("Network or parsing error:", err);
+        console.error("Network or parsing error:", err);
     }
 }
 

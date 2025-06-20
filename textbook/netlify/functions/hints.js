@@ -8,11 +8,17 @@ exports.handler = async (event, context) => {
   const fetch = (await import('node-fetch')).default;
   globalThis.fetch = fetch;
 
+  console.log("RAW BODY:", event.body); // this helps you debug
+
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
 
   try {
+    if (!event.body) {
+      throw new Error("Missing request body");
+    }
+
     const { prompt } = JSON.parse(event.body);
 
     const completion = await openai.chat.completions.create({

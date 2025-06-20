@@ -5,6 +5,8 @@ exports.handler = async (event, context) => {
   const fetch = (await import('node-fetch')).default;
   globalThis.fetch = fetch;
 
+  console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");
+
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });

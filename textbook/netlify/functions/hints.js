@@ -1,11 +1,12 @@
 const OpenAI = require('openai');
 
 exports.handler = async (event, context) => {
+
+  console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");
+  
   // import node-fetch
   const fetch = (await import('node-fetch')).default;
   globalThis.fetch = fetch;
-
-  console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");
 
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -27,7 +28,10 @@ exports.handler = async (event, context) => {
     console.error("Function error:", err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to fetch from OpenAI" }),
+      body: JSON.stringify({
+        error: "Failed to fetch from OpenAI",
+        detail: err.message, // Pass the actual error message to the frontend
+      }),
     };
-  }
-};
+    }
+}

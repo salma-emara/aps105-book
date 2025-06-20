@@ -23,23 +23,25 @@ document.addEventListener("submit", function (e) {
 // }
 
 async function getChatCompletion(prompt) {
-  try {
-    const response = await fetch('/.netlify/functions/hints', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not OK');
-    }
+    try {
+        const response = await fetch('/.netlify/functions/hints', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+        });
 
     const data = await response.json();
-    return data.reply;
-  } catch (error) {
-    console.error('Fetch error:', error);
-    return null;
-  }
+
+    if (!response.ok) {
+            // Log error and detail from server response
+            console.error("Fetch error:", data.error, data.detail || "(no details)");
+            return;
+    }
+
+    console.log("Success:", data.reply);
+    } catch (err) {
+    console.error("Network or parsing error:", err);
+    }
 }
 
 function startQuiz() {

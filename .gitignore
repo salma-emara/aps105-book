@@ -21,3 +21,6 @@ docs/_build/
 
 # Personal Virtual Environment
 myenv
+
+# OpenAI Key
+.env

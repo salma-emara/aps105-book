@@ -3,7 +3,25 @@ let currentQuestionIndex = 0;
 document.addEventListener("submit", function (e) {
     e.preventDefault(); 
   });
-  
+
+async function getChatCompletion(prompt) {
+  try {
+    const res = await fetch('http://localhost:3000/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await res.json();
+    return data.reply;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return null;
+  }
+}
+
 function startQuiz() {
 
     currentQuestionIndex = 0;
@@ -220,7 +238,6 @@ function closeFullscreenForm() {
         }
     }
 }
-
 
 
 function parse_and_generate_form(fileName) {
@@ -453,6 +470,9 @@ function parse_and_generate_form(fileName) {
                     }
                 }
 
+                const existingHintContainer = form.querySelector(".hint-container");
+                if (existingHintContainer) existingHintContainer.remove();
+
                 actualOutput = await runTestCases(codeRunner, inputArray, messageElement);
 
                 if (actualOutput.includes("Please try again")){
@@ -460,9 +480,8 @@ function parse_and_generate_form(fileName) {
                     return;
                 }
             }
-                    
-            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray);
-
+                
+            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray, question);
         });
         form.appendChild(submitButton);
 
@@ -688,8 +707,113 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
+async function handle_hints(form, originalCode, outputArray, actualOutput, questionPrompt) {
 
-function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, actualOutput, inputArray) {
+    const hintContainer = document.createElement("div");
+    hintContainer.classList.add("hint-container");
+
+    const header = document.createElement("h5");
+    header.textContent = "Hints";
+    hintContainer.appendChild(header);
+
+    // loading hints message
+
+    const loaderAnimation = document.createElement("div");
+    loaderAnimation.classList.add("loader");
+
+    const loadingText = document.createElement("span");
+    loadingText.textContent = "Generating hints...";
+    loadingText.style.fontWeight = "bold";
+
+    const hintLoadingContainer = document.createElement("div");
+    hintLoadingContainer.classList.add("hint-loading");
+    hintLoadingContainer.appendChild(loaderAnimation);
+    hintLoadingContainer.appendChild(loadingText);
+
+    hintContainer.appendChild(hintLoadingContainer);
+    form.appendChild(hintContainer);
+
+    // hint buttons
+    const hintButtonContainer = document.createElement("div");
+    hintButtonContainer.classList.add("hint-button-container");
+    hintContainer.appendChild(hintButtonContainer);
+
+    const hintInfoContainer = document.createElement("div");
+    hintInfoContainer.classList.add("hint-info-container");
+
+    hintContainer.appendChild(hintInfoContainer);
+
+    // Compose a single prompt asking for 3 hints
+    const prompt = `
+        You are helping a student with a programming question.
+
+        Please provide 3 hints at different levels, each hint must be at most 1 sentence long:
+
+        1. Subtle hint without giving away the solution.
+        2. Explanation of the concept involved.
+        3. Guided approach to solve the problem.
+
+        Format your response as:
+
+        Hint 1: ...
+        Hint 2: ...
+        Hint 3: ...
+
+        Question: ${questionPrompt}
+        Student code: ${originalCode}
+        Expected output: ${outputArray.join(", ")}
+        Actual output: ${actualOutput}
+        `;
+
+    const hintsText = await getChatCompletion(prompt);
+    hintLoadingContainer.remove();
+
+    // parser hint
+    let hints = [];
+
+    if (hintsText) {
+        const splitHints = hintsText.split(/Hint\s*\d\s*:/i).map(h => h.trim()).filter(Boolean);
+        // Map first 3 hints or fill empty strings if missing
+        for (let i = 0; i < 3; i++) {
+            hints.push(splitHints[i] || "No hint available.");
+        }
+
+    } else {
+        hints.push("No hints available.", "No hints available.", "No hints available.");
+    }
+
+    // Create buttons and hint divs for each hint
+    for (let i = 0; i < 3; i++) {
+        const hintButton = document.createElement("button");
+        hintButton.type = "button";
+        hintButton.id = "hint" + (i + 1);
+        hintButton.innerText = `Hint Level ${i + 1}`;
+        hintButton.classList.add("hint-button");
+        hintButtonContainer.appendChild(hintButton);
+
+        const hintDiv = document.createElement("pre");
+        hintDiv.style.overflow = "hidden";
+        hintDiv.style.whiteSpace = "pre-wrap"; 
+
+        hintDiv.classList.add("hint");
+        hintDiv.style.display = "none";
+        hintDiv.innerText = hints[i];
+        hintInfoContainer.appendChild(hintDiv);
+
+        hintButton.addEventListener("click", () => {
+        // Hide all hints
+        Array.from(hintInfoContainer.children).forEach(div => {
+            div.style.display = "none";
+        });
+        // Show clicked hint
+        hintDiv.style.display = "block";
+        });
+    }
+
+    form.appendChild(hintContainer);
+}
+
+function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, actualOutput, inputArray, questionPrompt) {
 
     console.log("-----------NEW SUBMISSION------------");
 
@@ -697,14 +821,11 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
 
     if (isProgrammingQuestion){
 
-        for (let i = 0; i < outputArray.length; i++) {
+        // outputUI text at submission
+        const form = document.getElementById(formId);
+        let outputElement = form.querySelector("code-runner pre#result");
+        outputUI = outputElement?.textContent.trim() || "";
 
-            // outputUI text at submission
-            const form = document.getElementById(formId);
-            let outputElement = form.querySelector("code-runner pre#result");
-            outputUI = outputElement?.textContent.trim() || "";
-
-        }
     }
     
     var isSingleCorrect = false;
@@ -723,15 +844,18 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
     let totalTestcases;
 
     if (selectedChoices.length > 0) {
-        selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
-        const isCorrect = answer.length === selectedIndices.length &&
-            answer.every(correctIndex => selectedIndices.includes(correctIndex));
 
+        selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
+        const isCorrect = answer.length === selectedIndices.length && answer.every(correctIndex => selectedIndices.includes(correctIndex));
         updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion);
+
     } else if (isProgrammingQuestion) {
+
         totalTestcases = actualOutput.length;
         numTestcasesPassed = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
-        displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases);
+        displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases, questionPrompt);
+
+        if (totalTestcases != numTestcasesPassed) handle_hints(form, originalCode, outputArray, actualOutput, questionPrompt);
 
     } else {
         messageElement.innerHTML = "Please make a selection.";
@@ -934,6 +1058,12 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
 
 }
 
+function normalizeOutput(str) {
+    return str
+        .replace(/[^\w]/g, "") // remove all non-alphanumeric (punctuation, spaces)
+        .toLowerCase();        // make lowercase
+}
+
 function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
     // remove previous testcase block if exists
     const existingTestcaseContainer = form.querySelector(".testcase-container");
@@ -973,8 +1103,8 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
 
         testcaseDiv.style.display = "none";
 
-        const expected = outputArray[i].map(e => e.trim());
-        const actual = (actualOutput[i] || "").trim();
+        const expected = outputArray[i].map(e => normalizeOutput(e));
+        const actual = normalizeOutput(actualOutput[i] || "");
         const passed = expected.includes(actual);
 
         if (passed) numTestcasesPassed++;
@@ -996,7 +1126,7 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
         else outputPara.innerHTML = `<strong>Expected Output:</strong>`;
         testcaseDiv.appendChild(outputPara);
 
-        expected.forEach((i) => {
+        outputArray[i].forEach((i) => {
             const preExpected = document.createElement("pre");
             preExpected.textContent = i;
             testcaseDiv.appendChild(preExpected);
@@ -1008,7 +1138,7 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
         testcaseDiv.appendChild(actualPara);
 
         const preActual = document.createElement("pre");
-        preActual.textContent = actual;
+        preActual.textContent = actualOutput[i];
         testcaseDiv.appendChild(preActual);
 
         // results

@@ -107,6 +107,42 @@ button:hover{
     display: inline-block;
 }
 
+.hint-button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.hint-button-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto; /* scroll horizontally if too many buttons */
+}
+
+.loader {
+  border: 6px solid grey;   
+  border-top: 6px solid green;  
+  border-radius: 50%;
+  width: 25px;                
+  height: 25px;
+  margin-right: 5px;
+  animation: spin 1s linear infinite;
+  background: transparent;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hint-loading {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  color: grey;
+}
 
 .question-box {
     background-color: #f0f0f0;

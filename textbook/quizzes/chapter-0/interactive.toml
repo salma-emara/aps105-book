@@ -1,6 +1,6 @@
 [[questions]]
 
-prompt = "Write a C program that prints \"Hello, World!\" or \"Hello\""
+prompt = "Write a C program that prints \"Hello, World!\""
 
 programming = true
 
@@ -19,7 +19,7 @@ explainations = []
 
 [[questions.testcases]]
 input = [""]
-output = ["Hello", "Hello, World!"]
+output = ["Hello, World!"]
 
 [[questions]]
 
@@ -50,42 +50,6 @@ answer = []
 distractors = []
 
 explainations = []
-
-[[questions.testcases]]
-input = ["10"]
-output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
-
-[[questions.testcases]]
-input = ["5"]
-output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
-
-[[questions.testcases]]
-input = ["3.4"]
-output = ["The number of centimeters is 8.64"]
-
-[[questions.testcases]]
-input = ["10"]
-output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
-
-[[questions.testcases]]
-input = ["5"]
-output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
-
-[[questions.testcases]]
-input = ["3.4"]
-output = ["The number of centimeters is 8.64"]
-
-[[questions.testcases]]
-input = ["10"]
-output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
-
-[[questions.testcases]]
-input = ["5"]
-output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
-
-[[questions.testcases]]
-input = ["3.4"]
-output = ["The number of centimeters is 8.64"]
 
 [[questions.testcases]]
 input = ["10"]

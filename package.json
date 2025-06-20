@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "dotenv": "^16.5.0",
+    "openai": "^5.5.1"
+  },
+  "name": "aps105-book",
+  "version": "1.0.0",
+  "description": "This is a repository for developing the first online textbook of its kind for APS105. The book's name is Snefru: Learning Programming with C. It is developed using [Jupyter Book](https://jupyterbook.org/en/stable/intro.html).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salma-emara/aps105-book.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salma-emara/aps105-book/issues"
+  },
+  "homepage": "https://github.com/salma-emara/aps105-book#readme"
+}

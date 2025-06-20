@@ -2,6 +2,7 @@
   "dependencies": {
     "@iarna/toml": "^2.2.5",
     "dotenv": "^16.5.0",
+    "fetch-blob": "^4.0.0",
     "node-fetch": "^3.3.2",
     "openai": "^5.5.1"
   },

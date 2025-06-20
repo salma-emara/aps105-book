@@ -6,6 +6,9 @@ exports.handler = async (event, context) => {
   globalThis.Request = fetchModule.Request;
   globalThis.Response = fetchModule.Response;
 
+  const { Blob } = await import('fetch-blob');
+  globalThis.Blob = Blob;
+
   const OpenAI = require('openai');
 
   console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");

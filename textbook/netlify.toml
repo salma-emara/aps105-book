@@ -1,0 +1,7 @@
+[build]
+functions = "netlify/functions"
+publish = "textbook/_build/html"
+
+[dev]
+functions = "netlify/functions"
+publish = "textbook/_build/html"

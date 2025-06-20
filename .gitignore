@@ -24,3 +24,5 @@ myenv
 
 # OpenAI Key
 .env
+# Local Netlify folder
+.netlify

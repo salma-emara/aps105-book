@@ -4,17 +4,37 @@ document.addEventListener("submit", function (e) {
     e.preventDefault(); 
   });
 
+// async function getChatCompletion(prompt) {
+//   try {
+//     const res = await fetch('http://localhost:3000/api/chat', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ prompt })
+//     });
+
+//     const data = await res.json();
+//     return data.reply;
+//   } catch (error) {
+//     console.error('Fetch error:', error);
+//     return null;
+//   }
+// }
+
 async function getChatCompletion(prompt) {
   try {
-    const res = await fetch('http://localhost:3000/api/chat', {
+    const response = await fetch('/.netlify/functions/hints', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prompt })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt }),
     });
 
-    const data = await res.json();
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    }
+
+    const data = await response.json();
     return data.reply;
   } catch (error) {
     console.error('Fetch error:', error);

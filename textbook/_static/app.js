@@ -449,7 +449,10 @@ function parse_and_generate_form(fileName) {
             form.appendChild(choicesElement);
 
         }
-                        
+
+        const submitAndNextRow = document.createElement("div");
+        submitAndNextRow.classList.add("button-row");
+      
         //add submit button
         const submitButton = document.createElement("button");
         submitButton.type = "button";
@@ -488,7 +491,38 @@ function parse_and_generate_form(fileName) {
                 
             handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray, question);
         });
-        form.appendChild(submitButton);
+
+        submitAndNextRow.appendChild(submitButton);
+        // form.appendChild(submitButton);
+
+        // Add next button
+        if ((i + 1) !== questions.length) {
+            const nextButton = document.createElement("button");
+            nextButton.type = "button";
+            nextButton.id = "next-button" + (i + 1);
+            nextButton.innerHTML = "Next";
+            nextButton.classList.add("next-button");
+            nextButton.classList.add("hidden");
+            nextButton.addEventListener("click", () => {
+                const existingHintContainer = form.querySelector(".hint-container");
+                if (existingHintContainer) existingHintContainer.remove();
+                showNextQuestion();
+            });
+
+            submitAndNextRow.appendChild(nextButton);
+            form.appendChild(submitAndNextRow);
+        }
+        else {
+            //create finish button
+            form.appendChild(submitAndNextRow);
+            const finishButton = document.createElement('button');
+            finishButton.type = "button";
+            finishButton.id = "finish-button";
+            finishButton.innerHTML = "Finish";
+            finishButton.addEventListener("click", closeFullscreenForm);
+            form.appendChild(finishButton);
+            finishButton.classList.add("hidden");
+        }
 
         //add text for after submission
         const messageElement = document.createElement("p");
@@ -519,33 +553,6 @@ function parse_and_generate_form(fileName) {
                     hint[i] = hint[i].replace(match, codeSnippetElement.outerHTML);
                 }
             }
-        }
-
-        // Add next button
-        if ((i + 1) !== questions.length) {
-            const nextButton = document.createElement("button");
-            nextButton.type = "button";
-            nextButton.id = "next-button" + (i + 1);
-            nextButton.innerHTML = "Next";
-            nextButton.classList.add("next-button");
-            nextButton.classList.add("hidden");
-            nextButton.addEventListener("click", () => {
-                const existingHintContainer = form.querySelector(".hint-container");
-                if (existingHintContainer) existingHintContainer.remove();
-                showNextQuestion();
-            });
-
-            form.appendChild(nextButton);
-        }
-        else {
-            //create finish button
-            const finishButton = document.createElement('button');
-            finishButton.type = "button";
-            finishButton.id = "finish-button";
-            finishButton.innerHTML = "Finish";
-            finishButton.addEventListener("click", closeFullscreenForm);
-            form.appendChild(finishButton);
-            finishButton.classList.add("hidden");
         }
 
         document.getElementById("fullscreen-form").appendChild(form);

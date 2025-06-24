@@ -78,6 +78,13 @@
     margin-bottom: 10px;
 }
 
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  align-items: center;
+}
+
 button {
     background-color: white;
     border-radius: 5px;

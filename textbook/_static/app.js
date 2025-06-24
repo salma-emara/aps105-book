@@ -463,8 +463,6 @@ function parse_and_generate_form(fileName) {
             if (isProgrammingQuestion) {
                 const codeRunner = form.querySelector("code-runner");
                 
-                // display "Loading..." message
-                // displayTestcaseSummary(messageElement, true, false, 0, 0);
 
                 const existingTestcaseContainer = form.querySelector(".testcase-container");
                 if (existingTestcaseContainer) {
@@ -531,7 +529,12 @@ function parse_and_generate_form(fileName) {
             nextButton.innerHTML = "Next";
             nextButton.classList.add("next-button");
             nextButton.classList.add("hidden");
-            nextButton.addEventListener("click", showNextQuestion);
+            nextButton.addEventListener("click", () => {
+                const existingHintContainer = form.querySelector(".hint-container");
+                if (existingHintContainer) existingHintContainer.remove();
+                showNextQuestion();
+            });
+
             form.appendChild(nextButton);
         }
         else {

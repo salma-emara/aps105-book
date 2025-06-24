@@ -4,24 +4,6 @@ document.addEventListener("submit", function (e) {
     e.preventDefault(); 
   });
 
-// async function getChatCompletion(prompt) {
-//   try {
-//     const res = await fetch('http://localhost:3000/api/chat', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ prompt })
-//     });
-
-//     const data = await res.json();
-//     return data.reply;
-//   } catch (error) {
-//     console.error('Fetch error:', error);
-//     return null;
-//   }
-// }
-
 async function getChatCompletion(prompt) {
     console.log("Sending prompt:", prompt);
     try {
@@ -732,22 +714,66 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
-async function handle_hints(form, originalCode, outputArray, actualOutput, questionPrompt) {
+async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
-    const hintContainer = document.createElement("div");
-    hintContainer.classList.add("hint-container");
+    // check if hints already exists
+    let hintContainer = form.querySelector(".hint-container");
+    let hintButtonContainer, hintInfoContainer, anotherHint;
 
-    const header = document.createElement("h5");
-    header.textContent = "Hints";
-    hintContainer.appendChild(header);
+    if (!hintContainer){ // initial setup
+
+        hintContainer = document.createElement("div");
+        hintContainer.classList.add("hint-container");
+
+        const header = document.createElement("h5");
+        header.textContent = "Hints";
+        hintContainer.appendChild(header);
+
+        // hint buttons
+        hintButtonContainer = document.createElement("div");
+        hintButtonContainer.classList.add("hint-button-container");
+        hintContainer.appendChild(hintButtonContainer);
+
+        // hint info
+        hintInfoContainer = document.createElement("div");
+        hintInfoContainer.classList.add("hint-info-container");
+        hintContainer.appendChild(hintInfoContainer);
+
+        // another hint button
+        anotherHint = document.createElement("button");
+        anotherHint.type = "button";
+        anotherHint.textContent = "Get Another Hint";
+        anotherHint.classList.add("another-hint");
+        hintContainer.appendChild(anotherHint);
+
+        form.appendChild(hintContainer);  
+
+    } else {
+        hintButtonContainer = hintContainer.querySelector(".hint-button-container");
+        hintInfoContainer = hintContainer.querySelector(".hint-info-container");
+        anotherHint = hintContainer.querySelector(".another-hint");
+    }
+
+    // hint buttons
+    const hintIndex = hintButtonContainer.children.length + 1;
+
+    const hintButton = document.createElement("button");
+    hintButton.type = "button";
+    hintButton.innerText = `Hint ${hintIndex}`;
+    hintButton.classList.add("hint-button");
+    hintButtonContainer.appendChild(hintButton);
 
     // loading hints message
+    const hintDiv = document.createElement("pre");
+    hintDiv.classList.add("hint");
+    hintDiv.style.display = "none";
+    hintDiv.style.whiteSpace = "pre-wrap";
 
     const loaderAnimation = document.createElement("div");
     loaderAnimation.classList.add("loader");
 
     const loadingText = document.createElement("span");
-    loadingText.textContent = "Generating hints...";
+    loadingText.textContent = "Generating hint...";
     loadingText.style.fontWeight = "bold";
 
     const hintLoadingContainer = document.createElement("div");
@@ -755,88 +781,60 @@ async function handle_hints(form, originalCode, outputArray, actualOutput, quest
     hintLoadingContainer.appendChild(loaderAnimation);
     hintLoadingContainer.appendChild(loadingText);
 
-    hintContainer.appendChild(hintLoadingContainer);
-    form.appendChild(hintContainer);
+    hintDiv.appendChild(hintLoadingContainer);
+    hintInfoContainer.appendChild(hintDiv);
 
-    // hint buttons
-    const hintButtonContainer = document.createElement("div");
-    hintButtonContainer.classList.add("hint-button-container");
-    hintContainer.appendChild(hintButtonContainer);
+    hintButton.addEventListener("click", () => {
+        Array.from(hintInfoContainer.children).forEach(div => {
+            div.style.display = "none";
+        });
+        hintDiv.style.display = "block";
+    });
 
-    const hintInfoContainer = document.createElement("div");
-    hintInfoContainer.classList.add("hint-info-container");
+    hintButton.click();
 
-    hintContainer.appendChild(hintInfoContainer);
-
-    // Compose a single prompt asking for 3 hints
     const prompt = `
         You are helping a student with a programming question.
 
-        Please provide 3 hints at different levels, each hint must be at most 1 sentence long:
-
+        Please provide 1 hint only, matching one of the following approaches:
         1. Subtle hint without giving away the solution.
         2. Explanation of the concept involved.
-        3. Guided approach to solve the problem.
 
-        Format your response as:
+        Keep the hint concise and limited to one sentence.
 
-        Hint 1: ...
-        Hint 2: ...
-        Hint 3: ...
+        Ensure this hint is *distinct* and *more helpful* than any previously given.
+
+        Here are the previous provided hints: ${previousHints.join(", ")}
+
+        Format your response like:
+        Hint: ...
 
         Question: ${questionPrompt}
         Student code: ${originalCode}
         Expected output: ${outputArray.join(", ")}
         Actual output: ${actualOutput}
-        `;
+    `;
 
     const hintsText = await getChatCompletion(prompt);
     hintLoadingContainer.remove();
 
     // parser hint
-    let hints = [];
-
-    if (hintsText) {
-        const splitHints = hintsText.split(/Hint\s*\d\s*:/i).map(h => h.trim()).filter(Boolean);
-        // Map first 3 hints or fill empty strings if missing
-        for (let i = 0; i < 3; i++) {
-            hints.push(splitHints[i] || "No hint available.");
-        }
-
+    let hint = "No hint available.";
+    const match = hintsText.match(/Hint\s*:\s*(.+)/i);
+    if (match) {
+        hint = match[1].trim();
+        hintDiv.innerText = hint; 
+        previousHints.push(hint);
+        console.log(previousHints);
     } else {
-        hints.push("No hints available.", "No hints available.", "No hints available.");
+        hintDiv.innerText = "No hint available.";
     }
 
-    // Create buttons and hint divs for each hint
-    for (let i = 0; i < 3; i++) {
-        const hintButton = document.createElement("button");
-        hintButton.type = "button";
-        hintButton.id = "hint" + (i + 1);
-        hintButton.innerText = `Hint Level ${i + 1}`;
-        hintButton.classList.add("hint-button");
-        hintButtonContainer.appendChild(hintButton);
-
-        const hintDiv = document.createElement("pre");
-        hintDiv.style.overflow = "hidden";
-        hintDiv.style.whiteSpace = "pre-wrap"; 
-
-        hintDiv.classList.add("hint");
-        hintDiv.style.display = "none";
-        hintDiv.innerText = hints[i];
-        hintInfoContainer.appendChild(hintDiv);
-
-        hintButton.addEventListener("click", () => {
-        // Hide all hints
-        Array.from(hintInfoContainer.children).forEach(div => {
-            div.style.display = "none";
-        });
-        // Show clicked hint
-        hintDiv.style.display = "block";
-        });
-    }
-
-    form.appendChild(hintContainer);
+    anotherHint.onclick = () => {
+        generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints);
+    };
 }
+
 
 function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, actualOutput, inputArray, questionPrompt) {
 
@@ -880,7 +878,10 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
         numTestcasesPassed = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
         displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases, questionPrompt);
 
-        if (totalTestcases != numTestcasesPassed) handle_hints(form, originalCode, outputArray, actualOutput, questionPrompt);
+        if (totalTestcases != numTestcasesPassed) {
+            let previousHints = [];
+            generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints);
+        }
 
     } else {
         messageElement.innerHTML = "Please make a selection.";

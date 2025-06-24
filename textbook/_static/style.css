@@ -121,6 +121,11 @@ button:hover{
     overflow-x: auto; /* scroll horizontally if too many buttons */
 }
 
+.another-hint{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .loader {
   border: 6px solid grey;   
   border-top: 6px solid green;  
@@ -139,8 +144,8 @@ button:hover{
 
 .hint-loading {
   display: flex;
-  align-items: left;
-  justify-content: left;
+  align-items: center;
+  justify-content: flex-start;
   color: grey;
 }
 

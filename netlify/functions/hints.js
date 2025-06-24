@@ -14,9 +14,6 @@ exports.handler = async (event, context) => {
 
   const OpenAI = require('openai');
 
-  console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY ? "SET" : "NOT SET");
-  console.log("RAW BODY:", event.body);
-
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });

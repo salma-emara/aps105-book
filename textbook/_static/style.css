@@ -58,7 +58,6 @@
     z-index: 9999;
 }
 
-
 .hidden-imp {
     display: none !important;
 }
@@ -67,6 +66,10 @@
     display: none;
 }
 
+.parent-container {
+    position: relative;
+    display: inline-block;
+}
 
 .submit-button {
     margin-right: 10px;
@@ -95,11 +98,7 @@ button:hover{
     background-color: #f0f0f0;
 }
 
-.testcase-button {
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
+/* testcases */
 .testcase-button-container {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -109,27 +108,24 @@ button:hover{
     overflow-x: auto; /* scroll horizontally if too many buttons */
 }
 
-.diff-expected {
+.testcase-button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.highlight-expected {
     background-color: #ffd0d0;
     border-radius: 4px;
     padding: 2px;
 }
 
-.diff-actual {
+.highlight-actual {
     background-color: #ccf9cc;
     border-radius: 4px;
     padding: 2px;
 }
-.parent-container {
-    position: relative;
-    display: inline-block;
-}
 
-.hint-button {
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
-
+/* hints */
 .hint-button-container {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -137,6 +133,11 @@ button:hover{
     flex-wrap: nowrap;
     white-space: nowrap;
     overflow-x: auto; /* scroll horizontally if too many buttons */
+}
+
+.hint-button {
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .another-hint{
@@ -175,7 +176,6 @@ button:hover{
     padding-bottom: 7px;
     border-radius: 5px;
 }
-
 
 .line-number {
     color: grey;

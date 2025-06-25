@@ -450,8 +450,8 @@ function parse_and_generate_form(fileName) {
 
         }
 
-        const submitAndNextRow = document.createElement("div");
-        submitAndNextRow.classList.add("button-row");
+        const buttonRow = document.createElement("div");
+        buttonRow.classList.add("button-row");
       
         //add submit button
         const submitButton = document.createElement("button");
@@ -492,8 +492,7 @@ function parse_and_generate_form(fileName) {
             handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray, question);
         });
 
-        submitAndNextRow.appendChild(submitButton);
-        // form.appendChild(submitButton);
+        buttonRow.appendChild(submitButton);
 
         // Add next button
         if ((i + 1) !== questions.length) {
@@ -509,12 +508,11 @@ function parse_and_generate_form(fileName) {
                 showNextQuestion();
             });
 
-            submitAndNextRow.appendChild(nextButton);
-            form.appendChild(submitAndNextRow);
+            buttonRow.appendChild(nextButton);
+            form.appendChild(buttonRow);
         }
         else {
             //create finish button
-            form.appendChild(submitAndNextRow);
             const finishButton = document.createElement('button');
             finishButton.type = "button";
             finishButton.id = "finish-button";
@@ -522,6 +520,9 @@ function parse_and_generate_form(fileName) {
             finishButton.addEventListener("click", closeFullscreenForm);
             form.appendChild(finishButton);
             finishButton.classList.add("hidden");
+            
+            buttonRow.appendChild(finishButton);
+            form.appendChild(buttonRow);
         }
 
         //add text for after submission

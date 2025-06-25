@@ -3,6 +3,7 @@
 prompt = "Write a C program that prints \"Hello, World!\""
 
 programming = true
+tracing = false
 
 code = '''#include <stdio.h>
 
@@ -24,9 +25,69 @@ output = ["Hello, World!"]
 
 [[questions]]
 
+prompt = "In the box provided below, write the output generated after the following program is completely executed."
+
+programming = false
+tracing = true
+
+code = '''#include <stdio.h>
+int main(void) {
+  int first = 1, second = 2, data[4] = {10, 20, 30, 40};
+  int *third = &second, *fourth = &first, *fifth = data + first + 1;
+  (*third)++;
+  (*fourth)++;
+  data[second] = *fifth + first + *third + *fourth;
+  printf("first = %d, second = %d, third = %d, fourth = %d, fifth = %d\n",
+         first, second, *third, *fourth, *fifth);
+  for (int i = 0; i < 4; i++) {
+    printf("%d, ", data[i]);
+  }
+  printf("\n");
+  return 0;
+}
+'''
+
+answer = """first = 2, second = 3, third = 3, fourth = 2, fifth = 30
+10, 20, 30, 37,"""
+
+distractors = []
+
+explainations = []
+
+
+[[questions]]
+
+prompt = "What will be printed when the following C program is executed?"
+
+programming = false
+tracing = true
+
+code = '''int main(void) {
+  int first = 1, second = 10;
+  int *pointerToFirst, *pointerToSecond;
+
+  pointerToFirst = &first;
+  pointerToSecond = &second;
+  *pointerToFirst = *pointerToSecond - *pointerToFirst;
+  *pointerToSecond = *pointerToSecond - *pointerToFirst;
+  *pointerToFirst = *pointerToSecond + *pointerToFirst;
+  printf("%d, %d\n", first, second);
+}
+'''
+
+answer = """10, 1"""
+
+distractors = []
+
+explainations = []
+
+
+[[questions]]
+
 prompt = "Write a C program that reads two integers from the user and prints their sum."
 
 programming = true
+tracing = false
 
 code = '''#include <stdio.h>
 
@@ -62,6 +123,7 @@ output = ["""Enter two integers:
 prompt = "Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is 2.54 centimeters per inch."
 
 programming = true
+tracing = false
 
 code = '''// Description: This program convert inches to centimeters
 #include <stdio.h>
@@ -105,6 +167,7 @@ output = ["The number of centimeters is 8.64"]
 prompt = "Let's say you want to design a \"micro\" computer with exactly 64KB of memory. How many bits would you need to address each byte of memory?"
 
 programming = false 
+tracing = false
 
 code = ""
 

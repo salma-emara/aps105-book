@@ -71,6 +71,17 @@
     display: inline-block;
 }
 
+/* tracing block */
+
+.trace-textarea {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 8px;
+    white-space: pre;
+    resize: vertical;
+}
+
 .submit-button {
     margin-right: 10px;
     background-color: white;

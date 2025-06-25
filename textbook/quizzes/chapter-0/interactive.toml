@@ -53,11 +53,11 @@ explainations = []
 
 [[questions.testcases]]
 input = ["10"]
-output = ["The number of centimeters is 25.40", "The number of centimeters is 25.4"]
+output = ["The number of centimeters is 25.40"]
 
 [[questions.testcases]]
 input = ["5"]
-output = ["The number of centimeters is 12.70", "The number of centimeters is 12.7"]
+output = ["The number of centimeters is 12.70"]
 
 [[questions.testcases]]
 input = ["3.4"]

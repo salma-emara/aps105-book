@@ -1139,9 +1139,9 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
 
         testcaseDiv.style.display = "none";
 
-        const expected = outputArray[i].map(e => normalizeOutput(e));
-        const actual = normalizeOutput(actualOutput[i] || "");
-        const passed = expected.includes(actual);
+        const expected = (outputArray[i] && outputArray[i][0]) || "";
+        const actual = actualOutput[i] || "";
+        const passed = (normalizeOutput(expected) == normalizeOutput(actual));
 
         if (passed) numTestcasesPassed++;
 
@@ -1156,6 +1156,8 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
             testcaseDiv.appendChild(preInput);
         }
 
+        const diff = diffCheck(expected, actual);
+
         // expected output
         const outputPara = document.createElement("p");
         if (outputArray[i].length > 1) outputPara.innerHTML = `<strong>Expected Outputs:</strong>`;
@@ -1164,7 +1166,8 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
 
         outputArray[i].forEach((i) => {
             const preExpected = document.createElement("pre");
-            preExpected.textContent = i;
+            if (passed) preExpected.innerHTML = expected;
+            else preExpected.innerHTML = diff.expectedResult;
             testcaseDiv.appendChild(preExpected);
         });
 
@@ -1174,7 +1177,8 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
         testcaseDiv.appendChild(actualPara);
 
         const preActual = document.createElement("pre");
-        preActual.textContent = actualOutput[i];
+        if (passed) preActual.innerHTML = actual;
+        else preActual.innerHTML = diff.actualResult;
         testcaseDiv.appendChild(preActual);
 
         // results
@@ -1213,6 +1217,36 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
     return numTestcasesPassed;
 }
 
+function diffCheck(expected, actual) {
+    if (expected === actual) return {expectedResult: expected, actualResult: actual};
+
+    let expectedResult = "";
+    let actualResult = "";
+
+    const expectedWords = expected.trim().split(/\s+/);
+    const actualWords = actual.trim().split(/\s+/);
+    const length = Math.max(expectedWords.length, actualWords.length);
+
+    for (let i = 0; i < length; i++) {
+        const expectedWord = expectedWords[i] || "";
+        const actualWord = actualWords[i] || "";
+
+        const escapedExpected = expectedWord;
+        const escapedActual = actualWord;
+
+        if (expectedWord === actualWord) {
+            expectedResult += escapedExpected + " ";
+            actualResult += escapedActual + " ";
+        } else {
+            if (expectedWord)
+                expectedResult += `<span class="diff-expected">${escapedExpected}</span> `;
+            if (actualWord)
+                actualResult += `<span class="diff-actual">${escapedActual}</span> `;
+        }
+    }
+
+    return {expectedResult: expectedResult.trim(), actualResult: actualResult.trim()};
+}
 
 function resetQuiz(fileName) {
 

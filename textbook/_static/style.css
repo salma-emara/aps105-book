@@ -109,6 +109,17 @@ button:hover{
     overflow-x: auto; /* scroll horizontally if too many buttons */
 }
 
+.diff-expected {
+    background-color: #ffd0d0;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.diff-actual {
+    background-color: #ccf9cc;
+    border-radius: 4px;
+    padding: 2px;
+}
 .parent-container {
     position: relative;
     display: inline-block;

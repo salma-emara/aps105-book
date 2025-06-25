@@ -21,6 +21,42 @@ explainations = []
 input = [""]
 output = ["Hello, World!"]
 
+
+[[questions]]
+
+prompt = "Write a C program that reads two integers from the user and prints their sum."
+
+programming = true
+
+code = '''#include <stdio.h>
+
+int main() {
+    int a, b;
+
+    // printf("Enter two integers:");
+
+    // Read two integers from one line
+    scanf("%d %d", &a, &b);
+
+    // Print the sum
+    printf("%d\n", a + b);
+
+    return 0;
+}
+'''
+
+answer = []
+
+distractors = []
+
+explainations = []
+
+[[questions.testcases]]
+input = ["3 5"]
+output = ["""Enter two integers:
+8"""]
+
+
 [[questions]]
 
 prompt = "Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is 2.54 centimeters per inch."

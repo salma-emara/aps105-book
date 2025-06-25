@@ -20,6 +20,24 @@ let parsedObject;
       ]
     },
     {
+      "prompt": "Write a C program that reads two integers from the user and prints their sum.",
+      "programming": true,
+      "code": "#include <stdio.h>\n\nint main() {\n    int a, b;\n\n    // printf(\"Enter two integers:\");\n\n    // Read two integers from one line\n    scanf(\"%d %d\", &a, &b);\n\n    // Print the sum\n    printf(\"%d\\n\", a + b);\n\n    return 0;\n}\n",
+      "answer": [],
+      "distractors": [],
+      "explainations": [],
+      "testcases": [
+        {
+          "input": [
+            "3 5"
+          ],
+          "output": [
+            "Enter two integers:\n8"
+          ]
+        }
+      ]
+    },
+    {
       "prompt": "Write a program that converts inches to centimeters. The program should prompt the user for a number of inches and then output the equivalent number of centimeters. The conversion factor is 2.54 centimeters per inch.",
       "programming": true,
       "code": "// Description: This program convert inches to centimeters\n#include <stdio.h>\n\nint main(void){\n  // Declare variables\n  const double InchesToCm = 2.54;\n  double inputInches, outputCm;\n\n  // Prompt user for input\n  scanf(\"%lf\", &inputInches);\n  // Convert inches to centimeters\n  outputCm = inputInches * InchesToCm;\n \n  // Display output in 2 decimal places\n  printf(\"The number of centimeters is %.2lf\\n\", outputCm);\n  return 0;\n}",

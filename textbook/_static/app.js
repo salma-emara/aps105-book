@@ -520,7 +520,7 @@ function parse_and_generate_form(fileName) {
             finishButton.addEventListener("click", closeFullscreenForm);
             form.appendChild(finishButton);
             finishButton.classList.add("hidden");
-            
+
             buttonRow.appendChild(finishButton);
             form.appendChild(buttonRow);
         }
@@ -1224,29 +1224,33 @@ function diffCheck(expected, actual) {
     let expectedResult = "";
     let actualResult = "";
 
-    const expectedWords = expected.trim().split(/\s+/);
-    const actualWords = actual.trim().split(/\s+/);
+    const expectedWords = expected.match(/\w+|\s+|[^\w\s]+/g) || [];
+    const actualWords = actual.match(/\w+|\s+|[^\w\s]+/g) || [];
     const length = Math.max(expectedWords.length, actualWords.length);
 
     for (let i = 0; i < length; i++) {
         const expectedWord = expectedWords[i] || "";
         const actualWord = actualWords[i] || "";
 
-        const escapedExpected = expectedWord;
-        const escapedActual = actualWord;
-
         if (expectedWord === actualWord) {
-            expectedResult += escapedExpected + " ";
-            actualResult += escapedActual + " ";
+            expectedResult += expectedWord;
+            actualResult += actualWord;
         } else {
-            if (expectedWord)
-                expectedResult += `<span class="diff-expected">${escapedExpected}</span> `;
-            if (actualWord)
-                actualResult += `<span class="diff-actual">${escapedActual}</span> `;
+            if (expectedWord.trim() === "") {
+                expectedResult += expectedWord;
+            } else {
+                expectedResult += `<span class="highlight-expected">${expectedWord}</span>`;
+            }
+
+            if (actualWord.trim() === "") {
+                actualResult += actualWord;
+            } else {
+                actualResult += `<span class="highlight-actual">${actualWord}</span>`;
+            }
         }
     }
 
-    return {expectedResult: expectedResult.trim(), actualResult: actualResult.trim()};
+    return { expectedResult, actualResult };
 }
 
 function resetQuiz(fileName) {

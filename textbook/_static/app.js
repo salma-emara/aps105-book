@@ -1224,8 +1224,8 @@ function diffCheck(expected, actual) {
     let expectedResult = "";
     let actualResult = "";
 
-    const expectedWords = expected.match(/\w+|\s+|[^\w\s]+/g) || [];
-    const actualWords = actual.match(/\w+|\s+|[^\w\s]+/g) || [];
+    const expectedWords = expected.match(/[^\s]+|\s+/g) || [];
+    const actualWords = actual.match(/[^\s]+|\s+/g) || [];
     const length = Math.max(expectedWords.length, actualWords.length);
 
     for (let i = 0; i < length; i++) {

@@ -141,13 +141,13 @@ button:hover{
     margin-bottom: 10px;
 }
 
-.highlight-expected {
+.highlight-actual {
     background-color: #ffd0d0;
     border-radius: 4px;
     padding: 2px;
 }
 
-.highlight-actual {
+.highlight-expected {
     background-color: #ccf9cc;
     border-radius: 4px;
     padding: 2px;

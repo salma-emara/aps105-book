@@ -807,7 +807,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
     // check if hints already exists
     let hintContainer = form.querySelector(".hint-container");
-    let hintButtonContainer, hintInfoContainer, anotherHint;
+    let hintInfoContainer, anotherHint;
 
     if (!hintContainer){ // initial setup
 
@@ -818,11 +818,6 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         header.textContent = "Hints";
         hintContainer.appendChild(header);
 
-        // hint buttons
-        hintButtonContainer = document.createElement("div");
-        hintButtonContainer.classList.add("hint-button-container");
-        hintContainer.appendChild(hintButtonContainer);
-
         // hint info
         hintInfoContainer = document.createElement("div");
         hintInfoContainer.classList.add("hint-info-container");
@@ -831,96 +826,97 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         // another hint button
         anotherHint = document.createElement("button");
         anotherHint.type = "button";
-        anotherHint.textContent = "Get Another Hint";
+        anotherHint.textContent = "Get Hint";
         anotherHint.classList.add("another-hint");
         hintContainer.appendChild(anotherHint);
 
         form.appendChild(hintContainer);  
 
     } else {
-        hintButtonContainer = hintContainer.querySelector(".hint-button-container");
         hintInfoContainer = hintContainer.querySelector(".hint-info-container");
         anotherHint = hintContainer.querySelector(".another-hint");
     }
 
-    // hint buttons
-    const hintIndex = hintButtonContainer.children.length + 1;
+    anotherHint.onclick = async () => {
 
-    const hintButton = document.createElement("button");
-    hintButton.type = "button";
-    hintButton.innerText = `Hint ${hintIndex}`;
-    hintButton.classList.add("hint-button");
-    hintButtonContainer.appendChild(hintButton);
+        if (anotherHint.textContent === "Get Hint") {
+            anotherHint.textContent = "Get New Hint";
+        }
 
-    // loading hints message
-    const hintDiv = document.createElement("pre");
-    hintDiv.classList.add("hint");
-    hintDiv.style.display = "none";
-    hintDiv.style.whiteSpace = "pre-wrap";
+        // disable button and start countdown
+        const cooldown = 60;
+        let remaining = cooldown;
+        anotherHint.disabled = true;
+        const originalText = "Get New Hint";
+        anotherHint.textContent = `Wait ${remaining}s`;
 
-    const loaderAnimation = document.createElement("div");
-    loaderAnimation.classList.add("loader");
+        const intervalId = setInterval(() => {
+            
+            remaining--;
+            anotherHint.textContent = `Wait ${remaining}s`;
+            
+            if (remaining <= 0) {
+                clearInterval(intervalId);
+                anotherHint.disabled = false;
+                anotherHint.textContent = originalText;
+            }
 
-    const loadingText = document.createElement("span");
-    loadingText.textContent = "Generating hint...";
-    loadingText.style.fontWeight = "bold";
+        }, 1000);
 
-    const hintLoadingContainer = document.createElement("div");
-    hintLoadingContainer.classList.add("hint-loading");
-    hintLoadingContainer.appendChild(loaderAnimation);
-    hintLoadingContainer.appendChild(loadingText);
+        hintInfoContainer.innerHTML = "";
 
-    hintDiv.appendChild(hintLoadingContainer);
-    hintInfoContainer.appendChild(hintDiv);
+        const hintDiv = document.createElement("pre");
+        hintDiv.classList.add("hint");
+        hintDiv.style.whiteSpace = "pre-wrap";
 
-    hintButton.addEventListener("click", () => {
-        Array.from(hintInfoContainer.children).forEach(div => {
-            div.style.display = "none";
-        });
-        hintDiv.style.display = "block";
-    });
+        const loaderAnimation = document.createElement("div");
+        loaderAnimation.classList.add("loader");
 
-    hintButton.click();
+        const loadingText = document.createElement("span");
+        loadingText.textContent = "Generating hint...";
+        loadingText.style.fontWeight = "bold";
 
-    const prompt = `
-        You are helping a student with a programming question.
+        const hintLoadingContainer = document.createElement("div");
+        hintLoadingContainer.classList.add("hint-loading");
+        hintLoadingContainer.appendChild(loaderAnimation);
+        hintLoadingContainer.appendChild(loadingText);
 
-        Please provide 1 hint only, matching one of the following approaches:
-        1. Subtle hint without giving away the solution.
-        2. Explanation of the concept involved.
+        hintDiv.appendChild(hintLoadingContainer);
+        hintInfoContainer.appendChild(hintDiv);
 
-        Keep the hint concise and limited to one sentence.
+        const prompt = `
+            You are helping a student with a programming question.
 
-        Ensure this hint is *distinct* and *more helpful* than any previously given.
+            Please provide 1 hint only, matching one of the following approaches:
+            1. Subtle hint without giving away the solution.
+            2. Explanation of the concept involved.
 
-        Here are the previous provided hints: ${previousHints.join(", ")}
+            Keep the hint concise and limited to one sentence.
 
-        Format your response like:
-        Hint: ...
+            Ensure this hint is *distinct* and *more helpful* than any previously given.
 
-        Question: ${questionPrompt}
-        Student code: ${originalCode}
-        Expected output: ${outputArray.join(", ")}
-        Actual output: ${actualOutput}
-    `;
+            Here are the previous provided hints: ${previousHints.join(", ")}
 
-    const hintsText = await getChatCompletion(prompt);
-    hintLoadingContainer.remove();
+            Format your response like:
+            Hint: ...
 
-    // parser hint
-    let hint = "No hint available.";
-    const match = hintsText.match(/Hint\s*:\s*(.+)/i);
-    if (match) {
-        hint = match[1].trim();
-        hintDiv.innerText = hint; 
+            Question: ${questionPrompt}
+            Student code: ${originalCode}
+            Expected output: ${outputArray.join(", ")}
+            Actual output: ${actualOutput}
+        `;
+
+        const hintsText = await getChatCompletion(prompt);
+
+        hintDiv.innerHTML = "";
+
+        // parser hint
+        const match = hintsText.match(/Hint\s*:\s*(.+)/i);
+        let hint = match ? match[1].trim() : "No hint available.";
+        hintDiv.innerText = hint;
         previousHints.push(hint);
-        console.log(previousHints);
-    } else {
-        hintDiv.innerText = "No hint available.";
-    }
 
-    anotherHint.onclick = () => {
-        generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints);
+        hintInfoContainer.appendChild(hintDiv);
     };
 }
 

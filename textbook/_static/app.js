@@ -472,12 +472,15 @@ function parse_and_generate_form(fileName) {
         codeRunner.textContent = actualCode;
 
         // tracing block
-        const preTrace = document.createElement("pre");
-        preTrace.textContent = actualCode;
+
+        ace.config.set('basePath', 'https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/');
+
+        const editorContainer = document.createElement("div");
+        editorContainer.classList.add("ace-editor-tracing");
 
         const traceLabel = document.createElement("label");
         traceLabel.textContent = "Your Output:";
-        traceLabel.style.display = "block";
+        traceLabel.classList.add("trace-label");
 
         const traceTextarea = document.createElement("textarea");
         traceTextarea.classList.add("trace-textarea");
@@ -486,15 +489,28 @@ function parse_and_generate_form(fileName) {
 
         if (isProgrammingQuestion) {
 
-            // append together 
             pre.appendChild(codeRunner);
             form.appendChild(pre);       
             
         } else if (isTracingQuestion){
 
-            form.appendChild(preTrace);
+            form.appendChild(editorContainer);
             form.appendChild(traceLabel);
             form.appendChild(traceTextarea);
+
+            const editor = ace.edit(editorContainer);
+            editor.session.setMode("ace/mode/c_cpp");
+            editor.setTheme("ace/theme/tomorrow");
+            editor.setValue(actualCode, 1); // 1 moves cursor to end
+
+            editor.setOptions({
+                readOnly: true,
+                showGutter: true,
+                wrap: true,
+                maxLines: Infinity,
+                fontSize: "14px",
+                fontFamily: "'Menlo', 'Roboto Mono', 'Courier New', Courier, monospace"
+            });
 
         } else {
 

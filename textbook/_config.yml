@@ -72,7 +72,8 @@ parse:
     quiz_embed: <link rel="stylesheet" href = "../../_static/style.css">
       <script src = "../../quizzes/%%FILENAME%%.js">
       <script src = "../../_static/app.js"> </script>
-
+      <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
+      
       <div id="container-header" class="container-box">
       <div class = "header">
       <h3>Quiz</h3>
@@ -86,3 +87,6 @@ parse:
       <script> parse_and_generate_form("%%FILENAME%%") </script>
 
       </div>
+      # <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ace.min.js"></script>
+      # <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/theme-tomorrow.min.js"></script>
+      # <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/mode-c_cpp.min.js"></script>

@@ -72,6 +72,23 @@
 }
 
 /* tracing block */
+.ace-editor-tracing {
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    background: var(--code-bg, #f6f6f6);
+    color: var(--code, black);
+    font-family: 'Menlo', 'Roboto Mono', 'Courier New', Courier, monospace;
+    font-size: 14px;
+    height: auto;
+    min-height: 50px;
+    line-height: 18px;
+}
+
+.trace-label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
 
 .trace-textarea {
     width: 100%;

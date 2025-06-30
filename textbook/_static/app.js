@@ -803,6 +803,8 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
+let hintClickCount = parseInt(localStorage.getItem("hintClickCount") || "0");
+
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
     // check if hints already exists
@@ -839,12 +841,23 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
     anotherHint.onclick = async () => {
 
+        hintClickCount++;
+        localStorage.setItem("hintClickCount", hintClickCount);
+
+        gtag('event', 'testing_hint_requests', {
+            event_category: 'Quiz Interaction',
+            event_label: 'Hint Button Clicked',
+            value: hintClickCount       
+        });
+
+        console.log("Hint count: ", hintClickCount);
+
         if (anotherHint.textContent === "Get Hint") {
             anotherHint.textContent = "Get New Hint";
         }
 
         // disable button and start countdown
-        const cooldown = 60;
+        const cooldown = 5;
         let remaining = cooldown;
         anotherHint.disabled = true;
         const originalText = "Get New Hint";

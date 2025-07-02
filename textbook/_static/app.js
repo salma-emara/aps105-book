@@ -31,6 +31,23 @@ async function getChatCompletion(prompt) {
 
 function startQuiz() {
 
+    const filename = window.quizFilename || "unknown";
+
+    const key = `startClickCount_${filename}`;
+    let startClickCount = parseInt(localStorage.getItem(key) || "0");
+
+    startClickCount++;
+    localStorage.setItem(key, startClickCount);
+
+    // Send event to Google Analytics
+    gtag('event', 'start_quiz_click', {
+        event_category: 'Quiz Interaction',
+        event_label: `Start Button Clicked - ${filename}`,
+        value: startClickCount
+    });
+
+    console.log(`Start button clicked ${startClickCount} times for ${filename}`);
+
     currentQuestionIndex = 0;
 
     const quizForms = document.querySelectorAll("[id^='quizForm']");
@@ -803,7 +820,7 @@ function parse_and_generate_form(fileName) {
     closeFullscreenForm();
 }
 
-let hintClickCount = parseInt(localStorage.getItem("hintClickCount") || "0");
+// let hintClickCount = parseInt(localStorage.getItem("hintClickCount") || "0");
 
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
@@ -839,18 +856,22 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         anotherHint = hintContainer.querySelector(".another-hint");
     }
 
+    const filename = window.quizFilename || "unknown";
+    const hintKey = `hintClickCount_${filename}_${form.id}`;
+    let hintClickCount = parseInt(localStorage.getItem(hintKey) || "0");
+
     anotherHint.onclick = async () => {
 
         hintClickCount++;
-        localStorage.setItem("hintClickCount", hintClickCount);
+        localStorage.setItem(hintKey, hintClickCount);
 
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',
-            event_label: 'Hint Button Clicked',
-            value: hintClickCount       
+            event_label: `Hint Click - ${filename}_${form.id}`,
+            value: hintClickCount
         });
 
-        console.log("Hint count: ", hintClickCount);
+        console.log(`Hint count for ${filename}_${form.id}:`, hintClickCount);
 
         if (anotherHint.textContent === "Get Hint") {
             anotherHint.textContent = "Get New Hint";
@@ -898,17 +919,10 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         hintInfoContainer.appendChild(hintDiv);
 
         const prompt = `
-            You are helping a student with a programming question.
+            Generate a hint that helps a student with a programming question.
 
-            Please provide 1 hint only, matching one of the following approaches:
-            1. Subtle hint without giving away the solution.
-            2. Explanation of the concept involved.
-
-            Keep the hint concise and limited to one sentence.
-
-            Ensure this hint is *distinct* and *more helpful* than any previously given.
-
-            Here are the previous provided hints: ${previousHints.join(", ")}
+            Provide 1 hint that does not give away the solution. Keep the hint limited to one sentence, 
+            ensuring it is *different* and *more helpful* than any previously hint given.
 
             Format your response like:
             Hint: ...
@@ -916,7 +930,10 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
             Question: ${questionPrompt}
             Student code: ${originalCode}
             Expected output: ${outputArray.join(", ")}
-            Actual output: ${actualOutput}
+            Student output: ${actualOutput}
+
+            Previous provided hints: ${previousHints.join(", ")}
+
         `;
 
         const hintsText = await getChatCompletion(prompt);

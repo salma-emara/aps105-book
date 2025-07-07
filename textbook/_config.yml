@@ -97,3 +97,31 @@ parse:
       <script> parse_and_generate_form("%%FILENAME%%") </script>
 
       </div>
+
+    exercise_embed: |
+      <link rel="stylesheet" href="../../_static/exercises.css">
+      <script> window.exerciseFilename = "%%FILENAME%%"; </script>
+      <script src="../../quizzes/%%FILENAME%%.js"></script>
+      <script src="../../_static/exercises.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
+
+
+      <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          }
+        };
+      </script>
+
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.css">
+
+      <div class="exercise-inline">
+        <script> generate_exercises("%%FILENAME%%") </script>
+      </div>
+

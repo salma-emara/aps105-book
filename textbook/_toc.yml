@@ -67,6 +67,7 @@ parts:
           - file: chapters/chapter07-arrays/what-are-arrays.md
           - file: chapters/chapter07-arrays/arrays-functions.md
           - file: chapters/chapter07-arrays/exercises.md
+          - file: chapters/chapter07-arrays/testing-exercises.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md
         sections:
           - file: chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc.md

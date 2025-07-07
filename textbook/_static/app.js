@@ -991,7 +991,7 @@ function handle_submission(formId, answer, hint, filename, outputArray, isProgra
 
         totalTestcases = actualOutput.length;
         numTestcasesPassed = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
-        displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases, questionPrompt);
+        displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases);
 
         if (totalTestcases != numTestcasesPassed) {
             let previousHints = [];

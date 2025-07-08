@@ -139,7 +139,7 @@ function generate_exercises(filename) {
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type);
 
 			} else {
-				handle_submission(form, resultMessage, type, correctAnswer);
+				handle_output_submission(form, resultMessage, type, correctAnswer);
 			}
 		});
 
@@ -160,14 +160,14 @@ function handle_prog_submission(form, messageElement, inputArray, expectedOutput
     const numTestcasesPassed = testcaseResults.filter(tc => tc.passed).length;
     const isCorrect = numTestcasesPassed === totalTestcases;
 
-    const testcaseContainer = displayTestcaseResults(form, inputArray, expectedOutput, actualOutput, testcaseResults);
+    const testcaseContainer = getTestcasesContainer(form, inputArray, expectedOutput, actualOutput, testcaseResults);
 
     updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer);
 }
 
 
 
-function handle_submission(form, messageElement, questionType, correctAnswer) {
+function handle_output_submission(form, messageElement, questionType, correctAnswer) {
 	// const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
 	// const userAnswer = traceInput ? traceInput.value.trim() : "";
 
@@ -263,7 +263,7 @@ function escapeHtml(text) {
 	return div.innerHTML;
 }
 
-function displayTestcaseResults(form, inputArray, outputArray, actualOutput ) {
+function getTestcasesContainer(form, inputArray, outputArray, actualOutput ) {
 	const existingTestcaseContainer = form.querySelector(".testcase-container");
 	if (existingTestcaseContainer) existingTestcaseContainer.remove();
 
@@ -304,7 +304,7 @@ function displayTestcaseResults(form, inputArray, outputArray, actualOutput ) {
 			testcaseDiv.appendChild(preInput);
 		}
 
-		const diff = diffCheck(expected, actual);
+		const diff = diffCheckExercises(expected, actual);
 
 		const outputPara = document.createElement("p");
 		if (outputArray[i].length > 1) outputPara.innerHTML = `<strong>Expected Outputs:</strong>`;
@@ -358,7 +358,7 @@ function normalizeOutput(str) {
         .toLowerCase();     
 }
 
-function diffCheck(expected, actual) {
+function diffCheckExercises(expected, actual) {
     if (expected === actual) return {expectedResult: expected, actualResult: actual};
 
     let expectedResult = "";

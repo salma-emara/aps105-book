@@ -7,3 +7,4 @@ Headings in this page classify the exercises into different categories: **[Easy]
 
 {{code_runner_quizzes}}
 
+{{exercise_embed | replace("%%FILENAME%%", "chapter-7/testing-exercises") }}

@@ -100,7 +100,7 @@ parse:
       </div>
 
     exercise_embed: |
-      <link rel="stylesheet" href="../../_static/exercises.css">
+      <link rel="stylesheet" href="../../_static/style.css">
       <script> window.exerciseFilename = "%%FILENAME%%"; </script>
       <script src="../../quizzes/%%FILENAME%%.js"></script>
       <script src="../../_static/exercises.js"></script>

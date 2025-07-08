@@ -176,13 +176,13 @@ function handle_submission(form, messageElement, questionType, correctAnswer) {
 	// 	return;
 	// }
 
-	let isCorrect = false;
+	// let isCorrect = false;
 
-	if (questionType === "tracing") {
-		isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
-	}
+	// if (questionType === "tracing") {
+	// 	isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
+	// }
 
-	updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);
+	// updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);
 }
 
 

@@ -172,7 +172,7 @@ function handle_submission(form, messageElement, questionType, correctAnswer) {
 	const userAnswer = traceInput ? traceInput.value.trim() : "";
 
 	if (!userAnswer) {
-		updateResultMessage(messageElement, false, questionType, userAnswer, correctAnswer, "Please enter your answer before submitting.");
+		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");
 		return;
 	}
 
@@ -263,7 +263,7 @@ function escapeHtml(text) {
 	return div.innerHTML;
 }
 
-function displayTestcaseResults(form, inputArray, outputArray, actualOutput, ) {
+function displayTestcaseResults(form, inputArray, outputArray, actualOutput ) {
 	const existingTestcaseContainer = form.querySelector(".testcase-container");
 	if (existingTestcaseContainer) existingTestcaseContainer.remove();
 

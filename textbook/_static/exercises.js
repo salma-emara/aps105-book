@@ -168,21 +168,21 @@ function handle_prog_submission(form, messageElement, inputArray, expectedOutput
 
 
 function handle_output_submission(form, messageElement, questionType, correctAnswer) {
-	// const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
-	// const userAnswer = traceInput ? traceInput.value.trim() : "";
+	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
+	const userAnswer = traceInput ? traceInput.value.trim() : "";
 
-	// if (!userAnswer) {
-	// 	updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");
-	// 	return;
-	// }
+	if (!userAnswer) {
+		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");
+		return;
+	}
 
-	// let isCorrect = false;
+	let isCorrect = false;
 
-	// if (questionType === "tracing") {
-	// 	isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
-	// }
+	if (questionType === "tracing") {
+		isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
+	}
 
-	// updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);
+	updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);
 }
 
 

@@ -4,31 +4,6 @@ document.addEventListener("submit", function (e) {
     e.preventDefault(); 
   });
 
-async function getChatCompletion(prompt) {
-    console.log("Sending prompt:", prompt);
-    try {
-        const response = await fetch('/.netlify/functions/hints', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            // Log error and detail from server response
-            console.error("Fetch error:", data.error, data.detail || "(no details)");
-            return;
-        }
-
-        console.log("Success:", data.reply);
-        return data.reply;
-    } catch (err) {
-        console.error("Network or parsing error:", err);
-    }
-
-}
-
 function startQuiz() {
 
     const filename = window.quizFilename || "unknown";

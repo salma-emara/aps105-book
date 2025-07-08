@@ -71,7 +71,7 @@ parse:
     # repeating the quiz embed
     quiz_embed: <link rel="stylesheet" href = "../../_static/style.css">
       <script> window.quizFilename = "%%FILENAME%%"; </script>
-      <script src = "../../quizzes/%%FILENAME%%.js">
+      <script src = "../../quizzes/%%FILENAME%%.js"> </script>
       <script src = "../../_static/app.js"> </script>
       <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
 

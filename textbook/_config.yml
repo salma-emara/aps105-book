@@ -99,17 +99,14 @@ parse:
 
       </div>
 
-    exercise_embed:  | 
+    exercise_embed: |
       <link rel="stylesheet" href="../../_static/exercises.css">
       <script> window.exerciseFilename = "%%FILENAME%%"; </script>
       <script src="../../quizzes/%%FILENAME%%.js"></script>
       <script src="../../_static/exercises.js"></script>
       <script src = "../../_static/hints.js"> </script>
       <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
-      
-      <div class="exercise-inline">
-        <script> generate_exercises("%%FILENAME%%") </script>
-      </div>
+
 
       <script>
         window.MathJax = {
@@ -126,5 +123,6 @@ parse:
       <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.css">
 
-
-
+      <div class="exercise-inline">
+        <script> generate_exercises("%%FILENAME%%") </script>
+      </div>

@@ -34,10 +34,6 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         hintContainer = document.createElement("div");
         hintContainer.classList.add("hint-container");
 
-        const header = document.createElement("h5");
-        header.textContent = "Hints";
-        hintContainer.appendChild(header);
-
         // hint info
         hintInfoContainer = document.createElement("div");
         hintInfoContainer.classList.add("hint-info-container");
@@ -49,8 +45,6 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         anotherHint.textContent = "Get Hint";
         anotherHint.classList.add("another-hint");
         hintContainer.appendChild(anotherHint);
-
-        form.appendChild(hintContainer);  
 
     } else {
         hintInfoContainer = hintContainer.querySelector(".hint-info-container");
@@ -66,11 +60,11 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         hintClickCount++;
         localStorage.setItem(hintKey, hintClickCount);
 
-        gtag('event', 'testing_hint_requests', {
-            event_category: 'Quiz Interaction',
-            event_label: `Hint Click - ${filename}_${form.id}`,
-            value: hintClickCount
-        });
+        // gtag('event', 'testing_hint_requests', {
+        //     event_category: 'Quiz Interaction',
+        //     event_label: `Hint Click - ${filename}_${form.id}`,
+        //     value: hintClickCount
+        // });
 
         console.log(`Hint count for ${filename}_${form.id}:`, hintClickCount);
 
@@ -149,4 +143,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         hintInfoContainer.appendChild(hintDiv);
     };
+
+    return hintContainer;
+
 }

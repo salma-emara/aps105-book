@@ -136,7 +136,10 @@ function generate_exercises(filename) {
 					return;
 				}
 
-				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type);
+				// handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type);
+				let hintContainer = await generate_hints(form, codeRunner.textContent.trim(), expectedOutput, actualOutput, ex.question, []);
+
+				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer);
 
 			} else {
 				handle_output_submission(form, resultMessage, type, correctAnswer);
@@ -148,7 +151,7 @@ function generate_exercises(filename) {
 }
 
 
-function handle_prog_submission(form, messageElement, inputArray, expectedOutput, actualOutput, correctAnswer, questionType) {
+async function handle_prog_submission(form, messageElement, inputArray, expectedOutput, actualOutput, correctAnswer, questionType, hintContainer) {
     const totalTestcases = actualOutput.length;
 
     const testcaseResults = actualOutput.map((output, idx) => {
@@ -162,7 +165,8 @@ function handle_prog_submission(form, messageElement, inputArray, expectedOutput
 
     const testcaseContainer = getTestcasesContainer(form, inputArray, expectedOutput, actualOutput, testcaseResults);
 
-    updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer);
+	if (isCorrect) hintContainer = null;
+    updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer);
 }
 
 
@@ -186,7 +190,7 @@ function handle_output_submission(form, messageElement, questionType, correctAns
 }
 
 
-function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null) {
+function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null) {
    
     if (customMessage) {
         messageElement.innerHTML = `<span style="color: red;">${customMessage}</span>`;
@@ -216,9 +220,22 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
             messageElement.appendChild(testcaseDetails);
         }
 
-        // suggested solution 
-        const solutionDetails = document.createElement("details");
-        solutionDetails.style.marginTop = "10px";
+        if (hintContainer && !isCorrect) {
+            const hintDetails = document.createElement('details');
+            hintDetails.style.marginTop = '10px';
+
+            const hintSummary = document.createElement('summary');
+            hintSummary.textContent = 'Show Hint';
+            hintSummary.style.cursor = 'pointer';
+
+            hintDetails.appendChild(hintSummary);
+            hintDetails.appendChild(hintContainer);
+
+            messageElement.appendChild(hintDetails);
+        }
+
+		const solutionDetails = document.createElement("details");
+		solutionDetails.style.marginTop = "10px";
 
         const solutionSummary = document.createElement("summary");
         solutionSummary.style.cursor = "pointer";

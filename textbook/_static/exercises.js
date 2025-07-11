@@ -232,7 +232,6 @@ function generate_exercises(filename) {
 			const correctAnswer = (ex.answer || ex["answer-code"] || "").trim();
 
 			if (isProgrammingQuestion) {
-				const codeRunner = form.querySelector("code-runner");
 
 				const existingTestcaseContainer = form.querySelector(".testcase-container");
 				if (existingTestcaseContainer) existingTestcaseContainer.remove();
@@ -250,7 +249,24 @@ function generate_exercises(filename) {
 					expectedOutput.push(exerciseTestcases[j].output || []);
 				}
 
-				let actualOutput = await runTestCases(codeRunner, inputArray, resultMessage);
+				const codeRunner = form.querySelector('code-runner');
+				let studentCode = null;
+
+				// append main-function for function programming type
+				if (type === "function programming" && ex["main-function"]) {
+
+					studentCode = codeRunner.querySelector('.ace_content').innerText;
+
+					// remove any existing 'main' function if present
+					const mainRegex = /int\s+main\s*\([^)]*\)\s*\{[\s\S]*$/i;
+					studentCode = studentCode.replace(mainRegex, '').trim();
+
+					console.log(studentCode);
+					studentCode += "\n\n" + ex["main-function"].trim();
+
+				}
+
+				let actualOutput = await runTestCases(codeRunner, inputArray, resultMessage, studentCode);
 
 				if (actualOutput.includes("Please try again")) {
 
@@ -261,8 +277,8 @@ function generate_exercises(filename) {
 					return;
 				}
 
-				let hintContainer = await generate_hints(form, codeRunner.textContent.trim(), expectedOutput, actualOutput, ex.question, []);
-				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer);
+				let hintContainer = await generate_hints(form, studentCode, expectedOutput, actualOutput, ex.question, []);
+				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode);
 
 			} else {
 				handle_output_submission(form, resultMessage, type, correctAnswer);
@@ -274,7 +290,7 @@ function generate_exercises(filename) {
 }
 
 
-async function handle_prog_submission(form, messageElement, inputArray, expectedOutput, actualOutput, correctAnswer, questionType, hintContainer) {
+async function handle_prog_submission(form, messageElement, inputArray, expectedOutput, actualOutput, correctAnswer, questionType, hintContainer, studentCode) {
     const totalTestcases = actualOutput.length;
 
     const testcaseResults = actualOutput.map((output, idx) => {
@@ -289,10 +305,8 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
     const testcaseContainer = getTestcasesContainer(form, inputArray, expectedOutput, actualOutput, testcaseResults);
 
 	if (isCorrect) hintContainer = null;
-    updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer);
+    updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer, studentCode);
 }
-
-
 
 function handle_output_submission(form, messageElement, questionType, correctAnswer) {
 	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
@@ -313,7 +327,7 @@ function handle_output_submission(form, messageElement, questionType, correctAns
 }
 
 
-function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null) {
+function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null, studentCode = null) {
    
     if (customMessage) {
         messageElement.innerHTML = `<span style="color: red;">${customMessage}</span>`;
@@ -328,6 +342,19 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
             ${numPassed}/${total} testcases passed.
         </span>`;
         messageElement.appendChild(summary);
+
+        if (questionType === "function programming" && studentCode) {
+            const mainInfoTitle = document.createElement("div");
+            mainInfoTitle.style.marginTop = "10px";
+            mainInfoTitle.style.fontWeight = "bold";
+            mainInfoTitle.innerText = "Appended main function to student code:";
+
+            const codeBlock = document.createElement("pre");
+            codeBlock.textContent = studentCode;
+
+            messageElement.appendChild(mainInfoTitle);
+            messageElement.appendChild(codeBlock);
+        }
 
         // testcases
         if (testcaseContainer) {

@@ -542,7 +542,7 @@ function parse_and_generate_form(fileName) {
                 const existingHintContainer = form.querySelector(".hint-container");
                 if (existingHintContainer) existingHintContainer.remove();
 
-                actualOutput = await runTestCases(codeRunner, inputArray, messageElement);
+                actualOutput = await runTestCases(codeRunner, inputArray, messageElement, null);
 
                 if (actualOutput.includes("Please try again")){
                     displayTestcaseSummary(messageElement, false, true, 0, 0);

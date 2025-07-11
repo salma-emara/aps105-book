@@ -206,7 +206,7 @@ The values are in ascending order.
 [[exercises]]
 title = "Question 9 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
-type = "programming"
+type = "function programming"
 
 question = """
 The dot product, an operation with which every first-year engineer is familiar, consists of the element-by-element multiplication of two vectors, and the cumulative sum of these resulting products. If vector $a = [a_1, a_2, a_3]$, and $b = [b_1, b_2, b_3]$, then the dot product $a · b = a_1 \\times b_1 + a_2 \\times b_2 + a_3 \\times b_3$.
@@ -238,14 +238,6 @@ double dotProduct (double *music, double *filter, int length) {
 
 }
 
-int main(void) {
-  double music[9] = {0, 0.707, 1, 0.707, 0, -0.707, -1, -0.707, 0};
-  double filter[9] = {1, 0, -1, 0, 2, 0, -1, 0, 1};
-  int length;
-  scanf("%d", &length);
-  printf("Result = %lf\n", dotProduct(music, filter, length));
-}
-
 '''
 
 answer-code = '''
@@ -260,6 +252,9 @@ double dotProduct(double *music, double *filter, int length) {
   }
   return sum;
 }
+'''
+
+main-function = '''
 int main(void) {
   double music[9] = {0, 0.707, 1, 0.707, 0, -0.707, -1, -0.707, 0};
   double filter[9] = {1, 0, -1, 0, 2, 0, -1, 0, 1};

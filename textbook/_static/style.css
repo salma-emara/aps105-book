@@ -286,7 +286,12 @@ button:hover{
     white-space: pre-wrap;
 }
 
-.reset-button {
+.reset-quiz-button {
     margin-top: 10px;
     margin-left: 15px;
+}
+
+.reset-exercises-button {
+    margin-right: 10px;
+    background-color: white;
 }

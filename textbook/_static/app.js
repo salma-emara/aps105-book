@@ -283,7 +283,7 @@ function parse_and_generate_form(fileName) {
     resetButton.type = "button";
     resetButton.id = "reset-button";
     resetButton.innerHTML = "Reset Quiz";
-    resetButton.classList.add("reset-button");
+    resetButton.classList.add("reset-quiz-button");
     resetButton.classList.add("hidden");
     resetButton.addEventListener("click", () => {
         resetQuiz(fileName);

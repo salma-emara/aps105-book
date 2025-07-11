@@ -9,6 +9,7 @@ function generate_exercises(filename) {
 
 		const form = document.createElement('div');
 		form.className = 'exercise-card';
+		form.id = `exercise-${i}`; 
 
 		const title = document.createElement('h6');
 		title.textContent = `${ex.title} [${ex.difficulty}]`;
@@ -16,19 +17,33 @@ function generate_exercises(filename) {
 		title.style.fontWeight = "bold";
 		form.appendChild(title);
 
+		const resetButton = document.createElement("button");
+		resetButton.type = "button";
+		resetButton.textContent = "Reset";
+		resetButton.classList.add("reset-exercises-button");
+		form.appendChild(resetButton);
+
+		const submitButton = document.createElement("button");
+		submitButton.type = "button";
+		submitButton.innerHTML = "Submit";
+		submitButton.classList.add("submit-button");
+
         const md = window.markdownit({ html: true, linkify: true, typographer: true });
 
         const question = document.createElement('div');
         const questionHTML = md.render(ex.question);
         question.innerHTML = questionHTML;
         form.appendChild(question);
-
+		
         if (window.MathJax) MathJax.typesetPromise([question]);
 
 		const type = ex.type;
 		const isProgrammingQuestion = type === "programming" || type === "function programming";
 		const isTracingQuestion = type === "tracing";
 		const isExplainationQuestion = type === "textbox" || type === "explaination";
+
+		let userInputElement = null;
+		const storageKey = `${filename}-${form.id}`; 
 
 		if (ex["question-code"]) {
 			const questionCode = ex["question-code"].trim();
@@ -65,10 +80,31 @@ function generate_exercises(filename) {
 			codeRunner.setAttribute("language", "c");
 			codeRunner.setAttribute("output", "");
 			codeRunner.setAttribute("inputTestcase", "");
-			codeRunner.textContent = starterCode;
+
+			// saved answer
+			let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming`));
+
+			console.log(`${storageKey}-programming`);
+
+			if (progData) {
+				console.log("Found prog", progData.userCode);
+				codeRunner.textContent = progData.userCode; 
+			} else {
+				console.log("could not find prog");
+				codeRunner.textContent = starterCode;
+			}
 
 			pre.appendChild(codeRunner);
 			form.appendChild(pre);
+
+			codeRunner.addEventListener('input', () => {
+				const closest = codeRunner.closest('.exercise-card');
+				const editorContainer = closest.querySelector("#codetorun"); 
+				const editor = ace.edit(editorContainer); 
+				const code = editor.getValue();
+			    localStorage.setItem(`${storageKey}-programming`, JSON.stringify({ userCode: code }));
+			    console.log("Code saved");
+			});
 
 		} else if (isTracingQuestion) {
 
@@ -76,20 +112,60 @@ function generate_exercises(filename) {
 			traceTextarea.classList.add("trace-textarea");
 			traceTextarea.rows = 6;
 			traceTextarea.placeholder = "Write your expected output here...";
+
+			// saved answer
+			traceTextarea.value = localStorage.getItem(`${storageKey}-trace`) || "";
+
+			traceTextarea.addEventListener("input", () => {
+				localStorage.setItem(`${storageKey}-trace`, traceTextarea.value);
+			});
+
 			form.appendChild(traceTextarea);
+			userInputElement = traceTextarea;
 
 		} else if (isExplainationQuestion) {
 			const textbox = document.createElement("textarea");
 			textbox.classList.add("explaination-textarea");
 			textbox.rows = 3;
 			textbox.placeholder = "Type your answer here...";
+
+			// saved answer
+			textbox.value = localStorage.getItem(`${storageKey}-explaination`) || "";
+
+			textbox.addEventListener("input", () => {
+				localStorage.setItem(`${storageKey}-explaination`, textbox.value);
+			});
+
 			form.appendChild(textbox);
+			userInputElement = textbox;
 		}
 
-		const submitButton = document.createElement("button");
-		submitButton.type = "button";
-		submitButton.innerHTML = "Submit";
-		submitButton.classList.add("submit-button");
+		resetButton.addEventListener("click", () => {
+			if (isProgrammingQuestion){
+
+				localStorage.removeItem(`${storageKey}-programming`);
+
+				const closest = resetButton.closest('.exercise-card');
+				const editorContainer = closest.querySelector("#codetorun"); 
+				const editor = ace.edit(editorContainer);
+
+				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
+				editor.setValue(starterCode, 1);  
+
+				console.log("Code cleared");
+
+			} else if (isTracingQuestion) {
+
+				localStorage.removeItem(`${storageKey}-trace`);
+				if (userInputElement) userInputElement.value = '';
+
+			} else if (isExplainationQuestion) {
+
+				localStorage.removeItem(`${storageKey}-explaination`);
+				if (userInputElement) userInputElement.value = '';
+
+			}
+		});
 
 		const resultMessage = document.createElement("div");
 		resultMessage.style.marginTop = "10px";
@@ -136,9 +212,7 @@ function generate_exercises(filename) {
 					return;
 				}
 
-				// handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type);
 				let hintContainer = await generate_hints(form, codeRunner.textContent.trim(), expectedOutput, actualOutput, ex.question, []);
-
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer);
 
 			} else {

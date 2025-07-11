@@ -109,6 +109,7 @@ parts:
           - file: chapters/chapter14-sorting/selection-sort.md
           - file: chapters/chapter14-sorting/bubble-sort.md
           - file: chapters/chapter14-sorting/exercises.md
+          - file: chapters/chapter14-sorting/testing-exercises.md
       - file: chapters/chapter15-searching/intro.md
         sections:
           - file: chapters/chapter15-searching/sequential-search.md

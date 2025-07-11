@@ -1,8 +1,42 @@
+
+
+
+function createTitle(form, ex) {
+	const title = document.createElement('h6');
+	title.textContent = `${ex.title} [${ex.difficulty}]`;
+	title.style.marginTop = "10px";
+	title.style.fontWeight = "bold";
+	form.appendChild(title);
+}
+
+
+function createResetButton(form, indexesToClear, filename) {
+	const resetButton = document.createElement("button");
+	resetButton.type = "button";
+	resetButton.textContent = "Reset";
+	resetButton.classList.add("reset-exercises-button");
+	form.appendChild(resetButton);
+
+	resetButton.addEventListener("click", () => {
+		indexesToClear.forEach(index => {
+			const key = `${filename}-exercise-${index}`;
+			localStorage.removeItem(`${key}-trace`);
+			localStorage.removeItem(`${key}-programming`);
+			localStorage.removeItem(`${key}-explaination`);
+		});
+
+		location.reload();
+	});
+}
+
 function generate_exercises(filename) {
 	const container = document.currentScript.parentElement;
 	container.innerHTML = '';
 
 	const exercises = parsedObject.exercises;
+
+	let inMultipart = false;
+	let multipartGroupStartIndex = null;
 
 	for (let i = 0; i < exercises.length; i++) {
 		const ex = exercises[i];
@@ -10,18 +44,26 @@ function generate_exercises(filename) {
 		const form = document.createElement('div');
 		form.className = 'exercise-card';
 		form.id = `exercise-${i}`; 
+		const storageKey = `${filename}-${form.id}`; 
 
-		const title = document.createElement('h6');
-		title.textContent = `${ex.title} [${ex.difficulty}]`;
-		title.style.marginTop = "10px";
-		title.style.fontWeight = "bold";
-		form.appendChild(title);
+		if (!ex.multipart) {
+			inMultipart = false;
+			multipartGroupStartIndex = null;
 
-		const resetButton = document.createElement("button");
-		resetButton.type = "button";
-		resetButton.textContent = "Reset";
-		resetButton.classList.add("reset-exercises-button");
-		form.appendChild(resetButton);
+			createTitle(form, ex);
+	
+		} else if (ex.multipart && !inMultipart){
+			// First part of multipart
+			inMultipart = true;
+			multipartGroupStartIndex = i;
+
+			createTitle(form, ex);
+			const multipartIndexes = [];
+			for (let j = i; j < exercises.length && exercises[j].multipart; j++) {
+				multipartIndexes.push(j);
+			}
+			createResetButton(form, multipartIndexes, filename);
+		} 
 
 		const submitButton = document.createElement("button");
 		submitButton.type = "button";
@@ -43,7 +85,6 @@ function generate_exercises(filename) {
 		const isExplainationQuestion = type === "textbox" || type === "explaination";
 
 		let userInputElement = null;
-		const storageKey = `${filename}-${form.id}`; 
 
 		if (ex["question-code"]) {
 			const questionCode = ex["question-code"].trim();
@@ -140,32 +181,40 @@ function generate_exercises(filename) {
 			userInputElement = textbox;
 		}
 
-		resetButton.addEventListener("click", () => {
-			if (isProgrammingQuestion){
+		if (!ex.multipart){
+			const resetButton = document.createElement("button");
+			resetButton.type = "button";
+			resetButton.textContent = "Reset";
+			resetButton.classList.add("reset-exercises-button");
+			form.insertBefore(resetButton, question);
 
-				localStorage.removeItem(`${storageKey}-programming`);
+			resetButton.addEventListener("click", () => {
+				if (isProgrammingQuestion){
 
-				const closest = resetButton.closest('.exercise-card');
-				const editorContainer = closest.querySelector("#codetorun"); 
-				const editor = ace.edit(editorContainer);
+					localStorage.removeItem(`${storageKey}-programming`);
 
-				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
-				editor.setValue(starterCode, 1);  
+					const closest = resetButton.closest('.exercise-card');
+					const editorContainer = closest.querySelector("#codetorun"); 
+					const editor = ace.edit(editorContainer);
 
-				console.log("Code cleared");
+					const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
+					editor.setValue(starterCode, 1);  
 
-			} else if (isTracingQuestion) {
+					console.log("Code cleared");
 
-				localStorage.removeItem(`${storageKey}-trace`);
-				if (userInputElement) userInputElement.value = '';
+				} else if (isTracingQuestion) {
 
-			} else if (isExplainationQuestion) {
+					localStorage.removeItem(`${storageKey}-trace`);
+					if (userInputElement) userInputElement.value = '';
 
-				localStorage.removeItem(`${storageKey}-explaination`);
-				if (userInputElement) userInputElement.value = '';
+				} else if (isExplainationQuestion) {
 
-			}
-		});
+					localStorage.removeItem(`${storageKey}-explaination`);
+					if (userInputElement) userInputElement.value = '';
+
+				}
+			});
+		}
 
 		const resultMessage = document.createElement("div");
 		resultMessage.style.marginTop = "10px";

@@ -310,14 +310,14 @@ function generate_exercises(filename) {
 				// append main-function for function programming type
 				if (type === "function programming" && ex["main-function"]) {
 
-					studentCode = codeRunner.querySelector('.ace_content').innerText;
+					const rawCode = codeRunner.querySelector('.ace_content').innerText;
+					const studentOnlyCode = removeMainFunction(rawCode).trim();
 
-					// remove any existing 'main' function if present
-					const mainRegex = /int\s+main\s*\([^)]*\)\s*\{[\s\S]*$/i;
-					studentCode = studentCode.replace(mainRegex, '').trim();
-
-					console.log(studentCode);
-					studentCode += "\n\n" + ex["main-function"].trim();
+					studentCode =
+					"// Student Code\n" +
+					studentOnlyCode +
+					"\n\n// Appended main function used for testcases\n" +
+					ex["main-function"].trim();
 
 				}
 
@@ -342,6 +342,11 @@ function generate_exercises(filename) {
 
 		container.appendChild(form);
 	}
+}
+
+function removeMainFunction(code) {
+	const mainRegex = /int\s+main\s*\([^)]*\)\s*\{(?:[^{}]*|\{[^{}]*\})*\}/g;
+	return code.replace(mainRegex, '').trim();
 }
 
 

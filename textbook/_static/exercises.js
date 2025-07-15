@@ -62,7 +62,6 @@ function generate_exercises(filename) {
 			for (let j = i; j < exercises.length && exercises[j].multipart; j++) {
 				multipartIndexes.push(j);
 			}
-			createResetButton(form, multipartIndexes, filename);
 		} 
 
 		const submitButton = document.createElement("button");
@@ -181,40 +180,48 @@ function generate_exercises(filename) {
 			userInputElement = textbox;
 		}
 
-		if (!ex.multipart){
-			const resetButton = document.createElement("button");
-			resetButton.type = "button";
-			resetButton.textContent = "Reset";
-			resetButton.classList.add("reset-exercises-button");
-			form.insertBefore(resetButton, question);
+		const resetButton = document.createElement("button");
+		resetButton.type = "button";
+		resetButton.textContent = "Reset";
+		resetButton.classList.add("reset-exercises-button");
 
-			resetButton.addEventListener("click", () => {
-				if (isProgrammingQuestion){
+		resetButton.addEventListener("click", () => {
+			if (isProgrammingQuestion){
 
-					localStorage.removeItem(`${storageKey}-programming`);
+				localStorage.removeItem(`${storageKey}-programming`);
 
-					const closest = resetButton.closest('.exercise-card');
-					const editorContainer = closest.querySelector("#codetorun"); 
-					const editor = ace.edit(editorContainer);
+				const closest = resetButton.closest('.exercise-card');
+				const editorContainer = closest.querySelector("#codetorun"); 
+				const editor = ace.edit(editorContainer);
 
-					const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
-					editor.setValue(starterCode, 1);  
+				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
+				editor.setValue(starterCode, 1);  
 
-					console.log("Code cleared");
+				console.log("Code cleared");
 
-				} else if (isTracingQuestion) {
+			} else if (isTracingQuestion) {
 
-					localStorage.removeItem(`${storageKey}-trace`);
-					if (userInputElement) userInputElement.value = '';
+				localStorage.removeItem(`${storageKey}-trace`);
+				if (userInputElement) userInputElement.value = '';
 
-				} else if (isExplainationQuestion) {
+			} else if (isExplainationQuestion) {
 
-					localStorage.removeItem(`${storageKey}-explaination`);
-					if (userInputElement) userInputElement.value = '';
+				localStorage.removeItem(`${storageKey}-explaination`);
+				if (userInputElement) userInputElement.value = '';
 
-				}
-			});
-		}
+			}
+		});
+
+		const buttonContainer = document.createElement("div");
+		buttonContainer.style.display = "flex";
+		buttonContainer.style.justifyContent = "space-between";
+		buttonContainer.style.alignItems = "center";
+		buttonContainer.style.marginTop = "10px";
+
+		buttonContainer.appendChild(submitButton);
+		buttonContainer.appendChild(resetButton);
+		form.appendChild(buttonContainer);
+
 
 		const resultMessage = document.createElement("div");
 		resultMessage.style.marginTop = "10px";
@@ -224,9 +231,8 @@ function generate_exercises(filename) {
 		resultMessage.style.borderRadius = "5px";
 		resultMessage.style.backgroundColor = "#fafafa";
 		resultMessage.innerHTML = "<em>Your result will appear here.</em>";
-
-		form.appendChild(submitButton);
 		form.appendChild(resultMessage);
+
 
 		submitButton.addEventListener("click", async function () {
 			const correctAnswer = (ex.answer || ex["answer-code"] || "").trim();

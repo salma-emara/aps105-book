@@ -26,6 +26,7 @@ it `{102, 81}`.
 title = "Question 5 in Winter 2019 Final Exam"
 difficulty = "Easy"
 type = "explaination"
+table = true
 multipart = true
 
 question = """
@@ -38,29 +39,28 @@ now must sort them alphabetically.
 (a) Here are some sorting methods you know about. Which ones would work well,
 and which not well to allow the TAs to most quickly sort the exams? Why or why 
 not would the particular method work well or not?
-
-| Method         | OK? | Reason |
-| -------------- | --- | ------ |
-| Insertion Sort |     |        |
-| Selection Sort |     |        |
-| Bubble Sort    |     |        |
-| Quicksort      |     |        |
-
 """
-answer = """
-| Method         | OK? | Reason                                                                 |
-| -------------- | --- | ---------------------------------------------------------------------- |
-| Insertion Sort | No  | All TAs have to work on looking for one element to place it at the end |
-| Selection Sort | No  | All TAs have to work on looking for one element to place it at the end |
-| Bubble Sort    | No  | All TAs have to work on looking for one element to place it at the end |
-| Quicksort      | Yes | Each TA can work on groups of exams                                    |
 
-"""
+headers = ["Method", "OK?", "Reason"]  
+rows = [
+  ["Insertion Sort", "", ""],
+  ["Selection Sort", "", ""],
+  ["Bubble Sort", "", ""],
+  ["Quicksort Sort", "", ""]
+]
+
+answer = [
+  ["Insertion Sort", "No",  "All TAs have to work on looking for one element to place it at the end"],
+  ["Selection Sort",  "No",  "All TAs have to work on looking for one element to place it at the end"],
+  ["Bubble Sort",     "No",  "All TAs have to work on looking for one element to place it at the end"],
+  ["Quicksort",       "Yes", "Each TA can work on groups of exams"]
+]
 
 [[exercises]]
 title = "Question 5 in Winter 2019 Final Exam"
 difficulty = "Easy"
 type = "explaination"
+table = false
 multipart = true
 
 question = """ (b) What may be a better sorting method?

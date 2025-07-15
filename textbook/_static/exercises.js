@@ -111,7 +111,54 @@ function generate_exercises(filename) {
 			});
 		}
 
-		if (isProgrammingQuestion) {
+		if (type === "explaination" && ex.table) {
+			const table = document.createElement("table");
+			table.classList.add("exercise-table");
+
+			const tableHeader = document.createElement("thead");
+			const headerRow = document.createElement("tr");
+			
+			for (const header of ex.headers) {
+				const th = document.createElement("th");
+				th.textContent = header;
+				headerRow.appendChild(th);
+			}
+
+			tableHeader.appendChild(headerRow);
+			table.appendChild(tableHeader);
+
+			const tableBody = document.createElement("tbody");
+
+			for (let rowIndex = 0; rowIndex < ex.rows.length; rowIndex++) {
+				const row = ex.rows[rowIndex];
+				const tr = document.createElement("tr");
+
+				for (let colIndex = 0; colIndex < row.length; colIndex++) {
+					const cell = row[colIndex];
+					const td = document.createElement("td");
+
+					if (cell === "") {
+						const input = document.createElement("input");
+						input.type = "text";
+						input.dataset.row = rowIndex;
+						input.dataset.col = colIndex;
+						input.classList.add("table-input");
+						td.appendChild(input);
+					} else {
+						td.textContent = cell;
+					}
+
+					tr.appendChild(td);
+				}
+
+				tableBody.appendChild(tr);
+			}
+
+			table.appendChild(tableBody);
+			form.appendChild(table);
+		}
+
+		else if (isProgrammingQuestion) {
 			const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
 			const pre = document.createElement("pre");
 			pre.classList.add("code-runner-quizzes");
@@ -235,7 +282,9 @@ function generate_exercises(filename) {
 
 
 		submitButton.addEventListener("click", async function () {
-			const correctAnswer = (ex.answer || ex["answer-code"] || "").trim();
+			let correctAnswerRaw = ex.answer || ex["answer-code"] || "";
+
+			const correctAnswer = (typeof correctAnswerRaw === "string") ? correctAnswerRaw.trim() : correctAnswerRaw;
 
 			if (isProgrammingQuestion) {
 
@@ -287,7 +336,7 @@ function generate_exercises(filename) {
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode);
 
 			} else {
-				handle_output_submission(form, resultMessage, type, correctAnswer);
+				handle_output_submission(form, resultMessage, type, correctAnswer, ex);
 			}
 		});
 
@@ -314,9 +363,19 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
     updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer, studentCode);
 }
 
-function handle_output_submission(form, messageElement, questionType, correctAnswer) {
+function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise) {
 	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
 	const userAnswer = traceInput ? traceInput.value.trim() : "";
+
+	if (exercise.table) {
+		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
+
+		updateResultMessage(messageElement, true, questionType, {
+			solutionTableHTML
+		});
+
+		return;
+	}
 
 	if (!userAnswer) {
 		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");
@@ -332,6 +391,35 @@ function handle_output_submission(form, messageElement, questionType, correctAns
 	updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);
 }
 
+function buildFilledTableHTML(headers, rows) {
+	const table = document.createElement("table");
+	table.classList.add("exercise-table");
+
+	const thead = document.createElement("thead");
+	const headerRow = document.createElement("tr");
+
+	for (const header of headers) {
+		const th = document.createElement("th");
+		th.textContent = header;
+		headerRow.appendChild(th);
+	}
+	thead.appendChild(headerRow);
+	table.appendChild(thead);
+
+	const tbody = document.createElement("tbody");
+	for (const row of rows) {
+		const tr = document.createElement("tr");
+		for (const cell of row) {
+			const td = document.createElement("td");
+			td.textContent = cell;
+			tr.appendChild(td);
+		}
+		tbody.appendChild(tr);
+	}
+	table.appendChild(tbody);
+
+	return table.outerHTML;
+}
 
 function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null, studentCode = null) {
    
@@ -417,16 +505,25 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
                 </details>
             `;
     } else if (questionType === "textbox" || questionType === "explaination") {
-        messageElement.innerHTML = `
-            <span style="color: #edb313;">Compare your answer with the suggested solution below</span>
-            <details style="margin-top: 10px;">
-                <summary style="cursor: pointer;">Show Suggested Answer</summary>
-                <div style="margin-top: 5px;">
-                    <pre>${escapeHtml(correctAnswer)}</pre>
-                </div>
-            </details>
-        `;
-    }
+		if (correctAnswer && typeof correctAnswer === "object" && correctAnswer.solutionTableHTML) {
+			messageElement.innerHTML = `
+				<span style="color: #edb313;">Compare your answer with the suggested solution below</span>
+				<div style="margin-top: 10px;">
+					${correctAnswer.solutionTableHTML}
+				</div>
+			`;
+		} else {
+			messageElement.innerHTML = `
+				<span style="color: #edb313;">Compare your answer with the suggested solution below</span>
+				<details style="margin-top: 10px;">
+					<summary style="cursor: pointer;">Show Suggested Answer</summary>
+					<div style="margin-top: 5px;">
+						<pre>${escapeHtml(correctAnswer)}</pre>
+					</div>
+				</details>
+			`;
+		}
+	}
 }
 
 

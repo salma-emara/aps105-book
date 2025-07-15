@@ -290,3 +290,46 @@ button:hover{
     margin-top: 10px;
     margin-left: 15px;
 }
+
+.exercise-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 14px;
+  background-color: #fdfdfd;
+  border: 1px solid #999;
+  outline: 1px solid #999;
+  border-radius: 6px;
+  overflow: hidden;
+
+}
+
+.exercise-table th,
+.exercise-table td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.exercise-table th {
+  background-color: #f0f0f0;
+  font-weight: 600;
+}
+
+.exercise-table input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.exercise-table input:focus {
+  outline: none;
+  border-color: #888;
+  background-color: #fefefe;
+}

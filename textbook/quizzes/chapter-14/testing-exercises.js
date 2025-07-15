@@ -14,14 +14,64 @@ let parsedObject;
       "title": "Question 5 in Winter 2019 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
+      "table": true,
       "multipart": true,
-      "question": "We have a number of TAs who have carefully marked a large number of final exams and \nnow must sort them alphabetically.\n\n[PLEASE NOTE that this question is not worth many marks, so answer with a phrase!\n Do not spend time elaborating.]\n\n(a) Here are some sorting methods you know about. Which ones would work well,\nand which not well to allow the TAs to most quickly sort the exams? Why or why \nnot would the particular method work well or not?\n\n| Method         | OK? | Reason |\n| -------------- | --- | ------ |\n| Insertion Sort |     |        |\n| Selection Sort |     |        |\n| Bubble Sort    |     |        |\n| Quicksort      |     |        |\n\n",
-      "answer": "| Method         | OK? | Reason                                                                 |\n| -------------- | --- | ---------------------------------------------------------------------- |\n| Insertion Sort | No  | All TAs have to work on looking for one element to place it at the end |\n| Selection Sort | No  | All TAs have to work on looking for one element to place it at the end |\n| Bubble Sort    | No  | All TAs have to work on looking for one element to place it at the end |\n| Quicksort      | Yes | Each TA can work on groups of exams                                    |\n\n"
+      "question": "We have a number of TAs who have carefully marked a large number of final exams and \nnow must sort them alphabetically.\n\n[PLEASE NOTE that this question is not worth many marks, so answer with a phrase!\n Do not spend time elaborating.]\n\n(a) Here are some sorting methods you know about. Which ones would work well,\nand which not well to allow the TAs to most quickly sort the exams? Why or why \nnot would the particular method work well or not?\n",
+      "headers": [
+        "Method",
+        "OK?",
+        "Reason"
+      ],
+      "rows": [
+        [
+          "Insertion Sort",
+          "",
+          ""
+        ],
+        [
+          "Selection Sort",
+          "",
+          ""
+        ],
+        [
+          "Bubble Sort",
+          "",
+          ""
+        ],
+        [
+          "Quicksort Sort",
+          "",
+          ""
+        ]
+      ],
+      "answer": [
+        [
+          "Insertion Sort",
+          "No",
+          "All TAs have to work on looking for one element to place it at the end"
+        ],
+        [
+          "Selection Sort",
+          "No",
+          "All TAs have to work on looking for one element to place it at the end"
+        ],
+        [
+          "Bubble Sort",
+          "No",
+          "All TAs have to work on looking for one element to place it at the end"
+        ],
+        [
+          "Quicksort",
+          "Yes",
+          "Each TA can work on groups of exams"
+        ]
+      ]
     },
     {
       "title": "Question 5 in Winter 2019 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
+      "table": false,
       "multipart": true,
       "question": " (b) What may be a better sorting method?\n",
       "answer": "Each TA takes a stack of exams and sorts into alphabetic piles which are then sorted.\n"

@@ -10,25 +10,6 @@ function createTitle(form, ex) {
 }
 
 
-function createResetButton(form, indexesToClear, filename) {
-	const resetButton = document.createElement("button");
-	resetButton.type = "button";
-	resetButton.textContent = "Reset";
-	resetButton.classList.add("reset-exercises-button");
-	form.appendChild(resetButton);
-
-	resetButton.addEventListener("click", () => {
-		indexesToClear.forEach(index => {
-			const key = `${filename}-exercise-${index}`;
-			localStorage.removeItem(`${key}-trace`);
-			localStorage.removeItem(`${key}-programming`);
-			localStorage.removeItem(`${key}-explaination`);
-		});
-
-		location.reload();
-	});
-}
-
 function generate_exercises(filename) {
 	const container = document.currentScript.parentElement;
 	container.innerHTML = '';
@@ -143,8 +124,29 @@ function generate_exercises(filename) {
 						input.dataset.row = rowIndex;
 						input.dataset.col = colIndex;
 						input.classList.add("table-input");
+
+						// restore saved data
+						let savedTable = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+						
+						if (savedTable[rowIndex] && savedTable[rowIndex][colIndex] !== undefined) 
+							input.value = savedTable[rowIndex][colIndex];
+
+						// save 
+						input.addEventListener("input", () => {
+							let currentData = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+
+							if (!Array.isArray(currentData[rowIndex])) {
+								currentData[rowIndex] = [];
+							}
+
+							currentData[rowIndex][colIndex] = input.value;
+							localStorage.setItem(`${storageKey}-table`, JSON.stringify(currentData));
+						});
 						td.appendChild(input);
-					} else {
+					}
+
+					
+					else {
 						td.textContent = cell;
 					}
 
@@ -251,12 +253,22 @@ function generate_exercises(filename) {
 				localStorage.removeItem(`${storageKey}-trace`);
 				if (userInputElement) userInputElement.value = '';
 
+			} else if (ex.table) {
+
+				localStorage.removeItem(`${storageKey}-table`);
+				const inputs = form.querySelectorAll(".table-input");
+				inputs.forEach(input => input.value = "");
+
 			} else if (isExplainationQuestion) {
 
 				localStorage.removeItem(`${storageKey}-explaination`);
 				if (userInputElement) userInputElement.value = '';
 
 			}
+
+			// reset the result message
+			resultMessage.innerHTML = "<em>Your result will appear here.</em>";
+
 		});
 
 		const buttonContainer = document.createElement("div");

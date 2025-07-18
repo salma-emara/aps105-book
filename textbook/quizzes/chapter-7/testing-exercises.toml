@@ -3,13 +3,18 @@ title = "Part of Question 6 in Winter 2020 Midterm Exam"
 difficulty = "Easy"
 type = "explaination"
 
-question = """
+question = '''
 The following code segment will cause a runtime error. Identify the potential runtime error and briefly explain how you would fix it.
-"""
-question-code = '''
+<pre>
 char cArray[] = {'H', 'E', 'L', 'L', 'O'};
 printf("The last character is %c.\n", cArray[5]);
+</pre>
 '''
+
+question-code = '''
+char cArray[] = {'H', 'E', 'L', 'L', 'O'};
+printf("The last character is %c.\n", cArray[5]); '''
+
 answer = """ 
 Problem: The maximum index for `cArray` is 4 (array out-of-bounds error).
 Solution: Change `[5]` to `[4]`.

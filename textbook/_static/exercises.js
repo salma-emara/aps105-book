@@ -17,7 +17,6 @@ function generate_exercises(filename) {
 	const exercises = parsedObject.exercises;
 
 	let inMultipart = false;
-	let multipartGroupStartIndex = null;
 
 	for (let i = 0; i < exercises.length; i++) {
 		const ex = exercises[i];
@@ -29,14 +28,12 @@ function generate_exercises(filename) {
 
 		if (!ex.multipart) {
 			inMultipart = false;
-			multipartGroupStartIndex = null;
 
 			createTitle(form, ex);
 	
 		} else if (ex.multipart && !inMultipart){
 			// First part of multipart
 			inMultipart = true;
-			multipartGroupStartIndex = i;
 
 			createTitle(form, ex);
 			const multipartIndexes = [];
@@ -63,6 +60,8 @@ function generate_exercises(filename) {
 		const isProgrammingQuestion = type === "programming" || type === "function programming";
 		const isTracingQuestion = type === "tracing";
 		const isExplainationQuestion = type === "textbox" || type === "explaination";
+		const isMultipleChoice = type === "multiple-choice";
+		const isSingleCorrect = Array.isArray(ex.answer) && ex.answer.length === 1;
 
 		let userInputElement = null;
 
@@ -82,9 +81,11 @@ function generate_exercises(filename) {
 			editor.setTheme("ace/theme/tomorrow");
 			editor.setValue(questionCode, 1);
 
+			const lineCount = Math.max(questionCode.split('\n').length, 1);
+		
 			editor.setOptions({
 				readOnly: true,
-				showGutter: true,
+				showGutter: lineCount > 5,
 				wrap: true,
 				maxLines: Infinity,
 				fontSize: "14px",
@@ -92,7 +93,38 @@ function generate_exercises(filename) {
 			});
 		}
 
-		if (type === "explaination" && ex.table) {
+		if (isMultipleChoice && ex.choices) {
+			const choicesElement = document.createElement("div");
+			choicesElement.classList.add("multiple-choice-container");
+
+			choicesElement.style.display = 'flex';
+			choicesElement.style.flexDirection = 'column';
+			choicesElement.style.gap = '8px';
+
+			for (let j = 0; j < ex.choices.length; j++) {
+				let choiceText = ex.choices[j];
+
+				const input = document.createElement("input");
+				input.type = isSingleCorrect ? "radio" : "checkbox";
+				input.name = `choice-${i}`;
+				input.id = `choice-${i}-${j + 1}`;
+				input.value = j;
+
+				const label = document.createElement("label");
+				label.setAttribute("for", input.id);
+				label.innerHTML = `${String.fromCharCode(65 + j)}) ${choiceText}`;
+
+				const container = document.createElement("div");
+				container.classList.add("choicesContainer");
+				container.appendChild(input);
+				container.appendChild(label);
+
+				choicesElement.appendChild(container);
+			}
+
+			form.appendChild(choicesElement);
+
+		} else if (type === "explaination" && ex.table) {
 			const table = document.createElement("table");
 			table.classList.add("exercise-table");
 
@@ -294,6 +326,43 @@ function generate_exercises(filename) {
 
 
 		submitButton.addEventListener("click", async function () {
+
+			if (isMultipleChoice && Array.isArray(ex.answer)) {
+				const selectedChoices = form.querySelectorAll(`input[name="choice-${i}"]:checked`);
+				const selectedIndices = Array.from(selectedChoices).map(input => parseInt(input.value));
+
+				if (selectedIndices.length === 0) {
+					resultMessage.innerHTML = `<span style="color: red;">Please select an option before submitting.</span>`;
+					return;
+				}
+
+				const correctIndices = ex.answer;
+				const isCorrect =
+					selectedIndices.length === correctIndices.length &&
+					correctIndices.every(idx => selectedIndices.includes(idx));
+
+				if (ex.explanations && ex.explanations.length > 0) {
+					const explanationHTML = `
+					<details style="margin-top: 10px;">
+						<summary style="cursor: pointer;">Show Explanation</summary>
+						<div style="margin-top: 5px;">
+							${ex.explanations[0]}
+						</div>
+					</details>
+					`;
+					
+					resultMessage.innerHTML = isCorrect
+						? `<span style="color: green;">Correct!</span><br>${explanationHTML}`
+						: `<span style="color: red;">Incorrect.</span><br>${explanationHTML}`;
+				} else {
+					resultMessage.innerHTML = isCorrect
+						? `<span style="color: green;">Correct!</span>`
+						: `<span style="color: red;">Incorrect.</span>`;
+				}
+
+				return; 
+			}
+
 			let correctAnswerRaw = ex.answer || ex["answer-code"] || "";
 
 			const correctAnswer = (typeof correctAnswerRaw === "string") ? correctAnswerRaw.trim() : correctAnswerRaw;

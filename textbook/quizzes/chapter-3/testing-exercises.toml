@@ -1,0 +1,127 @@
+[[exercises]]
+title = "Question 2 in Winter 2018 Midterm Exam"
+difficulty = "Easy"
+type = "explaination"
+multipart= false
+
+question = """
+Write a single C statement — which contains exactly one terminating semi-colon (`;`), and does
+not contain brace brackets (`{` or `}`) — that declares a `bool` variable named `isHighlighted`, and
+sets its value to true if and only if the value stored in an integer variable named `characterCount`
+is an **even positive** number. Assume that the variable `characterCount` has already been declared
+and initialized.
+"""
+
+answer = """ 
+bool isHighlighted = characterCount % 2 == 0 && characterCount > 0; """
+
+
+[[exercises]]
+title = "Question 2 in Winter 2019 Midterm Exam"
+difficulty = "Easy"
+type = "explaination"
+multipart= false
+
+question = """
+Write a single C statement that declares a boolean-type variable named `divisible` and assigns
+true to divisible if and only if the value stored in the int variable named `numOfItems` is exactly
+divisible by $5$ or $7$. Assume that variable `numOfItems` has been declared and initialized.
+"""
+
+answer = """ 
+bool divisible = numOfItems % 5 == 0 || numOfItems % 7 == 0; """
+
+
+[[exercises]]
+title = "Question 7 in Winter 2018 Final Exam"
+difficulty = "Easy"
+type = "multiple-choice"
+table = false
+multipart= true
+
+question = """
+Evaluate the following relational expressions by circling the right answer.
+"""
+
+question-code = """ '\\O' == 0
+"""
+answer = [0]
+
+choices = [
+  "true",
+  "false"
+]
+
+explanations = ["true, since \\0 has ASCII code of zero"]
+
+
+[[exercises]]
+title = "Question 7 in Winter 2018 Final Exam"
+difficulty = "Easy"
+type = "multiple-choice"
+table = true
+multipart = true
+
+question = """ 
+"""
+
+question-code = """ int x = 10 % 8;
+(x > 0) && (x % 2 == 0) && !false
+"""
+
+answer = [0]
+
+choices = [
+  "true",
+  "false"
+]
+explanations = ["true, since x stores 2"]
+
+
+[[exercises]]
+title = "Question 7 in Winter 2018 Final Exam"
+difficulty = "Easy"
+type = "multiple-choice"
+table = true
+multipart = true
+
+question = """ 
+"""
+
+question-code = """ 'c' - 3 == 'a'
+"""
+
+answer = [1]
+
+choices = [
+  "true",
+  "false"
+]
+explanations = ["false, since 'c' - 2 == 'a'"]
+
+
+[[exercises]]
+title = "Question 7 in Winter 2018 Final Exam"
+difficulty = "Easy"
+type = "multiple-choice"
+table = true
+multipart = true
+
+question = """ 
+"""
+
+question-code = """ 
+int w = rand() % 75 * 2 - 99;
+(w < -99) || (w > 49);
+"""
+
+answer = [1]
+
+choices = [
+  "true",
+  "false"
+]
+explanations = ["false, since the range of random numbers in w is between -99 and 49 inclusive"]
+
+
+

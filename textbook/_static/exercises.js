@@ -2,10 +2,10 @@
 
 
 function createTitle(form, ex) {
-	const title = document.createElement('h6');
+	const title = document.createElement('h5');
 	title.textContent = `${ex.title} [${ex.difficulty}]`;
-	title.style.marginTop = "10px";
 	title.style.fontWeight = "bold";
+	title.style.color = "#4f4f4f";  
 	form.appendChild(title);
 }
 
@@ -17,42 +17,59 @@ function generate_exercises(filename) {
 	const exercises = parsedObject.exercises;
 
 	let inMultipart = false;
+	let currentMultipartForm = null;
 
 	for (let i = 0; i < exercises.length; i++) {
 		const ex = exercises[i];
 
-		const form = document.createElement('div');
-		form.className = 'exercise-card';
-		form.id = `exercise-${i}`; 
-		const storageKey = `${filename}-${form.id}`; 
+		let form;
+		let storageKey;
 
 		if (!ex.multipart) {
 			inMultipart = false;
 
-			createTitle(form, ex);
-	
-		} else if (ex.multipart && !inMultipart){
-			// First part of multipart
-			inMultipart = true;
+			form = document.createElement('div');
+			form.className = 'exercise-card';
+			form.id = `exercise-${i}`;
+			storageKey = `${filename}-${form.id}`;
 
 			createTitle(form, ex);
-			const multipartIndexes = [];
-			for (let j = i; j < exercises.length && exercises[j].multipart; j++) {
-				multipartIndexes.push(j);
+			container.appendChild(form);
+
+		} else {
+
+			if (!inMultipart) {
+
+				// first part of multipart questions
+				inMultipart = true;
+				currentMultipartForm = document.createElement('div');
+				currentMultipartForm.className = 'exercise-card';
+				currentMultipartForm.id = `exercise-multipart-${i}`;
+				storageKey = `${filename}-${currentMultipartForm.id}`;
+
+				createTitle(currentMultipartForm, ex);
+				container.appendChild(currentMultipartForm);
 			}
-		} 
 
-		const submitButton = document.createElement("button");
-		submitButton.type = "button";
-		submitButton.innerHTML = "Submit";
-		submitButton.classList.add("submit-button");
+			form = currentMultipartForm;
+
+			// Add divider between multipart sub-questions
+			if (i > 0 && exercises[i - 1].multipart) {
+				const divider = document.createElement("div");
+				divider.className = "multipart-divider";
+				form.appendChild(divider);
+			}
+		}
 
         const md = window.markdownit({ html: true, linkify: true, typographer: true });
 
         const question = document.createElement('div');
         const questionHTML = md.render(ex.question);
         question.innerHTML = questionHTML;
-        form.appendChild(question);
+
+		const questionContentBox = document.createElement("div");
+		questionContentBox.className = "question-content-box";
+        questionContentBox.appendChild(question);
 		
         if (window.MathJax) MathJax.typesetPromise([question]);
 
@@ -74,7 +91,7 @@ function generate_exercises(filename) {
 			editorContainer.classList.add("ace-editor-tracing");
 
 			pre.appendChild(editorContainer);
-			form.appendChild(pre);
+			questionContentBox.appendChild(pre);
 
 			const editor = ace.edit(editorContainer);
 			editor.session.setMode("ace/mode/c_cpp");
@@ -122,7 +139,7 @@ function generate_exercises(filename) {
 				choicesElement.appendChild(container);
 			}
 
-			form.appendChild(choicesElement);
+			questionContentBox.appendChild(choicesElement);
 
 		} else if (type === "explaination" && ex.table) {
 			const table = document.createElement("table");
@@ -189,7 +206,7 @@ function generate_exercises(filename) {
 			}
 
 			table.appendChild(tableBody);
-			form.appendChild(table);
+			questionContentBox.appendChild(table);
 		}
 
 		else if (isProgrammingQuestion) {
@@ -216,7 +233,7 @@ function generate_exercises(filename) {
 			}
 
 			pre.appendChild(codeRunner);
-			form.appendChild(pre);
+			questionContentBox.appendChild(pre);
 
 			codeRunner.addEventListener('input', () => {
 				const closest = codeRunner.closest('.exercise-card');
@@ -241,7 +258,7 @@ function generate_exercises(filename) {
 				localStorage.setItem(`${storageKey}-trace`, traceTextarea.value);
 			});
 
-			form.appendChild(traceTextarea);
+			questionContentBox.appendChild(traceTextarea);
 			userInputElement = traceTextarea;
 
 		} else if (isExplainationQuestion) {
@@ -257,14 +274,40 @@ function generate_exercises(filename) {
 				localStorage.setItem(`${storageKey}-explaination`, textbox.value);
 			});
 
-			form.appendChild(textbox);
+			questionContentBox.appendChild(textbox);
 			userInputElement = textbox;
 		}
 
+		const submitButton = document.createElement("button");
+		// submitButton.type = "button";
+		submitButton.innerHTML = "Evaluate Answer";
+		submitButton.classList.add("submit-exercises-button");
+
 		const resetButton = document.createElement("button");
-		resetButton.type = "button";
-		resetButton.textContent = "Reset";
+		// resetButton.type = "button";
+		resetButton.textContent = "Start Fresh";
 		resetButton.classList.add("reset-exercises-button");
+
+		const resultMessage = document.createElement("div");
+		resultMessage.innerHTML = "";
+		resultMessage.style.display = "none";
+		resultMessage.style.marginTop = "10px";
+
+		// footer box (submit + reset + result)
+		const footerBox = document.createElement("div");
+		footerBox.className = "question-footer-box";
+
+		// submit + reset container
+		const buttonContainer = document.createElement("div");
+		buttonContainer.style.display = "flex";
+		buttonContainer.style.justifyContent = "space-between";
+		buttonContainer.style.alignItems = "center";
+		buttonContainer.appendChild(submitButton);
+		buttonContainer.appendChild(resetButton);
+
+		footerBox.appendChild(buttonContainer);
+		footerBox.appendChild(resultMessage);
+		questionContentBox.appendChild(footerBox);
 
 		resetButton.addEventListener("click", () => {
 			if (isProgrammingQuestion){
@@ -299,33 +342,15 @@ function generate_exercises(filename) {
 			}
 
 			// reset the result message
-			resultMessage.innerHTML = "<em>Your result will appear here.</em>";
+			// resultMessage.innerHTML = "<em>Your result will appear here.</em>";
+			resultMessage.style.display = "none";
+			resultMessage.innerHTML = "";
 
 		});
 
-		const buttonContainer = document.createElement("div");
-		buttonContainer.style.display = "flex";
-		buttonContainer.style.justifyContent = "space-between";
-		buttonContainer.style.alignItems = "center";
-		buttonContainer.style.marginTop = "10px";
-
-		buttonContainer.appendChild(submitButton);
-		buttonContainer.appendChild(resetButton);
-		form.appendChild(buttonContainer);
-
-
-		const resultMessage = document.createElement("div");
-		resultMessage.style.marginTop = "10px";
-		resultMessage.style.marginBottom = "20px";
-		resultMessage.style.padding = "10px";
-		resultMessage.style.border = "1px dashed #999";
-		resultMessage.style.borderRadius = "5px";
-		resultMessage.style.backgroundColor = "#fafafa";
-		resultMessage.innerHTML = "<em>Your result will appear here.</em>";
-		form.appendChild(resultMessage);
-
-
 		submitButton.addEventListener("click", async function () {
+
+			resultMessage.style.display = "block";
 
 			if (isMultipleChoice && Array.isArray(ex.answer)) {
 				const selectedChoices = form.querySelectorAll(`input[name="choice-${i}"]:checked`);
@@ -421,6 +446,7 @@ function generate_exercises(filename) {
 			}
 		});
 
+		form.appendChild(questionContentBox);
 		container.appendChild(form);
 	}
 }
@@ -510,7 +536,7 @@ function buildFilledTableHTML(headers, rows) {
 function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null, studentCode = null) {
    
     if (customMessage) {
-        messageElement.innerHTML = `<span style="color: red;">${customMessage}</span>`;
+        messageElement.innerHTML = `<span style="color: #276be9;">${customMessage}</span>`;
         return;
     }
 
@@ -529,8 +555,16 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
             mainInfoTitle.style.fontWeight = "bold";
             mainInfoTitle.innerText = "Appended main function to student code:";
 
+			// bold comments
+			const highlightedCode = studentCode
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/\/\/ Student Code/g, '<span style="font-weight:bold">// Student Code</span>')
+				.replace(/\/\/ Appended main function used for testcases/g, '<span style="font-weight:bold">// Appended main function used for testcases</span>');
+
             const codeBlock = document.createElement("pre");
-            codeBlock.textContent = studentCode;
+			codeBlock.innerHTML = highlightedCode;  
 
             messageElement.appendChild(mainInfoTitle);
             messageElement.appendChild(codeBlock);

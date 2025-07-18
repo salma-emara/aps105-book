@@ -129,7 +129,8 @@ function generate_exercises(filename) {
 
 				const label = document.createElement("label");
 				label.setAttribute("for", input.id);
-				label.innerHTML = `${String.fromCharCode(65 + j)}) ${choiceText}`;
+				// label.innerHTML = `${String.fromCharCode(65 + j)}) ${choiceText}`;
+				label.innerHTML = `${choiceText}`;
 
 				const container = document.createElement("div");
 				container.classList.add("choicesContainer");
@@ -191,6 +192,7 @@ function generate_exercises(filename) {
 							currentData[rowIndex][colIndex] = input.value;
 							localStorage.setItem(`${storageKey}-table`, JSON.stringify(currentData));
 						});
+
 						td.appendChild(input);
 					}
 
@@ -207,6 +209,28 @@ function generate_exercises(filename) {
 
 			table.appendChild(tableBody);
 			questionContentBox.appendChild(table);
+
+			const testingTable = document.createElement("button");
+			testingTable.innerHTML = "Testing Table Hint";
+
+			questionContentBox.appendChild(testingTable);
+
+			testingTable.addEventListener("click", async function () {
+				console.log("header:", ex.headers);
+
+				const rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+
+				const correctedRows = rawStudentRows.map((row, index) => {
+					const correctMethod = ex.answer[index]?.[0] || "";
+					return [correctMethod, row?.[1] || "", row?.[2] || ""];
+				});
+
+				console.log("rows:", correctedRows);
+				console.log("answers:", ex.answer);
+
+				testing_table(ex.question, ex.headers, correctedRows, ex.answer);
+			});
+
 		}
 
 		else if (isProgrammingQuestion) {
@@ -424,6 +448,10 @@ function generate_exercises(filename) {
 					studentOnlyCode +
 					"\n\n// Appended main function used for testcases\n" +
 					ex["main-function"].trim();
+
+				} else {
+					const rawCode = codeRunner.querySelector('.ace_content').innerText;
+					studentCode = rawCode;
 
 				}
 

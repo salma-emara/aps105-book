@@ -114,21 +114,33 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         hintInfoContainer.appendChild(hintDiv);
 
         const prompt = `
-            Generate a hint that helps a student with a programming question.
+        You are a teaching assistant helping a student with a programming question.
 
-            Provide 1 hint that does not give away the solution. Keep the hint limited to one sentence, 
-            ensuring it is *different* and *more helpful* than any previously hint given.
+        You are given:
+        - A programming question
+        - The student's code
+        - The student's actual output
+        - The expected output
+        - Hints previously given to the student
 
-            Format your response like:
-            Hint: ...
+        Your task:
+        1. Analyze the student's code and output in relation to the expected output.
+        2. Identify any errors in their code.
+        3. Reflect on how the student might be thinking and where they may be going wrong.
+        4. Generate a new critical thinking question to guide the student toward understanding their mistake, 
+            without directly giving away the solution.
+        5. Ensure that your question is not a repeat of any in the previous hints list.
+        6. Please make the hint concise to be under 30 words.
 
-            Question: ${questionPrompt}
-            Student code: ${originalCode}
-            Expected output: ${outputArray.join(", ")}
-            Student output: ${actualOutput}
+        Use the following format in your response:
+        Hint: [your critical thinking question here]
 
-            Previous provided hints: ${previousHints.join(", ")}
-
+        Inputs:
+        Question: ${questionPrompt}
+        Student code: ${originalCode}
+        Student output: ${actualOutput}
+        Expected output: ${outputArray.join(", ")}
+        Previous provided hints: ${previousHints.join(", ")}
         `;
 
         const hintsText = await getChatCompletion(prompt);
@@ -145,5 +157,42 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
     };
 
     return hintContainer;
+
+}
+
+
+
+async function testing_table(question, headers, rows, answer) {
+
+
+    const prompt = `
+    You are helping a student fill in a a table-based question.
+
+    Below are:
+    - A question prompt
+    - The table's column headers
+    - The initial table rows (as given to the student, incomplete)
+    - The correct version of the table (the answer)
+
+    Your task:
+    1. Evaluate the differences between the student's table (rows) and the correct answer.
+    2. Interpret what logic or rule the student might be missing.
+    3. Generate a thoughtful explanation or guiding question to help the student understand the pattern or correction needed.
+
+    Format your output as:
+    - Explanation: [your interpretation or clarification]
+    - Hint: [a follow-up question to guide the student]
+
+    Inputs:
+    - Question: ${question}
+    - Headers: ${JSON.stringify(headers)}
+    - Student Rows: ${JSON.stringify(rows)}
+    - Correct Answer: ${JSON.stringify(answer)}
+    `;
+
+    const hintsText = await getChatCompletion(prompt);
+
+    const match = hintsText.match(/Hint\s*:\s*(.+)/i);
+
 
 }

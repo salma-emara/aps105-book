@@ -48,11 +48,11 @@ question-code = """ '\\O' == 0
 answer = [0]
 
 choices = [
-  "true",
-  "false"
+  "True",
+  "False"
 ]
 
-explanations = ["true, since \\0 has ASCII code of zero"]
+explanations = ["True, since \\0 has ASCII code of zero"]
 
 
 [[exercises]]
@@ -72,10 +72,10 @@ question-code = """ int x = 10 % 8;
 answer = [0]
 
 choices = [
-  "true",
-  "false"
+  "True",
+  "False"
 ]
-explanations = ["true, since x stores 2"]
+explanations = ["True, since x stores 2"]
 
 
 [[exercises]]
@@ -94,10 +94,10 @@ question-code = """ 'c' - 3 == 'a'
 answer = [1]
 
 choices = [
-  "true",
-  "false"
+  "True",
+  "False"
 ]
-explanations = ["false, since 'c' - 2 == 'a'"]
+explanations = ["False, since 'c' - 2 == 'a'"]
 
 
 [[exercises]]
@@ -118,10 +118,10 @@ int w = rand() % 75 * 2 - 99;
 answer = [1]
 
 choices = [
-  "true",
-  "false"
+  "True",
+  "False"
 ]
-explanations = ["false, since the range of random numbers in w is between -99 and 49 inclusive"]
+explanations = ["False, since the range of random numbers in w is between -99 and 49 inclusive"]
 
 
 

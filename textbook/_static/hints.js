@@ -127,8 +127,8 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         1. Analyze the student's code and output in relation to the expected output.
         2. Identify any errors in their code.
         3. Reflect on how the student might be thinking and where they may be going wrong.
-        4. Generate a new critical thinking question to guide the student toward understanding their mistake, 
-            without directly giving away the solution.
+        4. Generate a new critical thinking question about the first mistake in their code to guide the 
+            student toward understanding their mistake, without directly giving away the solution.
         5. Ensure that your question is not a repeat of any in the previous hints list.
         6. Please make the hint concise to be under 30 words.
 

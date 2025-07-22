@@ -6,7 +6,7 @@ let parsedObject;
       "difficulty": "Easy",
       "type": "explaination",
       "multipart": false,
-      "question": "Write a single C statement — which contains exactly one terminating semi-colon (`;`), and does\nnot contain brace brackets (`{` or `}`) — that declares a `bool` variable named `isHighlighted`, and\nsets its value to true if and only if the value stored in an integer variable named `characterCount`\nis an **even positive** number. Assume that the variable `characterCount` has already been declared\nand initialized.\n",
+      "question": "Writea single C statement — which contains exactly one terminating semi-colon (`;`), and does\nnot contain brace brackets (`{` or `}`) — that declares a `bool` variable named `isHighlighted`, and\nsets its value to true if and only if the value stored in an integer variable named `characterCount`\nis an **even positive** number. Assume that the variable `characterCount` has already been declared\nand initialized.\n",
       "answer": " \nbool isHighlighted = characterCount % 2 == 0 && characterCount > 0; "
     },
     {
@@ -29,11 +29,11 @@ let parsedObject;
         0
       ],
       "choices": [
-        "true",
-        "false"
+        "True",
+        "False"
       ],
       "explanations": [
-        "true, since \\0 has ASCII code of zero"
+        "True, since \\0 has ASCII code of zero"
       ]
     },
     {
@@ -48,11 +48,11 @@ let parsedObject;
         0
       ],
       "choices": [
-        "true",
-        "false"
+        "True",
+        "False"
       ],
       "explanations": [
-        "true, since x stores 2"
+        "True, since x stores 2"
       ]
     },
     {
@@ -67,11 +67,11 @@ let parsedObject;
         1
       ],
       "choices": [
-        "true",
-        "false"
+        "True",
+        "False"
       ],
       "explanations": [
-        "false, since 'c' - 2 == 'a'"
+        "False, since 'c' - 2 == 'a'"
       ]
     },
     {
@@ -86,11 +86,11 @@ let parsedObject;
         1
       ],
       "choices": [
-        "true",
-        "false"
+        "True",
+        "False"
       ],
       "explanations": [
-        "false, since the range of random numbers in w is between -99 and 49 inclusive"
+        "False, since the range of random numbers in w is between -99 and 49 inclusive"
       ]
     }
   ]

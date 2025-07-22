@@ -102,7 +102,7 @@ parse:
     exercise_embed: |
       <link rel="stylesheet" href="../../_static/style.css">
       <script> window.exerciseFilename = "%%FILENAME%%"; </script>
-      <script src="../../quizzes/%%FILENAME%%.js"></script>
+      <script src="../../exercises/%%FILENAME%%.js"></script>
       <script src="../../_static/exercises.js"></script>
       <script src = "../../_static/hints.js"> </script>
       <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>

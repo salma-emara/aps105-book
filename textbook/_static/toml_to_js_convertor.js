@@ -15,17 +15,24 @@ function convertTomlToJs(tomlPath, jsPath) {
 }
 
 // Convert TOML files in each folder of the directory
-const directoryPath = "textbook/quizzes"; // Path to the directory containing folders with TOML files
+const rootFolders = ['textbook/exercises', 'textbook/quizzes']; // Path to the directory containing folders with TOML files
 
-fs.readdirSync(directoryPath, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .forEach((dirent) => {
-        const folderPath = path.join(directoryPath, dirent.name);
-        fs.readdirSync(folderPath)
-            .filter((file) => file.endsWith('.toml'))
-            .forEach((file) => {
-                const tomlPath = path.join(folderPath, file);
-                const jsPath = path.join(folderPath, `${file.replace('.toml', '.js')}`);
-                convertTomlToJs(tomlPath, jsPath);
-            });
-    });
+rootFolders.forEach((directoryPath) => {
+    if (!fs.existsSync(directoryPath)) {
+        console.warn(`Skipped missing folder: ${directoryPath}`);
+        return;
+    }
+
+    fs.readdirSync(directoryPath, { withFileTypes: true })
+        .filter((dirent) => dirent.isDirectory())
+        .forEach((dirent) => {
+            const folderPath = path.join(directoryPath, dirent.name);
+            fs.readdirSync(folderPath)
+                .filter((file) => file.endsWith('.toml'))
+                .forEach((file) => {
+                    const tomlPath = path.join(folderPath, file);
+                    const jsPath = path.join(folderPath, `${file.replace('.toml', '.js')}`);
+                    convertTomlToJs(tomlPath, jsPath);
+                });
+        });
+});

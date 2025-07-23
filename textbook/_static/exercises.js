@@ -18,6 +18,7 @@ function generate_exercises(filename) {
 
 	let inMultipart = false;
 	let currentMultipartForm = null;
+	let multipartCount = 0;
 
 	for (let i = 0; i < exercises.length; i++) {
 		const ex = exercises[i];
@@ -27,6 +28,7 @@ function generate_exercises(filename) {
 
 		if (!ex.multipart) {
 			inMultipart = false;
+			multipartCount = 0;
 
 			form = document.createElement('div');
 			form.className = 'exercise-card';
@@ -38,20 +40,23 @@ function generate_exercises(filename) {
 
 		} else {
 
-			if (!inMultipart) {
+			multipartCount++;
 
+			if (!inMultipart) {
 				// first part of multipart questions
 				inMultipart = true;
 				currentMultipartForm = document.createElement('div');
 				currentMultipartForm.className = 'exercise-card';
 				currentMultipartForm.id = `exercise-multipart-${i}`;
-				storageKey = `${filename}-${currentMultipartForm.id}`;
 
 				createTitle(currentMultipartForm, ex);
 				container.appendChild(currentMultipartForm);
 			}
 
 			form = currentMultipartForm;
+
+			// each subquestion gets its own unique storageKey
+			storageKey = `${filename}-${form.id}-part-${multipartCount}`;
 
 			// Add divider between multipart sub-questions
 			if (i > 0 && exercises[i - 1].multipart) {
@@ -488,11 +493,8 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
 
 async function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, storageKey) {
 
-	const existingTestcaseContainer = form.querySelector(".testcase-container");
-	if (existingTestcaseContainer) existingTestcaseContainer.remove();
-
-	const existingHintContainer = form.querySelector(".hint-container");
-	if (existingHintContainer) existingHintContainer.remove();
+	const existingFeedbackContainer = messageElement.querySelector(".hint-container");
+	if (existingFeedbackContainer) existingFeedbackContainer.remove();
 
 	if (exercise.table) {
 
@@ -503,7 +505,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 			return [correctMethod, row?.[1] || "", row?.[2] || ""];
 		});
 
-		let feedbackContainer = await get_feedback(form, exercise, studentRows, "", []);
+		let feedbackContainer = await get_feedback(form, messageElement, exercise, studentRows, "", []);
 
 		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
 
@@ -536,7 +538,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	if (questionType === "tracing") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	let feedbackContainer = await get_feedback(form, exercise, [], userAnswer, []);
+	let feedbackContainer = await get_feedback(form, messageElement, exercise, [], userAnswer, []);
 
 	updateResultMessage(
 		messageElement,

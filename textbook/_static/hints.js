@@ -160,14 +160,14 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
 }
 
-async function get_feedback(form, exercise, studentRows, userAnswer, previousFeedback = []) {
+async function get_feedback(form, messageElement, exercise, studentRows, userAnswer, previousFeedback = []) {
 
     let question = exercise.question;
     let headers = exercise.headers;
     let answer = exercise.answer;
 
     // check if feedback already exists
-    let feedbackContainer = form.querySelector(".hint-container");
+    let feedbackContainer = messageElement.querySelector(".hint-container");
     let feedbackInfoContainer, anotherFeedback;
 
     if (!feedbackContainer){ // initial setup

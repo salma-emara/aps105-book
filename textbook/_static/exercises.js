@@ -230,13 +230,9 @@ function generate_exercises(filename) {
 			// saved answer
 			let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming`));
 
-			console.log(`${storageKey}-programming`);
-
 			if (progData) {
-				console.log("Found prog", progData.userCode);
 				codeRunner.textContent = progData.userCode; 
 			} else {
-				console.log("could not find prog");
 				codeRunner.textContent = starterCode;
 			}
 
@@ -528,8 +524,6 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
 	const userAnswer = traceInput ? traceInput.value.trim() : "";
-
-	console.log(userAnswer);
 
 	if (!userAnswer) {
 		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");

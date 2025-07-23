@@ -160,7 +160,11 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
 }
 
-async function get_feedback(form, question, headers, rows, answer, previousFeedback = []) {
+async function get_feedback(form, exercise, studentRows, userAnswer, previousFeedback = []) {
+
+    let question = exercise.question;
+    let headers = exercise.headers;
+    let answer = exercise.answer;
 
     // check if feedback already exists
     let feedbackContainer = form.querySelector(".hint-container");
@@ -244,38 +248,75 @@ async function get_feedback(form, question, headers, rows, answer, previousFeedb
         feedbackDiv.appendChild(loadingContainer);
         feedbackInfoContainer.appendChild(feedbackDiv);
 
-        const prompt = `
-        You are helping a student fill in a table-based question.
+        let prompt;
 
-        Below are:
-        - A question prompt
-        - The table's column headers
-        - The initial table rows (as given to the student, incomplete)
-        - The correct version of the table (the answer)
-        - A list of previously provided feedback messages
+        if (exercise.table){
 
-        Your task is to:
-        1. Compare the student's table with the correct answer and identify any mistakes.
-        2. Interpret what logic or rule the student might be missing.
-        3. Think of a concise explanation that clarifies the error or misunderstanding.
-        4. Generate a new feedback message that:
-            - Highlights both what the student did correctly and what needs fixing
-            - Is not a repeat of any message in the previous feedback list
-            - Is under 50 words
-        5. Indicate whether the student's current answer is fully correct.
+            prompt = `
+            You are helping a student fill in a table-based question.
 
-        Format your output as:
-        - Explanation: [your interpretation or clarification]
-        - Feedback: [feedback message, max 50 words, not a repeat]
-        - isCorrect: [true or false]
+            Below are:
+            - A question prompt
+            - The table's column headers
+            - The student's table rows
+            - The correct version of the table (the answer)
+            - A list of previously provided feedback messages
 
-        Inputs:
-        - Question: ${question}
-        - Headers: ${JSON.stringify(headers)}
-        - Student Rows: ${JSON.stringify(rows)}
-        - Correct Answer: ${JSON.stringify(answer)}
-        - Previous feedback messages: ${previousFeedback.join(", ")}
-        `;
+            Your task is to:
+            1. Compare the student's table with the correct answer and identify any mistakes.
+            2. Interpret what logic or rule the student might be missing.
+            3. Think of a concise explanation that clarifies the error or misunderstanding.
+            4. Generate a new feedback message that:
+                - Highlights both what the student did correctly and what needs fixing
+                - Is not a repeat of any message in the previous feedback list
+                - Is under 50 words
+            5. Indicate whether the student's current answer is fully correct.
+
+            Format your output as:
+            - Explanation: [your interpretation or clarification]
+            - Feedback: [feedback message, max 50 words, not a repeat]
+            - isCorrect: [true or false]
+
+            Inputs:
+            - Question: ${question}
+            - Headers: ${JSON.stringify(headers)}
+            - Student Rows: ${JSON.stringify(studentRows)}
+            - Correct Answer: ${JSON.stringify(answer)}
+            - Previous feedback messages: ${previousFeedback.join(", ")}
+            `;
+
+        } else if (exercise.type == "explaination") {
+
+            prompt = `You are helping a student with an explanation problem.
+
+            Below are:
+            - A question prompt
+            - The student's reasoning 
+            - The correct explanation
+            - A list of previously provided feedback messages
+
+            Your task is to:
+            1. Compare the student's reasoning with the correct answer and identify any mistakes.
+            2. Interpret what logic or rule the student might be missing.
+            3. Think of a concise explanation that clarifies the error or misunderstanding.
+            4. Generate a new feedback message that:
+                - Highlights both what the student explained correctly and what needs fixing
+                - Is not a repeat of any message in the previous feedback list
+                - Is under 50 words
+            5. Indicate whether the student's current answer is fully correct.
+
+            Format your output as:
+            - Explanation: [your interpretation or clarification]
+            - Feedback: [feedback message, max 50 words, not a repeat]
+            - isCorrect: [true or false]
+
+            Inputs:
+            - Question: ${question}
+            - Student Reasoning: ${JSON.stringify(userAnswer)}
+            - Correct Answer: ${JSON.stringify(answer)}
+            - Previous feedback messages: ${previousFeedback.join(", ")}
+            `;
+        }
 
         const feedbackText = await getChatCompletion(prompt);
 

@@ -449,26 +449,11 @@ function generate_exercises(filename) {
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode);
 
 			} else if (type === "explaination" && ex.table){
-
-				const existingTestcaseContainer = form.querySelector(".testcase-container");
-				if (existingTestcaseContainer) existingTestcaseContainer.remove();
-
-				const existingHintContainer = form.querySelector(".hint-container");
-				if (existingHintContainer) existingHintContainer.remove();
-
-				const rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
-
-				const correctedRows = rawStudentRows.map((row, index) => {
-					const correctMethod = ex.answer[index]?.[0] || "";
-					return [correctMethod, row?.[1] || "", row?.[2] || ""];
-				});
-
-				let hintContainer = await get_feedback(form, ex.question, ex.headers, correctedRows, ex.answer, []);
 				
-				handle_output_submission(form, resultMessage, type, correctAnswer, ex, hintContainer);
+				handle_output_submission(form, resultMessage, type, correctAnswer, ex, storageKey);
 
 			} else {
-				handle_output_submission(form, resultMessage, type, correctAnswer, ex);
+				handle_output_submission(form, resultMessage, type, correctAnswer, ex, storageKey);
 			}
 		});
 
@@ -501,11 +486,25 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
     updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer, studentCode);
 }
 
-function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, hintContainer) {
-	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
-	const userAnswer = traceInput ? traceInput.value.trim() : "";
+async function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, storageKey) {
 
 	if (exercise.table) {
+
+		const existingTestcaseContainer = form.querySelector(".testcase-container");
+		if (existingTestcaseContainer) existingTestcaseContainer.remove();
+
+		const existingHintContainer = form.querySelector(".hint-container");
+		if (existingHintContainer) existingHintContainer.remove();
+
+		const rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+
+		const studentRows = rawStudentRows.map((row, index) => {
+			const correctMethod = exercise.answer[index]?.[0] || "";
+			return [correctMethod, row?.[1] || "", row?.[2] || ""];
+		});
+
+		let feedbackContainer = await get_feedback(form, exercise, studentRows, "", []);
+
 		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
 
 		updateResultMessage(
@@ -519,11 +518,14 @@ function handle_output_submission(form, messageElement, questionType, correctAns
 			0,  // numPassed
 			0,  // total
 			null, // testcaseContainer
-			hintContainer //
+			feedbackContainer //
 		);
 
 		return;
 	}
+
+	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
+	const userAnswer = traceInput ? traceInput.value.trim() : "";
 
 	if (!userAnswer) {
 		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");
@@ -534,6 +536,22 @@ function handle_output_submission(form, messageElement, questionType, correctAns
 
 	if (questionType === "tracing") {
 		isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
+	}
+
+	if (questionType == "explaination"){
+		let feedbackContainer = await get_feedback(form, exercise, [], userAnswer, []);
+		updateResultMessage(
+			messageElement,
+			false,
+			questionType,
+			[], // table
+			"", // custom message
+			0,  // numPassed
+			0,  // total
+			null, // testcaseContainer
+			feedbackContainer 
+		);
+		return;
 	}
 
 	updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);

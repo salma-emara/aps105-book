@@ -488,13 +488,13 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
 
 async function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, storageKey) {
 
+	const existingTestcaseContainer = form.querySelector(".testcase-container");
+	if (existingTestcaseContainer) existingTestcaseContainer.remove();
+
+	const existingHintContainer = form.querySelector(".hint-container");
+	if (existingHintContainer) existingHintContainer.remove();
+
 	if (exercise.table) {
-
-		const existingTestcaseContainer = form.querySelector(".testcase-container");
-		if (existingTestcaseContainer) existingTestcaseContainer.remove();
-
-		const existingHintContainer = form.querySelector(".hint-container");
-		if (existingHintContainer) existingHintContainer.remove();
 
 		const rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
 
@@ -534,27 +534,22 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	let isCorrect = false;
 
-	if (questionType === "tracing") {
-		isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
-	}
+	if (questionType === "tracing") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	if (questionType == "explaination"){
-		let feedbackContainer = await get_feedback(form, exercise, [], userAnswer, []);
-		updateResultMessage(
-			messageElement,
-			false,
-			questionType,
-			correctAnswer, 
-			"", // custom message
-			0,  // numPassed
-			0,  // total
-			null, // testcaseContainer
-			feedbackContainer 
-		);
-		return;
-	}
+	let feedbackContainer = await get_feedback(form, exercise, [], userAnswer, []);
 
-	updateResultMessage(messageElement, isCorrect, questionType, correctAnswer);
+	updateResultMessage(
+		messageElement,
+		isCorrect,
+		questionType,
+		correctAnswer, 
+		"", // custom message
+		0,  // numPassed
+		0,  // total
+		null, // testcaseContainer
+		feedbackContainer 
+	);
+	return;
 }
 
 function buildFilledTableHTML(headers, rows) {
@@ -678,6 +673,22 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
                     </div>
                 </details>
             `;
+
+		// feedback container
+		if (hintContainer) {
+			const hintDetails = document.createElement("details");
+			hintDetails.style.marginTop = "10px";
+
+			const hintSummary = document.createElement("summary");
+			hintSummary.textContent = "Get Feedback";
+			hintSummary.style.cursor = "pointer";
+
+			hintDetails.appendChild(hintSummary);
+			hintDetails.appendChild(hintContainer);
+
+			messageElement.appendChild(hintDetails);
+		}
+
     } else if (questionType === "textbox" || questionType === "explaination") {
 		messageElement.innerHTML = "";
 

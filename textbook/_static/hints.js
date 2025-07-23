@@ -293,7 +293,7 @@ async function get_feedback(form, exercise, studentRows, userAnswer, previousFee
             - A question prompt
             - The student's reasoning 
             - The correct explanation
-            - A list of previously provided feedback messages
+            - A list of previously provided feedback messages (empty if there is none)
 
             Your task is to:
             1. Compare the student's reasoning with the correct answer and identify any mistakes.
@@ -316,6 +316,39 @@ async function get_feedback(form, exercise, studentRows, userAnswer, previousFee
             - Correct Answer: ${JSON.stringify(answer)}
             - Previous feedback messages: ${previousFeedback.join(", ")}
             `;
+
+        } else if (exercise.type == "tracing"){
+            
+            prompt = `You are helping a student with tracing a program code.
+
+            Below are:
+            - A question prompt
+            - The student's traced output 
+            - The correct output
+            - A list of previously provided feedback messages (empty if there is none)
+
+            Your task is to:
+            1. Compare the student's output with the correct output and identify any mistakes.
+            2. Interpret what logic or rule the student might be missing.
+            3. Think of a concise explanation that clarifies the error or misunderstanding.
+            4. Generate a new feedback message that:
+                - Highlights both what the student explained correctly and what needs fixing
+                - Is not a repeat of any message in the previous feedback list
+                - Is under 50 words
+            5. Indicate whether the student's traced output is fully correct.
+
+            Format your output as:
+            - Explanation: [your interpretation or clarification]
+            - Feedback: [feedback message, max 50 words, not a repeat]
+            - isCorrect: [true or false]
+
+            Inputs:
+            - Question: ${question}
+            - Student Reasoning: ${JSON.stringify(userAnswer)}
+            - Correct Answer: ${JSON.stringify(answer)}
+            - Previous feedback messages: ${previousFeedback.join(", ")}
+            `;
+
         }
 
         const feedbackText = await getChatCompletion(prompt);
@@ -326,7 +359,14 @@ async function get_feedback(form, exercise, studentRows, userAnswer, previousFee
         const isCorrectMatch = feedbackText.match(/isCorrect\s*:\s*(true|false)/i);
 
         const feedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available.";
-        const isCorrect = isCorrectMatch ? isCorrectMatch[1].toLowerCase() === "true" : false;
+
+        let isCorrect;
+
+        if (exercise.type == "tracing"){
+            isCorrect = userAnswer.replace(/[^\w]/g, "").toLowerCase() === answer.replace(/[^\w]/g, "").toLowerCase();   
+        } else {
+            isCorrect = isCorrectMatch ? isCorrectMatch[1].toLowerCase() === "true" : false;
+        } 
 
         feedbackDiv.innerText = feedback;
 
@@ -334,6 +374,7 @@ async function get_feedback(form, exercise, studentRows, userAnswer, previousFee
 
         previousFeedback.push(feedback);
         feedbackInfoContainer.appendChild(feedbackDiv);
+
     };
 
     return feedbackContainer;

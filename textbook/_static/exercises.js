@@ -210,27 +210,6 @@ function generate_exercises(filename) {
 			table.appendChild(tableBody);
 			questionContentBox.appendChild(table);
 
-			const testingTable = document.createElement("button");
-			testingTable.innerHTML = "Testing Table Hint";
-
-			questionContentBox.appendChild(testingTable);
-
-			testingTable.addEventListener("click", async function () {
-				console.log("header:", ex.headers);
-
-				const rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
-
-				const correctedRows = rawStudentRows.map((row, index) => {
-					const correctMethod = ex.answer[index]?.[0] || "";
-					return [correctMethod, row?.[1] || "", row?.[2] || ""];
-				});
-
-				console.log("rows:", correctedRows);
-				console.log("answers:", ex.answer);
-
-				testing_table(ex.question, ex.headers, correctedRows, ex.answer);
-			});
-
 		}
 
 		else if (isProgrammingQuestion) {
@@ -469,6 +448,25 @@ function generate_exercises(filename) {
 				let hintContainer = await generate_hints(form, studentCode, expectedOutput, actualOutput, ex.question, []);
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode);
 
+			} else if (type === "explaination" && ex.table){
+
+				const existingTestcaseContainer = form.querySelector(".testcase-container");
+				if (existingTestcaseContainer) existingTestcaseContainer.remove();
+
+				const existingHintContainer = form.querySelector(".hint-container");
+				if (existingHintContainer) existingHintContainer.remove();
+
+				const rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+
+				const correctedRows = rawStudentRows.map((row, index) => {
+					const correctMethod = ex.answer[index]?.[0] || "";
+					return [correctMethod, row?.[1] || "", row?.[2] || ""];
+				});
+
+				let hintContainer = await get_feedback(form, ex.question, ex.headers, correctedRows, ex.answer, []);
+				
+				handle_output_submission(form, resultMessage, type, correctAnswer, ex, hintContainer);
+
 			} else {
 				handle_output_submission(form, resultMessage, type, correctAnswer, ex);
 			}
@@ -503,16 +501,26 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
     updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer, studentCode);
 }
 
-function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise) {
+function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, hintContainer) {
 	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
 	const userAnswer = traceInput ? traceInput.value.trim() : "";
 
 	if (exercise.table) {
 		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
 
-		updateResultMessage(messageElement, true, questionType, {
-			solutionTableHTML
-		});
+		updateResultMessage(
+			messageElement,
+			false,
+			questionType,
+			{
+				solutionTableHTML
+			},
+			"", // custom message
+			0,  // numPassed
+			0,  // total
+			null, // testcaseContainer
+			hintContainer //
+		);
 
 		return;
 	}
@@ -653,25 +661,50 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
                 </details>
             `;
     } else if (questionType === "textbox" || questionType === "explaination") {
-		if (correctAnswer && typeof correctAnswer === "object" && correctAnswer.solutionTableHTML) {
-			messageElement.innerHTML = `
-				<span style="color: #edb313;">Compare your answer with the suggested solution below</span>
-				<div style="margin-top: 10px;">
-					${correctAnswer.solutionTableHTML}
-				</div>
-			`;
-		} else {
-			messageElement.innerHTML = `
-				<span style="color: #edb313;">Compare your answer with the suggested solution below</span>
-				<details style="margin-top: 10px;">
-					<summary style="cursor: pointer;">Show Suggested Answer</summary>
-					<div style="margin-top: 5px;">
-						<pre>${escapeHtml(correctAnswer)}</pre>
-					</div>
-				</details>
-			`;
+		messageElement.innerHTML = "";
+
+		const summaryText = `
+			<span style="color: #edb313;">
+				Compare your answer with the suggested solution below
+			</span>
+		`;
+
+		const solutionDetails = document.createElement("details");
+		solutionDetails.style.marginTop = "10px";
+
+		const solutionSummary = document.createElement("summary");
+		solutionSummary.style.cursor = "pointer";
+		solutionSummary.textContent = correctAnswer.solutionTableHTML ? "Show Suggested Solution" : "Show Suggested Answer";
+
+		const solutionContent = document.createElement("div");
+		solutionContent.style.marginTop = "10px";
+		solutionContent.innerHTML = correctAnswer.solutionTableHTML
+			? correctAnswer.solutionTableHTML
+			: `<pre>${escapeHtml(correctAnswer)}</pre>`;
+
+		solutionDetails.appendChild(solutionSummary);
+		solutionDetails.appendChild(solutionContent);
+
+		messageElement.innerHTML = summaryText;
+		messageElement.appendChild(solutionDetails);
+
+		// feedback container
+		if (hintContainer) {
+			const hintDetails = document.createElement("details");
+			hintDetails.style.marginTop = "10px";
+
+			const hintSummary = document.createElement("summary");
+			hintSummary.textContent = "Get Feedback";
+			hintSummary.style.cursor = "pointer";
+
+			hintDetails.appendChild(hintSummary);
+			hintDetails.appendChild(hintContainer);
+
+			messageElement.appendChild(hintDetails);
 		}
+
 	}
+
 }
 
 

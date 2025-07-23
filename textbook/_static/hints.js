@@ -52,21 +52,21 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
     }
 
     const filename = window.quizFilename || "unknown";
-    const hintKey = `hintClickCount_${filename}_${form.id}`;
-    let hintClickCount = parseInt(localStorage.getItem(hintKey) || "0");
+    const hintKey = `countdown${filename}_${form.id}`;
+    let countdown = parseInt(localStorage.getItem(hintKey) || "0");
 
     anotherHint.onclick = async () => {
 
-        hintClickCount++;
-        localStorage.setItem(hintKey, hintClickCount);
+        countdown++;
+        localStorage.setItem(hintKey, countdown);
 
         // gtag('event', 'testing_hint_requests', {
         //     event_category: 'Quiz Interaction',
         //     event_label: `Hint Click - ${filename}_${form.id}`,
-        //     value: hintClickCount
+        //     value: countdown
         // });
 
-        console.log(`Hint count for ${filename}_${form.id}:`, hintClickCount);
+        console.log(`Hint count for ${filename}_${form.id}:`, countdown);
 
         if (anotherHint.textContent === "Get Hint") {
             anotherHint.textContent = "Get New Hint";
@@ -105,12 +105,12 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         loadingText.textContent = "Generating hint...";
         loadingText.style.fontWeight = "bold";
 
-        const hintLoadingContainer = document.createElement("div");
-        hintLoadingContainer.classList.add("hint-loading");
-        hintLoadingContainer.appendChild(loaderAnimation);
-        hintLoadingContainer.appendChild(loadingText);
+        const loadingContainer = document.createElement("div");
+        loadingContainer.classList.add("hint-loading");
+        loadingContainer.appendChild(loaderAnimation);
+        loadingContainer.appendChild(loadingText);
 
-        hintDiv.appendChild(hintLoadingContainer);
+        hintDiv.appendChild(loadingContainer);
         hintInfoContainer.appendChild(hintDiv);
 
         const prompt = `
@@ -160,39 +160,141 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
 }
 
+async function get_feedback(form, question, headers, rows, answer, previousFeedback = []) {
 
+    // check if feedback already exists
+    let feedbackContainer = form.querySelector(".hint-container");
+    let feedbackInfoContainer, anotherFeedback;
 
-async function testing_table(question, headers, rows, answer) {
+    if (!feedbackContainer){ // initial setup
 
+        feedbackContainer = document.createElement("div");
+        feedbackContainer.classList.add("hint-container");
 
-    const prompt = `
-    You are helping a student fill in a a table-based question.
+        // feedback info
+        feedbackInfoContainer = document.createElement("div");
+        feedbackInfoContainer.classList.add("hint-info-container");
+        feedbackContainer.appendChild(feedbackInfoContainer);
 
-    Below are:
-    - A question prompt
-    - The table's column headers
-    - The initial table rows (as given to the student, incomplete)
-    - The correct version of the table (the answer)
+        // another feedback button
+        anotherFeedback = document.createElement("button");
+        anotherFeedback.type = "button";
+        anotherFeedback.textContent = "Get Feedback";
+        anotherFeedback.classList.add("another-hint");
+        feedbackContainer.appendChild(anotherFeedback);
 
-    Your task:
-    1. Evaluate the differences between the student's table (rows) and the correct answer.
-    2. Interpret what logic or rule the student might be missing.
-    3. Generate a thoughtful explanation or guiding question to help the student understand the pattern or correction needed.
+    } else {
+        feedbackInfoContainer = feedbackContainer.querySelector(".hint-info-container");
+        anotherFeedback = feedbackContainer.querySelector(".another-hint");
+    }
 
-    Format your output as:
-    - Explanation: [your interpretation or clarification]
-    - Hint: [a follow-up question to guide the student]
+    const filename = window.quizFilename || "unknown";
+    const hintKey = `countdown${filename}_${form.id}`;
+    let countdown = parseInt(localStorage.getItem(hintKey) || "0");
 
-    Inputs:
-    - Question: ${question}
-    - Headers: ${JSON.stringify(headers)}
-    - Student Rows: ${JSON.stringify(rows)}
-    - Correct Answer: ${JSON.stringify(answer)}
-    `;
+    anotherFeedback.onclick = async () => {
 
-    const hintsText = await getChatCompletion(prompt);
+        countdown++;
+        localStorage.setItem(hintKey, countdown);
 
-    const match = hintsText.match(/Hint\s*:\s*(.+)/i);
+        console.log(`Hint count for ${filename}_${form.id}:`, countdown);
 
+        if (anotherFeedback.textContent === "Get Feedback") {
+            anotherFeedback.textContent = "Get More Feedback";
+        }
+
+        // disable button and start countdown
+        const cooldown = 5;
+        let remaining = cooldown;
+        anotherFeedback.disabled = true;
+        const originalText = "Get More Feedback";
+        anotherFeedback.textContent = `Wait ${remaining}s`;
+
+        const intervalId = setInterval(() => {
+            
+            remaining--;
+            anotherFeedback.textContent = `Wait ${remaining}s`;
+            
+            if (remaining <= 0) {
+                clearInterval(intervalId);
+                anotherFeedback.disabled = false;
+                anotherFeedback.textContent = originalText;
+            }
+
+        }, 1000);
+
+        feedbackInfoContainer.innerHTML = "";
+
+        const feedbackDiv = document.createElement("pre");
+        feedbackDiv.classList.add("hint");
+        feedbackDiv.style.whiteSpace = "pre-wrap";
+
+        const loaderAnimation = document.createElement("div");
+        loaderAnimation.classList.add("loader");
+
+        const loadingText = document.createElement("span");
+        loadingText.textContent = "Getting feedback...";
+        loadingText.style.fontWeight = "bold";
+
+        const loadingContainer = document.createElement("div");
+        loadingContainer.classList.add("hint-loading");
+        loadingContainer.appendChild(loaderAnimation);
+        loadingContainer.appendChild(loadingText);
+
+        feedbackDiv.appendChild(loadingContainer);
+        feedbackInfoContainer.appendChild(feedbackDiv);
+
+        const prompt = `
+        You are helping a student fill in a table-based question.
+
+        Below are:
+        - A question prompt
+        - The table's column headers
+        - The initial table rows (as given to the student, incomplete)
+        - The correct version of the table (the answer)
+        - A list of previously provided feedback messages
+
+        Your task is to:
+        1. Compare the student's table with the correct answer and identify any mistakes.
+        2. Interpret what logic or rule the student might be missing.
+        3. Think of a concise explanation that clarifies the error or misunderstanding.
+        4. Generate a new feedback message that:
+            - Highlights both what the student did correctly and what needs fixing
+            - Is not a repeat of any message in the previous feedback list
+            - Is under 50 words
+        5. Indicate whether the student's current answer is fully correct.
+
+        Format your output as:
+        - Explanation: [your interpretation or clarification]
+        - Feedback: [feedback message, max 50 words, not a repeat]
+        - isCorrect: [true or false]
+
+        Inputs:
+        - Question: ${question}
+        - Headers: ${JSON.stringify(headers)}
+        - Student Rows: ${JSON.stringify(rows)}
+        - Correct Answer: ${JSON.stringify(answer)}
+        - Previous feedback messages: ${previousFeedback.join(", ")}
+        `;
+
+        const feedbackText = await getChatCompletion(prompt);
+
+        feedbackDiv.innerHTML = "";
+
+        const feedbackMatch = feedbackText.match(/Feedback\s*:\s*(.+)/i);
+        const isCorrectMatch = feedbackText.match(/isCorrect\s*:\s*(true|false)/i);
+
+        const feedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available.";
+        const isCorrect = isCorrectMatch ? isCorrectMatch[1].toLowerCase() === "true" : false;
+
+        feedbackDiv.innerText = feedback;
+
+        if (isCorrect) anotherFeedback.style.display = "none";  // hides the button
+
+        previousFeedback.push(feedback);
+        feedbackInfoContainer.appendChild(feedbackDiv);
+    };
+
+    return feedbackContainer;
 
 }

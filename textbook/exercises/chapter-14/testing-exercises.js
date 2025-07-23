@@ -4,7 +4,8 @@ let parsedObject;
     {
       "title": "Question 3 in Winter 2019 Final Exam",
       "difficulty": "Easy",
-      "type": 1,
+      "type": "explaination",
+      "table": false,
       "multipart": false,
       "question": "The following array of integers is the result of the first round of partitioning, used \nin the Quicksort algorithm to sort the array in ascending order. Identify the possible \narray element or elements that could have been used as the pivot in the first partitioning \nround. Justify your answer; guessing an answer with no justifications will result in a \nmark of zero. \n",
       "question-code": "{15, 6, 45, 60, 32, 71, 102, 81}\n",

@@ -544,7 +544,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 			messageElement,
 			false,
 			questionType,
-			[], // table
+			correctAnswer, 
 			"", // custom message
 			0,  // numPassed
 			0,  // total
@@ -692,19 +692,20 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
 
 		const solutionSummary = document.createElement("summary");
 		solutionSummary.style.cursor = "pointer";
-		solutionSummary.textContent = correctAnswer.solutionTableHTML ? "Show Suggested Solution" : "Show Suggested Answer";
+		solutionSummary.textContent = "Show Suggested Solution";
 
 		const solutionContent = document.createElement("div");
 		solutionContent.style.marginTop = "10px";
-		solutionContent.innerHTML = correctAnswer.solutionTableHTML
-			? correctAnswer.solutionTableHTML
-			: `<pre>${escapeHtml(correctAnswer)}</pre>`;
+
+		if (correctAnswer.solutionTableHTML) solutionContent.innerHTML = correctAnswer.solutionTableHTML
+		else solutionContent.innerHTML = `<pre>${escapeHtml(correctAnswer)}</pre>`;
 
 		solutionDetails.appendChild(solutionSummary);
 		solutionDetails.appendChild(solutionContent);
 
 		messageElement.innerHTML = summaryText;
 		messageElement.appendChild(solutionDetails);
+
 
 		// feedback container
 		if (hintContainer) {

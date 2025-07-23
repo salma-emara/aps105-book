@@ -396,7 +396,7 @@ function generate_exercises(filename) {
 				return; 
 			}
 
-			let correctAnswerRaw = ex.answer || ex["answer-code"] || "";
+			let correctAnswerRaw = ex.answer || "";
 
 			const correctAnswer = (typeof correctAnswerRaw === "string") ? correctAnswerRaw.trim() : correctAnswerRaw;
 
@@ -528,6 +528,8 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
 	const userAnswer = traceInput ? traceInput.value.trim() : "";
+
+	console.log(userAnswer);
 
 	if (!userAnswer) {
 		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");

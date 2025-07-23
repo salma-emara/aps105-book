@@ -3,8 +3,7 @@ title = "Question 3 in Winter 2019 Final Exam"
 difficulty = "Easy"
 type = "explaination"
 table = false
-multipart= false
-
+multipart = false
 
 question = """
 The following array of integers is the result of the first round of partitioning, used 

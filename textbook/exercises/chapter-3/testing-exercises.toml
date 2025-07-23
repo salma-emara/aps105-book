@@ -2,6 +2,7 @@
 title = "Question 2 in Winter 2018 Midterm Exam"
 difficulty = "Easy"
 type = "explaination"
+table = false
 multipart= false
 
 question = """
@@ -19,6 +20,7 @@ bool isHighlighted = characterCount % 2 == 0 && characterCount > 0; """
 [[exercises]]
 title = "Question 2 in Winter 2019 Midterm Exam"
 difficulty = "Easy"
+table = false
 type = "explaination"
 multipart= false
 
@@ -59,7 +61,7 @@ explanations = ["True, since \\0 has ASCII code of zero"]
 title = "Question 7 in Winter 2018 Final Exam"
 difficulty = "Easy"
 type = "multiple-choice"
-table = true
+table = false
 multipart = true
 
 question = """ 
@@ -82,7 +84,7 @@ explanations = ["True, since x stores 2"]
 title = "Question 7 in Winter 2018 Final Exam"
 difficulty = "Easy"
 type = "multiple-choice"
-table = true
+table = false
 multipart = true
 
 question = """ 
@@ -104,7 +106,7 @@ explanations = ["False, since 'c' - 2 == 'a'"]
 title = "Question 7 in Winter 2018 Final Exam"
 difficulty = "Easy"
 type = "multiple-choice"
-table = true
+table = false
 multipart = true
 
 question = """ 

@@ -74,7 +74,8 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',
             event_label: `Hint Click - ${filename}_${form.id}`,
-            value: countdown,
+            // value: countdown,
+            event_count: 1,
             quiz_user_id: quizUserID 
         });
 

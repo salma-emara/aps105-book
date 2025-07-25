@@ -93,9 +93,7 @@ parse:
 
         const userID = getOrCreateUserID();
 
-        gtag('config', 'G-37FN5PSTPH', {
-          user_id: userID
-        });
+        gtag('config', 'G-37FN5PSTPH');
         
       </script>
       

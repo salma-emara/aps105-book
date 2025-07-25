@@ -82,7 +82,21 @@ parse:
         function gtag(){ dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'G-37FN5PSTPH');
+        function getOrCreateUserID() {
+          let uid = localStorage.getItem("user_id");
+          if (!uid) {
+            uid = "anon-" + Math.random().toString(36).substr(2, 10);
+            localStorage.setItem("user_id", uid);
+          }
+          return uid;
+        }
+
+        const userID = getOrCreateUserID();
+
+        gtag('config', 'G-37FN5PSTPH', {
+          user_id: userID
+        });
+        
       </script>
       
       <div id="container-header" class="container-box">

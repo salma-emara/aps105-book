@@ -59,12 +59,15 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         countdown++;
         localStorage.setItem(hintKey, countdown);
+        
+        const quizUserID = getOrCreateQuizUserID();
 
-        // gtag('event', 'testing_hint_requests', {
-        //     event_category: 'Quiz Interaction',
-        //     event_label: `Hint Click - ${filename}_${form.id}`,
-        //     value: countdown
-        // });
+        gtag('event', 'testing_hint_requests', {
+            event_category: 'Quiz Interaction',
+            event_label: `Hint Click - ${filename}_${form.id}`,
+            value: countdown,
+            quiz_user_id: quizUserID 
+        });
 
         console.log(`Hint count for ${filename}_${form.id}:`, countdown);
 

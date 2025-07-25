@@ -23,6 +23,15 @@ async function getChatCompletion(prompt) {
 
 }
 
+function getOrCreateQuizUserID() {
+  let uid = localStorage.getItem("quiz_user_id");
+  if (!uid) {
+    uid = "anon-" + Math.random().toString(36).substr(2, 10);
+    localStorage.setItem("quiz_user_id", uid);
+  }
+  return uid;
+}
+
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
     // check if hints already exists

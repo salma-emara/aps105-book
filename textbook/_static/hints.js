@@ -36,6 +36,8 @@ function getOrCreateQuizUserID() {
   return uid;
 }
 
+const quizUserID = getOrCreateQuizUserID();
+
 window.addEventListener('load', () => {
   if (typeof quizUserID !== 'undefined') {
     gtag('set', {
@@ -84,8 +86,6 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         countdown++;
         localStorage.setItem(hintKey, countdown);
-
-        const quizUserID = getOrCreateQuizUserID();
 
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',

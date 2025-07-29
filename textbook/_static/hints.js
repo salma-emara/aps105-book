@@ -36,11 +36,11 @@ function getOrCreateQuizUserID() {
   return uid;
 }
 
-// gtag('set', {
-//     user_properties: {
-//     quiz_user_id: quizUserID
-//     }
-// });
+gtag('set', {
+    user_properties: {
+    user_id_property: quizUserID
+    }
+});
 
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 

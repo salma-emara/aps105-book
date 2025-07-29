@@ -36,20 +36,6 @@ function getOrCreateQuizUserID() {
   return uid;
 }
 
-const quizUserID = getOrCreateQuizUserID();
-
-window.addEventListener('load', () => {
-  if (typeof quizUserID !== 'undefined') {
-    gtag('set', {
-      user_properties: {
-        user_id_property: quizUserID
-      }
-    });
-  } else {
-    console.warn('quizUserID not set when trying to apply user_properties.');
-  }
-});
-
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
     // check if hints already exists
@@ -86,6 +72,20 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         countdown++;
         localStorage.setItem(hintKey, countdown);
+
+        const quizUserID = getOrCreateQuizUserID();
+
+        window.addEventListener('load', () => {
+        if (typeof quizUserID !== 'undefined') {
+            gtag('set', {
+            user_properties: {
+                user_id_property: quizUserID
+            }
+            });
+        } else {
+            console.warn('quizUserID not set when trying to apply user_properties.');
+        }
+        });
 
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',

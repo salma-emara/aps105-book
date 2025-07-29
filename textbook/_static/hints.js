@@ -36,10 +36,16 @@ function getOrCreateQuizUserID() {
   return uid;
 }
 
-gtag('set', {
-    user_properties: {
-    user_id_property: quizUserID
-    }
+window.addEventListener('load', () => {
+  if (typeof quizUserID !== 'undefined') {
+    gtag('set', {
+      user_properties: {
+        user_id_property: quizUserID
+      }
+    });
+  } else {
+    console.warn('quizUserID not set when trying to apply user_properties.');
+  }
 });
 
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {

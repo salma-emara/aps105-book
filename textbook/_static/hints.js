@@ -23,6 +23,10 @@ async function getChatCompletion(prompt) {
 
 }
 
+gtag('config', 'G-37FN5PSTPH', {
+    debug_mode: true
+});
+
 function getOrCreateQuizUserID() {
   let uid = localStorage.getItem("quiz_user_id");
   if (!uid) {
@@ -77,14 +81,11 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         countdown++;
         localStorage.setItem(hintKey, countdown);
 
-        gtag('config', 'G-37FN5PSTPH', {
-        debug_mode: true
-        });
-
         
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',
             event_label: `Hint Click - ${filename}_${form.id}`,
+            debug_mode: true
         });
 
         console.log(`Hint count for ${filename}_${form.id}:`, countdown);

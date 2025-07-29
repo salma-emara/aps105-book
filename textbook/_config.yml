@@ -92,11 +92,7 @@ parse:
         }
 
         const userID = getOrCreateUserID();
-
-        gtag('config', 'G-37FN5PSTPH'){
-          debug_mode: true
-        });
-        
+   
       </script>
       
       <div id="container-header" class="container-box">

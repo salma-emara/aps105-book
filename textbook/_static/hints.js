@@ -76,6 +76,11 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         countdown++;
         localStorage.setItem(hintKey, countdown);
+
+        gtag('config', 'G-37FN5PSTPH', {
+        debug_mode: true
+        });
+
         
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',

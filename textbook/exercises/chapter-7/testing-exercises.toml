@@ -203,18 +203,8 @@ int main(void) {
 '''
 
 [[exercises.testcases]]
-input = ["3\n5\n5\n7\n0\n"]
-output = ["""
-Enter a value (0 to stop): 
-Enter a value (0 to stop): 
-Enter a value (0 to stop): 
-Enter a value (0 to stop): 
-Enter a value (0 to stop): 
-There are a total of 4 numbers.
-The values you entered are: 3 5 5 7
-The values are in ascending order.
-"""]
-
+input = "Q4.T1.in"
+output = "Q4.T1.out"
 
 [[exercises]]
 title = "Question 9 in Winter 2018 Midterm Exam"
@@ -280,32 +270,20 @@ int main(void) {
 '''
 
 [[exercises.testcases]]
-input = ["9"]
-output = ["""
-Result = 0.000000
-"""]
+input = "Q5.T1.in"
+output = "Q5.T1.out"
 
 [[exercises.testcases]]
-input = ["3"]
-output = ["""
-Result = -1.000000
-"""]
+input = "Q5.T2.in"
+output = "Q5.T2.out"
 
 [[exercises.testcases]]
-input = ["0"]
-output = ["""
-Result = 0.000000
-"""]
+input = "Q5.T3.in"
+output = "Q5.T3.out"
 
 [[exercises.testcases]]
-input = ["5"]
-output = ["""
-Result = -1.000000
-"""]
-
-
-
-
+input = "Q5.T4.in"
+output = "Q5.T4.out"
 
 
 [[exercises]]

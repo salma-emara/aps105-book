@@ -38,11 +38,11 @@ function getOrCreateQuizUserID() {
 
 const quizUserID = getOrCreateQuizUserID();
 
-gtag('set', {
-    user_properties: {
-    quiz_user_id: quizUserID
-    }
-});
+// gtag('set', {
+//     user_properties: {
+//     quiz_user_id: quizUserID
+//     }
+// });
 
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
@@ -85,6 +85,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',
             event_label: `Hint Click - ${filename}_${form.id}`,
+            quiz_user_id: quizUserID,
             debug_mode: true
         });
 

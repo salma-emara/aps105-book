@@ -42,6 +42,8 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
     let hintContainer = form.querySelector(".hint-container");
     let hintInfoContainer, anotherHint;
 
+    let quizUserID;
+
     if (!hintContainer){ // initial setup
 
         hintContainer = document.createElement("div");
@@ -58,6 +60,14 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         anotherHint.textContent = "Get Hint";
         anotherHint.classList.add("another-hint");
         hintContainer.appendChild(anotherHint);
+        
+        quizUserID = getOrCreateQuizUserID();
+
+        gtag('set', {
+            user_properties: {
+                user_id_property: quizUserID
+            }
+        });
 
     } else {
         hintInfoContainer = hintContainer.querySelector(".hint-info-container");
@@ -72,20 +82,6 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         countdown++;
         localStorage.setItem(hintKey, countdown);
-
-        const quizUserID = getOrCreateQuizUserID();
-
-        window.addEventListener('load', () => {
-        if (typeof quizUserID !== 'undefined') {
-            gtag('set', {
-            user_properties: {
-                user_id_property: quizUserID
-            }
-            });
-        } else {
-            console.warn('quizUserID not set when trying to apply user_properties.');
-        }
-        });
 
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',

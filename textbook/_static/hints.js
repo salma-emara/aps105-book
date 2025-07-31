@@ -63,6 +63,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         
         quizUserID = getOrCreateQuizUserID();
 
+        // set user id properties
         gtag('set', {
             user_properties: {
                 user_id_property: quizUserID

@@ -378,6 +378,8 @@ and there exists at least one element in the array (i.e., `count > 0`).
 
 starter-code = '''
 
+#include <stdio.h>
+
 int secondLargest(int list[], int count) {
 
 }
@@ -484,6 +486,8 @@ int main(void) {
 """
 
 starter-code = '''
+
+#include <stdio.h>
 
 void calculatePascalRowSeven(int pArray[]) {
 

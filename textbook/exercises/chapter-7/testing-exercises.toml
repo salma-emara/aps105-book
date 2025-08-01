@@ -34,6 +34,7 @@ In the box provided below, write the output generated after the following progra
 """
 question-code = '''
 #include <stdio.h>
+
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};
   int *third = &second, *fourth = &first, *fifth = data + first + 1;
@@ -65,6 +66,7 @@ What is the output of the following program?
 """
 question-code = '''
 #include <stdio.h>
+
 int main(void) {
   int *p, x;
   int fiveInt[5] = {1, 2, 3, 4, 5};
@@ -158,8 +160,8 @@ The values are in ascending order.
 """
 
 starter-code = '''
-#include <stdbool.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(void) {
 
@@ -167,8 +169,9 @@ int main(void) {
 '''
 
 answer = '''
-#include <stdbool.h>
 #include <stdio.h>
+#include <stdbool.h>
+
 int main(void) {
   int count = 0, maxInput = 10;
   int arr[maxInput];
@@ -259,6 +262,7 @@ double dotProduct (double *music, double *filter, int length) {
 
 answer = '''
 #include <stdio.h>
+
 // The function prototype can also be declared as:
 // double dotProduct(double music[], double filter[], int length) 
 double dotProduct(double *music, double *filter, int length) {
@@ -333,6 +337,7 @@ int main(void) {
 answer = '''
 #include <stdio.h>
 #include <stdlib.h>
+
 int main(void) {
   int random[1000];
   for (int i = 0; i < 1000; i++) {
@@ -495,6 +500,8 @@ void calculatePascalRowSeven(int pArray[]) {
 '''
 
 answer = '''
+#include <stdio.h>
+
 void calculatePascalRowSeven(int pArray[]) {
   for (int row = 1; row < 8; row++) {
     int oneToLeft = 0;
@@ -555,6 +562,7 @@ Feel free to declare and implement additional functions when needed.
 """
 
 starter-code = '''
+#include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
 
@@ -567,6 +575,7 @@ answer = '''
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+
 bool mirror(int i, int j) {
   int firstDigit = i / 10;
   int secondDigit = i % 10;
@@ -627,8 +636,8 @@ Write a complete C program that uses the *Sieve of Eratosthenes* algorithm to pr
 """
 
 starter-code = '''
-#include <math.h>
 #include <stdio.h>
+#include <math.h>
 
 int main(void) {
 
@@ -636,8 +645,9 @@ int main(void) {
 '''
 
 answer = '''
-#include <math.h>
 #include <stdio.h>
+#include <math.h>
+
 int main(void) {
   int sieve[100] = {0}, i, p = 2;
   while (p < sqrt(100)) {
@@ -657,3 +667,7 @@ int main(void) {
   printf("\n");
 }
 '''
+
+[[exercises.testcases]]
+input = "Q10.T1.in"
+output = "Q10.T1.out"

@@ -46,7 +46,7 @@ let parsedObject;
             "1\n2\n3\n4\n7\n7\n8\n9\n10\n11"
           ],
           "output": [
-            "Enter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nThere are a total of 10 numbers.\nThe values you entered are: 1 2 3 4 7 7 8 9 10 11\nThe values are in ascending order."
+            "Enter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nThere are a total of 10 numbers.\nThe values you entered are: 1 2 3 4 7 7 8 9 10 11\nThe values are in ascending order."
           ]
         },
         {

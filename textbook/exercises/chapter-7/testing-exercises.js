@@ -137,7 +137,7 @@ let parsedObject;
       "multipart": false,
       "type": "function programming",
       "question": "Complete the definition of a C function `secondLargest` whose prototype is shown below. The function returns the index of the \nsecond largest integer in the list array, which contains `count` elements.\n\nFor example, if the list passed to the array is `{3, 9, 7, 5, 9, 8, 2, 4, 9}`, the function returns `5`, as `list[5]` \ncontains the second largest integer `8`. If there are multiple occurrences of the second largest integer, the function \nreturns the first occurrence. For example, if the list is `{3, 8, 3, 5, 9, 8, 2, 3, 8}`, the function returns `1`. \nIf there does not exist a second largest integer (i.e., all integers in the array are of the same value), \nthe function returns `-1`. For the sake of simplicity, you may assume that all integers in the array are positive, \nand there exists at least one element in the array (i.e., `count > 0`).\n\n",
-      "starter-code": "\nint secondLargest(int list[], int count) {\n\n}\n",
+      "starter-code": "\n#include <stdio.h>\n\nint secondLargest(int list[], int count) {\n\n}\n",
       "answer": "int secondLargest(int list[], int count) {\n  int largest = list[0], secondLargest = -1;\n  int largestIndex = 0, secondLargestIndex = -1;\n  for (int i = 1; i < count; i++) {\n    if (list[i] > largest) {\n      secondLargest = largest;\n      secondLargestIndex = largestIndex;\n      largest = list[i];\n      largestIndex = i;\n    } else if (list[i] < largest && list[i] > secondLargest) {\n      secondLargest = list[i];\n      secondLargestIndex = i;\n    }\n  }\n  return secondLargestIndex;\n}\n",
       "main-function": "int main(void) {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[n];\n    for (int i = 0; i < n; i++) {\n        scanf(\"%d\", &arr[i]);\n    }\n    int result = secondLargest(arr, n);\n    printf(\"%d\\n\", result);\n    return 0;\n}\n",
       "testcases": [
@@ -182,8 +182,19 @@ let parsedObject;
       "multipart": false,
       "type": "function programming",
       "question": "In a Pascal’s Triangle, the first row, row #0, has a single element 1. Each succeeding row elements are the sum of the two elements just above (if there is only one number just above, then that number is duplicated). So the first 5 rows (numbering from zero) are:\n\n<pre>\n    1\n   1 1\n  1 2 1\n 1 3 3 1\n1 4 6 4 1\n</pre>\n\nLooking at the last row, row #4, we have sums: $0 + 1$, $1 + 3$, $3 + 3$, $3 + 1$, $1 + 0$ (getting the values from the row above) to give us $1$, $4$, $6$, $4$, $1$. If we push this all left we get:\n\n<pre>\n1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n</pre>\n\nWrite a function `calculatePascalRowSeven`, with the prototype given below, that calculates row#7 (the eighth row) of Pascal’s triangle, iterating from row #0. Do an in-place calculation, so that the result ends up in `pascalRow[]`. Do not use any other array. The given `main()` function prints the result.\n\n```{code-block} c\nvoid calculatePascalRowSeven(int pArray[]);  // function prototype\n\nint main(void) {\n  // row #n has n + 1 elements\n  int pascalRow[7 + 1] = {1, 0, 0, 0, 0, 0, 0, 0};\n\n  calculatePascalRowSeven(pascalRow);\n\n  printf(\"Row 7 is:\n\");\n  for (int i = 0; i <= 7; i++) {\n    printf(\"%d \", pascalRow[i]);\n  }\n  printf(\"\n\");\n}\n```\n",
-      "starter-code": "\nvoid calculatePascalRowSeven(int pArray[]) {\n\n}\n",
-      "answer": "void calculatePascalRowSeven(int pArray[]) {\n  for (int row = 1; row < 8; row++) {\n    int oneToLeft = 0;\n    for (int element = 0; element < 8; element++) {\n      int saveElement = pArray[element];\n      pArray[element] = oneToLeft + pArray[element];\n      oneToLeft = saveElement;\n    }\n  }\n}\n"
+      "starter-code": "\n#include <stdio.h>\n\nvoid calculatePascalRowSeven(int pArray[]) {\n\n}\n",
+      "answer": "void calculatePascalRowSeven(int pArray[]) {\n  for (int row = 1; row < 8; row++) {\n    int oneToLeft = 0;\n    for (int element = 0; element < 8; element++) {\n      int saveElement = pArray[element];\n      pArray[element] = oneToLeft + pArray[element];\n      oneToLeft = saveElement;\n    }\n  }\n}\n",
+      "main-function": "\nint main(void) {\n  int pascalRow[7 + 1] = {1, 0, 0, 0, 0, 0, 0, 0};\n\n  calculatePascalRowSeven(pascalRow);\n\n  for (int i = 0; i <= 7; i++) {\n    printf(\"%d \", pascalRow[i]);\n  }\n  printf(\"\\n\");\n\n  return 0;\n}\n",
+      "testcases": [
+        {
+          "input": [
+            "\n"
+          ],
+          "output": [
+            "1 7 21 35 35 21 7 1\n"
+          ]
+        }
+      ]
     },
     {
       "title": "Question 13 in Winter 2018 Midterm Exam",
@@ -192,8 +203,19 @@ let parsedObject;
       "multipart": false,
       "type": "function programming",
       "question": "The constant `E` is defined as a double constant of $2.718281828459045$.\n\n```{code-block} c\nconst double E = 2.718281828459045;\n```\n\nA first positive integer is called a **mirror** of a second one if they both contain two digits, and when the two digits in the first integer are flipped, the first integer becomes the second one. For example, 81 is a mirror of 18 (and vice versa).\n\nImplement a function called `firstMirrorInE` that returns the first two-digit number found in consecutive digits of `E` whose mirror have appeared earlier in the sequence of digits. You should only consider the first 16 digits of `E — 2.718281828459045`. The function returns $0$ if such a mirror pair\ndoes not exist in the first 16 consecutive digits of E.\n\n**Hint:** The `firstMirrorInE` function should return $28$, since its mirror, $82$, has appeared earlier in the sequence of digits. Your function must not simply return $28$ without doing any work. It is also incorrect to return $81$, because even though its mirror, $18$, appeared previously, $81$ is not the first\nin the sequence that can be found.\n\nFeel free to declare and implement additional functions when needed.\n",
-      "starter-code": "#include <stdbool.h>\n#include <math.h>\n\nbool mirror(int i, int j) {\n\n}\n",
-      "answer": "#include <stdbool.h>\n#include <math.h>\nbool mirror(int i, int j) {\n  int firstDigit = i / 10;\n  int secondDigit = i % 10;\n  return j == secondDigit * 10 + firstDigit;\n}\nint firstMirrorInE(void) {\n  const double E = 2.718281828459045;\n  const int NumberOfDigits = 15;\n  int count = 0;\n  int twoDigitNumbers[17] = {0};\n  for (int i = 0; i >= -NumberOfDigits; i--) {\n    int p1 = (int)(E / pow(10, i)) % 10;\n    int p2 = (int)(E / pow(10, i - 1)) % 10;\n    int p = p1 * 10 + p2;\n    for (int j = 0; j < count; j++) {\n      if (mirror(twoDigitNumbers[j], p)) return p;\n    }\n    twoDigitNumbers[count] = p;\n    count++;\n  }\n  return 0;\n}\n"
+      "starter-code": "#include <stdbool.h>\n#include <math.h>\n\nint firstMirrorInE(void) {\n\n}\n",
+      "answer": "#include <stdbool.h>\n#include <math.h>\nbool mirror(int i, int j) {\n  int firstDigit = i / 10;\n  int secondDigit = i % 10;\n  return j == secondDigit * 10 + firstDigit;\n}\nint firstMirrorInE(void) {\n  const double E = 2.718281828459045;\n  const int NumberOfDigits = 15;\n  int count = 0;\n  int twoDigitNumbers[17] = {0};\n  for (int i = 0; i >= -NumberOfDigits; i--) {\n    int p1 = (int)(E / pow(10, i)) % 10;\n    int p2 = (int)(E / pow(10, i - 1)) % 10;\n    int p = p1 * 10 + p2;\n    for (int j = 0; j < count; j++) {\n      if (mirror(twoDigitNumbers[j], p)) return p;\n    }\n    twoDigitNumbers[count] = p;\n    count++;\n  }\n  return 0;\n}\n",
+      "main-function": "int main(void) {\n  int result = firstMirrorInE();\n  printf(\"%d\\n\", result);\n  return 0;\n}\n",
+      "testcases": [
+        {
+          "input": [
+            "\n"
+          ],
+          "output": [
+            "28\n"
+          ]
+        }
+      ]
     },
     {
       "title": "Question 11 in Winter 2020 Midterm Exam",

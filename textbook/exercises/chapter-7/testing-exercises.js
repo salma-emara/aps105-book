@@ -43,10 +43,34 @@ let parsedObject;
       "testcases": [
         {
           "input": [
+            "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n0"
+          ],
+          "output": [
+            "Enter a value (0 to stop): 1\nEnter a value (0 to stop): 2\nEnter a value (0 to stop): 3\nEnter a value (0 to stop): 4\nEnter a value (0 to stop): 7\nEnter a value (0 to stop): 7\nEnter a value (0 to stop): 8\nEnter a value (0 to stop): 9\nEnter a value (0 to stop): 10\nEnter a value (0 to stop): 11\nEnter a value (0 to stop): 0\nThere are a total of 10 numbers.\nThe values you entered are: 1 2 3 4 7 7 8 9 10 11\nThe values are in ascending order."
+          ]
+        },
+        {
+          "input": [
             "3 \n5 \n5\n7\n0\n"
           ],
           "output": [
             "Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): \nThere are a total of 4 numbers.T\nhe values you entered are: \n3 5 5 7 \nThe values are in ascending order.\n"
+          ]
+        },
+        {
+          "input": [
+            "2\n1\n3\n0\n"
+          ],
+          "output": [
+            "Enter a value (0 to stop): 2\nEnter a value (0 to stop): 1\nEnter a value (0 to stop): 3\nEnter a value (0 to stop): 0\nThere are a total of 3 numbers.\nThe values you entered are: 2 1 3\nThe values are not in ascending order.\n"
+          ]
+        },
+        {
+          "input": [
+            "1\n0\n"
+          ],
+          "output": [
+            "Enter a value (0 to stop): 1\nEnter a value (0 to stop): 0\nThere are a total of 1 numbers.\nThe values you entered are: 1\nThe values are in ascending order.\n"
           ]
         }
       ]
@@ -114,7 +138,42 @@ let parsedObject;
       "type": "function programming",
       "question": "Complete the definition of a C function `secondLargest` whose prototype is shown below. The function returns the index of the \nsecond largest integer in the list array, which contains `count` elements.\n\nFor example, if the list passed to the array is `{3, 9, 7, 5, 9, 8, 2, 4, 9}`, the function returns `5`, as `list[5]` \ncontains the second largest integer `8`. If there are multiple occurrences of the second largest integer, the function \nreturns the first occurrence. For example, if the list is `{3, 8, 3, 5, 9, 8, 2, 3, 8}`, the function returns `1`. \nIf there does not exist a second largest integer (i.e., all integers in the array are of the same value), \nthe function returns `-1`. For the sake of simplicity, you may assume that all integers in the array are positive, \nand there exists at least one element in the array (i.e., `count > 0`).\n\n",
       "starter-code": "\nint secondLargest(int list[], int count) {\n\n}\n",
-      "answer": "int secondLargest(int list[], int count) {\n  int largest = list[0], secondLargest = -1;\n  int largestIndex = 0, secondLargestIndex = -1;\n  for (int i = 1; i < count; i++) {\n    if (list[i] > largest) {\n      secondLargest = largest;\n      secondLargestIndex = largestIndex;\n      largest = list[i];\n      largestIndex = i;\n    } else if (list[i] < largest && list[i] > secondLargest) {\n      secondLargest = list[i];\n      secondLargestIndex = i;\n    }\n  }\n  return secondLargestIndex;\n}\n"
+      "answer": "int secondLargest(int list[], int count) {\n  int largest = list[0], secondLargest = -1;\n  int largestIndex = 0, secondLargestIndex = -1;\n  for (int i = 1; i < count; i++) {\n    if (list[i] > largest) {\n      secondLargest = largest;\n      secondLargestIndex = largestIndex;\n      largest = list[i];\n      largestIndex = i;\n    } else if (list[i] < largest && list[i] > secondLargest) {\n      secondLargest = list[i];\n      secondLargestIndex = i;\n    }\n  }\n  return secondLargestIndex;\n}\n",
+      "main-function": "int main(void) {\n    int n;\n    scanf(\"%d\", &n);\n    int arr[n];\n    for (int i = 0; i < n; i++) {\n        scanf(\"%d\", &arr[i]);\n    }\n    int result = secondLargest(arr, n);\n    printf(\"%d\\n\", result);\n    return 0;\n}\n",
+      "testcases": [
+        {
+          "input": [
+            "9\n3 9 7 5 9 8 2 4 9\n"
+          ],
+          "output": [
+            "5\n"
+          ]
+        },
+        {
+          "input": [
+            "9\n3 8 3 5 9 8 2 3 8\n"
+          ],
+          "output": [
+            "1"
+          ]
+        },
+        {
+          "input": [
+            "4\n4 4 4 4\n"
+          ],
+          "output": [
+            "-1"
+          ]
+        },
+        {
+          "input": [
+            "5\n9 8 7 6 5\n"
+          ],
+          "output": [
+            "1"
+          ]
+        }
+      ]
     },
     {
       "title": "Question 12 in Winter 2020 Midterm Exam",

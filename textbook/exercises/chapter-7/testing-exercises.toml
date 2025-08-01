@@ -206,6 +206,18 @@ int main(void) {
 input = "Q4.T1.in"
 output = "Q4.T1.out"
 
+[[exercises.testcases]]
+input = "Q4.T2.in"
+output = "Q4.T2.out"
+
+[[exercises.testcases]]
+input = "Q4.T3.in"
+output = "Q4.T3.out"
+
+[[exercises.testcases]]
+input = "Q4.T4.in"
+output = "Q4.T4.out"
+
 [[exercises]]
 title = "Question 9 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
@@ -390,11 +402,36 @@ int secondLargest(int list[], int count) {
 }
 '''
 
+main-function = '''
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    int result = secondLargest(arr, n);
+    printf("%d\n", result);
+    return 0;
+}
+'''
 
 
+[[exercises.testcases]]
+input = "Q7.T1.in"
+output = "Q7.T1.out"
 
+[[exercises.testcases]]
+input = "Q7.T2.in"
+output = "Q7.T2.out"
 
+[[exercises.testcases]]
+input = "Q7.T3.in"
+output = "Q7.T3.out"
 
+[[exercises.testcases]]
+input = "Q7.T4.in"
+output = "Q7.T4.out"
 
 
 

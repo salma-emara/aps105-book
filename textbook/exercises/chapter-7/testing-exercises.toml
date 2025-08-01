@@ -391,6 +391,8 @@ int secondLargest(int list[], int count) {
 '''
 
 answer = '''
+#include <stdio.h>
+
 int secondLargest(int list[], int count) {
   int largest = list[0], secondLargest = -1;
   int largestIndex = 0, secondLargestIndex = -1;

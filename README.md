@@ -227,7 +227,7 @@ node textbook/exercises/toml-parser.js
 ```
 node textbook/exercises/toml-parser.js
 ```
-3- If no errors occur, an "All done." message will be shown in the directory.
+3- If no errors occur, an "All done." message will be shown in the terminal.
 
 Build the book locally and ensure the quiz is behaving as expected.
 

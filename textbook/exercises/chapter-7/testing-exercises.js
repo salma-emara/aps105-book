@@ -46,7 +46,7 @@ let parsedObject;
             "1\n2\n3\n4\n7\n7\n8\n9\n10\n11"
           ],
           "output": [
-            "Enter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nThere are a total of 10 numbers.\nThe values you entered are: 1 2 3 4 7 7 8 9 10 11\nThe values are in ascending order."
+            "Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): \n There are a total of 10 numbers. \nThe values you entered are: \n 1 2 3 4 7 7 8 9 10 11\nThe values are in ascending order."
           ]
         },
         {
@@ -54,7 +54,7 @@ let parsedObject;
             "3 \n5 \n5\n7\n0\n"
           ],
           "output": [
-            "Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): \nThere are a total of 4 numbers. The values you entered are: \n3 5 5 7 \nThe values are in ascending order.\n"
+            "Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): \n There are a total of 4 numbers. \nThe values you entered are: \n 3 5 5 7 \nThe values are in ascending order.\n"
           ]
         },
         {
@@ -62,7 +62,7 @@ let parsedObject;
             "2\n1\n3\n0\n"
           ],
           "output": [
-            "Enter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nEnter a value (0 to stop): \nThere are a total of 3 numbers.\nThe values you entered are: 2 1 3\nThe values are not in ascending order.\n"
+            "Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): \n There are a total of 3 numbers. \nThe values you entered are: \n 2 1 3\nThe values are not in ascending order.\n"
           ]
         },
         {
@@ -70,7 +70,7 @@ let parsedObject;
             "1\n0\n"
           ],
           "output": [
-            "Enter a value (0 to stop): \nEnter a value (0 to stop): \nThere are a total of 1 numbers.\nThe values you entered are: 1\nThe values are in ascending order.\n"
+            "Enter a value (0 to stop): Enter a value (0 to stop): \n There are a total of 1 numbers. \nThe values you entered are: \n 1\nThe values are in ascending order.\n"
           ]
         }
       ]

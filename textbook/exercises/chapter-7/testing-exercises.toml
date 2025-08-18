@@ -7,10 +7,6 @@ table = false
 
 question = '''
 The following code segment will cause a runtime error. Identify the potential runtime error and briefly explain how you would fix it.
-<pre>
-char cArray[] = {'H', 'E', 'L', 'L', 'O'};
-printf("The last character is %c.\n", cArray[5]);
-</pre>
 '''
 
 question-code = '''

@@ -128,7 +128,17 @@ let parsedObject;
       "type": "programming",
       "question": "Recall that the function `rand()` returns a random integer each time it is called. \n\nWrite a complete C program to help assess the quality of `rand()`, by following the three steps provided below.\n\nFirst, declare an array with the identifier `random` that contains $1,000$ int-type integers, and then fill this array with random numbers between $0$ and $255$ (inclusive).\n\nSecond, declare another array with the identifier `h` that contains $256$ integers, and use that array to create a histogram so that at the end of the program, for each `i` between $0$ and $255$ (inclusive), `h[i]` will have a value `x` if exactly `x` elements of array `random` have the value `i`.\n\nFinally, print out the values of all elements of `h`.\n\nFor the sake of convenience, you do not need to seed the random number generator.\n\n(The quality of `rand()` can then be assessed by someone who uses your program as follows: if the printed-out numbers are all within a small range, then the quality of rand() is pretty good; on the other hand, if the printed-out numbers span a large range, then the quality of rand() is rather poor.)\n",
       "starter-code": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n\n}\n",
-      "answer": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n  int random[1000];\n  for (int i = 0; i < 1000; i++) {\n    random[i] = rand() % 256;\n  }\n  int h[256] = {0};\n  for (int i = 0; i < 1000; i++) {\n    h[random[i]]++;\n  }\n  for (int i = 0; i < 256; i++) {\n    printf(\"%d\", h[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n"
+      "answer": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(void) {\n  int random[1000];\n  for (int i = 0; i < 1000; i++) {\n    random[i] = rand() % 256;\n  }\n  int h[256] = {0};\n  for (int i = 0; i < 1000; i++) {\n    h[random[i]]++;\n  }\n  for (int i = 0; i < 256; i++) {\n    printf(\"%d\", h[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n",
+      "testcases": [
+        {
+          "input": [
+            ""
+          ],
+          "output": [
+            "3783462445442942352426734374413645654511255305332586332221673351031342275645767443147344317663612846525626425321752514422413825354422344144332323111444376474143332543349156722731734743135382423253334434640826366494236535425023565621473595433463424363583645\n"
+          ]
+        }
+      ]
     },
     {
       "title": "Question 10 in Winter 2020 Midterm Exam",

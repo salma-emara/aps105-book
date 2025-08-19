@@ -1,0 +1,54 @@
+[[exercises]]
+title = "Question 1.7 in Fall 2011"
+difficulty = "Easy"
+table = false
+multipart= false
+type = "function programming"
+
+question = """
+Your task is to complete the function below so that it contains a non-recursive implementation of the binary search algorithm. The parameter `values` is an array of `int` type variables. The items in the values array have been sorted into descending (non-ascending) order. Parameter `n` is the number of elements in the `values` array. Parameter `item` is the item being searched for in the values array.
+
+The function should return -1 if `item` is not found in the array. Otherwise, the function should return the index position within the array at which `item` is found.
+
+**Important:** your function should assume that `values` is a sorted array in descending (non-ascending) order.
+
+**Important:** Your solution must **not** use recursion.
+"""
+
+starter-code = '''
+#include <stdio.h>
+
+int binSearch(int values[], int n, int item) {
+  int left = 0;
+  int right = n - 1;
+  while (left <= right) {
+    int middle = (left + right) / 2;
+    if (item == values[middle]) return middle;
+
+    // WRITE YOUR CODE HERE:
+
+  }
+}
+'''
+
+answer = '''
+int binSearch(int values[], int n, int item) {
+  int left = 0;
+  int right = n - 1;
+  while (left <= right) {
+    int middle = (left + right) / 2;
+    if (item == values[middle]) return middle;
+    // SOLUTION:
+    if (item < values[middle])
+      left = middle + 1;
+    else
+      right = middle - 1;
+  }
+}
+'''
+
+main-function = '''
+int main(void) {
+}
+'''
+

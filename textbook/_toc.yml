@@ -107,7 +107,7 @@ parts:
           - file: chapters/chapter12-data-structures/what-data-structure.md
           - file: chapters/chapter12-data-structures/pointers-to-data-structure.md
           - file: chapters/chapter12-data-structures/exercises.md
-          
+
       - file: chapters/chapter13-linked-lists/intro.md
         sections:
           - file: chapters/chapter13-linked-lists/why-linked-lists.md
@@ -128,6 +128,7 @@ parts:
           - file: chapters/chapter15-searching/sequential-search.md
           - file: chapters/chapter15-searching/binary-search.md
           - file: chapters/chapter15-searching/exercises.md
+          - file: chapters/chapter15-searching/testing-exercises.md
       
   - caption: "Appendix: Additional information"
     chapters:

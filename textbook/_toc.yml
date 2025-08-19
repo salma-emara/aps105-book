@@ -67,6 +67,7 @@ parts:
           - file: chapters/chapter06-pointers/scope.md
           - file: chapters/chapter06-pointers/goldbach-conjecture-example.md
           - file: chapters/chapter06-pointers/exercises.md
+          - file: chapters/chapter06-pointers/testing-exercises.md
       - file: chapters/chapter07-arrays/intro.md
         sections:
           - file: chapters/chapter07-arrays/why-arrays.md

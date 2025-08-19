@@ -64,11 +64,40 @@ int countLetters(char *s, int count[]) {
 
 main-function = '''
 int main(void) {
+    char s[1000];        // buffer for input string
+    int counts[26] = {0}; // array to hold letter counts
+
+    printf("Enter a sentence: ");
+    fgets(s, sizeof(s), stdin);  // read a line including spaces
+
+    countLetters(s, counts);     // call the student's function
+
+    printf("The frequency that each lower case letter appears is:\n");
+    for (int i = 0; i < 26; i++) {
+        if (counts[i] > 0) {
+            printf("%c: %d\n", 'a' + i, counts[i]);
+        }
+    }
+
+    return 0;
 }
 '''
 
+[[exercises.testcases]]
+input = "Q1.T1.in"
+output = "Q1.T1.out"
 
+[[exercises.testcases]]
+input = "Q1.T2.in"
+output = "Q1.T2.out"
 
+[[exercises.testcases]]
+input = "Q1.T3.in"
+output = "Q1.T3.out"
+
+[[exercises.testcases]]
+input = "Q1.T4.in"
+output = "Q1.T4.out"
 
 
 [[exercises]]
@@ -86,6 +115,7 @@ Write a function called `lastStringInString`, the prototype of which is provided
 
 starter-code = '''
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 char* lastStringInString(char* s1, char* s2) {
@@ -113,7 +143,7 @@ char* lastStringInString(char* s1, char* s2) {
 }
 
 // Solution 2
-char* lastStringInStringAlt(char* s1, char* s2) {
+char* lastStringInString(char* s1, char* s2) {
   char* lastFound = NULL;
   for (int i = 0; i < strlen(s2); i++) {
     if (s2[i] == s1[0]) {
@@ -134,8 +164,38 @@ char* lastStringInStringAlt(char* s1, char* s2) {
 
 main-function = '''
 int main(void) {
+    char s1[1000], s2[1000];
+
+    printf("Enter string s1: ");
+    if (!fgets(s1, sizeof(s1), stdin)) return 1;
+    s1[strcspn(s1, "\n")] = '\0';  // remove newline
+
+    printf("Enter string s2: ");
+    if (!fgets(s2, sizeof(s2), stdin)) return 1;
+    s2[strcspn(s2, "\n")] = '\0';  // remove newline
+
+    char* lastOccur = lastStringInString(s1, s2);
+    if (lastOccur != NULL) {
+        printf("Last occurrence is at position %ld\n", lastOccur - s2);
+    } else {
+        printf("String not found");
+    }
+
+    return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q2.T1.in"
+output = "Q2.T1.out"
+
+[[exercises.testcases]]
+input = "Q2.T2.in"
+output = "Q2.T2.out"
+
+[[exercises.testcases]]
+input = "Q2.T3.in"
+output = "Q2.T3.out"
 
 
 
@@ -154,6 +214,7 @@ then the function will return `"Toronto"`. If `str` is NULL, the function will a
 
 starter-code = '''
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 char *preamble(char *str, int n) {
@@ -190,8 +251,44 @@ char* preamble(char* str, int n) {
 
 main-function = '''
 int main(void) {
+    char str[1000]; // assuming max input length
+    int n;
+
+    // Read input from stdin
+    if (fgets(str, sizeof(str), stdin) == NULL) {
+        return 1;
+    }
+    // Remove trailing newline if present
+    str[strcspn(str, "\n")] = '\0';
+
+    if (scanf("%d", &n) != 1) {
+        return 1;
+    }
+
+    char *result = preamble(str, n);
+
+    if (result == NULL) {
+        printf("NULL\n");
+    } else {
+        printf("%s\n", result);
+        free(result);
+    }
+
+    return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q3.T1.in"
+output = "Q3.T1.out"
+
+[[exercises.testcases]]
+input = "Q3.T2.in"
+output = "Q3.T2.out"
+
+[[exercises.testcases]]
+input = "Q3.T3.in"
+output = "Q3.T3.out"
 
 
 
@@ -212,7 +309,9 @@ C standard library, and may assume that `string.h` has been included.
 
 starter-code = '''
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <stdbool.h> 
 
 char* deleteSubString(char* source, char* substring) {
 
@@ -247,8 +346,43 @@ char* deleteSubString(char* source, char* substring) {
 
 main-function = '''
 int main(void) {
+    char source[1000];
+    char substring[1000];
+
+    // Read source and substring from input
+    if (fgets(source, sizeof(source), stdin) == NULL) return 1;
+    if (fgets(substring, sizeof(substring), stdin) == NULL) return 1;
+
+    // Remove trailing newline characters
+    size_t len = 0;
+    len = strlen(source);
+    if (len > 0 && source[len - 1] == '\n') source[len - 1] = '\0';
+    len = strlen(substring);
+    if (len > 0 && substring[len - 1] == '\n') substring[len - 1] = '\0';
+
+    char *result = deleteSubString(source, substring);
+
+    if (result != NULL) {
+        printf("%s\n", result);
+        free(result);
+    }
+
+    return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q4.T1.in"
+output = "Q4.T1.out"
+
+[[exercises.testcases]]
+input = "Q4.T2.in"
+output = "Q4.T2.out"
+
+[[exercises.testcases]]
+input = "Q4.T3.in"
+output = "Q4.T3.out"
+
 
 
 
@@ -272,6 +406,8 @@ the space character. Also, note that the upper case `'A'` is NOT considered as t
 
 starter-code = '''
 #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 #include <string.h>
 
 bool isAnagram(char* s1, char* s2) {
@@ -300,9 +436,43 @@ bool isAnagram(char* s1, char* s2) {
 
 main-function = '''
 int main(void) {
+    char s1[1000], s2[1000];
+
+    // Read the two strings from input
+    if (fgets(s1, sizeof(s1), stdin) == NULL) return 1;
+    if (fgets(s2, sizeof(s2), stdin) == NULL) return 1;
+
+    // Remove trailing newlines
+    size_t len = strlen(s1);
+    if (len > 0 && s1[len - 1] == '\n') s1[len - 1] = '\0';
+    len = strlen(s2);
+    if (len > 0 && s2[len - 1] == '\n') s2[len - 1] = '\0';
+
+    bool result = isAnagram(s1, s2);
+
+    if (result) {
+        printf("true\n");
+    } else {
+        printf("false\n");
+    }
+
+    return 0;
 }
 '''
 
+
+
+[[exercises.testcases]]
+input = "Q5.T1.in"
+output = "Q5.T1.out"
+
+[[exercises.testcases]]
+input = "Q5.T2.in"
+output = "Q5.T2.out"
+
+[[exercises.testcases]]
+input = "Q5.T3.in"
+output = "Q5.T3.out"
 
 
 
@@ -379,3 +549,7 @@ bool checkPlagiarism(char *code1, char *code2) {
 }
 '''
 
+
+[[exercises.testcases]]
+input = "Q6.T1.in"
+output = "Q6.T1.out"

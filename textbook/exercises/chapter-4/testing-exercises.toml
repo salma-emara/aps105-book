@@ -1,7 +1,7 @@
 [[exercises]]
 title = "Question 1 in Winter 2022 Final Exam"
 difficulty = "Easy"
-type = "programming"
+type = "explaination"
 table = false
 multipart= false
 
@@ -17,24 +17,13 @@ for (int i = 2; i <= 989; i = i * 2) {
 
 """
 
-starter-code = '''
-#include <stdio.h>
-
-int main(void) {
-
-}
-'''
 
 answer = '''
-#include <stdio.h>
 
-int main(void) {
-  int result = 2, i = 2;
-  while (i <= 989) {
-    result *= i;
-    i = i * 2;
-  }
-  return 0;
+int result = 2, i = 2;
+while (i <= 989) {
+  result *= i;
+  i = i * 2;
 }
 '''
 
@@ -83,6 +72,10 @@ int main(void) {
 }
 '''
 
+[[exercises.testcases]]
+input = "Q2.T1.in"
+output = "Q2.T1.out"
+
 
 
 [[exercises]]
@@ -128,6 +121,17 @@ int main(void) {
 }
 '''
 
+[[exercises.testcases]]
+input = "Q3.T1.in"
+output = "Q3.T1.out"
+
+[[exercises.testcases]]
+input = "Q3.T2.in"
+output = "Q3.T2.out"
+
+[[exercises.testcases]]
+input = "Q3.T3.in"
+output = "Q3.T3.out"
 
 
 
@@ -191,6 +195,17 @@ int main() {
 }
 '''
 
+[[exercises.testcases]]
+input = "Q4.T1.in"
+output = "Q4.T1.out"
+
+[[exercises.testcases]]
+input = "Q4.T2.in"
+output = "Q4.T2.out"
+
+[[exercises.testcases]]
+input = "Q4.T3.in"
+output = "Q4.T3.out"
 
 
 
@@ -206,7 +221,6 @@ Identify and correct all compile-time errors you find in the C program below. Co
 
 **Code with compile-time errors**
 ```{code-block} c
-:linenos:
 #include <stdio.h>
 int main(void) {
   double a, b = 3.14;

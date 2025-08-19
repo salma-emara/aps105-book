@@ -56,7 +56,7 @@ answer = [
 [[exercises]]
 title = "Question 1 in Winter 2017 Final Exam"
 difficulty = "Easy"
-type = "programming"
+type = "explaination"
 table = false
 multipart= false
 
@@ -65,7 +65,7 @@ Find and correct all compile-time errors (mistakes that would cause compilation 
 
 """
 
-starter-code = '''
+question-code = '''
 #include <stdio.h>
 
 int main(void) {
@@ -93,6 +93,7 @@ int main(void) {
   }
 }
 '''
+
 
 
 
@@ -315,7 +316,17 @@ int main(void) {
 '''
 
 
+[[exercises.testcases]]
+input = "Q7.T1.in"
+output = "Q7.T1.out"
 
+[[exercises.testcases]]
+input = "Q7.T2.in"
+output = "Q7.T2.out"
+
+[[exercises.testcases]]
+input = "Q7.T3.in"
+output = "Q7.T3.out"
 
 
 [[exercises]]
@@ -384,7 +395,9 @@ void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
 }
 '''
 
-
+[[exercises.testcases]]
+input = "Q8.T1.in"
+output = "Q8.T1.out"
 
 
 [[exercises]]

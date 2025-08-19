@@ -104,11 +104,26 @@ char median(char a, char b, char c) {
 
 main-function = '''
 int main(void) {
+  char a, b, c;
+  // Read three characters from input
+  scanf(" %c %c %c", &a, &b, &c);
+  // Call the median function and print the result
+  printf("%c\n", median(a, b, c));
+  return 0;
 }
 '''
 
+[[exercises.testcases]]
+input = "Q2.T1.in"
+output = "Q2.T1.out"
 
+[[exercises.testcases]]
+input = "Q2.T2.in"
+output = "Q2.T2.out"
 
+[[exercises.testcases]]
+input = "Q2.T3.in"
+output = "Q2.T3.out"
 
 
 [[exercises]]
@@ -145,8 +160,28 @@ int reverseDigits(int value) {
 
 main-function = '''
 int main(void) {
+  int value;
+  // Read integer from input
+  scanf("%d", &value);
+
+  // Call reverseDigits and print result
+  printf("%d\n", reverseDigits(value));
+
+  return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q3.T1.in"
+output = "Q3.T1.out"
+
+[[exercises.testcases]]
+input = "Q3.T2.in"
+output = "Q3.T2.out"
+
+[[exercises.testcases]]
+input = "Q3.T3.in"
+output = "Q3.T3.out"
 
 
 
@@ -176,6 +211,7 @@ Pi = 3.1415926536
 
 starter-code = '''
 #include <stdio.h>
+#include <math.h>
 
 int main(void) {
 
@@ -184,6 +220,7 @@ int main(void) {
 
 answer = '''
 #include <stdio.h>
+#include <math.h>
 
 double arctan(double x) {
   int sign = 1;
@@ -203,6 +240,11 @@ int main(void) {
   return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q4.T1.in"
+output = "Q4.T1.out"
+
 
 
 [[exercises]]
@@ -225,6 +267,7 @@ If there is no triple that satisfies these conditions print “no solution exist
 """
 starter-code = '''
 #include <stdio.h>
+#include <math.h>
 
 void pythagoreanTriples (int x) {
 }
@@ -232,6 +275,7 @@ void pythagoreanTriples (int x) {
 
 answer = '''
 #include <stdio.h>
+#include <math.h>
 
 void pythagoreanTriples(int x) {
   for (int y = 1; y < 100; y++) {
@@ -248,5 +292,27 @@ void pythagoreanTriples(int x) {
 
 main-function = '''
 int main(void) {
+  int x;
+  scanf("%d", &x);
+  pythagoreanTriples(x);
+  return 0;
 }
 '''
+
+
+[[exercises.testcases]]
+input = "Q5.T1.in"
+output = "Q5.T1.out"
+
+[[exercises.testcases]]
+input = "Q5.T2.in"
+output = "Q5.T2.out"
+
+[[exercises.testcases]]
+input = "Q5.T3.in"
+output = "Q5.T3.out"
+
+[[exercises.testcases]]
+input = "Q5.T4.in"
+output = "Q5.T4.out"
+

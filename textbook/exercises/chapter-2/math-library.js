@@ -36,7 +36,33 @@ let parsedObject;
       "multipart": false,
       "question": "If you have a certain number of US dollars and wish to convert them to Canadian dollars, you could use the \nCanadian dollar to US dollar exchange rate (for example: 1 Canadian dollar = $0.75$ US dollar). Write a complete C \nprogram that prompts its user for the current Canadian dollar to US dollar exchange rate (e.g. $0.75$) and a value in \nUS dollars, and then prints the value in Canadian dollars, rounding to the nearest hundredth. Your program will print \nthe value with $6$ digits after the decimal point. Assume the user provides a valid exchange rate and US dollar amount.\n\nHere is an example run of your program:\n<pre>\nEnter the exchange rate (1 CAD = ? USD): <b>0.75</b>\nEnter the value in US dollars: <b>56</b>\nThe value in Canadian dollars is 74.670000.\n</pre>\n\n",
       "starter-code": "#include <stdio.h>\n#include <math.h>\n\nint main(void) {\n\n}\n",
-      "answer": "#include <stdio.h>\n#include <math.h>\nint main (void) {\n    double exchangeRate = 0, cad = 0, usd = 0;\n    printf(\"Enter the exchange rate (1 CAD = ? USD): \");\n    scanf(\"%lf\", &exchangeRate);\n    printf(\"Enter the value in US dollars: \");\n    scanf(\"%lf\", &usd);\n    cad = usd / exchangeRate;\n    \n    // rounding to the nearest hundredth\n    double roundedCad = rint(cad * 100) / 100.0;\n    printf(\"The value in Canadian dollars is %.6lf.\\n\", roundedCad); \n    //%.6lf and %.lf prints 6 digits after the decimal point\n    return 0;\n}\n"
+      "answer": "#include <stdio.h>\n#include <math.h>\nint main (void) {\n    double exchangeRate = 0, cad = 0, usd = 0;\n    printf(\"Enter the exchange rate (1 CAD = ? USD): \");\n    scanf(\"%lf\", &exchangeRate);\n    printf(\"Enter the value in US dollars: \");\n    scanf(\"%lf\", &usd);\n    cad = usd / exchangeRate;\n    \n    // rounding to the nearest hundredth\n    double roundedCad = rint(cad * 100) / 100.0;\n    printf(\"The value in Canadian dollars is %.6lf.\\n\", roundedCad); \n    //%.6lf and %.lf prints 6 digits after the decimal point\n    return 0;\n}\n",
+      "testcases": [
+        {
+          "input": [
+            "0.75\n56\n"
+          ],
+          "output": [
+            "Enter the exchange rate (1 CAD = ? USD): Enter the value in US dollars: \n The value in Canadian dollars is 74.670000.\n"
+          ]
+        },
+        {
+          "input": [
+            "0.80\n100\n"
+          ],
+          "output": [
+            "Enter the exchange rate (1 CAD = ? USD): Enter the value in US dollars:\n The value in Canadian dollars is 125.000000.\n"
+          ]
+        },
+        {
+          "input": [
+            "0.75\n1\n"
+          ],
+          "output": [
+            "Enter the exchange rate (1 CAD = ? USD): Enter the value in US dollars:\n The value in Canadian dollars is 1.330000.\n"
+          ]
+        }
+      ]
     },
     {
       "title": "Question 2 in Fall 2018 Final Exam",

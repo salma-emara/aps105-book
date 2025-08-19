@@ -43,7 +43,7 @@ let parsedObject;
       "testcases": [
         {
           "input": [
-            "1\n2\n3\n4\n7\n7\n8\n9\n10\n11"
+            "0.75\n56\n"
           ],
           "output": [
             "Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): Enter a value (0 to stop): \n There are a total of 10 numbers. \nThe values you entered are: \n 1 2 3 4 7 7 8 9 10 11\nThe values are in ascending order."

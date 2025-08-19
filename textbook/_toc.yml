@@ -101,11 +101,13 @@ parts:
           - file: chapters/chapter11-recursion/recursion-in-patterns.md
           - file: chapters/chapter11-recursion/recursion-in-arrays.md
           - file: chapters/chapter11-recursion/exercises.md
+          - file: chapters/chapter11-recursion/testing-exercises.md
       - file: chapters/chapter12-data-structures/intro.md
         sections:
           - file: chapters/chapter12-data-structures/what-data-structure.md
           - file: chapters/chapter12-data-structures/pointers-to-data-structure.md
           - file: chapters/chapter12-data-structures/exercises.md
+          
       - file: chapters/chapter13-linked-lists/intro.md
         sections:
           - file: chapters/chapter13-linked-lists/why-linked-lists.md
@@ -113,6 +115,7 @@ parts:
           - file: chapters/chapter13-linked-lists/insert-find-observe-into-linkedlist.md
           - file: chapters/chapter13-linked-lists/delete-nodes.md
           - file: chapters/chapter13-linked-lists/exercises.md
+          - file: chapters/chapter13-linked-lists/testing-exercises.md
       - file: chapters/chapter14-sorting/intro.md
         sections:
           - file: chapters/chapter14-sorting/insertion-sort.md

@@ -36,6 +36,7 @@ W: 1
 
 starter-code = '''
 #include <stdio.h>
+#include <string.h>
 
 int countLetters(char *s, int count[]) {
 

@@ -541,8 +541,11 @@ function parse_and_generate_form(fileName) {
                     }
                 }
 
+                // check if hints already exists
                 const existingHintContainer = form.querySelector(".hint-container");
                 if (existingHintContainer) existingHintContainer.remove();
+                const existingHintHeader = form.querySelector(".hint-header");
+                if (existingHintHeader) existingHintHeader.remove();
 
                 actualOutput = await runTestCases(codeRunner, inputArray, messageElement, null);
 
@@ -845,6 +848,7 @@ async function handle_submission(formId, answer, hint, filename, outputArray, is
             let container = document.createElement("div");
 
             const header = document.createElement("h5");
+            header.classList.add("hint-header");
             header.textContent = "Hints";
             container.appendChild(header);
 

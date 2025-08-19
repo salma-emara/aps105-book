@@ -49,6 +49,8 @@ parts:
           - file: chapters/chapter04-loops/nested-loops.md
           - file: chapters/chapter04-loops/debugging-loops.md
           - file: chapters/chapter04-loops/exercises.md
+          - file: chapters/chapter04-loops/testing-exercises.md
+
       - file: chapters/chapter05-functions/intro.md
         sections:
           - file: chapters/chapter05-functions/functions.md
@@ -56,6 +58,7 @@ parts:
           - file: chapters/chapter05-functions/variable-scope.md
           - file: chapters/chapter05-functions/pass-more-values.md
           - file: chapters/chapter05-functions/exercises.md
+          - file: chapters/chapter05-functions/testing-exercises.md
       - file: chapters/chapter06-pointers/intro.md
         sections:
           - file: chapters/chapter06-pointers/why-pointers.md

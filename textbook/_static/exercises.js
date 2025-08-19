@@ -394,7 +394,7 @@ function generate_exercises(filename) {
 
 			let correctAnswerRaw = ex.answer || "";
 
-			const correctAnswer = (typeof correctAnswerRaw === "string") ? correctAnswerRaw.trim() : correctAnswerRaw;
+			const correctAnswer =  correctAnswerRaw;
 
 			if (isProgrammingQuestion) {
 

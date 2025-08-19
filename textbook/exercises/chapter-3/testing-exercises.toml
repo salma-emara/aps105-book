@@ -168,7 +168,21 @@ int main(void) {
 }
 '''
 
+[[exercises.testcases]]
+input = "Q4.T1.in"
+output = "Q4.T1.out"
 
+[[exercises.testcases]]
+input = "Q4.T2.in"
+output = "Q4.T2.out"
+
+[[exercises.testcases]]
+input = "Q4.T3.in"
+output = "Q4.T3.out"
+
+[[exercises.testcases]]
+input = "Q4.T4.in"
+output = "Q4.T4.out"
 
 [[exercises]]
 title = "Modified Version of Question 4 in Winter 2022 Midterm Exam"
@@ -221,7 +235,7 @@ answer = '''
 #include <stdio.h>
 
 int main(void) {
-  char a = '\0', b = '\0', c = '\0', result = '\0';
+  char a = '\0', b = '\0', c = '\0';
   printf("Enter three characters: ");
   scanf("%c %c %c", &a, &b, &c);
 
@@ -236,3 +250,31 @@ int main(void) {
   printf("%c", result);
 }
 '''
+
+[[exercises.testcases]]
+input = "Q5.T1.in"
+output = "Q5.T1.out"
+
+[[exercises.testcases]]
+input = "Q5.T2.in"
+output = "Q5.T2.out"
+
+[[exercises.testcases]]
+input = "Q5.T3.in"
+output = "Q5.T3.out"
+
+[[exercises.testcases]]
+input = "Q5.T4.in"
+output = "Q5.T4.out"
+
+[[exercises.testcases]]
+input = "Q5.T5.in"
+output = "Q5.T5.out"
+
+[[exercises.testcases]]
+input = "Q5.T6.in"
+output = "Q5.T6.out"
+
+[[exercises.testcases]]
+input = "Q5.T7.in"
+output = "Q5.T7.out"

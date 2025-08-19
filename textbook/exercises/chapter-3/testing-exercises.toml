@@ -127,3 +127,112 @@ explanations = ["False, since the range of random numbers in w is between -99 an
 
 
 
+
+[[exercises]]
+title = "Modified version of Question 7 in Winter 2019 Midterm Exam"
+difficulty = "Easy"
+type = "programming"
+table = false
+multipart= false
+
+question = """
+Write C program to find the median, which is the number at the middle, among three integers `p`, `q` and `r`. 
+The program should prompt the user to enter three integers, which get stored in `p`, `q` and `r`. Your program 
+should print the value of the number at the middle. For example, with integers $2$, $7$, and $5$ as input, the 
+function returns 5; with integers $6$, $4$, and $6$ as input, the function returns $6$.
+
+"""
+
+starter-code = '''
+#include <stdio.h>
+
+int main(void) {
+
+}
+'''
+
+answer = '''
+#include <stdio.h>
+int main(void) {
+  int p = 0, q = 0, r = 0;
+  printf("Enter three integers: ");
+  scanf("%d %d %d", &p, &q, &r);
+
+  if ((p >= q && p <= r) || (p >= r && p <= q)) {
+    printf("%d", p);
+  } else if ((q >= p && q <= r) || (q >= r && q <= p)) {
+    printf("%d", q);
+  } else {
+    printf("%d", r);
+  }
+}
+'''
+
+
+
+[[exercises]]
+title = "Modified Version of Question 4 in Winter 2022 Midterm Exam"
+difficulty = "Easy"
+type = "programming"
+table = false
+multipart= false
+
+question = """
+The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one nested `if-else` statement.
+
+```{code-block} c
+#include <stdio.h>
+
+int main(void) {
+  char a = '\\0', b = '\\0', c = '\\0';
+  printf("Enter three characters: ");
+  scanf("%c %c %c", &a, &b, &c);
+  if (a < b) {
+    if (b < c) {
+      printf("%c", b);
+    } else if (a < c) {
+      printf("%c", c);
+    } else {
+      printf("%c", a);
+    }
+  }
+
+  if (c < b) {
+    printf("%c", b);
+  }
+  if (a < c) {
+    printf("%c", a);
+  }
+  printf("%c", c);
+}
+```
+
+"""
+
+starter-code = '''
+#include <stdio.h>
+
+int main(void) {
+
+}
+'''
+
+answer = '''
+#include <stdio.h>
+
+int main(void) {
+  char a = '\0', b = '\0', c = '\0', result = '\0';
+  printf("Enter three characters: ");
+  scanf("%c %c %c", &a, &b, &c);
+
+  char result = a;
+
+  if ((a < b && b < c) || (c < b && b < a)) {
+    result = b;
+  } else if ((a < c && c < b) || (b < c && c < a)) {
+    result = c;
+  }
+
+  printf("%c", result);
+}
+'''

@@ -94,6 +94,26 @@ let parsedObject;
       "explanations": [
         "False, since the range of random numbers in w is between -99 and 49 inclusive"
       ]
+    },
+    {
+      "title": "Modified version of Question 7 in Winter 2019 Midterm Exam",
+      "difficulty": "Easy",
+      "type": "programming",
+      "table": false,
+      "multipart": false,
+      "question": "Write C program to find the median, which is the number at the middle, among three integers `p`, `q` and `r`. \nThe program should prompt the user to enter three integers, which get stored in `p`, `q` and `r`. Your program \nshould print the value of the number at the middle. For example, with integers $2$, $7$, and $5$ as input, the \nfunction returns 5; with integers $6$, $4$, and $6$ as input, the function returns $6$.\n\n",
+      "starter-code": "#include <stdio.h>\n\nint main(void) {\n\n}\n",
+      "answer": "#include <stdio.h>\nint main(void) {\n  int p = 0, q = 0, r = 0;\n  printf(\"Enter three integers: \");\n  scanf(\"%d %d %d\", &p, &q, &r);\n\n  if ((p >= q && p <= r) || (p >= r && p <= q)) {\n    printf(\"%d\", p);\n  } else if ((q >= p && q <= r) || (q >= r && q <= p)) {\n    printf(\"%d\", q);\n  } else {\n    printf(\"%d\", r);\n  }\n}\n"
+    },
+    {
+      "title": "Modified Version of Question 4 in Winter 2022 Midterm Exam",
+      "difficulty": "Easy",
+      "type": "programming",
+      "table": false,
+      "multipart": false,
+      "question": "The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one nested `if-else` statement.\n\n```{code-block} c\n#include <stdio.h>\n\nint main(void) {\n  char a = '\\0', b = '\\0', c = '\\0';\n  printf(\"Enter three characters: \");\n  scanf(\"%c %c %c\", &a, &b, &c);\n  if (a < b) {\n    if (b < c) {\n      printf(\"%c\", b);\n    } else if (a < c) {\n      printf(\"%c\", c);\n    } else {\n      printf(\"%c\", a);\n    }\n  }\n\n  if (c < b) {\n    printf(\"%c\", b);\n  }\n  if (a < c) {\n    printf(\"%c\", a);\n  }\n  printf(\"%c\", c);\n}\n```\n\n",
+      "starter-code": "#include <stdio.h>\n\nint main(void) {\n\n}\n",
+      "answer": "#include <stdio.h>\n\nint main(void) {\n  char a = '\\0', b = '\\0', c = '\\0', result = '\\0';\n  printf(\"Enter three characters: \");\n  scanf(\"%c %c %c\", &a, &b, &c);\n\n  char result = a;\n\n  if ((a < b && b < c) || (c < b && b < a)) {\n    result = b;\n  } else if ((a < c && c < b) || (b < c && c < a)) {\n    result = c;\n  }\n\n  printf(\"%c\", result);\n}\n"
     }
   ]
 };

@@ -32,6 +32,7 @@ parts:
           - file: chapters/chapter02-variables/math-library.md
           - file: chapters/chapter02-variables/random-number.md
           - file: chapters/chapter02-variables/exercises.md
+          - file: chapters/chapter02-variables/testing-exercises.md
       - file: chapters/chapter03-decision-making/intro.md
         sections:
           - file: chapters/chapter03-decision-making/if-statement.md

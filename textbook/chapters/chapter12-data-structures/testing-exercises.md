@@ -7,5 +7,5 @@ Headings in this page classify the exercises into different categories: **[Easy]
 
 {{code_runner_quizzes}}
 
-{{exercise_embed | replace("%%FILENAME%%", "chapter-13/testing-exercises") }}
+{{exercise_embed | replace("%%FILENAME%%", "chapter-12/testing-exercises") }}
 

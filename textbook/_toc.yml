@@ -86,7 +86,7 @@ parts:
           - file: chapters/chapter09-multi-dimensional-arrays/pass-2d-functions.md
           - file: chapters/chapter09-multi-dimensional-arrays/2d-dynamic-memory-alloc.md
           - file: chapters/chapter09-multi-dimensional-arrays/exercises.md
-
+          - file: chapters/chapter09-multi-dimensional-arrays/testing-exercises.md
       - file: chapters/chapter10-strings/intro.md
         sections:
           - file: chapters/chapter10-strings/what-are-strings.md
@@ -107,7 +107,7 @@ parts:
           - file: chapters/chapter12-data-structures/what-data-structure.md
           - file: chapters/chapter12-data-structures/pointers-to-data-structure.md
           - file: chapters/chapter12-data-structures/exercises.md
-
+          - file: chapters/chapter12-data-structures/testing-exercises.md
       - file: chapters/chapter13-linked-lists/intro.md
         sections:
           - file: chapters/chapter13-linked-lists/why-linked-lists.md

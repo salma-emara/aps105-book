@@ -23,9 +23,9 @@ repository:
 launch_buttons:
   thebe: true
 html:
-  extra_footer: '<script src="../../_static/chatbot.js"/>
-  
-    '
+  extra_footer: '<script src="../../_static/chatbot.js"/>'
+  extra_js:
+    - https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@main/loader.js
   use_issues_button: true
   use_repository_button: true
   comments:
@@ -59,14 +59,4 @@ parse:
       </script>
 
       </div>'
-
-    visualize_embed: |
-      <div style="display: flex; justify-content: center; margin: 2em 0;">
-        <iframe
-        src="/visualize_examples/visualizer.html?trace=%%FILENAME%%.json"
-        width="100%"
-        height="1200"
-        style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 100%;"
-        scrolling="yes">
-        </iframe>
-      </div>
+    c_visualizer: <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@main/loader_folder.js"defer></script>

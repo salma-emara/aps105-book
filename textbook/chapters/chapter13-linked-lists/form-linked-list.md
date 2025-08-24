@@ -94,4 +94,48 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-2") }}
 
-{{ visualize_embed | replace("%%FILENAME%%", "trace") }}
+
+{{c_visualizer}}
+  <c-visualizer example="1" lang="c">
+        <script type="application/json" data-kind="annotation">
+          {
+            "annotation": {
+              "18": "Declare the struct variable my_account",
+              "20": "Assign the value of pi to balance",
+              "21": "Assign the string \"Jinning\" to first_name",
+              "22": "Assign the string \"Liu\" to last_name"
+            },
+            "folds": [{ "start": 21, "end": 23 }]
+          }
+        </script>
+
+        #include &lt;stdio.h&gt;
+
+        // regular
+        struct Account {
+            int account_number;
+            double balance;
+            char *first_name;
+            char *last_name;
+        };
+
+        // typedef version
+        typedef struct {
+            int    xxx;
+            int    yyy;
+        } Point;
+
+        int main() {
+          struct Account my_account;
+          my_account.account_number = 42;
+          my_account.balance = 3.141592653589735;
+          my_account.first_name = "Jinning";
+          my_account.last_name = "Liu";
+          printf("hello");
+
+          Point my_point;
+          my_point.xxx = 12345;
+          my_point.yyy = 54321;
+          return 0;
+        }
+      </c-visualizer>

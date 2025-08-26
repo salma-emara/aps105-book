@@ -48,10 +48,6 @@ html:
 
     <!-- Global GA initialization -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag('js', new Date());
-
       function getOrCreateUserID() {
         let uid = localStorage.getItem("user_id");
         if (!uid) {
@@ -64,6 +60,7 @@ html:
       const userID = getOrCreateUserID();
   
     </script>
+
 
 
   use_issues_button: true

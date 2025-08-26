@@ -46,6 +46,26 @@ html:
   extra_footer: |
     <script src="../../_static/chatbot.js"/>
 
+    <!-- Global GA initialization -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      function getOrCreateUserID() {
+        let uid = localStorage.getItem("user_id");
+        if (!uid) {
+          uid = "anon-" + Math.random().toString(36).substr(2, 10);
+          localStorage.setItem("user_id", uid);
+        }
+        return uid;
+      }
+
+      const userID = getOrCreateUserID();
+  
+    </script>
+
+
   use_issues_button: true
   use_repository_button: true
   #Add highlight and annotate feature

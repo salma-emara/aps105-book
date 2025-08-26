@@ -23,10 +23,6 @@ async function getChatCompletion(prompt) {
 
 }
 
-gtag('config', 'G-37FN5PSTPH', {
-    debug_mode: true
-});
-
 function getOrCreateQuizUserID() {
   let uid = localStorage.getItem("quiz_user_id");
   if (!uid) {

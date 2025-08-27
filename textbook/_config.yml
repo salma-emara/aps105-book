@@ -86,4 +86,4 @@ parse:
 
       </div>
     c_visualizer: 
-      <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@b4d84a8/loader_folder.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@bcdb59e/loader_folder.js"></script>

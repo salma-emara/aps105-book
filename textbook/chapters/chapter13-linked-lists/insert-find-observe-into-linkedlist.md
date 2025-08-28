@@ -520,6 +520,7 @@ The following figure shows the function we need to implement to find a node with
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-3") }}
 
+{{c_visualizer}}
  <c-visualizer example="1" lang="c">
     <script type="application/json" data-kind="annotation">
       {

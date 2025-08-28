@@ -139,8 +139,9 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
           return 0;
         }
       </c-visualizer>
+      
 
-
+{{c_visualizer}}
   <c-visualizer example="2" lang="c">
     <script type="application/json" data-kind="annotation">
       {

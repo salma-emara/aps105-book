@@ -139,3 +139,19 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
           return 0;
         }
       </c-visualizer>
+
+
+  <c-visualizer example="2" lang="c">
+    <script type="application/json" data-kind="annotation">
+      {
+        "annotation": { "2": "This line prints 'Hello, world!'" },
+        "folds": [{ "start": 1, "end": 2 }]
+      }
+    </script>
+
+    #include &lt;stdio.h&gt;
+    int main() {
+      printf("Hello, world!");
+      return 0;
+    }
+  </c-visualizer>

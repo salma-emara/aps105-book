@@ -23,14 +23,14 @@ async function getChatCompletion(prompt) {
 
 }
 
-function getOrCreateQuizUserID() {
-  let uid = localStorage.getItem("quiz_user_id");
-  if (!uid) {
-    uid = "anon-" + Math.random().toString(36).substr(2, 10);
-    localStorage.setItem("quiz_user_id", uid);
-  }
-  return uid;
-}
+// function getOrCreateQuizUserID() {
+//   let uid = localStorage.getItem("quiz_user_id");
+//   if (!uid) {
+//     uid = "anon-" + Math.random().toString(36).substr(2, 10);
+//     localStorage.setItem("quiz_user_id", uid);
+//   }
+//   return uid;
+// }
 
 async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
@@ -57,7 +57,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         anotherHint.classList.add("another-hint");
         hintContainer.appendChild(anotherHint);
         
-        quizUserID = getOrCreateQuizUserID();
+        quizUserID = getOrCreateUserID();
 
         // set user id properties
         gtag('set', {

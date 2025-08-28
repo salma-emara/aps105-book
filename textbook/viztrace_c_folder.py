@@ -14,7 +14,6 @@ Examples:
 """
 
 def extract_code_exact(tag):
-    """提取直系文本节点，去注释，反转义，规范缩进"""
     pieces = []
     for child in tag.contents:
         if isinstance(child, NavigableString) and not isinstance(child, Comment):
@@ -77,12 +76,10 @@ def handle_file(md_or_html_path: Path, out_root: Path, book_root: Path):
         [print(" -", e) for e in errors]
         return
 
-    # === 路径规则 ===
-    page_stem = md_or_html_path.stem  # 文件名（去掉后缀）
-    rel_folder = md_or_html_path.parent.relative_to(book_root)  # 相对 book_root 的路径
+    page_stem = md_or_html_path.stem  
+    rel_folder = md_or_html_path.parent.relative_to(book_root)  
     base_dir = out_root / rel_folder / page_stem
     base_dir.mkdir(parents=True, exist_ok=True)
-    # =================
 
     for idx, (viz, ex) in enumerate(zip(visualizers, examples), start=1):
         code = extract_code_exact(viz)
@@ -128,7 +125,6 @@ def handle_file(md_or_html_path: Path, out_root: Path, book_root: Path):
 
 
 def walk_and_generate(book_root: Path):
-    # 输出根改为 ../trace
     out_root = book_root.parent / "trace"
     out_root.mkdir(parents=True, exist_ok=True)
     for p in book_root.rglob("*"):

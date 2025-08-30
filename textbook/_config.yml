@@ -85,3 +85,5 @@ parse:
       <script> parse_and_generate_form("%%FILENAME%%") </script>
 
       </div>
+    c_visualizer: 
+      <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@0f6fc3a/loader_folder.js"></script>

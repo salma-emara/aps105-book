@@ -39,7 +39,9 @@ int main(void) {
   printf("|");
   return 0;
 }
+```
 '''
+
 answer = '''
      *
     /|\
@@ -86,6 +88,8 @@ starter-code = '''
 #include <stdio.h>
 
 char median(char a, char b, char c) {
+
+  // Your Code Here
 
 }
 '''
@@ -142,6 +146,8 @@ starter-code = '''
 #include <stdio.h>
 
 int reverseDigits(int value) {
+
+  // Your Code Here
 
 }
 '''
@@ -217,6 +223,8 @@ starter-code = '''
 
 int main(void) {
 
+  // Your Code Here
+
 }
 '''
 
@@ -272,6 +280,9 @@ starter-code = '''
 #include <math.h>
 
 void pythagoreanTriples (int x) {
+
+  // Your Code Here
+
 }
 '''
 

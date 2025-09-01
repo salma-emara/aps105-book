@@ -6,8 +6,7 @@ let parsedObject;
       "difficulty": "Easy",
       "type": "explaination",
       "table": true,
-      "question": "Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:\n",
-      "question-code": "#include <stdio.h>\n\nvoid SumEm(int *A, int B, int C, int *D) {\n  if (B > C) {\n    *A = B + *D;\n    *D = C;\n  } else {\n    *A = C + *D;\n    *D = B;\n  }\n  return;\n}\n\nint main(void) {\n  int W, X, Y, Z;\n  W = 0;\n  X = 5;\n  Y = 8;\n  Z = 10;\n  SumEm(&W, X, Y, &Z);\n  return 0;\n}\n\n",
+      "question": "Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:\n\n```{code-block} c\n#include <stdio.h>\nvoid SumEm(int *A, int B, int C, int *D) {\n  if (B > C) {\n    *A = B + *D;\n    *D = C;\n  } else {\n    *A = C + *D;\n    *D = B;\n  }\n  return;\n}\nint main(void) {\n  int W, X, Y, Z;\n  W = 0;\n  X = 5;\n  Y = 8;\n  Z = 10;\n  SumEm(&W, X, Y, &Z);\n  return 0;\n}\n```\n\n",
       "headers": [
         "Variable",
         "Value"
@@ -55,8 +54,7 @@ let parsedObject;
       "type": "explaination",
       "table": false,
       "multipart": false,
-      "question": "Find and correct all compile-time errors (mistakes that would cause compilation or that would cause the ‘build’ to fail) in the following C program. Your answer should both identify what the error is, and what the correction should be. Marks will be deducted if you identify correct items as compile-time errors. \n\n",
-      "question-code": "#include <stdio.h>\n\nint main(void) {\n  int j, k;\n  int *i = &j;\n  for (*i = 0; *i < 10, *i = *i + 1) {\n    scanf(\"%d\", &k);\n    printf(\"%d\", (*i) * (*i) * (*i));\n  }\n}\n",
+      "question": "Find and correct all compile-time errors (mistakes that would cause compilation or that would cause the ‘build’ to fail) in the following C program. Your answer should both identify what the error is, and what the correction should be. Marks will be deducted if you identify correct items as compile-time errors. \n\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  int j, k;\n  int *i = &j;\n  for (*i = 0; *i < 10, *i = *i + 1) {\n    scanf(\"%d\", &k);\n    printf(\"%d\", (*i) * (*i) * (*i));\n  }\n}\n```\n\n",
       "answer": "// Corrected condition and increment fields: \n// `*i < 10, *i = *i + 1` to `*i < 10; *i = *i + 1`\n\n#include <stdio.h>\n\nint main(void) {\n  int j, k;\n  int *i = &j;\n  for (*i = 0; *i < 10; *i = *i + 1) {\n    scanf(\"%d\", &k);\n    printf(\"%d\", (*i) * (*i) * (*i));\n  }\n}\n"
     },
     {
@@ -65,8 +63,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "What will be printed when the following C program is executed?\n",
-      "question-code": "#include <stdio.h>\n\nint main(void) {\n  int first = 1, second = 10;\n  int *pointerToFirst, *pointerToSecond;\n\n  pointerToFirst = &first;\n  pointerToSecond = &second;\n  *pointerToFirst = *pointerToSecond - *pointerToFirst;\n  *pointerToSecond = *pointerToSecond - *pointerToFirst;\n  *pointerToFirst = *pointerToSecond + *pointerToFirst;\n  printf(\"%d, %d\\n\", first, second);\n}\n",
+      "question": "What will be printed when the following C program is executed?\n\n```{code-block} c\nint main(void) {\n  int first = 1, second = 10;\n  int *pointerToFirst, *pointerToSecond;\n\n  pointerToFirst = &first;\n  pointerToSecond = &second;\n  *pointerToFirst = *pointerToSecond - *pointerToFirst;\n  *pointerToSecond = *pointerToSecond - *pointerToFirst;\n  *pointerToFirst = *pointerToSecond + *pointerToFirst;\n  printf(\"%d, %d\\n\", first, second);\n}\n```\n",
       "answer": "10, 1\n"
     },
     {
@@ -74,8 +71,7 @@ let parsedObject;
       "difficulty": "Easy",
       "type": "explaination",
       "table": true,
-      "question": "Consider the following code, which uses pointers. What are the values of the variables `a` and `b` after this code is executed?\n\n",
-      "question-code": "int a, b, c, d;\nint *e, *f;\na = 5;\nb = 6;\ne = &c;\nf = &d;\n*e = a + b;\n*f = *e + b;\ne = &a;\nf = &b;\n*e = c + d;\n*f = a + b;\n\n",
+      "question": "Consider the following code, which uses pointers. What are the values of the variables `a` and `b` after this code is executed?\n\n```{code-block} c\nint a, b, c, d;\nint *e, *f;\na = 5;\nb = 6;\ne = &c;\nf = &d;\n*e = a + b;\n*f = *e + b;\ne = &a;\nf = &b;\n*e = c + d;\n*f = a + b;\n```\n\n",
       "headers": [
         "Variable",
         "Value"
@@ -107,8 +103,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "Write the output of the following program.\n",
-      "question-code": "#include <stdio.h>\n\nint main(void) {\n  int *p, x;\n  int fiveInt[5] = {1, 2, 3, 4, 5};\n  int *q;\n  p = NULL;\n  q = fiveInt;\n  x = 6;\n  p = &x;\n  printf(\"A: %d %d\\n\", x, *p);\n  *(q + 3) = *p;\n  *p = *q + *(q + 3);\n  printf(\"B: %d %d %d\\n\", x, *p, *q);\n  return 0;\n}\n",
+      "question": "Write the output of the following program.\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  int *p, x;\n  int fiveInt[5] = {1, 2, 3, 4, 5};\n  int *q;\n  p = NULL;\n  q = fiveInt;\n  x = 6;\n  p = &x;\n  printf(\"A: %d %d\\n\", x, *p);\n  *(q + 3) = *p;\n  *p = *q + *(q + 3);\n  printf(\"B: %d %d %d\\n\", x, *p, *q);\n  return 0;\n}\n```\n",
       "answer": "A: 6 6\nB: 7 7 1\n"
     },
     {
@@ -117,8 +112,7 @@ let parsedObject;
       "type": "explaination",
       "multipart": false,
       "table": false,
-      "question": "Identify the potential runtime error in the following code and briefly explain how you would fix it.\n",
-      "question-code": "#include <stdio.h>\nint higher(int *m, int *n) {\n  int isHigher;\n  if (m >= n)\n    isHigher = m;\n  else\n    isHigher = n;\n  return &isHigher;\n}\nint main(void) {\n  int c = 9, d = 8;\n  int isHigher;\n  isHigher = higher(&c, &d);\n  printf(\"%d\\n\", isHigher);\n  return 0;\n}\n",
+      "question": "Identify the potential runtime error in the following code and briefly explain how you would fix it.\n\n```{code-block} c\n#include <stdio.h>\nint higher(int *m, int *n) {\n  int isHigher;\n  if (m >= n)\n    isHigher = m;\n  else\n    isHigher = n;\n  return &isHigher;\n}\nint main(void) {\n  int c = 9, d = 8;\n  int isHigher;\n  isHigher = higher(&c, &d);\n  printf(\"%d\\n\", isHigher);\n  return 0;\n}\n```\n",
       "answer": " Problem: In the function, pointer is assigned to a standard variable. \nCorrection:\n\nint higherCorrect(int *m, int *n) {\n  int isHigher;\n  if (*m >= *n)\n    isHigher = *m;\n  else\n    isHigher = *n;\n  return isHigher;\n}"
     },
     {
@@ -183,8 +177,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "In the box provided below, write the output generated after the following program is completely executed.\n",
-      "question-code": "#include <stdio.h>\nint main(void) {\n  int first = 1, second = 2, data[4] = {10, 20, 30, 40};\n  int *third = &second, *fourth = &first, *fifth = data + first + 1;\n  (*third)++;\n  (*fourth)++;\n  data[second] = *fifth + first + *third + *fourth;\n  printf(\"first = %d, second = %d, third = %d, fourth = %d, fifth = %d\\n\",\n         first, second, *third, *fourth, *fifth);\n  for (int i = 0; i < 4; i++) {\n    printf(\"%d, \", data[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n",
+      "question": "In the box provided below, write the output generated after the following program is completely executed.\n\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  int first = 1, second = 2, data[4] = {10, 20, 30, 40};\n  int *third = &second, *fourth = &first, *fifth = data + first + 1;\n  (*third)++;\n  (*fourth)++;\n  data[second] = *fifth + first + *third + *fourth;\n  printf(\"first = %d, second = %d, third = %d, fourth = %d, fifth = %d\\n\",\n         first, second, *third, *fourth, *fifth);\n  for (int i = 0; i < 4; i++) {\n    printf(\"%d, \", data[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n```\n",
       "answer": "first = 2, second = 3, third = 3, fourth = 2, fifth = 30\n10, 20, 30, 37,\n"
     }
   ]

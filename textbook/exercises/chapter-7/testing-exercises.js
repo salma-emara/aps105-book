@@ -7,8 +7,7 @@ let parsedObject;
       "type": "explaination",
       "multipart": false,
       "table": false,
-      "question": "The following code segment will cause a runtime error. Identify the potential runtime error and briefly explain how you would fix it.\n",
-      "question-code": "char cArray[] = {'H', 'E', 'L', 'L', 'O'};\nprintf(\"The last character is %c.\\n\", cArray[5]); ",
+      "question": "The following code segment will cause a runtime error. Identify the potential runtime error and briefly explain how you would fix it.\n```{code-block} c\nchar cArray[] = {'H', 'E', 'L', 'L', 'O'};\nprintf(\"The last character is %c.\\n\", cArray[5]);\n```\n",
       "answer": " \nProblem: The maximum index for `cArray` is 4 (array out-of-bounds error).\nSolution: Change `[5]` to `[4]`.\n"
     },
     {
@@ -17,8 +16,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "In the box provided below, write the output generated after the following program is completely executed.\n",
-      "question-code": "#include <stdio.h>\n\nint main(void) {\n  int first = 1, second = 2, data[4] = {10, 20, 30, 40};\n  int *third = &second, *fourth = &first, *fifth = data + first + 1;\n  (*third)++;\n  (*fourth)++;\n  data[second] = *fifth + first + *third + *fourth;\n  printf(\"first = %d, second = %d, third = %d, fourth = %d, fifth = %d\\n\",\n         first, second, *third, *fourth, *fifth);\n  for (int i = 0; i < 4; i++) {\n    printf(\"%d, \", data[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n",
+      "question": "In the box provided below, write the output generated after the following program is completely executed.\n\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  int first = 1, second = 2, data[4] = {10, 20, 30, 40};\n  int *third = &second, *fourth = &first, *fifth = data + first + 1;\n  (*third)++;\n  (*fourth)++;\n  data[second] = *fifth + first + *third + *fourth;\n  printf(\"first = %d, second = %d, third = %d, fourth = %d, fifth = %d\\n\",\n         first, second, *third, *fourth, *fifth);\n  for (int i = 0; i < 4; i++) {\n    printf(\"%d, \", data[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n```\n\n",
       "answer": "first = 2, second = 3, third = 3, fourth = 2, fifth = 30\n10, 20, 30, 37,\n"
     },
     {
@@ -27,8 +25,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "What is the output of the following program?\n",
-      "question-code": "#include <stdio.h>\n\nint main(void) {\n  int *p, x;\n  int fiveInt[5] = {1, 2, 3, 4, 5};\n  int *q;\n  p = NULL;\n  q = fiveInt;\n  x = 6;\n  p = &x;\n  printf(\"A: %d %d\\n\", x, *p);\n  *(q + 3) = *p;\n  *p = *q + *(q + 3);\n  printf(\"B: %d %d %d\\n\", x, *p, *q);\n  return 0;\n}\n",
+      "question": "\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  int *p, x;\n  int fiveInt[5] = {1, 2, 3, 4, 5};\n  int *q;\n  p = NULL;\n  q = fiveInt;\n  x = 6;\n  p = &x;\n  printf(\"A: %d %d\\n\", x, *p);\n  *(q + 3) = *p;\n  *p = *q + *(q + 3);\n  printf(\"B: %d %d %d\\n\", x, *p, *q);\n  return 0;\n}\n```\n",
       "answer": "A: 6 6\nB: 7 7 1\n"
     },
     {

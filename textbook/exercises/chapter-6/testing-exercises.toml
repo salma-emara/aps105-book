@@ -4,13 +4,11 @@ difficulty = "Easy"
 type = "explaination"
 table = true
 
-question = """
+question = '''
 Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:
-"""
 
-question-code = '''
+```{code-block} c
 #include <stdio.h>
-
 void SumEm(int *A, int B, int C, int *D) {
   if (B > C) {
     *A = B + *D;
@@ -21,7 +19,6 @@ void SumEm(int *A, int B, int C, int *D) {
   }
   return;
 }
-
 int main(void) {
   int W, X, Y, Z;
   W = 0;
@@ -31,6 +28,7 @@ int main(void) {
   SumEm(&W, X, Y, &Z);
   return 0;
 }
+```
 
 '''
 
@@ -60,14 +58,11 @@ type = "explaination"
 table = false
 multipart= false
 
-question = """
+question = '''
 Find and correct all compile-time errors (mistakes that would cause compilation or that would cause the ‘build’ to fail) in the following C program. Your answer should both identify what the error is, and what the correction should be. Marks will be deducted if you identify correct items as compile-time errors. 
 
-"""
-
-question-code = '''
+```{code-block} c
 #include <stdio.h>
-
 int main(void) {
   int j, k;
   int *i = &j;
@@ -76,6 +71,8 @@ int main(void) {
     printf("%d", (*i) * (*i) * (*i));
   }
 }
+```
+
 '''
 
 answer = '''
@@ -104,12 +101,10 @@ table = false
 multipart= false
 type = "tracing"
 
-question = """
+question = '''
 What will be printed when the following C program is executed?
-"""
-question-code = '''
-#include <stdio.h>
 
+```{code-block} c
 int main(void) {
   int first = 1, second = 10;
   int *pointerToFirst, *pointerToSecond;
@@ -121,6 +116,7 @@ int main(void) {
   *pointerToFirst = *pointerToSecond + *pointerToFirst;
   printf("%d, %d\n", first, second);
 }
+```
 '''
 answer = """
 10, 1
@@ -135,12 +131,10 @@ difficulty = "Easy"
 type = "explaination"
 table = true
 
-question = """
+question = '''
 Consider the following code, which uses pointers. What are the values of the variables `a` and `b` after this code is executed?
 
-"""
-
-question-code = '''
+```{code-block} c
 int a, b, c, d;
 int *e, *f;
 a = 5;
@@ -153,6 +147,7 @@ e = &a;
 f = &b;
 *e = c + d;
 *f = a + b;
+```
 
 '''
 
@@ -176,12 +171,10 @@ table = false
 multipart= false
 type = "tracing"
 
-question = """
+question = '''
 Write the output of the following program.
-"""
-question-code = '''
+```{code-block} c
 #include <stdio.h>
-
 int main(void) {
   int *p, x;
   int fiveInt[5] = {1, 2, 3, 4, 5};
@@ -196,6 +189,7 @@ int main(void) {
   printf("B: %d %d %d\n", x, *p, *q);
   return 0;
 }
+```
 '''
 answer = """
 A: 6 6
@@ -212,9 +206,8 @@ table = false
 
 question = '''
 Identify the potential runtime error in the following code and briefly explain how you would fix it.
-'''
 
-question-code = '''
+```{code-block} c
 #include <stdio.h>
 int higher(int *m, int *n) {
   int isHigher;
@@ -231,6 +224,7 @@ int main(void) {
   printf("%d\n", isHigher);
   return 0;
 }
+```
 '''
 
 answer = """ Problem: In the function, pointer is assigned to a standard variable. 
@@ -254,7 +248,7 @@ type = "programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 There are $0.3048$ metres in a foot, $100$ centimetres in a metre, and $12$ inches in a foot. Write a program that will accept, as input, a length in feet and inches. **You do not have to check for valid input** -- assume the user enters positive, non-fractional values for the feet and inches. The program
 will output the equivalent length in metres and centimetres **(rounded to the nearest centimetre)**.
 
@@ -273,7 +267,7 @@ Please enter the feet and inches to convert: <b>5 10</b>
 5 feet 10 inches is 1 metres and 78 centimetres
 </pre>
 
-"""
+'''
 
 starter-code = '''
 #include <math.h>
@@ -336,14 +330,14 @@ type = "programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 In this question, you are to complete the code for a function and its calling in a main program. The function is called `sumAndProductOfMultiples`. It takes integers `multiple1` and `multiple2`, and a maximum bound `max` as input, and computes both the sum and the product of all the positive integers less than `max` that are multiples of either `multiple1` or `multiple2`.
 
 For example, if `multiple1 = 3`, `multiple2 = 5`, and `max = 10`, the positive integers less than $10$ that are multiples of either $3$ or $5$ are $3$, $5$, $6$, $9$. Their sum is $23$, and their product is $810$. The function must return the `sum` and `product` values via pointer parameters `sumPtr` and `productPtr`, as implied in the skeleton code below.
 
 In the code skeleton below, you are given most of the `main` function, but you must give the call to the `sumAndProductOfMultiples` function. After that you are given just the declaration line of the function, and you must write the remainder of the function.
 
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -407,10 +401,10 @@ table = false
 multipart= false
 type = "tracing"
 
-question = """
+question = '''
 In the box provided below, write the output generated after the following program is completely executed.
-"""
-question-code = '''
+
+```{code-block} c
 #include <stdio.h>
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};
@@ -426,6 +420,7 @@ int main(void) {
   printf("\n");
   return 0;
 }
+```
 '''
 answer = """
 first = 2, second = 3, third = 3, fourth = 2, fifth = 30

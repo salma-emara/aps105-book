@@ -7,11 +7,11 @@ table = false
 
 question = '''
 The following code segment will cause a runtime error. Identify the potential runtime error and briefly explain how you would fix it.
-'''
-
-question-code = '''
+```{code-block} c
 char cArray[] = {'H', 'E', 'L', 'L', 'O'};
-printf("The last character is %c.\n", cArray[5]); '''
+printf("The last character is %c.\n", cArray[5]);
+```
+'''
 
 answer = """ 
 Problem: The maximum index for `cArray` is 4 (array out-of-bounds error).
@@ -25,12 +25,11 @@ table = false
 multipart= false
 type = "tracing"
 
-question = """
+question = '''
 In the box provided below, write the output generated after the following program is completely executed.
-"""
-question-code = '''
-#include <stdio.h>
 
+```{code-block} c
+#include <stdio.h>
 int main(void) {
   int first = 1, second = 2, data[4] = {10, 20, 30, 40};
   int *third = &second, *fourth = &first, *fifth = data + first + 1;
@@ -45,6 +44,8 @@ int main(void) {
   printf("\n");
   return 0;
 }
+```
+
 '''
 answer = """
 first = 2, second = 3, third = 3, fourth = 2, fifth = 30
@@ -57,12 +58,10 @@ difficulty = "Intermediate"
 table = false
 multipart= false
 type = "tracing"
-question = """
-What is the output of the following program?
-"""
-question-code = '''
-#include <stdio.h>
+question = '''
 
+```{code-block} c
+#include <stdio.h>
 int main(void) {
   int *p, x;
   int fiveInt[5] = {1, 2, 3, 4, 5};
@@ -77,7 +76,9 @@ int main(void) {
   printf("B: %d %d %d\n", x, *p, *q);
   return 0;
 }
+```
 '''
+
 answer = """
 A: 6 6
 B: 7 7 1

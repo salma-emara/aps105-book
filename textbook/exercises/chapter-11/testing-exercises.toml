@@ -5,11 +5,11 @@ table = false
 multipart= false
 type = "tracing"
 
-question = """
+question = '''
 Consider the recursive C function `factorial` below. Give the printed output of the function that is
 produced if the function is called with an argument of 4.
-"""
-question-code = '''
+
+```{code-block} c
 int factorial(int n) {
   printf("ENTER: %d\n", n);
   int ret;
@@ -20,6 +20,7 @@ int factorial(int n) {
   printf("EXIT: %d\n", n);
   return ret;
 }
+```
 '''
 answer = """
 ENTER: 4

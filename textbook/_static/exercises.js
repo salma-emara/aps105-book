@@ -17,8 +17,11 @@ function generate_exercises(filename) {
 	const exercises = parsedObject.exercises;
 
 	let inMultipart = false;
+	let multipartTitle = "";
 	let currentMultipartForm = null;
-	let multipartCount = 0;
+	let multipartIndex = 0;
+
+	ace.config.set('basePath', 'https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/');
 
 	for (let i = 0; i < exercises.length; i++) {
 		const ex = exercises[i];
@@ -28,7 +31,7 @@ function generate_exercises(filename) {
 
 		if (!ex.multipart) {
 			inMultipart = false;
-			multipartCount = 0;
+			multipartIndex = 0;
 
 			form = document.createElement('div');
 			form.className = 'exercise-card';
@@ -40,9 +43,11 @@ function generate_exercises(filename) {
 
 		} else {
 
-			multipartCount++;
+			multipartIndex++;
 
-			if (!inMultipart) {
+			let firstMultipart = false;
+
+			if (!inMultipart || multipartTitle != ex.title) {
 				// first part of multipart questions
 				inMultipart = true;
 				currentMultipartForm = document.createElement('div');
@@ -50,16 +55,19 @@ function generate_exercises(filename) {
 				currentMultipartForm.id = `exercise-multipart-${i}`;
 
 				createTitle(currentMultipartForm, ex);
+				multipartTitle = ex.title;
+				firstMultipart = true;
+				multipartIndex = 0;
 				container.appendChild(currentMultipartForm);
 			}
 
 			form = currentMultipartForm;
 
 			// each subquestion gets its own unique storageKey
-			storageKey = `${filename}-${form.id}-part-${multipartCount}`;
+			storageKey = `${filename}-${form.id}-part-${multipartIndex}`;
 
 			// Add divider between multipart sub-questions
-			if (i > 0 && exercises[i - 1].multipart) {
+			if (i > 0 && exercises[i - 1].multipart && !firstMultipart) {
 				const divider = document.createElement("div");
 				divider.className = "multipart-divider";
 				form.appendChild(divider);
@@ -68,15 +76,54 @@ function generate_exercises(filename) {
 
         const md = window.markdownit({ html: true, linkify: true, typographer: true });
 
-        const question = document.createElement('div');
-        const questionHTML = md.render(ex.question);
-        question.innerHTML = questionHTML;
+        const questionContentBox = document.createElement("div");
+        questionContentBox.className = "question-content-box";
 
-		const questionContentBox = document.createElement("div");
-		questionContentBox.className = "question-content-box";
-        questionContentBox.appendChild(question);
+        // extract {code-block} and replace with placeholders
+        let pendingEditors = [];
+		let questionHtml = ex.question.replace(
+            /```{code-block}\s*(\w+)?([\s\S]*?)```/g,
+            (_, lang, code) => {
+                const editorId = "editor-" + Math.random().toString(36).substr(2, 9);
+                pendingEditors.push({ id: editorId, code: code.trim(), lang: lang || "c" });
+                return `<pre><div id="${editorId}" class="ace-editor-tracing"></div></pre>`;
+            }
+        );
+
+		// Replace {figure} with <img>
+		questionHtml = questionHtml.replace(
+			/```{figure}\s*([\s\S]*?)```/g,
+			(_, path) => {
+				const fullPath = "../../" + path.trim();
+				return `<img src="${fullPath}" class="exercise-figure"/>`;
+			}
+		);
+
+        const questionDiv = document.createElement("div");
+		questionDiv.innerHTML = md.render(questionHtml);
+        questionContentBox.appendChild(questionDiv);
+        form.appendChild(questionContentBox);
+
+        if (window.MathJax) MathJax.typesetPromise([questionContentBox]);
 		
-        if (window.MathJax) MathJax.typesetPromise([question]);
+		// Initialize Ace editors inline
+        pendingEditors.forEach(({ id, code, lang }) => {
+            const editor = ace.edit(id);
+			editor.session.setMode("ace/mode/c_cpp");
+            editor.setTheme("ace/theme/tomorrow");
+            editor.setValue(code, 1);
+
+			const lineCount = Math.max(code.split('\n').length, 1);
+			
+			editor.setOptions({
+				readOnly: true,
+				showGutter: lineCount > 3,
+				wrap: true,
+				maxLines: Infinity,
+				fontSize: "14px",
+				fontFamily: "'Menlo', 'Roboto Mono', 'Courier New', Courier, monospace"
+			});
+        });
 
 		const type = ex.type;
 		const isProgrammingQuestion = type === "programming" || type === "function programming";
@@ -86,34 +133,6 @@ function generate_exercises(filename) {
 		const isSingleCorrect = Array.isArray(ex.answer) && ex.answer.length === 1;
 
 		let userInputElement = null;
-
-		if (ex["question-code"]) {
-			const questionCode = ex["question-code"].trim();
-			ace.config.set('basePath', 'https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/');
-			const pre = document.createElement("pre");
-
-			const editorContainer = document.createElement("div");
-			editorContainer.classList.add("ace-editor-tracing");
-
-			pre.appendChild(editorContainer);
-			questionContentBox.appendChild(pre);
-
-			const editor = ace.edit(editorContainer);
-			editor.session.setMode("ace/mode/c_cpp");
-			editor.setTheme("ace/theme/tomorrow");
-			editor.setValue(questionCode, 1);
-
-			const lineCount = Math.max(questionCode.split('\n').length, 1);
-		
-			editor.setOptions({
-				readOnly: true,
-				showGutter: lineCount > 5,
-				wrap: true,
-				maxLines: Infinity,
-				fontSize: "14px",
-				fontFamily: "'Menlo', 'Roboto Mono', 'Courier New', Courier, monospace"
-			});
-		}
 
 		if (isMultipleChoice && ex.choices) {
 			const choicesElement = document.createElement("div");
@@ -135,7 +154,9 @@ function generate_exercises(filename) {
 				const label = document.createElement("label");
 				label.setAttribute("for", input.id);
 				// label.innerHTML = `${String.fromCharCode(65 + j)}) ${choiceText}`;
-				label.innerHTML = `${choiceText}`;
+				const span = document.createElement("span");
+				span.innerHTML = md.renderInline(choiceText);
+				label.appendChild(span);
 
 				const container = document.createElement("div");
 				container.classList.add("choicesContainer");
@@ -146,6 +167,7 @@ function generate_exercises(filename) {
 			}
 
 			questionContentBox.appendChild(choicesElement);
+			if (window.MathJax) MathJax.typesetPromise([questionContentBox]);
 
 		} else if (type === "explaination" && ex.table) {
 			const table = document.createElement("table");
@@ -228,7 +250,7 @@ function generate_exercises(filename) {
 			codeRunner.setAttribute("inputTestcase", "");
 
 			// saved answer
-			let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming`));
+			let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming-${multipartIndex}`));
 
 			if (progData) {
 				codeRunner.textContent = progData.userCode; 
@@ -240,13 +262,14 @@ function generate_exercises(filename) {
 			questionContentBox.appendChild(pre);
 
 			codeRunner.addEventListener('input', () => {
-				const closest = codeRunner.closest('.exercise-card');
-				const editorContainer = closest.querySelector("#codetorun"); 
-				const editor = ace.edit(editorContainer); 
-				const code = editor.getValue();
-			    localStorage.setItem(`${storageKey}-programming`, JSON.stringify({ userCode: code }));
-			    console.log("Code saved");
+				const code = codeRunner.querySelector('.ace_content').innerText;
+				localStorage.setItem(`${storageKey}-programming-${thisPartIndex}`, JSON.stringify({ userCode: code }));
+				console.log("Code saved");
 			});
+
+
+			codeRunner.dataset.partIndex = multipartIndex; // store the part index
+
 
 		} else if (isTracingQuestion) {
 
@@ -261,6 +284,8 @@ function generate_exercises(filename) {
 			traceTextarea.addEventListener("input", () => {
 				localStorage.setItem(`${storageKey}-trace`, traceTextarea.value);
 			});
+
+			traceTextarea.dataset.partIndex = multipartIndex; // store the part index
 
 			questionContentBox.appendChild(traceTextarea);
 			userInputElement = traceTextarea;
@@ -277,6 +302,8 @@ function generate_exercises(filename) {
 			textbox.addEventListener("input", () => {
 				localStorage.setItem(`${storageKey}-explaination`, textbox.value);
 			});
+
+			textbox.dataset.partIndex = multipartIndex; // store the part index
 
 			questionContentBox.appendChild(textbox);
 			userInputElement = textbox;
@@ -313,21 +340,25 @@ function generate_exercises(filename) {
 		footerBox.appendChild(resultMessage);
 		questionContentBox.appendChild(footerBox);
 
+		const thisPartIndex = multipartIndex; // capture the current value
+
 		resetButton.addEventListener("click", () => {
 			if (isProgrammingQuestion){
 
-				localStorage.removeItem(`${storageKey}-programming`);
+				const codeRunner = form.querySelector(`code-runner[data-part-index="${thisPartIndex}"]`);
+				if (!codeRunner) return;
 
-				const closest = resetButton.closest('.exercise-card');
-				const editorContainer = closest.querySelector("#codetorun"); 
-				const editor = ace.edit(editorContainer);
+				const editorDiv = codeRunner.querySelector('.ace_editor'); 
+				if (!editorDiv) return;
 
+				localStorage.removeItem(`${storageKey}-programming-${thisPartIndex}`);
+
+				const editor = ace.edit(editorDiv);  
 				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
 				editor.setValue(starterCode, 1);  
-
 				console.log("Code cleared");
-
-			} else if (isTracingQuestion) {
+			} 
+			else if (isTracingQuestion) {
 
 				localStorage.removeItem(`${storageKey}-trace`);
 				if (userInputElement) userInputElement.value = '';
@@ -370,19 +401,35 @@ function generate_exercises(filename) {
 					selectedIndices.length === correctIndices.length &&
 					correctIndices.every(idx => selectedIndices.includes(idx));
 
-				if (ex.explanations && ex.explanations.length > 0) {
-					const explanationHTML = `
-					<details style="margin-top: 10px;">
-						<summary style="cursor: pointer;">Show Explanation</summary>
-						<div style="margin-top: 5px;">
-							${ex.explanations[0]}
-						</div>
-					</details>
-					`;
-					
+				if (ex.explanation){
+
+					const explanationText = Array.isArray(ex.explanation)
+						? ex.explanation.join("\n\n")
+						: ex.explanation;
+
+					const explanationDetails = document.createElement("details");
+					explanationDetails.style.marginTop = "10px";
+
+					const explanationSummary = document.createElement("summary");
+					explanationSummary.textContent = "Show Explanation";
+					explanationSummary.style.cursor = "pointer";
+
+					const explanationContent = document.createElement("div");
+					explanationContent.classList.add("solution-box");
+					explanationContent.style.marginTop = "5px";
+					explanationContent.innerHTML = md.render(explanationText);
+
+					explanationDetails.appendChild(explanationSummary);
+					explanationDetails.appendChild(explanationContent);
+
 					resultMessage.innerHTML = isCorrect
-						? `<span style="color: green;">Correct!</span><br>${explanationHTML}`
-						: `<span style="color: red;">Incorrect.</span><br>${explanationHTML}`;
+						? `<span style="color: green;">Correct!</span>`
+						: `<span style="color: red;">Incorrect.</span>`;
+
+					resultMessage.appendChild(explanationDetails);
+
+					if (window.MathJax) MathJax.typesetPromise([explanationContent]);
+			
 				} else {
 					resultMessage.innerHTML = isCorrect
 						? `<span style="color: green;">Correct!</span>`
@@ -398,7 +445,7 @@ function generate_exercises(filename) {
 
 			if (isProgrammingQuestion) {
 
-				const existingTestcaseContainer = form.querySelector(".testcase-container");
+				const existingTestcaseContainer = form.querySelector(`.testcase-container[data-part-index="${thisPartIndex}"]`);
 				if (existingTestcaseContainer) existingTestcaseContainer.remove();
 
 				const existingHintContainer = form.querySelector(".hint-container");
@@ -414,11 +461,25 @@ function generate_exercises(filename) {
 					expectedOutput.push(exerciseTestcases[j].output || []);
 				}
 
-				const codeRunner = form.querySelector('code-runner');
+				// const codeRunner = form.querySelector('code-runner');
+				const codeRunner = form.querySelector(`code-runner[data-part-index="${thisPartIndex}"]`);
+
 				let studentCode = null;
 
 				// append main-function for function programming type
-				if (type === "function programming" && ex["main-function"]) {
+
+				if (type === "function programming" && ex["append-before"] && ex["main-function"]) {
+					const rawCode = codeRunner.querySelector('.ace_content').innerText;
+					const studentOnlyCode = removeMainFunction(rawCode).trim();
+
+					studentCode = "// Given Code\n" + ex["append-before"].trim() +
+					"\n\n// Student Code\n" +
+					studentOnlyCode +
+					"\n\n// Appended main function used for testcases\n" +
+					ex["main-function"].trim();
+
+				}
+				else if (type === "function programming" && ex["main-function"]) {
 
 					const rawCode = codeRunner.querySelector('.ace_content').innerText;
 					const studentOnlyCode = removeMainFunction(rawCode).trim();
@@ -447,14 +508,14 @@ function generate_exercises(filename) {
 				}
 
 				let hintContainer = await generate_hints(form, studentCode, expectedOutput, actualOutput, ex.question, []);
-				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode);
+				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode, thisPartIndex);
 
 			} else if (type === "explaination" && ex.table){
 				
-				handle_output_submission(form, resultMessage, type, correctAnswer, ex, storageKey);
+				handle_output_submission(form, resultMessage, type, correctAnswer, ex, storageKey, thisPartIndex);
 
 			} else {
-				handle_output_submission(form, resultMessage, type, correctAnswer, ex, storageKey);
+				handle_output_submission(form, resultMessage, type, correctAnswer, ex, storageKey, thisPartIndex);
 			}
 		});
 
@@ -469,11 +530,12 @@ function removeMainFunction(code) {
 }
 
 
-async function handle_prog_submission(form, messageElement, inputArray, expectedOutput, actualOutput, correctAnswer, questionType, hintContainer, studentCode) {
+async function handle_prog_submission(form, messageElement, inputArray, expectedOutput, actualOutput, correctAnswer, questionType, hintContainer, studentCode, thisPartIndex) {
     const totalTestcases = actualOutput.length;
 
     const testcaseResults = actualOutput.map((output, idx) => {
         const expected = (expectedOutput[idx] && expectedOutput[idx][0]) || "";
+		output = decodeHtmlEntities(output);
         const passed = normalizeOutput(expected) === normalizeOutput(output);
         return { expected, actual: output, passed };
     });
@@ -481,13 +543,13 @@ async function handle_prog_submission(form, messageElement, inputArray, expected
     const numTestcasesPassed = testcaseResults.filter(tc => tc.passed).length;
     const isCorrect = numTestcasesPassed === totalTestcases;
 
-    const testcaseContainer = getTestcasesContainer(form, inputArray, expectedOutput, actualOutput, testcaseResults);
+	const testcaseContainer = getTestcasesContainer(form, inputArray, expectedOutput, actualOutput, thisPartIndex);
 
 	if (isCorrect) hintContainer = null;
     updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, "", numTestcasesPassed, totalTestcases, testcaseContainer, hintContainer, studentCode);
 }
 
-async function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, storageKey) {
+async function handle_output_submission(form, messageElement, questionType, correctAnswer, exercise, storageKey, multipartIndex) {
 
 	const existingFeedbackContainer = messageElement.querySelector(".hint-container");
 	if (existingFeedbackContainer) existingFeedbackContainer.remove();
@@ -522,13 +584,15 @@ async function handle_output_submission(form, messageElement, questionType, corr
 		return;
 	}
 
-	const traceInput = form.querySelector(".trace-textarea") || form.querySelector(".explaination-textarea");
+    // select the input corresponding to this part
+	const traceInput = form.querySelector(`.trace-textarea[data-part-index="${multipartIndex}"], .explaination-textarea[data-part-index="${multipartIndex}"]`);
 	const userAnswer = traceInput ? traceInput.value.trim() : "";
 
 	if (!userAnswer) {
 		updateResultMessage(messageElement, false, questionType, correctAnswer, "Please enter your answer before submitting.");
 		return;
 	}
+
 
 	let isCorrect = false;
 
@@ -545,7 +609,9 @@ async function handle_output_submission(form, messageElement, questionType, corr
 		0,  // numPassed
 		0,  // total
 		null, // testcaseContainer
-		feedbackContainer 
+		feedbackContainer,
+		null, // studentCode
+		exercise    // ✅ pass the whole exercise object
 	);
 	return;
 }
@@ -580,8 +646,10 @@ function buildFilledTableHTML(headers, rows) {
 	return table.outerHTML;
 }
 
-function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null, studentCode = null) {
+function updateResultMessage(messageElement, isCorrect, questionType, correctAnswer, customMessage = "", numPassed = 0, total = 0, testcaseContainer = null, hintContainer = null, studentCode = null, ex = null) {
    
+	const md = window.markdownit({ html: true, linkify: true, typographer: true });
+
     if (customMessage) {
         messageElement.innerHTML = `<span style="color: #276be9;">${customMessage}</span>`;
         return;
@@ -600,13 +668,14 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
             const mainInfoTitle = document.createElement("div");
             mainInfoTitle.style.marginTop = "10px";
             mainInfoTitle.style.fontWeight = "bold";
-            mainInfoTitle.innerText = "Appended main function to student code:";
+            mainInfoTitle.innerText = "Appended function(s) to student code:";
 
 			// bold comments
 			const highlightedCode = studentCode
 				.replace(/&/g, '&amp;')
 				.replace(/</g, '&lt;')
 				.replace(/>/g, '&gt;')
+				.replace(/\/\/ Given Code/g, '<span style="font-weight:bold">// Given Code</span>')
 				.replace(/\/\/ Student Code/g, '<span style="font-weight:bold">// Student Code</span>')
 				.replace(/\/\/ Appended main function used for testcases/g, '<span style="font-weight:bold">// Appended main function used for testcases</span>');
 
@@ -672,6 +741,27 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
                 </details>
             `;
 
+		if (ex && ex.explanation) {
+			const explanationDetails = document.createElement("details");
+			explanationDetails.style.marginTop = "10px";
+
+			const explanationSummary = document.createElement("summary");
+			explanationSummary.textContent = "Show Explanation";
+			explanationSummary.style.cursor = "pointer";
+
+			// solution-box only wraps the content, not the summary
+			const explanationContent = document.createElement("div");
+			explanationContent.classList.add("solution-box");
+			explanationContent.style.marginTop = "5px";
+			explanationContent.innerHTML = md.render(ex.explanation);
+
+			explanationDetails.appendChild(explanationSummary);
+			explanationDetails.appendChild(explanationContent);
+			messageElement.appendChild(explanationDetails);
+
+			if (window.MathJax) MathJax.typesetPromise([explanationContent]);
+		}
+
 		// feedback container
 		if (hintContainer) {
 			const hintDetails = document.createElement("details");
@@ -704,10 +794,13 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
 		solutionSummary.textContent = "Show Suggested Solution";
 
 		const solutionContent = document.createElement("div");
-		solutionContent.style.marginTop = "10px";
+		solutionContent.classList.add("solution-box");
 
 		if (correctAnswer.solutionTableHTML) solutionContent.innerHTML = correctAnswer.solutionTableHTML
-		else solutionContent.innerHTML = `<pre>${escapeHtml(correctAnswer)}</pre>`;
+		else {
+			solutionContent.innerHTML = md.render(correctAnswer);
+			if (window.MathJax) MathJax.typesetPromise([solutionContent]);
+		}
 
 		solutionDetails.appendChild(solutionSummary);
 		solutionDetails.appendChild(solutionContent);
@@ -742,12 +835,13 @@ function escapeHtml(text) {
 	return div.innerHTML;
 }
 
-function getTestcasesContainer(form, inputArray, outputArray, actualOutput ) {
-	const existingTestcaseContainer = form.querySelector(".testcase-container");
-	if (existingTestcaseContainer) existingTestcaseContainer.remove();
+function getTestcasesContainer(form, inputArray, outputArray, actualOutput, partIndex) {
+    const existingTestcaseContainer = form.querySelector(`.testcase-container[data-part-index="${partIndex}"]`);
+    if (existingTestcaseContainer) existingTestcaseContainer.remove();
 
 	const testcaseContainer = document.createElement("div");
 	testcaseContainer.classList.add("testcase-container");
+	testcaseContainer.dataset.partIndex = partIndex; 
 
 	const testcaseButtonContainer = document.createElement("div");
 	testcaseButtonContainer.classList.add("testcase-button-container");
@@ -770,7 +864,8 @@ function getTestcasesContainer(form, inputArray, outputArray, actualOutput ) {
 		testcaseDiv.style.display = "none";
 
 		const expected = (outputArray[i] && outputArray[i][0]) || "";
-		const actual = actualOutput[i] || "";
+		let actual = actualOutput[i] || "";
+		actual = decodeHtmlEntities(actual);
 		const passed = (normalizeOutput(expected) == normalizeOutput(actual));
 
 		if (inputArray[i] != ""){
@@ -837,14 +932,23 @@ function normalizeOutput(str) {
         .toLowerCase();     
 }
 
+function decodeHtmlEntities(str) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = str;
+    return txt.value;
+}
+
 function diffCheckExercises(expected, actual) {
+	
+	actual = decodeHtmlEntities(actual);
     if (expected === actual) return {expectedResult: expected, actualResult: actual};
 
     let expectedResult = "";
     let actualResult = "";
 
-    const expectedWords = expected.match(/[^\s]+|\s+/g) || [];
-    const actualWords = actual.match(/[^\s]+|\s+/g) || [];
+	const expectedWords = expected.match(/<|>|\w+|[^\w\s]|[\s]+/g) || [];
+	const actualWords   = actual.match(/<|>|\w+|[^\w\s]|[\s]+/g) || [];
+
     const length = Math.max(expectedWords.length, actualWords.length);
 
     for (let i = 0; i < length; i++) {

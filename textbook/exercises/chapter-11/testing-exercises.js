@@ -7,8 +7,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "Consider the recursive C function `factorial` below. Give the printed output of the function that is\nproduced if the function is called with an argument of 4.\n",
-      "question-code": "int factorial(int n) {\n  printf(\"ENTER: %d\\n\", n);\n  int ret;\n  if (n == 0 || n == 1)\n    ret = 1;\n  else\n    ret = n * factorial(n - 1);\n  printf(\"EXIT: %d\\n\", n);\n  return ret;\n}\n",
+      "question": "Consider the recursive C function `factorial` below. Give the printed output of the function that is\nproduced if the function is called with an argument of 4.\n\n```{code-block} c\nint factorial(int n) {\n  printf(\"ENTER: %d\\n\", n);\n  int ret;\n  if (n == 0 || n == 1)\n    ret = 1;\n  else\n    ret = n * factorial(n - 1);\n  printf(\"EXIT: %d\\n\", n);\n  return ret;\n}\n```\n",
       "answer": "ENTER: 4\nENTER: 3\nENTER: 2\nENTER: 1\nEXIT: 1\nEXIT: 2\nEXIT: 3\nEXIT: 4\n"
     },
     {

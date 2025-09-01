@@ -41,12 +41,11 @@ type = "multiple-choice"
 table = false
 multipart= true
 
-question = """
+question = '''
 Evaluate the following relational expressions by circling the right answer.
-"""
+`'\O' == 0`
+'''
 
-question-code = """ '\\O' == 0
-"""
 answer = [0]
 
 choices = [
@@ -64,12 +63,9 @@ type = "multiple-choice"
 table = false
 multipart = true
 
-question = """ 
-"""
-
-question-code = """ int x = 10 % 8;
-(x > 0) && (x % 2 == 0) && !false
-"""
+question = '''
+`int x = 10 % 8;`<br>`(x > 0) && (x % 2 == 0) && !false`
+'''
 
 answer = [0]
 
@@ -87,11 +83,9 @@ type = "multiple-choice"
 table = false
 multipart = true
 
-question = """ 
-"""
-
-question-code = """ 'c' - 3 == 'a'
-"""
+question = '''
+`'c' - 3 == 'a'`
+'''
 
 answer = [1]
 
@@ -109,13 +103,11 @@ type = "multiple-choice"
 table = false
 multipart = true
 
-question = """ 
-"""
+question = '''
+`int w = rand() % 75 * 2 - 99;`
 
-question-code = """ 
-int w = rand() % 75 * 2 - 99;
-(w < -99) || (w > 49);
-"""
+`(w < -99) \|\| (w > 49);`
+'''
 
 answer = [1]
 

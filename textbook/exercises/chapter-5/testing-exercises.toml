@@ -5,10 +5,10 @@ table = false
 multipart= false
 type = "tracing"
 
-question = """
+question = '''
 Write the output of the following program.
-"""
-question-code = '''
+
+```{code-block} c
 #include <stdio.h>
 
 void skipSpace(int n) {
@@ -56,10 +56,10 @@ type = "function programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 The following function is called with three distinct characters and returns the middle character, e.g., if 'a', 'b', and 'c' is passed as arguments to the function, it returns 'b'. Rewrite this function such that it only uses one return and one if statement.
-"""
-question-code = '''
+
+```{code-block} c
 char median(char a, char b, char c) {
   if (a < b) {
     if (b < c) {
@@ -78,6 +78,8 @@ char median(char a, char b, char c) {
   }
   return c;
 }
+```
+
 '''
 
 starter-code = '''

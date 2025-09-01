@@ -7,8 +7,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "type": "tracing",
-      "question": "Write the output of the following program.\n",
-      "question-code": "#include <stdio.h>\n\nvoid skipSpace(int n) {\n  for (int i = 1; i <= n; i++) printf(\" \");\n}\n\nvoid printLeft(int n) {\n  for (int i = 1; i <= n; i++) printf(\"/\");\n}\n\nvoid printRight(int n) {\n  for (int i = 1; i <= n; i++) printf(\"\\\\\");\n}\n\nint main(void) {\n  const int TSize = 5;\n  int i;\n  skipSpace(TSize);\n  printf(\"*\\n\");\n  for (i = 0; i < TSize - 2; i++) {\n    skipSpace(TSize - 1 - i);\n    printLeft(i + 1);\n    printf(\"|\");\n    printRight(i + 1);\n    printf(\"\\n\");\n  }\n  skipSpace(TSize);\n  printf(\"|\");\n  return 0;\n}\n",
+      "question": "Write the output of the following program.\n\n```{code-block} c\n#include <stdio.h>\n\nvoid skipSpace(int n) {\n  for (int i = 1; i <= n; i++) printf(\" \");\n}\n\nvoid printLeft(int n) {\n  for (int i = 1; i <= n; i++) printf(\"/\");\n}\n\nvoid printRight(int n) {\n  for (int i = 1; i <= n; i++) printf(\"\\\\\");\n}\n\nint main(void) {\n  const int TSize = 5;\n  int i;\n  skipSpace(TSize);\n  printf(\"*\\n\");\n  for (i = 0; i < TSize - 2; i++) {\n    skipSpace(TSize - 1 - i);\n    printLeft(i + 1);\n    printf(\"|\");\n    printRight(i + 1);\n    printf(\"\\n\");\n  }\n  skipSpace(TSize);\n  printf(\"|\");\n  return 0;\n}\n",
       "answer": "     *\n    /|\\\n   //|\\\\\n  ///|\\\\\\\n     |\n"
     },
     {
@@ -17,8 +16,7 @@ let parsedObject;
       "type": "function programming",
       "table": false,
       "multipart": false,
-      "question": "The following function is called with three distinct characters and returns the middle character, e.g., if 'a', 'b', and 'c' is passed as arguments to the function, it returns 'b'. Rewrite this function such that it only uses one return and one if statement.\n",
-      "question-code": "char median(char a, char b, char c) {\n  if (a < b) {\n    if (b < c) {\n      return b;\n    } else if (a < c) {\n      return c;\n    } else {\n      return a;\n    }\n  }\n  if (c < b) {\n    return b;\n  }\n  if (a < c) {\n    return a;\n  }\n  return c;\n}\n",
+      "question": "The following function is called with three distinct characters and returns the middle character, e.g., if 'a', 'b', and 'c' is passed as arguments to the function, it returns 'b'. Rewrite this function such that it only uses one return and one if statement.\n\n```{code-block} c\nchar median(char a, char b, char c) {\n  if (a < b) {\n    if (b < c) {\n      return b;\n    } else if (a < c) {\n      return c;\n    } else {\n      return a;\n    }\n  }\n  if (c < b) {\n    return b;\n  }\n  if (a < c) {\n    return a;\n  }\n  return c;\n}\n```\n\n",
       "starter-code": "#include <stdio.h>\n\nchar median(char a, char b, char c) {\n\n}\n",
       "answer": "#include <stdio.h>\n\nchar median(char a, char b, char c) {\n  char result = a;\n  if ((a < b && b < c) || (c < b && b < a)) {\n    result = b;\n  } else if ((a < c && c < b) || (b < c && c < a)) {\n    result = c;\n  }\n  return result;\n}\n",
       "main-function": "int main(void) {\n  char a, b, c;\n  // Read three characters from input\n  scanf(\" %c %c %c\", &a, &b, &c);\n  // Call the median function and print the result\n  printf(\"%c\\n\", median(a, b, c));\n  return 0;\n}\n",

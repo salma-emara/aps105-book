@@ -5,15 +5,16 @@ type = "explaination"
 table = false
 multipart = false
 
-question = """
+question = '''
 The following array of integers is the result of the first round of partitioning, used 
 in the Quicksort algorithm to sort the array in ascending order. Identify the possible 
 array element or elements that could have been used as the pivot in the first partitioning 
 round. Justify your answer; guessing an answer with no justifications will result in a 
 mark of zero. 
-"""
-question-code = '''
+
+```{code-block} c
 {15, 6, 45, 60, 32, 71, 102, 81}
+```
 '''
 answer = """ 
 The pivot is 71, because all elements on its left are smaller than it 

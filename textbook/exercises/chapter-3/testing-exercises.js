@@ -25,8 +25,7 @@ let parsedObject;
       "type": "multiple-choice",
       "table": false,
       "multipart": true,
-      "question": "Evaluate the following relational expressions by circling the right answer.\n",
-      "question-code": " '\\O' == 0\n",
+      "question": "Evaluate the following relational expressions by circling the right answer.\n`'\\O' == 0`\n",
       "answer": [
         0
       ],
@@ -44,8 +43,7 @@ let parsedObject;
       "type": "multiple-choice",
       "table": false,
       "multipart": true,
-      "question": " \n",
-      "question-code": " int x = 10 % 8;\n(x > 0) && (x % 2 == 0) && !false\n",
+      "question": "`int x = 10 % 8;`<br>`(x > 0) && (x % 2 == 0) && !false`\n",
       "answer": [
         0
       ],
@@ -63,8 +61,7 @@ let parsedObject;
       "type": "multiple-choice",
       "table": false,
       "multipart": true,
-      "question": " \n",
-      "question-code": " 'c' - 3 == 'a'\n",
+      "question": "`'c' - 3 == 'a'`\n",
       "answer": [
         1
       ],
@@ -82,8 +79,7 @@ let parsedObject;
       "type": "multiple-choice",
       "table": false,
       "multipart": true,
-      "question": " \n",
-      "question-code": " \nint w = rand() % 75 * 2 - 99;\n(w < -99) || (w > 49);\n",
+      "question": "`int w = rand() % 75 * 2 - 99;`\n\n`(w < -99) \\|\\| (w > 49);`\n",
       "answer": [
         1
       ],

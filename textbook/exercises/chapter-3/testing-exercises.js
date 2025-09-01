@@ -139,7 +139,7 @@ let parsedObject;
       "testcases": [
         {
           "input": [
-            "3\n"
+            "a b c\n"
           ],
           "output": [
             "Enter three characters:\n b\n"

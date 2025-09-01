@@ -13,7 +13,7 @@ would give 0.84. You can use any of the C math library functions. Write your sol
 """
 
 answer = '''
-double approximateValue = rint(value * 100) / 100; '''
+`double approximateValue = rint(value * 100) / 100;` '''
 
 
 
@@ -34,8 +34,8 @@ You can assume that all the variables in the expression are already declared as 
 the math library (described by the header file math.h) is available, and that the value of y and z is in radians.
 """
 
-answer = """ 
-r = (pow(x, n) + 6 * pow(x, 4.0)) / (sin(y) + cos(z)); """
+answer = '''
+`r = (pow(x, n) + 6 * pow(x, 4.0)) / (sin(y) + cos(z));` '''
 
 
 
@@ -57,8 +57,8 @@ packaged into groups of $5$.
 **Hint:** Use a function in the `math` library
 """
 
-answer = """ 
-int leftover = fmin(numApples % 3, numApples % 5); """
+answer = '''
+`int leftover = fmin(numApples % 3, numApples % 5);` '''
 
 
 
@@ -139,8 +139,8 @@ question = """
 Write a single C statement that generates a random even number in the range of [-150, 150] (inclusive), and uses it to declare and initialize an int-type variable `randomChoice`.
 """
 
-answer = """ 
-int randomChoice = (rand() % 151 - 75) * 2; """
+answer =''' 
+`int randomChoice = (rand() % 151 - 75) * 2; ` '''
 
 
 [[exercises]]
@@ -156,9 +156,9 @@ with a number that is randomly selected from the following set: 0.05, 0.1, 0.15,
 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95.
 """
 
-answer = """ 
-double randomSelection = (rand() % 19 + 1) * 0.05;
-"""
+answer = '''
+`double randomSelection = (rand() % 19 + 1) * 0.05;`
+'''
 
 
 
@@ -174,8 +174,7 @@ question = """
 Write a single C statement that declares a `char` variable called `randomCharacter`, and initializes it to a random value draw from one of the three characters: 'A', 'B', 'C'.
 """
 
-answer = """ 
-char randomCharacter = 'A' + rand() % 3;
-"""
-
+answer = '''
+`char randomCharacter = 'A' + rand() % 3;`
+'''
 

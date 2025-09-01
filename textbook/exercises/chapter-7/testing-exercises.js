@@ -8,7 +8,7 @@ let parsedObject;
       "multipart": false,
       "table": false,
       "question": "The following code segment will cause a runtime error. Identify the potential runtime error and briefly explain how you would fix it.\n```{code-block} c\nchar cArray[] = {'H', 'E', 'L', 'L', 'O'};\nprintf(\"The last character is %c.\\n\", cArray[5]);\n```\n",
-      "answer": " \nProblem: The maximum index for `cArray` is 4 (array out-of-bounds error).\nSolution: Change `[5]` to `[4]`.\n"
+      "answer": " \n**Problem:** The maximum index for `cArray` is 4 (array out-of-bounds error).\n\n\n**Solution:** Change `[5]` to `[4]`.\n"
     },
     {
       "title": "Question 5 in Winter 2022 Midterm Exam",

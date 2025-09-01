@@ -14,8 +14,10 @@ printf("The last character is %c.\n", cArray[5]);
 '''
 
 answer = """ 
-Problem: The maximum index for `cArray` is 4 (array out-of-bounds error).
-Solution: Change `[5]` to `[4]`.
+**Problem:** The maximum index for `cArray` is 4 (array out-of-bounds error).
+
+
+**Solution:** Change `[5]` to `[4]`.
 """
 
 [[exercises]]

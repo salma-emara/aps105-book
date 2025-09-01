@@ -170,15 +170,6 @@ let parsedObject;
           ]
         }
       ]
-    },
-    {
-      "title": "Question 5 in Winter 2022 Midterm Exam",
-      "difficulty": "Challenging",
-      "table": false,
-      "multipart": false,
-      "type": "tracing",
-      "question": "In the box provided below, write the output generated after the following program is completely executed.\n\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  int first = 1, second = 2, data[4] = {10, 20, 30, 40};\n  int *third = &second, *fourth = &first, *fifth = data + first + 1;\n  (*third)++;\n  (*fourth)++;\n  data[second] = *fifth + first + *third + *fourth;\n  printf(\"first = %d, second = %d, third = %d, fourth = %d, fifth = %d\\n\",\n         first, second, *third, *fourth, *fifth);\n  for (int i = 0; i < 4; i++) {\n    printf(\"%d, \", data[i]);\n  }\n  printf(\"\\n\");\n  return 0;\n}\n```\n",
-      "answer": "first = 2, second = 3, third = 3, fourth = 2, fifth = 30\n10, 20, 30, 37,\n"
     }
   ]
 };

@@ -13,8 +13,8 @@ is an **even positive** number. Assume that the variable `characterCount` has al
 and initialized.
 """
 
-answer = """ 
-bool isHighlighted = characterCount % 2 == 0 && characterCount > 0; """
+answer = '''
+`bool isHighlighted = characterCount % 2 == 0 && characterCount > 0;` '''
 
 
 [[exercises]]
@@ -30,9 +30,8 @@ true to divisible if and only if the value stored in the int variable named `num
 divisible by $5$ or $7$. Assume that variable `numOfItems` has been declared and initialized.
 """
 
-answer = """ 
-bool divisible = numOfItems % 5 == 0 || numOfItems % 7 == 0; """
-
+answer = '''
+`bool divisible = numOfItems % 5 == 0 || numOfItems % 7 == 0;` '''
 
 [[exercises]]
 title = "Question 7 in Winter 2018 Final Exam"
@@ -64,7 +63,8 @@ table = false
 multipart = true
 
 question = '''
-`int x = 10 % 8;`<br>`(x > 0) && (x % 2 == 0) && !false`
+`int x = 10 % 8;`<br>
+`(x > 0) && (x % 2 == 0) && !false`
 '''
 
 answer = [0]
@@ -105,8 +105,7 @@ table = false
 multipart = true
 
 question = '''
-`int w = rand() % 75 * 2 - 99;`
-
+`int w = rand() % 75 * 2 - 99;`<br>
 `(w < -99) \|\| (w > 49);`
 '''
 

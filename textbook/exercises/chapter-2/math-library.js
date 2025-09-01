@@ -8,7 +8,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "question": "\nWrite a single C statement using no curly brackets that rounds a double-type variable named `value` to its nearest hundredths place, \nand assign the result to a new double-type variable named `approximateValue`. For example, rounding 0.843 to the nearest hundredth \nwould give 0.84. You can use any of the C math library functions. Write your solution in the box below\n",
-      "answer": " \ndouble approximateValue = rint(value * 100) / 100; "
+      "answer": "double approximateValue = rint(value * 100) / 100; "
     },
     {
       "title": "Modified Version of Question 3 in Fall 2014 Midterm",

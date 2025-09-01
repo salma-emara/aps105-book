@@ -33,9 +33,7 @@ let parsedObject;
         "True",
         "False"
       ],
-      "explanations": [
-        "True, since \\0 has ASCII code of zero"
-      ]
+      "explanation": "True, since \\\\0 has ASCII code of zero"
     },
     {
       "title": "Question 7 in Winter 2018 Final Exam",
@@ -51,9 +49,7 @@ let parsedObject;
         "True",
         "False"
       ],
-      "explanations": [
-        "True, since x stores 2"
-      ]
+      "explanation": "True, since x stores 2"
     },
     {
       "title": "Question 7 in Winter 2018 Final Exam",
@@ -69,9 +65,7 @@ let parsedObject;
         "True",
         "False"
       ],
-      "explanations": [
-        "False, since 'c' - 2 == 'a'"
-      ]
+      "explanation": "False, since 'c' - 2 == 'a'\n"
     },
     {
       "title": "Question 7 in Winter 2018 Final Exam",
@@ -87,9 +81,7 @@ let parsedObject;
         "True",
         "False"
       ],
-      "explanations": [
-        "False, since the range of random numbers in w is between -99 and 49 inclusive"
-      ]
+      "explanation": "False, since the range of random numbers in w is between -99 and 49 inclusive"
     },
     {
       "title": "Modified version of Question 7 in Winter 2019 Midterm Exam",

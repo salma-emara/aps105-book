@@ -95,7 +95,7 @@ function generate_exercises(filename) {
 			/```{figure}\s*([\s\S]*?)```/g,
 			(_, path) => {
 				const fullPath = "../../" + path.trim();
-				return `<img src="${fullPath}" class="exercise-figure"/>`;
+				return `<img src="${fullPath}" class="exercise-figure" style="display: block; margin: 0 auto;"/>`;
 			}
 		);
 

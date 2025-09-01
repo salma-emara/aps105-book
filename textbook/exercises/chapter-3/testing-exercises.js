@@ -41,7 +41,7 @@ let parsedObject;
       "type": "multiple-choice",
       "table": false,
       "multipart": true,
-      "question": "`int x = 10 % 8;`<br>`(x > 0) && (x % 2 == 0) && !false`\n",
+      "question": "`int x = 10 % 8;`<br>\n`(x > 0) && (x % 2 == 0) && !false`\n",
       "answer": [
         0
       ],

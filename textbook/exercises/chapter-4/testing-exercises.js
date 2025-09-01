@@ -8,7 +8,7 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "question": "Re-write the following code snippet replacing the for loop with a while loop. The changes you make should not change the functionality of the code snippet. Your code snippet should have exactly the same number of variables and the same variable names. \n\n```{code-block} c\nint result = 2;\nfor (int i = 2; i <= 989; i = i * 2) {\n  result *= i;\n}\n```\n\n",
-      "answer": "\nint result = 2, i = 2;\nwhile (i <= 989) {\n  result *= i;\n  i = i * 2;\n}\n"
+      "answer": "\n`int result = 2, i = 2;`<br>\n`while (i <= 989) {`<br>`\n  result *= i;`<br>`\n  i = i * 2;`<br>\n`}`\n\n"
     },
     {
       "title": "Question 8 in Winter 2022 Final Exam",
@@ -109,7 +109,27 @@ let parsedObject;
       "table": false,
       "multipart": false,
       "question": "Identify and correct all compile-time errors you find in the C program below. Compile-time errors are errors — not warnings — that the compiler will report when compiling the program. Each line may or may not contain compile-time errors, and there may be more than one error per line.\n\n**Code with compile-time errors**\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  double a, b = 3.14;\n  do {\n    int i = 0;\n    printf(\"Enter a positive integer for offset: \n\");\n    scanf(\"%d\", &a);\n } while (i < 5 && (a < 100 || a > 1);\n int j;\n for (j = 0, j < 3, j++) {\n    y = b * j % a;\n    printf(\"%d\n\", y);\n}\n return 0;\n}\n```\n",
-      "answer": " \nLine 5: the scope of `i` is only within the `{}` of the do-while loop, so it cannot be used outside the loop in the conditional statement. Hence, `i` should be declared before the do-while loop. More on scope in the next chapter.\n\nLine 8: Missing closing `)`\n\nLine 10: Commas should be semi-colon\n\nLine 11: Cannot use modulo operator with double values, should be corrected to\n`y = (int) b * j % (int) a;` (or declare variable `a` and `b` as int)\n\nLine 11: variable `y` is not declared but used here. Can be declared with `j` as `int j, y;`\n"
+      "answer": " \nLine 5: the scope of `i` is only within the `{}` of the do-while loop, so it cannot be used outside the loop in the conditional statement. Hence, `i` should be declared before the do-while loop. More on scope in the next chapter.\n\n\nLine 8: Missing closing `)`\n\n\nLine 10: Commas should be semi-colon\n\n\nLine 11: Cannot use modulo operator with double values, should be corrected to\n`y = (int) b * j % (int) a;` (or declare variable `a` and `b` as int)\n\n\nLine 11: variable `y` is not declared but used here. Can be declared with `j` as `int j, y;`\n"
+    },
+    {
+      "title": "Question 6 in Winter 2020 Midterm Exam",
+      "difficulty": "Intermediate",
+      "type": "programming",
+      "table": false,
+      "multipart": false,
+      "question": "The value of the mathematical constant $e$ can be expressed using the infinite series:\n$ e = 1 + \\frac{1}{1!} + \\frac{1}{2!} + \\frac{1}{3!} + ...$\n\nWrite a C program that approximates the value of $e$ by approximating $1 + \\frac{1}{1!} + \\frac{1}{2!} + \\frac{1}{3!} + ...$.\n\nRather than adding an infinite number of terms, your program should continue adding terms until the value of a term is less than $0.001$. Your program should print the approximation to $e$ and the number of terms used to determine the approximation. The terms in the series are $1$, $\\frac{1}{1!}$, $\\frac{1}{2!}$ and so on.\n",
+      "starter-code": "#include <stdio.h>\n\nint main(void) {\n\n  // Your code here\n  \n}\n",
+      "answer": "#include <stdio.h>\n\nint main(void) {\n  const double TOLERANCE = 0.001;\n  double sum = 0.0, term = 1.0;\n  int n = 0;\n\n  while (term >= TOLERANCE) {\n    sum = sum + term;  // accumulate the term\n    n = n + 1;         // determine next term\n    term = term / n;\n  }\n\n  printf(\"The value of e is approximately %f.\\n\", sum);\n  printf(\"The number of terms in the sum is %d.\\n\", n);\n  return 0;\n}\n",
+      "testcases": [
+        {
+          "input": [
+            "\n"
+          ],
+          "output": [
+            "The value of e is approximately 2.718056.\nThe number of terms in the sum is 7.\n"
+          ]
+        }
+      ]
     }
   ]
 };

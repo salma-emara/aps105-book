@@ -76,9 +76,12 @@ int main(void) {
 '''
 
 answer = '''
-// Corrected condition and increment fields: 
-// `*i < 10, *i = *i + 1` to `*i < 10; *i = *i + 1`
+Corrected condition and increment fields: 
+`*i < 10, *i = *i + 1` to `*i < 10; *i = *i + 1`
 
+
+**Full Code:**
+<pre>
 #include <stdio.h>
 
 int main(void) {
@@ -89,6 +92,8 @@ int main(void) {
     printf("%d", (*i) * (*i) * (*i));
   }
 }
+</pre>
+
 '''
 
 
@@ -227,9 +232,12 @@ int main(void) {
 ```
 '''
 
-answer = """ Problem: In the function, pointer is assigned to a standard variable. 
-Correction:
+answer = ''' **Problem:** In the function, pointer is assigned to a standard variable. 
 
+
+**Correction:**
+
+<pre>
 int higherCorrect(int *m, int *n) {
   int isHigher;
   if (*m >= *n)
@@ -237,7 +245,10 @@ int higherCorrect(int *m, int *n) {
   else
     isHigher = *n;
   return isHigher;
-}"""
+}
+</pre>
+
+'''
 
 
 
@@ -274,6 +285,8 @@ starter-code = '''
 #include <stdio.h>
 
 int main(void) {
+
+  // Your Code Here
 
 }
 '''
@@ -357,7 +370,9 @@ int main(void) {
 
 void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
                               int* sumPtr, int* productPtr) {
-                
+
+  // Your Code Here
+        
 }
 '''
 

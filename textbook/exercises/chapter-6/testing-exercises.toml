@@ -407,38 +407,3 @@ void sumAndProductOfMultiples(int multiple1, int multiple2, int max,
 [[exercises.testcases]]
 input = "Q8.T1.in"
 output = "Q8.T1.out"
-
-
-[[exercises]]
-title = "Question 5 in Winter 2022 Midterm Exam"
-difficulty = "Challenging"
-table = false
-multipart= false
-type = "tracing"
-
-question = '''
-In the box provided below, write the output generated after the following program is completely executed.
-
-```{code-block} c
-#include <stdio.h>
-int main(void) {
-  int first = 1, second = 2, data[4] = {10, 20, 30, 40};
-  int *third = &second, *fourth = &first, *fifth = data + first + 1;
-  (*third)++;
-  (*fourth)++;
-  data[second] = *fifth + first + *third + *fourth;
-  printf("first = %d, second = %d, third = %d, fourth = %d, fifth = %d\n",
-         first, second, *third, *fourth, *fifth);
-  for (int i = 0; i < 4; i++) {
-    printf("%d, ", data[i]);
-  }
-  printf("\n");
-  return 0;
-}
-```
-'''
-answer = """
-first = 2, second = 3, third = 3, fourth = 2, fifth = 30
-10, 20, 30, 37,
-"""
-

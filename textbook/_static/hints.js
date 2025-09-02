@@ -170,7 +170,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         // parser hint
         const match = hintsText.match(/Hint\s*:\s*(.+)/i);
-        let hint = match ? match[1].trim() : "No hint available.";
+        let hint = match ? match[1].trim() : "No hint available. Please try again!";
         hintDiv.innerText = hint;
         previousHints.push(hint);
 
@@ -379,7 +379,7 @@ async function get_feedback(form, messageElement, exercise, studentRows, userAns
         const feedbackMatch = feedbackText.match(/Feedback\s*:\s*(.+)/i);
         const isCorrectMatch = feedbackText.match(/isCorrect\s*:\s*(true|false)/i);
 
-        const feedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available.";
+        const feedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available. Please try again";
 
         let isCorrect;
 

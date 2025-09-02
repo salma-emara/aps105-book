@@ -495,6 +495,10 @@ function generate_exercises(filename) {
 					studentCode = rawCode;
 
 				}
+				
+				resultMessage.innerHTML = "";
+				resultMessage.style.color = "";       // reset to default
+				resultMessage.style.fontWeight = "";  // reset to default
 
 				let actualOutput = await runTestCases(codeRunner, inputArray, resultMessage, studentCode);
 

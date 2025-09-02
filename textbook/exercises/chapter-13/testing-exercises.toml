@@ -286,6 +286,7 @@ void printDuplicates(Node *head) {
 
 answer = '''
 void printDuplicates(Node *head) {
+  
   Node *current = head;
 
   while (current != NULL) {
@@ -295,15 +296,11 @@ void printDuplicates(Node *head) {
       if (current->data == runner->data) {
         printf("%d\n", current->data);
       }
-
       runner = runner->link;
-
     }
-
+    
     current = current->link;
-
   }
-  
 }
 '''
 
@@ -334,7 +331,6 @@ int main(void) {
         }
     }
 
-    printf("Duplicates:\n");
     printDuplicates(head);
 
     // Free memory

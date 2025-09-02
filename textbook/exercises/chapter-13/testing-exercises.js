@@ -86,14 +86,14 @@ let parsedObject;
       "question": "The following C structure is used to define each node in a linked list:\n```{code-block} c\ntypedef struct node {\n  int data;\n  struct node *link;\n} Node;\n```\n\nWrite a C function called `printDuplicates` that receives a pointer to the first node (`head`) of a linked list as a parameter. The function should find and print the duplicate integers in the linked list. For\nexample, if the linked list contains the integers $6$, $3$, $3$, $6$, $7$, $4$, then the `printDuplicates()` function should print:\n<pre>\n6\n3\n</pre>\n\n**Note:** In your solution, you may assume that a given integer occurs at most twice in the linked list.\n",
       "starter-code": "#include <stdio.h>\n#include <stdlib.h>\n\ntypedef struct node {\n  int data;\n  struct node *link;\n} Node;\n\nvoid printDuplicates(Node *head) {\n  \n  // Write your function here\n\n}\n",
       "answer": "void printDuplicates(Node *head) {\n  Node *current = head;\n\n  while (current != NULL) {\n    Node *runner = current->link;\n\n    while (runner != NULL) {\n      if (current->data == runner->data) {\n        printf(\"%d\\n\", current->data);\n      }\n\n      runner = runner->link;\n\n    }\n\n    current = current->link;\n\n  }\n  \n}\n",
-      "main-function": "int main(void) {\n    int n;\n    scanf(\"%d\", &n);\n\n    if (n <= 0) return 0;\n\n    Node* head = NULL;\n    Node* tail = NULL;\n\n    for (int i = 0; i < n; i++) {\n        int val;\n        scanf(\"%d\", &val);\n\n        Node* newNode = (Node*) malloc(sizeof(Node));\n        newNode->data = val;\n        newNode->link = NULL;\n\n        if (!head) {\n            head = newNode;\n            tail = newNode;\n        } else {\n            tail->link = newNode;\n            tail = newNode;\n        }\n    }\n\n    printf(\"Duplicates:\\n\");\n    printDuplicates(head);\n\n    // Free memory\n    Node* current = head;\n    while (current) {\n        Node* tmp = current;\n        current = current->link;\n        free(tmp);\n    }\n\n    return 0;\n}\n",
+      "main-function": "int main(void) {\n    int n;\n    scanf(\"%d\", &n);\n\n    if (n <= 0) return 0;\n\n    Node* head = NULL;\n    Node* tail = NULL;\n\n    for (int i = 0; i < n; i++) {\n        int val;\n        scanf(\"%d\", &val);\n\n        Node* newNode = (Node*) malloc(sizeof(Node));\n        newNode->data = val;\n        newNode->link = NULL;\n\n        if (!head) {\n            head = newNode;\n            tail = newNode;\n        } else {\n            tail->link = newNode;\n            tail = newNode;\n        }\n    }\n\n    printDuplicates(head);\n\n    // Free memory\n    Node* current = head;\n    while (current) {\n        Node* tmp = current;\n        current = current->link;\n        free(tmp);\n    }\n\n    return 0;\n}\n",
       "testcases": [
         {
           "input": [
             "6\n6 3 3 6 7 4\n"
           ],
           "output": [
-            "Duplicates:\n6\n3\n"
+            "6\n3\n"
           ]
         },
         {
@@ -101,7 +101,7 @@ let parsedObject;
             "5\n1 2 3 4 5\n"
           ],
           "output": [
-            "Duplicates:\n"
+            ""
           ]
         },
         {
@@ -109,7 +109,7 @@ let parsedObject;
             "4\n8 8 9 9 "
           ],
           "output": [
-            "Duplicates:\n8\n9"
+            "8\n9"
           ]
         },
         {
@@ -117,7 +117,7 @@ let parsedObject;
             "7\n-1 2 -1 3 2 4 3\n"
           ],
           "output": [
-            "Duplicates:\n-1\n2\n3\n"
+            "-1\n2\n3\n"
           ]
         },
         {
@@ -125,7 +125,7 @@ let parsedObject;
             "1\n42\n"
           ],
           "output": [
-            "Duplicates:\n"
+            ""
           ]
         }
       ]

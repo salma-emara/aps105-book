@@ -32,6 +32,8 @@ int binSearch(int values[], int n, int item) {
 '''
 
 answer = '''
+#include <stdio.h>
+
 int binSearch(int values[], int n, int item) {
   int left = 0;
   int right = n - 1;
@@ -44,11 +46,49 @@ int binSearch(int values[], int n, int item) {
     else
       right = middle - 1;
   }
+  return -1;
 }
 '''
 
 main-function = '''
 int main(void) {
+    int n, item;
+    scanf("%d", &n);
+
+    int values[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &values[i]);
+    }
+
+    scanf("%d", &item);
+
+    int index = binSearch(values, n, item);
+    printf("%d\n", index);
+
+    return 0;
 }
 '''
 
+[[exercises.testcases]]
+input = "Q1.T1.in"
+output = "Q1.T1.out"
+
+[[exercises.testcases]]
+input = "Q1.T2.in"
+output = "Q1.T2.out"
+
+[[exercises.testcases]]
+input = "Q1.T3.in"
+output = "Q1.T3.out"
+
+[[exercises.testcases]]
+input = "Q1.T4.in"
+output = "Q1.T4.out"
+
+[[exercises.testcases]]
+input = "Q1.T5.in"
+output = "Q1.T5.out"
+
+[[exercises.testcases]]
+input = "Q1.T6.in"
+output = "Q1.T6.out"

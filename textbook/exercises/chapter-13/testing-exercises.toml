@@ -3,9 +3,9 @@ title = "Question 5 in Winter 2018 Final Exam"
 difficulty = "Easy"
 table = false
 multipart= false
-type = "explaination"
+type = "function programming"
 
-question = """
+question = '''
 Complete the following C program, designed to search for an int-type item, called `key`, in a linked list, pointed to by `head`.
 ```{code-block} c
 typedef struct node {
@@ -23,7 +23,19 @@ Node *search(Node *head, int key) {
   return current;
 }
 ```
-"""
+'''
+
+starter-code = '''
+Node *search(Node *head, int key) {
+  Node *current = head;
+  // insert your code in the line below between the parentheses
+  while (                                          ) {
+    current = current->link;
+  }
+
+  return current;
+}
+'''
 
 answer = '''
 typedef struct node {
@@ -42,6 +54,69 @@ Node *search(Node *head, int key) {
 }
 '''
 
+append-before = '''
+#include <stdio.h>
+#include <stdlib.h>
+'''
+
+main-function = '''
+int main() {
+    int n, key;
+    scanf("%d", &n);
+
+    if (n <= 0) return 0;
+
+    int value;
+    Node *head = NULL, *tail = NULL;
+
+    // Read n integers and create the linked list
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &value);
+        Node *newNode = (Node*) malloc(sizeof(Node));
+        newNode->data = value;
+        newNode->link = NULL;
+        if (head == NULL) {
+            head = tail = newNode;
+        } else {
+            tail->link = newNode;
+            tail = newNode;
+        }
+    }
+
+    // Read the key to search
+    scanf("%d", &key);
+
+    Node *result = search(head, key);
+    if (result != NULL) {
+        printf("Found: %d\n", result->data);
+    } else {
+        printf("Not found\n");
+    }
+
+    // Free the linked list
+    Node *curr = head;
+    while (curr != NULL) {
+        Node *tmp = curr;
+        curr = curr->link;
+        free(tmp);
+    }
+
+    return 0;
+}
+'''
+
+[[exercises.testcases]]
+input = "Q1.T1.in"
+output = "Q1.T1.out"
+
+[[exercises.testcases]]
+input = "Q1.T2.in"
+output = "Q1.T2.out"
+
+[[exercises.testcases]]
+input = "Q1.T3.in"
+output = "Q1.T3.out"
+
 
 
 
@@ -51,9 +126,9 @@ title = "Question 6 in Winter 2016 Final Exam"
 difficulty = "Easy"
 table = false
 multipart= false
-type = "programming"
+type = "function programming"
 
-question = """
+question = '''
 Consider the following code, where head points to the head of a linked list:
 ```{code-block} c
 typedef struct node {
@@ -66,32 +141,20 @@ Node *head;
 
 Complete the following C function that returns a pointer to the node that precedes (comes before) `searchNode`, if it is found in the linked list. If `searchNode` is not found or the linked list is empty, the function should return `NULL`. Read the function carefully: you may need to add code
 in several locations.
-"""
+'''
 
 starter-code = '''
-#include <stdio.h>
 
-typedef struct node {
-  int value;
-  struct node *link;
-} Node;
-
-Node *head;
-
-int main(void){
-
-  Node *predecessor(Node *head, Node *searchNode) {
-    Node *current;
-    current = head;
-    if (head == searchNode) return NULL;
-    // COMPLETE THE NEXT LINE:
-    while (                                          ) {
-      if (current->link == searchNode) return current;
-      // WRITE CODE HERE:
-    }
-    return NULL;
+Node *predecessor(Node *head, Node *searchNode) {
+  Node *current;
+  current = head;
+  if (head == searchNode) return NULL;
+  // COMPLETE THE NEXT LINE:
+  while (                                          ) {
+    if (current->link == searchNode) return current;
+    // WRITE CODE HERE:
   }
-  
+  return NULL;
 }
 '''
 
@@ -113,8 +176,69 @@ Node *predecessor(Node *head, Node *searchNode) {
 }
 '''
 
+append-before = '''
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node {
+  int value;
+  struct node *link;
+} Node;
+
+Node *head;
+'''
+
+main-function = '''
+int main(void) {
+    int n;
+    scanf("%d", &n);
+
+    Node nodes[100]; // assuming max 100 nodes
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &nodes[i].value);
+        nodes[i].link = (i < n - 1) ? &nodes[i + 1] : NULL;
+    }
+
+    Node *head = &nodes[0];
+
+    int searchVal;
+    scanf("%d", &searchVal);
+
+    Node *searchNode = NULL;
+    for (int i = 0; i < n; i++) {
+        if (nodes[i].value == searchVal) {
+            searchNode = &nodes[i];
+            break;
+        }
+    }
+
+    Node *pred = predecessor(head, searchNode);
+
+    if (!searchNode) {
+        printf("Value %d not found in the list.\n", searchVal);
+    } else if (!pred) {
+        printf("Value %d is the head of the list; no predecessor.\n", searchVal);
+    } else {
+        printf("Predecessor of %d is %d.\n", searchVal, pred->value);
+    }
+
+    return 0;
+}
+'''
+
+[[exercises.testcases]]
+input = "Q2.T1.in"
+output = "Q2.T1.out"
 
 
+[[exercises.testcases]]
+input = "Q2.T2.in"
+output = "Q2.T2.out"
+
+
+[[exercises.testcases]]
+input = "Q2.T2.in"
+output = "Q2.T2.out"
 
 
 
@@ -125,7 +249,7 @@ table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 The following C structure is used to define each node in a linked list:
 ```{code-block} c
 typedef struct node {
@@ -142,10 +266,11 @@ example, if the linked list contains the integers $6$, $3$, $3$, $6$, $7$, $4$, 
 </pre>
 
 **Note:** In your solution, you may assume that a given integer occurs at most twice in the linked list.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node {
   int data;
@@ -153,7 +278,9 @@ typedef struct node {
 } Node;
 
 void printDuplicates(Node *head) {
+  
   // Write your function here
+
 }
 '''
 
@@ -162,25 +289,84 @@ void printDuplicates(Node *head) {
   Node *current = head;
 
   while (current != NULL) {
-    Node *runner = current->next;
+    Node *runner = current->link;
 
     while (runner != NULL) {
       if (current->data == runner->data) {
         printf("%d\n", current->data);
       }
 
-      runner = runner->next;
+      runner = runner->link;
+
     }
 
-    current = current->next;
+    current = current->link;
+
   }
+  
 }
 '''
 
 main-function = '''
 int main(void) {
+    int n;
+    scanf("%d", &n);
+
+    if (n <= 0) return 0;
+
+    Node* head = NULL;
+    Node* tail = NULL;
+
+    for (int i = 0; i < n; i++) {
+        int val;
+        scanf("%d", &val);
+
+        Node* newNode = (Node*) malloc(sizeof(Node));
+        newNode->data = val;
+        newNode->link = NULL;
+
+        if (!head) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail->link = newNode;
+            tail = newNode;
+        }
+    }
+
+    printf("Duplicates:\n");
+    printDuplicates(head);
+
+    // Free memory
+    Node* current = head;
+    while (current) {
+        Node* tmp = current;
+        current = current->link;
+        free(tmp);
+    }
+
+    return 0;
 }
 '''
+[[exercises.testcases]]
+input = "Q3.T1.in"
+output = "Q3.T1.out"
+
+[[exercises.testcases]]
+input = "Q3.T2.in"
+output = "Q3.T2.out"
+
+[[exercises.testcases]]
+input = "Q3.T3.in"
+output = "Q3.T3.out"
+
+[[exercises.testcases]]
+input = "Q3.T4.in"
+output = "Q3.T4.out"
+
+[[exercises.testcases]]
+input = "Q3.T5.in"
+output = "Q3.T5.out"
 
 
 
@@ -195,7 +381,7 @@ table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 The following C structure is used to define each node in a linked list:
 ```{code-block} c
 typedef struct node {
@@ -221,11 +407,11 @@ then after calling the function, the list should contain:
 <pre>
 13 15 17 19 22 25 28
 </pre>
-
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node {
   int value;
@@ -233,7 +419,9 @@ typedef struct node {
 } Node;
 
 void simplify(Node *head) {
+
   // Write your function here
+
 }
 '''
 
@@ -257,9 +445,57 @@ void simplify(Node *head) {
 
 main-function = '''
 int main(void) {
+    int n;
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Simplified list:\n");
+        return 0;
+    }
+
+    Node *head = NULL, *prev = NULL;
+
+    for (int i = 0; i < n; i++) {
+        int val;
+        scanf("%d", &val);
+        Node *node = (Node*)malloc(sizeof(Node));
+        node->value = val;
+        node->link = NULL;
+
+        if (prev != NULL) prev->link = node;
+        else head = node;
+
+        prev = node;
+    }
+    simplify(head);
+
+    printf("Simplified list:\n");
+    Node *current = head;
+    while (current != NULL) {
+        printf("%d ", current->value);
+        current = current->link;
+    }
+    printf("\n");
+
+    return 0;
 }
 '''
 
+[[exercises.testcases]]
+input = "Q4.T1.in"
+output = "Q4.T1.out"
+
+[[exercises.testcases]]
+input = "Q4.T2.in"
+output = "Q4.T2.out"
+
+[[exercises.testcases]]
+input = "Q4.T3.in"
+output = "Q4.T3.out"
+
+[[exercises.testcases]]
+input = "Q4.T4.in"
+output = "Q4.T4.out"
 
 
 
@@ -298,7 +534,9 @@ typedef struct node {
 } Node;
 
 Node *buildJoinedList(Node *firstList, Node *secondList) {
+  
   // Write your function here
+
 }
 '''
 
@@ -342,9 +580,90 @@ Node *buildJoinedList(Node *firstList, Node *secondList) {
 '''
 
 main-function = '''
+// Helper function to create a new node
+Node *createNode(int value) {
+    Node *n = (Node *)malloc(sizeof(Node));
+    n->data = value;
+    n->next = NULL;
+    return n;
+}
+
+// Helper function to build a linked list from input
+Node *readList(int n) {
+    if (n <= 0) return NULL;
+    int val;
+    scanf("%d", &val);
+    Node *head = createNode(val);
+    Node *current = head;
+    for (int i = 1; i < n; i++) {
+        scanf("%d", &val);
+        current->next = createNode(val);
+        current = current->next;
+    }
+    return head;
+}
+
+// Helper function to print a linked list
+void printList(Node *head) {
+    printf("Joined List: ");
+    Node *curr = head;
+    while (curr != NULL) {
+        printf("%d ", curr->data);
+        curr = curr->next;
+    }
+    printf("\n");
+}
+
+// Helper function to free a linked list
+void freeList(Node *head) {
+    Node *curr = head;
+    while (curr != NULL) {
+        Node *tmp = curr;
+        curr = curr->next;
+        free(tmp);
+    }
+}
+
 int main(void) {
+    int n1, n2;
+    scanf("%d", &n1);
+    Node *firstList = readList(n1);
+
+    scanf("%d", &n2);
+    Node *secondList = readList(n2);
+
+    Node *joinedList = buildJoinedList(firstList, secondList);
+
+    printList(joinedList);
+
+    // Free all allocated memory
+    freeList(firstList);
+    freeList(secondList);
+    freeList(joinedList);
+
+    return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q5.T1.in"
+output = "Q5.T1.out"
+
+[[exercises.testcases]]
+input = "Q5.T2.in"
+output = "Q5.T2.out"
+
+[[exercises.testcases]]
+input = "Q5.T3.in"
+output = "Q5.T3.out"
+
+[[exercises.testcases]]
+input = "Q5.T4.in"
+output = "Q5.T4.out"
+
+[[exercises.testcases]]
+input = "Q5.T5.in"
+output = "Q5.T5.out"
 
 
 
@@ -396,6 +715,7 @@ Output List:       0   0   0   0   1  19  5
 
 starter-code = '''
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node {
   int data;
@@ -407,7 +727,9 @@ typedef struct linkedList {
 } LinkedList;
 
 void reorder(LinkedList *list) {
+  
   // Write your function here
+  
 }
 '''
 
@@ -453,7 +775,7 @@ void reorder(LinkedList *list) {
 }
 
 // Solution 2:
-void reorderAlternative(LinkedList *list) {
+void reorder(LinkedList *list) {
   Node *current = list->head;
   Node *prev = NULL;
   while (current != NULL) {
@@ -480,8 +802,62 @@ void reorderAlternative(LinkedList *list) {
 
 main-function = '''
 int main(void) {
+    int n;
+    scanf("%d", &n);
+
+    LinkedList list;
+    list.head = NULL;
+
+    Node *prev = NULL;
+    for (int i = 0; i < n; i++) {
+        Node *newNode = (Node *)malloc(sizeof(Node));
+        scanf("%d", &newNode->data);
+        newNode->next = NULL;
+
+        if (prev == NULL) {
+            list.head = newNode;
+        } else {
+            prev->next = newNode;
+        }
+        prev = newNode;
+    }
+
+    reorder(&list);
+
+    Node *curr = list.head;
+    printf("Reordered list: ");
+    while (curr != NULL) {
+        printf("%d ", curr->data);
+        Node *tmp = curr;
+        curr = curr->next;
+        free(tmp);  // free dynamically allocated node
+    }
+    printf("\n");
+
+    return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q6.T1.in"
+output = "Q6.T1.out"
+
+[[exercises.testcases]]
+input = "Q6.T2.in"
+output = "Q6.T2.out"
+
+[[exercises.testcases]]
+input = "Q6.T3.in"
+output = "Q6.T3.out"
+
+[[exercises.testcases]]
+input = "Q6.T4.in"
+output = "Q6.T4.out"
+
+[[exercises.testcases]]
+input = "Q6.T5.in"
+output = "Q6.T5.out"
+
 
 
 

@@ -54,6 +54,7 @@ so that the string contains `"olleH"`.
 
 starter-code = '''
 #include <stdio.h>
+#include <string.h>
 
 void revStr(char *str, int len) {
 
@@ -64,6 +65,7 @@ void revStr(char *str, int len) {
 
 answer = '''
 #include <stdio.h>
+#include <string.h>
 
 void revStr(char *str, int len) {
   char tmp;
@@ -78,9 +80,41 @@ void revStr(char *str, int len) {
 
 main-function = '''
 int main(void) {
+  char str[30];
+  scanf("%[^\n]", str);  // read entire line including spaces
+  revStr(str, strlen(str));
+  printf("%s\n", str);
+  return 0;
 }
 '''
 
+[[exercises.testcases]]
+input = "Q2.T1.in"
+output = "Q2.T1.out"
+
+[[exercises.testcases]]
+input = "Q2.T2.in"
+output = "Q2.T2.out"
+
+[[exercises.testcases]]
+input = "Q2.T3.in"
+output = "Q2.T3.out"
+
+[[exercises.testcases]]
+input = "Q2.T4.in"
+output = "Q2.T4.out"
+
+[[exercises.testcases]]
+input = "Q2.T5.in"
+output = "Q2.T5.out"
+
+[[exercises.testcases]]
+input = "Q2.T6.in"
+output = "Q2.T6.out"
+
+[[exercises.testcases]]
+input = "Q2.T7.in"
+output = "Q2.T7.out"
 
 [[exercises]]
 title = "Question 14 in Winter 2018 Final Exam"
@@ -138,9 +172,31 @@ int recursiveFindIndex(char *string, char c) {
 
 main-function = '''
 int main(void) {
+  char str[30];
+  char ch;
+  int index;
+
+  // Read string and character
+  while (scanf("%s %c", str, &ch) == 2) {
+      index = recursiveFindIndex(str, ch);
+      printf("%d\n", index);
+  }
+
+  return 0;
 }
 '''
 
+[[exercises.testcases]]
+input = "Q3.T1.in"
+output = "Q3.T1.out"
+
+[[exercises.testcases]]
+input = "Q3.T2.in"
+output = "Q3.T2.out"
+
+[[exercises.testcases]]
+input = "Q3.T3.in"
+output = "Q3.T3.out"
 
 
 [[exercises]]
@@ -209,5 +265,36 @@ bool compareLines(const char* lineOne, const char* lineTwo) {
 
 main-function = '''
 int main(void) {
+  char lineOne[30], lineTwo[30];
+
+  // Read two lines from input
+  fgets(lineOne, sizeof(lineOne), stdin);
+  fgets(lineTwo, sizeof(lineTwo), stdin);
+
+  // Remove trailing newline characters
+  int i = 0;
+  while (lineOne[i] != '\0') { if (lineOne[i] == '\n') lineOne[i] = '\0'; i++; }
+  i = 0;
+  while (lineTwo[i] != '\0') { if (lineTwo[i] == '\n') lineTwo[i] = '\0'; i++; }
+
+  printf("%s\n", compareLines(lineOne, lineTwo) ? "true" : "false");
+
+  return 0;
 }
 '''
+
+[[exercises.testcases]]
+input = "Q4.T1.in"
+output = "Q4.T1.out"
+
+[[exercises.testcases]]
+input = "Q4.T2.in"
+output = "Q4.T2.out"
+
+[[exercises.testcases]]
+input = "Q4.T3.in"
+output = "Q4.T3.out"
+
+[[exercises.testcases]]
+input = "Q4.T4.in"
+output = "Q4.T4.out"

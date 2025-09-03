@@ -1,6 +1,29 @@
 let currentQuestionIndex = 0;
 
+document.addEventListener("submit", function (e) {
+    e.preventDefault(); 
+  });
+
 function startQuiz() {
+
+    const filename = window.quizFilename || "unknown";
+
+    const key = `startClickCount_${filename}`;
+    let startClickCount = parseInt(localStorage.getItem(key) || "0");
+
+    startClickCount++;
+    localStorage.setItem(key, startClickCount);
+
+    const userID = getOrCreateUserID();
+    // Send event to Google Analytics
+    gtag('event', 'start_quiz_click', {
+        event_category: 'Quiz Interaction',
+        event_label: `Start Button Clicked - ${filename}`,
+        value: startClickCount,
+        quiz_user_id: userID  
+    });
+
+    console.log(`Start button clicked ${startClickCount} times for ${filename}`);
 
     currentQuestionIndex = 0;
 
@@ -72,6 +95,29 @@ function startQuiz() {
     }
 
 }
+
+window.addEventListener("load", () => {
+    if (localStorage.getItem("formsLocked") === "true") {
+        const quizForms = document.querySelectorAll("[id^='quizForm']");
+
+        for (let i = 0; i < quizForms.length; i++) {
+            const form = quizForms[i];
+            
+            // lock the user's code editor
+            const textArea = form.querySelector("#codetorun .ace_text-input");
+            if (textArea) textArea.setAttribute("readonly", "");
+            const editorContainer = form.querySelector("#codetorun");
+            if (editorContainer) editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
+
+            // locks input
+            const inputArea = form.querySelector("#input_section > textarea");
+            if (textArea) { 
+                textArea.setAttribute("readonly", "");
+                inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+            }        
+        }
+    }
+  });
 
 function closeFullscreenForm() {
 
@@ -157,6 +203,33 @@ function closeFullscreenForm() {
         const resetButton = document.getElementById("reset-button");
         resetButton.classList.remove("hidden");
 
+        for (let i = 0; i < quizForms.length; i++) {
+            const form = quizForms[i];
+            
+            // lock the user's code editor
+            const textArea = form.querySelector("#codetorun .ace_text-input");
+            if (textArea) textArea.setAttribute("readonly", "");
+            const editorContainer = form.querySelector("#codetorun");
+            if (editorContainer) editorContainer.style.backgroundColor = "var(--bg, #edebeb)";
+
+            // locks input
+            const inputArea = form.querySelector("#input_section > textarea");
+            if (inputArea) { 
+                textArea.setAttribute("readonly", "");
+                inputArea.style.backgroundColor = "var(--bg, #edebeb)";
+            }
+
+            const traceTextarea = form.querySelector(".trace-textarea");
+            if (traceTextarea) {
+                traceTextarea.style.backgroundColor = "#edebeb";
+                traceTextarea.setAttribute("readonly", "");
+            }
+            
+            localStorage.setItem("formsLocked", "true");
+            
+            localStorage.setItem("displayTestcases", "true");
+        
+        }
     }
     else {
         var fullscreenForms = document.getElementById("fullscreen-form");
@@ -177,7 +250,33 @@ function closeFullscreenForm() {
     }
 }
 
+
 function parse_and_generate_form(fileName) {
+
+    window.addEventListener("load", () => {
+
+        if (localStorage.getItem("displayTestcases") === "true" && localStorage.getItem("formsLocked") === "true"){
+
+            const quizForms = document.querySelectorAll("[id^='quizForm']");
+            for (let i = 0; i < quizForms.length; i++) {
+                const formId = "quizForm" + (i + 1);
+                const form = document.getElementById(formId);
+
+                let savedData = JSON.parse(localStorage.getItem(fileName + formId + "_programming"));                
+                if (savedData) displayTestcaseResults(form, savedData.inputArray, savedData.outputArray, savedData.actualOutput);
+
+                savedData = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_tracing"));
+                if (savedData) {
+
+                    const messageElement = form.querySelector("#message" + (i + 1));
+                    const traceTextarea = form.querySelector(".trace-textarea");
+
+                    traceTextarea.value = savedData.userOutput;
+                }
+            }
+        }
+
+    });
 
     const doc = document.getElementById("fullscreen-form");
 
@@ -186,9 +285,11 @@ function parse_and_generate_form(fileName) {
     resetButton.type = "button";
     resetButton.id = "reset-button";
     resetButton.innerHTML = "Reset Quiz";
-    resetButton.classList.add("reset-button");
+    resetButton.classList.add("reset-quiz-button");
     resetButton.classList.add("hidden");
-    resetButton.addEventListener("click", () => resetQuiz(fileName));
+    resetButton.addEventListener("click", () => {
+        resetQuiz(fileName);
+    });
     doc.appendChild(resetButton);
 
     const questions = parsedObject.questions;
@@ -203,13 +304,60 @@ function parse_and_generate_form(fileName) {
 
     for (let i = 0; i < questions.length; i++) {
         let question = questions[i].prompt;
+
+        let isProgrammingQuestion = questions[i].programming;
+        let actualCode = "";
+        let outputArray = [];
+        let inputArray = [];
+
+        let isTracingQuestion = questions[i].tracing;
+        let answer = "";
+
+        if (isProgrammingQuestion){
+            
+            let rawCode = questions[i].code || "";
+            actualCode = rawCode
+                .replace(/&#35;/g, '#')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/<br>/g, '\n')
+                .replace(/&quot;/g, '"')
+                .replace(/&amp;/g, '&');
+
+            // Collect all testcases for this question
+            const questionTestcases = questions[i].testcases;
+
+            for (let j = 0; j < questionTestcases.length; j++) {
+                inputArray.push(questionTestcases[j].input || []);
+                outputArray.push(questionTestcases[j].output || []);
+            } 
+
+            console.log("Inputs:", inputArray);
+            console.log("Outputs:", outputArray);
+        } else if (isTracingQuestion){
+            
+            let rawCode = questions[i].code || "";
+            actualCode = rawCode
+                .replace(/&#35;/g, '#')
+                .replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/<br>/g, '\n')
+                .replace(/&quot;/g, '"')
+                .replace(/&amp;/g, '&');
+
+            answer = questions[i].answer || "";
+
+            console.log(actualCode);
+            console.log("Answer: ", answer);
+        } else {
+            answer = questions[i].answer || [];
+        }
+
         const choices = questions[i].distractors;
-        const codeSnippet = questions[i].codeSnippet;
-        const answer = questions[i].answer;
         const hint = questions[i].explainations;
 
         var isSingleCorrect = false;
-        if (answer.length == 1) {
+        if (!isTracingQuestion && answer.length == 1) {
             isSingleCorrect = true;
         }
 
@@ -299,21 +447,149 @@ function parse_and_generate_form(fileName) {
 
         form.appendChild(questionElement);
 
-        //add choices
+        //add choices            
         const choicesElement = document.createElement("div");
-        choicesElement.id = "choices" + (i + 1);
-        form.appendChild(choicesElement);
 
+        // code runner 
+    
+        // create pre class element 
+        const pre = document.createElement("pre");
+        pre.classList.add("code-runner-quizzes");
+          
+        // creating <code-runner language="c" output="Hello World!"> 
+        const codeRunner = document.createElement("code-runner");
+
+        codeRunner.setAttribute("language", "c");
+        codeRunner.setAttribute("output", "");
+        codeRunner.setAttribute("inputTestcase", "");
+            
+        codeRunner.textContent = actualCode;
+
+        // tracing block
+
+        ace.config.set('basePath', 'https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/');
+
+        const editorContainer = document.createElement("div");
+        editorContainer.classList.add("ace-editor-tracing");
+
+        const traceLabel = document.createElement("label");
+        traceLabel.textContent = "Your Output:";
+        traceLabel.classList.add("trace-label");
+
+        const traceTextarea = document.createElement("textarea");
+        traceTextarea.classList.add("trace-textarea");
+        traceTextarea.rows = 6;
+        traceTextarea.placeholder = "Write your expected output here...";
+
+        if (isProgrammingQuestion) {
+
+            pre.appendChild(codeRunner);
+            form.appendChild(pre);       
+            
+        } else if (isTracingQuestion){
+
+            form.appendChild(editorContainer);
+            form.appendChild(traceLabel);
+            form.appendChild(traceTextarea);
+
+            const editor = ace.edit(editorContainer);
+            editor.session.setMode("ace/mode/c_cpp");
+            editor.setTheme("ace/theme/tomorrow");
+            editor.setValue(actualCode, 1); // 1 moves cursor to end
+
+            editor.setOptions({
+                readOnly: true,
+                showGutter: true,
+                wrap: true,
+                maxLines: Infinity,
+                fontSize: "14px",
+                fontFamily: "'Menlo', 'Roboto Mono', 'Courier New', Courier, monospace"
+            });
+
+        } else {
+
+            choicesElement.id = "choices" + (i + 1);
+            form.appendChild(choicesElement);
+
+        }
+
+        const buttonRow = document.createElement("div");
+        buttonRow.classList.add("button-row");
+      
         //add submit button
         const submitButton = document.createElement("button");
         submitButton.type = "button";
         submitButton.id = "submit-button" + (i + 1);
         submitButton.innerHTML = "Submit";
         submitButton.classList.add("submit-button");
-        submitButton.addEventListener("click", function () {
-            handle_submission(form.id, answer, hint, fileName);
+        submitButton.addEventListener("click", async function () {
+
+            let actualOutput;
+
+            if (isProgrammingQuestion) {
+                const codeRunner = form.querySelector("code-runner");
+                
+
+                const existingTestcaseContainer = form.querySelector(".testcase-container");
+                if (existingTestcaseContainer) {
+                    existingTestcaseContainer.remove();
+                    // hide the next buttons
+                    var nextButtons = document.getElementsByClassName("next-button");
+                    for (var i = 0; i < nextButtons.length; i++) {
+                        var nextButton = nextButtons[i];
+                        nextButton.classList.add("hidden");
+                    }
+                }
+
+                // check if hints already exists
+                const existingHintContainer = form.querySelector(".hint-container");
+                if (existingHintContainer) existingHintContainer.remove();
+                const existingHintHeader = form.querySelector(".hint-header");
+                if (existingHintHeader) existingHintHeader.remove();
+
+                actualOutput = await runTestCases(codeRunner, inputArray, messageElement, null);
+
+                if (actualOutput.includes("Please try again")){
+                    displayTestcaseSummary(messageElement, false, true, 0, 0);
+                    return;
+                }
+            }
+                
+            handle_submission(form.id, answer, hint, fileName, outputArray, isProgrammingQuestion, actualCode, actualOutput, inputArray, question, isTracingQuestion);
         });
-        form.appendChild(submitButton);
+
+        buttonRow.appendChild(submitButton);
+
+        // Add next button
+        if ((i + 1) !== questions.length) {
+            const nextButton = document.createElement("button");
+            nextButton.type = "button";
+            nextButton.id = "next-button" + (i + 1);
+            nextButton.innerHTML = "Next";
+            nextButton.classList.add("next-button");
+            nextButton.classList.add("hidden");
+            nextButton.addEventListener("click", () => {
+                const existingHintContainer = form.querySelector(".hint-container");
+                if (existingHintContainer) existingHintContainer.remove();
+                showNextQuestion();
+            });
+
+            buttonRow.appendChild(nextButton);
+            form.appendChild(buttonRow);
+        }
+        else {
+            //create finish button
+            const finishButton = document.createElement('button');
+            finishButton.type = "button";
+            finishButton.id = "finish-button";
+            finishButton.innerHTML = "Finish";
+            finishButton.addEventListener("click", closeFullscreenForm);
+            form.appendChild(finishButton);
+            finishButton.classList.add("hidden");
+
+            buttonRow.appendChild(finishButton);
+            form.appendChild(buttonRow);
+        }
 
         //add text for after submission
         const messageElement = document.createElement("p");
@@ -344,28 +620,6 @@ function parse_and_generate_form(fileName) {
                     hint[i] = hint[i].replace(match, codeSnippetElement.outerHTML);
                 }
             }
-        }
-
-        // Add next button
-        if ((i + 1) !== questions.length) {
-            const nextButton = document.createElement("button");
-            nextButton.type = "button";
-            nextButton.id = "next-button" + (i + 1);
-            nextButton.innerHTML = "Next";
-            nextButton.classList.add("next-button");
-            nextButton.classList.add("hidden");
-            nextButton.addEventListener("click", showNextQuestion);
-            form.appendChild(nextButton);
-        }
-        else {
-            //create finish button
-            const finishButton = document.createElement('button');
-            finishButton.type = "button";
-            finishButton.id = "finish-button";
-            finishButton.innerHTML = "Finish";
-            finishButton.addEventListener("click", closeFullscreenForm);
-            form.appendChild(finishButton);
-            finishButton.classList.add("hidden");
         }
 
         document.getElementById("fullscreen-form").appendChild(form);
@@ -499,29 +753,70 @@ function parse_and_generate_form(fileName) {
             form.style.display = "none";
         }
 
-        // Check if there are stored values for the current form
-        const selectedIndices = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1)));
-        if (selectedIndices && selectedIndices.length !== 0) {
-            const choiceInputs = selectedIndices.map(index => document.getElementById("choice" + (i + 1) + "-" + (index + 1)));
-            choiceInputs.forEach(choiceInput => {
-                choiceInput.checked = true;
-            });
 
-            //const explainIndex = selectedIndices[0]; // Get the first selected index
-            const isCorrect = answer.length === selectedIndices.length &&
-                answer.every(correctIndex => selectedIndices.includes(correctIndex));
+        if (isProgrammingQuestion) {
 
-            updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
+            const progData = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_programming"));
+
+            if (progData && typeof progData.totalTestcases !== "undefined") {
+
+                displayTestcaseSummary(messageElement, false, false, progData.numTestcasesPassed, progData.totalTestcases);
+                codeRunner.textContent = progData.userCode;
+
+                codeRunner.setAttribute("output", progData.outputUI);  
+                                
+            }
+
+        } else if (isTracingQuestion){
+
+            const progData = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_tracing"));
+
+            if (progData && typeof progData.isCorrect !== "undefined") {
+                updateMessageElement(messageElement, progData.isCorrect, "", [], answer, false, false, isTracingQuestion);
+                traceTextarea.value = progData.userOutput;
+            }
+
+        } else {
+
+            // Check if there are stored values for the current form
+            const selectedIndices = JSON.parse(localStorage.getItem(fileName + "quizForm" + (i + 1) + "_choices"));
+            if (selectedIndices && selectedIndices.length !== 0) {
+                const choiceInputs = selectedIndices.map(index => 
+                    document.getElementById("choice" + (i + 1) + "-" + (index + 1)));
+                choiceInputs.forEach(choiceInput => {
+                    choiceInput.checked = true;
+                });
+
+                //const explainIndex = selectedIndices[0]; // Get the first selected index
+                const isCorrect = answer.length === selectedIndices.length &&
+                    answer.every(correctIndex => selectedIndices.includes(correctIndex));
+
+                updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion, isTracingQuestion);
+            }
         }
+
     }
 
     closeFullscreenForm();
 }
 
-function handle_submission(formId, answer, hint, filename) {
+async function handle_submission(formId, answer, hint, filename, outputArray, isProgrammingQuestion, originalCode, actualOutput, inputArray, questionPrompt, isTracingQuestion) {
 
+    console.log("-----------NEW SUBMISSION------------");
+
+    let outputUI = "";
+
+    if (isProgrammingQuestion){
+
+        // outputUI text at submission
+        const form = document.getElementById(formId);
+        let outputElement = form.querySelector("code-runner pre#result");
+        outputUI = outputElement?.textContent.trim() || "";
+
+    }
+    
     var isSingleCorrect = false;
-    if (answer.length == 1) {
+    if (!isTracingQuestion && answer.length == 1) {
         isSingleCorrect = true;
     }
 
@@ -532,13 +827,51 @@ function handle_submission(formId, answer, hint, filename) {
     const messageElement = form.querySelector("#message" + formId.slice(8));
 
     let selectedIndices = [];
+    let numTestcasesPassed;
+    let totalTestcases;
 
     if (selectedChoices.length > 0) {
-        selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
-        const isCorrect = answer.length === selectedIndices.length &&
-            answer.every(correctIndex => selectedIndices.includes(correctIndex));
 
-        updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect);
+        selectedIndices = Array.from(selectedChoices).map(choice => parseInt(choice.id.split('-')[1] - 1, 10));
+        const isCorrect = answer.length === selectedIndices.length && answer.every(correctIndex => selectedIndices.includes(correctIndex));
+        updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion, isTracingQuestion);
+
+    } else if (isProgrammingQuestion) {
+
+        totalTestcases = actualOutput.length;
+        numTestcasesPassed = displayTestcaseResults(form, inputArray, outputArray, actualOutput);
+        displayTestcaseSummary(messageElement, false, false, numTestcasesPassed, totalTestcases, questionPrompt);
+
+        if (totalTestcases != numTestcasesPassed) {
+            let previousHints = [];
+
+            let container = document.createElement("div");
+
+            const header = document.createElement("h5");
+            header.classList.add("hint-header");
+            header.textContent = "Hints";
+            container.appendChild(header);
+
+            let hintContainer = await generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints);
+
+            container.appendChild(hintContainer);
+            form.appendChild(container);
+        }
+
+    } else if (isTracingQuestion){
+        const traceInput = form.querySelector(".trace-textarea");
+        const userOutput = traceInput ? traceInput.value.trim() : "";
+
+        const correctTracingOutput = (Array.isArray(answer) ? answer[0] : answer || "").trim();
+        const isCorrect = normalizeOutput(userOutput) === normalizeOutput(correctTracingOutput);
+
+        console.log("User's answer: ", userOutput)
+
+        console.log("tracing question correct: ", isCorrect);
+        console.log("messageElement:", messageElement);
+
+        updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion, isTracingQuestion);
+
     } else {
         messageElement.innerHTML = "Please make a selection.";
         messageElement.style.color = "red";
@@ -556,9 +889,42 @@ function handle_submission(formId, answer, hint, filename) {
         }
     }
 
-    // Store the user's answer in local storage
-    const key = filename + formId;
-    localStorage.setItem(key, JSON.stringify(selectedIndices));
+
+    const baseKey = filename + formId;
+
+    if (isProgrammingQuestion) {
+
+        const form = document.getElementById(formId);  
+        const editorContainer = form.querySelector("#codetorun"); // ace editor container inside that form
+        const editor = ace.edit(editorContainer); // ace editor instance for that container
+        const code = editor.getValue();            
+        
+        localStorage.setItem(baseKey + "_programming", JSON.stringify({
+            originalCode: originalCode,
+            userCode: code,
+            outputUI: outputUI,
+            actualOutput: actualOutput,
+            inputArray: inputArray,
+            outputArray: outputArray,
+            numTestcasesPassed: numTestcasesPassed,
+            totalTestcases: totalTestcases
+        }));
+    } else if (isTracingQuestion){
+
+        const traceInput = form.querySelector(".trace-textarea");
+        const userOutput = traceInput ? traceInput.value.trim() : "";
+        const correctTracingOutput = (Array.isArray(answer) ? answer[0] : answer || "").trim();
+        const isCorrect = normalizeOutput(userOutput) === normalizeOutput(correctTracingOutput);
+
+        localStorage.setItem(baseKey + "_tracing", JSON.stringify({
+            userOutput: userOutput,
+            isCorrect: isCorrect
+        }));
+
+    } else {
+        localStorage.setItem(baseKey + "_choices", JSON.stringify(selectedIndices));
+    }
+
 }
 
 
@@ -570,7 +936,7 @@ function showNextQuestion() {
     currentQuestionIndex++;
 
     var submitButton = document.getElementById("submit-button" + (parseInt(currentQuestionIndex, 10) + 1));
-    submitButton.classList.remove("hidden");
+    if (submitButton) submitButton.classList.remove("hidden");
 
     if (currentQuestionIndex < quizForms.length) {
         const nextForm = quizForms[currentQuestionIndex];
@@ -646,8 +1012,29 @@ function AcodeSnippetFormatting(codeSnippet, choiceContainer, button) {
     });
 }
 
+function displayTestcaseSummary(messageElement, runningTestcases, error, numTestcasesPassed, totalTestcases){
 
-function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect) {
+    if (runningTestcases){
+        messageElement.innerHTML = "Testing...";
+        messageElement.style.color = "grey";
+        messageElement.style.fontWeight = "bold";
+    } else if (error){
+        messageElement.innerHTML = "Please try submitting again";
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+    } else if (numTestcasesPassed == totalTestcases){
+        messageElement.innerHTML = `Correct! ${numTestcasesPassed}/${totalTestcases} testcases passed`;
+        messageElement.style.color = "green";
+        messageElement.style.fontWeight = "bold";
+    } else {
+        messageElement.innerHTML = `${numTestcasesPassed}/${totalTestcases} testcases passed. Please try again!`;
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+    }
+
+}
+
+function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, answer, isSingleCorrect, isProgrammingQuestion, isTracingQuestion) {
     let message = "";
     if (isCorrect) {
         if (selectedIndices.length > 0) {
@@ -660,7 +1047,23 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
             messageElement.innerHTML = "Correct! <span class='hint-text'>" + explanations.replace(/\n/g, "<br>") + "</span>";
             messageElement.style.color = "green";
             messageElement.style.fontWeight = "bold";
+        
+        } else if (isProgrammingQuestion){
+            messageElement.innerHTML = "Correct!";
+            messageElement.style.color = "green";
+            messageElement.style.fontWeight = "bold";
+        } else if (isTracingQuestion){
+            messageElement.innerHTML = "Correct!";
+            messageElement.style.color = "green";
+            messageElement.style.fontWeight = "bold";
         }
+        
+    } else if (isTracingQuestion){
+
+        messageElement.innerHTML = "Incorrect! Please trace again";
+        messageElement.style.color = "red";
+        messageElement.style.fontWeight = "bold";
+
     } else {
         const correctIndices = answer.filter(index => selectedIndices.includes(index));
         const correctExplanations = correctIndices.map(index => hint[index]).join("<br><br>");
@@ -685,9 +1088,233 @@ function updateMessageElement(messageElement, isCorrect, hint, selectedIndices, 
 
 }
 
+function normalizeOutput(str) {
+    return str
+        .replace(/[^\w]/g, "") // remove all non-alphanumeric (punctuation, spaces)
+        .toLowerCase();        // make lowercase
+}
 
+function displayTestcaseResults(form, inputArray, outputArray, actualOutput) {
+    // remove previous testcase block if exists
+    const existingTestcaseContainer = form.querySelector(".testcase-container");
+    if (existingTestcaseContainer) existingTestcaseContainer.remove();
+
+    const testcaseContainer = document.createElement("div");
+    testcaseContainer.classList.add("testcase-container");
+
+    const header = document.createElement("h5");
+    header.textContent = "Testcases";
+    testcaseContainer.appendChild(header);
+
+    // container for buttons 
+    const testcaseButtonContainer = document.createElement("div");
+    testcaseButtonContainer.classList.add("testcase-button-container");
+    testcaseContainer.appendChild(testcaseButtonContainer);
+
+    // container for test case info
+    const testcaseInfoContainer = document.createElement("div");
+    testcaseInfoContainer.classList.add("testcase-info-container");
+    testcaseContainer.appendChild(testcaseInfoContainer);
+
+    let numTestcasesPassed = 0;
+
+    for (let i = 0; i < inputArray.length; i++) {
+        
+        // test case button
+        const testcaseButton = document.createElement("button");
+        testcaseButton.type = "button";
+        testcaseButton.id = "testcase" + (i+1);
+        testcaseButton.innerHTML = `Case ${i + 1}`;
+        testcaseButton.classList.add("testcase-button");
+        testcaseButtonContainer.appendChild(testcaseButton);
+
+        const testcaseDiv = document.createElement("div");
+        testcaseDiv.classList.add("testcase");
+
+        testcaseDiv.style.display = "none";
+
+        const expected = (outputArray[i] && outputArray[i][0]) || "";
+        const actual = actualOutput[i] || "";
+        const passed = (normalizeOutput(expected) == normalizeOutput(actual));
+
+        if (passed) numTestcasesPassed++;
+
+        // input
+        if (inputArray[i] != ""){
+            const inputPara = document.createElement("p");
+            inputPara.innerHTML = `<strong>Input:</strong>`;
+            testcaseDiv.appendChild(inputPara);
+
+            const preInput = document.createElement("pre");
+            preInput.textContent = inputArray[i].join("\n");
+            testcaseDiv.appendChild(preInput);
+        }
+
+        const diff = diffCheck(expected, actual);
+
+        // expected output
+        const outputPara = document.createElement("p");
+        if (outputArray[i].length > 1) outputPara.innerHTML = `<strong>Expected Outputs:</strong>`;
+        else outputPara.innerHTML = `<strong>Expected Output:</strong>`;
+        testcaseDiv.appendChild(outputPara);
+
+        outputArray[i].forEach((i) => {
+            const preExpected = document.createElement("pre");
+            if (passed) preExpected.innerHTML = expected;
+            else preExpected.innerHTML = diff.expectedResult;
+            testcaseDiv.appendChild(preExpected);
+        });
+
+        // actual output
+        const actualPara = document.createElement("p");
+        actualPara.innerHTML = `<strong>Actual Output:</strong>`;
+        testcaseDiv.appendChild(actualPara);
+
+        const preActual = document.createElement("pre");
+        if (passed) preActual.innerHTML = actual;
+        else preActual.innerHTML = diff.actualResult;
+        testcaseDiv.appendChild(preActual);
+
+        // results
+        const resultPara = document.createElement("p");
+        const resultText = passed ? "Passed" : "Failed";
+        const resultColor = passed ? "green" : "red";
+        resultPara.innerHTML = `
+            <strong>Result:</strong> 
+            <span style="color: ${resultColor};">
+                ${resultText}
+            </span>
+        `;
+
+        testcaseButton.style.color = passed ? "green" : "red";
+
+        testcaseDiv.appendChild(resultPara);
+
+        testcaseInfoContainer.appendChild(testcaseDiv);
+
+        testcaseButton.addEventListener("click", () => {
+
+            const allInfo = testcaseInfoContainer.children;
+            const allInfoArray = Array.from(allInfo);
+
+            allInfoArray.forEach(div => {
+                 div.style.display = "none";
+            });
+            
+            testcaseDiv.style.display = "block";
+
+        });
+    }
+
+    form.appendChild(testcaseContainer);
+
+    return numTestcasesPassed;
+}
+
+function diffCheck(expected, actual) {
+    if (expected === actual) return {expectedResult: expected, actualResult: actual};
+
+    let expectedResult = "";
+    let actualResult = "";
+
+    const expectedWords = expected.match(/[^\s]+|\s+/g) || [];
+    const actualWords = actual.match(/[^\s]+|\s+/g) || [];
+    const length = Math.max(expectedWords.length, actualWords.length);
+
+    for (let i = 0; i < length; i++) {
+        const expectedWord = expectedWords[i] || "";
+        const actualWord = actualWords[i] || "";
+
+        if (expectedWord === actualWord) {
+            expectedResult += expectedWord;
+            actualResult += actualWord;
+        } else {
+            if (expectedWord.trim() === "") {
+                expectedResult += expectedWord;
+            } else {
+                expectedResult += `<span class="highlight-expected">${expectedWord}</span>`;
+            }
+
+            if (actualWord.trim() === "") {
+                actualResult += actualWord;
+            } else {
+                actualResult += `<span class="highlight-actual">${actualWord}</span>`;
+            }
+        }
+    }
+
+    return { expectedResult, actualResult };
+}
 
 function resetQuiz(fileName) {
+
+    localStorage.removeItem("formsLocked");
+    localStorage.removeItem("displayTestcases");
+
+    const quizForms = document.querySelectorAll("[id^='quizForm']");
+
+    for (let i = 0; i < quizForms.length; i++) {
+        quizForms[i].style.display = "none";
+
+        const form = quizForms[i];
+
+        // remove previous test case block if exists
+        const existingTestcaseContainer = form.querySelector(".testcase-container");
+        if (existingTestcaseContainer) existingTestcaseContainer.remove();
+
+        let key = fileName + "quizForm" + (i+1) + "_programming";
+        let progData = JSON.parse(localStorage.getItem(key));
+
+        if (progData){ // true if programming question
+
+            // unlock everything 
+            const textArea = form.querySelector("#codetorun .ace_text-input");
+            if (textArea) textArea.removeAttribute("readonly");
+            const editorContainer = form.querySelector("#codetorun");
+            if (editorContainer) editorContainer.style.backgroundColor = ""; 
+
+            const inputArea = form.querySelector("#input_section > textarea");
+            if (inputArea) {
+                inputArea.removeAttribute("readonly");
+                inputArea.style.backgroundColor = ""; 
+            }
+
+            const oldRunner = form.querySelector("code-runner");
+            if (oldRunner) {
+                // get original code from localStorage
+                defaultCode = progData.originalCode || "";
+
+                // create new code runner with same functionality as original
+                const newCodeRunner = document.createElement("code-runner");
+                newCodeRunner.setAttribute("language", "c");
+                newCodeRunner.setAttribute("output", "");
+                newCodeRunner.textContent = defaultCode;
+
+                // get the existing code-runner and replace with new on in DOM
+                const codeRunner = form.querySelector("code-runner");
+                codeRunner.parentNode.replaceChild(newCodeRunner, codeRunner);
+            }
+
+            localStorage.removeItem(key);
+        }
+
+        key = fileName + "quizForm" + (i+1) + "_tracing";
+        progData = JSON.parse(localStorage.getItem(key));
+
+        if (progData) {
+            localStorage.removeItem(key);
+            
+            const traceTextarea = quizForms[i].querySelector(".trace-textarea");
+            if (traceTextarea) {
+                traceTextarea.value = "";
+                traceTextarea.placeholder = "Write your expected output here...";
+                traceTextarea.removeAttribute("readonly");
+                traceTextarea.style.backgroundColor = ""; 
+            }
+        }
+
+    }
+
     const header = document.getElementById("container-header");
     header.classList.remove("hidden-imp");
 
@@ -699,16 +1326,11 @@ function resetQuiz(fileName) {
 
     for (let i = localStorage.length - 1; i >= 0; i--) {
         const key = localStorage.key(i);
-
+    
         if (key && key.startsWith(prefix)) {
             localStorage.removeItem(key);
         }
-    }
-
-    const quizForms = document.querySelectorAll("[id^='quizForm']");
-
-    for (let i = 0; i < quizForms.length; i++) {
-        quizForms[i].style.display = "none";
+    
     }
 
     const resetButton = document.getElementById("reset-button");

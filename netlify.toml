@@ -1,0 +1,8 @@
+[build]
+  command = "npm install && pip install -r requirements.txt && pip install lxml[html_clean] && jupyter-book build --all textbook && cp -r textbook/exercises/ textbook/_build/html/exercises &&cp -r textbook/quizzes/ textbook/_build/html/quizzes && cp -r embeddings/outputs textbook/_build/html && cp -r textbook/semantic-search.html textbook/_build/html && cp -r textbook/visualize_examples/ textbook/_build/html"
+  publish = "textbook/_build/html"
+  functions = "netlify/functions"
+
+[dev]
+  functions = "netlify/functions"
+  publish = "textbook/_build/html"

@@ -12,6 +12,11 @@ parts:
   - caption: Book Chapters
     numbered: True
     chapters:
+
+      - file: chapters/chapter00-interactive-quizzes/intro.md
+        sections:
+          - file: chapters/chapter00-interactive-quizzes/interactive-quizzes.md
+
       - file: chapters/chapter01-computers/intro.md
         sections:
           - file: chapters/chapter01-computers/basic-structure.md
@@ -27,12 +32,15 @@ parts:
           - file: chapters/chapter02-variables/math-library.md
           - file: chapters/chapter02-variables/random-number.md
           - file: chapters/chapter02-variables/exercises.md
+          - file: chapters/chapter02-variables/testing-exercises.md
       - file: chapters/chapter03-decision-making/intro.md
         sections:
           - file: chapters/chapter03-decision-making/if-statement.md
           - file: chapters/chapter03-decision-making/multiple-conditions.md
           - file: chapters/chapter03-decision-making/nested-if.md
           - file: chapters/chapter03-decision-making/exercises.md
+          - file: chapters/chapter03-decision-making/testing-exercises.md
+
       - file: chapters/chapter04-loops/intro.md
         sections:
           - file: chapters/chapter04-loops/while.md
@@ -41,6 +49,8 @@ parts:
           - file: chapters/chapter04-loops/nested-loops.md
           - file: chapters/chapter04-loops/debugging-loops.md
           - file: chapters/chapter04-loops/exercises.md
+          - file: chapters/chapter04-loops/testing-exercises.md
+
       - file: chapters/chapter05-functions/intro.md
         sections:
           - file: chapters/chapter05-functions/functions.md
@@ -48,6 +58,7 @@ parts:
           - file: chapters/chapter05-functions/variable-scope.md
           - file: chapters/chapter05-functions/pass-more-values.md
           - file: chapters/chapter05-functions/exercises.md
+          - file: chapters/chapter05-functions/testing-exercises.md
       - file: chapters/chapter06-pointers/intro.md
         sections:
           - file: chapters/chapter06-pointers/why-pointers.md
@@ -56,22 +67,26 @@ parts:
           - file: chapters/chapter06-pointers/scope.md
           - file: chapters/chapter06-pointers/goldbach-conjecture-example.md
           - file: chapters/chapter06-pointers/exercises.md
+          - file: chapters/chapter06-pointers/testing-exercises.md
       - file: chapters/chapter07-arrays/intro.md
         sections:
           - file: chapters/chapter07-arrays/why-arrays.md
           - file: chapters/chapter07-arrays/what-are-arrays.md
           - file: chapters/chapter07-arrays/arrays-functions.md
           - file: chapters/chapter07-arrays/exercises.md
+          - file: chapters/chapter07-arrays/testing-exercises.md
       - file: chapters/chapter08-dynamic-memory-allocation/intro.md
         sections:
           - file: chapters/chapter08-dynamic-memory-allocation/why-how-dynamic-alloc.md
           - file: chapters/chapter08-dynamic-memory-allocation/exercises.md
+          - file: chapters/chapter08-dynamic-memory-allocation/testing-exercises.md
       - file: chapters/chapter09-multi-dimensional-arrays/intro.md
         sections:
           - file: chapters/chapter09-multi-dimensional-arrays/why-2d.md
           - file: chapters/chapter09-multi-dimensional-arrays/pass-2d-functions.md
           - file: chapters/chapter09-multi-dimensional-arrays/2d-dynamic-memory-alloc.md
           - file: chapters/chapter09-multi-dimensional-arrays/exercises.md
+          - file: chapters/chapter09-multi-dimensional-arrays/testing-exercises.md
       - file: chapters/chapter10-strings/intro.md
         sections:
           - file: chapters/chapter10-strings/what-are-strings.md
@@ -79,17 +94,20 @@ parts:
           - file: chapters/chapter10-strings/string-functions.md
           - file: chapters/chapter10-strings/array-of-strings.md
           - file: chapters/chapter10-strings/exercises.md
+          - file: chapters/chapter10-strings/testing-exercises.md
       - file: chapters/chapter11-recursion/intro.md
         sections:
           - file: chapters/chapter11-recursion/recursion-math.md
           - file: chapters/chapter11-recursion/recursion-in-patterns.md
           - file: chapters/chapter11-recursion/recursion-in-arrays.md
           - file: chapters/chapter11-recursion/exercises.md
+          - file: chapters/chapter11-recursion/testing-exercises.md
       - file: chapters/chapter12-data-structures/intro.md
         sections:
           - file: chapters/chapter12-data-structures/what-data-structure.md
           - file: chapters/chapter12-data-structures/pointers-to-data-structure.md
           - file: chapters/chapter12-data-structures/exercises.md
+          - file: chapters/chapter12-data-structures/testing-exercises.md
       - file: chapters/chapter13-linked-lists/intro.md
         sections:
           - file: chapters/chapter13-linked-lists/why-linked-lists.md
@@ -97,17 +115,20 @@ parts:
           - file: chapters/chapter13-linked-lists/insert-find-observe-into-linkedlist.md
           - file: chapters/chapter13-linked-lists/delete-nodes.md
           - file: chapters/chapter13-linked-lists/exercises.md
+          - file: chapters/chapter13-linked-lists/testing-exercises.md
       - file: chapters/chapter14-sorting/intro.md
         sections:
           - file: chapters/chapter14-sorting/insertion-sort.md
           - file: chapters/chapter14-sorting/selection-sort.md
           - file: chapters/chapter14-sorting/bubble-sort.md
           - file: chapters/chapter14-sorting/exercises.md
+          - file: chapters/chapter14-sorting/testing-exercises.md
       - file: chapters/chapter15-searching/intro.md
         sections:
           - file: chapters/chapter15-searching/sequential-search.md
           - file: chapters/chapter15-searching/binary-search.md
           - file: chapters/chapter15-searching/exercises.md
+          - file: chapters/chapter15-searching/testing-exercises.md
       
   - caption: "Appendix: Additional information"
     chapters:

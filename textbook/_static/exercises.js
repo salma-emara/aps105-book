@@ -383,7 +383,25 @@ function generate_exercises(filename) {
 
 		});
 
+		let quizUserID;
+
 		submitButton.addEventListener("click", async function () {
+
+			quizUserID = getOrCreateUserID();
+
+			gtag('set', {
+				user_properties: {
+					user_id_property: quizUserID
+				}
+			});
+
+
+			gtag('event', 'submit_button_clicked', {
+				event_category: 'Quiz Interaction',
+				event_label: `submit-${ex["question-id"]}`,
+				quiz_user_id: quizUserID,
+				debug_mode: true
+			});
 
 			resultMessage.style.display = "block";
 
@@ -511,7 +529,7 @@ function generate_exercises(filename) {
 					return;
 				}
 
-				let hintContainer = await generate_hints(form, studentCode, expectedOutput, actualOutput, ex.question, []);
+				let hintContainer = await generate_hints(ex["question-id"], form, studentCode, expectedOutput, actualOutput, ex.question, []);
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode, thisPartIndex);
 
 			} else if (type === "explaination" && ex.table){
@@ -567,7 +585,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 			return [correctMethod, row?.[1] || "", row?.[2] || ""];
 		});
 
-		let feedbackContainer = await get_feedback(form, messageElement, exercise, studentRows, "", []);
+		let feedbackContainer = await get_feedback(exercise["question-id"], form, messageElement, exercise, studentRows, "", []);
 
 		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
 
@@ -602,7 +620,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	if (questionType === "tracing") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	let feedbackContainer = await get_feedback(form, messageElement, exercise, [], userAnswer, []);
+	let feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, []);
 
 	updateResultMessage(
 		messageElement,

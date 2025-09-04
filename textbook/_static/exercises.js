@@ -264,7 +264,6 @@ function generate_exercises(filename) {
 			codeRunner.addEventListener('input', () => {
 				const code = codeRunner.querySelector('.ace_content').innerText;
 				localStorage.setItem(`${storageKey}-programming-${thisPartIndex}`, JSON.stringify({ userCode: code }));
-				console.log("Code saved");
 			});
 
 
@@ -356,7 +355,6 @@ function generate_exercises(filename) {
 				const editor = ace.edit(editorDiv);  
 				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
 				editor.setValue(starterCode, 1);  
-				console.log("Code cleared");
 			} 
 			else if (isTracingQuestion) {
 

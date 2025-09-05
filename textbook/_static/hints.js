@@ -292,7 +292,7 @@ async function get_feedback(questionID, form, messageElement, exercise, studentR
             2. Interpret what logic or rule the student might be missing.
             3. Think of a concise explanation that clarifies the error or misunderstanding.
             4. Generate a new feedback message that:
-                - Highlights both what the student did correctly and what needs fixing
+                - Highlight what needs fixing and if the answer is fully correct, you can say so
                 - Is not a repeat of any message in the previous feedback list
                 - Is under 50 words
             5. Indicate whether the student's current answer is fully correct.
@@ -325,7 +325,7 @@ async function get_feedback(questionID, form, messageElement, exercise, studentR
             2. Interpret what logic or rule the student might be missing.
             3. Think of a concise explanation that clarifies the error or misunderstanding.
             4. Generate a new feedback message that:
-                - Highlights both what the student explained correctly and what needs fixing
+                - Highlight what needs fixing and if the answer is fully correct, you can say so
                 - Is not a repeat of any message in the previous feedback list
                 - Is under 50 words
             5. Indicate whether the student's current answer is fully correct.
@@ -357,7 +357,7 @@ async function get_feedback(questionID, form, messageElement, exercise, studentR
             2. Interpret what logic or rule the student might be missing.
             3. Think of a concise explanation that clarifies the error or misunderstanding.
             4. Generate a new feedback message that:
-                - Highlights both what the student explained correctly and what needs fixing
+                - Highlight what needs fixing and if the answer is fully correct, you can say so
                 - Is not a repeat of any message in the previous feedback list
                 - Is under 50 words
             5. Indicate whether the student's traced output is fully correct.
@@ -394,8 +394,6 @@ async function get_feedback(questionID, form, messageElement, exercise, studentR
         } 
 
         feedbackDiv.innerText = feedback;
-
-        if (isCorrect) anotherFeedback.style.display = "none";  // hides the button
 
         previousFeedback.push(feedback);
         feedbackInfoContainer.appendChild(feedbackDiv);

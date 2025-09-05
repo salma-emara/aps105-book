@@ -1,9 +1,5 @@
 let currentQuestionIndex = 0;
 
-document.addEventListener("submit", function (e) {
-    e.preventDefault(); 
-  });
-
 function startQuiz() {
 
     const filename = window.quizFilename || "unknown";

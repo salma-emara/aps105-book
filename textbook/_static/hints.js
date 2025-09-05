@@ -1,5 +1,4 @@
 async function getChatCompletion(prompt) {
-    console.log("Sending prompt:", prompt);
     try {
         const response = await fetch('/.netlify/functions/hints', {
             method: 'POST',
@@ -15,7 +14,6 @@ async function getChatCompletion(prompt) {
             return;
         }
 
-        console.log("Success:", data.reply);
         return data.reply;
     } catch (err) {
         console.error("Network or parsing error:", err);
@@ -23,16 +21,8 @@ async function getChatCompletion(prompt) {
 
 }
 
-// function getOrCreateQuizUserID() {
-//   let uid = localStorage.getItem("quiz_user_id");
-//   if (!uid) {
-//     uid = "anon-" + Math.random().toString(36).substr(2, 10);
-//     localStorage.setItem("quiz_user_id", uid);
-//   }
-//   return uid;
-// }
 
-async function generate_hints(form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
+async function generate_hints(questionID, form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
 
     // check if hints already exists
     let hintContainer = form.querySelector(".hint-container");
@@ -71,8 +61,7 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
         anotherHint = hintContainer.querySelector(".another-hint");
     }
 
-    const filename = window.quizFilename || "unknown";
-    const hintKey = `countdown${filename}_${form.id}`;
+    const hintKey = `hint-clicked-${questionID}`;
     let countdown = parseInt(localStorage.getItem(hintKey) || "0");
 
     anotherHint.onclick = async () => {
@@ -82,12 +71,10 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
         gtag('event', 'testing_hint_requests', {
             event_category: 'Quiz Interaction',
-            event_label: `Hint Click - ${filename}_${form.id}`,
+            event_label: `hint-${questionID}`,
             quiz_user_id: quizUserID,
             debug_mode: true
         });
-
-        console.log(`Hint count for ${filename}_${form.id}:`, countdown);
 
         if (anotherHint.textContent === "Get Hint") {
             anotherHint.textContent = "Get New Hint";
@@ -181,7 +168,8 @@ async function generate_hints(form, originalCode, outputArray, actualOutput, que
 
 }
 
-async function get_feedback(form, messageElement, exercise, studentRows, userAnswer, previousFeedback = []) {
+async function get_feedback(questionID, form, messageElement, exercise, studentRows, userAnswer, previousFeedback = []) {
+    
 
     let question = exercise.question;
     let headers = exercise.headers;
@@ -190,6 +178,8 @@ async function get_feedback(form, messageElement, exercise, studentRows, userAns
     // check if feedback already exists
     let feedbackContainer = messageElement.querySelector(".hint-container");
     let feedbackInfoContainer, anotherFeedback;
+
+    let quizUserID;
 
     if (!feedbackContainer){ // initial setup
 
@@ -207,14 +197,23 @@ async function get_feedback(form, messageElement, exercise, studentRows, userAns
         anotherFeedback.textContent = "Get Feedback";
         anotherFeedback.classList.add("another-hint");
         feedbackContainer.appendChild(anotherFeedback);
+        
+        quizUserID = getOrCreateUserID();
+
+        // set user id properties
+        gtag('set', {
+            user_properties: {
+                user_id_property: quizUserID
+            }
+        });
+
 
     } else {
         feedbackInfoContainer = feedbackContainer.querySelector(".hint-info-container");
         anotherFeedback = feedbackContainer.querySelector(".another-hint");
     }
 
-    const filename = window.quizFilename || "unknown";
-    const hintKey = `countdown${filename}_${form.id}`;
+    const hintKey = `hint-clicked-${questionID}`;
     let countdown = parseInt(localStorage.getItem(hintKey) || "0");
 
     anotherFeedback.onclick = async () => {
@@ -222,7 +221,12 @@ async function get_feedback(form, messageElement, exercise, studentRows, userAns
         countdown++;
         localStorage.setItem(hintKey, countdown);
 
-        console.log(`Hint count for ${filename}_${form.id}:`, countdown);
+        gtag('event', 'testing_hint_requests', {
+            event_category: 'Quiz Interaction',
+            event_label: `feedback-${questionID}`,
+            quiz_user_id: quizUserID,
+            debug_mode: true
+        });
 
         if (anotherFeedback.textContent === "Get Feedback") {
             anotherFeedback.textContent = "Get More Feedback";
@@ -379,7 +383,7 @@ async function get_feedback(form, messageElement, exercise, studentRows, userAns
         const feedbackMatch = feedbackText.match(/Feedback\s*:\s*(.+)/i);
         const isCorrectMatch = feedbackText.match(/isCorrect\s*:\s*(true|false)/i);
 
-        const feedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available. Please try again";
+        const feedback = feedbackMatch ? feedbackMatch[1].trim() : "No feedback available. Please try again!";
 
         let isCorrect;
 

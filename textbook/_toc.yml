@@ -129,4 +129,5 @@ parts:
     hidden: true
     chapters:
       - file: semantic-search.md
+      - file: exercises.md
 

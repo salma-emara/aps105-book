@@ -16,5 +16,5 @@ Chapter 9
 
 Chapter 12
 
-```{figure} chapter12-data-structures/images/q7-2019-final-image.png
+```{figure} chapters/chapter12-data-structures/images/q7-2019-final-image.png
 ```

@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-7-Q1",
       "title": "Part of Question 6 in Winter 2020 Midterm Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": " \n**Problem:** The maximum index for `cArray` is 4 (array out-of-bounds error).\n\n\n**Solution:** Change `[5]` to `[4]`.\n"
     },
     {
+      "question-id": "chapter-7-Q2",
       "title": "Question 5 in Winter 2022 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -20,6 +22,7 @@ let parsedObject;
       "answer": "first = 2, second = 3, third = 3, fourth = 2, fifth = 30\n10, 20, 30, 37,\n"
     },
     {
+      "question-id": "chapter-7-Q3",
       "title": "Question 5 in Winter 2020 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -29,6 +32,7 @@ let parsedObject;
       "answer": "A: 6 6\nB: 7 7 1\n"
     },
     {
+      "question-id": "chapter-7-Q4",
       "title": "Question 14 in Winter 2017 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -73,12 +77,13 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-7-Q5",
       "title": "Question 9 in Winter 2018 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
       "multipart": false,
       "type": "function programming",
-      "question": "The dot product, an operation with which every first-year engineer is familiar, consists of the element-by-element multiplication of two vectors, and the cumulative sum of these resulting products. If vector $a = [a_1, a_2, a_3]$, and $b = [b_1, b_2, b_3]$, then the dot product $a · b = a_1 \\times b_1 + a_2 \\times b_2 + a_3 \\times b_3$.\n\nSmartphones, which can be found at this very moment in many first-year engineer’s pocket, do perform a similar operation when the treble or the bass are adjusted when the said engineer is enjoying a song. This operation is called *filtering*.\n\nSuppose now that you have two vectors, one representing a song, and the other representing a filter. Write a complete C program that will calculate and print the dot product between these two vectors as a single value. Your program should simply print:\n\n<pre>\nResult = <b>calculated dot product value here</b>\n</pre>\n\nYour program must use a function, called `dotProduct`, which takes in pointers to the two vectors and their length, and returns the result. Before your program calls `dotProduct`, the two vectors should be initialized using the following elements:\n\n<pre>\nmusic: 0 0.707 1 0.707 0 -0.707 -1 -0.707 0 // it's a sinusoid\nfilter: 1 0 -1 0 2 0 -1 0 1 // it's a sinc\n</pre>\n\nNext time you listen to a song, consider that it is very possible that two 50 element long arrays are being used by a function very similar to the one you will write below, and that function is being called at least once every 48 thousandths of a second, so that you can enjoy that Taylor Swift song. Okay, make it Justin Bieber, then.\n",
+      "question": "The dot product, an operation with which every first-year engineer is familiar, consists of the element-by-element multiplication of two vectors, and the cumulative sum of these resulting products. If vector $a = [a_1, a_2, a_3]$, and $b = [b_1, b_2, b_3]$, then the dot product $a · b = a_1 \\\\times b_1 + a_2 \\\\times b_2 + a_3 \\\\times b_3$.\n\nSmartphones, which can be found at this very moment in many first-year engineer’s pocket, do perform a similar operation when the treble or the bass are adjusted when the said engineer is enjoying a song. This operation is called *filtering*.\n\nSuppose now that you have two vectors, one representing a song, and the other representing a filter. Write a complete C program that will calculate and print the dot product between these two vectors as a single value. Your program should simply print:\n\n<pre>\nResult = <b>calculated dot product value here</b>\n</pre>\n\nYour program must use a function, called `dotProduct`, which takes in pointers to the two vectors and their length, and returns the result. Before your program calls `dotProduct`, the two vectors should be initialized using the following elements:\n\n<pre>\nmusic: 0 0.707 1 0.707 0 -0.707 -1 -0.707 0 // it's a sinusoid\nfilter: 1 0 -1 0 2 0 -1 0 1 // it's a sinc\n</pre>\n\nNext time you listen to a song, consider that it is very possible that two 50 element long arrays are being used by a function very similar to the one you will write below, and that function is being called at least once every 48 thousandths of a second, so that you can enjoy that Taylor Swift song. Okay, make it Justin Bieber, then.\n",
       "starter-code": "#include <stdio.h>\n\ndouble dotProduct (double *music, double *filter, int length) {\n\n  // Write your function here\n\n}\n\n",
       "answer": "#include <stdio.h>\n\n// The function prototype can also be declared as:\n// double dotProduct(double music[], double filter[], int length) \ndouble dotProduct(double *music, double *filter, int length) {\n  double sum = 0.0;\n  int i;\n  for (i = 0; i < length; i++) {\n    sum = sum + (music[i] * filter[i]);  // or *(music + i) * *(filter + i)\n  }\n  return sum;\n}\n",
       "main-function": "int main(void) {\n  double music[9] = {0, 0.707, 1, 0.707, 0, -0.707, -1, -0.707, 0};\n  double filter[9] = {1, 0, -1, 0, 2, 0, -1, 0, 1};\n  int length;\n  scanf(\"%d\", &length);\n  printf(\"Result = %lf\\n\", dotProduct(music, filter, length));\n}\n",
@@ -118,6 +123,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-7-Q6",
       "title": "Question 11 in Winter 2018 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -138,6 +144,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-7-Q7",
       "title": "Question 10 in Winter 2020 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -183,12 +190,13 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-7-Q8",
       "title": "Question 12 in Winter 2020 Midterm Exam",
       "difficulty": "Challenging",
       "table": false,
       "multipart": false,
       "type": "function programming",
-      "question": "In a Pascal’s Triangle, the first row, row #0, has a single element 1. Each succeeding row elements are the sum of the two elements just above (if there is only one number just above, then that number is duplicated). So the first 5 rows (numbering from zero) are:\n\n<pre>\n    1\n   1 1\n  1 2 1\n 1 3 3 1\n1 4 6 4 1\n</pre>\n\nLooking at the last row, row #4, we have sums: $0 + 1$, $1 + 3$, $3 + 3$, $3 + 1$, $1 + 0$ (getting the values from the row above) to give us $1$, $4$, $6$, $4$, $1$. If we push this all left we get:\n\n<pre>\n1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n</pre>\n\nWrite a function `calculatePascalRowSeven`, with the prototype given below, that calculates row#7 (the eighth row) of Pascal’s triangle, iterating from row #0. Do an in-place calculation, so that the result ends up in `pascalRow[]`. Do not use any other array. The given `main()` function prints the result.\n\n```{code-block} c\nvoid calculatePascalRowSeven(int pArray[]);  // function prototype\n\nint main(void) {\n  // row #n has n + 1 elements\n  int pascalRow[7 + 1] = {1, 0, 0, 0, 0, 0, 0, 0};\n\n  calculatePascalRowSeven(pascalRow);\n\n  printf(\"Row 7 is:\n\");\n  for (int i = 0; i <= 7; i++) {\n    printf(\"%d \", pascalRow[i]);\n  }\n  printf(\"\n\");\n}\n```\n",
+      "question": "In a Pascal’s Triangle, the first row, row #0, has a single element 1. Each succeeding row elements are the sum of the two elements just above (if there is only one number just above, then that number is duplicated). So the first 5 rows (numbering from zero) are:\n\n<pre>\n    1\n   1 1\n  1 2 1\n 1 3 3 1\n1 4 6 4 1\n</pre>\n\nLooking at the last row, row #4, we have sums: $0 + 1$, $1 + 3$, $3 + 3$, $3 + 1$, $1 + 0$ (getting the values from the row above) to give us $1$, $4$, $6$, $4$, $1$. If we push this all left we get:\n\n<pre>\n1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n</pre>\n\nWrite a function `calculatePascalRowSeven`, with the prototype given below, that calculates row#7 (the eighth row) of Pascal’s triangle, iterating from row #0. Do an in-place calculation, so that the result ends up in `pascalRow[]`. Do not use any other array. The given `main()` function prints the result.\n\n```{code-block} c\nvoid calculatePascalRowSeven(int pArray[]);  // function prototype\n\nint main(void) {\n  // row #n has n + 1 elements\n  int pascalRow[7 + 1] = {1, 0, 0, 0, 0, 0, 0, 0};\n\n  calculatePascalRowSeven(pascalRow);\n\n  printf(\"Row 7 is:\\n\");\n  for (int i = 0; i <= 7; i++) {\n    printf(\"%d \", pascalRow[i]);\n  }\n  printf(\"\\n\");\n}\n```\n",
       "starter-code": "\n#include <stdio.h>\n\nvoid calculatePascalRowSeven(int pArray[]) {\n\n}\n",
       "answer": "#include <stdio.h>\n\nvoid calculatePascalRowSeven(int pArray[]) {\n  for (int row = 1; row < 8; row++) {\n    int oneToLeft = 0;\n    for (int element = 0; element < 8; element++) {\n      int saveElement = pArray[element];\n      pArray[element] = oneToLeft + pArray[element];\n      oneToLeft = saveElement;\n    }\n  }\n}\n",
       "main-function": "\nint main(void) {\n  int pascalRow[7 + 1] = {1, 0, 0, 0, 0, 0, 0, 0};\n\n  calculatePascalRowSeven(pascalRow);\n\n  for (int i = 0; i <= 7; i++) {\n    printf(\"%d \", pascalRow[i]);\n  }\n  printf(\"\\n\");\n\n  return 0;\n}\n",
@@ -204,6 +212,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-7-Q9",
       "title": "Question 13 in Winter 2018 Midterm Exam",
       "difficulty": "Challenging",
       "table": false,
@@ -225,6 +234,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-7-Q10",
       "title": "Question 11 in Winter 2020 Midterm Exam",
       "difficulty": "Challenging",
       "table": false,

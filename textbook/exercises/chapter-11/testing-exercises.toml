@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-11-Q1"
 title = "Question 5 in Fall 2013 Final Exam"
 difficulty = "Easy"
 table = false
@@ -22,7 +23,7 @@ int factorial(int n) {
 }
 ```
 '''
-answer = """
+answer = '''
 ENTER: 4
 ENTER: 3
 ENTER: 2
@@ -31,7 +32,7 @@ EXIT: 1
 EXIT: 2
 EXIT: 3
 EXIT: 4
-"""
+'''
 
 
 
@@ -39,18 +40,19 @@ EXIT: 4
 
 
 [[exercises]]
+question-id = "chapter-11-Q2"
 title = "Question 10 in Fall 2013 Final Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Write a function called `revStr` that makes use of recursion to reverse the characters of a string. The reversal should happen two elements at 
 a time, from the ends to the centre of the string. The function prototype is given below. Parameter `str` is the string to be reversed and 
 parameter `len` is the length of the string. For example, if the function is called with the string `"Hello"`, it must reverse the characters 
 so that the string contains `"olleH"`.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -117,6 +119,7 @@ input = "Q2.T7.in"
 output = "Q2.T7.out"
 
 [[exercises]]
+question-id = "chapter-11-Q3"
 title = "Question 14 in Winter 2018 Final Exam"
 difficulty = "Easy"
 table = false
@@ -200,13 +203,14 @@ output = "Q3.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-11-Q4"
 title = "Question 11 in Winter 2022 Final Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Write a recursive function called `compareLines` that compares two strings, `lineOne` and `lineTwo` and returns `true` if the strings are the same and `false` otherwise. When comparing the two strings, space characters (`' '`) and period characters (`'.'`) are not considered as valid characters and should be ignored. If the strings do not have the same number of valid characters, the function should return `false`.
 
 
@@ -221,7 +225,7 @@ If `lineOne = "Hello everyone"` and `lineTwo = "Hello! everyone"`, `compareLines
 
 
 **Note:** Solutions that do not use recursion will receive 0 marks.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>

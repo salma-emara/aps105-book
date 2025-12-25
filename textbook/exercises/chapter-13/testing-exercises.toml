@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-13-Q1"
 title = "Question 5 in Winter 2018 Final Exam"
 difficulty = "Easy"
 table = false
@@ -122,6 +123,7 @@ output = "Q1.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-13-Q2"
 title = "Question 6 in Winter 2016 Final Exam"
 difficulty = "Easy"
 table = false
@@ -243,6 +245,7 @@ output = "Q2.T2.out"
 
 
 [[exercises]]
+question-id = "chapter-13-Q3"
 title = "Question 13 in Winter 2018 Final Exam"
 difficulty = "Intermediate"
 table = false
@@ -371,6 +374,7 @@ output = "Q3.T5.out"
 
 
 [[exercises]]
+question-id = "chapter-13-Q4"
 title = "Question 12 in Winter 2016 Final Exam"
 difficulty = "Intermediate"
 table = false
@@ -498,13 +502,14 @@ output = "Q4.T4.out"
 
 
 [[exercises]]
+question-id = "chapter-13-Q5"
 title = "Question 14 in Winter 2017 Final Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 The following C structure is used to define each node in a linked list:
 ```{code-block} c
 typedef struct node {
@@ -519,7 +524,7 @@ Note that the existing linked lists pointed to by `firstList` and `secondList` m
 
 An example of how the function should work is as follows: if `firstList` points to a linked list containing nodes storing the numbers $1$, $2$, $3$, $4$, $5$ and `secondList` containing the numbers $6$, $7$, $8$, $9$, $10$, then the newly created list returned by the `buildJoinedList` function
 should contain nodes storing the numbers $6$, $7$, $8$, $9$, $10$, $1$, $2$, $3$, $4$, $5$.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -667,13 +672,14 @@ output = "Q5.T5.out"
 
 
 [[exercises]]
+question-id = "chapter-13-Q6"
 title = "Question 14 in Winter 2022 Final Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 The `Node` structure in a linked list has been defined as follows:
 
 ```{code-block} c
@@ -707,7 +713,7 @@ Output List:       0   0   0   0   1  19  5
 </pre>
 
 **Note:** You are not allowed to copy or modify the `data` member in any of the nodes in the linked list. However, you can modify the `next` pointer in the nodes.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>

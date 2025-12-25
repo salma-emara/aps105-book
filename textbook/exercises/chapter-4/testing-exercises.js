@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-4-Q1",
       "title": "Question 1 in Winter 2022 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": "\n`int result = 2, i = 2;`<br>\n`while (i <= 989) {`<br>`\n  result *= i;`<br>`\n  i = i * 2;`<br>\n`}`\n\n"
     },
     {
+      "question-id": "chapter-4-Q2",
       "title": "Question 8 in Winter 2022 Final Exam",
       "difficulty": "Easy",
       "type": "programming",
@@ -31,6 +33,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-4-Q3",
       "title": "Modified version of Question 4 in Winter 2018 Midterm Exam",
       "difficulty": "Intermediate",
       "type": "programming",
@@ -67,6 +70,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-4-Q4",
       "title": "Question 11 in Winter 2018 Midterm Exam",
       "difficulty": "Challenging",
       "type": "programming",
@@ -103,15 +107,17 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-4-Q5",
       "title": "Question 8 in Winter 2018 Midterm Exam",
       "difficulty": "Intermediate",
       "type": "explaination",
       "table": false,
       "multipart": false,
-      "question": "Identify and correct all compile-time errors you find in the C program below. Compile-time errors are errors — not warnings — that the compiler will report when compiling the program. Each line may or may not contain compile-time errors, and there may be more than one error per line.\n\n**Code with compile-time errors**\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  double a, b = 3.14;\n  do {\n    int i = 0;\n    printf(\"Enter a positive integer for offset: \n\");\n    scanf(\"%d\", &a);\n } while (i < 5 && (a < 100 || a > 1);\n int j;\n for (j = 0, j < 3, j++) {\n    y = b * j % a;\n    printf(\"%d\n\", y);\n}\n return 0;\n}\n```\n",
+      "question": "Identify and correct all compile-time errors you find in the C program below. Compile-time errors are errors — not warnings — that the compiler will report when compiling the program. Each line may or may not contain compile-time errors, and there may be more than one error per line.\n\n**Code with compile-time errors**\n```{code-block} c\n#include <stdio.h>\nint main(void) {\n  double a, b = 3.14;\n  do {\n    int i = 0;\n    printf(\"Enter a positive integer for offset: \\n\");\n    scanf(\"%d\", &a);\n } while (i < 5 && (a < 100 || a > 1);\n int j;\n for (j = 0, j < 3, j++) {\n    y = b * j % a;\n    printf(\"%d\\n\", y);\n}\n return 0;\n}\n```\n",
       "answer": " \nLine 5: the scope of `i` is only within the `{}` of the do-while loop, so it cannot be used outside the loop in the conditional statement. Hence, `i` should be declared before the do-while loop. More on scope in the next chapter.\n\n\nLine 8: Missing closing `)`\n\n\nLine 10: Commas should be semi-colon\n\n\nLine 11: Cannot use modulo operator with double values, should be corrected to\n`y = (int) b * j % (int) a;` (or declare variable `a` and `b` as int)\n\n\nLine 11: variable `y` is not declared but used here. Can be declared with `j` as `int j, y;`\n"
     },
     {
+      "question-id": "chapter-4-Q6",
       "title": "Question 6 in Winter 2020 Midterm Exam",
       "difficulty": "Intermediate",
       "type": "programming",

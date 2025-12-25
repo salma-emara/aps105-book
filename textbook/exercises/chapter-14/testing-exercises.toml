@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-14-Q1"
 title = "Question 3 in Winter 2019 Final Exam"
 difficulty = "Easy"
 type = "explaination"
@@ -16,22 +17,25 @@ mark of zero.
 {15, 6, 45, 60, 32, 71, 102, 81}
 ```
 '''
-answer = """ 
+answer = ''' 
 The pivot is 71, because all elements on its left are smaller than it 
 `{15, 6, 45, 60, 32}`, and all elements on its right are larger then 
 it `{102, 81}`. 
-"""
+'''
 
 
 
 [[exercises]]
+question-id = "chapter-14-Q2"
 title = "Question 5 in Winter 2019 Final Exam"
 difficulty = "Easy"
 type = "explaination"
 table = true
 multipart = true
 
-question = """
+LLM = '''
+'''
+question = '''
 We have a number of TAs who have carefully marked a large number of final exams and 
 now must sort them alphabetically.
 
@@ -41,7 +45,7 @@ now must sort them alphabetically.
 (a) Here are some sorting methods you know about. Which ones would work well,
 and which not well to allow the TAs to most quickly sort the exams? Why or why 
 not would the particular method work well or not?
-"""
+'''
 
 headers = ["Method", "OK?", "Reason"]  
 rows = [
@@ -59,15 +63,31 @@ answer = [
 ]
 
 [[exercises]]
+question-id = "chapter-14-Q3"
 title = "Question 5 in Winter 2019 Final Exam"
 difficulty = "Easy"
 type = "explaination"
 table = false
 multipart = true
 
-question = """ (b) What may be a better sorting method?
-"""
+LLM = '''
 
-answer = """
+We have a number of TAs who have carefully marked a large number of final exams and 
+now must sort them alphabetically.
+Here are some sorting methods you know about. 
+Insertion Sort: Does not work well, All TAs have to work on looking for one element to place it at the end
+Selection Sort: Does not work well, All TAs have to work on looking for one element to place it at the end
+Bubble Sort: Does not work well, All TAs have to work on looking for one element to place it at the end
+Quicksort: Works well, Each TA can work on groups of exams
+
+What may be a better sorting method?
+
+'''
+
+
+question = ''' (b) What may be a better sorting method?
+'''
+
+answer = '''
 Each TA takes a stack of exams and sorts into alphabetic piles which are then sorted.
-"""
+'''

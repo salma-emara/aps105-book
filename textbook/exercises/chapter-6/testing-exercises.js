@@ -2,10 +2,12 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-6-Q1",
       "title": "Question 9 in Fall 2013 Midterm Exam",
       "difficulty": "Easy",
       "type": "explaination",
       "table": true,
+      "multipart": false,
       "question": "Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:\n\n```{code-block} c\n#include <stdio.h>\nvoid SumEm(int *A, int B, int C, int *D) {\n  if (B > C) {\n    *A = B + *D;\n    *D = C;\n  } else {\n    *A = C + *D;\n    *D = B;\n  }\n  return;\n}\nint main(void) {\n  int W, X, Y, Z;\n  W = 0;\n  X = 5;\n  Y = 8;\n  Z = 10;\n  SumEm(&W, X, Y, &Z);\n  return 0;\n}\n```\n\n",
       "headers": [
         "Variable",
@@ -49,6 +51,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-6-Q2",
       "title": "Question 1 in Winter 2017 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -58,6 +61,7 @@ let parsedObject;
       "answer": "Corrected condition and increment fields: \n`*i < 10, *i = *i + 1` to `*i < 10; *i = *i + 1`\n\n\n**Full Code:**\n<pre>\n#include <stdio.h>\n\nint main(void) {\n  int j, k;\n  int *i = &j;\n  for (*i = 0; *i < 10; *i = *i + 1) {\n    scanf(\"%d\", &k);\n    printf(\"%d\", (*i) * (*i) * (*i));\n  }\n}\n</pre>\n\n"
     },
     {
+      "question-id": "chapter-6-Q3",
       "title": "Question 1 in Fall 2014 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -67,10 +71,12 @@ let parsedObject;
       "answer": "10, 1\n"
     },
     {
+      "question-id": "chapter-6-Q4",
       "title": "Question 6 in Winter 2017 Midterm Exam",
       "difficulty": "Easy",
       "type": "explaination",
       "table": true,
+      "multipart": false,
       "question": "Consider the following code, which uses pointers. What are the values of the variables `a` and `b` after this code is executed?\n\n```{code-block} c\nint a, b, c, d;\nint *e, *f;\na = 5;\nb = 6;\ne = &c;\nf = &d;\n*e = a + b;\n*f = *e + b;\ne = &a;\nf = &b;\n*e = c + d;\n*f = a + b;\n```\n\n",
       "headers": [
         "Variable",
@@ -98,6 +104,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-6-Q5",
       "title": "Question 5 in Winter 2018 Midterm Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -107,6 +114,7 @@ let parsedObject;
       "answer": "A: 6 6\nB: 7 7 1\n"
     },
     {
+      "question-id": "chapter-6-Q6",
       "title": "Modified version of Question 6 in Winter 2018 Midterm Exam",
       "difficulty": "Intermediate",
       "type": "explaination",
@@ -116,6 +124,7 @@ let parsedObject;
       "answer": " **Problem:** In the function, pointer is assigned to a standard variable. \n\n\n**Correction:**\n\n<pre>\nint higherCorrect(int *m, int *n) {\n  int isHigher;\n  if (*m >= *n)\n    isHigher = *m;\n  else\n    isHigher = *n;\n  return isHigher;\n}\n</pre>\n\n"
     },
     {
+      "question-id": "chapter-6-Q7",
       "title": "Question 9 in Winter 2019 Midterm Exam",
       "difficulty": "Intermediate",
       "type": "programming",
@@ -152,6 +161,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-6-Q8",
       "title": "Question 13 in Winter 2014 Midterm Exam",
       "difficulty": "Challenging",
       "type": "programming",

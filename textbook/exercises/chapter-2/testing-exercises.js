@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-2-Q1",
       "title": "Question 1 in Winter 2020 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -11,15 +12,17 @@ let parsedObject;
       "answer": "`double approximateValue = rint(value * 100) / 100;` "
     },
     {
+      "question-id": "chapter-2-Q2",
       "title": "Modified Version of Question 3 in Fall 2014 Midterm",
       "difficulty": "Easy",
       "type": "explaination",
       "table": false,
       "multipart": false,
-      "question": "Write a single C statement that will compute the value of `r` according to the following expression,\nand assign the value to `r`.\n\n$r = \\frac{x^n + 6 \\times x^4}{\\sin(y) + \\cos(z)}$\n\nYou can assume that all the variables in the expression are already declared as double types, and that \nthe math library (described by the header file math.h) is available, and that the value of y and z is in radians.\n",
+      "question": "Write a single C statement that will compute the value of `r` according to the following expression,\nand assign the value to `r`.\n\n$r = \\\\frac{x^n + 6 \\\\times x^4}{\\\\sin(y) + \\\\cos(z)}$\n\nYou can assume that all the variables in the expression are already declared as double types, and that \nthe math library (described by the header file math.h) is available, and that the value of y and z is in radians.\n",
       "answer": "`r = (pow(x, n) + 6 * pow(x, 4.0)) / (sin(y) + cos(z));` "
     },
     {
+      "question-id": "chapter-2-Q3",
       "title": "Question 5 in Winter 2018 Midterm Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -29,6 +32,7 @@ let parsedObject;
       "answer": "`int leftover = fmin(numApples % 3, numApples % 5);` "
     },
     {
+      "question-id": "chapter-2-Q4",
       "title": "Question 8 in Winter 2019 Midterm Exam",
       "difficulty": "Easy",
       "type": "programming",
@@ -65,6 +69,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-2-Q5",
       "title": "Question 2 in Fall 2018 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -74,6 +79,7 @@ let parsedObject;
       "answer": " \n`int randomChoice = (rand() % 151 - 75) * 2; ` "
     },
     {
+      "question-id": "chapter-2-Q6",
       "title": "Question 2 in Winter 2017 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -83,6 +89,7 @@ let parsedObject;
       "answer": "`double randomSelection = (rand() % 19 + 1) * 0.05;`\n"
     },
     {
+      "question-id": "chapter-2-Q7",
       "title": "Question 2 in Fall 2022 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",

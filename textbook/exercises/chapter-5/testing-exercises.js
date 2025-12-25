@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-5-Q1",
       "title": "Question 5 in Winter 2020 Midterm Exam",
       "difficulty": "Easy",
       "table": false,
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": "     *\n    /|\\\n   //|\\\\\n  ///|\\\\\\\n     |\n"
     },
     {
+      "question-id": "chapter-5-Q2",
       "title": "Question 4 in Winter 2022 Midterm Exam",
       "difficulty": "Easy",
       "type": "function programming",
@@ -48,6 +50,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-5-Q3",
       "title": "Question 11 in Fall 2015 Midterm Exam",
       "difficulty": "Intermediate",
       "type": "function programming",
@@ -85,6 +88,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-5-Q4",
       "title": "Question 12 in Fall 2015 Midterm Exam",
       "difficulty": "Challenging",
       "type": "programming",
@@ -105,6 +109,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-5-Q5",
       "title": "Question 9 in Winter 2020 Midterm Exam",
       "difficulty": "Challenging",
       "type": "function programming",

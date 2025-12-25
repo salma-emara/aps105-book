@@ -6,5 +6,5 @@ Many of these exercises are taken from past exams of APS105 Computer Fundamental
 {{code_runner_quizzes}}
 
 
-{{exercise_embed | replace("%%FILENAME%%", "chapter-2/math-library") }}
+{{exercise_embed | replace("%%FILENAME%%", "chapter-2/testing-exercises") }}
 

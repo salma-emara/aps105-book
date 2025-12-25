@@ -1,8 +1,10 @@
 [[exercises]]
+question-id = "chapter-6-Q1"
 title = "Question 9 in Fall 2013 Midterm Exam"
 difficulty = "Easy"
 type = "explaination"
 table = true
+multipart = false
 
 question = '''
 Determine the values of the variables `W`, `X`, `Y` and `Z` after the function `SumEm` executes in the main program of the following C program:
@@ -52,6 +54,7 @@ answer = [
 
 
 [[exercises]]
+question-id = "chapter-6-Q2"
 title = "Question 1 in Winter 2017 Final Exam"
 difficulty = "Easy"
 type = "explaination"
@@ -100,6 +103,7 @@ int main(void) {
 
 
 [[exercises]]
+question-id = "chapter-6-Q3"
 title = "Question 1 in Fall 2014 Midterm Exam"
 difficulty = "Intermediate"
 table = false
@@ -123,18 +127,20 @@ int main(void) {
 }
 ```
 '''
-answer = """
+answer = '''
 10, 1
-"""
+'''
 
 
 
 
 [[exercises]]
+question-id = "chapter-6-Q4"
 title = "Question 6 in Winter 2017 Midterm Exam"
 difficulty = "Easy"
 type = "explaination"
 table = true
+multipart = false
 
 question = '''
 Consider the following code, which uses pointers. What are the values of the variables `a` and `b` after this code is executed?
@@ -170,6 +176,7 @@ answer = [
 
 
 [[exercises]]
+question-id = "chapter-6-Q5"
 title = "Question 5 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
 table = false
@@ -196,13 +203,14 @@ int main(void) {
 }
 ```
 '''
-answer = """
+answer = '''
 A: 6 6
 B: 7 7 1
-"""
+'''
 
 
 [[exercises]]
+question-id = "chapter-6-Q6"
 title = "Modified version of Question 6 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
 type = "explaination"
@@ -253,6 +261,7 @@ int higherCorrect(int *m, int *n) {
 
 
 [[exercises]]
+question-id = "chapter-6-Q7"
 title = "Question 9 in Winter 2019 Midterm Exam"
 difficulty = "Intermediate"
 type = "programming"
@@ -337,6 +346,7 @@ output = "Q7.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-6-Q8"
 title = "Question 13 in Winter 2014 Midterm Exam"
 difficulty = "Challenging"
 type = "programming"

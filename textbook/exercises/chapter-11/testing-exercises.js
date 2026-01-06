@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-11-Q1",
       "title": "Question 5 in Fall 2013 Final Exam",
       "difficulty": "Easy",
       "table": false,
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": "ENTER: 4\nENTER: 3\nENTER: 2\nENTER: 1\nEXIT: 1\nEXIT: 2\nEXIT: 3\nEXIT: 4\n"
     },
     {
+      "question-id": "chapter-11-Q2",
       "title": "Question 10 in Fall 2013 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -80,6 +82,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-11-Q3",
       "title": "Question 14 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "table": false,
@@ -117,6 +120,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-11-Q4",
       "title": "Question 11 in Winter 2022 Final Exam",
       "difficulty": "Challenging",
       "table": false,

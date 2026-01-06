@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-5-Q1"
 title = "Question 5 in Winter 2020 Midterm Exam"
 difficulty = "Easy"
 table = false
@@ -52,6 +53,7 @@ answer = '''
 
 
 [[exercises]]
+question-id = "chapter-5-Q2"
 title = "Question 4 in Winter 2022 Midterm Exam"
 difficulty = "Easy"
 type = "function programming"
@@ -133,15 +135,16 @@ output = "Q2.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-5-Q3"
 title = "Question 11 in Fall 2015 Midterm Exam"
 difficulty = "Intermediate"
 type = "function programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 Write a C function `reverseDigits`, the prototype of which is given below, that takes an integer argument value, and returns an integer with its digits reversed. For example, if the argument is `1234`, the function will return `4321`.
-"""
+'''
 starter-code = '''
 #include <stdio.h>
 
@@ -195,6 +198,7 @@ output = "Q3.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-5-Q4"
 title = "Question 12 in Fall 2015 Midterm Exam"
 difficulty = "Challenging"
 type = "programming"
@@ -258,13 +262,14 @@ output = "Q4.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-5-Q5"
 title = "Question 9 in Winter 2020 Midterm Exam"
 difficulty = "Challenging"
 type = "function programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 A pythagorean triple is a triple of integers $(x, y, z)$ such that $x^2 + y^2 = z^2$. 
 
 Complete this function that takes a single positive integer `x` as an argument and prints three positive integer values `x`, `y` and `z` such that:
@@ -274,7 +279,7 @@ Complete this function that takes a single positive integer `x` as an argument a
 
 If there is no triple that satisfies these conditions print “no solution exists.”
 
-"""
+'''
 starter-code = '''
 #include <stdio.h>
 #include <math.h>

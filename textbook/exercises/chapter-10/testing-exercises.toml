@@ -1,11 +1,12 @@
 [[exercises]]
+question-id = "chapter-10-Q1"
 title = "Question 9 in Winter 2019 Final Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Write a function, `countLetters`, that counts the number occurrences of each alphabetical letter found in a string. The function has two parameters: a string (i.e. char *) and an array of integers.
 
 The string should not be modified and can be any length. You may assume that the string is null-terminated and all letters are lower case. The string may contain characters that are not part of the alphabet (e.g., `'0'`, `'1'`, `'!'`, `'&'`, etc). The integer array has a size of 26, one for each letter in the alphabet.
@@ -32,7 +33,7 @@ h: 1
 r: 1
 W: 1 
 </pre>
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -101,17 +102,18 @@ output = "Q1.T4.out"
 
 
 [[exercises]]
+question-id = "chapter-10-Q2"
 title = "Question 10 in Winter 2022 Final Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Write a function called `lastStringInString`, the prototype of which is provided below, that returns the pointer to the **last** occurrence of the string `s1` in the string `s2`. If the string `s1` cannot be found in the string `s2`, the function returns `NULL`. For example, if we are looking for the string `"is"` as `s1` in the string `"This is a sample string"` as `s2`, the pointer to the second `"is"` in the string `"s2"` will be returned by the function. Another example, if we are looking for the string `"the"` as `s1` in the string `s2` `"The apple"`, the function should return `NULL`. This is because `'t'` is lower case in `"the"`. 
 
 **Note:** You can use any function from the library `string.h`, **except** for `strstr()` --- you are not allowed to use it.  
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -201,16 +203,17 @@ output = "Q2.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-10-Q3"
 title = "Question 11 in Winter 2018 Final Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Write a C function called `preamble` that takes two parameters: a string `str` and an int-type integer `n`. The function will then return a new string that is dynamically allocated, and that contains at most the first `n` characters in the string `str`. For example, if `str` is `"Toronto"`, and `n` is `3`, then the function will return `"Tor"` (the first three characters in `"Toronto"`). If `str` is `"Toronto"` and `n` is `8`,
 then the function will return `"Toronto"`. If `str` is NULL, the function will also return `NULL`.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -293,19 +296,20 @@ output = "Q3.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-10-Q4"
 title = "Question 11 in Winter 2017 Final Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Write a function `char *deleteSubString(char *source, char *substring)` that takes
 two strings called `source` and `substring` as its parameters. It should return a new dynamically allocated string that is constructed from the strings `source` and `substring`. 
 The newly created and returned string should be the same as the `source` string, but with the first occurrence of the string `substring` removed. For example, if the string `source` 
 has the value `"my toronto"`, and the string `substring` has the value `"to"`, the function will return the string `"my ronto"`. You may use any of the string-related functions in the
 C standard library, and may assume that `string.h` has been included.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -387,13 +391,14 @@ output = "Q4.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-10-Q5"
 title = "Question 13 in Fall 2015 Final Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Two strings are said to be anagrams of each other if they are of the same length, and contain the same characters in a (possibly) different order. For example, 
 `"elvis"` is an anagram of `"lives"`, and `"the morse code"` is an anagram of `"here come dots"`. 
 
@@ -402,7 +407,7 @@ it returns `false`. In your code, you may modify any of the characters in `s1` a
 both strings will only contain characters from the alphabet (upper case and lower case) and
 the space character. Also, note that the upper case `'A'` is NOT considered as the same character as lower case `'a'`.
 
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -477,20 +482,21 @@ output = "Q5.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-10-Q6"
 title = "Question 12 in Fall 2012 Final Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "programming"
 
-question = """
+question = '''
 Write a C function called `checkPlagiarism`, the prototype of which is given below, that returns `true` if the two suspected codes `code1` and `code2` 
 have high similarity. *High similarity* is defined as matching exactly, but ignoring any spaces or newline character`\n`. For example, the 
 function `checkPlagiarism` returns `true` when comparing the example strings  `c1` and `c2` below. You may assume that `c1` and `c2` are 
 null-terminated strings. 
 
 **Hint:** your code should return `false` as soon as it finds evidence of mis-match.
-"""
+'''
 
 starter-code = '''
 #include <stdbool.h>

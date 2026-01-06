@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-13-Q1",
       "title": "Question 5 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "table": false,
@@ -40,6 +41,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-13-Q2",
       "title": "Question 6 in Winter 2016 Final Exam",
       "difficulty": "Easy",
       "table": false,
@@ -78,6 +80,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-13-Q3",
       "title": "Question 13 in Winter 2018 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -131,6 +134,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-13-Q4",
       "title": "Question 12 in Winter 2016 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -176,6 +180,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-13-Q5",
       "title": "Question 14 in Winter 2017 Final Exam",
       "difficulty": "Challenging",
       "table": false,
@@ -229,6 +234,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-13-Q6",
       "title": "Question 14 in Winter 2022 Final Exam",
       "difficulty": "Challenging",
       "table": false,

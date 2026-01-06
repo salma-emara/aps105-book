@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-12-Q1",
       "title": "Question 2 in Winter 2022 Final Exam",
       "difficulty": "Easy",
       "table": false,
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": "<code>\nstruct Student {\n  \n  char *name;\n\n  int id;\n\n  struct marks grades;\n\n} test, allStudents[500];\n</code>\n"
     },
     {
+      "question-id": "chapter-12-Q2",
       "title": "Question 1 in Winter 2020 Final Exam",
       "difficulty": "Easy",
       "table": false,
@@ -20,6 +22,7 @@ let parsedObject;
       "answer": "<code>\nstruct AnimalSizes {\n\n  char name[20];\n\n  double length;\n\n} snakes[2] = {{\"Anaconda\", 3.7}, {\"Python\", 2.4}};\n</code>\n"
     },
     {
+      "question-id": "chapter-12-Q3",
       "title": "Question 7 in Winter 2020 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -73,6 +76,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-12-Q4",
       "title": "Question 3 in Winter 2018 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -82,6 +86,7 @@ let parsedObject;
       "answer": "<pre>\nchar c = employees[1].emplName->lastname[0];\n</pre>\n\nemployee is at index 1, so `employees[1]`.\n\nThe name is at `employees[1].emplName`, which is a pointer to `Name` structure.\n\nTo access the last name of the employee, we can use the arrow operator `->` to access the `lastname` field of the `Name` structure, `employees[1].emplName->lastname`.\n\nThe first character of the last name is at `employees[1].emplName->lastname[0]`.\n\n"
     },
     {
+      "question-id": "chapter-12-Q5",
       "title": "Question 3 in Deferred Exam of Winter 2022 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -91,6 +96,7 @@ let parsedObject;
       "answer": "`struct flower Flower = {\"Rose\", {39, \"red\"}};`\n"
     },
     {
+      "question-id": "chapter-12-Q6",
       "title": "Question 5 in Winter 2022 Final Exam",
       "difficulty": "Challenging",
       "table": false,

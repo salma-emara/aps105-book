@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-7-Q1"
 title = "Part of Question 6 in Winter 2020 Midterm Exam"
 difficulty = "Easy"
 type = "explaination"
@@ -13,14 +14,15 @@ printf("The last character is %c.\n", cArray[5]);
 ```
 '''
 
-answer = """ 
+answer = ''' 
 **Problem:** The maximum index for `cArray` is 4 (array out-of-bounds error).
 
 
 **Solution:** Change `[5]` to `[4]`.
-"""
+'''
 
 [[exercises]]
+question-id = "chapter-7-Q2"
 title = "Question 5 in Winter 2022 Midterm Exam"
 difficulty = "Intermediate"
 table = false
@@ -49,12 +51,13 @@ int main(void) {
 ```
 
 '''
-answer = """
+answer = '''
 first = 2, second = 3, third = 3, fourth = 2, fifth = 30
 10, 20, 30, 37,
-"""
+'''
 
 [[exercises]]
+question-id = "chapter-7-Q3"
 title = "Question 5 in Winter 2020 Midterm Exam"
 difficulty = "Intermediate"
 table = false
@@ -81,19 +84,20 @@ int main(void) {
 ```
 '''
 
-answer = """
+answer = '''
 A: 6 6
 B: 7 7 1
-"""
+'''
 
 [[exercises]]
+question-id = "chapter-7-Q4"
 title = "Question 14 in Winter 2017 Midterm Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "programming"
 
-question = """
+question = '''
 Write a complete C program that prompts the user repeatedly for a sequence of up to 10 integer values. After receiving all 10 values, or if the user enters 0, the program will stop prompting for more values. Your program will complete the following three tasks using the values entered:
 Write a complete C program that prompts the user repeatedly for a sequence of up to 10 integer values. After receiving all 10 values, or if the user enters 0, the program will stop prompting for more values. You can assume that the user enters at least one value before entering 0. Your program will complete the following three tasks, in the order as given below, using the values the user entered.
 
@@ -156,7 +160,7 @@ There are a total of 1 numbers.
 The values you entered are: 1
 The values are in ascending order.
 </pre>
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -221,13 +225,14 @@ input = "Q4.T4.in"
 output = "Q4.T4.out"
 
 [[exercises]]
+question-id = "chapter-7-Q5"
 title = "Question 9 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 The dot product, an operation with which every first-year engineer is familiar, consists of the element-by-element multiplication of two vectors, and the cumulative sum of these resulting products. If vector $a = [a_1, a_2, a_3]$, and $b = [b_1, b_2, b_3]$, then the dot product $a · b = a_1 \\times b_1 + a_2 \\times b_2 + a_3 \\times b_3$.
 
 Smartphones, which can be found at this very moment in many first-year engineer’s pocket, do perform a similar operation when the treble or the bass are adjusted when the said engineer is enjoying a song. This operation is called *filtering*.
@@ -246,7 +251,7 @@ filter: 1 0 -1 0 2 0 -1 0 1 // it's a sinc
 </pre>
 
 Next time you listen to a song, consider that it is very possible that two 50 element long arrays are being used by a function very similar to the one you will write below, and that function is being called at least once every 48 thousandths of a second, so that you can enjoy that Taylor Swift song. Okay, make it Justin Bieber, then.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -302,13 +307,14 @@ output = "Q5.T4.out"
 
 
 [[exercises]]
+question-id = "chapter-7-Q6"
 title = "Question 11 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "programming"
 
-question = """
+question = '''
 Recall that the function `rand()` returns a random integer each time it is called. 
 
 Write a complete C program to help assess the quality of `rand()`, by following the three steps provided below.
@@ -322,7 +328,7 @@ Finally, print out the values of all elements of `h`.
 For the sake of convenience, you do not need to seed the random number generator.
 
 (The quality of `rand()` can then be assessed by someone who uses your program as follows: if the printed-out numbers are all within a small range, then the quality of rand() is pretty good; on the other hand, if the printed-out numbers span a large range, then the quality of rand() is rather poor.)
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -363,13 +369,14 @@ output = "Q6.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-7-Q7"
 title = "Question 10 in Winter 2020 Midterm Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Complete the definition of a C function `secondLargest` whose prototype is shown below. The function returns the index of the 
 second largest integer in the list array, which contains `count` elements.
 
@@ -380,7 +387,7 @@ If there does not exist a second largest integer (i.e., all integers in the arra
 the function returns `-1`. For the sake of simplicity, you may assume that all integers in the array are positive, 
 and there exists at least one element in the array (i.e., `count > 0`).
 
-"""
+'''
 
 starter-code = '''
 
@@ -446,13 +453,14 @@ output = "Q7.T4.out"
 
 
 [[exercises]]
+question-id = "chapter-7-Q8"
 title = "Question 12 in Winter 2020 Midterm Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 In a Pascal’s Triangle, the first row, row #0, has a single element 1. Each succeeding row elements are the sum of the two elements just above (if there is only one number just above, then that number is duplicated). So the first 5 rows (numbering from zero) are:
 
 <pre>
@@ -491,7 +499,7 @@ int main(void) {
   printf("\n");
 }
 ```
-"""
+'''
 
 starter-code = '''
 
@@ -540,13 +548,14 @@ output = "Q8.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-7-Q9"
 title = "Question 13 in Winter 2018 Midterm Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 The constant `E` is defined as a double constant of $2.718281828459045$.
 
 ```{code-block} c
@@ -562,7 +571,7 @@ does not exist in the first 16 consecutive digits of E.
 in the sequence that can be found.
 
 Feel free to declare and implement additional functions when needed.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -619,13 +628,14 @@ output = "Q9.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-7-Q10"
 title = "Question 11 in Winter 2020 Midterm Exam"
 difficulty = "Challenging"
 table = false
 multipart= false
 type = "programming"
 
-question = """
+question = '''
 The *Sieve of Eratosthenes* is an ancient algorithm for finding prime numbers. To use this algorithm to find all prime numbers less than a given integer, say 100, we start by making a list of consecutive integers less than $100$. We first take $p$ = 2, the smallest prime number, and print it. We then eliminate all multiples of $p$ less than $100$ in the list, (2$p$, 3$p$, 4$p$, . . .), from the list, since they are multiples of $p$ and are therefore not prime numbers. After eliminating the multiples of $p$, we find the first number after $p$ that has not yet been eliminated, as it must be the next prime number. We assign this new prime number to $p$, print it, and eliminate its multiples from the list, and so on.
 
 We repeat this procedure until $p^2$ is greater than or equal to $100$. The numbers that remain in the list are prime numbers, and we finish by printing them out.
@@ -636,7 +646,7 @@ Write a complete C program that uses the *Sieve of Eratosthenes* algorithm to pr
 </pre>
 
 **Hint:** Use an array of size $100$ to keep track of whether an integer has been eliminated or not.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>

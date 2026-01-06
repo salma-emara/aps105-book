@@ -1,11 +1,12 @@
 [[exercises]]
+question-id = "chapter-15-Q1"
 title = "Question 1.7 in Fall 2011"
 difficulty = "Easy"
 table = false
 multipart= false
 type = "function programming"
 
-question = """
+question = '''
 Your task is to complete the function below so that it contains a non-recursive implementation of the binary search algorithm. The parameter `values` is an array of `int` type variables. The items in the values array have been sorted into descending (non-ascending) order. Parameter `n` is the number of elements in the `values` array. Parameter `item` is the item being searched for in the values array.
 
 The function should return -1 if `item` is not found in the array. Otherwise, the function should return the index position within the array at which `item` is found.
@@ -13,7 +14,7 @@ The function should return -1 if `item` is not found in the array. Otherwise, th
 **Important:** your function should assume that `values` is a sorted array in descending (non-ascending) order.
 
 **Important:** Your solution must **not** use recursion.
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>

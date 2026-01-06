@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-3-Q1",
       "title": "Question 2 in Winter 2018 Midterm Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": "`bool isHighlighted = characterCount % 2 == 0 && characterCount > 0;` "
     },
     {
+      "question-id": "chapter-3-Q2",
       "title": "Question 2 in Winter 2019 Midterm Exam",
       "difficulty": "Easy",
       "table": false,
@@ -20,6 +22,7 @@ let parsedObject;
       "answer": "`bool divisible = numOfItems % 5 == 0 || numOfItems % 7 == 0;` "
     },
     {
+      "question-id": "chapter-3-Q3",
       "title": "Question 7 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "type": "multiple-choice",
@@ -36,6 +39,7 @@ let parsedObject;
       "explanation": "True, since \\\\0 has ASCII code of zero"
     },
     {
+      "question-id": "chapter-3-Q4",
       "title": "Question 7 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "type": "multiple-choice",
@@ -52,6 +56,7 @@ let parsedObject;
       "explanation": "True, since x stores 2"
     },
     {
+      "question-id": "chapter-3-Q5",
       "title": "Question 7 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "type": "multiple-choice",
@@ -68,6 +73,7 @@ let parsedObject;
       "explanation": "False, since 'c' - 2 == 'a'\n"
     },
     {
+      "question-id": "chapter-3-Q6",
       "title": "Question 7 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "type": "multiple-choice",
@@ -84,6 +90,7 @@ let parsedObject;
       "explanation": "False, since the range of random numbers in w is between -99 and 49 inclusive"
     },
     {
+      "question-id": "chapter-3-Q7",
       "title": "Modified version of Question 7 in Winter 2019 Midterm Exam",
       "difficulty": "Easy",
       "type": "programming",
@@ -128,12 +135,13 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-3-Q8",
       "title": "Modified Version of Question 4 in Winter 2022 Midterm Exam",
       "difficulty": "Easy",
       "type": "programming",
       "table": false,
       "multipart": false,
-      "question": "The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one nested `if-else` statement.\n\n```{code-block} c\n#include <stdio.h>\n\nint main(void) {\n  char a = '\\0', b = '\\0', c = '\\0';\n  printf(\"Enter three characters: \");\n  scanf(\"%c %c %c\", &a, &b, &c);\n  if (a < b) {\n    if (b < c) {\n      printf(\"%c\", b);\n    } else if (a < c) {\n      printf(\"%c\", c);\n    } else {\n      printf(\"%c\", a);\n    }\n  }\n\n  if (c < b) {\n    printf(\"%c\", b);\n  }\n  if (a < c) {\n    printf(\"%c\", a);\n  }\n  printf(\"%c\", c);\n}\n```\n\n",
+      "question": "The following program finds the middle character, e.g., if we have `a = 'a'`, `b = 'b'`, and `c = 'c'`, the program prints `b`. Rewrite this function such that it only uses one `printf` and one nested `if-else` statement.\n\n```{code-block} c\n#include <stdio.h>\n\nint main(void) {\n  char a = '\\\\0', b = '\\\\0', c = '\\\\0';\n  printf(\"Enter three characters: \");\n  scanf(\"%c %c %c\", &a, &b, &c);\n  if (a < b) {\n    if (b < c) {\n      printf(\"%c\", b);\n    } else if (a < c) {\n      printf(\"%c\", c);\n    } else {\n      printf(\"%c\", a);\n    }\n  }\n\n  if (c < b) {\n    printf(\"%c\", b);\n  }\n  if (a < c) {\n    printf(\"%c\", a);\n  }\n  printf(\"%c\", c);\n}\n```\n\n",
       "starter-code": "#include <stdio.h>\n\nint main(void) {\n\n}\n",
       "answer": "#include <stdio.h>\n\nint main(void) {\n  char a = '\\0', b = '\\0', c = '\\0';\n  printf(\"Enter three characters: \");\n  scanf(\"%c %c %c\", &a, &b, &c);\n\n  char result = a;\n\n  if ((a < b && b < c) || (c < b && b < a)) {\n    result = b;\n  } else if ((a < c && c < b) || (b < c && c < a)) {\n    result = c;\n  }\n\n  printf(\"%c\", result);\n}\n",
       "testcases": [

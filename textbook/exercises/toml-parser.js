@@ -35,7 +35,16 @@ baseDirs.forEach((baseDir) => {
         for (let i = 0; i < exercisesCount; i++) {
             const ex = tomlData.exercises[i];
 
-            const label = `Exercise #${i + 1} of ${chapterName}`;
+            if (!('question-id' in ex)) {
+
+                throw new Error(
+                    `Exercise #${i + 1} of ${chapterName} is missing a question-id.\n` +
+                    `To fix this, please run: node ./textbook/_static/add_question_ids.js`
+                );
+                
+            }
+
+            const label = `${ex['question-id']} of ${chapterName}`;
 
             // check for common missing variables
             if (!('title' in ex)) {
@@ -98,13 +107,6 @@ baseDirs.forEach((baseDir) => {
 
             // exercise type specific variables
 
-            // tracing
-            if (ex.type === "tracing") {
-                if (typeof ex['question-code'] !== 'string') {
-                    throw new Error(`${label}: missing starter-code`);
-                }
-            }
-
             // programming
             if (ex.type === 'programming' || ex.type === 'function programming') {
                 if (typeof ex['starter-code'] !== 'string') {
@@ -112,15 +114,11 @@ baseDirs.forEach((baseDir) => {
                 }
             }
 
-            // include this once we have main-functions for all function programing questions
-
-            // if (ex.type === 'function programming') {
-            //   if (typeof ex['main-function'] !== 'string') {
-            //     throw new Error(`${label}: missing main-function`);
-            //   }
-            // }
-
-            // need to add missing test cases later on
+            if (ex.type === 'function programming') {
+              if (typeof ex['main-function'] !== 'string') {
+                throw new Error(`${label}: missing main-function`);
+              }
+            }
 
             // multiple choice
             if (ex.type === 'multiple-choice') {
@@ -130,8 +128,16 @@ baseDirs.forEach((baseDir) => {
                 if (!Array.isArray(ex.choices) || ex.choices.some((c) => typeof c !== 'string')) {
                     throw new Error(`${label}: choices must be an array of strings`);
                 }
-                if (!Array.isArray(ex.explanations) || ex.explanations.some((e) => typeof e !== 'string')) {
-                    throw new Error(`${label}: explanations must be an array of strings`);
+            }
+
+            // checks multipart LLM
+
+            if (ex.multipart && ex.type !== 'multiple-choice') {
+                if (!('LLM' in ex)) {
+                    throw new Error(`${label}: multipart is true but missing LLM variable`);
+                }
+                if (typeof ex.LLM !== 'string') {
+                    throw new Error(`${label}: LLM must be a string`);
                 }
             }
 
@@ -171,3 +177,4 @@ baseDirs.forEach((baseDir) => {
 });
 
 console.log('All done.');
+

@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-10-Q1",
       "title": "Question 9 in Winter 2019 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -47,6 +48,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-10-Q2",
       "title": "Question 10 in Winter 2022 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -84,6 +86,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-10-Q3",
       "title": "Question 11 in Winter 2018 Final Exam",
       "difficulty": "Intermediate",
       "table": false,
@@ -121,6 +124,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-10-Q4",
       "title": "Question 11 in Winter 2017 Final Exam",
       "difficulty": "Challenging",
       "table": false,
@@ -158,6 +162,7 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-10-Q5",
       "title": "Question 13 in Fall 2015 Final Exam",
       "difficulty": "Challenging",
       "table": false,
@@ -195,12 +200,13 @@ let parsedObject;
       ]
     },
     {
+      "question-id": "chapter-10-Q6",
       "title": "Question 12 in Fall 2012 Final Exam",
       "difficulty": "Challenging",
       "table": false,
       "multipart": false,
       "type": "programming",
-      "question": "Write a C function called `checkPlagiarism`, the prototype of which is given below, that returns `true` if the two suspected codes `code1` and `code2` \nhave high similarity. *High similarity* is defined as matching exactly, but ignoring any spaces or newline character`\n`. For example, the \nfunction `checkPlagiarism` returns `true` when comparing the example strings  `c1` and `c2` below. You may assume that `c1` and `c2` are \nnull-terminated strings. \n\n**Hint:** your code should return `false` as soon as it finds evidence of mis-match.\n",
+      "question": "Write a C function called `checkPlagiarism`, the prototype of which is given below, that returns `true` if the two suspected codes `code1` and `code2` \nhave high similarity. *High similarity* is defined as matching exactly, but ignoring any spaces or newline character`\\n`. For example, the \nfunction `checkPlagiarism` returns `true` when comparing the example strings  `c1` and `c2` below. You may assume that `c1` and `c2` are \nnull-terminated strings. \n\n**Hint:** your code should return `false` as soon as it finds evidence of mis-match.\n",
       "starter-code": "#include <stdbool.h>\n#include <stdio.h>\n\nbool checkPlagiarism(char *code1, char *code2);\n\nint main(void) {\n  char c1[] =\n      \"int main(void) {\\n int x = 10; \\n int z = x + 5; \\n return 0; \\n}\\n\";\n  char c2[] =\n      \"int main(void) {\\n int x=10; \\n\\n int z=x +5; \\n\\n\\n return 0; \\n}\\n\";\n  printf(\"%d\\n\", checkPlagiarism(c1, c2));\n  return 0;\n}\n\n",
       "answer": "bool checkPlagiarism(char *code1, char *code2) {\n  while (*code1 != '\\0' && *code2 != '\\0') {\n    while (*code1 == ' ' || *code1 == '\\n') {\n      code1++;\n    }\n    while (*code2 == ' ' || *code2 == '\\n') {\n      code2++;\n    }\n    if (*code1 != *code2) {\n      return false;\n    } else if (*code1 != '\\0' &&\n               *code2 != '\\0') {  // we don't want to add if any is '\\0'\n      code1++;\n      code2++;\n    }\n  }\n  // exit when *code1 is '\\0' and/or *code2 is '\\0'\n  if (*code1 == *code2) {  // if both are '\\0'\n    return true;\n  } else {  // both are not '\\0', make sure rest of what is not '\\0' is spaces\n            // or endlines\n    char *checker;\n    if (*code1 != '\\0') {\n      checker = code1;\n    } else {\n      checker = code2;\n    }\n    while (*checker != '\\0' && (*checker == ' ' || *checker == '\\n')) {\n      checker++;\n    }\n    if (*checker == '\\0') {\n      return true;\n    } else {\n      return false;\n    }\n  }\n}\n",
       "testcases": [

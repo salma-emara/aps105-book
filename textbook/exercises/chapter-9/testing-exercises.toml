@@ -1,11 +1,12 @@
 [[exercises]]
+question-id = "chapter-9-Q1"
 title = "Question 10 in Winter 2017 Final Exam"
 difficulty = "Intermediate"
 type = "programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 
 You are to write a function that sets a rectangular portion of a 2-dimensional array to a specific value. The function takes the following as input parameters: an integer 1000 $\times$ 1000 2-dimensional array called `A`, four integer parameters named `rowStart`, `rowEnd`, `colStart`, and `colEnd` and an integer parameter `value`.
 
@@ -20,7 +21,7 @@ However, this function is to he used by students in a first year C programming c
 The function should return a boolean result that is set to `true` if the inputs are valid, and `false` if they are not. In the case that the inputs are not valid, the setting of the values of the array should not be attempted.
 
 **IMPORTANT:** Your solution, in addition to the code for the function described above, should also show how you would call this function from the main function, and **make use of its return value**. That is, you should show the call to the function (with appropriately declared variables, and gathering input from the user for `rowStart`, `rowEnd`, `colStart`, `colEnd` and `value`) and make appropriate use of the returned boolean value.
-"""
+'''
 
 starter-code = '''
 #include <stdbool.h>
@@ -99,6 +100,7 @@ output = "Q1.T6.out"
 
 
 [[exercises]]
+question-id = "chapter-9-Q2"
 title = "Question 9 in Winter 2022 Final Exam"
 difficulty = "Intermediate"
 type = "function programming"
@@ -215,6 +217,7 @@ output = "Q2.T7.out"
 
 
 [[exercises]]
+question-id = "chapter-9-Q3"
 title = "Question 4 in Winter 2020 Final Exam"
 difficulty = "Intermediate"
 type = "function programming"
@@ -347,6 +350,7 @@ output = "Q3.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-9-Q4"
 title = "Question 11 in Fall 2015 Final Exam"
 difficulty = "Challenging"
 type = "function programming"
@@ -432,6 +436,7 @@ output = "Q4.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-9-Q5"
 title = "Question 15 in Fall 2014 Final Exam"
 difficulty = "Challenging"
 type = "programming"

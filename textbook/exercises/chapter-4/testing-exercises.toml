@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-4-Q1"
 title = "Question 1 in Winter 2022 Final Exam"
 difficulty = "Easy"
 type = "explaination"
@@ -30,20 +31,21 @@ answer = '''
 
 
 [[exercises]]
+question-id = "chapter-4-Q2"
 title = "Question 8 in Winter 2022 Final Exam"
 difficulty = "Easy"
 type = "programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 Write a complete C program that calculates and prints the sum of all numbers between $1$ and $999$ (inclusive) that satisfy **all** the following conditions:
 
 * The number is divisible by $9$.
 * The number is even.
 * The ten's digit of the number is *not* $7$. For example, the ten's digit in $753$ is $5$, the ten's digit of $671$ is $7$, and the ten's digit of $9$ is $0$.
 
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -79,19 +81,20 @@ output = "Q2.T1.out"
 
 
 [[exercises]]
+question-id = "chapter-4-Q3"
 title = "Modified version of Question 4 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
 type = "programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 Write a C program that prints the most significant digit of a positive int-type integer that is taken from the user. The program should prompt the user "Enter a number:" and prints "The leading digit is: " followed by the most significant digit. 
 
 For example, if the user input is `987654321`, the program will print `9`. You can assume that the user always enters a positive integer.
 
 
-"""
+'''
 
 starter-code = '''
 #include <stdio.h>
@@ -135,19 +138,20 @@ output = "Q3.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-4-Q4"
 title = "Question 11 in Winter 2018 Midterm Exam"
 difficulty = "Challenging"
 type = "programming"
 table = false
 multipart= false
 
-question = """
+question = '''
 Write a C program that returns a randomly generated prime number between $1$ and a maximum `int`-type integer, `maxRange` (inclusive), which is provided as
 by the user as input, and is assumed to be greater than $1$. A prime number is a natural number greater than 1 that cannot be formed by multiplying two smaller natural numbers. For example, $2$, $3$, $5$, $11$, and $13$ are all prime numbers.
 
 The program prompts the user "Enter the maximum range: " to enter the `maxRange` value and prints "Random prime number generated is " followed by the randomly generated prime number. You can assume that the user always enters a positive integer greater than $1$. You are not allowed to use arrays or pointer variables in your implementation. For convenience, you do not need to seed the random number generator.
 
-"""
+'''
 
 starter-code = '''
 #include <stdbool.h>
@@ -209,13 +213,14 @@ output = "Q4.T3.out"
 
 
 [[exercises]]
+question-id = "chapter-4-Q5"
 title = "Question 8 in Winter 2018 Midterm Exam"
 difficulty = "Intermediate"
 type = "explaination"
 table = false
 multipart= false
 
-question = """
+question = '''
 Identify and correct all compile-time errors you find in the C program below. Compile-time errors are errors — not warnings — that the compiler will report when compiling the program. Each line may or may not contain compile-time errors, and there may be more than one error per line.
 
 **Code with compile-time errors**
@@ -236,7 +241,7 @@ int main(void) {
  return 0;
 }
 ```
-"""
+'''
 
 answer = ''' 
 Line 5: the scope of `i` is only within the `{}` of the do-while loop, so it cannot be used outside the loop in the conditional statement. Hence, `i` should be declared before the do-while loop. More on scope in the next chapter.
@@ -256,6 +261,7 @@ Line 11: variable `y` is not declared but used here. Can be declared with `j` as
 '''
 
 [[exercises]]
+question-id = "chapter-4-Q6"
 title = "Question 6 in Winter 2020 Midterm Exam"
 difficulty = "Intermediate"
 type = "programming"

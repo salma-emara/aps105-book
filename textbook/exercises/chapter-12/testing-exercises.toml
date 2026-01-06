@@ -1,4 +1,5 @@
 [[exercises]]
+question-id = "chapter-12-Q1"
 title = "Question 2 in Winter 2022 Final Exam"
 difficulty = "Easy"
 table = false
@@ -36,6 +37,7 @@ struct Student {
 
 
 [[exercises]]
+question-id = "chapter-12-Q2"
 title = "Question 1 in Winter 2020 Final Exam"
 difficulty = "Easy"
 table = false
@@ -63,6 +65,7 @@ struct AnimalSizes {
 
 
 [[exercises]]
+question-id = "chapter-12-Q3"
 title = "Question 7 in Winter 2020 Final Exam"
 difficulty = "Intermediate"
 table = false
@@ -176,6 +179,7 @@ output = "Q3.T5.out"
 
 
 [[exercises]]
+question-id = "chapter-12-Q4"
 title = "Question 3 in Winter 2018 Final Exam"
 difficulty = "Intermediate"
 table = false
@@ -221,6 +225,7 @@ The first character of the last name is at `employees[1].emplName->lastname[0]`.
 '''
 
 [[exercises]]
+question-id = "chapter-12-Q5"
 title = "Question 3 in Deferred Exam of Winter 2022 Final Exam"
 difficulty = "Intermediate"
 table = false
@@ -247,6 +252,7 @@ answer = '''
 '''
 
 [[exercises]]
+question-id = "chapter-12-Q6"
 title = "Question 5 in Winter 2022 Final Exam"
 difficulty = "Challenging"
 table = false

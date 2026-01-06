@@ -2,6 +2,7 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
+      "question-id": "chapter-8-Q1",
       "title": "Question 4 in Winter 2018 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",
@@ -11,6 +12,7 @@ let parsedObject;
       "answer": "`int *intPtrArray = (int *)malloc(10 * sizeof(int));`\n"
     },
     {
+      "question-id": "chapter-8-Q2",
       "title": "Question 2 in Fall 2015 Final Exam",
       "difficulty": "Easy",
       "type": "explaination",

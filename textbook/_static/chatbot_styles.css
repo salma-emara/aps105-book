@@ -1,143 +1,142 @@
 .card-body {
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 400px;
+}
+
+#user-chat {
+  background-color: blue;
+}
+
+#chat {
+  scroll-behavior: smooth;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 60px;
+  aspect-ratio: 2;
+  --_g: no-repeat
+    radial-gradient(circle closest-side, rgb(103, 103, 103) 90%, #36333300);
+  background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+  background-size: calc(100% / 5) 50%;
+  animation: l3 1s infinite linear;
+}
+
+@keyframes l3 {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
   }
-  
-  #user-chat {
-    background-color: blue;
+
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
   }
-  
-  #chat {
-    scroll-behavior: smooth;
+
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
   }
-  
-  /* HTML: <div class="loader"></div> */
-  .loader {
-    width: 60px;
-    aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(circle closest-side, rgb(103, 103, 103) 90%, #36333300);
-    background:
-      var(--_g) 0% 50%,
-      var(--_g) 50% 50%,
-      var(--_g) 100% 50%;
-    background-size: calc(100%/5) 50%;
-    animation: l3 1s infinite linear;
+
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
   }
-  
-  @keyframes l3 {
-    20% {
-      background-position: 0% 0%, 50% 50%, 100% 50%
-    }
-  
-    40% {
-      background-position: 0% 100%, 50% 0%, 100% 50%
-    }
-  
-    60% {
-      background-position: 0% 50%, 50% 100%, 100% 0%
-    }
-  
-    80% {
-      background-position: 0% 50%, 50% 50%, 100% 100%
-    }
-  }
-  
-  .btn-floating {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    left: auto;
-  }
-  
+}
+
+.btn-floating {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  left: auto;
+}
+
 .float-chat-container {
   position: fixed;
   right: 50px;
   bottom: 20px;
   width: 400px;
-  max-width: calc(100% - 60px); /* Ensure the container fits within the window with a 10px left margin and 50px right margin */
+  max-width: calc(
+    100% - 60px
+  ); /* Ensure the container fits within the window with a 10px left margin and 50px right margin */
   margin-left: 10px;
   z-index: 1000;
 }
 @media (max-width: 400px) {
   .float-chat-container {
-    width: calc(100% - 60px); /* Ensure the container fits within the window with a 10px left margin and 50px right margin */
+    width: calc(
+      100% - 60px
+    ); /* Ensure the container fits within the window with a 10px left margin and 50px right margin */
   }
   .float-btn-container-large {
     width: calc(100% - 60px);
   }
 }
-  
-  
-  .float-btn-container {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-  }
-  
-  
-  .btn-minus {
-    border-color: transparent;
-    background-color: transparent;
-  }
-  
-  .btn-minus:hover .fa:hover {
-    color: black;
-  }
-  
-  .btn-minus .fa {
-    color: gray;
-  }
-  
-  
-  .show {
-    visibility: visible;
-    transition: all .2s ease-out
-  }
-  
-  .hide {
-    visibility: hidden;
-    opacity: 0;
-  }
-  
-  .float-btn-container-large {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    border-radius: 8px;
-    padding: 10px 15px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 20px;
-    right: 50px;
-    transition: all 0.3s ease-in-out;
-  }
-  .float-btn-container-large.expanded {
-    width: 100%;
-    height: 100vh;
-    bottom: 0;
-    right: 0;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  .button-text {
-    font-size: 16px;
-    color: black;
-  }
-  
-  .icon {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    opacity: 0.6;
-  }
-  
-  .icon:hover {
-    opacity: 1;
-  }
+
+.float-btn-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.btn-minus {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.btn-minus:hover .fa:hover {
+  color: black;
+}
+
+.btn-minus .fa {
+  color: gray;
+}
+
+.show {
+  visibility: visible;
+  transition: all 0.2s ease-out;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.float-btn-container-large {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  transition: all 0.3s ease-in-out;
+}
+.float-btn-container-large.expanded {
+  width: 100%;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+.button-text {
+  font-size: 16px;
+  color: black;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.icon:hover {
+  opacity: 1;
+}

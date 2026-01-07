@@ -3,7 +3,7 @@
 // ################################
 var is_followup = false;
 var is_pre_chat_rendered = false;
-const API_BASE_URL = "https://aps105.xyz";
+const API_BASE_URL = "https://aps105v2.ece.utoronto.ca";
 if (sessionStorage.getItem("userData") === null) {
   sessionStorage.setItem(
     "userData",

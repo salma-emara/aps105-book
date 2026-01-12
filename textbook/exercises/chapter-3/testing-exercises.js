@@ -8,7 +8,7 @@ let parsedObject;
       "type": "explaination",
       "table": false,
       "multipart": false,
-      "question": "Writea single C statement — which contains exactly one terminating semi-colon (`;`), and does\nnot contain brace brackets (`{` or `}`) — that declares a `bool` variable named `isHighlighted`, and\nsets its value to true if and only if the value stored in an integer variable named `characterCount`\nis an **even positive** number. Assume that the variable `characterCount` has already been declared\nand initialized.\n",
+      "question": "Write a single C statement — which contains exactly one terminating semi-colon (`;`), and does\nnot contain brace brackets (`{` or `}`) — that declares a `bool` variable named `isHighlighted`, and\nsets its value to true if and only if the value stored in an integer variable named `characterCount`\nis an **even positive** number. Assume that the variable `characterCount` has already been declared\nand initialized.\n",
       "answer": "`bool isHighlighted = characterCount % 2 == 0 && characterCount > 0;` "
     },
     {

@@ -28,6 +28,7 @@ pip install -r requirements.txt
 node ./textbook/_static/toml_to_js_convertor.js
 jupyter-book build --all textbook
 cp -r textbook/quizzes/ textbook/_build/html/quizzes
+cp -r textbook/exercises/ textbook/_build/html/exercises
 cp -r embeddings/outputs textbook/_build/html
 
 # To build everything
@@ -40,6 +41,11 @@ jupyter-book build textbook
 node ./textbook/_static/toml_to_js_convertor.js
 jupyter-book build --all textbook
 cp -r textbook/quizzes/ textbook/_build/html/quizzes
+
+# To build after updating exercises
+node ./textbook/_static/toml_to_js_convertor.js
+jupyter-book build --all textbook
+cp -r textbook/exercises/ textbook/_build/html/exercises
 ```
 
 
@@ -209,7 +215,13 @@ To edit an existing exercise page:
 
 1- Open the .toml file of the exercise you want to edit and make the desired changes.
 
-2- In your terminal, go to `aps105-book` directory and execute the following command.
+2- Run the question ID patcher to ensure all exercises have unique IDs:
+
+``` 
+node ./textbook/_static/add_question_ids.js
+```
+
+3- In your terminal, go to `aps105-book` directory and execute the following command.
 
 ```
 node ./textbook/_static/toml_to_js_convertor.js

@@ -112,7 +112,7 @@ multipart = true
 
 question = '''
 `int w = rand() % 75 * 2 - 99;`<br>
-`(w < -99) \|\| (w > 49);`
+`(w < -99) || (w > 49);`
 '''
 
 answer = [1]

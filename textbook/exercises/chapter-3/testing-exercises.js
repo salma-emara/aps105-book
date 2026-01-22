@@ -79,7 +79,7 @@ let parsedObject;
       "type": "multiple-choice",
       "table": false,
       "multipart": true,
-      "question": "`int w = rand() % 75 * 2 - 99;`<br>\n`(w < -99) \\|\\| (w > 49);`\n",
+      "question": "`int w = rand() % 75 * 2 - 99;`<br>\n`(w < -99) || (w > 49);`\n",
       "answer": [
         1
       ],

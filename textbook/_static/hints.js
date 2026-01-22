@@ -21,8 +21,42 @@ async function getChatCompletion(prompt) {
 
 }
 
+function getStudentAnswer(storageKey, exercise, partIndex) {
 
-async function generate_hints(questionID, form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
+    if (exercise.table) {
+        return localStorage.getItem(`${storageKey}-table`) || "[]";
+    } else if (exercise.type == "programming" || exercise.type == "function programming") {
+        return localStorage.getItem(`${storageKey}-programming-${partIndex}`) || "";
+    } else if (exercise.type == "tracing") {
+        return localStorage.getItem(`${storageKey}-trace`) || "";
+    } else if (exercise.type == "explaination") {
+        return localStorage.getItem(`${storageKey}-explaination`) || "";
+    } else {
+        return "";
+    }
+
+}
+
+/* 
+TODO: Currently, there is a lot of code in generate_hints and get_feedback that 
+is not needed for end-of-chapter exercises logic. Need to confirm if short quizzes
+will have any longer questions (programming, tracing, etc.) If not, we can clean 
+up generate_hints and get_feedback a lot. 
+
+generate_hints, remove following:
+- originalCode (use getStudentAnswer)
+- questionPrompt (use exercise.question)
+- questionID (use exercise["question-id"])
+- partIndex (we don't need that ever so update exercise.js)
+
+get_feedback, remove following:
+- form
+- studentRows (use getStudentAnswer)
+- userAnswer (use getStudentAnswer)
+*/
+
+
+async function generate_hints(questionID, form, originalCode, outputArray, actualOutput, questionPrompt, previousHints, exercise, storageKey, partIndex) {
 
     // check if hints already exists
     let hintContainer = form.querySelector(".hint-container");
@@ -121,6 +155,9 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         hintDiv.appendChild(loadingContainer);
         hintInfoContainer.appendChild(hintDiv);
 
+        // get student answer from localStorage
+        originalCode = getStudentAnswer(storageKey, exercise, partIndex);
+
         const prompt = `
         You are a teaching assistant helping a student with a programming question.
 
@@ -168,7 +205,7 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
 
 }
 
-async function get_feedback(questionID, form, messageElement, exercise, studentRows, userAnswer, previousFeedback = []) {
+async function get_feedback(questionID, form, messageElement, exercise, studentRows, userAnswer, previousFeedback = [], storageKey) {
     
 
     let question = exercise.question;
@@ -273,9 +310,15 @@ async function get_feedback(questionID, form, messageElement, exercise, studentR
         feedbackDiv.appendChild(loadingContainer);
         feedbackInfoContainer.appendChild(feedbackDiv);
 
+        if (!exercise.table){
+            userAnswer = getStudentAnswer(storageKey, exercise, 0);
+        }
+
         let prompt;
 
         if (exercise.table){
+
+            studentRows = getStudentAnswer(storageKey, exercise, 0);
 
             prompt = `
             You are helping a student fill in a table-based question.

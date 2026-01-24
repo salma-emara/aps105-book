@@ -36,7 +36,7 @@ function getStudentAnswer(storageKey, exercise, partIndex) {
 
     } else if (exercise.type == "programming" || exercise.type == "function programming") {
         
-        let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming-${multipartIndex}`));
+        let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming-${partIndex}`));
 
 		if (progData) {
             return progData.userCode; 

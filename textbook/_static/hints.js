@@ -182,8 +182,6 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         let lastRunCode = JSON.parse(localStorage.getItem(`${storageKey}-lastRunCode`) || "");
         let ranTestcases = JSON.stringify(originalCode) === JSON.stringify(lastRunCode);
         
-        console.log("ran testcases: ", ranTestcases);
-
         let prompt;
 
         if (ranTestcases) {
@@ -254,8 +252,6 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
             `;
 
         }
-
-        console.log(prompt);
 
         const hintsText = await getChatCompletion(prompt);
 

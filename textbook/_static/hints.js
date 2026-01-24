@@ -247,7 +247,7 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
             Inputs:
             Question: ${questionPrompt}
             Student code: ${originalCode}
-            Suggested solution code: ${exericse.answer}
+            Suggested solution code: ${exercise.answer}
             `;
 
         }

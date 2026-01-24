@@ -226,7 +226,10 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
             You are given:
             - A programming question
             - The student's code
-            - The suggestion solution code (correct)
+            - The suggestion solution code (authoritative)
+
+            The suggested solution is authoritative. If the student code matches it in logic and computation, the student code is fully correct. 
+            You must not critique any function or logic appearing in the suggested solution unless used differently in the student code.
 
             Your task:
             1. Carefully trace the student's code line by line using the problem statement.

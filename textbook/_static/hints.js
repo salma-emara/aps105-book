@@ -226,6 +226,7 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
             You are given:
             - A programming question
             - The student's code
+            - The suggestion solution code (correct)
 
             Your task:
             1. Carefully trace the student's code line by line using the problem statement.
@@ -246,6 +247,7 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
             Inputs:
             Question: ${questionPrompt}
             Student code: ${originalCode}
+            Suggested solution code: ${exericse.answer}
             `;
 
         }

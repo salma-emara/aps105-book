@@ -24,9 +24,26 @@ async function getChatCompletion(prompt) {
 function getStudentAnswer(storageKey, exercise, partIndex) {
 
     if (exercise.table) {
-        return localStorage.getItem(`${storageKey}-table`) || "[]";
+        
+        let rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+
+		let studentRows = rawStudentRows.map((row, index) => {
+			const correctMethod = exercise.answer[index]?.[0] || "";
+			return [correctMethod, row?.[1] || "", row?.[2] || ""];
+		});
+        
+        return studentRows;
+
     } else if (exercise.type == "programming" || exercise.type == "function programming") {
-        return localStorage.getItem(`${storageKey}-programming-${partIndex}`) || "";
+        
+        let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming-${multipartIndex}`));
+
+		if (progData) {
+            return progData.userCode; 
+        } else {
+            return "";
+        }
+
     } else if (exercise.type == "tracing") {
         return localStorage.getItem(`${storageKey}-trace`) || "";
     } else if (exercise.type == "explaination") {
@@ -80,7 +97,10 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         anotherHint.textContent = "Get Hint";
         anotherHint.classList.add("another-hint");
         hintContainer.appendChild(anotherHint);
-        
+
+        let lastRunCode = getStudentAnswer(storageKey, exercise, partIndex);
+        localStorage.setItem(`${storageKey}-lastRunCode`, JSON.stringify(lastRunCode));
+
         quizUserID = getOrCreateUserID();
 
         // set user id properties
@@ -158,35 +178,78 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         // get student answer from localStorage
         originalCode = getStudentAnswer(storageKey, exercise, partIndex);
 
-        const prompt = `
-        You are a teaching assistant helping a student with a programming question.
+        // check if the student code was run on testcases
+        let lastRunCode = JSON.parse(localStorage.getItem(`${storageKey}-lastRunCode`) || "");
+        let ranTestcases = JSON.stringify(originalCode) === JSON.stringify(lastRunCode);
+        
+        console.log("ran testcases: ", ranTestcases);
 
-        You are given:
-        - A programming question
-        - The student's code
-        - The student's actual output
-        - The expected output
-        - Hints previously given to the student
+        let prompt;
 
-        Your task:
-        1. Analyze the student's code and output in relation to the expected output.
-        2. Identify any errors in their code.
-        3. Reflect on how the student might be thinking and where they may be going wrong.
-        4. Generate a new critical thinking question about the first mistake in their code to guide the 
-            student toward understanding their mistake, without directly giving away the solution.
-        5. Ensure that your question is not a repeat of any in the previous hints list.
-        6. Please make the hint concise to be under 30 words.
+        if (ranTestcases) {
 
-        Use the following format in your response:
-        Hint: [your critical thinking question here]
+            prompt = `
+            You are a teaching assistant helping a student with a programming question.
 
-        Inputs:
-        Question: ${questionPrompt}
-        Student code: ${originalCode}
-        Student output: ${actualOutput}
-        Expected output: ${outputArray.join(", ")}
-        Previous provided hints: ${previousHints.join(", ")}
-        `;
+            You are given:
+            - A programming question
+            - The student's code
+            - The student's actual outputs
+            - The expected outputs
+            - Hints previously given to the student
+
+            Your task:
+            1. Analyze the student's code and output in relation to the expected output.
+            2. Identify any errors in their code.
+            3. Reflect on how the student might be thinking and where they may be going wrong.
+            4. Generate a new critical thinking question about the first mistake in their code to guide the 
+                student toward understanding their mistake, without directly giving away the solution.
+            5. Ensure that your question is not a repeat of any in the previous hints list.
+            6. Please make the hint concise to be under 30 words.
+
+            Use the following format in your response:
+            Hint: [your critical thinking question here]
+
+            Inputs:
+            Question: ${questionPrompt}
+            Student code: ${originalCode}
+            Student outputs: ${actualOutput}
+            Expected outputs: ${outputArray.join(", ")}
+            Previous provided hints: ${previousHints.join(", ")}
+            `;
+
+        } else {
+
+            prompt = `
+            You are a teaching assistant helping a student with a programming question.
+
+            You are given:
+            - A programming question
+            - The student's code
+
+            Your task:
+            1. Analyze the student's code in relation to the question.
+            2. Trace the student's code and compare it to what the question is asking 
+            3. Identify any errors in their code.
+            4. if there are errors, do the following: 
+                a) Reflect on how the student might be thinking and where they may be going wrong.
+                b) Generate a new critical thinking question about the first mistake in their code to guide the 
+                student toward understanding their mistake, without directly giving away the solution.
+                c) Ensure that your question is not a repeat of any in the previous hints list.
+                d) Please make the hint concise to be under 30 words.
+            5. If no errors are apparent, hint at the student to run their code and resubmit to test.
+
+            Use the following format in your response:
+            Hint: [your critical thinking question here]
+
+            Inputs:
+            Question: ${questionPrompt}
+            Student code: ${originalCode}
+            `;
+
+        }
+
+        console.log(prompt);
 
         const hintsText = await getChatCompletion(prompt);
 

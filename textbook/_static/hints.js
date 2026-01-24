@@ -221,23 +221,24 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         } else {
 
             prompt = `
-            You are a teaching assistant helping a student with a programming question.
+            You are a teaching assistant helping a student debug a programming question.
 
             You are given:
             - A programming question
             - The student's code
 
             Your task:
-            1. Analyze the student's code in relation to the question.
-            2. Trace the student's code and compare it to what the question is asking 
-            3. Identify any errors in their code.
-            4. if there are errors, do the following: 
+            1. Carefully trace the student's code line by line using the problem statement.
+            2. Determine whether the code is fully correct or contains an error.            
+            3. If the code contains an error, do the following:
                 a) Reflect on how the student might be thinking and where they may be going wrong.
                 b) Generate a new critical thinking question about the first mistake in their code to guide the 
                 student toward understanding their mistake, without directly giving away the solution.
                 c) Ensure that your question is not a repeat of any in the previous hints list.
-                d) Please make the hint concise to be under 30 words.
-            5. If no errors are apparent, hint at the student to run their code and resubmit to test.
+            5. If the code is fully correct, do the following:
+                a) Do not invent issues.
+                b) Generate a hint that encourages the student to run, test, or submit the code as is, without suggesting changes.
+            6. Please make the hint concise to be under 30 words.
 
             Use the following format in your response:
             Hint: [your critical thinking question here]

@@ -21,8 +21,59 @@ async function getChatCompletion(prompt) {
 
 }
 
+function getStudentAnswer(storageKey, exercise, partIndex) {
 
-async function generate_hints(questionID, form, originalCode, outputArray, actualOutput, questionPrompt, previousHints) {
+    if (exercise.table) {
+        
+        let rawStudentRows = JSON.parse(localStorage.getItem(`${storageKey}-table`) || "[]");
+
+		let studentRows = rawStudentRows.map((row, index) => {
+			const correctMethod = exercise.answer[index]?.[0] || "";
+			return [correctMethod, row?.[1] || "", row?.[2] || ""];
+		});
+        
+        return studentRows;
+
+    } else if (exercise.type == "programming" || exercise.type == "function programming") {
+        
+        let progData = JSON.parse(localStorage.getItem(`${storageKey}-programming-${partIndex}`));
+
+		if (progData) {
+            return progData.userCode; 
+        } else {
+            return "";
+        }
+
+    } else if (exercise.type == "tracing") {
+        return localStorage.getItem(`${storageKey}-trace`) || "";
+    } else if (exercise.type == "explaination") {
+        return localStorage.getItem(`${storageKey}-explaination`) || "";
+    } else {
+        return "";
+    }
+
+}
+
+/* 
+TODO: Currently, there is a lot of code in generate_hints and get_feedback that 
+is not needed for end-of-chapter exercises logic. Need to confirm if short quizzes
+will have any longer questions (programming, tracing, etc.) If not, we can clean 
+up generate_hints and get_feedback a lot. 
+
+generate_hints, remove following:
+- originalCode (use getStudentAnswer)
+- questionPrompt (use exercise.question)
+- questionID (use exercise["question-id"])
+- partIndex (we don't need that ever so update exercise.js)
+
+get_feedback, remove following:
+- form
+- studentRows (use getStudentAnswer)
+- userAnswer (use getStudentAnswer)
+*/
+
+
+async function generate_hints(questionID, form, originalCode, outputArray, actualOutput, questionPrompt, previousHints, exercise, storageKey, partIndex) {
 
     // check if hints already exists
     let hintContainer = form.querySelector(".hint-container");
@@ -46,7 +97,10 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         anotherHint.textContent = "Get Hint";
         anotherHint.classList.add("another-hint");
         hintContainer.appendChild(anotherHint);
-        
+
+        let lastRunCode = getStudentAnswer(storageKey, exercise, partIndex);
+        localStorage.setItem(`${storageKey}-lastRunCode`, JSON.stringify(lastRunCode));
+
         quizUserID = getOrCreateUserID();
 
         // set user id properties
@@ -121,35 +175,83 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
         hintDiv.appendChild(loadingContainer);
         hintInfoContainer.appendChild(hintDiv);
 
-        const prompt = `
-        You are a teaching assistant helping a student with a programming question.
+        // get student answer from localStorage
+        originalCode = getStudentAnswer(storageKey, exercise, partIndex);
 
-        You are given:
-        - A programming question
-        - The student's code
-        - The student's actual output
-        - The expected output
-        - Hints previously given to the student
+        // check if the student code was run on testcases
+        let lastRunCode = JSON.parse(localStorage.getItem(`${storageKey}-lastRunCode`) || "");
+        let ranTestcases = JSON.stringify(originalCode) === JSON.stringify(lastRunCode);
+        
+        let prompt;
 
-        Your task:
-        1. Analyze the student's code and output in relation to the expected output.
-        2. Identify any errors in their code.
-        3. Reflect on how the student might be thinking and where they may be going wrong.
-        4. Generate a new critical thinking question about the first mistake in their code to guide the 
-            student toward understanding their mistake, without directly giving away the solution.
-        5. Ensure that your question is not a repeat of any in the previous hints list.
-        6. Please make the hint concise to be under 30 words.
+        if (ranTestcases) {
 
-        Use the following format in your response:
-        Hint: [your critical thinking question here]
+            prompt = `
+            You are a teaching assistant helping a student with a programming question.
 
-        Inputs:
-        Question: ${questionPrompt}
-        Student code: ${originalCode}
-        Student output: ${actualOutput}
-        Expected output: ${outputArray.join(", ")}
-        Previous provided hints: ${previousHints.join(", ")}
-        `;
+            You are given:
+            - A programming question
+            - The student's code
+            - The student's actual outputs
+            - The expected outputs
+            - Hints previously given to the student
+
+            Your task:
+            1. Analyze the student's code and output in relation to the expected output.
+            2. Identify any errors in their code.
+            3. Reflect on how the student might be thinking and where they may be going wrong.
+            4. Generate a new critical thinking question about the first mistake in their code to guide the 
+                student toward understanding their mistake, without directly giving away the solution.
+            5. Ensure that your question is not a repeat of any in the previous hints list.
+            6. Please make the hint concise to be under 30 words.
+
+            Use the following format in your response:
+            Hint: [your critical thinking question here]
+
+            Inputs:
+            Question: ${questionPrompt}
+            Student code: ${originalCode}
+            Student outputs: ${actualOutput}
+            Expected outputs: ${outputArray.join(", ")}
+            Previous provided hints: ${previousHints.join(", ")}
+            `;
+
+        } else {
+
+            prompt = `
+            You are a teaching assistant helping a student debug a programming question.
+
+            You are given:
+            - A programming question
+            - The student's code
+            - The suggestion solution code (authoritative)
+
+            The suggested solution is authoritative. If the student code matches it in logic and computation, the student code is fully correct. 
+            You must not critique any function or logic appearing in the suggested solution unless used differently in the student code.
+
+            Your task:
+            1. Carefully trace the student's code line by line using the problem statement.
+            2. Determine whether the code is fully correct or contains an error.            
+            3. If the code contains an error, do the following:
+                a) Reflect on how the student might be thinking and where they may be going wrong.
+                b) Generate a new critical thinking question about the first mistake in their code to guide the 
+                student toward understanding their mistake, without directly giving away the solution.
+                c) Ensure that your question is not a repeat of any in the previous hints list.
+            5. If the code is fully correct, do the following:
+                a) Do not invent issues.
+                b) Generate a hint that encourages the student to run, test, or submit the code as is, without suggesting changes.
+            6. Please make the hint concise to be under 30 words.
+
+            Use the following format in your response:
+            Hint: [your critical thinking question here]
+
+            Inputs:
+            Question: ${questionPrompt}
+            Student code: ${originalCode}
+            Suggested solution code: ${exercise.answer}
+            `;
+
+        }
 
         const hintsText = await getChatCompletion(prompt);
 
@@ -168,7 +270,7 @@ async function generate_hints(questionID, form, originalCode, outputArray, actua
 
 }
 
-async function get_feedback(questionID, form, messageElement, exercise, studentRows, userAnswer, previousFeedback = []) {
+async function get_feedback(questionID, form, messageElement, exercise, studentRows, userAnswer, previousFeedback = [], storageKey) {
     
 
     let question = exercise.question;
@@ -273,9 +375,15 @@ async function get_feedback(questionID, form, messageElement, exercise, studentR
         feedbackDiv.appendChild(loadingContainer);
         feedbackInfoContainer.appendChild(feedbackDiv);
 
+        if (!exercise.table){
+            userAnswer = getStudentAnswer(storageKey, exercise, 0);
+        }
+
         let prompt;
 
         if (exercise.table){
+
+            studentRows = getStudentAnswer(storageKey, exercise, 0);
 
             prompt = `
             You are helping a student fill in a table-based question.

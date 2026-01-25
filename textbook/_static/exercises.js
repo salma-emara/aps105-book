@@ -527,7 +527,7 @@ function generate_exercises(filename) {
 					return;
 				}
 
-				let hintContainer = await generate_hints(ex["question-id"], form, studentCode, expectedOutput, actualOutput, ex.question, []);
+				let hintContainer = await generate_hints(ex["question-id"], form, studentCode, expectedOutput, actualOutput, ex.question, [], ex, storageKey, thisPartIndex);
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode, thisPartIndex);
 
 			} else if (type === "explaination" && ex.table){
@@ -583,7 +583,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 			return [correctMethod, row?.[1] || "", row?.[2] || ""];
 		});
 
-		let feedbackContainer = await get_feedback(exercise["question-id"], form, messageElement, exercise, studentRows, "", []);
+		let feedbackContainer = await get_feedback(exercise["question-id"], form, messageElement, exercise, studentRows, "", [], storageKey);
 
 		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
 
@@ -618,7 +618,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	if (questionType === "tracing") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	let feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, []);
+	let feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
 
 	updateResultMessage(
 		messageElement,

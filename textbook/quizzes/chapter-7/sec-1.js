@@ -40,6 +40,7 @@ let parsedObject;
     {
       "prompt": "Which of the following code can initialize an array of 5 intergers?",
       "answer": [
+        0,
         1,
         3
       ],

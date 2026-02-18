@@ -12,7 +12,7 @@ if (sessionStorage.getItem("userData") === null) {
       latest_new_question: "",
       messages: [],
       sessionID: generateUUID(),
-    })
+    }),
   );
 }
 
@@ -85,6 +85,11 @@ function getReferenceHTML(chapterNumber, chapterName, sectionName) {
   if (!validSections.includes(sectionName)) {
     return "";
   }
+  // Exercises html page is named "testing-exercises.html", so we need to handle it separately
+  var sectionName_ = "";
+  if (sectionName === "exercises") {
+    sectionName_ = "testing-exercises";
+  }
   chapterNumber = validateChapterNum(chapterNumber);
   const baseURL = window.location.origin;
   const url =
@@ -94,13 +99,13 @@ function getReferenceHTML(chapterNumber, chapterName, sectionName) {
     "-" +
     chapterName +
     "/" +
-    sectionName +
+    sectionName_ +
     ".html";
   return `<a href=${url}>${reformatChapterNumber(
-    chapterNumber
+    chapterNumber,
   )} - ${firstletterUpperCase(chapterName)}: ${firstletterUpperCase(
     sectionName,
-    (splitChar = "-")
+    (splitChar = "-"),
   )}</a>`;
 }
 
@@ -108,11 +113,11 @@ function setLatestReference(chapterNumber, chapterName, sectionName, index) {
   if (sessionStorage.getItem("latestReference") === null) {
     sessionStorage.setItem(
       "latestReference",
-      JSON.stringify([{ chapterName, chapterNumber, sectionName, index }])
+      JSON.stringify([{ chapterName, chapterNumber, sectionName, index }]),
     );
   } else {
     const latestReference = JSON.parse(
-      sessionStorage.getItem("latestReference")
+      sessionStorage.getItem("latestReference"),
     );
     latestReference.push({ chapterName, chapterNumber, sectionName, index });
     sessionStorage.setItem("latestReference", JSON.stringify(latestReference));
@@ -179,11 +184,11 @@ function generateUUID() {
     var r = Math.random() * 16; //random number between 0 and 16
     if (d > 0) {
       //Use timestamp until depleted
-      r = (d + r) % 16 | 0;
+      r = ((d + r) % 16) | 0;
       d = Math.floor(d / 16);
     } else {
       //Use microseconds since page-load if supported
-      r = (d2 + r) % 16 | 0;
+      r = ((d2 + r) % 16) | 0;
       d2 = Math.floor(d2 / 16);
     }
     return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
@@ -194,7 +199,7 @@ function updateUserDataInSessionStorage(
   messages,
   contexts,
   latest_new_question,
-  sessionID
+  sessionID,
 ) {
   const userData = {
     contexts,
@@ -245,7 +250,7 @@ function renderPrevChats() {
             createReference(
               reference.chapterName,
               reference.chapterNumber,
-              reference.sectionName
+              reference.sectionName,
             );
           }
         });
@@ -271,7 +276,7 @@ function pushMessage(message, role) {
     messages,
     userData["contexts"],
     userData["latest_new_question"],
-    userData["sessionID"]
+    userData["sessionID"],
   );
 }
 
@@ -299,7 +304,7 @@ function submit() {
       userData["messages"],
       userData["contexts"],
       user_query,
-      userData["sessionID"]
+      userData["sessionID"],
     );
   }
 
@@ -387,7 +392,7 @@ function getResponse() {
         chapterNumber,
         chapterName,
         sectionName,
-        messages.length - 1
+        messages.length - 1,
       );
       createReference(chapterName, chapterNumber, sectionName);
       createChooseButtons();
@@ -395,7 +400,7 @@ function getResponse() {
         messages,
         contexts,
         latest_new_question,
-        sessionID
+        sessionID,
       );
     })
     .catch((error) => {
@@ -565,7 +570,7 @@ function handleChooseButtonClick(buttonID) {
 function createLoading() {
   // Create loading animation
   const div = document.createElement("div");
-  div.className = "loader";
+  div.className = "chatbot--loader";
   div.id = "loading";
   const parent = document.getElementById("chat");
   parent.appendChild(div);

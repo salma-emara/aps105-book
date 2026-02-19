@@ -127,6 +127,27 @@ body {
     flex: 1 1 auto;
     min-height: 0;
   }
+
+  .float-btn-container {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .float-btn-container-large {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    max-width: calc(100vw - 16px);
+    box-sizing: border-box;
+  }
+
+  .button-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: 480px) {
@@ -142,6 +163,19 @@ body {
     height: calc(100dvh - 12px);
     max-height: calc(100dvh - 12px);
     border-radius: 8px;
+  }
+
+  .float-btn-container {
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+  }
+
+  .float-btn-container-large {
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    max-width: calc(100vw - 12px);
   }
 }
 

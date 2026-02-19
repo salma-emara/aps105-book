@@ -89,6 +89,8 @@ function getReferenceHTML(chapterNumber, chapterName, sectionName) {
   var sectionName_ = "";
   if (sectionName === "exercises") {
     sectionName_ = "testing-exercises";
+  } else {
+    sectionName_ = sectionName;
   }
   chapterNumber = validateChapterNum(chapterNumber);
   const baseURL = window.location.origin;

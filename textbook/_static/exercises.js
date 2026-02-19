@@ -631,7 +631,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 		null, // testcaseContainer
 		feedbackContainer,
 		null, // studentCode
-		exercise    // ✅ pass the whole exercise object
+		exercise // exercise object
 	);
 	return;
 }

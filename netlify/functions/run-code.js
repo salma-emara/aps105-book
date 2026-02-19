@@ -14,7 +14,7 @@ export async function handler(event) {
       };
     }
 
-    const apiKey = process.env.PISTON_API_KEY; 
+    const apiKey = process.env.PISTON_API; 
 
     const pistonUrl = "https://emkc.org/api/v2/piston/execute";
     const headers = { 
@@ -37,5 +37,5 @@ export async function handler(event) {
   } catch (err) {
     return { statusCode: 500, body: JSON.stringify({ error: err.message }) };
   }
-  
+
 }

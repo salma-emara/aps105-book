@@ -74,6 +74,7 @@
   margin-left: 10px;
   z-index: 1000;
 }
+
 @media (max-width: 400px) {
   .float-chat-container {
     width: calc(
@@ -82,6 +83,30 @@
   }
   .float-btn-container-large {
     width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 768px) {
+  .float-chat-container {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 0;
+  }
+
+  .float-chat-container .card {
+    height: 100dvh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .float-chat-container .card-body {
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 0;
   }
 }
 

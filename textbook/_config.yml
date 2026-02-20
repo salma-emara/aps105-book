@@ -82,8 +82,8 @@ parse:
     - substitution
   myst_url_schemes: [mailto, http, https]
   myst_substitutions:
-    code_runner_header: '<script src="https://cdn.jsdelivr.net/gh/yvonne-yang/Code-Runner-Web-Component@latest/src/code-runner-wc.min.js" defer></script>'
-    code_runner_quizzes: '<script src="https://cdn.jsdelivr.net/gh/noraliu13/Code-Runner-Web-Component@latest/src/code-runner-wc.min.js" defer></script>'
+    code_runner_header: '<script src="https://cdn.jsdelivr.net/gh/yvonne-yang/Code-Runner-Web-Component@b7f6f29d06a2d249f9768bef8a69be1d76ad0620/src/code-runner-wc.min.js" defer></script>'
+    code_runner_quizzes: '<script src="https://cdn.jsdelivr.net/gh/noraliu13/Code-Runner-Web-Component@7c6361d7a47a878969459d564270e92d5239fb70/src/code-runner-wc.min.js" defer></script>'
     # The video_embed substitution below is essentially a macro to avoid
     # repeating all of the YouTube embed code for each video in the book.
     # The %%VID%% part of the src attribute is replaced by the YouTube video

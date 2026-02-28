@@ -406,8 +406,8 @@ function parse_and_generate_form(fileName) {
             const questionSnippet = question.substring(lastIndex, matches.index);
 
             // Add the text between code snippets to the question element
-            let questionSnippetText = document.createElement("p");
-            questionSnippetText.innerHTML = questionSnippet;
+            let questionSnippetText = document.createElement("span");
+            questionSnippetText.textContent = questionSnippet;
 
             questionElement.appendChild(questionSnippetText);
 
@@ -421,7 +421,7 @@ function parse_and_generate_form(fileName) {
         // Process single backticks outside the while loop
         const remainingQuestionText = question.substring(lastIndex);
 
-        let remainingQuestionTextElement = document.createElement("p");
+        let remainingQuestionTextElement = document.createElement("span");
         remainingQuestionTextElement.innerHTML = remainingQuestionText;
         questionElement.appendChild(remainingQuestionTextElement);
 

@@ -13,7 +13,6 @@ build/
 *.m4v
 node_modules/
 package-lock.json
-package.json
 
 # Sphinx documentation
 docs/_build/
@@ -21,3 +20,8 @@ docs/_build/
 
 # Personal Virtual Environment
 myenv
+
+# OpenAI Key
+.env
+# Local Netlify folder
+.netlify

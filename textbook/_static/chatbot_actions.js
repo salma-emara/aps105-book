@@ -3,6 +3,7 @@
 // ################################
 var is_followup = false;
 var is_pre_chat_rendered = false;
+const API_BASE_URL = "https://aps105v2.ece.utoronto.ca";
 if (sessionStorage.getItem("userData") === null) {
   sessionStorage.setItem(
     "userData",
@@ -11,7 +12,7 @@ if (sessionStorage.getItem("userData") === null) {
       latest_new_question: "",
       messages: [],
       sessionID: generateUUID(),
-    })
+    }),
   );
 }
 
@@ -84,6 +85,13 @@ function getReferenceHTML(chapterNumber, chapterName, sectionName) {
   if (!validSections.includes(sectionName)) {
     return "";
   }
+  // Exercises html page is named "testing-exercises.html", so we need to handle it separately
+  var sectionName_ = "";
+  if (sectionName === "exercises") {
+    sectionName_ = "testing-exercises";
+  } else {
+    sectionName_ = sectionName;
+  }
   chapterNumber = validateChapterNum(chapterNumber);
   const baseURL = window.location.origin;
   const url =
@@ -93,13 +101,13 @@ function getReferenceHTML(chapterNumber, chapterName, sectionName) {
     "-" +
     chapterName +
     "/" +
-    sectionName +
+    sectionName_ +
     ".html";
   return `<a href=${url}>${reformatChapterNumber(
-    chapterNumber
+    chapterNumber,
   )} - ${firstletterUpperCase(chapterName)}: ${firstletterUpperCase(
     sectionName,
-    (splitChar = "-")
+    (splitChar = "-"),
   )}</a>`;
 }
 
@@ -107,11 +115,11 @@ function setLatestReference(chapterNumber, chapterName, sectionName, index) {
   if (sessionStorage.getItem("latestReference") === null) {
     sessionStorage.setItem(
       "latestReference",
-      JSON.stringify([{ chapterName, chapterNumber, sectionName, index }])
+      JSON.stringify([{ chapterName, chapterNumber, sectionName, index }]),
     );
   } else {
     const latestReference = JSON.parse(
-      sessionStorage.getItem("latestReference")
+      sessionStorage.getItem("latestReference"),
     );
     latestReference.push({ chapterName, chapterNumber, sectionName, index });
     sessionStorage.setItem("latestReference", JSON.stringify(latestReference));
@@ -178,11 +186,11 @@ function generateUUID() {
     var r = Math.random() * 16; //random number between 0 and 16
     if (d > 0) {
       //Use timestamp until depleted
-      r = (d + r) % 16 | 0;
+      r = ((d + r) % 16) | 0;
       d = Math.floor(d / 16);
     } else {
       //Use microseconds since page-load if supported
-      r = (d2 + r) % 16 | 0;
+      r = ((d2 + r) % 16) | 0;
       d2 = Math.floor(d2 / 16);
     }
     return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
@@ -193,7 +201,7 @@ function updateUserDataInSessionStorage(
   messages,
   contexts,
   latest_new_question,
-  sessionID
+  sessionID,
 ) {
   const userData = {
     contexts,
@@ -206,6 +214,18 @@ function updateUserDataInSessionStorage(
 
 function wait(delay) {
   return new Promise((resolve) => setTimeout(resolve, delay));
+}
+
+function renderMarkdownContent(targetElement, message) {
+  const htmlContent = marked.parse(message);
+  targetElement.innerHTML = htmlContent;
+  renderMathInElement(targetElement, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false },
+    ],
+    throwOnError: false,
+  });
 }
 
 // ################################
@@ -232,7 +252,7 @@ function renderPrevChats() {
             createReference(
               reference.chapterName,
               reference.chapterNumber,
-              reference.sectionName
+              reference.sectionName,
             );
           }
         });
@@ -258,7 +278,7 @@ function pushMessage(message, role) {
     messages,
     userData["contexts"],
     userData["latest_new_question"],
-    userData["sessionID"]
+    userData["sessionID"],
   );
 }
 
@@ -286,7 +306,7 @@ function submit() {
       userData["messages"],
       userData["contexts"],
       user_query,
-      userData["sessionID"]
+      userData["sessionID"],
     );
   }
 
@@ -297,28 +317,84 @@ function submit() {
 function getResponse() {
   createLoading();
   scrollToBottom();
-  const url = "https://aps105.ece.utoronto.ca";
+  const url = `${API_BASE_URL}/api/chat/stream`;
   const userData = JSON.parse(sessionStorage.getItem("userData"));
-  fetchRetry(url, {
+  const streamElement = createStreamingBotMessage();
+  let streamedAnswer = "";
+  const requestOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ userData, message_is_followup: is_followup }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
+  };
+  fetch(url, requestOptions)
+    .then((response) => {
+      if (!response.ok || !response.body) {
+        throw new Error("Failed to connect to stream");
+      }
       removeLoading();
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let buffer = "";
+      let finalPayload = null;
+      return reader
+        .read()
+        .then(function process({ done, value }) {
+          if (done) {
+            if (finalPayload === null) {
+              throw new Error("Stream ended without data");
+            }
+            return finalPayload;
+          }
+
+          buffer += decoder.decode(value, { stream: true });
+          const parts = buffer.split("\n");
+          buffer = parts.pop();
+
+          parts.forEach((line) => {
+            if (!line.trim()) {
+              return;
+            }
+            let payload;
+            try {
+              payload = JSON.parse(line);
+            } catch (err) {
+              console.error("Failed to parse stream chunk:", err);
+              return;
+            }
+            if (payload.type === "token") {
+              streamedAnswer += payload.content;
+              streamElement.textContent = streamedAnswer;
+            } else if (payload.type === "final") {
+              finalPayload = payload;
+            } else if (payload.type === "error") {
+              throw new Error(payload.message);
+            }
+          });
+
+          scrollToBottom();
+          return reader.read().then(process);
+        })
+        .then((data) => {
+          return data;
+        });
+    })
+    .then((data) => {
+      if (!data) {
+        throw new Error("No data returned from stream");
+      }
+      const { userData: updatedUserData, reference, answer } = data;
+      streamedAnswer = answer || streamedAnswer;
+      renderMarkdownContent(streamElement, streamedAnswer);
       const { messages, contexts, latest_new_question, sessionID } =
-        data.userData;
-      const { chapterNumber, chapterName, sectionName } = data.reference;
-      const new_message = messages[messages.length - 1].content;
-      createBotMessage(new_message, true);
+        updatedUserData;
+      const { chapterNumber, chapterName, sectionName } = reference;
       setLatestReference(
         chapterNumber,
         chapterName,
         sectionName,
-        messages.length - 1
+        messages.length - 1,
       );
       createReference(chapterName, chapterNumber, sectionName);
       createChooseButtons();
@@ -326,10 +402,17 @@ function getResponse() {
         messages,
         contexts,
         latest_new_question,
-        sessionID
+        sessionID,
       );
     })
-    .then(() => {
+    .catch((error) => {
+      console.error("Streaming error:", error);
+      removeLoading();
+      streamElement.textContent = "Error: " + error;
+      resetSessionData();
+      setInputMode(false);
+    })
+    .finally(() => {
       scrollToBottom();
     });
 }
@@ -347,6 +430,7 @@ function fetchRetry(url, options, retries = 3) {
       }
     })
     .catch((error) => {
+      console.error("Fetch error:", error);
       removeLoading();
       createBotMessage("Error: " + error, true);
       scrollToBottom();
@@ -392,15 +476,7 @@ function createBotMessage(message, is_markdown) {
     newDiv1.appendChild(paragraph);
   } else {
     const markdownBlock = document.createElement("div");
-    const htmlContent = marked.parse(message);
-    markdownBlock.innerHTML = htmlContent;
-    renderMathInElement(markdownBlock, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true }, // Block math using $$...$$
-        { left: "$", right: "$", display: false }, // Inline math using $...$
-      ],
-      throwOnError: false, // Prevent errors from stopping rendering
-    });
+    renderMarkdownContent(markdownBlock, message);
     newDiv1.appendChild(markdownBlock);
   }
 
@@ -408,6 +484,21 @@ function createBotMessage(message, is_markdown) {
 
   const parent = document.getElementById("chat");
   parent.appendChild(newDiv);
+}
+
+function createStreamingBotMessage() {
+  const newDiv = document.createElement("div");
+  newDiv.className = "d-flex flex-row justify-content-start mt-0";
+  newDiv.id = "bot-message";
+  newDiv.style = "height: auto;";
+  const newDiv1 = document.createElement("div");
+  newDiv1.style = "width: 100%;";
+  const markdownBlock = document.createElement("div");
+  newDiv1.appendChild(markdownBlock);
+  newDiv.appendChild(newDiv1);
+  const parent = document.getElementById("chat");
+  parent.appendChild(newDiv);
+  return markdownBlock;
 }
 
 function createChooseButtons() {
@@ -481,7 +572,7 @@ function handleChooseButtonClick(buttonID) {
 function createLoading() {
   // Create loading animation
   const div = document.createElement("div");
-  div.className = "loader";
+  div.className = "chatbot--loader";
   div.id = "loading";
   const parent = document.getElementById("chat");
   parent.appendChild(div);
@@ -490,7 +581,9 @@ function createLoading() {
 function removeLoading() {
   // Remove loading animation
   const loadingDiv = document.getElementById("loading");
-  loadingDiv.remove();
+  if (loadingDiv) {
+    loadingDiv.remove();
+  }
 }
 
 function scrollToBottom() {

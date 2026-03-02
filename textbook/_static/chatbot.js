@@ -103,7 +103,11 @@ document.write(`
         </div>
       </div>
     </div>
-    <div class="float-btn-container-large show" id="chat-btn" onclick="showChat()">
+    <div
+      class="float-btn-container-large show"
+      id="chat-btn"
+      onclick="showChat()"
+    >
       <span class="button-text">Snefru Chatbot</span>
       <i class="fas fa-plus"></i>
     </div>

@@ -46,54 +46,50 @@ answer = [0, 1, 2]
 
 distractors = [
 '''
-User input:
 ```
-APS105
-```
-Code:
-```
-char s[6 + 1];
-scanf("%s", s);
-printf("%s\n", s);
-```
-''',
-'''
-User input:
-```
-    APS105
-```
-Code:
-```
-char s[6 + 1];
-scanf("%s", s);
-printf("%s\n", s);
+// User Input: "APS105" 
+
+int main(void) {
+    char s[6 + 1];
+    scanf("%s", s);
+    printf("%s\n", s);
+}
 ```
 ''',
 '''
-User input:
 ```
-APS    105
-```
-Code:
-```
-char s1[3 + 1];
-cahr s2[3 + 1];
-scanf("%s", s1);
-scanf("%s", s2);
-printf("%s", s1);
-printf("%s\n", s2);
+// User Input: "    APS105"
+
+int main(void) {
+    char s[6 + 1];
+    scanf("%s", s);
+    printf("%s\n", s);
+}
 ```
 ''',
 '''
-User input:
 ```
-APS105
+// User Input: "APS    105"
+
+int main(void) {
+    char s1[3 + 1];
+    cahr s2[3 + 1];
+    scanf("%s", s1);
+    scanf("%s", s2);
+    printf("%s", s1);
+    printf("%s\n", s2);
+}
 ```
-Code:
+''',
+'''
 ```
-char s[6 + 1];
-fgets(s, 6, stdin);
-printf("%s\n", s);
+// User Input: "APS105"
+
+int main(void) {
+    char s[6 + 1];
+    fgets(s, 6, stdin);
+    printf("%s\n", s);
+}
 ```
 '''
 ]

@@ -45,6 +45,28 @@ launch_buttons:
 html:
   extra_footer: |
     <script src="../../_static/chatbot.js"/>
+
+    <!-- Global GA initialization -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-37FN5PSTPH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      function getOrCreateUserID() {
+        let uid = localStorage.getItem("user_id");
+        if (!uid) {
+          uid = "anon-" + Math.random().toString(36).substr(2, 10);
+          localStorage.setItem("user_id", uid);
+        }
+        return uid;
+      }
+
+      const userID = getOrCreateUserID();
+  
+    </script>
+
+
   use_issues_button: true
   use_repository_button: true
   #Add highlight and annotate feature
@@ -60,7 +82,8 @@ parse:
     - substitution
   myst_url_schemes: [mailto, http, https]
   myst_substitutions:
-    code_runner_header: '<script src="https://cdn.jsdelivr.net/gh/yvonne-yang/Code-Runner-Web-Component@latest/src/code-runner-wc.min.js" defer></script>'
+    code_runner_header: '<script src="https://cdn.jsdelivr.net/gh/yvonne-yang/Code-Runner-Web-Component@b7f6f29d06a2d249f9768bef8a69be1d76ad0620/src/code-runner-wc.min.js" defer></script>'
+    code_runner_quizzes: '<script src="https://cdn.jsdelivr.net/gh/noraliu13/Code-Runner-Web-Component@7c6361d7a47a878969459d564270e92d5239fb70/src/code-runner-wc.min.js" defer></script>'
     # The video_embed substitution below is essentially a macro to avoid
     # repeating all of the YouTube embed code for each video in the book.
     # The %%VID%% part of the src attribute is replaced by the YouTube video
@@ -69,9 +92,12 @@ parse:
     # The quiz_embed substitution below is essentially a macro to avoid
     # repeating the quiz embed
     quiz_embed: <link rel="stylesheet" href = "../../_static/style.css">
-      <script src = "../../quizzes/%%FILENAME%%.js">
+      <script> window.quizFilename = "%%FILENAME%%"; </script>
+      <script src = "../../quizzes/%%FILENAME%%.js"> </script>
       <script src = "../../_static/app.js"> </script>
-
+      <script src = "../../_static/hints.js"> </script>
+      <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
+      
       <div id="container-header" class="container-box">
       <div class = "header">
       <h3>Quiz</h3>
@@ -87,3 +113,31 @@ parse:
       </div>
     c_visualizer: 
       <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@0f6fc3a/loader_folder.js"></script>
+
+    exercise_embed: |
+      <link rel="stylesheet" href="../../_static/style.css">
+      <script> window.exerciseFilename = "%%FILENAME%%"; </script>
+      <script src="../../exercises/%%FILENAME%%.js"></script>
+      <script src="../../_static/exercises.js"></script>
+      <script src = "../../_static/hints.js"> </script>
+      <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
+
+
+      <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          }
+        };
+      </script>
+
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.css">
+
+      <div class="exercise-inline">
+        <script> generate_exercises("%%FILENAME%%") </script>
+      </div>

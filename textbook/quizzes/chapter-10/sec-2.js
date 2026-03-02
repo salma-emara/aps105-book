@@ -30,10 +30,10 @@ let parsedObject;
         2
       ],
       "distractors": [
-        "User input:\n```\nAPS105\n```\nCode:\n```\nchar s[6 + 1];\nscanf(\"%s\", s);\nprintf(\"%s\\n\", s);\n```\n",
-        "User input:\n```\n    APS105\n```\nCode:\n```\nchar s[6 + 1];\nscanf(\"%s\", s);\nprintf(\"%s\\n\", s);\n```\n",
-        "User input:\n```\nAPS    105\n```\nCode:\n```\nchar s1[3 + 1];\ncahr s2[3 + 1];\nscanf(\"%s\", s1);\nscanf(\"%s\", s2);\nprintf(\"%s\", s1);\nprintf(\"%s\\n\", s2);\n```\n",
-        "User input:\n```\nAPS105\n```\nCode:\n```\nchar s[6 + 1];\nfgets(s, 6, stdin);\nprintf(\"%s\\n\", s);\n```\n"
+        "```\n// User Input: \"APS105\" \n\nint main(void) {\n    char s[6 + 1];\n    scanf(\"%s\", s);\n    printf(\"%s\\n\", s);\n}\n```\n",
+        "```\n// User Input: \"    APS105\"\n\nint main(void) {\n    char s[6 + 1];\n    scanf(\"%s\", s);\n    printf(\"%s\\n\", s);\n}\n```\n",
+        "```\n// User Input: \"APS    105\"\n\nint main(void) {\n    char s1[3 + 1];\n    cahr s2[3 + 1];\n    scanf(\"%s\", s1);\n    scanf(\"%s\", s2);\n    printf(\"%s\", s1);\n    printf(\"%s\\n\", s2);\n}\n```\n",
+        "```\n// User Input: \"APS105\"\n\nint main(void) {\n    char s[6 + 1];\n    fgets(s, 6, stdin);\n    printf(\"%s\\n\", s);\n}\n```\n"
       ],
       "explainations": [
         "A is correct. This is the basic way to input and print a string.",

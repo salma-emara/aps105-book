@@ -49,7 +49,6 @@ jupyter-book build --all textbook
 cp -r textbook/exercises/ textbook/_build/html/exercises
 ```
 
-
 4- To view the book, you have two options:
 
 1. **Open directly**:
@@ -102,6 +101,28 @@ cp -r textbook/exercises/ textbook/_build/html/exercises
       ```bash
       cp -r textbook/semantic-search.html textbook/_build/html
       ```
+
+For Visualizing C Code
+
+Run this command if you are using c-visualizer in any of the markdown files
+
+```
+jupyter-book build --all textbook
+```
+```
+cd textbook
+python viztrace_c_folder.py chapters
+```
+```
+cd ..
+cp -r textbook/trace textbook/_build/html
+```
+```
+cd textbook/_build/html
+python -m http.server 8000
+open http://localhost:8000
+```
+
 ### Check spelling mistakes
 
 To check spelling mistakes, you need to install `pyspelling` using the following command:

@@ -127,46 +127,7 @@ arr = NULL;
 
 Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D-dyn-mem-alloc.c>` if you want to run the following program yourself. 
 
-**Code**
-{{code_runner_header}}
-<pre class="code-runner-wrapper">
-<code-runner language="c" >
-&#35;include &lt;stdlib.h&gt;
-<br>
-int main(void) {
-  // Dynamically allocate array of pointer
-  int** arr = (int**)malloc(3 * sizeof(int*));
-  <br>
-  // Dynamically allocate a 1D array for each row
-  for (int row = 0; row < 3; row++) {
-    *(arr + row) = (int*)malloc(4 * sizeof(int));
-  }
-  <br>
-  // Assign a value to each element
-  for (int row = 0; row < 3; row++) {
-    for (int col = 0; col < 4; col++) {
-      *(*(arr + row) + col) = row * 4 + col + 1;
-      // arr[row][col] =  row * 4 + col + 1;
-    }
-  }
-  <br>
-  // Free the 1D arrays of rows first
-  for (int row = 0; row < 3; row++) {
-    free(*(arr + row));
-    // OR
-    // free(arr[row]);
-    arr[row] = NULL;
-  }
-  <br>
-  // Then free the array of pointers
-  free(arr);
-  arr = NULL;
-  <br>
-  return 0;
-}
-</code-runner>
-</pre>
-
+**Visualize Code**
 {{c_visualizer}}
   <c-visualizer example="2" lang="c">
         <script type="application/json" data-kind="annotation">
@@ -206,7 +167,7 @@ int main(void) {
   arr = NULL;
   return 0;
 }
-      </c-visualizer>
+</c-visualizer>
 
 ## Method 2: Static Allocation of an array of pointers
 

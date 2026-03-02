@@ -111,7 +111,7 @@ jupyter-book build --all textbook
 ```
 ```
 cd textbook
-python viztrace_cpp_folder.py chapters
+python viztrace_c_folder.py chapters
 ```
 ```
 cd ..

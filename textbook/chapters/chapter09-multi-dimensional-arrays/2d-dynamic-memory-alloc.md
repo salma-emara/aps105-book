@@ -128,10 +128,7 @@ arr = NULL;
 Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D-dyn-mem-alloc.c>` if you want to run the following program yourself. 
 
 **Visualize Code**
-{{c_visualizer}}
-  <c-visualizer example="2" lang="c">
-        <script type="application/json" data-kind="annotation">
-          {
+{{c_visualizer}}<c-visualizer example="2" lang="c"><script type="application/json" data-kind="annotation">{
             "annotation": {
               "8": "Dynamically allocate 1D array for each row",
               "12": "Set each element to an integer value",
@@ -141,15 +138,13 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
               "21": "Set the double pointer to NULL"
             },
             "folds": [{ "start": 21, "end": 23 }]
-          }
-        </script>
-
+          }</script>
 #include &lt;stdlib.h&gt;
 
 int main(void) {
   const int Rows = 3;
   const int Cols = 4;
-  int** arr = (int**)malloc(sizeof(int*) * 3);
+  int** arr = (int**) malloc(sizeof(int*) * 3);
   for (int row = 0; row < Rows; row++) {
     *(arr + row) = (int*)malloc(sizeof(int) * Cols);
   }

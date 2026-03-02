@@ -30,6 +30,7 @@ jupyter-book build --all textbook
 cp -r textbook/quizzes/ textbook/_build/html/quizzes
 cp -r textbook/exercises/ textbook/_build/html/exercises
 cp -r embeddings/outputs textbook/_build/html
+cp -r visualize_examples/ textbook/_build/html
 
 # To build everything
 jupyter-book build --all textbook 

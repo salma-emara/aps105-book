@@ -1,0 +1,2133 @@
+{
+  "code": "#include <stdio.h>\n\n// regular\nstruct Account {\n    int account_number;\n    double balance;\n    char *first_name;\n    char *last_name;\n};\n\n// typedef version\ntypedef struct {\n    int    xxx;\n    int    yyy;\n} Point;\n\nint main() {\n  struct Account my_account;\n  my_account.account_number = 42;\n  my_account.balance = 3.141592653589735;\n  my_account.first_name = \"Jinning\";\n  my_account.last_name = \"Liu\";\n  printf(\"hello\");\n\n  Point my_point;\n  my_point.xxx = 12345;\n  my_point.yyy = 54321;\n  return 0;\n}\n",
+  "trace": [
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 17,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "double",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB0",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB0",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BB4",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 19,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 20,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 21,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 21,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x4005F8": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x4005F8",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400600"
+            },
+            [
+              "C_DATA",
+              "0x4005F8",
+              "char",
+              "J",
+              {
+                "bytes": 1,
+                "hex": "4A"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005F9",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FA",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FB",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FC",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FD",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FE",
+              "char",
+              "g",
+              {
+                "bytes": 1,
+                "hex": "67"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FF",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        }
+      },
+      "line": 22,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "0x4005F8",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 22,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x4005F8": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x4005F8",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400600"
+            },
+            [
+              "C_DATA",
+              "0x4005F8",
+              "char",
+              "J",
+              {
+                "bytes": 1,
+                "hex": "4A"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005F9",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FA",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FB",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FC",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FD",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FE",
+              "char",
+              "g",
+              {
+                "bytes": 1,
+                "hex": "67"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FF",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        },
+        "0x400600": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x400600",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400604"
+            },
+            [
+              "C_DATA",
+              "0x400600",
+              "char",
+              "L",
+              {
+                "bytes": 1,
+                "hex": "4C"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400601",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400602",
+              "char",
+              "u",
+              {
+                "bytes": 1,
+                "hex": "75"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400603",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        }
+      },
+      "line": 23,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "0x4005F8",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "0x400600",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 22,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x4005F8": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x4005F8",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400600"
+            },
+            [
+              "C_DATA",
+              "0x4005F8",
+              "char",
+              "J",
+              {
+                "bytes": 1,
+                "hex": "4A"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005F9",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FA",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FB",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FC",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FD",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FE",
+              "char",
+              "g",
+              {
+                "bytes": 1,
+                "hex": "67"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FF",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        },
+        "0x400600": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x400600",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400604"
+            },
+            [
+              "C_DATA",
+              "0x400600",
+              "char",
+              "L",
+              {
+                "bytes": 1,
+                "hex": "4C"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400601",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400602",
+              "char",
+              "u",
+              {
+                "bytes": 1,
+                "hex": "75"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400603",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        }
+      },
+      "line": 26,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "0x4005F8",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "0x400600",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 26,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "hello"
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x4005F8": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x4005F8",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400600"
+            },
+            [
+              "C_DATA",
+              "0x4005F8",
+              "char",
+              "J",
+              {
+                "bytes": 1,
+                "hex": "4A"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005F9",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FA",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FB",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FC",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FD",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FE",
+              "char",
+              "g",
+              {
+                "bytes": 1,
+                "hex": "67"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FF",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        },
+        "0x400600": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x400600",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400604"
+            },
+            [
+              "C_DATA",
+              "0x400600",
+              "char",
+              "L",
+              {
+                "bytes": 1,
+                "hex": "4C"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400601",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400602",
+              "char",
+              "u",
+              {
+                "bytes": 1,
+                "hex": "75"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400603",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        }
+      },
+      "line": 27,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "0x4005F8",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "0x400600",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  12345,
+                  {
+                    "bytes": 4,
+                    "hex": "00003039"
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 27,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "hello"
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x4005F8": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x4005F8",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400600"
+            },
+            [
+              "C_DATA",
+              "0x4005F8",
+              "char",
+              "J",
+              {
+                "bytes": 1,
+                "hex": "4A"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005F9",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FA",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FB",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FC",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FD",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FE",
+              "char",
+              "g",
+              {
+                "bytes": 1,
+                "hex": "67"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FF",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        },
+        "0x400600": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x400600",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400604"
+            },
+            [
+              "C_DATA",
+              "0x400600",
+              "char",
+              "L",
+              {
+                "bytes": 1,
+                "hex": "4C"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400601",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400602",
+              "char",
+              "u",
+              {
+                "bytes": 1,
+                "hex": "75"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400603",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        }
+      },
+      "line": 28,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "0x4005F8",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "0x400600",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  12345,
+                  {
+                    "bytes": 4,
+                    "hex": "00003039"
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  54321,
+                  {
+                    "bytes": 4,
+                    "hex": "0000D431"
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 27,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "hello"
+    },
+    {
+      "event": "return",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x4005F8": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x4005F8",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400600"
+            },
+            [
+              "C_DATA",
+              "0x4005F8",
+              "char",
+              "J",
+              {
+                "bytes": 1,
+                "hex": "4A"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005F9",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FA",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FB",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FC",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FD",
+              "char",
+              "n",
+              {
+                "bytes": 1,
+                "hex": "6E"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FE",
+              "char",
+              "g",
+              {
+                "bytes": 1,
+                "hex": "67"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x4005FF",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        },
+        "0x400600": {
+          "kind": "readonly_memory",
+          "val": [
+            "C_ARRAY",
+            "0x400600",
+            {
+              "elt_bytes": 1,
+              "heap_block": true,
+              "oob_addr": "0x400604"
+            },
+            [
+              "C_DATA",
+              "0x400600",
+              "char",
+              "L",
+              {
+                "bytes": 1,
+                "hex": "4C"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400601",
+              "char",
+              "i",
+              {
+                "bytes": 1,
+                "hex": "69"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400602",
+              "char",
+              "u",
+              {
+                "bytes": 1,
+                "hex": "75"
+              }
+            ],
+            [
+              "C_DATA",
+              "0x400603",
+              "char",
+              "\\0",
+              {
+                "bytes": 1,
+                "hex": "00"
+              }
+            ]
+          ]
+        }
+      },
+      "line": 29,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "my_account": [
+              "C_STRUCT",
+              "0xFFF000BC0",
+              {
+                "bytes": 32,
+                "name": "Account"
+              },
+              [
+                "account_number",
+                [
+                  "C_DATA",
+                  "0xFFF000BC0",
+                  "int",
+                  42,
+                  {
+                    "bytes": 4,
+                    "hex": "0000002A"
+                  }
+                ]
+              ],
+              [
+                "<padding>",
+                [
+                  "C_DATA",
+                  "0xFFF000BC4",
+                  "<padding>",
+                  "<UNINITIALIZED>",
+                  {
+                    "bytes": 4
+                  }
+                ]
+              ],
+              [
+                "balance",
+                [
+                  "C_DATA",
+                  "0xFFF000BC8",
+                  "double",
+                  "3.14159",
+                  {
+                    "bytes": 8,
+                    "hex": "400921FB54442C95"
+                  }
+                ]
+              ],
+              [
+                "first_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD0",
+                  "pointer",
+                  "0x4005F8",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ],
+              [
+                "last_name",
+                [
+                  "C_DATA",
+                  "0xFFF000BD8",
+                  "pointer",
+                  "0x400600",
+                  {
+                    "bytes": 8,
+                    "target_type": "char"
+                  }
+                ]
+              ]
+            ],
+            "my_point": [
+              "C_STRUCT",
+              "0xFFF000BB8",
+              {
+                "bytes": 8,
+                "name": "Point"
+              },
+              [
+                "xxx",
+                [
+                  "C_DATA",
+                  "0xFFF000BB8",
+                  "int",
+                  12345,
+                  {
+                    "bytes": 4,
+                    "hex": "00003039"
+                  }
+                ]
+              ],
+              [
+                "yyy",
+                [
+                  "C_DATA",
+                  "0xFFF000BBC",
+                  "int",
+                  54321,
+                  {
+                    "bytes": 4,
+                    "hex": "0000D431"
+                  }
+                ]
+              ]
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 29,
+          "ordered_varnames": [
+            "my_account",
+            "my_point"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "hello"
+    }
+  ]
+}

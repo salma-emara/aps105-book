@@ -173,7 +173,7 @@ Second, make each of these pointers in the array point to dynamically allocated 
 Third, we can access the elements as any 2D array.
 
 Forth, we free only the dynamically allocated **three** 1D arrays.
-
+{{code_runner_header}}
 <pre class="code-runner-wrapper">
 <code-runner language="c">
 #include &lt;stdlib.h&gt;

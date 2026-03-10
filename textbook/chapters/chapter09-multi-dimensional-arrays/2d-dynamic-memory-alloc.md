@@ -132,7 +132,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 {{c_visualizer}}
 <c-visualizer example="2" lang="c">
   <script type="application/json" data-kind="annotation">
-    {
+  { 
     "annotation": {
               "8": "Dynamically allocate 1D array for each row",
               "12": "Set each element to an integer value",
@@ -140,10 +140,8 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
               "18": "Set each pointer in arr to NULL",
               "20": "Free the array of pointers",
               "21": "Set the double pointer to NULL"
-                  },
-
-    "folds": [{ "start": 21, "end": 23 }]
-}
+                  }
+  }
   </script>
   
   #include &lt;stdlib.h&gt;

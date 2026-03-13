@@ -18,7 +18,7 @@ picture below illustrates that the shaded portion of the array should have its e
 :name: winter17-q10-image
 ```
 
-However, this function is to he used by students in a first year C programming course, and those students are well-known for writing code that has errors. For example, they often attempt to access elements of an array outside of its defined bounds, among other problems. Therefore, your function should check that the inputs to the function are correct before performing the above operation. You must determine, through the reading of this question, what would make the inputs `rowStart`, `rowEnd`, `colStart`, `colEnd` and `value` correct. (You can assume that the array `A` is passed in correctly.)
+However, this function is to be used by students in a first year C programming course, and those students are well-known for writing code that has errors. For example, they often attempt to access elements of an array outside of its defined bounds, among other problems. Therefore, your function should check that the inputs to the function are correct before performing the above operation. You must determine, through the reading of this question, what would make the inputs `rowStart`, `rowEnd`, `colStart`, `colEnd` and `value` correct. (You can assume that the array `A` is passed in correctly.)
 
 The function should return a boolean result that is set to `true` if the inputs are valid, and `false` if they are not. In the case that the inputs are not valid, the setting of the values of the array should not be attempted.
 

@@ -73,7 +73,7 @@ int main(void) {
 
 int main(void) {
     char s1[3 + 1];
-    cahr s2[3 + 1];
+    char s2[3 + 1];
     scanf("%s", s1);
     scanf("%s", s2);
     printf("%s", s1);

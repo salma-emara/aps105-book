@@ -96,7 +96,7 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="2" lang="c">
+<c-visualizer example="1" lang="c">
   <script type="application/json" data-kind="annotation">
   {
   "annotation": {

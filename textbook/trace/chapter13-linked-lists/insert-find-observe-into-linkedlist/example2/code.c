@@ -1,39 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 
 typedef struct node {
-    int data;
-    struct node *next;
+  int data;
+  struct node *next;
 } Node;
 
+typedef struct list {
+  Node *head;
+} LinkedList;
+
 Node *createNode(int value);
+bool insertAtFront(LinkedList *list, int value);
+void printList(LinkedList *list);
 
 int main(void) {
-    Node *head = NULL;
+  LinkedList list;
+  list.head = createNode(1);
+  (list.head)->next = createNode(2);
+  insertAtFront(&list, 0);
+  printList(&list);
+  return 0;
+}
 
-    head = createNode(1);
+bool insertAtFront(LinkedList *list, int value) {
+  Node *temp = createNode(value);
+  if (temp == NULL) {
+    return false;
+  }
+  temp->next = list->head;
+  list->head = temp;
+  return true;
+}
 
-    head->next = createNode(2);
+void printList(LinkedList *list) {
+  Node *current = list->head;
 
-    head->next->next = createNode(4);
-    head->next->next->next = createNode(7);
-
-    printf("%d -> ", head->data);
-    printf("%d -> ", head->next->data);
-    printf("%d -> ", head->next->next->data);
-    printf("%d.\n", head->next->next->next->data);
-
-    return 0;
+  while (current != NULL) {
+    // Print out the data at this element.
+    printf("%d ->", current->data);
+    // Move to the next element in the list.
+    current = current->next;
+  }
 }
 
 Node *createNode(int value) {
-    Node *newNode = (Node *)malloc(sizeof(Node));
+  Node *newNode = (Node *)malloc(sizeof(Node));
 
-    if (newNode != NULL) {
-        newNode->data = value;
-        newNode->next = NULL;
-    }
+  if (newNode != NULL) {
+    newNode->data = value;
+    newNode->next = NULL;
+  }
 
-    return newNode;
+  return newNode;
 }

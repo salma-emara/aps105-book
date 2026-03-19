@@ -2,21 +2,6 @@
 
 ## What is a node in the list?
 
-<c-visualizer example="1" lang="c">
-    <script type="application/json" data-kind="annotation">
-      {
-        "annotation": { "2": "This line prints 'Hello, world!'" },
-        "folds": [{ "start": 1, "end": 2 }]
-      }
-    </script>
-
-    #include &lt;stdio.h&gt;
-    int main() {
-      printf("Hello, world!");
-      return 0;
-    }
-  </c-visualizer>
-
 To form a linked list, we need to define the data type of the **node**, which is an element, in a linked list. Since each node in the linked list contains a value/data and a link to the next node, the node has to be a **data structure** that holds two different type members. To represent the value, we can use an `int`, and to represent the link, we can use a pointer to a node.
 
 ```{figure} ./images/linked-list-example.png
@@ -106,5 +91,61 @@ In lines $17$ and $18$, we print the data of the node pointed to by `head` and t
 To free the dynamic memory, we free all the space allocated on heap, which is pointed to by `head` and `head->next`. The order of `free` is critical. In case, `newNode` is not pointing to the second node, and we `free(head)` first, then `head` will be pointing to a freed memory space. Hence, we won't be able to access the next in head and do `free(head->next)`. Therefore, we should first `free(head->next)` then `free(head)`.
 
 It is silly to have to repeat code/statements to add or delete nodes to a linked list. We can write a set of functions that allow us to do operations on a linked list. In the next few sections, we will be developing functions to help us implement these operations.
+
+
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="1" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "11": "Allocate memory for first node and assign to newNode",
+    "12": "Set data of first node to 1",
+    "13": "Set next of first node to NULL",
+    "15": "Make head point to the first node",
+    "17": "Allocate memory for second node and assign to newNode",
+    "18": "Set data of second node to 2",
+    "19": "Set next of second node to NULL",
+    "21": "Link first node to second node using head->next",
+    "23": "Print data of first node",
+    "24": "Print data of second node",
+    "26": "Free memory of second node",
+    "27": "Free memory of first node"
+    }
+  }
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+
+  typedef struct node {
+      int data;
+      struct node *next;
+  } Node;
+
+  int main(void) {
+      Node *head;
+      Node *newNode = (Node *)malloc(sizeof(Node));
+      newNode->data = 1;
+      newNode->next = NULL;
+
+      head = newNode;
+
+      newNode = (Node *)malloc(sizeof(Node));
+      newNode->data = 2;
+      newNode->next = NULL;
+
+      head->next = newNode;
+
+      printf("%d -> ", head->data);
+      printf("%d", head->next->data);
+
+      free(head->next);
+      free(head);
+
+      return 0;
+  }
+</c-visualizer>
 
 {{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-2") }}

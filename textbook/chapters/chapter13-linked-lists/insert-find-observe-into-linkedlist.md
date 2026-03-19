@@ -68,6 +68,73 @@ In line $20$, we call `createNode` again, and set its return value to `head->nex
 It can be confusing to keep track of `->next` numbers in a statement. Instead, we use different functions to insert nodes at the beginning, end, and middle of the list.
 ``` 
 
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="1" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "15": "Call createNode to create first node with data 1 and assign it to head",
+    "17": "Call createNode again and assign result to head->next to link second node (data 2)",
+    "19": "Call createNode again and assign to head->next->next to link third node (data 4)",
+    "20": "Call createNode again and assign to head->next->next->next to link fourth node (data 7)",
+    "22": "Print data of first node",
+    "23": "Print data of second node",
+    "24": "Print data of third node",
+    "25": "Print data of fourth node",
+    "31": "Allocate memory for a new node using malloc",
+    "33": "Check if allocation was successful",
+    "34": "Set node data to given value",
+    "35": "Initialize next pointer to NULL",
+    "38": "Return pointer to the newly created node"
+    }
+  }
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+
+  
+  typedef struct node {
+      int data;
+      struct node *next;
+  } Node;
+
+  Node *createNode(int value);
+
+  int main(void) {
+      Node *head = NULL;
+
+      head = createNode(1);
+
+      head->next = createNode(2);
+
+      head->next->next = createNode(4);
+      head->next->next->next = createNode(7);
+
+      printf("%d -> ", head->data);
+      printf("%d -> ", head->next->data);
+      printf("%d -> ", head->next->next->data);
+      printf("%d.\n", head->next->next->next->data);
+
+      return 0;
+  }
+
+  Node *createNode(int value) {
+      Node *newNode = (Node *)malloc(sizeof(Node));
+
+      if (newNode != NULL) {
+          newNode->data = value;
+          newNode->next = NULL;
+      }
+
+      return newNode;
+  }
+</c-visualizer>
+
+
+
 ## Inserting a node at the beginning/front of the list
 
 To insert a node at the beginning of the list, we need to create a new node, and set its `next` pointer to point to the current head. We then set the head to point to the newly created node. The steps are illustrated in the following figure.
@@ -267,6 +334,97 @@ Node *createNode(int value) {
 <pre>
 0 ->1 ->2 ->
 </pre>
+
+
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="2" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "19": "Declare LinkedList variable list",
+    "20": "Call createNode(1): allocate first node, set data=1, next=NULL, assign to list.head", 
+    "21": "Call createNode(2): allocate second node, set data=2, next=NULL, link it to list.head->next",
+    "22": "Call insertAtFront(&list, 0) to insert new node at front",
+    "28": "Inside insertAtFront: call createNode(0) to allocate new node",
+    "29": "Check if memory allocation failed (temp == NULL)",
+    "32": "Set temp->next to current head (node with data=1)",
+    "33": "Update list->head to temp (new node becomes new head)",
+    "38": "Start printList: current points to head (node with data=0)",
+    "40": "Enter loop: current != NULL, begin traversal",
+    "42": "Print current node data",
+    "44": "Move current pointer to next node",
+    "49": "createNode: allocate memory using malloc(sizeof(Node))",
+    "51": "Check if allocation successful (newNode != NULL)",
+    "52": "Initialize newNode->data with value",
+    "53": "Set newNode->next = NULL",
+    "56": "Return pointer to newly created node"
+  },
+   "folds": [{ "start": 49, "end": 58, "folded": true }]
+}
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+  #include &lt;stdbool.h&gt;
+
+  typedef struct node {
+    int data;
+    struct node *next;
+  } Node;
+
+  typedef struct list {
+    Node *head;
+  } LinkedList;
+
+  Node *createNode(int value);
+  bool insertAtFront(LinkedList *list, int value);
+  void printList(LinkedList *list);
+
+  int main(void) {
+    LinkedList list;
+    list.head = createNode(1);
+    (list.head)->next = createNode(2);
+    insertAtFront(&list, 0);
+    printList(&list);
+    return 0;
+  }
+
+  bool insertAtFront(LinkedList *list, int value) {
+    Node *temp = createNode(value);
+    if (temp == NULL) {
+      return false;
+    }
+    temp->next = list->head;
+    list->head = temp;
+    return true;
+  }
+
+  void printList(LinkedList *list) {
+    Node *current = list->head;
+
+    while (current != NULL) {
+      // Print out the data at this element.
+      printf("%d ->", current->data);
+      // Move to the next element in the list.
+      current = current->next;
+    }
+  }
+
+  Node *createNode(int value) {
+    Node *newNode = (Node *)malloc(sizeof(Node));
+
+    if (newNode != NULL) {
+      newNode->data = value;
+      newNode->next = NULL;
+    }
+
+    return newNode;
+  }
+</c-visualizer>
+
+
 
 ## Insert a node at the end of the linked list
 

@@ -360,7 +360,8 @@ Node *createNode(int value) {
     "52": "Initialize newNode->data with value",
     "53": "Set newNode->next = NULL",
     "56": "Return pointer to newly created node"
-  }
+  },
+   "folds": [{ "start": 49, "end": 58, "folded": true }]
 }
   </script>
   

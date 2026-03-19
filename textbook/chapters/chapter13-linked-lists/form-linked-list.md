@@ -92,4 +92,60 @@ To free the dynamic memory, we free all the space allocated on heap, which is po
 
 It is silly to have to repeat code/statements to add or delete nodes to a linked list. We can write a set of functions that allow us to do operations on a linked list. In the next few sections, we will be developing functions to help us implement these operations.
 
+
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="2" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "11": "Allocate memory for first node and assign to newNode",
+    "12": "Set data of first node to 1",
+    "13": "Set next of first node to NULL",
+    "15": "Make head point to the first node",
+    "17": "Allocate memory for second node and assign to newNode",
+    "18": "Set data of second node to 2",
+    "19": "Set next of second node to NULL",
+    "21": "Link first node to second node using head->next",
+    "23": "Print data of first node",
+    "24": "Print data of second node",
+    "26": "Free memory of second node",
+    "27": "Free memory of first node"
+    }
+  }
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+
+  typedef struct node {
+      int data;
+      struct node *next;
+  } Node;
+
+  int main(void) {
+      Node *head;
+      Node *newNode = (Node *)malloc(sizeof(Node));
+      newNode->data = 1;
+      newNode->next = NULL;
+
+      head = newNode;
+
+      newNode = (Node *)malloc(sizeof(Node));
+      newNode->data = 2;
+      newNode->next = NULL;
+
+      head->next = newNode;
+
+      printf("%d -> ", head->data);
+      printf("%d", head->next->data);
+
+      free(head->next);
+      free(head);
+
+      return 0;
+  }
+</c-visualizer>
+
 {{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-2") }}

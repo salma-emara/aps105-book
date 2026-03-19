@@ -132,22 +132,20 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 {{c_visualizer}}
 <c-visualizer example="2" lang="c">
   <script type="application/json" data-kind="annotation">
-  { 
+  {
     "annotation": {
-              "8": "Dynamically allocate 1D array for each row",
-              "12": "Set each element to an integer value",
-              "17": "Free each row array. The address of each row becomes invalid.",
-              "18": "Set each pointer in arr to NULL",
-              "20": "Free the array of pointers",
-              "21": "Set the double pointer to NULL"
-                  }
+      "10": "Dynamically allocate 1D array for each row",
+      "15": "Set each element to an integer value",
+      "20": "Free each row array. The address of each row becomes invalid",
+      "21": "Set each pointer in arr to NULL",
+      "23": "Free the array of pointers",
+      "24": "Set the double pointer to NULL"
+    }
   }
   </script>
   
   #include &lt;stdlib.h&gt;
 
-  
-  
   int main() {
     
     const int Rows = 3;

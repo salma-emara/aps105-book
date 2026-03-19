@@ -1,0 +1,7985 @@
+{
+  "code": "#include <stdio.h>\n#include <stdlib.h>\n\n\ntypedef struct node {\n    int data;\n    struct node *next;\n} Node;\n\nNode *createNode(int value);\n\nint main(void) {\n    Node *head = NULL;\n\n    head = createNode(1);\n\n    head->next = createNode(2);\n\n    head->next->next = createNode(4);\n    head->next->next->next = createNode(7);\n\n    printf(\"%d -> \", head->data);\n    printf(\"%d -> \", head->next->data);\n    printf(\"%d -> \", head->next->next->data);\n    printf(\"%d.\\n\", head->next->next->next->data);\n\n    return 0;\n}\n\nNode *createNode(int value) {\n    Node *newNode = (Node *)malloc(sizeof(Node));\n\n    if (newNode != NULL) {\n        newNode->data = value;\n        newNode->next = NULL;\n    }\n\n    return newNode;\n}\n",
+  "trace": [
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 12,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 12,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 13,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 13,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {},
+      "line": 15,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 13,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "call",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {},
+      "line": 30,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 4
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {},
+      "line": 31,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              1,
+              {
+                "bytes": 4,
+                "hex": "00000001"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 33,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              1,
+              {
+                "bytes": 4,
+                "hex": "00000001"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 33,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 34,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              1,
+              {
+                "bytes": 4,
+                "hex": "00000001"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 34,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 35,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              1,
+              {
+                "bytes": 4,
+                "hex": "00000001"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 35,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 38,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              1,
+              {
+                "bytes": 4,
+                "hex": "00000001"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 38,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "return",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 39,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x0",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              1,
+              {
+                "bytes": 4,
+                "hex": "00000001"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 39,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 17,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 15,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "call",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 30,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 4
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 31,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              2,
+              {
+                "bytes": 4,
+                "hex": "00000002"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 33,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402090",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402090--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              2,
+              {
+                "bytes": 4,
+                "hex": "00000002"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 33,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 34,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402090",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402090--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              2,
+              {
+                "bytes": 4,
+                "hex": "00000002"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 34,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 35,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402090",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402090--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              2,
+              {
+                "bytes": 4,
+                "hex": "00000002"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 35,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 38,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402090",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402090--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              2,
+              {
+                "bytes": 4,
+                "hex": "00000002"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 38,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "return",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 39,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 17,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402090",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402090--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              2,
+              {
+                "bytes": 4,
+                "hex": "00000002"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 39,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 19,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "call",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 30,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 4
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 31,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              4,
+              {
+                "bytes": 4,
+                "hex": "00000004"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 33,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x54020E0",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x54020E0--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              4,
+              {
+                "bytes": 4,
+                "hex": "00000004"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 33,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 34,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x54020E0",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x54020E0--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              4,
+              {
+                "bytes": 4,
+                "hex": "00000004"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 34,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 35,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x54020E0",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x54020E0--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              4,
+              {
+                "bytes": 4,
+                "hex": "00000004"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 35,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 38,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x54020E0",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x54020E0--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              4,
+              {
+                "bytes": 4,
+                "hex": "00000004"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 38,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "return",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 39,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 19,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x54020E0",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x54020E0--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              4,
+              {
+                "bytes": 4,
+                "hex": "00000004"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 39,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 20,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "call",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 30,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 4
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 31,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "<UNINITIALIZED>",
+              {
+                "bytes": 8,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              7,
+              {
+                "bytes": 4,
+                "hex": "00000007"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 30,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 33,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402130",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402130--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              7,
+              {
+                "bytes": 4,
+                "hex": "00000007"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 33,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 34,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402130",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402130--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              7,
+              {
+                "bytes": 4,
+                "hex": "00000007"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 34,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 35,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402130",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402130--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              7,
+              {
+                "bytes": 4,
+                "hex": "00000007"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 35,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 38,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402130",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402130--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              7,
+              {
+                "bytes": 4,
+                "hex": "00000007"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 38,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "return",
+      "func_name": "createNode",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 39,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": false,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 20,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        },
+        {
+          "encoded_locals": {
+            "newNode": [
+              "C_DATA",
+              "0xFFF000BA8",
+              "pointer",
+              "0x5402130",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402130--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ],
+            "value": [
+              "C_DATA",
+              "0xFFF000B9C",
+              "int",
+              7,
+              {
+                "bytes": 4,
+                "hex": "00000007"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BB0",
+          "func_name": "createNode",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 39,
+          "ordered_varnames": [
+            "value",
+            "newNode"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "createNode_0xFFF000BB0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 22,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 22,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": ""
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 23,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 23,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "1 -> "
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 24,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 24,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "1 -> 2 -> "
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 25,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 25,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "1 -> 2 -> 4 -> "
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 27,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 27,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "1 -> 2 -> 4 -> 7.\n"
+    },
+    {
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 28,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 27,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "1 -> 2 -> 4 -> 7.\n"
+    },
+    {
+      "event": "return",
+      "func_name": "main",
+      "globals": {},
+      "heap": {
+        "0x5402040": [
+          "C_ARRAY",
+          "0x5402040",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402050"
+          },
+          [
+            "C_STRUCT",
+            "0x5402040",
+            {
+              "bytes": 16,
+              "name": "Node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402040",
+                "int",
+                1,
+                {
+                  "bytes": 4,
+                  "hex": "00000001"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402044",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402048",
+                "pointer",
+                "0x5402090",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402090--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402090": [
+          "C_ARRAY",
+          "0x5402090",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020A0"
+          },
+          [
+            "C_STRUCT",
+            "0x5402090",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402090",
+                "int",
+                2,
+                {
+                  "bytes": 4,
+                  "hex": "00000002"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402094",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402098",
+                "pointer",
+                "0x54020E0",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x54020E0--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x54020E0": [
+          "C_ARRAY",
+          "0x54020E0",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x54020F0"
+          },
+          [
+            "C_STRUCT",
+            "0x54020E0",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x54020E0",
+                "int",
+                4,
+                {
+                  "bytes": 4,
+                  "hex": "00000004"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x54020E4",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x54020E8",
+                "pointer",
+                "0x5402130",
+                {
+                  "bytes": 8,
+                  "su_rewritten": "0x5402130--SUBASE--node",
+                  "su_warning": true,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ],
+        "0x5402130": [
+          "C_ARRAY",
+          "0x5402130",
+          {
+            "elt_bytes": 16,
+            "heap_block": true,
+            "oob_addr": "0x5402140"
+          },
+          [
+            "C_STRUCT",
+            "0x5402130",
+            {
+              "bytes": 16,
+              "name": "node"
+            },
+            [
+              "data",
+              [
+                "C_DATA",
+                "0x5402130",
+                "int",
+                7,
+                {
+                  "bytes": 4,
+                  "hex": "00000007"
+                }
+              ]
+            ],
+            [
+              "<padding>",
+              [
+                "C_DATA",
+                "0x5402134",
+                "<padding>",
+                "<UNINITIALIZED>",
+                {
+                  "bytes": 4
+                }
+              ]
+            ],
+            [
+              "next",
+              [
+                "C_DATA",
+                "0x5402138",
+                "pointer",
+                "0x0",
+                {
+                  "bytes": 8,
+                  "target_type": "node"
+                }
+              ]
+            ]
+          ]
+        ]
+      },
+      "line": 28,
+      "ordered_globals": [],
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "head": [
+              "C_DATA",
+              "0xFFF000BC8",
+              "pointer",
+              "0x5402040",
+              {
+                "bytes": 8,
+                "su_rewritten": "0x5402040--SUBASE--Node",
+                "su_warning": true,
+                "target_type": "Node"
+              }
+            ]
+          },
+          "frame_id": "0xFFF000BE0",
+          "func_name": "main",
+          "is_highlighted": true,
+          "is_parent": false,
+          "is_zombie": false,
+          "line": 28,
+          "ordered_varnames": [
+            "head"
+          ],
+          "parent_frame_id_list": [],
+          "unique_hash": "main_0xFFF000BE0"
+        }
+      ],
+      "stdout": "1 -> 2 -> 4 -> 7.\n"
+    }
+  ]
+}

@@ -68,6 +68,73 @@ In line $20$, we call `createNode` again, and set its return value to `head->nex
 It can be confusing to keep track of `->next` numbers in a statement. Instead, we use different functions to insert nodes at the beginning, end, and middle of the list.
 ``` 
 
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="2" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "15": "Call createNode to create first node with data 1 and assign it to head",
+    "17": "Call createNode again and assign result to head->next to link second node (data 2)",
+    "19": "Call createNode again and assign to head->next->next to link third node (data 4)",
+    "20": "Call createNode again and assign to head->next->next->next to link fourth node (data 7)",
+    "22": "Print data of first node",
+    "23": "Print data of second node",
+    "24": "Print data of third node",
+    "25": "Print data of fourth node",
+    "31": "Allocate memory for a new node using malloc",
+    "33": "Check if allocation was successful",
+    "34": "Set node data to given value",
+    "35": "Initialize next pointer to NULL",
+    "38": "Return pointer to the newly created node"
+    }
+  }
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+
+  
+  typedef struct node {
+      int data;
+      struct node *next;
+  } Node;
+
+  Node *createNode(int value);
+
+  int main(void) {
+      Node *head = NULL;
+
+      head = createNode(1);
+
+      head->next = createNode(2);
+
+      head->next->next = createNode(4);
+      head->next->next->next = createNode(7);
+
+      printf("%d -> ", head->data);
+      printf("%d -> ", head->next->data);
+      printf("%d -> ", head->next->next->data);
+      printf("%d.\n", head->next->next->next->data);
+
+      return 0;
+  }
+
+  Node *createNode(int value) {
+      Node *newNode = (Node *)malloc(sizeof(Node));
+
+      if (newNode != NULL) {
+          newNode->data = value;
+          newNode->next = NULL;
+      }
+
+      return newNode;
+  }
+</c-visualizer>
+
+
+
 ## Inserting a node at the beginning/front of the list
 
 To insert a node at the beginning of the list, we need to create a new node, and set its `next` pointer to point to the current head. We then set the head to point to the newly created node. The steps are illustrated in the following figure.

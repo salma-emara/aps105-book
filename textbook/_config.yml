@@ -63,6 +63,43 @@ html:
       }
 
       const userID = getOrCreateUserID();
+
+      let currentVisualizerId = 'unknown';
+
+      document.querySelectorAll('c-visualizer').forEach((vis) => {
+        const id = vis.getAttribute('example');
+
+        vis.addEventListener('click', () => {
+          currentVisualizerId = id;
+        });
+
+      });
+
+      const originalGtag = window.gtag;
+
+      window.gtag = function () {
+        const args = [...arguments];
+
+        if (args[0] === 'event') {
+          if (!args[2]) args[2] = {};
+
+          const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+
+          args[2].userID_visualizerID = userVisualizerKey;
+
+          if (args[1] === 'visualizer_step_click') {
+            let key = `step_forward_${userVisualizerKey}`;
+
+            let count = Number(localStorage.getItem(key)) || 0;
+            count++;
+
+            localStorage.setItem(key, count);
+          }
+        }
+
+        originalGtag.apply(this, args);
+
+      };
   
     </script>
 

@@ -1,5 +1,7 @@
 # Dynamic Memory Allocation of 2D Arrays
 
+
+
 We discussed in Chapter 8 the dynamic memory allocation of 1D arrays. We said it is necessary to use when:
 
 1. We **do not know the number of elements in an array before run-time**, for example, the array size is taken as user input, or based on a calculation happening at run-time. It is better to allocate the array dynamically as this will allow us to **check** if the array was allocated or not on the heap. If heap does not have enough space, `malloc` returns `NULL`.

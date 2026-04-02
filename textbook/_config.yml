@@ -64,44 +64,6 @@ html:
 
       const userID = getOrCreateUserID();
 
-      let currentVisualizerId = 'unknown';
-
-      document.querySelectorAll('c-visualizer').forEach((vis) => {
-        const id = vis.getAttribute('example');
-        currentVisualizerId = id;
-
-        vis.addEventListener('click', () => {
-          currentVisualizerId = id;
-        });
-
-      });
-
-      const originalGtag = window.gtag;
-
-      window.gtag = function () {
-        const args = [...arguments];
-
-        if (args[0] === 'event') {
-          if (!args[2]) args[2] = {};
-
-          const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
-
-          args[2].userID_visualizerID = userVisualizerKey;
-
-          if (args[1] === 'visualizer_step_click') {
-            let key = `step_forward_${userVisualizerKey}`;
-
-            let count = Number(localStorage.getItem(key)) || 0;
-            count++;
-
-            localStorage.setItem(key, count);
-          }
-        }
-
-        originalGtag.apply(this, args);
-
-      };
-  
     </script>
 
 
@@ -149,8 +111,49 @@ parse:
       <script> parse_and_generate_form("%%FILENAME%%") </script>
 
       </div>
-    c_visualizer: 
+    c_visualizer: |
       <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@0f6fc3a/loader_folder.js"></script>
+
+      <script>
+        let currentVisualizerId = 'unknown';
+
+        document.querySelectorAll('c-visualizer').forEach((vis) => {
+          const id = vis.getAttribute('example');
+          currentVisualizerId = id;
+
+          vis.addEventListener('click', () => {
+            currentVisualizerId = id;
+          });
+
+        });
+
+        const originalGtag = window.gtag;
+
+        window.gtag = function () {
+          const args = [...arguments];
+
+          if (args[0] === 'event') {
+            if (!args[2]) args[2] = {};
+
+            const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+
+            args[2].userID_visualizerID = userVisualizerKey;
+
+            if (args[1] === 'visualizer_step_click') {
+              let key = `step_forward_${userVisualizerKey}`;
+
+              let count = Number(localStorage.getItem(key)) || 0;
+              count++;
+
+              localStorage.setItem(key, count);
+            }
+          }
+
+          originalGtag.apply(this, args);
+
+        };
+    
+      </script>
 
     exercise_embed: |
       <link rel="stylesheet" href="../../_static/style.css">

@@ -2,6 +2,7 @@
 
 ## What is a node in the list?
 
+{{c_visualizer}}
 <c-visualizer example="1" lang="c">
     <script type="application/json" data-kind="annotation">
       {

@@ -68,6 +68,7 @@ html:
 
       document.querySelectorAll('c-visualizer').forEach((vis) => {
         const id = vis.getAttribute('example');
+        currentVisualizerId = id;
 
         vis.addEventListener('click', () => {
           currentVisualizerId = id;

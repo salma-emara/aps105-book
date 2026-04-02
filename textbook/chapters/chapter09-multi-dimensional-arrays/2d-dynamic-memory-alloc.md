@@ -133,50 +133,51 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 
 {{c_visualizer}}
 <c-visualizer example="2" lang="c">
-  <script type="application/json" data-kind="annotation">
-    {
-    "annotation": {
-              "8": "Dynamically allocate 1D array for each row",
-              "12": "Set each element to an integer value",
-              "17": "Free each row array. The address of each row becomes invalid.",
-              "18": "Set each pointer in arr to NULL",
-              "20": "Free the array of pointers",
-              "21": "Set the double pointer to NULL"
-                  },
+    <script type="application/json" data-kind="annotation">
+        {
+          "annotation": {
+                    "8": "Dynamically allocate 1D array for each row",
+                    "12": "Set each element to an integer value",
+                    "17": "Free each row array. The address of each row becomes invalid.",
+                    "18": "Set each pointer in arr to NULL",
+                    "20": "Free the array of pointers",
+                    "21": "Set the double pointer to NULL"
+                        },
+          "folds": [{ "start": 21, "end": 23 }]
+        }
+    </script>
+    
+    #include &lt;stdlib.h&gt;
 
-    "folds": [{ "start": 21, "end": 23 }]
-}
-  </script>
-  
-  #include &lt;stdlib.h&gt;
-
-  
-  
-  int main() {
     
-    const int Rows = 3;
-    const int Cols = 4;
-    int** arr = (int**) malloc(sizeof(int*) * 3);
     
-    for (int row = 0; row < Rows; row++) {
-      *(arr + row) = (int*)malloc(sizeof(int) * Cols);
-    }
-    
-    for (int row = 0; row < Rows; row++) {
-      for (int col = 0; col < Cols; col++){
-        *(*(arr + row) + col) = row * Cols + col;
+    int main() {
+      
+      const int Rows = 3;
+      const int Cols = 4;
+      int** arr = (int**) malloc(sizeof(int*) * 3);
+      
+      for (int row = 0; row < Rows; row++) {
+        *(arr + row) = (int*)malloc(sizeof(int) * Cols);
       }
-    }
+      
+      for (int row = 0; row < Rows; row++) {
+        for (int col = 0; col < Cols; col++){
+          *(*(arr + row) + col) = row * Cols + col;
+        }
+      }
 
-    for (int row = 0; row < Rows; row++) {
-      free(*(arr + row));
-      *(arr + row) = NULL;
+      for (int row = 0; row < Rows; row++) {
+        free(*(arr + row));
+        *(arr + row) = NULL;
+      }
+      free(arr);
+      arr = NULL;
+      return 0;
     }
-    free(arr);
-    arr = NULL;
-    return 0;
-  }
-</c-visualizer>
+  </c-visualizer>
+  
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/example1/testing-exercises")}}
 
 ## Method 2: Static Allocation of an array of pointers
 

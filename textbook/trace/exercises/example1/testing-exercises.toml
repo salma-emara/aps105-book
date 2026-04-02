@@ -10,20 +10,18 @@ question = '''
 `This text is pink`
 **This text is bold** 
 
-Trace the following code:
-'''
-
-starter-code = '''
+```{code-block} c
 #include <stdio.h>
 
 int main(void) {
 
-  printf("Hello World!\n");
+  printf("This is exercise 1!\n");
 
   return 0;
 }
+```
 '''
 
 answer = '''
-Hello World!
+This is exercise 1!
 '''

@@ -25,11 +25,12 @@ function walkChaptersAndAddIds() {
         let sliceEnd = nextExerciseIndex === -1 ? lines.length : i + 1 + nextExerciseIndex;
         const hasId = lines.slice(i + 1, sliceEnd).some(l => l.trim().startsWith("question-id"));
 
+
         if (!hasId) {
-          const chapterNum = chapterFolder.match(/^chapter-(\d+)$/i)?.[1] || "0";
-          const qid = `chapter-${chapterNum}-Q${exerciseIndex}`;
+          const qid = `${chapterFolder}-Q${exerciseIndex}`;
           lines.splice(i + 1, 0, `question-id = "${qid}"`);
         }
+        
       }
     }
 

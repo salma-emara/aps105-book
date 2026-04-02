@@ -128,6 +128,7 @@ function generate_exercises(filename) {
 		const type = ex.type;
 		const isProgrammingQuestion = type === "programming" || type === "function programming";
 		const isTracingQuestion = type === "tracing";
+		const forVisualizer = type === "visualizer";
 		const isExplainationQuestion = type === "textbox" || type === "explaination";
 		const isMultipleChoice = type === "multiple-choice";
 		const isSingleCorrect = Array.isArray(ex.answer) && ex.answer.length === 1;
@@ -270,7 +271,7 @@ function generate_exercises(filename) {
 			codeRunner.dataset.partIndex = multipartIndex; // store the part index
 
 
-		} else if (isTracingQuestion) {
+		} else if (isTracingQuestion || forVisualizer) {
 
 			const traceTextarea = document.createElement("textarea");
 			traceTextarea.classList.add("trace-textarea");
@@ -356,7 +357,7 @@ function generate_exercises(filename) {
 				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
 				editor.setValue(starterCode, 1);  
 			} 
-			else if (isTracingQuestion) {
+			else if (isTracingQuestion || forVisualizer) {
 
 				localStorage.removeItem(`${storageKey}-trace`);
 				if (userInputElement) userInputElement.value = '';
@@ -616,9 +617,11 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	let isCorrect = false;
 
-	if (questionType === "tracing") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
+	if (questionType === "tracing" || questionType === "visualizer") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	let feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
+	let feedbackContainer = NULL;
+
+	if (questionType === "tracing") feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
 
 	updateResultMessage(
 		messageElement,
@@ -844,6 +847,10 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
 			messageElement.appendChild(hintDetails);
 		}
 
+	} else if (questionType === "visualizer"){
+			messageElement.innerHTML = isCorrect
+		? `<span style="color: green;"> Output matches! Well done.</span>`
+		: `<span style="color: red;"> Output does not match. Please try again! </span>`;
 	}
 
 }

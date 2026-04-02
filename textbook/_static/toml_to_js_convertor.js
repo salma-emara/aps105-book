@@ -41,6 +41,7 @@ function convertTomlToJs(tomlPath, jsPath) {
 const rootFolders = [
     path.resolve(__dirname, '../exercises'), // one level up, then /exercises
     path.resolve(__dirname, '../quizzes'),   // one level up, then /quizzes
+    path.resolve(__dirname, '../trace/exercises'),   // one level up, then /trace/exercises
 ];
 
 

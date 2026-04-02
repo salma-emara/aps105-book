@@ -1,0 +1,29 @@
+[[exercises]]
+question-id = "visualizer-Q1"
+title = "Title Placeholder"
+difficulty = "Easy"
+table = false
+multipart= false
+type = "visualizer"
+
+question = '''
+`This text is pink`
+**This text is bold** 
+
+Trace the following code:
+'''
+
+starter-code = '''
+#include <stdio.h>
+
+int main(void) {
+
+  printf("Hello World!\n");
+
+  return 0;
+}
+'''
+
+answer = '''
+Hello World!
+'''

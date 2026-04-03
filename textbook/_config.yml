@@ -86,13 +86,13 @@ html:
 
             let key;
 
-            if (args[2] === 'First Step Button'){
+            if (args[2].event_label === 'First Step Button') {
               key = `first_step_${userVisualizerKey}`;
-            } else if (args[2] === 'Last Step Button') {
+            } else if (args[2].event_label === 'Last Step Button') {
               key = `last_step_${userVisualizerKey}`;
-            } else if (args[2] === 'Step Back Button') {
+            } else if (args[2].event_label === 'Step Back Button') {
               key = `step_back_${userVisualizerKey}`;
-            } else if (args[2] === 'Step Forward Button') {
+            } else if (args[2].event_label === 'Step Forward Button') {
               key = `step_forward_${userVisualizerKey}`;
             }
 

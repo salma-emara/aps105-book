@@ -3,7 +3,11 @@
 
 function createTitle(form, ex) {
 	const title = document.createElement('h5');
-	title.textContent = `${ex.title} [${ex.difficulty}]`;
+	if (ex.difficulty){
+		title.textContent = `${ex.title} [${ex.difficulty}]`;
+	} else {
+		title.textContent = `${ex.title}`;
+	}
 	title.style.fontWeight = "bold";
 	title.style.color = "#4f4f4f";  
 	form.appendChild(title);
@@ -621,7 +625,40 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	let feedbackContainer = null;
 
-	if (questionType === "tracing") feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
+	if (questionType === "tracing") 
+		feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
+	
+	if (questionType === "visualizer") {
+
+		let userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+
+		let isCorrectUser = `correct_${userVisualizerKey}`;
+
+		// check if already correct before
+		if (localStorage.getItem(isCorrectUser) !== 'true') {
+
+			// increments submission count
+			gtag('event', 'visualizer_attempts', {
+				event_category: 'c_visualizer',
+				submitted_attempts: userVisualizerKey,
+				debug_mode: true
+			});
+
+			if (isCorrect) { 
+
+				// mark as correct and freeze
+				localStorage.setItem(isCorrectUser, 'true');
+
+				// send analytics
+				gtag('event', 'visualizer_attempts', {
+					event_category: 'c_visualizer',
+					correct_attempts: userVisualizerKey,
+					debug_mode: true
+				});
+
+			}
+		}
+	}
 
 	updateResultMessage(
 		messageElement,

@@ -619,7 +619,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	if (questionType === "tracing" || questionType === "visualizer") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	let feedbackContainer = null;
+	let feedbackContainer = NULL;
 
 	if (questionType === "tracing") feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
 

@@ -177,7 +177,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
     }
   </c-visualizer>
   
-{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/example1/testing-exercises")}}
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/example2/testing-exercises")}}
 
 ## Method 2: Static Allocation of an array of pointers
 

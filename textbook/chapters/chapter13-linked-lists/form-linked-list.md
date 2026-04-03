@@ -18,7 +18,7 @@
     }
   </c-visualizer>
 
-{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/example2/testing-exercises") }}
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/example1/testing-exercises")}}
 
 To form a linked list, we need to define the data type of the **node**, which is an element, in a linked list. Since each node in the linked list contains a value/data and a link to the next node, the node has to be a **data structure** that holds two different type members. To represent the value, we can use an `int`, and to represent the link, we can use a pointer to a node.
 

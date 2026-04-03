@@ -61,19 +61,15 @@ html:
         }
         return uid;
       }
-
       const userID = getOrCreateUserID();
 
       let currentVisualizerId = 'unknown';
-
       document.querySelectorAll('c-visualizer').forEach((vis) => {
         const id = vis.getAttribute('example');
         currentVisualizerId = id;
-
         vis.addEventListener('click', () => {
           currentVisualizerId = id;
         });
-
       });
 
       const originalGtag = window.gtag;
@@ -87,16 +83,21 @@ html:
           const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
 
           if (args[1] === 'visualizer_step_click') {
-            let key = `step_forward_${userVisualizerKey}`;
 
-            let count = Number(localStorage.getItem(key)) || 0;
-            count++;
+            let key;
 
-            localStorage.setItem(key, count);
+            if (args[2] === 'First Step Button'){
+              key = `first_step_${userVisualizerKey}`;
+            } else if (args[2] === 'Last Step Button') {
+              key = `last_step_${userVisualizerKey}`;
+            } else if (args[2] === 'Step Back Button') {
+              key = `step_back_${userVisualizerKey}`;
+            } else if (args[2] === 'Step Forward Button') {
+              key = `step_forward_${userVisualizerKey}`;
+            }
 
             // trigger a new gtag which stores a progress
             let correctUser = `correct_${userVisualizerKey}`;
-
             if (localStorage.getItem(correctUser) !== 'true') {
               gtag('event', 'visualizer_attempts', {
                 event_category: 'c_visualizer',
@@ -104,10 +105,7 @@ html:
                 debug_mode: true
               })
             }
-
-          }
-
-          
+          }          
         }
 
         originalGtag.apply(this, args);

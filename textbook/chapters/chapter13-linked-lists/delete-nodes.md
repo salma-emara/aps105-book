@@ -105,6 +105,8 @@ The function above works if we have only one node. `newHead` will have `NULL` an
   }
 </c-visualizer>
 
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter13-4/testing-exercises")}}
+
 ## Deleting a node at the end of the list
 
 To delete a node at the end of the list, we need to do the following:

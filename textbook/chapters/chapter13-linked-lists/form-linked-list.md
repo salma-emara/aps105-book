@@ -148,4 +148,6 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
   }
 </c-visualizer>
 
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter13-1/testing-exercises")}}
+
 {{quiz_embed | replace("%%FILENAME%%", "chapter-13/sec-2") }}

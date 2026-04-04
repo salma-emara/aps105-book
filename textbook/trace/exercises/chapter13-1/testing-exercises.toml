@@ -1,0 +1,27 @@
+[[exercises]]
+question-id = "chapter9-visualizer-q1"
+title = "Pointer Arithmetic in 2D Arrays"
+difficulty = "Easy"
+table = false
+multipart = false
+type = "visualizer"
+
+question = '''
+After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?
+
+```{code-block} c
+*(arr + row) = (int*)malloc(sizeof(int) * Cols);
+```
+
+A. A pointer that does not point to any allocated memory
+
+B. A pointer to a newly allocated array of integers
+
+C. The value stored in the array
+
+D. A pointer to the entire 2D array
+'''
+
+answer = '''
+B
+'''

@@ -132,7 +132,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="2" lang="c">
+<c-visualizer example="91" lang="c">
     <script type="application/json" data-kind="annotation">
         {
           "annotation": {
@@ -142,8 +142,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
                     "18": "Set each pointer in arr to NULL",
                     "20": "Free the array of pointers",
                     "21": "Set the double pointer to NULL"
-                        },
-          "folds": [{ "start": 21, "end": 23 }]
+                        }
         }
     </script>
     
@@ -177,7 +176,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
     }
   </c-visualizer>
   
-{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/example2/testing-exercises")}}
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter9-1/testing-exercises")}}
 
 ## Method 2: Static Allocation of an array of pointers
 

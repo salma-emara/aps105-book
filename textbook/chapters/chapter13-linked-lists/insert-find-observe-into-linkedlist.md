@@ -133,6 +133,8 @@ It can be confusing to keep track of `->next` numbers in a statement. Instead, w
   }
 </c-visualizer>
 
+## Quick Check
+
 {{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter13-2/testing-exercises")}}
 
 ## Inserting a node at the beginning/front of the list
@@ -335,6 +337,8 @@ void printList(LinkedList *list) {
       }
   }
 </c-visualizer>
+
+## Quick Check
 
 {{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter13-3/testing-exercises")}}
 

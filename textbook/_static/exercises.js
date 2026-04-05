@@ -1,6 +1,3 @@
-
-
-
 function createTitle(form, ex) {
 	const title = document.createElement('h5');
 	if (ex.difficulty){
@@ -13,12 +10,21 @@ function createTitle(form, ex) {
 	form.appendChild(title);
 }
 
+var exerciseRegistry = exerciseRegistry || {};
 
-function generate_exercises(filename) {
-	const container = document.currentScript.parentElement;
-	container.innerHTML = '';
+function registerExercises(filename, data) {
+    exerciseRegistry[filename] = data;
+}
 
-	const exercises = parsedObject.exercises;
+
+function generate_exercises(filename, container) {
+    container.innerHTML = '';
+    const parsedObject = exerciseRegistry[filename];
+    if (!parsedObject) {
+        console.error("No exercises registered for:", filename);
+        return;
+    }
+    const exercises = parsedObject.exercises;
 
 	let inMultipart = false;
 	let multipartTitle = "";
@@ -163,12 +169,12 @@ function generate_exercises(filename) {
 				span.innerHTML = md.renderInline(choiceText);
 				label.appendChild(span);
 
-				const container = document.createElement("div");
-				container.classList.add("choicesContainer");
-				container.appendChild(input);
-				container.appendChild(label);
+				const choiceWrapper = document.createElement("div");
+				choiceWrapper.classList.add("choicesContainer");
+				choiceWrapper.appendChild(input);
+				choiceWrapper.appendChild(label);
 
-				choicesElement.appendChild(container);
+				choicesElement.appendChild(choiceWrapper);
 			}
 
 			questionContentBox.appendChild(choicesElement);
@@ -631,7 +637,15 @@ async function handle_output_submission(form, messageElement, questionType, corr
 	
 	if (questionType === "visualizer") {
 
-		let userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+		let visId = 'unknown';
+		const allVis = Array.from(document.querySelectorAll('c-visualizer'));
+		const formTop = form.getBoundingClientRect().top;
+		const closest = allVis.reverse().find(v => v.getBoundingClientRect().top < formTop);
+		if (closest) visId = closest.getAttribute('example');
+
+    	let userVisualizerKey = `${userID}_vis_${visId}`;
+
+		// let userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
 
 		let isCorrectUser = `correct_${userVisualizerKey}`;
 

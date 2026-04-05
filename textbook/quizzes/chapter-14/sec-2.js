@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "What is the main idea behind the selection sort algorithm?",

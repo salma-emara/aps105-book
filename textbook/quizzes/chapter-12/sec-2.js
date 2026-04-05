@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "Assume that the `APS105` `struct` has been declared correctly with the following members: `int studentNumber`, `char *instructor`, `double averageGrade`. Which of the following access(es) its members by pointer correctly?",

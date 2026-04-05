@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following correctly dynamically allocates a 2D array with 3 rows and 2 columns?",

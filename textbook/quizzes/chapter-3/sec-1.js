@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following can output `Even!` when `n` is even? (Assume `n` is an integer)",

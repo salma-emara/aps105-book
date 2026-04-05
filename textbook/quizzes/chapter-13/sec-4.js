@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "What is the correct order of steps to delete a node from a linked list?\n\n1. Free the dynamically allocated memory for the node we want to delete.\n2. Fix the links before and after the node we want to delete.\n3. Update the head of the list if necessary.\n4. Find the node we want to delete.\n",

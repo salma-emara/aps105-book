@@ -44,7 +44,7 @@ function convertTomlToJs(tomlPath, jsPath) {
         fs.writeFileSync(jsPath, jsData);
     } else {
         // quizzes — keep original parsedObject format
-        const jsData = `let parsedObject;\n parsedObject = ${JSON.stringify(jsonData, null, 2)};`;
+        const jsData = `let parsedObject; \n  parsedObject = ${JSON.stringify(jsonData, null, 2)};`;
         fs.writeFileSync(jsPath, jsData);
     }
 }

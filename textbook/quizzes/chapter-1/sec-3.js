@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "Jade is a beginner programmer working on a project in an Integrated Development Environment (IDE). She has just finished writing her program and wants to proceed to the next step. Which of the following should Jade do next?",

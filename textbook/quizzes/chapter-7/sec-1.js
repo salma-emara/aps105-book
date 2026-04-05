@@ -1,5 +1,5 @@
-let parsedObject;
- parsedObject = {
+let parsedObject; 
+  parsedObject = {
   "questions": [
     {
       "prompt": "What is the purpose of using an array to store grades in the example mentioned at the beginning of the section?",

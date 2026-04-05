@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following converting while/do-while loop to for loop is/are correct?",

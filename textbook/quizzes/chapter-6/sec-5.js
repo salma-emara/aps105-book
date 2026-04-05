@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "How were the pointers helpful in testing the Goldbach conjecture code?",

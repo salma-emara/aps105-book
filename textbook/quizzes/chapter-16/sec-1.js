@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "What is the main characteristic of a binary tree?",

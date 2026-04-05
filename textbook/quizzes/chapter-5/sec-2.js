@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "The following code has A, B, C, D, E, F, G, H representing hidden parts of the program. Which of the hidden parts can be identical? (Assume that the return type of `func()` is not void.)\n```\n#include <stdio.h>\n\nA func(B);\n\nint main(void) {\n    C var = func(D);\n\n    return 0;\n}\n\nE func(F) {\n    G ret_val = H;\n    return ret_val;\n}\n```\n",

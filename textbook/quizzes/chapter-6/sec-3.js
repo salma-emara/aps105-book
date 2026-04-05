@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "Jade is writing a program that calculated the discount on a price. For example, if user inputs `10 0.1`, it expects to output `9.00`. How many errors are there in the code below without changing the type of `price` and `discount`?\n```\n#include <stdio.h>\n\nvoid calDiscount(double*, double);\n\nint main() {\n    double price;\n    double discount;\n    scanf(\"%lf %lf\", price, &discount);\n    calDiscount(&price, discount);\n    printf(\"%.2lf\", &price);\n}\n\nvoid calDiscount(double *price, double discount) {\n    price *= (1 - discount);\n}\n```\n",

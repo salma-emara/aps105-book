@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "Which of is following code can determine the median of `x`, `y`, and `z` (Assume they are not identical)?",

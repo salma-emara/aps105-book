@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "Which of below is/are reasonable? (Type candidates: `int`, `double`, `const int`, `const double`)",

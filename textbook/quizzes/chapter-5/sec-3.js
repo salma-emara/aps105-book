@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "What is the output of the following code?\n```\n#include <stdio.h>\n\nint addOne(int);\n\nint main(void) {\n  int n = 1;\n  printf(\"%d %d\", n, addOne(n));\n  return 0;\n}\n\nint addOne(int n) {\n  n += 1;\n  return n;\n}\n```\n",

@@ -1,5 +1,5 @@
 let parsedObject;
-  parsedObject = {
+ parsedObject = {
   "questions": [
     {
       "prompt": "What is the number of comparisons in best and worst case for linear search? (Assume the array has `n` elements)",

@@ -1,25 +1,36 @@
 [[exercises]]
-question-id = "chapter9-visualizer-q1"
-title = "Pointer Arithmetic in 2D Arrays"
+question-id = "chapter13-insert-q1"
+title = "Counting Loop Iterations"
 difficulty = "Easy"
 table = false
 multipart = false
 type = "visualizer"
 
 question = '''
-After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?
+Suppose `head` points to the following linked list:
+
+`1 -> 2 -> 3 -> 4 -> 5`
+
+How many times does the loop body execute?
 
 ```{code-block} c
-*(arr + row) = (int*)malloc(sizeof(int) * Cols);
+Node *current = head;
+
+while (current != NULL) {
+  if (current->data == 3) {
+    current = current->next;
+  }
+  current = current->next;
+}
 ```
 
-A. A pointer that does not point to any allocated memory
+A. 3
 
-B. A pointer to a newly allocated array of integers
+B. 4
 
-C. The value stored in the array
+C. 5
 
-D. A pointer to the entire 2D array
+D. 6
 '''
 
 answer = '''

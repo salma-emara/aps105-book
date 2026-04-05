@@ -1,25 +1,27 @@
 [[exercises]]
-question-id = "chapter9-visualizer-q1"
-title = "Pointer Arithmetic in 2D Arrays"
+question-id = "visualizer-DF-BEHAVIOR2"
+title = "Order Matters in deleteFront"
 difficulty = "Easy"
 table = false
 multipart = false
 type = "visualizer"
 
 question = '''
-After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?
+Why must we store `list->head->next` before calling `free(list->head)`?
 
 ```{code-block} c
-*(arr + row) = (int*)malloc(sizeof(int) * Cols);
+Node *newHead = list->head->next;
+free(list->head);
+list->head = newHead;
 ```
 
-A. A pointer that does not point to any allocated memory
+A. Because `free(list->head)` will remove access to the original head pointer itself
 
-B. A pointer to a newly allocated array of integers
+B. Because after freeing the head, we cannot safely access its `next` pointer
 
-C. The value stored in the array
+C. Because `newHead` must always be assigned before updating `list->head`
 
-D. A pointer to the entire 2D array
+D. Because freeing memory automatically deletes all remaining nodes
 '''
 
 answer = '''

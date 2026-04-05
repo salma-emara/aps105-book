@@ -1,25 +1,26 @@
 [[exercises]]
-question-id = "chapter9-visualizer-q1"
-title = "Pointer Arithmetic in 2D Arrays"
+question-id = "visualizer-LL26"
+title = "Lost Node"
 difficulty = "Easy"
 table = false
 multipart = false
 type = "visualizer"
 
 question = '''
-After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?
+What happens after executing the following code?
 
 ```{code-block} c
-*(arr + row) = (int*)malloc(sizeof(int) * Cols);
+Node *head = createNode(1);
+head = createNode(2);
 ```
 
-A. A pointer that does not point to any allocated memory
+A. The list becomes `1 -> 2`
 
-B. A pointer to a newly allocated array of integers
+B. Only node 2 is accessible
 
-C. The value stored in the array
+C. Both nodes are connected
 
-D. A pointer to the entire 2D array
+D. The program crashes
 '''
 
 answer = '''

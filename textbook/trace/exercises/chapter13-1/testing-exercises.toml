@@ -1,25 +1,35 @@
 [[exercises]]
-question-id = "chapter9-visualizer-q1"
-title = "Pointer Arithmetic in 2D Arrays"
+question-id = "chapter13-form-linked-list-q1"
+title = "Pointer Reassignment"
 difficulty = "Easy"
 table = false
 multipart = false
 type = "visualizer"
 
 question = '''
-After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?
+After executing the following code, what will be printed?
 
 ```{code-block} c
-*(arr + row) = (int*)malloc(sizeof(int) * Cols);
+Node *head = (Node *)malloc(sizeof(Node));
+head->data = 1;
+head->next = NULL;
+
+Node *temp = (Node *)malloc(sizeof(Node));
+temp->data = 2;
+temp->next = NULL;
+
+head = temp;
+
+printf("%d", head->data);
 ```
 
-A. A pointer that does not point to any allocated memory
+A. 1
 
-B. A pointer to a newly allocated array of integers
+B. 2
 
-C. The value stored in the array
+C. 0
 
-D. A pointer to the entire 2D array
+D. Runtime error
 '''
 
 answer = '''

@@ -2,13 +2,13 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
-      "question-id": "chapter9-visualizer-q1",
-      "title": "Pointer Arithmetic in 2D Arrays",
+      "question-id": "chapter13-insert-q1",
+      "title": "Counting Loop Iterations",
       "difficulty": "Easy",
       "table": false,
       "multipart": false,
       "type": "visualizer",
-      "question": "After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?\n\n```{code-block} c\n*(arr + row) = (int*)malloc(sizeof(int) * Cols);\n```\n\nA. A pointer that does not point to any allocated memory\n\nB. A pointer to a newly allocated array of integers\n\nC. The value stored in the array\n\nD. A pointer to the entire 2D array\n",
+      "question": "Suppose `head` points to the following linked list:\n\n`1 -> 2 -> 3 -> 4 -> 5`\n\nHow many times does the loop body execute?\n\n```{code-block} c\nNode *current = head;\n\nwhile (current != NULL) {\n  if (current->data == 3) {\n    current = current->next;\n  }\n  current = current->next;\n}\n```\n\nA. 3\n\nB. 4\n\nC. 5\n\nD. 6\n",
       "answer": "B\n"
     }
   ]

@@ -2,13 +2,13 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
-      "question-id": "chapter9-visualizer-q1",
-      "title": "Pointer Arithmetic in 2D Arrays",
+      "question-id": "chapter13-form-linked-list-q1",
+      "title": "Pointer Reassignment",
       "difficulty": "Easy",
       "table": false,
       "multipart": false,
       "type": "visualizer",
-      "question": "After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?\n\n```{code-block} c\n*(arr + row) = (int*)malloc(sizeof(int) * Cols);\n```\n\nA. A pointer that does not point to any allocated memory\n\nB. A pointer to a newly allocated array of integers\n\nC. The value stored in the array\n\nD. A pointer to the entire 2D array\n",
+      "question": "After executing the following code, what will be printed?\n\n```{code-block} c\nNode *head = (Node *)malloc(sizeof(Node));\nhead->data = 1;\nhead->next = NULL;\n\nNode *temp = (Node *)malloc(sizeof(Node));\ntemp->data = 2;\ntemp->next = NULL;\n\nhead = temp;\n\nprintf(\"%d\", head->data);\n```\n\nA. 1\n\nB. 2\n\nC. 0\n\nD. Runtime error\n",
       "answer": "B\n"
     }
   ]

@@ -2,13 +2,13 @@ let parsedObject;
   parsedObject = {
   "exercises": [
     {
-      "question-id": "chapter9-visualizer-q1",
-      "title": "Pointer Arithmetic in 2D Arrays",
+      "question-id": "visualizer-DF-BEHAVIOR2",
+      "title": "Order Matters in deleteFront",
       "difficulty": "Easy",
       "table": false,
       "multipart": false,
       "type": "visualizer",
-      "question": "After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?\n\n```{code-block} c\n*(arr + row) = (int*)malloc(sizeof(int) * Cols);\n```\n\nA. A pointer that does not point to any allocated memory\n\nB. A pointer to a newly allocated array of integers\n\nC. The value stored in the array\n\nD. A pointer to the entire 2D array\n",
+      "question": "Why must we store `list->head->next` before calling `free(list->head)`?\n\n```{code-block} c\nNode *newHead = list->head->next;\nfree(list->head);\nlist->head = newHead;\n```\n\nA. Because `free(list->head)` will remove access to the original head pointer itself\n\nB. Because after freeing the head, we cannot safely access its `next` pointer\n\nC. Because `newHead` must always be assigned before updating `list->head`\n\nD. Because freeing memory automatically deletes all remaining nodes\n",
       "answer": "B\n"
     }
   ]

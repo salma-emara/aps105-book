@@ -7,7 +7,19 @@ multipart = false
 type = "visualizer"
 
 question = '''
-After executing this line for `row = 2`, what does `*(arr + row)` point to in the visualizer?
+Consider the following code snippet for dynamically allocating a 2D array:
+
+```{code-block} c
+int Rows = 3;
+int Cols = 4;
+int** arr = (int**)malloc(sizeof(int*) * Rows);
+
+for (int row = 0; row < Rows; row++) {
+  *(arr + row) = (int*)malloc(sizeof(int) * Cols);
+}
+```
+
+After executing the marked line when `row = 2`, what does `*(arr + row)` point to in the visualizer?
 
 ```{code-block} c
 *(arr + row) = (int*)malloc(sizeof(int) * Cols);

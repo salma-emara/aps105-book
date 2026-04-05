@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-6/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the purpose of the reference operator `&` in C when working with pointers?",
@@ -41,4 +40,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

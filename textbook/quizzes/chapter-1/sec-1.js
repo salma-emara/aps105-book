@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-1/testing-exercises", {
   "questions": [
     {
       "prompt": "Jade is learning C programming and wants to create a program that calculates the area of a rectangle. She opens her code editor and starts writing a C program to perform the calculation. Jade inputs the length and width of the rectangle, and the program calculates and displays the area on the screen. Which component(s) of the computer system is/are responsible for executing the C program and display the result on the screen?",
@@ -41,4 +40,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

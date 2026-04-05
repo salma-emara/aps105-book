@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-9/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following correctly dynamically allocates a 2D array with 3 rows and 2 columns?",
@@ -39,4 +38,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

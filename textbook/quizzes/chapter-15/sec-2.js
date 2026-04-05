@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-15/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the key requirement for binary search to work correctly?",
@@ -38,4 +37,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

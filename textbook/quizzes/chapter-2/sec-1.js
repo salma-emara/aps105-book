@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-2/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of below is/are reasonable? (Type candidates: `int`, `double`, `const int`, `const double`)",
@@ -40,4 +39,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

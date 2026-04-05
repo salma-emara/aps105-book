@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-14/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the purpose of the partitioning process in quicksort?",
@@ -58,4 +57,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

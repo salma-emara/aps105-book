@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-16/testing-exercises", {
   "questions": [
     {
       "prompt": "Why can a binary search tree use recursion to print its elements?",
@@ -38,4 +37,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-7/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the purpose of using an array to store grades in the example mentioned at the beginning of the section?",
@@ -76,4 +75,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

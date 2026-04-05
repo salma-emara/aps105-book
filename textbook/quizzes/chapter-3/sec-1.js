@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-3/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following can output `Even!` when `n` is even? (Assume `n` is an integer)",
@@ -42,4 +41,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

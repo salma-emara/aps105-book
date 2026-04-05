@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-1/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following code snippets demonstrates good coding style, following the guidelines mentioned in the \"Bad coding style\" section of the handout?",
@@ -56,4 +55,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

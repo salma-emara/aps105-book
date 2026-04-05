@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-11/testing-exercises", {
   "question": [
     {
       "prompt": "When designing a recursive function for solving a problem, which of the following should be determined?",
@@ -43,4 +42,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

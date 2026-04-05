@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-16/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the main characteristic of a binary tree?",
@@ -58,4 +57,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

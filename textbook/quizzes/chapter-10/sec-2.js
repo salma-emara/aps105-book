@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-10/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following code print(s) `APS105`?",
@@ -62,4 +61,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

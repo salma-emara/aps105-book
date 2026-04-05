@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-2/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following can get different numbers every time run it?",
@@ -39,4 +38,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

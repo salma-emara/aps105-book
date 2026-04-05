@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-4/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following converting while/do-while loop to for loop is/are correct?",
@@ -60,4 +59,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

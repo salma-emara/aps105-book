@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-9/testing-exercises", {
   "questions": [
     {
       "prompt": "When passing a 2D array to a function in C/C++, why is it necessary to specify the number of columns in the second dimension of the array between `[]` in the function parameter list?",
@@ -38,4 +37,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-13/testing-exercises", {
   "questions": [
     {
       "prompt": "What is a node in a linked list?",
@@ -57,4 +56,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

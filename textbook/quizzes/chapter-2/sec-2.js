@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-2/testing-exercises", {
   "questions": [
     {
       "prompt": "Let's say you want to design a new number type for integer number, called `myint`. You want to use 12 bits to represent an integer. Which of the following range is correct for the new number type?",
@@ -60,4 +59,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

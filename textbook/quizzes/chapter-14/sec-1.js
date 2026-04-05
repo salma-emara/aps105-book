@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-14/testing-exercises", {
   "questions": [
     {
       "prompt": "Insertion sort needs two loops. What is the purpose of the inner loop in the insertion sort algorithm? (Assume the array is to be sorted in ascending order.)",
@@ -38,4 +37,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

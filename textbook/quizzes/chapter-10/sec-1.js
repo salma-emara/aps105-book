@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-10/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following statements best describe(s) the relationship between a string and a character array in C?",
@@ -58,4 +57,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-2/testing-exercises", {
   "questions": [
     {
       "prompt": "What does the math library in C can do?",
@@ -41,4 +40,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

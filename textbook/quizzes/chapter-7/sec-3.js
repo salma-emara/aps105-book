@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-7/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the purpose of passing the size of the array along with the pointer to the first element?",
@@ -40,4 +39,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

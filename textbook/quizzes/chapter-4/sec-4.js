@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-4/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following will print the following output?\n\n<pre>\n  *\n ***\n*****\n</pre>\n",
@@ -21,4 +20,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

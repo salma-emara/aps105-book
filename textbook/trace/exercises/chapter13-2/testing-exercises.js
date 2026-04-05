@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("../trace/exercises/chapter13-2/testing-exercises", {
   "exercises": [
     {
       "question-id": "visualizer-LL26",
@@ -12,4 +11,4 @@ let parsedObject;
       "answer": "B\n"
     }
   ]
-};
+});

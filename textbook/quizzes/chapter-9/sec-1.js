@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-9/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following statements accurately describes the advantages of using a 2D array compared to a 1D array in programming?",
@@ -59,4 +58,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-7/testing-exercises", {
   "questions": [
     {
       "prompt": "Jade is trying different ways to calculate first 10 numbers of a sequence of powers of 2, i.e. 1, 2, 4, 8, 16, .... Which of the following is/are correct?",
@@ -20,4 +19,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-8/testing-exercises", {
   "exercises": [
     {
       "question-id": "chapter-8-Q1",
@@ -22,4 +21,4 @@ let parsedObject;
       "answer": "`double *list = (double *)malloc(1000 * sizeof(double));`\n"
     }
   ]
-};
+});

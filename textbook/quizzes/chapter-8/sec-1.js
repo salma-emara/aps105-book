@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-8/testing-exercises", {
   "questions": [
     {
       "prompt": "When dynamically allocating memory in C, which of the following statements is/are true?",
@@ -56,4 +55,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

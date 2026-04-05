@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-4/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following code can print the odd number from 1 to 10?",
@@ -23,4 +22,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-12/testing-exercises", {
   "questions": [
     {
       "prompt": "Assume that the `APS105` `struct` has been declared correctly with the following members: `int studentNumber`, `char *instructor`, `double averageGrade`. Which of the following access(es) its members by pointer correctly?",
@@ -40,4 +39,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

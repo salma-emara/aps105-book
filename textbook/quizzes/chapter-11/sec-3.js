@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-11/testing-exercises", {
   "questions": [
     {
       "prompt": "The following code tries to count the number of vowels in a string. \n```\n#include <stdio.h>\n#include <string.h>\n\nint countVowels(char *);\n\nint main(void) {\n  printf(\"Number of vowels: %d\", countVowels(\"Hello world!\"));\n  return 0;\n}\n\nint countVowels(char *s) {\n  if (*s == '\\0') {\n    return 0;\n  } else if (*s == 'a' || *s == 'e' || *s == 'i' || *s == 'o' || *s == 'u') {\n    return -----------;\n  } else {\n    return -----------;\n  }\n}\n```\nHow would you complete line 15 and 17?\n",
@@ -20,4 +19,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-1/testing-exercises", {
   "questions": [
     {
       "prompt": "What is the decimal equivalent of the binary number 10110?",
@@ -74,4 +73,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

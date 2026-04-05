@@ -29,11 +29,23 @@ function convertTomlToJs(tomlPath, jsPath) {
         });
     }
 
-    const jsData = `let parsedObject; \n  parsedObject = ${JSON.stringify(
+    const rootFolder = rootFolders.find(r => tomlPath.startsWith(r));
+    const relativePath = path.relative(rootFolder, path.dirname(tomlPath));
+
+    // match what markdown passes as %%FILENAME%%
+    let filenameKey;
+    if (rootFolder.endsWith('trace/exercises') || rootFolder.endsWith('trace\\exercises')) {
+        filenameKey = `../trace/exercises/${relativePath}/testing-exercises`;
+    } else {
+        filenameKey = `${relativePath}/testing-exercises`;
+    }
+
+    const jsData = `registerExercises("${filenameKey}", ${JSON.stringify(
         jsonData,
         null,
         2
-    )};`;
+    )});`;
+
     fs.writeFileSync(jsPath, jsData);
 }
 

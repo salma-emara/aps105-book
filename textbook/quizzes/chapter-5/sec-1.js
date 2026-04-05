@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-5/testing-exercises", {
   "questions": [
     {
       "prompt": "Which of the following can show the advantage of using functions?",
@@ -43,4 +42,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

@@ -1,4 +1,5 @@
-registerExercises("chapter-12/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following declare(s) the `struct` correctly?",
@@ -38,4 +39,4 @@ registerExercises("chapter-12/testing-exercises", {
       ]
     }
   ]
-});
+};

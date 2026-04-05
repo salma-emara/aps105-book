@@ -1,4 +1,5 @@
-registerExercises("chapter-14/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "What is the main idea behind the selection sort algorithm?",
@@ -37,4 +38,4 @@ registerExercises("chapter-14/testing-exercises", {
       ]
     }
   ]
-});
+};

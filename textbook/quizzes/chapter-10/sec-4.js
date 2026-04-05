@@ -1,4 +1,5 @@
-registerExercises("chapter-10/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following print(s) `Wednesday`?",
@@ -20,4 +21,4 @@ registerExercises("chapter-10/testing-exercises", {
       ]
     }
   ]
-});
+};

@@ -1,4 +1,5 @@
-registerExercises("chapter-13/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following statements accurately describe(s) the advantages of using a linked list over an array for storing a list of numbers?",
@@ -19,4 +20,4 @@ registerExercises("chapter-13/testing-exercises", {
       ]
     }
   ]
-});
+};

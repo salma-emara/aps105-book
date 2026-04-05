@@ -1,4 +1,5 @@
-registerExercises("chapter-15/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "What is the number of comparisons in best and worst case for linear search? (Assume the array has `n` elements)",
@@ -19,4 +20,4 @@ registerExercises("chapter-15/testing-exercises", {
       ]
     }
   ]
-});
+};

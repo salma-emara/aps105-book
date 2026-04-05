@@ -1,4 +1,5 @@
-registerExercises("chapter-11/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "question": [
     {
       "prompt": "When designing a recursive function for solving a problem, which of the following should be determined?",
@@ -42,4 +43,4 @@ registerExercises("chapter-11/testing-exercises", {
       ]
     }
   ]
-});
+};

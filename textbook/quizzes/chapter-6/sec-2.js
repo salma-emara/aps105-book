@@ -1,4 +1,5 @@
-registerExercises("chapter-6/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "What is the purpose of the reference operator `&` in C when working with pointers?",
@@ -40,4 +41,4 @@ registerExercises("chapter-6/testing-exercises", {
       ]
     }
   ]
-});
+};

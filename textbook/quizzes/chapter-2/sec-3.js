@@ -1,4 +1,5 @@
-registerExercises("chapter-2/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following code print(s) `3.33`?",
@@ -21,4 +22,4 @@ registerExercises("chapter-2/testing-exercises", {
       ]
     }
   ]
-});
+};

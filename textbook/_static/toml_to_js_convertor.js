@@ -36,17 +36,17 @@ function convertTomlToJs(tomlPath, jsPath) {
     let filenameKey;
     if (rootFolder.endsWith('trace/exercises') || rootFolder.endsWith('trace\\exercises')) {
         filenameKey = `../trace/exercises/${relativePath}/testing-exercises`;
-    } else {
+        const jsData = `registerExercises("${filenameKey}", ${JSON.stringify(jsonData, null, 2)});`;
+        fs.writeFileSync(jsPath, jsData);
+    } else if (rootFolder.endsWith('exercises')) {
         filenameKey = `${relativePath}/testing-exercises`;
+        const jsData = `registerExercises("${filenameKey}", ${JSON.stringify(jsonData, null, 2)});`;
+        fs.writeFileSync(jsPath, jsData);
+    } else {
+        // quizzes — keep original parsedObject format
+        const jsData = `let parsedObject;\n  parsedObject = ${JSON.stringify(jsonData, null, 2)};`;
+        fs.writeFileSync(jsPath, jsData);
     }
-
-    const jsData = `registerExercises("${filenameKey}", ${JSON.stringify(
-        jsonData,
-        null,
-        2
-    )});`;
-
-    fs.writeFileSync(jsPath, jsData);
 }
 
 // Convert TOML files in each folder of the directory

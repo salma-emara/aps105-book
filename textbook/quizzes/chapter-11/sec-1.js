@@ -1,4 +1,5 @@
-registerExercises("chapter-11/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following statements is correct about recursive functions?",
@@ -20,4 +21,4 @@ registerExercises("chapter-11/testing-exercises", {
       ]
     }
   ]
-});
+};

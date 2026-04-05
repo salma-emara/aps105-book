@@ -1,4 +1,5 @@
-registerExercises("chapter-13/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following code can insert a node at the tail of a linked list?\n\nAssume the following struct and function have been defined:\n```\ntypedef struct node {\n    int data;\n    struct node *next;\n} Node;\n\nNode *createNode(int value) {\n    Node *newNode = (Node *)malloc(sizeof(Node));\n    if (newNode == NULL) {\n        return NULL;\n    }\n    newNode->data = value;\n    newNode->next = NULL;\n    return newNode;\n}\n```\n",
@@ -40,4 +41,4 @@ registerExercises("chapter-13/testing-exercises", {
       ]
     }
   ]
-});
+};

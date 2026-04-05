@@ -1,4 +1,5 @@
-registerExercises("chapter-3/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of is following code can determine the median of `x`, `y`, and `z` (Assume they are not identical)?",
@@ -41,4 +42,4 @@ registerExercises("chapter-3/testing-exercises", {
       ]
     }
   ]
-});
+};

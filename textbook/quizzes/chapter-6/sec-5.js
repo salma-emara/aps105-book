@@ -1,4 +1,5 @@
-registerExercises("chapter-6/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "How were the pointers helpful in testing the Goldbach conjecture code?",
@@ -19,4 +20,4 @@ registerExercises("chapter-6/testing-exercises", {
       ]
     }
   ]
-});
+};

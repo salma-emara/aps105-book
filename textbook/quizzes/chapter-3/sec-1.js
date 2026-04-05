@@ -1,4 +1,5 @@
-registerExercises("chapter-3/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following can output `Even!` when `n` is even? (Assume `n` is an integer)",
@@ -41,4 +42,4 @@ registerExercises("chapter-3/testing-exercises", {
       ]
     }
   ]
-});
+};

@@ -1,4 +1,5 @@
-registerExercises("chapter-6/testing-exercises", {
+let parsedObject;
+  parsedObject = {
   "questions": [
     {
       "prompt": "Which of the following code can output `True` when `n` is a multiple of 6?",
@@ -20,4 +21,4 @@ registerExercises("chapter-6/testing-exercises", {
       ]
     }
   ]
-});
+};

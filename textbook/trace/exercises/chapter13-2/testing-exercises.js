@@ -1,13 +1,13 @@
 registerExercises("../trace/exercises/chapter13-2/testing-exercises", {
   "exercises": [
     {
-      "question-id": "visualizer-LL26",
-      "title": "Lost Node",
+      "question-id": "visualizer-LIST-CONCEPT1",
+      "title": "Building the List Correctly",
       "difficulty": "Easy",
       "table": false,
       "multipart": false,
       "type": "visualizer",
-      "question": "What happens after executing the following code?\n\n```{code-block} c\nNode *head = createNode(1);\nhead = createNode(2);\n```\n\nA. The list becomes `1 -> 2`\n\nB. Only node 2 is accessible\n\nC. Both nodes are connected\n\nD. The program crashes\n",
+      "question": "What is the resulting structure of the list?\n\n```{code-block} c\nNode *head = createNode(1);\nhead = createNode(2);\nhead->next = createNode(4);\n```\n\nA. `1 -> 2 -> 4`\n\nB. `2 -> 4`\n\nC. `1 -> 4`\n\nD. Runtime error\n",
       "answer": "B\n"
     }
   ]

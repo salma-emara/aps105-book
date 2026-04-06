@@ -1,26 +1,27 @@
 [[exercises]]
-question-id = "visualizer-LL26"
-title = "Lost Node"
+question-id = "visualizer-LIST-CONCEPT1"
+title = "Building the List Correctly"
 difficulty = "Easy"
 table = false
 multipart = false
 type = "visualizer"
 
 question = '''
-What happens after executing the following code?
+What is the resulting structure of the list?
 
 ```{code-block} c
 Node *head = createNode(1);
 head = createNode(2);
+head->next = createNode(4);
 ```
 
-A. The list becomes `1 -> 2`
+A. `1 -> 2 -> 4`
 
-B. Only node 2 is accessible
+B. `2 -> 4`
 
-C. Both nodes are connected
+C. `1 -> 4`
 
-D. The program crashes
+D. Runtime error
 '''
 
 answer = '''

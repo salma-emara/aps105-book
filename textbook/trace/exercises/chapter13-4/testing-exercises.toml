@@ -1,0 +1,29 @@
+[[exercises]]
+question-id = "visualizer-DF-BEHAVIOR2"
+title = "Order Matters in deleteFront"
+difficulty = "Easy"
+table = false
+multipart = false
+type = "visualizer"
+
+question = '''
+In the following code, we store `list->head->next` before `free(list->head)`. Why?
+
+```{code-block} c
+Node *newHead = list->head->next;
+free(list->head);
+list->head = newHead;
+```
+
+A. Because `free(list->head)` deletes `list->head`
+
+B. Because after freeing the head, we lose access to its `next` pointer
+
+C. It is not necessary
+
+D. Because freeing memory automatically deletes all remaining nodes
+'''
+
+answer = '''
+B
+'''

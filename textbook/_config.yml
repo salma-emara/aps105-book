@@ -61,8 +61,55 @@ html:
         }
         return uid;
       }
-
       const userID = getOrCreateUserID();
+
+      let currentVisualizerId = 'unknown';
+      document.querySelectorAll('c-visualizer').forEach((vis) => {
+        const id = vis.getAttribute('example');
+        vis.addEventListener('click', () => {
+          currentVisualizerId = id;
+        }, true);
+      });
+
+      const originalGtag = window.gtag;
+
+      window.gtag = function () {
+        const args = [...arguments];
+
+        if (args[0] === 'event') {
+          if (!args[2]) args[2] = {};
+
+          const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+
+          if (args[1] === 'visualizer_step_click') {
+
+            let key;
+
+            if (args[2].event_label === 'First Step Button') {
+              key = `first_step_${userVisualizerKey}`;
+            } else if (args[2].event_label === 'Last Step Button') {
+              key = `last_step_${userVisualizerKey}`;
+            } else if (args[2].event_label === 'Step Back Button') {
+              key = `step_back_${userVisualizerKey}`;
+            } else if (args[2].event_label === 'Step Forward Button') {
+              key = `step_forward_${userVisualizerKey}`;
+            }
+
+            // trigger a new gtag which stores a progress
+            let correctUser = `correct_${userVisualizerKey}`;
+            if (localStorage.getItem(correctUser) !== 'true') {
+              gtag('event', 'visualizer_attempts', {
+                event_category: 'c_visualizer',
+                event_label: key,
+                debug_mode: true
+              })
+            }
+          }          
+        }
+
+        originalGtag.apply(this, args);
+
+      };
   
     </script>
 
@@ -112,16 +159,14 @@ parse:
 
       </div>
     c_visualizer: 
-      <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@0f6fc3a/loader_folder.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@9dccfac/loader_folder.js"></script>
+
 
     exercise_embed: |
       <link rel="stylesheet" href="../../_static/style.css">
-      <script> window.exerciseFilename = "%%FILENAME%%"; </script>
-      <script src="../../exercises/%%FILENAME%%.js"></script>
       <script src="../../_static/exercises.js"></script>
-      <script src = "../../_static/hints.js"> </script>
+      <script src="../../_static/hints.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/ace-min-noconflict@1.1.9/ace.js"></script>
-
 
       <script>
         window.MathJax = {
@@ -133,11 +178,11 @@ parse:
       </script>
 
       <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
       <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/markdown-it-texmath/texmath.min.js"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath/css/texmath.css">
 
       <div class="exercise-inline">
-        <script> generate_exercises("%%FILENAME%%") </script>
+        <script src="../../exercises/%%FILENAME%%.js"></script>
+        <script> generate_exercises("%%FILENAME%%", document.currentScript.parentElement) </script>
       </div>

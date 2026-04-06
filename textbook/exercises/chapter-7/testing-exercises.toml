@@ -98,7 +98,6 @@ multipart= false
 type = "programming"
 
 question = '''
-Write a complete C program that prompts the user repeatedly for a sequence of up to 10 integer values. After receiving all 10 values, or if the user enters 0, the program will stop prompting for more values. Your program will complete the following three tasks using the values entered:
 Write a complete C program that prompts the user repeatedly for a sequence of up to 10 integer values. After receiving all 10 values, or if the user enters 0, the program will stop prompting for more values. You can assume that the user enters at least one value before entering 0. Your program will complete the following three tasks, in the order as given below, using the values the user entered.
 
 • Print the total number of values entered;

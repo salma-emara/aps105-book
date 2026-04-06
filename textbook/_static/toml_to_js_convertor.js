@@ -29,18 +29,31 @@ function convertTomlToJs(tomlPath, jsPath) {
         });
     }
 
-    const jsData = `let parsedObject; \n  parsedObject = ${JSON.stringify(
-        jsonData,
-        null,
-        2
-    )};`;
-    fs.writeFileSync(jsPath, jsData);
+    const rootFolder = rootFolders.find(r => tomlPath.startsWith(r));
+    const relativePath = path.relative(rootFolder, path.dirname(tomlPath));
+
+    // match what markdown passes as %%FILENAME%%
+    let filenameKey;
+    if (rootFolder.endsWith('trace/exercises') || rootFolder.endsWith('trace\\exercises')) {
+        filenameKey = `../trace/exercises/${relativePath}/testing-exercises`;
+        const jsData = `registerExercises("${filenameKey}", ${JSON.stringify(jsonData, null, 2)});`;
+        fs.writeFileSync(jsPath, jsData);
+    } else if (rootFolder.endsWith('exercises')) {
+        filenameKey = `${relativePath}/testing-exercises`;
+        const jsData = `registerExercises("${filenameKey}", ${JSON.stringify(jsonData, null, 2)});`;
+        fs.writeFileSync(jsPath, jsData);
+    } else {
+        // quizzes — keep original parsedObject format
+        const jsData = `let parsedObject; \n  parsedObject = ${JSON.stringify(jsonData, null, 2)};`;
+        fs.writeFileSync(jsPath, jsData);
+    }
 }
 
 // Convert TOML files in each folder of the directory
 const rootFolders = [
     path.resolve(__dirname, '../exercises'), // one level up, then /exercises
     path.resolve(__dirname, '../quizzes'),   // one level up, then /quizzes
+    path.resolve(__dirname, '../trace/exercises'),   // one level up, then /trace/exercises
 ];
 
 

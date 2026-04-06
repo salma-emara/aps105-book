@@ -1,0 +1,38 @@
+[[exercises]]
+question-id = "chapter13-insert-q1"
+title = "Counting Loop Iterations"
+difficulty = "Easy"
+table = false
+multipart = false
+type = "visualizer"
+
+question = '''
+Suppose `head` points to the following linked list:
+
+`1 -> 2 -> 3 -> 4 -> 5`
+
+How many times does the loop body execute?
+
+```{code-block} c
+Node *current = head;
+
+while (current != NULL) {
+  if (current->data == 3) {
+    current = current->next;
+  }
+  current = current->next;
+}
+```
+
+A. 3
+
+B. 4
+
+C. 5
+
+D. 6
+'''
+
+answer = '''
+B
+'''

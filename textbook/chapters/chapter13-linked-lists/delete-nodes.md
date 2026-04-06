@@ -37,6 +37,78 @@ We check for if the list is empty or not, because we may not have any nodes in t
 
 The function above works if we have only one node. `newHead` will have `NULL` and eventually `list->head` will be set to `newHead` which is `NULL`. This will cause the list to be empty.
 
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="134" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "41": "Check if the list is empty (list->head == NULL); if true, nothing to delete",
+    "45": "Save the next node after the current head (this will become the new head). It could be NULL",
+    "46": "Free the memory allocated for the current head node",
+    "47": "Update list->head to point to the saved next node (new head)"
+  },
+   "folds": [
+   { "start": 30, "end": 39, "folded": true }
+   ]
+}
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+
+  typedef struct node {
+      int data;
+      struct node *next;
+  } Node;
+
+  typedef struct {
+      Node *head;
+  } LinkedList;
+
+  Node *createNode(int value);
+  void deleteFront(LinkedList *list);
+
+  int main(void) {
+      LinkedList list;
+      list.head = NULL;
+
+      list.head = createNode(1);
+      list.head->next = createNode(2);
+      list.head->next->next = createNode(4);
+
+      deleteFront(&list);
+
+      return 0;
+  }
+
+  Node *createNode(int value) {
+      Node *newNode = (Node *)malloc(sizeof(Node));
+
+      if (newNode != NULL) {
+          newNode->data = value;
+          newNode->next = NULL;
+      }
+
+      return newNode;
+  }
+
+  void deleteFront(LinkedList *list) {
+      if (list->head == NULL) {
+          return;
+      }
+
+      Node *newHead = list->head->next;
+      free(list->head);
+      list->head = newHead;
+  }
+</c-visualizer>
+
+## Checkpoint
+
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter13-4/testing-exercises")}}
+
 ## Deleting a node at the end of the list
 
 To delete a node at the end of the list, we need to do the following:

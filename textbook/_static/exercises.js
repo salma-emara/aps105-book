@@ -1,20 +1,30 @@
-
-
-
 function createTitle(form, ex) {
 	const title = document.createElement('h5');
-	title.textContent = `${ex.title} [${ex.difficulty}]`;
+	if (ex.difficulty){
+		title.textContent = `${ex.title} [${ex.difficulty}]`;
+	} else {
+		title.textContent = `${ex.title}`;
+	}
 	title.style.fontWeight = "bold";
 	title.style.color = "#4f4f4f";  
 	form.appendChild(title);
 }
 
+var exerciseRegistry = exerciseRegistry || {};
 
-function generate_exercises(filename) {
-	const container = document.currentScript.parentElement;
-	container.innerHTML = '';
+function registerExercises(filename, data) {
+    exerciseRegistry[filename] = data;
+}
 
-	const exercises = parsedObject.exercises;
+
+function generate_exercises(filename, container) {
+    container.innerHTML = '';
+    const parsedObject = exerciseRegistry[filename];
+    if (!parsedObject) {
+        console.error("No exercises registered for:", filename);
+        return;
+    }
+    const exercises = parsedObject.exercises;
 
 	let inMultipart = false;
 	let multipartTitle = "";
@@ -128,6 +138,7 @@ function generate_exercises(filename) {
 		const type = ex.type;
 		const isProgrammingQuestion = type === "programming" || type === "function programming";
 		const isTracingQuestion = type === "tracing";
+		const forVisualizer = type === "visualizer";
 		const isExplainationQuestion = type === "textbox" || type === "explaination";
 		const isMultipleChoice = type === "multiple-choice";
 		const isSingleCorrect = Array.isArray(ex.answer) && ex.answer.length === 1;
@@ -158,12 +169,12 @@ function generate_exercises(filename) {
 				span.innerHTML = md.renderInline(choiceText);
 				label.appendChild(span);
 
-				const container = document.createElement("div");
-				container.classList.add("choicesContainer");
-				container.appendChild(input);
-				container.appendChild(label);
+				const choiceWrapper = document.createElement("div");
+				choiceWrapper.classList.add("choicesContainer");
+				choiceWrapper.appendChild(input);
+				choiceWrapper.appendChild(label);
 
-				choicesElement.appendChild(container);
+				choicesElement.appendChild(choiceWrapper);
 			}
 
 			questionContentBox.appendChild(choicesElement);
@@ -270,7 +281,7 @@ function generate_exercises(filename) {
 			codeRunner.dataset.partIndex = multipartIndex; // store the part index
 
 
-		} else if (isTracingQuestion) {
+		} else if (isTracingQuestion || forVisualizer) {
 
 			const traceTextarea = document.createElement("textarea");
 			traceTextarea.classList.add("trace-textarea");
@@ -356,7 +367,7 @@ function generate_exercises(filename) {
 				const starterCode = ex["starter-code"] ? ex["starter-code"].trim() : '';
 				editor.setValue(starterCode, 1);  
 			} 
-			else if (isTracingQuestion) {
+			else if (isTracingQuestion || forVisualizer) {
 
 				localStorage.removeItem(`${storageKey}-trace`);
 				if (userInputElement) userInputElement.value = '';
@@ -393,13 +404,14 @@ function generate_exercises(filename) {
 				}
 			});
 
-
-			gtag('event', 'submit_button_clicked', {
-				event_category: 'Quiz Interaction',
-				event_label: `submit-${ex["question-id"]}`,
-				quiz_user_id: quizUserID,
-				debug_mode: true
-			});
+			if (!forVisualizer) {
+				gtag('event', 'submit_button_clicked', {
+					event_category: 'Quiz Interaction',
+					event_label: `submit-${ex["question-id"]}`,
+					quiz_user_id: quizUserID,
+					debug_mode: true
+				});
+			}
 
 			resultMessage.style.display = "block";
 
@@ -616,9 +628,52 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	let isCorrect = false;
 
-	if (questionType === "tracing") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
+	if (questionType === "tracing" || questionType === "visualizer") isCorrect = normalizeOutput(userAnswer) === normalizeOutput(correctAnswer);
 
-	let feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
+	let feedbackContainer = null;
+
+	if (questionType === "tracing") 
+		feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
+	
+	if (questionType === "visualizer") {
+
+		let visId = 'unknown';
+		const allVis = Array.from(document.querySelectorAll('c-visualizer'));
+		const formTop = form.getBoundingClientRect().top;
+		const closest = allVis.reverse().find(v => v.getBoundingClientRect().top < formTop);
+		if (closest) visId = closest.getAttribute('example');
+
+    	let userVisualizerKey = `${userID}_vis_${visId}`;
+
+		// let userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+
+		let isCorrectUser = `correct_${userVisualizerKey}`;
+
+		// check if already correct before
+		if (localStorage.getItem(isCorrectUser) !== 'true') {
+
+			// increments submission count
+			gtag('event', 'visualizer_attempts', {
+				event_category: 'c_visualizer',
+				submitted_attempts: userVisualizerKey,
+				debug_mode: true
+			});
+
+			if (isCorrect) { 
+
+				// mark as correct and freeze
+				localStorage.setItem(isCorrectUser, 'true');
+
+				// send analytics
+				gtag('event', 'visualizer_attempts', {
+					event_category: 'c_visualizer',
+					correct_attempts: userVisualizerKey,
+					debug_mode: true
+				});
+
+			}
+		}
+	}
 
 	updateResultMessage(
 		messageElement,
@@ -844,6 +899,10 @@ function updateResultMessage(messageElement, isCorrect, questionType, correctAns
 			messageElement.appendChild(hintDetails);
 		}
 
+	} else if (questionType === "visualizer"){
+			messageElement.innerHTML = isCorrect
+		? `<span style="color: green;"> Output matches! Well done.</span>`
+		: `<span style="color: red;"> Output does not match. Please try again! </span>`;
 	}
 
 }

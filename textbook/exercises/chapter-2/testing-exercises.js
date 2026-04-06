@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-2/testing-exercises", {
   "exercises": [
     {
       "question-id": "chapter-2-Q1",
@@ -99,4 +98,4 @@ let parsedObject;
       "answer": "`char randomCharacter = 'A' + rand() % 3;`\n"
     }
   ]
-};
+});

@@ -1,5 +1,4 @@
-let parsedObject; 
-  parsedObject = {
+registerExercises("chapter-13/testing-exercises", {
   "exercises": [
     {
       "question-id": "chapter-13-Q1",
@@ -288,4 +287,4 @@ let parsedObject;
       ]
     }
   ]
-};
+});

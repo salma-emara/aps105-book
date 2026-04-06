@@ -1,5 +1,7 @@
 # Dynamic Memory Allocation of 2D Arrays
 
+
+
 We discussed in Chapter 8 the dynamic memory allocation of 1D arrays. We said it is necessary to use when:
 
 1. We **do not know the number of elements in an array before run-time**, for example, the array size is taken as user input, or based on a calculation happening at run-time. It is better to allocate the array dynamically as this will allow us to **check** if the array was allocated or not on the heap. If heap does not have enough space, `malloc` returns `NULL`.
@@ -130,51 +132,53 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="2" lang="c">
-  <script type="application/json" data-kind="annotation">
-    {
-    "annotation": {
-              "8": "Dynamically allocate 1D array for each row",
-              "12": "Set each element to an integer value",
-              "17": "Free each row array. The address of each row becomes invalid.",
-              "18": "Set each pointer in arr to NULL",
-              "20": "Free the array of pointers",
-              "21": "Set the double pointer to NULL"
-                  },
+<c-visualizer example="91" lang="c">
+    <script type="application/json" data-kind="annotation">
+        {
+          "annotation": {
+                    "8": "Dynamically allocate 1D array for each row",
+                    "12": "Set each element to an integer value",
+                    "17": "Free each row array. The address of each row becomes invalid.",
+                    "18": "Set each pointer in arr to NULL",
+                    "20": "Free the array of pointers",
+                    "21": "Set the double pointer to NULL"
+                        }
+        }
+    </script>
+    
+    #include &lt;stdlib.h&gt;
 
-    "folds": [{ "start": 21, "end": 23 }]
-}
-  </script>
-  
-  #include &lt;stdlib.h&gt;
-
-  
-  
-  int main() {
     
-    const int Rows = 3;
-    const int Cols = 4;
-    int** arr = (int**) malloc(sizeof(int*) * 3);
     
-    for (int row = 0; row < Rows; row++) {
-      *(arr + row) = (int*)malloc(sizeof(int) * Cols);
-    }
-    
-    for (int row = 0; row < Rows; row++) {
-      for (int col = 0; col < Cols; col++){
-        *(*(arr + row) + col) = row * Cols + col;
+    int main() {
+      
+      const int Rows = 3;
+      const int Cols = 4;
+      int** arr = (int**) malloc(sizeof(int*) * 3);
+      
+      for (int row = 0; row < Rows; row++) {
+        *(arr + row) = (int*)malloc(sizeof(int) * Cols);
       }
-    }
+      
+      for (int row = 0; row < Rows; row++) {
+        for (int col = 0; col < Cols; col++){
+          *(*(arr + row) + col) = row * Cols + col;
+        }
+      }
 
-    for (int row = 0; row < Rows; row++) {
-      free(*(arr + row));
-      *(arr + row) = NULL;
+      for (int row = 0; row < Rows; row++) {
+        free(*(arr + row));
+        *(arr + row) = NULL;
+      }
+      free(arr);
+      arr = NULL;
+      return 0;
     }
-    free(arr);
-    arr = NULL;
-    return 0;
-  }
-</c-visualizer>
+  </c-visualizer>
+  
+## Checkpoint
+
+{{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter9-1/testing-exercises")}}
 
 ## Method 2: Static Allocation of an array of pointers
 

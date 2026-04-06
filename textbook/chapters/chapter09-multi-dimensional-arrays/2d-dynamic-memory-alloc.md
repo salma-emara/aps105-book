@@ -176,7 +176,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
     }
   </c-visualizer>
   
-## Quick Check
+## Checkpoint
 
 {{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter9-1/testing-exercises")}}
 

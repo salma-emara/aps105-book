@@ -148,7 +148,7 @@ It is silly to have to repeat code/statements to add or delete nodes to a linked
   }
 </c-visualizer>
 
-## Quick Check
+## Checkpoint
 
 {{exercise_embed | replace("%%FILENAME%%", "../trace/exercises/chapter13-1/testing-exercises")}}
 

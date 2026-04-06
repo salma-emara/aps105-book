@@ -7,7 +7,7 @@ multipart = false
 type = "visualizer"
 
 question = '''
-After executing the following code, what is the value of temp->data?
+After executing the following code, what is the value of `temp->data`?
 
 ```{code-block} c
 Node *head = (Node *)malloc(sizeof(Node));

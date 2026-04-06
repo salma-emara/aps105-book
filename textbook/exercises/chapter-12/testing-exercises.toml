@@ -66,7 +66,7 @@ struct AnimalSizes {
 
 [[exercises]]
 question-id = "chapter-12-Q3"
-title = "Question 7 in Winter 2020 Final Exam"
+title = "Modified version of Question 7 in Winter 2019 Final Exam"
 difficulty = "Intermediate"
 table = false
 multipart= false
@@ -84,6 +84,12 @@ $$x = R \cos(\theta) \mbox{ and } y = R \sin(\theta) $$
 Complete the code below, which defines the data structures and a function that takes polar coordinates of a point and return the rectangular
 coordinates. The angle is assumed to be in radians. Assuming the values passed to this function is in degrees, you need to convert the radian
 value using the constant D2R below. **Assume the value of pi is 3.1415926535**
+
+For testing purposes, you may assume the structure member names are as follows:
+
+- `rectV` has members `x` and `y`
+- `polarC` has members `r` and `theta`
+
 '''
 
 starter-code = '''

@@ -7,20 +7,17 @@ multipart = false
 type = "visualizer"
 
 question = '''
-After executing the following code, what will be printed?
+After executing the following code, what is the value of temp->data?
 
 ```{code-block} c
 Node *head = (Node *)malloc(sizeof(Node));
 head->data = 1;
-head->next = NULL;
 
-Node *temp = (Node *)malloc(sizeof(Node));
-temp->data = 2;
-temp->next = NULL;
+head->next = (Node *)malloc(sizeof(Node));
+head->next->data = 2;
+head->next->next = NULL;
 
-head = temp;
-
-printf("%d", head->data);
+Node* temp = head->next;
 ```
 
 A. 1

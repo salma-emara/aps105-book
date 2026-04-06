@@ -7,7 +7,7 @@ multipart = false
 type = "visualizer"
 
 question = '''
-What is the resulting structure of the list?
+What is the resulting structure of the list from `head`?
 
 ```{code-block} c
 Node *head = createNode(1);

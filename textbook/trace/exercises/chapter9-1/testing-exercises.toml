@@ -19,19 +19,19 @@ for (int row = 0; row < Rows; row++) {
 }
 ```
 
-After executing the marked line when `row = 2`, what does `*(arr + row)` point to in the visualizer?
+After executing the highlighted line when `row = 2`, what does `*(arr + row)` point to?
 
 ```{code-block} c
 *(arr + row) = (int*)malloc(sizeof(int) * Cols);
 ```
 
-A. A pointer that does not point to any allocated memory
+A. An invaild address
 
-B. A pointer to a newly allocated array of integers
+B. A newly allocated array of integers
 
-C. The value stored in the array
+C. A newly allocated array of integer pointers 
 
-D. A pointer to the entire 2D array
+D. The entire 2D array
 '''
 
 answer = '''

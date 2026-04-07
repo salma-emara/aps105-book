@@ -73,14 +73,15 @@ html:
           currentVisualizerId = id;
           const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
 
-          let key;
+          let key = null;
           const targetId = event.target.id;
 
           if (targetId === 'jmpFirstInstr') key = `first_step_${userVisualizerKey}`;
           else if (targetId === 'jmpLastInstr') key = `last_step_${userVisualizerKey}`;
           else if (targetId === 'jmpStepBack') key = `step_back_${userVisualizerKey}`;
           else if (targetId === 'jmpStepFwd') key = `step_forward_${userVisualizerKey}`;
-
+          else return;
+          
           // trigger a new gtag which stores a progress
           let correctUser = `correct_${userVisualizerKey}`;
           if (key && localStorage.getItem(correctUser) !== 'true') {

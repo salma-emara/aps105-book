@@ -10,6 +10,7 @@ question = '''
 Consider the following code snippet for dynamically allocating a 2D array:
 
 ```{code-block} c
+:emphasize-lines: 6
 int Rows = 3;
 int Cols = 4;
 int** arr = (int**)malloc(sizeof(int*) * Rows);
@@ -20,10 +21,6 @@ for (int row = 0; row < Rows; row++) {
 ```
 
 After executing the highlighted line when `row = 2`, what does `*(arr + row)` point to?
-
-```{code-block} c
-*(arr + row) = (int*)malloc(sizeof(int) * Cols);
-```
 
 A. An invaild address
 

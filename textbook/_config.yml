@@ -76,6 +76,10 @@ html:
       window.gtag = function () {
         const args = [...arguments];
 
+        if (args[0] !== 'event' || args[1] !== 'visualizer_step_click') {
+          return originalGtag.apply(this, args);
+        }
+
         if (args[0] === 'event') {
           if (!args[2]) args[2] = {};
 
@@ -97,8 +101,8 @@ html:
 
             // trigger a new gtag which stores a progress
             let correctUser = `correct_${userVisualizerKey}`;
-            if (localStorage.getItem(correctUser) !== 'true') {
-              gtag('event', 'visualizer_attempts', {
+            if (key && localStorage.getItem(correctUser) !== 'true') {
+              originalGtag('event', 'visualizer_attempts', {
                 event_category: 'c_visualizer',
                 event_label: key,
                 debug_mode: true
@@ -107,7 +111,7 @@ html:
           }          
         }
 
-        originalGtag.apply(this, args);
+        return originalGtag.apply(this, args);
 
       };
   

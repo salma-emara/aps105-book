@@ -79,8 +79,7 @@ html:
         if (args[0] !== 'event' || args[1] !== 'visualizer_step_click') {
           return originalGtag.apply(this, args);
         }
-
-        if (window.event && window.event.isTrusted === false) {
+        if (!window.event || window.event.isTrusted === false || currentVisualizerId === 'unknown') {
           return originalGtag.apply(this, args);
         }
 

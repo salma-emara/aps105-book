@@ -63,36 +63,43 @@ html:
       }
       const userID = getOrCreateUserID();
 
-      let currentVisualizerId = 'unknown';
-      document.querySelectorAll('c-visualizer').forEach((vis) => {
+    let currentVisualizerId = 'unknown';
+    document.querySelectorAll('c-visualizer').forEach((vis) => {
+      const id = vis.getAttribute('example');
       
-        const id = vis.getAttribute('example');
-        vis.addEventListener('click', (event) => {
+      vis.addEventListener('click', (event) => {
+        // 1. HUMAN CHECK: Ignore script-generated clicks
+        if (!event.isTrusted) return;
 
-          if (!event.isTrusted) return;
-          currentVisualizerId = id;
-          const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
+        // 2. SHADOW PIERCING: Find the button even inside a Shadow Root
+        const path = event.composedPath();
+        const btn = path.find(el => el && el.tagName === 'BUTTON');
+        
+        // 3. TARGET CHECK: If it's not a button or doesn't have an ID, stop.
+        if (!btn || !btn.id) return; 
 
-          let key = null;
-          const targetId = event.target.id;
+        const targetId = btn.id;
+        const userVisualizerKey = `${userID}_vis_${id}`;
+        let key = null;
 
-          if (targetId === 'jmpFirstInstr') key = `first_step_${userVisualizerKey}`;
-          else if (targetId === 'jmpLastInstr') key = `last_step_${userVisualizerKey}`;
-          else if (targetId === 'jmpStepBack') key = `step_back_${userVisualizerKey}`;
-          else if (targetId === 'jmpStepFwd') key = `step_forward_${userVisualizerKey}`;
-          else return;
-          
-          // trigger a new gtag which stores a progress
-          let correctUser = `correct_${userVisualizerKey}`;
-          if (key && localStorage.getItem(correctUser) !== 'true') {
-            gtag('event', 'visualizer_attempts', {
-              event_category: 'c_visualizer',
-              event_label: key,
-              debug_mode: true
-            });
-          }
-        }, true);
-      });
+        // 4. NAVIGATION FILTER: Only allow the 4 specific nav buttons
+        if (targetId === 'jmpFirstInstr') key = `first_step_${userVisualizerKey}`;
+        else if (targetId === 'jmpLastInstr') key = `last_step_${userVisualizerKey}`;
+        else if (targetId === 'jmpStepBack') key = `step_back_${userVisualizerKey}`;
+        else if (targetId === 'jmpStepFwd') key = `step_forward_${userVisualizerKey}`;
+        else return; // Kills the function for "Submit", "Settings", etc.
+
+        // 5. PROGRESS CHECK: Don't fire if they already solved it
+        let correctUser = `correct_${userVisualizerKey}`;
+        if (key && localStorage.getItem(correctUser) !== 'true') {
+          gtag('event', 'visualizer_attempts', {
+            event_category: 'c_visualizer',
+            event_label: key,
+            debug_mode: true
+          });
+        }
+      }, true);
+    });
     </script>
 
 

@@ -62,46 +62,7 @@ html:
         return uid;
       }
       const userID = getOrCreateUserID();
-
-    let currentVisualizerId = 'unknown';
-    document.querySelectorAll('c-visualizer').forEach((vis) => {
-      const id = vis.getAttribute('example');
-      
-      vis.addEventListener('click', (event) => {
-        // 1. HUMAN CHECK: Ignore script-generated clicks
-        if (!event.isTrusted) return;
-
-        // 2. SHADOW PIERCING: Find the button even inside a Shadow Root
-        const path = event.composedPath();
-        const btn = path.find(el => el && el.tagName === 'BUTTON');
-        
-        // 3. TARGET CHECK: If it's not a button or doesn't have an ID, stop.
-        if (!btn || !btn.id) return; 
-
-        const targetId = btn.id;
-        const userVisualizerKey = `${userID}_vis_${id}`;
-        let key = null;
-
-        // 4. NAVIGATION FILTER: Only allow the 4 specific nav buttons
-        if (targetId === 'jmpFirstInstr') key = `first_step_${userVisualizerKey}`;
-        else if (targetId === 'jmpLastInstr') key = `last_step_${userVisualizerKey}`;
-        else if (targetId === 'jmpStepBack') key = `step_back_${userVisualizerKey}`;
-        else if (targetId === 'jmpStepFwd') key = `step_forward_${userVisualizerKey}`;
-        else return; // Kills the function for "Submit", "Settings", etc.
-
-        // 5. PROGRESS CHECK: Don't fire if they already solved it
-        let correctUser = `correct_${userVisualizerKey}`;
-        if (key && localStorage.getItem(correctUser) !== 'true') {
-          gtag('event', 'visualizer_attempts', {
-            event_category: 'c_visualizer',
-            event_label: key,
-            debug_mode: true
-          });
-        }
-      }, true);
-    });
     </script>
-
 
   use_issues_button: true
   use_repository_button: true
@@ -147,10 +108,11 @@ parse:
       <script> parse_and_generate_form("%%FILENAME%%") </script>
 
       </div>
-    c_visualizer: 
+    c_visualizer: |
       <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@9dccfac/loader_folder.js"></script>
-
-
+      <script src="../../_static/visualizer_tracker.js"></script> 
+      <script> startVisualizerTracking(); </script>      
+      
     exercise_embed: |
       <link rel="stylesheet" href="../../_static/style.css">
       <script src="../../_static/exercises.js"></script>

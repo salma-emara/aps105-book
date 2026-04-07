@@ -80,8 +80,9 @@ html:
           return originalGtag.apply(this, args);
         }
 
-        if (args[0] === 'event') {
-          if (!args[2]) args[2] = {};
+        if (window.event && window.event.isTrusted === false) {
+          return originalGtag.apply(this, args);
+        }
 
           const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
 

@@ -32,6 +32,12 @@ function initVisualizerTracker (vis) {
                 event_label: key,
                 debug_mode: true
             });
+            gtag('event', 'visualizer_tracker', {
+                event_category: 'c_visualizer',
+                event_label: key,
+                debug_mode: true
+            });
+
         }
     }, true);
 }

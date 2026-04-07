@@ -675,6 +675,12 @@ async function handle_output_submission(form, messageElement, questionType, corr
 				submitted_attempts: userVisualizerKey,
 				debug_mode: true
 			});
+			gtag('event', 'visualizer_tracker', {
+				event_category: 'c_visualizer',
+				submitted_attempts: userVisualizerKey,
+				debug_mode: true
+			});
+
 
 			if (isCorrect) { 
 
@@ -687,6 +693,12 @@ async function handle_output_submission(form, messageElement, questionType, corr
 					correct_attempts: userVisualizerKey,
 					debug_mode: true
 				});
+				gtag('event', 'visualizer_tracker', {
+				event_category: 'c_visualizer',
+				correct_attempts: userVisualizerKey,
+				debug_mode: true
+			});
+
 
 			}
 		}

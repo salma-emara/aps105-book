@@ -78,7 +78,7 @@
     width: 100% !important;
     z-index: 4;
     height: 16px !important;
-    transform: translateY(5px);
+    transform: translateY(-13px);
 }
 
 .ace-highlight-line:hover {

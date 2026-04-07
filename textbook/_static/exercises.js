@@ -99,7 +99,7 @@ function generate_exercises(filename, container) {
 				// parse :emphasize-lines: 
 				let emphasizeLines = [];
 				const emphasizeMatch = options.match(/:emphasize-lines:\s*([\d,\s]+)/);
-				if (emphasizeMatch) emphasizeLines = emphasizeMatch[1].split(',').map(n => parseInt(n.trim()) - 2);
+				if (emphasizeMatch) emphasizeLines = emphasizeMatch[1].split(',').map(n => parseInt(n.trim()) - 1);
 
 				pendingEditors.push({ id: editorId, code: code.trim(), lang: lang || "c", emphasizeLines });
 

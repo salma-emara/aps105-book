@@ -72,6 +72,24 @@
 }
 
 /* tracing block */
+.ace-highlight-line {
+    background: #ffffcc !important;
+    position: absolute;
+    width: 100% !important;
+    z-index: 4;
+    height: 16px !important;
+    transform: translateY(5px);
+}
+
+.ace-highlight-line:hover {
+    background: #ffffcc !important;
+}
+
+pre:has(.ace-editor-tracing) {
+    padding: 10px 10px 0px 10px !important;
+    background: var(--code-bg, #f6f6f6);
+}
+
 .ace-editor-tracing {
     width: 100%;
     border-radius: 0 0 10px 10px;

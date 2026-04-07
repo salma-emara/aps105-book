@@ -92,13 +92,20 @@ function generate_exercises(filename, container) {
         // extract {code-block} and replace with placeholders
         let pendingEditors = [];
 		let questionHtml = ex.question.replace(
-            /```{code-block}\s*(\w+)?([\s\S]*?)```/g,
-            (_, lang, code) => {
-                const editorId = "editor-" + Math.random().toString(36).substr(2, 9);
-                pendingEditors.push({ id: editorId, code: code.trim(), lang: lang || "c" });
-                return `<pre><div id="${editorId}" class="ace-editor-tracing"></div></pre>`;
-            }
-        );
+			/```{code-block}\s*(\w+)?\n?((?::[\w-]+:.*\n)*)([\s\S]*?)```/g,
+			(_, lang, options, code) => {
+				const editorId = "editor-" + Math.random().toString(36).substr(2, 9);
+				
+				// parse :emphasize-lines: 
+				let emphasizeLines = [];
+				const emphasizeMatch = options.match(/:emphasize-lines:\s*([\d,\s]+)/);
+				if (emphasizeMatch) emphasizeLines = emphasizeMatch[1].split(',').map(n => parseInt(n.trim()) - 2);
+
+				pendingEditors.push({ id: editorId, code: code.trim(), lang: lang || "c", emphasizeLines });
+
+				return `<pre><div id="${editorId}" class="ace-editor-tracing"></div></pre>`;
+			}
+		);
 
 		// Replace {figure} with <img>
 		questionHtml = questionHtml.replace(
@@ -117,12 +124,22 @@ function generate_exercises(filename, container) {
         if (window.MathJax) MathJax.typesetPromise([questionContentBox]);
 		
 		// Initialize Ace editors inline
-        pendingEditors.forEach(({ id, code, lang }) => {
+		pendingEditors.forEach(({ id, code, lang, emphasizeLines }) => {
             const editor = ace.edit(id);
 			editor.session.setMode("ace/mode/c_cpp");
             editor.setTheme("ace/theme/tomorrow");
             editor.setValue(code, 1);
 
+			if (emphasizeLines && emphasizeLines.length > 0) {
+				const Range = ace.require('ace/range').Range;
+				emphasizeLines.forEach(lineIndex => {
+					editor.session.addMarker(
+						new Range(lineIndex, 0, lineIndex, 1),
+						"ace-highlight-line",
+						"fullLine"
+					);
+				});
+			}			
 			const lineCount = Math.max(code.split('\n').length, 1);
 			
 			editor.setOptions({

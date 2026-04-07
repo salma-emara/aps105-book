@@ -65,56 +65,31 @@ html:
 
       let currentVisualizerId = 'unknown';
       document.querySelectorAll('c-visualizer').forEach((vis) => {
+      
         const id = vis.getAttribute('example');
-        vis.addEventListener('click', () => {
+        vis.addEventListener('click', (event) => {
           currentVisualizerId = id;
-        }, true);
-      });
-
-      const originalGtag = window.gtag;
-
-      window.gtag = function () {
-        const args = [...arguments];
-
-        if (args[0] !== 'event' || args[1] !== 'visualizer_step_click') {
-          return originalGtag.apply(this, args);
-        }
-        if (!window.event || window.event.isTrusted === false || currentVisualizerId === 'unknown') {
-          return originalGtag.apply(this, args);
-        }
-
           const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
 
-          if (args[1] === 'visualizer_step_click') {
+          let key;
+          const targetId = event.target.id;
 
-            let key;
+          if (targetId === 'jmpFirstInstr') key = `first_step_${userVisualizerKey}`;
+          else if (targetId === 'jmpLastInstr') key = `last_step_${userVisualizerKey}`;
+          else if (targetId === 'jmpStepBack') key = `step_back_${userVisualizerKey}`;
+          else if (targetId === 'jmpStepFwd') key = `step_forward_${userVisualizerKey}`;
 
-            if (args[2].event_label === 'First Step Button') {
-              key = `first_step_${userVisualizerKey}`;
-            } else if (args[2].event_label === 'Last Step Button') {
-              key = `last_step_${userVisualizerKey}`;
-            } else if (args[2].event_label === 'Step Back Button') {
-              key = `step_back_${userVisualizerKey}`;
-            } else if (args[2].event_label === 'Step Forward Button') {
-              key = `step_forward_${userVisualizerKey}`;
-            }
-
-            // trigger a new gtag which stores a progress
-            let correctUser = `correct_${userVisualizerKey}`;
-            if (key && localStorage.getItem(correctUser) !== 'true') {
-              originalGtag('event', 'visualizer_attempts', {
-                event_category: 'c_visualizer',
-                event_label: key,
-                debug_mode: true
-              })
-            }
-          }          
-        }
-
-        return originalGtag.apply(this, args);
-
-      };
-  
+          // trigger a new gtag which stores a progress
+          let correctUser = `correct_${userVisualizerKey}`;
+          if (key && localStorage.getItem(correctUser) !== 'true') {
+            gtag('event', 'visualizer_attempts', {
+              event_category: 'c_visualizer',
+              event_label: key,
+              debug_mode: true
+            });
+          }
+        }, true);
+      });
     </script>
 
 

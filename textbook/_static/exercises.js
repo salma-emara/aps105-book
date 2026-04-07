@@ -675,9 +675,11 @@ async function handle_output_submission(form, messageElement, questionType, corr
 				submitted_attempts: userVisualizerKey,
 				debug_mode: true
 			});
-			gtag('event', 'visualizer_tracker', {
+			gtag('event', 'visualizer_analytics', {
 				event_category: 'c_visualizer',
 				submitted_attempts: userVisualizerKey,
+				correct_attempts: "submission_event",
+				event_label: "submission_event",
 				debug_mode: true
 			});
 
@@ -693,9 +695,11 @@ async function handle_output_submission(form, messageElement, questionType, corr
 					correct_attempts: userVisualizerKey,
 					debug_mode: true
 				});
-				gtag('event', 'visualizer_tracker', {
+				gtag('event', 'visualizer_analytics', {
 				event_category: 'c_visualizer',
+				submitted_attempts = "correct_event",
 				correct_attempts: userVisualizerKey,
+				event_label: "correct_event",
 				debug_mode: true
 			});
 

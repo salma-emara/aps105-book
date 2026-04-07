@@ -32,8 +32,10 @@ function initVisualizerTracker (vis) {
                 event_label: key,
                 debug_mode: true
             });
-            gtag('event', 'visualizer_tracker', {
+            gtag('event', 'visualizer_analytics', {
                 event_category: 'c_visualizer',
+                submitted_attempts: "visualizer_click",
+				correct_attempts: "visualizer_click",
                 event_label: key,
                 debug_mode: true
             });

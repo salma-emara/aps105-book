@@ -68,6 +68,8 @@ html:
       
         const id = vis.getAttribute('example');
         vis.addEventListener('click', (event) => {
+
+          if (!event.isTrusted) return;
           currentVisualizerId = id;
           const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
 

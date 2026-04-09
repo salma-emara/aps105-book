@@ -696,13 +696,12 @@ async function handle_output_submission(form, messageElement, questionType, corr
 					debug_mode: true
 				});
 				gtag('event', 'visualizer_analytics', {
-				event_category: 'c_visualizer',
-				submitted_attempts = "correct_event",
-				correct_attempts: userVisualizerKey,
-				event_label: "correct_event",
-				debug_mode: true
-			});
-
+					event_category: 'c_visualizer',
+					submitted_attempts: "correct_event",
+					correct_attempts: userVisualizerKey,
+					event_label: "correct_event",
+					debug_mode: true
+				});
 
 			}
 		}

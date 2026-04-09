@@ -62,57 +62,7 @@ html:
         return uid;
       }
       const userID = getOrCreateUserID();
-
-      let currentVisualizerId = 'unknown';
-      document.querySelectorAll('c-visualizer').forEach((vis) => {
-        const id = vis.getAttribute('example');
-        vis.addEventListener('click', () => {
-          currentVisualizerId = id;
-        }, true);
-      });
-
-      const originalGtag = window.gtag;
-
-      window.gtag = function () {
-        const args = [...arguments];
-
-        if (args[0] === 'event') {
-          if (!args[2]) args[2] = {};
-
-          const userVisualizerKey = `${userID}_vis_${currentVisualizerId}`;
-
-          if (args[1] === 'visualizer_step_click') {
-
-            let key;
-
-            if (args[2].event_label === 'First Step Button') {
-              key = `first_step_${userVisualizerKey}`;
-            } else if (args[2].event_label === 'Last Step Button') {
-              key = `last_step_${userVisualizerKey}`;
-            } else if (args[2].event_label === 'Step Back Button') {
-              key = `step_back_${userVisualizerKey}`;
-            } else if (args[2].event_label === 'Step Forward Button') {
-              key = `step_forward_${userVisualizerKey}`;
-            }
-
-            // trigger a new gtag which stores a progress
-            let correctUser = `correct_${userVisualizerKey}`;
-            if (localStorage.getItem(correctUser) !== 'true') {
-              gtag('event', 'visualizer_attempts', {
-                event_category: 'c_visualizer',
-                event_label: key,
-                debug_mode: true
-              })
-            }
-          }          
-        }
-
-        originalGtag.apply(this, args);
-
-      };
-  
     </script>
-
 
   use_issues_button: true
   use_repository_button: true
@@ -158,10 +108,11 @@ parse:
       <script> parse_and_generate_form("%%FILENAME%%") </script>
 
       </div>
-    c_visualizer: 
+    c_visualizer: |
       <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@9dccfac/loader_folder.js"></script>
-
-
+      <script src="../../_static/visualizer_tracker.js"></script> 
+      <script> startVisualizerTracking(); </script>      
+      
     exercise_embed: |
       <link rel="stylesheet" href="../../_static/style.css">
       <script src="../../_static/exercises.js"></script>

@@ -109,9 +109,8 @@ parse:
 
       </div>
     c_visualizer: |
-      <script src="https://cdn.jsdelivr.net/gh/JinningL/pythontutor-c-webcomponent@9dccfac/loader_folder.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/jmswws75/pythontutor-c-webcomponent-editable@de3aaf1/loader_folder.js"></script>
       <script src="../../_static/visualizer_tracker.js"></script> 
-      <script> startVisualizerTracking(); </script>      
       
     exercise_embed: |
       <link rel="stylesheet" href="../../_static/style.css">

@@ -1,5 +1,43 @@
 # Why linked lists?
 
+**Visualize Code**
+
+{{c_visualizer}}
+<c-visualizer example="135" lang="c">
+  <script type="application/json" data-kind="annotation">
+  {
+  "annotation": {
+    "11": "Allocate memory for first node and assign to newNode"
+    }
+  }
+  </script>
+  
+  #include &lt;stdio.h&gt;
+  #include &lt;stdlib.h&gt;
+
+  typedef struct node {
+      int data;
+      struct node *next;
+  } Node;
+
+  int main(void) {
+      Node *head;
+      Node *newNode = (Node *)malloc(sizeof(Node));
+      newNode->data = 1;
+      newNode->next = NULL;
+
+      head = newNode;
+
+      printf("%d -> ", head->data);
+
+      free(head);
+	  
+	  // hohohohoho
+	  
+      return 0;
+  }
+</c-visualizer>
+
 Let's say we want to store a list of numbers that can decrease or increase. We decide to store the list in an array as follows:
 
 ```{code-block} c

@@ -40,7 +40,7 @@ The function above works if we have only one node. `newHead` will have `NULL` an
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="134" lang="c">
+<c-visualizer example="134" lang="c" interactive="true">
   <script type="application/json" data-kind="annotation">
   {
   "annotation": {

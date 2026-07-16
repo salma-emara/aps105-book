@@ -109,7 +109,13 @@ parse:
 
       </div>
     c_visualizer: |
-      <script src="https://cdn.jsdelivr.net/gh/jmswws75/pythontutor-c-webcomponent-editable@de3aaf1/loader_folder.js"></script>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/theme/base16-light.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/clike/clike.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/gh/jmswws75/pythontutor-c-webcomponent-editable@54f0cbc/loader_folder.js"></script>
       <script src="../../_static/visualizer_tracker.js"></script> 
       
     exercise_embed: |

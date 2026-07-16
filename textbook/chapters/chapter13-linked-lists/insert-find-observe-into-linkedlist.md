@@ -71,7 +71,7 @@ It can be confusing to keep track of `->next` numbers in a statement. Instead, w
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="132" lang="c">
+<c-visualizer example="132" lang="c" interactive="true">
   <script type="application/json" data-kind="annotation">
   {
   "annotation": {
@@ -274,7 +274,7 @@ void printList(LinkedList *list) {
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="133" lang="c">
+<c-visualizer example="133" lang="c" interactive="true">
   <script type="application/json" data-kind="annotation">
   {
   "annotation": {

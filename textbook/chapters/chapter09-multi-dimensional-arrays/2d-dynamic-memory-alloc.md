@@ -132,7 +132,7 @@ Download {download}`2D-dyn-mem-alloc.c <../../code/chapter09/2D-dyn-mem-alloc/2D
 **Visualize Code**
 
 {{c_visualizer}}
-<c-visualizer example="91" lang="c">
+<c-visualizer example="91" lang="c" interactive="true">
     <script type="application/json" data-kind="annotation">
         {
           "annotation": {

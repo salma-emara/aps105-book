@@ -53,3 +53,5 @@ function startVisualizerTracking() {
         document.querySelectorAll('c-visualizer').forEach(initVisualizerTracker);
     }
 }
+
+function startVisualizerTracking();

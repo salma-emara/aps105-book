@@ -1,5 +1,7 @@
 # Why linked lists?
 
+**Visualize Code**
+
 Let's say we want to store a list of numbers that can decrease or increase. We decide to store the list in an array as follows:
 
 ```{code-block} c

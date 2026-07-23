@@ -39,7 +39,7 @@ starter-code = '''
 #include <stdio.h>
 #include <string.h>
 
-int countLetters(char *s, int count[]) {
+void countLetters(char *s, int count[]) {
 
   // Write your function here
 
@@ -50,7 +50,7 @@ answer = '''
 #include <stdio.h>
 #include <string.h>
 
-int countLetters(char *s, int count[]) {
+void countLetters(char *s, int count[]) {
     int i = 0;
     int whichLetter;
     while (s[i] != '\0') {

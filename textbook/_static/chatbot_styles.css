@@ -77,7 +77,7 @@ body {
     100% - 60px
   ); /* Ensure the container fits within the window with a 10px left margin and 50px right margin */
   margin-left: 10px;
-  z-index: 1000;
+  z-index: 10000;
 }
 
 @media (max-width: 400px) {

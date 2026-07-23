@@ -78,15 +78,15 @@ We can change the code in the above figure as follows to dynamically allocate no
 1 -> 2
 </pre>
 
-In line $9$, we dynamically allocate a memory space on the heap of size `sizeof(Node)` bytes and assign the address of that space to `newNode`. We set the data and `next` of that `Node` to `1` and `NULL` respectively in lines $10$ and $11$.
+In line 9, we dynamically allocate a memory space on the heap of size `sizeof(Node)` bytes and assign the address of that space to `newNode`. We set the data and `next` of that `Node` to `1` and `NULL` respectively in lines 10 and 11.
 
-In line $12$, we make `head` point to what `newNode` points to. `head` is a pointer to a `Node`, and `newNode` is a pointer to a `Node`. Hence, we can assign `newNode` to `head`.
+In line 12, we make `head` point to what `newNode` points to. `head` is a pointer to a `Node`, and `newNode` is a pointer to a `Node`. Hence, we can assign `newNode` to `head`.
 
-In line $13$, we dynamically allocate a memory space on the heap of size `sizeof(Node)` bytes and assign the address of that space to `newNode`. We set the data and `next` of that `Node` to `2` and `NULL` respectively in lines $14$ and $15$.
+In line 13, we dynamically allocate a memory space on the heap of size `sizeof(Node)` bytes and assign the address of that space to `newNode`. We set the data and `next` of that `Node` to `2` and `NULL` respectively in lines 14 and 15.
 
-In line $16$, we make `(*head).next` point to what `newNode` points to. `(*head).next` is a pointer to a `Node`, and `newNode` is a pointer to a `Node`. This links the node with data `1` to the node with data `2`.
+In line 16, we make `(*head).next` point to what `newNode` points to. `(*head).next` is a pointer to a `Node`, and `newNode` is a pointer to a `Node`. This links the node with data `1` to the node with data `2`.
 
-In lines $17$ and $18$, we print the data of the node pointed to by `head` and the data of the node pointed to by `(*head).next` respectively.
+In lines 17 and 18, we print the data of the node pointed to by `head` and the data of the node pointed to by `(*head).next` respectively.
 
 To free the dynamic memory, we free all the space allocated on heap, which is pointed to by `head` and `head->next`. The order of `free` is critical. In case, `newNode` is not pointing to the second node, and we `free(head)` first, then `head` will be pointing to a freed memory space. Hence, we won't be able to access the next in head and do `free(head->next)`. Therefore, we should first `free(head->next)` then `free(head)`.
 

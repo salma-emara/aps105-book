@@ -20,7 +20,7 @@ let parsedObject;
       ]
     },
     {
-      "prompt": "Assume we have the following node definition:\n```\ntypedef struct node {\n  int data;\n  struct node *next;\n} Node;\n```\nWhich of the following correctly create(s) `node1` and `node2` and link(s) `node2` after `node1`?\n",
+      "prompt": "Assume we have the following node definition:\n```\ntypedef struct node {\n  int data;\n  struct node *next;\n} Node;\n``` \n Which of the following correctly create(s) `node1` and `node2` and link(s) `node2` after `node1`? \n",
       "answer": [
         1
       ],

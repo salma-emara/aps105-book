@@ -426,7 +426,9 @@ function parse_and_generate_form(fileName) {
         questionElement.appendChild(remainingQuestionTextElement);
 
         // Find and format single backticks
-        const singleBacktickMatches = question.match(regexSingleBacktick);
+        // BUG FIX: Fixed a bug where if a triple backtick "entire block" of code appears in the same prompt as a single backtick "inline" block of code, regex grabs 3 closing backticks as single, effectively reversing the delimiter.
+        const textWithoutCodeBlocks = question.replace(regexTripleBackticks, ""); // strip the "entire blocks" of code first before processing single backticks.
+        const singleBacktickMatches = textWithoutCodeBlocks.match(regexSingleBacktick);
         if (singleBacktickMatches) {
             for (let j = 0; j < singleBacktickMatches.length; j++) {
                 const match = singleBacktickMatches[j];

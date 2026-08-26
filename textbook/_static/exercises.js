@@ -556,7 +556,7 @@ function generate_exercises(filename, container) {
 					return;
 				}
 
-				let hintContainer = await generate_hints(ex["question-id"], form, studentCode, expectedOutput, actualOutput, ex.question, [], ex, storageKey, thisPartIndex);
+				let hintContainer = await generate_hints(form, expectedOutput, actualOutput, [], ex, storageKey, thisPartIndex);
 				handle_prog_submission(form, resultMessage, inputArray, expectedOutput, actualOutput, correctAnswer, type, hintContainer, studentCode, thisPartIndex);
 
 			} else if (type === "explaination" && ex.table){
@@ -612,7 +612,7 @@ async function handle_output_submission(form, messageElement, questionType, corr
 			return [correctMethod, row?.[1] || "", row?.[2] || ""];
 		});
 
-		let feedbackContainer = await get_feedback(exercise["question-id"], form, messageElement, exercise, studentRows, "", [], storageKey);
+		let feedbackContainer = await get_feedback(messageElement, exercise, [], storageKey);
 
 		const solutionTableHTML = buildFilledTableHTML(exercise.headers, exercise.answer);
 
@@ -649,8 +649,8 @@ async function handle_output_submission(form, messageElement, questionType, corr
 
 	let feedbackContainer = null;
 
-	if (questionType === "tracing") 
-		feedbackContainer = await get_feedback(exercise["question-id"],form, messageElement, exercise, [], userAnswer, [], storageKey);
+	if (questionType === "tracing" || questionType === "explaination")
+		feedbackContainer = await get_feedback(messageElement, exercise, [], storageKey);
 	
 	if (questionType === "visualizer") {
 
@@ -946,7 +946,7 @@ function escapeHtml(text) {
 	return div.innerHTML;
 }
 
-function getTestcasesContainer(form, inputArray, outputArray, actualOutput, partIndex) {
+function getTestcasesContainer(form, inputArray, expectedOutput, actualOutput, partIndex) {
     const existingTestcaseContainer = form.querySelector(`.testcase-container[data-part-index="${partIndex}"]`);
     if (existingTestcaseContainer) existingTestcaseContainer.remove();
 
@@ -974,7 +974,7 @@ function getTestcasesContainer(form, inputArray, outputArray, actualOutput, part
 		testcaseDiv.classList.add("testcase");
 		testcaseDiv.style.display = "none";
 
-		const expected = (outputArray[i] && outputArray[i][0]) || "";
+		const expected = (expectedOutput[i] && expectedOutput[i][0]) || "";
 		let actual = actualOutput[i] || "";
 		actual = decodeHtmlEntities(actual);
 		const passed = (normalizeOutput(expected) == normalizeOutput(actual));
@@ -992,11 +992,11 @@ function getTestcasesContainer(form, inputArray, outputArray, actualOutput, part
 		const diff = diffCheckExercises(expected, actual);
 
 		const outputPara = document.createElement("p");
-		if (outputArray[i].length > 1) outputPara.innerHTML = `<strong>Expected Outputs:</strong>`;
+		if (expectedOutput[i].length > 1) outputPara.innerHTML = `<strong>Expected Outputs:</strong>`;
 		else outputPara.innerHTML = `<strong>Expected Output:</strong>`;
 		testcaseDiv.appendChild(outputPara);
 
-		outputArray[i].forEach((i) => {
+		expectedOutput[i].forEach((i) => {
 			const preExpected = document.createElement("pre");
 			preExpected.innerHTML = passed ? expected : diff.expectedResult;
 			testcaseDiv.appendChild(preExpected);

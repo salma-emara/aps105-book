@@ -4,7 +4,7 @@ title = "Pointer Arithmetic in 2D Arrays"
 difficulty = "Easy"
 table = false
 multipart = false
-type = "visualizer"
+type = "multiple-choice"
 
 question = '''
 Consider the following code snippet for dynamically allocating a 2D array:
@@ -21,16 +21,13 @@ for (int row = 0; row < Rows; row++) {
 ```
 
 After executing the highlighted line when `row = 2`, what does `*(arr + row)` point to?
-
-A. An invaild address
-
-B. A newly allocated array of integers
-
-C. A newly allocated array of integer pointers 
-
-D. The entire 2D array
 '''
 
-answer = '''
-B
-'''
+answer = [1]
+
+choices = [
+  "An invalid address",
+  "A newly allocated array of integers",
+  "A newly allocated array of integer pointers",
+  "The entire 2D array"
+]

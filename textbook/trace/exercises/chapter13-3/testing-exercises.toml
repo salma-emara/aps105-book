@@ -4,7 +4,7 @@ title = "Counting Loop Iterations"
 difficulty = "Easy"
 table = false
 multipart = false
-type = "visualizer"
+type = "multiple-choice"
 
 question = '''
 Suppose `head` points to the following linked list:
@@ -23,16 +23,13 @@ while (current != NULL) {
   current = current->next;
 }
 ```
-
-A. 3
-
-B. 4
-
-C. 5
-
-D. 6
 '''
 
-answer = '''
-B
-'''
+answer = [1]
+
+choices = [
+  "3",
+  "4",
+  "5",
+  "6"
+]

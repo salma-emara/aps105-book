@@ -4,7 +4,7 @@ title = "Pointer Reassignment"
 difficulty = "Easy"
 table = false
 multipart = false
-type = "visualizer"
+type = "multiple-choice"
 
 question = '''
 After executing the following code, what is the value of `temp->data`?
@@ -19,16 +19,13 @@ head->next->next = NULL;
 
 Node* temp = head->next;
 ```
-
-A. 1
-
-B. 2
-
-C. 0
-
-D. Runtime error
 '''
 
-answer = '''
-B
-'''
+answer = [1]
+
+choices = [
+  "1",
+  "2",
+  "0",
+  "Runtime error"
+]
